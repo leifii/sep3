@@ -63,7 +63,7 @@ public class NewMenuState extends MenuState {
 		textButtonStyle.pressedOffsetX=1;
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
-		NinePatch patch= new NinePatch(new Texture("border.9.png"));
+		NinePatch patch= new NinePatch(new Texture("border2.9.png"));
 		
 		TextButtonStyle textButtonStyle1=new TextButtonStyle();
 		textButtonStyle1.up= skin.getDrawable("blank-2");
@@ -88,7 +88,7 @@ public class NewMenuState extends MenuState {
 		table.getCell(label).spaceBottom(20);
 		table.add(buttonJ);
 		table.add(buttonN);
-		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getWidth()*2, table.getMinHeight()*2);
+		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getMinWidth()*2, table.getMinHeight()*2);
 //		table.setBackground(new TextureRegionDrawable(new TextureRegion(Rahmen));
 		stage.addActor(Rahmen);
 		stage.addActor(table);
