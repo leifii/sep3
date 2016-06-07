@@ -1,8 +1,8 @@
 package com.mygdx.states;
 
-import java.awt.Button;
 
-import org.lwjgl.util.Color;
+
+import java.awt.Font;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.sprites.LoadMenuWindow;
 import com.mygdx.sprites.MainMenuButton;
@@ -134,6 +132,9 @@ public class NewMenuState extends MenuState {
 		// TODO Auto-generated method stub
 		back.dispose();
 		newgamewindow.dispose();
+		stage.dispose();
+		atlas.dispose();
+		skin.dispose();
 	}
 
 }
