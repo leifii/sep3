@@ -74,19 +74,20 @@ public class NewMenuState extends MenuState {
 		
 		buttonJ=new TextButton("Ja", textButtonStyle);
 		buttonJ.pad(20);
-		table.setBounds(Gdx.graphics.getWidth()/2-buttonJ.getMinWidth(), Gdx.graphics.getHeight()/2-buttonJ.getMinHeight(),buttonJ.getMinWidth(),buttonJ.getMinHeight() );
+		table.setBounds(Gdx.graphics.getWidth()/2-300, Gdx.graphics.getHeight()/2-buttonJ.getMinHeight(),buttonJ.getMinWidth(),buttonJ.getMinHeight() );
 		
 		buttonN= new TextButton("Nein", textButtonStyle1);
 		buttonN.pad(20);		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
-		label= new Label("Möchtest du ein neues Spiel laden?",labelStyle);
+		label= new Label("Möchtest du ein neues Spiel starten?",labelStyle);
 		label.setFontScale(1.2f);
 		Image Rahmen=new Image(patch);
 		
 		table.add(label).width(150);
 		table.row();
 		table.getCell(label).spaceBottom(20);
-		table.add(buttonJ);
+		table.add(buttonJ).padLeft(Gdx.graphics.getWidth()/2f);
+		table.getCell(buttonJ).spaceLeft(100);
 		table.add(buttonN);
 		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getMinWidth()*2, table.getMinHeight()*2);
 //		table.setBackground(new TextureRegionDrawable(new TextureRegion(Rahmen));
