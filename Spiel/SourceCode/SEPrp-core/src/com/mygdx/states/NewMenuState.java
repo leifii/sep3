@@ -2,7 +2,6 @@ package com.mygdx.states;
 
 
 
-import java.awt.Font;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
