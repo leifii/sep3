@@ -1,4 +1,4 @@
-package com.mygdx.states;
+package com.mygdx.menu;
 
 import java.awt.event.KeyListener;
 import java.util.concurrent.TimeUnit;
@@ -13,8 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.sprites.LoadMenuWindow;
-import com.mygdx.sprites.MainMenuButton;
 
 public class MenuState extends State{
 		

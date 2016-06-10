@@ -1,3 +1,4 @@
+package com.character;
 /**package com.mygdx.sprites;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
