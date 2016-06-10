@@ -1,4 +1,4 @@
-package com.mygdx.states;
+package com.mygdx.menu;
 
 import java.util.Stack;
 

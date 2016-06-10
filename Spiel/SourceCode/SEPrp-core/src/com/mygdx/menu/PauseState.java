@@ -1,32 +1,31 @@
-package com.mygdx.states;
+package com.mygdx.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.sprites.LoadMenuWindow;
 
-public class SkillState extends State {
+public class PauseState extends PlayState {
 
-	private Texture playstatebackground;
-	private LoadMenuWindow skills;
-	
-	protected SkillState(GameStateManager gsm) {
+		Texture playstatebackground;
+		LoadMenuWindow pausefenster;
+	protected PauseState(GameStateManager gsm) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
 		playstatebackground=new Texture("playstatebackground.jpg");
-		skills=new LoadMenuWindow(1100, 500,"skills.jpg");
+		pausefenster=new LoadMenuWindow(1728/2-215,1080/2-400, "pausewindow.jpg");
 	}
 
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
-		if (Gdx.input.isKeyJustPressed(Keys.S)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new PlayState(gsm));
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			gsm.push(new PauseState(gsm));
+		if (Gdx.input.isKeyJustPressed(Keys.B)) {
+			
+			gsm.push(new MenuState(gsm));
 		}
 	}
 
@@ -41,7 +40,7 @@ public class SkillState extends State {
 		// TODO Auto-generated method stub
 		sb.begin();
 		sb.draw(playstatebackground,0,0,MyGdxGame.WIDTH,MyGdxGame.HEIGHT);
-		sb.draw(skills.getTexture(), skills.getPosition().x, skills.getPosition().y);
+		sb.draw(pausefenster.getTexture(), pausefenster.getPosition().x, pausefenster.getPosition().y);
 		sb.end();
 	}
 
@@ -49,7 +48,8 @@ public class SkillState extends State {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		playstatebackground.dispose();
-		skills.dispose();
+		pausefenster.dispose();
+
 	}
 
 }

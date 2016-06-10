@@ -1,11 +1,10 @@
-package com.mygdx.states;
+package com.mygdx.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.sprites.LoadMenuWindow;
 
 public class InventoryState extends PlayState {
 

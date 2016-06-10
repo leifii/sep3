@@ -1,4 +1,4 @@
-package com.mygdx.states;
+package com.mygdx.menu;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

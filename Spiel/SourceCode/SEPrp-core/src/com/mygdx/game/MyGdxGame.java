@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.states.GameStateManager;
-import com.mygdx.states.MenuState;
+import com.mygdx.menu.GameStateManager;
+import com.mygdx.menu.MenuState;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;

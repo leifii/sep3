@@ -1,4 +1,4 @@
-package com.mygdx.states;
+package com.mygdx.menu;
 
 
 
@@ -19,8 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.sprites.LoadMenuWindow;
-import com.mygdx.sprites.MainMenuButton;
 
 public class NewMenuState extends MenuState {
 
