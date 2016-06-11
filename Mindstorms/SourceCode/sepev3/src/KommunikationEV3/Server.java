@@ -22,7 +22,7 @@ public class Server{
 			socket.getInputStream().read(read);
 			for(byte by : read) {
 				System.out.println(by);
-			}
+			
 			
 			System.out.println(socket.getInputStream().read());
 			socket.close();
