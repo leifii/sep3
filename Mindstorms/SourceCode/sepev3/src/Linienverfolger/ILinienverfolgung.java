@@ -2,8 +2,8 @@ package Linienverfolger;
 
 public interface ILinienverfolgung {
 
-	public boolean aufLinie();
-	public boolean aufKnoten();
-	public boolean sucheLinie();
+	public boolean aufLinie(boolean linie);
+	public boolean aufKnoten(boolean knoten);
+	public boolean sucheLinie(boolean suchelinie);
 	
 }
