@@ -2,5 +2,5 @@ package Drucksensorverarbeitung;
 
 public interface IDrucksensor {
 
-	public boolean druckSensor();
+	public boolean druckSensor(boolean druck);
 }
