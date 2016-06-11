@@ -5,7 +5,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class KommunikationEV3 implements IKommunikation{
+
+import Drucksensorverarbeitung.IDrucksensor;
+import Steuerbefehle.ISteuerbefehl;
+
+public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDrucksensor{
 
 	Socket socket;
 	
@@ -33,7 +37,7 @@ public class KommunikationEV3 implements IKommunikation{
 		try {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
-			int length = in.readInt();		//L‰nge der Nachricht lesen
+			int length = in.readInt();		//LÔøΩnge der Nachricht lesen
 			if(length>0){
 				byte[] nachricht = new byte[length];
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
@@ -58,4 +62,30 @@ public class KommunikationEV3 implements IKommunikation{
 	public int erzeugeByteArray(){
 		return 1;
 	}
+	
+	public boolean druckSensor(boolean druck){
+		return druck;
+	}
+	
+	@Override
+	public void fahreVorw√§rts() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void MotorSuchtLinie() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void drehenLinks() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void drehenRechts() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
