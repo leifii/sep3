@@ -17,19 +17,19 @@ public class Client {
 			
 			try
 			{
-			roboter1 = new Socket("192.168.2.104", 18415);			//Terminal: ipconfig !!!!   IP-Adresse ändern!!!!
-//			roboter2 = new Socket("192.168.2.104", 18415);
-//			roboter3 = new Socket("192.168.2.104", 18415);
-//			roboter4 = new Socket("192.168.2.104", 18415);
+			roboter1 = new Socket("192.168.2.109", 18415);			//Terminal: ipconfig !!!!   IP-Adresse ändern!!!!
+//			roboter2 = new Socket("192.168.2.109", 18415);
+//			roboter3 = new Socket("192.168.2.109", 18415);
+//			roboter4 = new Socket("192.168.2.109", 18415);
 			System.out.println("Server gefunden!");
 			
-			Kommunikation com1 = new Kommunikation(roboter1);
-			com1.senden();
+			
 			
 			//Stream
 			
-			
-			
+			Kommunikation com1 = new Kommunikation(roboter1);
+			com1.senden();
+			com1.empfangen();
 			
 			
 			//Stream ende
