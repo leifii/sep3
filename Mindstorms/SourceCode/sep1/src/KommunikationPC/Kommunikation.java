@@ -21,6 +21,7 @@ public class Kommunikation implements IKommunikation{
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
 			out.write(nachricht);
+			System.out.println("Nachricht gesendet");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
