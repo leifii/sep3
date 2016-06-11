@@ -1,6 +1,7 @@
 package Anzeige;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -30,21 +31,10 @@ public class Menu extends JFrame implements IMenu, ISpieldaten{
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNeuesSpielStarten = new JButton("Neues Spiel starten (N)");
-		btnNeuesSpielStarten.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//SPIEL STARTEN FUNKTION
-			}
-		});
 		btnNeuesSpielStarten.setBounds(180, 87, 200, 30);
 		getContentPane().add(btnNeuesSpielStarten);
 		
 		JButton btnSpielBeendenb = new JButton("Spiel Beenden (B)");
-		btnSpielBeendenb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-//				SPIEL BEENDEN FUNKTION
-			}
-		});
 		btnSpielBeendenb.setBounds(180, 113, 200, 30);
 		getContentPane().add(btnSpielBeendenb);
 		
