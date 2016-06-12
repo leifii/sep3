@@ -25,11 +25,9 @@ public class Character implements ICharacter{
 		sb.begin();
 		sb.draw(char1[0], WIDTH/2,HEIGHT/2);
 		sb.end();
-		
 	}
 	@Override
 	public TextureRegion getTextureRegion(int index) {
-		
 		return char1[index];
 	}
 	@Override

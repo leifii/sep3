@@ -10,8 +10,8 @@ public class PauseState extends PlayState {
 
 		Texture playstatebackground;
 		LoadMenuWindow pausefenster;
-	protected PauseState(GameStateManager gsm) {
-		super(gsm);
+	protected PauseState(GameStateManager gsm,int characterauswahl) {
+		super(gsm,characterauswahl);
 		// TODO Auto-generated constructor stub
 		playstatebackground=new Texture("playstatebackground.jpg");
 		pausefenster=new LoadMenuWindow(1728/2-215,1080/2-400, "pausewindow.jpg");
@@ -21,7 +21,7 @@ public class PauseState extends PlayState {
 	protected void handleInput() {
 		// TODO Auto-generated method stub
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			gsm.push(new PlayState(gsm));
+			gsm.push(new PlayState(gsm,);
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.B)) {
 			
