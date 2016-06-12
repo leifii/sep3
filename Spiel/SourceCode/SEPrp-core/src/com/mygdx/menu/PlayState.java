@@ -7,18 +7,24 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.character.Character;
 import com.mygdx.game.MyGdxGame;
+import com.grafiken.*;
+
 public class PlayState extends State{
 	
 	private Texture playstatebackground;
 	private Character c;
+	private Map map;
+	private ICharacter s;
 	
 
 	protected PlayState(GameStateManager gsm) {
 		super(gsm);
 		
 		// TODO Auto-generated constructor stub
+		s=new com.grafiken.Character();
+		map=new Map(cam);
 		playstatebackground=new Texture("playstatebackground.jpg");
-		c=new Character(100,100,"abc.png",2.5f);
+		c=new Character(100,100,s.getTextureRegion(0),2.5f);
 	}
 
 	@Override
@@ -50,9 +56,11 @@ public class PlayState extends State{
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
+		
+		map.render(sb);
 		sb.begin();
-		sb.draw(playstatebackground,0,0,MyGdxGame.WIDTH,MyGdxGame.HEIGHT);
-		sb.draw(c.getTexture(), c.getPosition().x, c.getPosition().y);
+//		sb.draw(s.getTextureRegion(0),MyGdxGame.WIDTH/2,MyGdxGame.HEIGHT/2);
+		sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
 		
 		sb.end();
 	}
