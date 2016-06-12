@@ -57,7 +57,7 @@ public void initComponents() {
 	setSize(600,500);
 	setTitle("SEPman");
 	setzeStartbildschirm();
-//	setzeAuswahldisplay();
+
 
 	
 	validate();
@@ -89,6 +89,7 @@ private void setzeStartbildschirm(){
 
 private void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
+    spielvorbereitungsDisplay.setVisible(false);
 	display.setVisible(true);
 	display.setLayout(null);
 	display.setBackground(Color.WHITE);
@@ -162,6 +163,11 @@ private void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.setVisible(true);
 	spielvorbereitungsDisplay.setBackground(Color.WHITE);
 	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnZurueck.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			setzeAuswahldisplay();
+		}
+	});
 	
 	spielvorbereitungsDisplay.add(btnZurueck);
 	btnZurueck.setBounds(200, 400, 240, 50);
