@@ -15,7 +15,7 @@ public class Character {
 	private Vector3 position;
 	
 	private TextureRegion character;
-	
+	private Texture character1;
 	
 	float laufspeed;
 	int STR;
@@ -31,15 +31,13 @@ public class Character {
 	public Character (int x,int y,String sprite,float speed){
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
-		ICharacter s=new com.grafiken.Character();
-	    character=s.getTextureRegion(0);
+	    character1=new Texture(sprite);
 	    
 	}
 	public Character (int x,int y,TextureRegion sprite,float speed){
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
-		ICharacter s=new com.grafiken.Character();
-		character=s.getTextureRegion(0);
+		character=sprite;
 		
 	}
 	public void update(float dt){
@@ -61,6 +59,9 @@ public class Character {
 	}
 	public TextureRegion getTextureRegion(){
 		return character;
+	}
+	public Texture getTexture(){
+		return character1;
 	}
 	public void dispose(){
 //		character.dispose();

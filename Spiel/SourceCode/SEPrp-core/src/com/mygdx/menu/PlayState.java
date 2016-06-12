@@ -24,7 +24,7 @@ public class PlayState extends State{
 		s=new com.grafiken.Character();
 		map=new Map(cam);
 		playstatebackground=new Texture("playstatebackground.jpg");
-		c=new Character(100,100,s.getTextureRegion(0),2.5f);
+		c=new Character(100,100,s.getTextureRegion(1),2.5f);
 	}
 
 	@Override
