@@ -5,7 +5,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
+
 
 public class Client {
 
@@ -17,7 +17,7 @@ public class Client {
 			
 			try
 			{
-			roboter1 = new Socket("192.168.2.109", 18415);			//Terminal: ipconfig !!!!   IP-Adresse ändern!!!!
+			roboter1 = new Socket("192.168.2.107", 18415);			//Terminal: ipconfig  ; IP-Adresse ändern!!!!
 //			roboter2 = new Socket("192.168.2.109", 18415);
 //			roboter3 = new Socket("192.168.2.109", 18415);
 //			roboter4 = new Socket("192.168.2.109", 18415);
