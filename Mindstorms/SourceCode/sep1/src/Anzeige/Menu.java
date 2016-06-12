@@ -61,16 +61,21 @@ public void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
 	startDisplay.setBackground(Color.cyan);
-	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));	
+	btnAuswahlfenster.setText("START");
+	btnAuswahlfenster.setBounds(210, 200, 200, 50);
+	startDisplay.add(btnAuswahlfenster);
 	btnAuswahlfenster.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			setzeAuswahlbildschirm();
 		}
 	});
-	
-	btnAuswahlfenster.setText("START");
-	btnAuswahlfenster.setBounds(210, 200, 200, 50);
-	startDisplay.add(btnAuswahlfenster);
+	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
+	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
+	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 70));
+	lbUeberschrift.setBounds(20,20 , 580, 70);
+	startDisplay.add(lbUeberschrift);
+
 	
 	
 	getContentPane().add(startDisplay);
@@ -88,7 +93,7 @@ public void setzeAuswahlbildschirm (){
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 50));
-	lbUeberschrift.setBounds(20, 6, 592, 51);
+	lbUeberschrift.setBounds(20, 6, 580	, 50);
 	display.add(lbUeberschrift);
 	
 	btnStart.setSize(210, 50);
