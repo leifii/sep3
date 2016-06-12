@@ -45,7 +45,7 @@ public class Steuerbefehl implements ILinienverfolgung, ISteuerbefehl{
 						//bis die Linie zur Seite gefunden wird (die noch nicht gefahren wurde).Methode drehenLinks().
 			
 		
-		fahreVorwärts(); //Anschließend wird der Befehl (Vorwärts bis zum nächsten Knoten) weitergeführt.
+		fahreVorwaerts(); //Anschließend wird der Befehl (Vorwärts bis zum nächsten Knoten) weitergeführt.
 		MotorL.close();
 		MotorR.close();
 	}
