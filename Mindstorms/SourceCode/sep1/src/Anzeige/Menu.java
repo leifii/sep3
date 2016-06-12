@@ -36,6 +36,7 @@ public class Menu extends JFrame implements IMenu{
 	public JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
 	public JLabel lbBeschriftung3= new JLabel("ROBOTER 3:");
 	public JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
+	private JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
 	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
@@ -65,16 +66,19 @@ public void initComponents() {
 private void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
-	startDisplay.setBackground(Color.cyan);
+	startDisplay.setBackground(Color.gray);
 	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));	
+	
 	btnAuswahlfenster.setText("START");
 	btnAuswahlfenster.setBounds(210, 200, 200, 50);
-	startDisplay.add(btnAuswahlfenster);
+	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	btnAuswahlfenster.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			setzeAuswahldisplay();
 		}
 	});
+	startDisplay.add(btnAuswahlfenster);
+	
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 70));
@@ -95,21 +99,22 @@ private void setzeAuswahldisplay (){
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 50));
 	lbUeberschrift.setBounds(20, 6, 580	, 50);
 	display.add(lbUeberschrift);
+	
 	btnStart.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			setzeSpielvorbereitungsdisplay();
 		}
 	});
-	
 	btnStart.setSize(210, 50);
 	btnStart.setLocation(215, 95);
-	
 	btnStart.setText("Start");
+	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(btnStart);
+	
 	btnEnde.setSize(210, 50);
 	btnEnde.setLocation(215, 155);
-	
 	btnEnde.setText("Ende");
+	btnEnde.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(btnEnde);
 	
 	lbBeschriftung1.setFont(new Font("Arial", Font.BOLD, 15));
@@ -161,10 +166,17 @@ private void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.add(btnZurueck);
 	btnZurueck.setBounds(200, 400, 240, 50);
 	btnZurueck.setText("Zurück");
+	btnZurueck.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	
 	spielvorbereitungsDisplay.add(btnStartfinal);
 	btnStartfinal.setBounds(200, 340, 240, 50);
 	btnStartfinal.setText("Roboter positioniert ,Spiel starten !!");
+	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	
+	spielvorbereitungsDisplay.add(lbHinweis1);
+	lbHinweis1.setBounds(100, 100, 300, 100);
+	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 15));
+	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
 	
 	getContentPane().add(spielvorbereitungsDisplay);
