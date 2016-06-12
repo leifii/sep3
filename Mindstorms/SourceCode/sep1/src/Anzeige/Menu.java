@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
-import Spieldatenverarbeitung.ISpieldaten;
+
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,20 +16,25 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
 
-public class Menu extends JFrame implements IMenu, ISpieldaten{
+public class Menu extends JFrame implements IMenu{
 	
 	boolean inputFINISHED = false;
 	public 	String comboBoxInhalt[] = {"Modus1", "Modus2", "Modus3", "Modus4"};
 	private JPanel display = new JPanel();
+	private JPanel startDisplay = new JPanel();
+	private JPanel siegDisplay = new JPanel();
 	public JLabel lbUeberschrift = new JLabel("SEPMAN");
 	public JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
 	public JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
 	public JLabel lbBeschriftung3= new JLabel("ROBOTER 3:");
 	public JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
+	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
 	public JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
@@ -38,23 +43,47 @@ public class Menu extends JFrame implements IMenu, ISpieldaten{
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
 	
 	public Menu() {
+		super();
 		initComponents();
 	}
 
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	getContentPane().setLayout(new BorderLayout());
-	setSize(500,500);
+	setSize(600,500);
 	setTitle("SEPman");
-	setResizable(false);
 	setzeStartbildschirm();
-	display.setVisible(true);
-	display.setBackground(Color.WHITE);
-	display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+
+	
+	validate();
+
+}
+public void setzeStartbildschirm(){
+	startDisplay.setLayout(null);
+	startDisplay.setVisible(true);
+	startDisplay.setBackground(Color.cyan);
+	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnAuswahlfenster.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			setzeAuswahlbildschirm();
+		}
+	});
+	
+	btnAuswahlfenster.setText("START");
+	btnAuswahlfenster.setBounds(210, 200, 200, 50);
+	startDisplay.add(btnAuswahlfenster);
+	
+	
+	getContentPane().add(startDisplay);
+	
+	
 }
 
-public void setzeStartbildschirm (){
+public void setzeAuswahlbildschirm (){
+    startDisplay.setVisible(false);
+	display.setVisible(true);
 	display.setLayout(null);
+	display.setBackground(Color.WHITE);
+	display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,7 +118,6 @@ public void setzeStartbildschirm (){
 	lbBeschriftung4.setBounds(215, 340, 102, 16);
 	display.add(lbBeschriftung4);
 	
-	
 	cbAuswahl1.setSize(114, 50);
 	cbAuswahl1.setLocation(311, 210);
 	display.add(cbAuswahl1);
@@ -105,9 +133,16 @@ public void setzeStartbildschirm (){
 	cbAuswahl4.setSize(114, 50);
 	cbAuswahl4.setLocation(311, 324);
 	display.add(cbAuswahl4);
+	
+	getContentPane().add(display);
 }
 public void setzeSiegbildschirm(){
+	display.setVisible(false);
 	
+	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	siegDisplay.setLayout(null);
+	
+	siegDisplay.setVisible(true);
 }
 
 public void setzeNiederlageBildschirm(){
