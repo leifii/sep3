@@ -8,6 +8,8 @@ import java.net.Socket;
 
 import Drucksensorverarbeitung.IDrucksensor;
 import Steuerbefehle.ISteuerbefehl;
+import lejos.hardware.lcd.LCD;
+import lejos.utility.Delay;
 
 public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDrucksensor{
 
@@ -24,7 +26,12 @@ public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDruckse
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
 			out.write(nachricht);
-			System.out.println("Nachricht gesendet");
+//		    System.out.println("Nachricht gesendet");                              //Konsolenausgabe bei Test am PC
+//		    LCD.drawString("Nachricht", 0, 2);                                     //Displayausgabe bei Test am EV3
+//		    LCD.drawString("gesendet!", 0, 3);                                     //
+//		    Delay.msDelay(2000);                                                   //
+//		    LCD.clear();                                                           //
+			 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,12 +49,16 @@ public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDruckse
 				byte[] nachricht = new byte[length];
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
 				
-				System.out.println("Nachricht empfangen");
+//				System.out.println("Nachricht empfangen");                         //Konsolenausgabe bei Test am PC
+				LCD.drawString("Nachricht", 0, 1);                                 //Displayausgabe bei Test am EV3
+				LCD.drawString("empfangen:", 0, 2);                                //
 				
 				for(int i = 0; i<nachricht.length; i++){
-					System.out.print(nachricht[i]);
+//					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
+					LCD.drawInt(nachricht[i], i+1, 4);
 				}
-				System.out.println("");
+//				System.out.println("");
+				Delay.msDelay(5000);
 			}
 			
 			
