@@ -39,6 +39,8 @@ public class Menu extends JFrame implements IMenu{
 	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
+	public JButton btnZurueck = new JButton();
+	public JButton btnStartfinal = new JButton();
 	public JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
@@ -155,6 +157,16 @@ private void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.setVisible(true);
 	spielvorbereitungsDisplay.setBackground(Color.WHITE);
 	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	
+	spielvorbereitungsDisplay.add(btnZurueck);
+	btnZurueck.setBounds(200, 400, 240, 50);
+	btnZurueck.setText("Zurück");
+	
+	spielvorbereitungsDisplay.add(btnStartfinal);
+	btnStartfinal.setBounds(200, 340, 240, 50);
+	btnStartfinal.setText("Roboter positioniert ,Spiel starten !!");
+
+	
 	getContentPane().add(spielvorbereitungsDisplay);
 }
 
