@@ -19,7 +19,7 @@ public class Map {
 		map=new TmxMapLoader().load("grafiken/test.tmx");
 		renderer=new OrthogonalTiledMapRenderer(map);
 	}
-	
+
 	
 	public void render(SpriteBatch sb){
 	cam.update();

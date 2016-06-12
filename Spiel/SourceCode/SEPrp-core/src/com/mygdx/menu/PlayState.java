@@ -32,7 +32,7 @@ public class PlayState extends State{
 	
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(100,100,s.getTextureRegion(0),2.5f);
+			c=new Krieger(500,500,s.getTextureRegion(0),2.5f);
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
@@ -50,8 +50,10 @@ public class PlayState extends State{
 			c=new Schütze(100,100,s.getTextureRegion(0),2.5f);
 			System.out.println("Schütze");
 		}
+	
 	}
 
+	
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
@@ -75,7 +77,8 @@ public class PlayState extends State{
 		// TODO Auto-generated method stub
 		handleInput();
 		c.update(dt);
-		
+		cam.position.set(c.getPosition().x,c.getPosition().y,0);
+		cam.update();
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class Character implements ICharacter{
 	private static int HEIGHT=Gdx.graphics.getWidth();
 	TextureRegion[] char1;
 	
-	
+
 	public Character(){
 		texture=new Texture("grafiken/mage with head+s.png");
 		character=new Sprite[]{(new Sprite(texture))};
