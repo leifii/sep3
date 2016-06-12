@@ -1,5 +1,6 @@
 package com.mygdx.menu;
 
+import com.android.ide.common.rendering.api.SessionParams.Key;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
 
 public class NewGameCharacterState extends NewMenuState {
-
+	PlayState playstate;
 	Texture back;
 	private MainMenuButton loadbutton;
 	private MainMenuButton newgamebutton;
@@ -21,7 +22,6 @@ public class NewGameCharacterState extends NewMenuState {
 		newgamebutton=new MainMenuButton(1728/2-77, 1080/2-172, "newgamebutton.jpg");
 		beendenbutton=new MainMenuButton(1728/2-77,1080/2-280,"beendenbutton.jpg");
 		newcharwindow=new LoadMenuWindow(1728/2-160,1080/2-200, "newcharwindow.jpg");
-	
 	}
 	
 
@@ -31,8 +31,21 @@ public class NewGameCharacterState extends NewMenuState {
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 				gsm.push(new NewMenuState(gsm));
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.J)) {
-			gsm.push(new PlayState(gsm));
+		if (Gdx.input.isKeyJustPressed(Keys.NUM_1)) {
+			playstate=new PlayState(gsm, 1);
+			gsm.push(playstate);
+	}
+		if (Gdx.input.isKeyJustPressed(Keys.NUM_2)) {
+			playstate=new PlayState(gsm, 2);
+			gsm.push(playstate);
+	}
+		if (Gdx.input.isKeyJustPressed(Keys.NUM_3)) {
+			playstate=new PlayState(gsm, 3);
+			gsm.push(playstate);
+	}
+		if (Gdx.input.isKeyJustPressed(Keys.NUM_4)) {
+			playstate=new PlayState(gsm, 4);
+			gsm.push(playstate);
 	}
 	}
 

@@ -6,31 +6,56 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.character.Character;
+import com.character.Drachenmensch;
+import com.character.Krieger;
+import com.character.Magier;
+import com.character.Schütze;
 import com.mygdx.game.MyGdxGame;
 import com.grafiken.*;
 
 public class PlayState extends State{
 	
-	private Texture playstatebackground;
+
+	
 	private Character c;
 	private Map map;
 	private ICharacter s;
 	
-
-	protected PlayState(GameStateManager gsm) {
+	
+	public PlayState(GameStateManager gsm,int characterauswahl) {
 		super(gsm);
 		
 		// TODO Auto-generated constructor stub
+	
 		s=new com.grafiken.Character();
 		map=new Map(cam);
-		playstatebackground=new Texture("playstatebackground.jpg");
-		c=new Character(100,100,s.getTextureRegion(0),2.5f);
+	
+		if(characterauswahl==1){
+			System.out.println("Krieger");
+			c=new Krieger(100,100,s.getTextureRegion(0),2.5f);
+			System.out.println("Krieger");
+		}
+		else if(characterauswahl==2){
+			System.out.println("Magier");
+			c=new Magier(100,100,s.getTextureRegion(0),2.5f);
+			System.out.println("Magier");
+		}
+		else if(characterauswahl==3){
+			System.out.println("Drachenmensch");
+			c=new Drachenmensch(100,100,s.getTextureRegion(0),2.5f);
+			System.out.println("Drachenmensch");
+		}
+		else if(characterauswahl==4){
+			System.out.println("Schütze");
+			c=new Schütze(100,100,s.getTextureRegion(0),2.5f);
+			System.out.println("Schütze");
+		}
 	}
 
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+	/*	if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new PauseState(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.M)) {
@@ -39,7 +64,7 @@ public class PlayState extends State{
 		if (Gdx.input.isKeyJustPressed(Keys.I)) {
 			gsm.push(new InventoryState(gsm));
 		}
-		/*if (Gdx.input.isKeyJustPressed(Keys.S)) {
+		if (Gdx.input.isKeyJustPressed(Keys.S)) {
 			gsm.push(new SkillState(gsm));
 		}*/
 		
@@ -68,7 +93,6 @@ public class PlayState extends State{
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		playstatebackground.dispose();
 		
 	}
 

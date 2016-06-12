@@ -22,7 +22,7 @@ import com.mygdx.game.MyGdxGame;
 
 public class NewMenuState extends MenuState {
 
-	
+
 	private Texture back;
 	private LoadMenuWindow newgamewindow;
 	private MainMenuButton loadbutton;
@@ -102,6 +102,7 @@ public class NewMenuState extends MenuState {
 			gsm.push(new MenuState(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.J) || buttonJ.isChecked()) {
+		 
 			gsm.push(new NewGameCharacterState(gsm));
 		}
 	}

@@ -28,12 +28,12 @@ public class Character {
 	
 // Skills skills;
 	
-	public Character (int x,int y,String sprite,float speed){
+/*	public Character (int x,int y,String sprite,float speed){
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
-	    character1=new Texture(sprite);
-	    
-	}
+	    character1=new Texture(sprite);    
+	}*/
+	
 	public Character (int x,int y,TextureRegion sprite,float speed){
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
