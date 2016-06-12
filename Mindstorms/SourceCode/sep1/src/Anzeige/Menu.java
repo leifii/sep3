@@ -29,6 +29,8 @@ public class Menu extends JFrame implements IMenu{
 	private JPanel display = new JPanel();
 	private JPanel startDisplay = new JPanel();
 	private JPanel siegDisplay = new JPanel();
+	private JPanel niederlageDisplay = new JPanel();
+	private JPanel spielvorbereitungsDisplay = new JPanel();
 	public JLabel lbUeberschrift = new JLabel("SEPMAN");
 	public JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
 	public JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
@@ -57,7 +59,7 @@ public void initComponents() {
 	validate();
 
 }
-public void setzeStartbildschirm(){
+private void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
 	startDisplay.setBackground(Color.cyan);
@@ -67,7 +69,7 @@ public void setzeStartbildschirm(){
 	startDisplay.add(btnAuswahlfenster);
 	btnAuswahlfenster.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			setzeAuswahlbildschirm();
+			setzeAuswahldisplay();
 		}
 	});
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
@@ -75,15 +77,10 @@ public void setzeStartbildschirm(){
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 70));
 	lbUeberschrift.setBounds(20,20 , 580, 70);
 	startDisplay.add(lbUeberschrift);
-
-	
-	
 	getContentPane().add(startDisplay);
-	
-	
 }
 
-public void setzeAuswahlbildschirm (){
+private void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
 	display.setVisible(true);
 	display.setLayout(null);
@@ -141,20 +138,36 @@ public void setzeAuswahlbildschirm (){
 	
 	getContentPane().add(display);
 }
-public void setzeSiegbildschirm(){
+
+private void setzeSpielvorbereitungsdisplay(){
 	display.setVisible(false);
+	startDisplay.setVisible(false);
+	siegDisplay.setVisible(false);
+	niederlageDisplay.setVisible(false);
 	
-	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	spielvorbereitungsDisplay.setLayout(null);
+	spielvorbereitungsDisplay.setVisible(true);
+	spielvorbereitungsDisplay.setBackground(Color.WHITE);
+	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	add(spielvorbereitungsDisplay);
+}
+
+private void setzeSiegbildschirm(){
+	display.setVisible(false);
+	startDisplay.setVisible(false);
 	siegDisplay.setLayout(null);
-	
 	siegDisplay.setVisible(true);
+	siegDisplay.setBackground(Color.GRAY);
+	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	
+    add(siegDisplay);
 }
 
-public void setzeNiederlageBildschirm(){
+private void setzeNiederlageBildschirm(){
 	
 }
 
-public void setzePausenBildschrim(){
+private void setzePausenBildschrim(){
 	
 }
 
