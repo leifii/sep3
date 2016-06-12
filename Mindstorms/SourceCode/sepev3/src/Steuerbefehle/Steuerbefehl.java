@@ -7,7 +7,7 @@ import lejos.robotics.RegulatedMotor;
 
 public class Steuerbefehl implements ILinienverfolgung, ISteuerbefehl{
 
-	public void fahreVorwärts(){
+	public void fahreVorwaerts(){
 		RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
 		
