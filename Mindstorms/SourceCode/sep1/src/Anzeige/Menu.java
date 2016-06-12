@@ -54,6 +54,7 @@ public void initComponents() {
 	setSize(600,500);
 	setTitle("SEPman");
 	setzeStartbildschirm();
+//	setzeAuswahldisplay();
 
 	
 	validate();
@@ -92,6 +93,11 @@ private void setzeAuswahldisplay (){
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 50));
 	lbUeberschrift.setBounds(20, 6, 580	, 50);
 	display.add(lbUeberschrift);
+	btnStart.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			setzeSpielvorbereitungsdisplay();
+		}
+	});
 	
 	btnStart.setSize(210, 50);
 	btnStart.setLocation(215, 95);
@@ -149,7 +155,7 @@ private void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.setVisible(true);
 	spielvorbereitungsDisplay.setBackground(Color.WHITE);
 	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
-	add(spielvorbereitungsDisplay);
+	getContentPane().add(spielvorbereitungsDisplay);
 }
 
 private void setzeSiegbildschirm(){
@@ -160,7 +166,7 @@ private void setzeSiegbildschirm(){
 	siegDisplay.setBackground(Color.GRAY);
 	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-    add(siegDisplay);
+    getContentPane().add(siegDisplay);
 }
 
 private void setzeNiederlageBildschirm(){
