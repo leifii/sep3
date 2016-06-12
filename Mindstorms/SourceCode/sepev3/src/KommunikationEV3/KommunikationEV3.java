@@ -68,7 +68,7 @@ public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDruckse
 	}
 	
 	@Override
-	public void fahreVorwärts() {
+	public void fahreVorwaerts() {
 		// TODO Auto-generated method stub
 		
 	}
