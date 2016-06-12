@@ -15,7 +15,7 @@ public class Character implements ICharacter{
 	TextureRegion[] char1;
 	
 	
-	private Character(){
+	public Character(){
 		texture=new Texture("grafiken/mage with head+s.png");
 		character=new Sprite[]{(new Sprite(texture))};
 		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture)};

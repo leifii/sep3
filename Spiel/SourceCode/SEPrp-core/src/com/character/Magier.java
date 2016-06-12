@@ -38,13 +38,13 @@ public class Magier extends Character{
 		return super.getPosition();
 	}
 
-	@Override
-	public Texture getTexture() {
-		// TODO Auto-generated method stub
-		return super.getTexture();
-	}
+//	@Override
+//	public Texture getTexture() {
+//		// TODO Auto-generated method stub
+//		return super.getTexture();
+//	}
 
-	@Override
+//	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
