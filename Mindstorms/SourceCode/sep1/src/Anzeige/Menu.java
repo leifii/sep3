@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame implements IMenu{
 	
 	boolean inputFINISHED = false;
+	private String roboterBelegung[][];
 	public 	String comboBoxInhalt[] = {"Modus1", "Modus2", "Modus3", "Modus4"};
 	private JPanel display = new JPanel();
 	private JPanel startDisplay = new JPanel();
@@ -57,13 +58,15 @@ public void initComponents() {
 	setSize(600,500);
 	setTitle("SEPman");
 	setzeStartbildschirm();
+//	setzeSpielvorbereitungsdisplay();
+//	setzeAuswahldisplay();
 
 
 	
 	validate();
 
 }
-private void setzeStartbildschirm(){
+public void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
 	startDisplay.setBackground(Color.gray);
@@ -87,7 +90,7 @@ private void setzeStartbildschirm(){
 	getContentPane().add(startDisplay);
 }
 
-private void setzeAuswahldisplay (){
+public void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
     spielvorbereitungsDisplay.setVisible(false);
 	display.setVisible(true);
@@ -111,6 +114,11 @@ private void setzeAuswahldisplay (){
 	btnStart.setText("Start");
 	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(btnStart);
+	btnEnde.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+		}
+	});
 	
 	btnEnde.setSize(210, 50);
 	btnEnde.setLocation(215, 155);
@@ -153,7 +161,7 @@ private void setzeAuswahldisplay (){
 	getContentPane().add(display);
 }
 
-private void setzeSpielvorbereitungsdisplay(){
+public void setzeSpielvorbereitungsdisplay(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
 	siegDisplay.setVisible(false);
@@ -188,7 +196,7 @@ private void setzeSpielvorbereitungsdisplay(){
 	getContentPane().add(spielvorbereitungsDisplay);
 }
 
-private void setzeSiegbildschirm(){
+public void setzeSiegbildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
 	siegDisplay.setLayout(null);
@@ -199,14 +207,16 @@ private void setzeSiegbildschirm(){
     getContentPane().add(siegDisplay);
 }
 
-private void setzeNiederlageBildschirm(){
+public void setzeNiederlageBildschirm(){
 	
 }
 
-private void setzePausenBildschrim(){
+public void setzePausenBildschrim(){
 	
 }
-
+public String[][] getRoboterbelegung(){
+	return roboterBelegung;
+}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
