@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 public class Menu extends JFrame implements IMenu, ISpieldaten{
 	
 	boolean inputFINISHED = false;
+	public 	String comboBoxInhalt[] = {"Modus1", "Modus2", "Modus3", "Modus4"};
 	private JPanel display = new JPanel();
 	public JLabel lbUeberschrift = new JLabel("SEPMAN");
 	public JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
@@ -31,10 +32,10 @@ public class Menu extends JFrame implements IMenu, ISpieldaten{
 	public JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
-	public JComboBox cbAuswahl1= new JComboBox();
-	public JComboBox cbAuswahl2= new JComboBox();
-	public JComboBox cbAuswahl3= new JComboBox();
-	public JComboBox cbAuswahl4= new JComboBox();
+	public JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
+	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
+	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
+	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
 	
 	public Menu() {
 		initComponents();
@@ -87,16 +88,20 @@ public void setzeStartbildschirm (){
 	
 	lbBeschriftung4.setBounds(215, 340, 102, 16);
 	display.add(lbBeschriftung4);
+	
+	
 	cbAuswahl1.setSize(114, 50);
 	cbAuswahl1.setLocation(311, 210);
-	
 	display.add(cbAuswahl1);
+	
 	cbAuswahl2.setSize(114, 50);
 	cbAuswahl2.setLocation(311, 246);
 	display.add(cbAuswahl2);
+	
 	cbAuswahl3.setSize(114, 50);
 	cbAuswahl3.setLocation(311, 284);
 	display.add(cbAuswahl3);
+	
 	cbAuswahl4.setSize(114, 50);
 	cbAuswahl4.setLocation(311, 324);
 	display.add(cbAuswahl4);
