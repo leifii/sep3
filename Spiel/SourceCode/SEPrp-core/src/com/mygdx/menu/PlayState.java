@@ -135,11 +135,12 @@ public class PlayState extends State{
 			cam.position.set(c.getPosition().x,Gdx.graphics.getHeight()/2,0);
 			cam.update();
 		}
-		else
+		else{
 		sb.setProjectionMatrix(cam.combined);	
 		sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
 		cam.position.set(c.getPosition().x,c.getPosition().y,0);
 		cam.update();
+		}
 		sb.end();
 	}
 		
