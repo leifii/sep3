@@ -17,7 +17,7 @@ public class Client {
 			
 			try
 			{
-			roboter1 = new Socket("192.168.2.107", 18415);			//Terminal: ipconfig  ; IP-Adresse ändern!!!!
+			roboter1 = new Socket("192.168.2.107", 18415);			//IP-Adresse ändern (IP vom Brick)!!!!
 //			roboter2 = new Socket("192.168.2.109", 18415);
 //			roboter3 = new Socket("192.168.2.109", 18415);
 //			roboter4 = new Socket("192.168.2.109", 18415);
@@ -30,6 +30,7 @@ public class Client {
 			Kommunikation com1 = new Kommunikation(roboter1);
 			com1.senden();
 			com1.empfangen();
+			
 			
 			
 			//Stream ende
