@@ -20,14 +20,16 @@ public class PlayState extends State{
 	private Character c;
 	private Map map;
 	private ICharacter s;
-	private SpriteBatch batch;
 	
+	int crystalmoment=0;
+	private Texture crystal=new Texture("crystal.png");
+	private Sprite Crystal=new Sprite(crystal);
 	
 	public PlayState(GameStateManager gsm,int characterauswahl) {
 		super(gsm);
 		
 		// TODO Auto-generated constructor stub
-		batch=new SpriteBatch();
+		
 		s=new com.grafiken.Character();
 		map=new Map(cam);
 	
@@ -70,6 +72,7 @@ public class PlayState extends State{
 		if (Gdx.input.isKeyJustPressed(Keys.S)) {
 			gsm.push(new SkillState(gsm));
 		}*/
+		
 		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
 			Gdx.app.exit();
 		}
@@ -80,6 +83,8 @@ public class PlayState extends State{
 		// TODO Auto-generated method stub
 		handleInput();
 		c.update(dt);
+		
+		
 		
 		if (c.getPosition().x<=0) {
 			c.getPosition().x=0;
@@ -143,6 +148,7 @@ public class PlayState extends State{
 		cam.position.set(c.getPosition().x,c.getPosition().y,0);
 		cam.update();
 		}
+		Crystal.draw(sb);
 		sb.end();
 	}
 		
