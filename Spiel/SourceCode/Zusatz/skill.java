@@ -7,18 +7,24 @@ public class skill {
 	int lvl;
 	int dmg;
 	int dmgfaktor;
+	int cdnow;
 	int cd;
 	int cdfaktor;
 	private Texture bild;
+	boolean locked;
+	boolean ready;
 	
 	
-	skill(int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, String bild){
+	skill(int lvl, int dmg, int dmgfaktor, int cdnow, int cd, int cdfaktor, String bild, boolean locked, boolean ready){
 		this.lvl = lvl;
 		this.dmg = dmg;
 		this.dmgfaktor = dmgfaktor;
+		this.cdnow = cdnow;
 		this.cd = cd;
 		this.cdfaktor = cdfaktor;
-		this.bild = new Texture();
+		this.bild = new Texture(Gdx.files.internal(bild));
+		this.unlocked = locked;
+		this.ready = ready;
 		
 	}
 	
@@ -27,6 +33,13 @@ public class skill {
 		dmg += 2 * dmgfaktor;
 		cd -= 1*cdfaktor;
 	}
+	
+	public void cdtimer(){
+		
+	}
+	
+	
+	
 	
 	
 }
