@@ -43,12 +43,12 @@ public class PlayState extends State{
 		}
 		else if(characterauswahl==3){
 			System.out.println("Drachenmensch");
-			c=new Drachenmensch(100,100,s.getTextureRegion(0),2.5f);
+			c=new Drachenmensch(100,100,s.getTextureRegion(2),2.5f);
 			System.out.println("Drachenmensch");
 		}
 		else if(characterauswahl==4){
 			System.out.println("Schütze");
-			c=new Schütze(100,100,s.getTextureRegion(0),2.5f);
+			c=new Schütze(100,100,s.getTextureRegion(3),2.5f);
 			System.out.println("Schütze");
 		}
 	
@@ -85,7 +85,7 @@ public class PlayState extends State{
 		if (c.getPosition().y<=0) {
 			c.getPosition().y=0;
 		}
-		
+	
 //		if(c.getPosition().x>0 && c.getPosition().x< Gdx.graphics.getWidth()/2){
 //			batch.begin();
 //			batch.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
@@ -114,7 +114,7 @@ public class PlayState extends State{
 		map.render(sb);
 		sb.begin();
 //		sb.draw(s.getTextureRegion(0),MyGdxGame.WIDTH/2,MyGdxGame.HEIGHT/2);
-//		sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
+	//	sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
 		if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2 && c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2)
 			{sb.setProjectionMatrix(cam.combined);
 			sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
@@ -142,7 +142,8 @@ public class PlayState extends State{
 		cam.update();
 		sb.end();
 	}
-
+		
+	
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
