@@ -31,6 +31,10 @@ public class Character {
 	int Verteidigung;
 	int AtkSpeed;
 	
+	int exp;
+	int neededexp;
+	int level;
+	
 // Skills skills;
 	
 /*	public Character (int x,int y,String sprite,float speed){
@@ -43,9 +47,30 @@ public class Character {
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
 		character=sprite;
+		level=1;
+		exp=0;
+		neededexp=100;
+		 STR=1;
+		 INT=1;
+		 STA=1;
 		
+		 Angriff=1;
+		 Verteidigung=1;
+		 AtkSpeed=1;
+	}
+	public void expSammeln(int Monsterexp,boolean monsterkilled){
+		//if monsterkilled
+		//exp+=Monsterexp;
+		if (exp>=neededexp) {
+			levelup();
+			neededexp+=neededexp*(1.5f);
+		}
 		
 	}
+	public void levelup(){
+		level++;
+	}
+	
 	public void update(float dt){
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y+=2*laufspeed;
