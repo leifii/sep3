@@ -2,6 +2,7 @@ package com.mygdx.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,7 +23,7 @@ public class PlayState extends State{
 	private ICharacter s;
 	
 	int crystalmoment=0;
-	private Texture crystal=new Texture("crystal.png");
+	private Texture crystal=new Texture("grafiken/crystal.png");
 	private Sprite Crystal=new Sprite(crystal);
 	
 	public PlayState(GameStateManager gsm,int characterauswahl) {
@@ -35,7 +36,7 @@ public class PlayState extends State{
 	
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(1500,1500,s.getTextureRegion(0),2.5f);
+			c=new Krieger(100,100,s.getTextureRegion(0),2.5f);
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
@@ -83,8 +84,15 @@ public class PlayState extends State{
 		// TODO Auto-generated method stub
 		handleInput();
 		c.update(dt);
+		if (c.getPosition().x>=90 && c.getPosition().x<=140 &&  c.getPosition().y<=140 && c.getPosition().y>=90) {
+			crystalmoment+=3;
+		Crystal.setColor(Color.GOLD);
 		
-		
+		}
+		else {
+			Crystal.setColor(Color.SKY);
+			crystalmoment++;
+		}
 		
 		if (c.getPosition().x<=0) {
 			c.getPosition().x=0;
@@ -120,6 +128,11 @@ public class PlayState extends State{
 		
 		map.render(sb);
 		sb.begin();
+		
+		Crystal.setPosition(100, 100);
+		Crystal.setRotation(crystalmoment);
+		Crystal.draw(sb);
+		
 //		sb.draw(s.getTextureRegion(0),MyGdxGame.WIDTH/2,MyGdxGame.HEIGHT/2);
 	//	sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
 		if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2 && c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2)
@@ -148,7 +161,8 @@ public class PlayState extends State{
 		cam.position.set(c.getPosition().x,c.getPosition().y,0);
 		cam.update();
 		}
-		Crystal.draw(sb);
+		
+		
 		sb.end();
 	}
 		
