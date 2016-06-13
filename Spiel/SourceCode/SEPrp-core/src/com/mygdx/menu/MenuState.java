@@ -29,7 +29,7 @@ public class MenuState extends State{
 	 private int framecounter;
 	 
 	 private Sound click;
-	
+
 	public MenuState(GameStateManager gsm) {
 		super(gsm);
 		click=Gdx.audio.newSound(Gdx.files.internal("pindrop.mp3"));
