@@ -49,17 +49,39 @@ public class Character {
 	public void update(float dt){
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y+=2*laufspeed;
-			
+			if (Gdx.input.isKeyPressed(Keys.A)) {
+				position.y-=laufspeed*(1/Math.sqrt(2));
+				position.x-=2*laufspeed;
+				position.x+=laufspeed*(1/Math.sqrt(2));
+			}
+			else if (Gdx.input.isKeyPressed(Keys.D)) {
+				position.y-=laufspeed*(1/Math.sqrt(2));
+				position.x+=2*laufspeed;
+				position.x-=laufspeed*(1/Math.sqrt(2));
+			}
 		}
-		if (Gdx.input.isKeyPressed(Keys.A)) {
-			position.x-=2*laufspeed;
-		}
-		if (Gdx.input.isKeyPressed(Keys.S)) {
+		else if (Gdx.input.isKeyPressed(Keys.S)) {
 			position.y-=2*laufspeed;
+			if (Gdx.input.isKeyPressed(Keys.A)) {
+				position.y+=laufspeed*(1/Math.sqrt(2));
+				position.x-=2*laufspeed;
+				position.x+=laufspeed*(1/Math.sqrt(2));
+			}
+			else if (Gdx.input.isKeyPressed(Keys.D)) {
+				position.y+=laufspeed*(1/Math.sqrt(2));
+				position.x+=2*laufspeed;
+				position.x-=laufspeed*(1/Math.sqrt(2));
+			}
 		}
-		if (Gdx.input.isKeyPressed(Keys.D)) {
+			else if (Gdx.input.isKeyPressed(Keys.A)) {
+			position.x-=2*laufspeed;
+		
+		}
+		else if (Gdx.input.isKeyPressed(Keys.D)) {
 			position.x+=2*laufspeed;
+	
 		}
+		
 	
 	}
 	public Vector3 getPosition(){
