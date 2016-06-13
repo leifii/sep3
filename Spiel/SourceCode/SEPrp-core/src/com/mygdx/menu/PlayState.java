@@ -70,7 +70,9 @@ public class PlayState extends State{
 		if (Gdx.input.isKeyJustPressed(Keys.S)) {
 			gsm.push(new SkillState(gsm));
 		}*/
-		
+		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
+			Gdx.app.exit();
+		}
 	}
 
 	@Override
