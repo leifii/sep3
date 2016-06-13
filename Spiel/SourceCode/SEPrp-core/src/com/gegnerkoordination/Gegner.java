@@ -1,7 +1,10 @@
 package com.gegnerkoordination;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 public class Gegner {
-	Gegnertyp typ;
+	private Texture bild;
 	float laufspeed;
 	int STR;
 	int INT;
@@ -9,14 +12,14 @@ public class Gegner {
 	int Angriff;
 	int Verteidigung;
 	int AtkSpeed;
-	Gegner(Gegnertyp typ){
-		this.typ=typ;
-		this.laufspeed=typ.laufspeed;
-		this.STR=typ.STR;
-		this.INT=typ.INT;
-		this.STA=typ.STA;
-		this.Angriff=typ.Angriff;
-		this.Verteidigung=typ.Verteidigung;
-		this.AtkSpeed=typ.AtkSpeed;
+	Gegner(float laufspeed,int STR,int INT,int STA,int Angriff,int Verteidigung, int AtkSpeed,String bild){
+		this.laufspeed=laufspeed;
+		this.STR=STR;
+		this.INT=INT;
+		this.STA=STA;
+		this.Angriff=Angriff;
+		this.Verteidigung=Verteidigung;
+		this.AtkSpeed=AtkSpeed;
+		this.bild=new Texture(Gdx.files.internal(bild));
 	}
 }
