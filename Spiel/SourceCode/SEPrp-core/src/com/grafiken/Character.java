@@ -22,7 +22,7 @@ public class Character implements ICharacter{
 		texture1=new Texture("grafiken/Archer.png");
 		character=new Sprite[]{(new Sprite(texture))};
 		TextureRegion[][] character1=TextureRegion.split(new Texture("grafiken/squire_m.png"),32,48);
-		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture), new TextureRegion(texture1)};
+		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),null, new TextureRegion(texture1)};
 		Animation=new TextureRegion [][][]{character1};
 	}
 	@Override
