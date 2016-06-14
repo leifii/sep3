@@ -1,5 +1,9 @@
 package com.character;
 
+
+
+import java.util.ArrayList;
+
 import com.android.sdklib.devices.Camera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -16,6 +20,7 @@ import com.grafiken.*;
 public class Character {
 
 
+	private ArrayList<skill> skills;
 	
 	private Vector3 position;
 	
@@ -37,7 +42,8 @@ public class Character {
 	int neededexp;
 	int level;
 	
-// Skills skills;
+	float hitcd;
+	
 	
 /*	public Character (int x,int y,String sprite,float speed){
 		laufspeed=speed;
@@ -45,7 +51,9 @@ public class Character {
 	    character1=new Texture(sprite);    
 	}*/
 	
-	public Character (int x,int y,TextureRegion sprite,float speed){
+	public Character (int x,int y,TextureRegion sprite,float speed, ArrayList<skill> skills, float hitcd){
+		//this.hitcd = skills.gethitcd;
+		this.skills = skills;
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
 		character=sprite;
@@ -226,4 +234,29 @@ public class Character {
 	public void dispose(){
 //		character.dispose();
 	}
+	
+	
+	/*public void angriff(){
+	
+		if(skills.gethitcd() == 0)
+			return;
+		
+		
+	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
