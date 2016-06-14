@@ -18,9 +18,10 @@ import com.grafiken.*;
 public class PlayState extends State{
 
 	int drehmoment=0;
-	int teleportzähler=0;
+	int teleportzähler[]=new int[]{0,0};
 	private Texture portal=new Texture("grafiken/crystal.png");
-	private Sprite Portal=new Sprite(portal);
+	
+	private Sprite Portale[]=new Sprite[]{(new Sprite(portal)),(new Sprite(portal))};
 	
 	
 	
@@ -79,23 +80,43 @@ public class PlayState extends State{
 		
 		//=================================================================//ERSTES PORTAL ANFANG
 
-		if (c.getPosition().x>=Portal.getX()-10 && c.getPosition().x<=Portal.getX()+50 &&  c.getPosition().y<=Portal.getY()+50 && c.getPosition().y>=Portal.getY()-10) {
+		if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+50 &&  c.getPosition().y<=Portale[0].getY()+50 && c.getPosition().y>=Portale[0].getY()-10) {
 			drehmoment+=3;
-			teleportzähler+=1;
-		Portal.setColor(Color.GOLD);
-		if (teleportzähler==200) {
-			c.getPosition().x=2926;
-		c.getPosition().y=209;
+			teleportzähler[0]+=1;
+		Portale[0].setColor(Color.GOLD);
+		if (teleportzähler[0]==200) {
+			c.getPosition().x=Portale[1].getX()+70;
+		c.getPosition().y=Portale[1].getY();
 		}
 		
 		}
 		else {
-			Portal.setColor(Color.SKY);
+			Portale[0].setColor(Color.SKY);
 			drehmoment++;
-			teleportzähler=0;
+			teleportzähler[0]=0;
 		}
 		
 		//=================================================================//ERSTES PORTAL ENDE
+		
+		//=================================================================//ZWEITES PORTAL ANFANG
+		
+		if (c.getPosition().x>=Portale[1].getX()-10 && c.getPosition().x<=Portale[1].getX()+50 &&  c.getPosition().y<=Portale[1].getY()+50 && c.getPosition().y>=Portale[1].getY()-10) {
+			drehmoment+=3;
+			teleportzähler[1]+=1;
+		Portale[1].setColor(Color.GOLD);
+		if (teleportzähler[1]==200) {
+			c.getPosition().x=Portale[0].getX()+70;
+		c.getPosition().y=Portale[0].getY();
+		}
+		
+		}
+		else {
+			Portale[1].setColor(Color.SKY);
+			drehmoment++;
+			teleportzähler[1]=0;
+		}
+		
+		//=================================================================//ZWEITES PORTAL ENDE
 		
 		//////////////////////////////////////////////////////////////////////PORTALSHIT ENDE////////////////////////////////
 		
@@ -117,9 +138,13 @@ public class PlayState extends State{
 		map.render(sb);
 		sb.begin();
 	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
-		Portal.setPosition(200,200);
-		Portal.setRotation(drehmoment);
-		Portal.draw(sb);
+		Portale[0].setPosition(2926,1000);
+		Portale[0].setRotation(drehmoment);
+		Portale[0].draw(sb);
+		
+		Portale[1].setPosition(200,200);
+		Portale[1].setRotation(drehmoment);
+		Portale[1].draw(sb);
 		
 	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
 		
