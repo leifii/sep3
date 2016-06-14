@@ -28,7 +28,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO???
 	
 	boolean inputFinished = false;
-	private String[] roboterBelegung;
+	private String[] roboterBelegung = new String[4];
 	public 	String comboBoxInhalt[] = {"Modus1", "Modus2", "Modus3", "Modus4"};
 	private JPanel display = new JPanel();
 	private JPanel startDisplay = new JPanel();
@@ -60,9 +60,9 @@ public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(600,500);
 	setTitle("SEPman");
-//	setzeStartbildschirm();
+	setzeStartbildschirm();
 //	setzeSpielvorbereitungsdisplay();
-	setzeAuswahldisplay();
+//	setzeAuswahldisplay();
 
 
 	
@@ -109,7 +109,7 @@ public void setzeAuswahldisplay (){
 	
 	btnStart.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if (inputFinished ==true){
+			if (eingabeKorrekt()){
 			setzeSpielvorbereitungsdisplay();
 			}
 		}
@@ -148,26 +148,26 @@ public void setzeAuswahldisplay (){
 	display.add(lbBeschriftung4);
 	
 	cbAuswahl1.setSelectedIndex(0);
-	cbAuswahl1.setSize(114, 50);
-	cbAuswahl1.setLocation(311, 210);
+	cbAuswahl1.setSize(114, 30);
+	cbAuswahl1.setLocation(311, 215);
 	cbAuswahl1.addActionListener(this);
 	display.add(cbAuswahl1);
 	
 	cbAuswahl2.setSelectedIndex(1);
-	cbAuswahl2.setSize(114, 50);
-	cbAuswahl2.setLocation(311, 246);
+	cbAuswahl2.setSize(114, 30);
+	cbAuswahl2.setLocation(311, 250);
 	cbAuswahl2.addActionListener(this);
 	display.add(cbAuswahl2);
 	
 	cbAuswahl3.setSelectedIndex(2);
-	cbAuswahl3.setSize(114, 50);
-	cbAuswahl3.setLocation(311, 284);
+	cbAuswahl3.setSize(114, 30);
+	cbAuswahl3.setLocation(311, 290);
 	cbAuswahl3.addActionListener(this);
 	display.add(cbAuswahl3);
 	
 	cbAuswahl4.setSelectedIndex(3);
-	cbAuswahl4.setSize(114, 50);
-	cbAuswahl4.setLocation(311, 324);
+	cbAuswahl4.setSize(114, 30);
+	cbAuswahl4.setLocation(311, 330);
 	cbAuswahl4.addActionListener(this);
 	display.add(cbAuswahl4);
 	
@@ -190,7 +190,6 @@ public void setzeSpielvorbereitungsdisplay(){
 			setzeAuswahldisplay();
 		}
 	});
-	
 	spielvorbereitungsDisplay.add(btnZurueck);
 	btnZurueck.setBounds(200, 400, 240, 50);
 	btnZurueck.setText("Zurück");
@@ -229,21 +228,38 @@ public void setzePausenBildschrim(){
 	
 }
 
-public void setzeroboterBelegung(ActionEvent e){
+public boolean eingabeKorrekt(){
+	boolean check = false;
+	int k = 0;
+	for (int i = 0; i< 3; i++){
+		if(roboterBelegung[k]== roboterBelegung[i]){
+			System.out.println(roboterBelegung[i]);
+			check = true;
+		}
+	}
+	return check;
+}
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
 	if (e.getSource()== cbAuswahl1){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-		switch(msg){
-		case "Modus 1" : roboterBelegung[0] = "Modus 1";
-		break;
-		case "Modus 2" : roboterBelegung[0] = "Modus 2";
-		break;
-		case "Modus 3" : roboterBelegung[0] = "Modus 3";
-		break;
-		case "Modus 4" : roboterBelegung[0] = "Modus 4";
-		break;
-		}
+		this.roboterBelegung[0]= "Modus 2";
+		this.roboterBelegung[1]= "Modus 2";
+		this.roboterBelegung[2]= "Modus 2";
+		this.roboterBelegung[3]= "Modus 2";
 		
+//		switch(msg){
+//		case "Modus 1" : roboterBelegung[0] = "Modus 1";
+//		break;
+//		case "Modus 2" : roboterBelegung[0] = "Modus 2";
+//		break;
+//		case "Modus 3" : roboterBelegung[0] = "Modus 3";
+//		break;
+//		case "Modus 4" : roboterBelegung[0] = "Modus 4";
+//		break;
+//		}
 	}
 	else if (e.getSource()== cbAuswahl2){
 		JComboBox cb =(JComboBox)e.getSource();
@@ -257,10 +273,8 @@ public void setzeroboterBelegung(ActionEvent e){
 		break;
 		case "Modus 4" : roboterBelegung[1] = "Modus 4";
 		break;
-		}
-		
+		}	
 	}
-	
 	else if (e.getSource()== cbAuswahl3){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
@@ -273,8 +287,7 @@ public void setzeroboterBelegung(ActionEvent e){
 		break;
 		case "Modus 4" : roboterBelegung[2] = "Modus 4";
 		break;
-		}
-		
+		}		
 	}
 	else if (e.getSource()== cbAuswahl4){
 		JComboBox cb =(JComboBox)e.getSource();
@@ -288,15 +301,9 @@ public void setzeroboterBelegung(ActionEvent e){
 		break;
 		case "Modus 4" : roboterBelegung[3] = "Modus 4";
 		break;
-		}
-		
-	}
-	
-	
+		}	
+	}	
 }
-
-
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -305,6 +312,8 @@ public void setzeroboterBelegung(ActionEvent e){
 							UIManager.getSystemLookAndFeelClassName()); //Hiermit wird erreicht das das Programm unter 
                                                                         //jedem Betriebsystem genau so aussieht wie es 
 					 													//der Anwender von nativen Anwendungen kennt
+					Menu menu1 = new Menu();
+					menu1.setVisible(true);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -312,20 +321,11 @@ public void setzeroboterBelegung(ActionEvent e){
 			}
 		});
 	}
-
-
 	public String[] getRoboterBelegung() {
 		return roboterBelegung;
 	}
-
 	public void setRoboterBelegung(String[] roboterBelegung) {
 		this.roboterBelegung = roboterBelegung;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
