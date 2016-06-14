@@ -15,4 +15,10 @@ public class Objekte implements IObjekte{
 		return skills[index];
 	}
 
+	@Override
+	public Texture getItem(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
