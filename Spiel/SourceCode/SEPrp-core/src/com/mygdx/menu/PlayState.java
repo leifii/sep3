@@ -36,7 +36,7 @@ public class PlayState extends State{
 		
 		s=new com.grafiken.Character();
 		map=new Map(cam);
-	
+	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
 			System.out.println("Krieger");
 			c=new Krieger(100,100,s.getTextureRegion(0),2.5f);
@@ -57,26 +57,13 @@ public class PlayState extends State{
 			c=new Schütze(100,100,s.getTextureRegion(3),2.5f);
 			System.out.println("Schütze");
 		}
-	
+	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 	}
 
 	
 	@Override
 	protected void handleInput() {
-		// TODO Auto-generated method stub
-	/*	if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			gsm.push(new PauseState(gsm));
-		}
-		if (Gdx.input.isKeyJustPressed(Keys.M)) {
-			gsm.push(new MapState(gsm));
-		}
-		if (Gdx.input.isKeyJustPressed(Keys.I)) {
-			gsm.push(new InventoryState(gsm));
-		}
-		if (Gdx.input.isKeyJustPressed(Keys.S)) {
-			gsm.push(new SkillState(gsm));
-		}*/
-		
+
 		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
 			Gdx.app.exit();
 		}
@@ -88,8 +75,9 @@ public class PlayState extends State{
 		handleInput();
 		c.update(dt);
 		
-		//////////////////////////////////////////////////////////////////////PORTAL ANFANG
+		//////////////////////////////////////////////////////////////////////PORTALSHIT ANFANG////////////////////////
 		
+		//=================================================================//ERSTES PORTAL ANFANG
 
 		if (c.getPosition().x>=Portal.getX()-10 && c.getPosition().x<=Portal.getX()+50 &&  c.getPosition().y<=Portal.getY()+50 && c.getPosition().y>=Portal.getY()-10) {
 			drehmoment+=3;
@@ -106,9 +94,10 @@ public class PlayState extends State{
 			drehmoment++;
 			teleportzähler=0;
 		}
-	
 		
-		//////////////////////////////////////////////////////////////////////PORTAL ENDE
+		//=================================================================//ERSTES PORTAL ENDE
+		
+		//////////////////////////////////////////////////////////////////////PORTALSHIT ENDE////////////////////////////////
 		
 		if (c.getPosition().x<=0) {
 			c.getPosition().x=0;
@@ -116,23 +105,6 @@ public class PlayState extends State{
 		if (c.getPosition().y<=0) {
 			c.getPosition().y=0;
 		}
-	
-//		if(c.getPosition().x>0 && c.getPosition().x< Gdx.graphics.getWidth()/2){
-//			batch.begin();
-//			batch.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
-//			batch.end();
-//		}
-//		
-//		if (c.getPosition().x<0 && c.getPosition().y<0) {
-//		
-//		}
-//		else if (c.getPosition().x<=0+Gdx.graphics.getWidth()/2) {
-//			
-//			cam.position.set(Gdx.graphics.getWidth()/2,c.getPosition().y,0);
-//		}
-//		el
-
-		
 		
 		cam.update();
 
@@ -144,15 +116,14 @@ public class PlayState extends State{
 		
 		map.render(sb);
 		sb.begin();
-		
+	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
 		Portal.setPosition(200,200);
 		Portal.setRotation(drehmoment);
 		Portal.draw(sb);
-	
 		
+	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
 		
-//		sb.draw(s.getTextureRegion(0),MyGdxGame.WIDTH/2,MyGdxGame.HEIGHT/2);
-	//	sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
+	/**KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA*/	
 		if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2 && c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2)
 			{sb.setProjectionMatrix(cam.combined);
 			sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
@@ -179,7 +150,7 @@ public class PlayState extends State{
 		cam.position.set(c.getPosition().x,c.getPosition().y,0);
 		cam.update();
 		}
-		
+	/**KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA*/	
 		
 		sb.end();
 	}
@@ -189,6 +160,7 @@ public class PlayState extends State{
 	public void dispose() {
 		// TODO Auto-generated method stub
 		c.dispose();
+		portal.dispose();
 	}
 
 }
