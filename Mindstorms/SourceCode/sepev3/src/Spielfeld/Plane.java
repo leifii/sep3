@@ -1,33 +1,23 @@
 
 public class Plane {
-	Plane[] plane;
+	
 	int knoten;
-	bolean nKante;
-	bolean sKante;
-	bolean oKante;
-	bolean wKante;
-	int i=0;
-	public Plane(int[] knoten,bolean[] n,bolean[] s,bolean[] o,bolean[] w)
+	boolean nKante;
+	boolean sKante;
+	boolean oKante;
+	boolean wKante;
+	boolean powerup;
+	
+	
+	public static void main(String[] args) //Plane Standard()
 	{
-		plane[]=new Plane[knoten.length];
-		for(int k: knoten)
-		{
-			plane[i].knoten=k;
-			plane[i].nKante=n;
-			plane[i].sKante=s;
-			plane[i].oKante=o;
-			plane[i].wKante=w;
-			i++;
-		}
-	}	
-	public Plane Standard()
-	{
-		Plane hilfs;
+		Planeinit hilfs;
 		int[] knoten=new int[36];
-		bolean[] n=new bolean[36];
-		bolean[] s=new bolean[36];
-		bolean[] o=new bolean[36];
-		bolean[] w=new bolean[36];
+		boolean[] n=new boolean[36];
+		boolean[] s=new boolean[36];
+		boolean[] o=new boolean[36];
+		boolean[] w=new boolean[36];
+		boolean[] power=new boolean[36];
 		for(int k=0;k<36;k++)
 		{
 			knoten[k]=k;
@@ -38,9 +28,11 @@ public class Plane {
 			s[i]=false;
 			o[i]=false;
 			w[i]=false;
+			power[i]=false;
 		}
-		 hilfs= new Plane(knoten,n,s,o,w);
-		return hilfs;
+		
+		 hilfs= new Planeinit(knoten,n,s,o,w,power);
+		//return hilfs;
 	}
 	
 }
