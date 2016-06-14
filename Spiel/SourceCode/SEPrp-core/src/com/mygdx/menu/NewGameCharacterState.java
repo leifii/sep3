@@ -73,17 +73,17 @@ public class NewGameCharacterState extends NewMenuState {
 		textButtonStyle1.pressedOffsetY=-1;
 		textButtonStyle1.font=white;
 		
-		buttonJ=new TextButton("KRIEGER", textButtonStyle);
+		buttonJ=new TextButton("Krieger", textButtonStyle);
 		buttonJ.pad(20);
 		table.setBounds(Gdx.graphics.getWidth()/2-300, Gdx.graphics.getHeight()/2-buttonJ.getMinHeight(),buttonJ.getMinWidth(),buttonJ.getMinHeight() );
 		
-		buttonN= new TextButton("MAGIER", textButtonStyle);
+		buttonN= new TextButton("Magier", textButtonStyle);
 		buttonN.pad(20);
 		
-		buttonM=new TextButton("DRACHENMENSCH",textButtonStyle);
+		buttonM=new TextButton("Schurke",textButtonStyle);
 		buttonM.pad(20);
 		
-		buttonK=new TextButton("SCHÜTZE",textButtonStyle);
+		buttonK=new TextButton("Schütze",textButtonStyle);
 		buttonK.pad(20);
 		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
