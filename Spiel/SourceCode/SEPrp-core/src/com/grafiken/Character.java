@@ -13,6 +13,7 @@ public class Character implements ICharacter{
 	private static int WIDTH=Gdx.graphics.getWidth();
 	private static int HEIGHT=Gdx.graphics.getWidth();
 	TextureRegion[] char1;
+	Texture gegner1,gegner2;
 	TextureRegion [][]charAnimation;
 	TextureRegion[][][] Animation;
 	
@@ -20,11 +21,11 @@ public class Character implements ICharacter{
 	public Character(){
 		texture=new Texture("grafiken/mage with head+s.png");
 		texture1=new Texture("grafiken/Archer.png");
-		drachenmensch=new Texture("grafiken/Drachenmensch.png");
 		character=new Sprite[]{(new Sprite(texture))};
 		TextureRegion[][] character1=TextureRegion.split(new Texture("grafiken/squire_m.png"),32,48);
-		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(drachenmensch), new TextureRegion(texture1),new TextureRegion(new Texture("grafiken/Kobold.png"))};
-		Animation=new TextureRegion [][][]{character1};
+		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief Spreadsheet.png"), 32, 48);
+		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(new Texture("grafiken/Thief Spreadsheet.png"),0,0,32,48), new TextureRegion(texture1)};
+		Animation=new TextureRegion [][][]{character1,character2};
 	}
 	@Override
 	public void render(SpriteBatch sb) {
@@ -43,6 +44,15 @@ public class Character implements ICharacter{
 	}
 	public TextureRegion[][] getAnimation(int index){
 		return Animation[index];
+	}
+	@Override
+	public Texture getGegner(int index ) {
+		
+		gegner1=new Texture("grafiken/Drachenmensch.png");
+		gegner2=new Texture("grafiken/Kobold.png");
+		if(index==1) return gegner1;
+		else return gegner2;
+		
 	}
 
 }
