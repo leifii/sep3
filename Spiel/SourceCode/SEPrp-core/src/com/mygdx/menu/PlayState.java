@@ -16,15 +16,16 @@ import com.grafiken.*;
 
 public class PlayState extends State{
 	
-
+	int crystalmoment=0;
+	int teleportzähler=0;
+	private Texture crystal=new Texture("grafiken/crystal.png");
+	private Sprite Crystal=new Sprite(crystal);
+	
 	
 	private Character c;
 	private Map map;
 	private ICharacter s;
 	
-	int crystalmoment=0;
-	private Texture crystal=new Texture("grafiken/crystal.png");
-	private Sprite Crystal=new Sprite(crystal);
 	
 	public PlayState(GameStateManager gsm,int characterauswahl) {
 		super(gsm);
@@ -84,14 +85,21 @@ public class PlayState extends State{
 		// TODO Auto-generated method stub
 		handleInput();
 		c.update(dt);
-		if (c.getPosition().x>=90 && c.getPosition().x<=140 &&  c.getPosition().y<=140 && c.getPosition().y>=90) {
+		
+		if (c.getPosition().x>=Crystal.getX()-10 && c.getPosition().x<=Crystal.getX()+50 &&  c.getPosition().y<=Crystal.getY()+50 && c.getPosition().y>=Crystal.getY()-10) {
 			crystalmoment+=3;
+			teleportzähler+=1;
 		Crystal.setColor(Color.GOLD);
+		if (teleportzähler==200) {
+			c.getPosition().x=2926;
+		c.getPosition().y=209;
+		}
 		
 		}
 		else {
 			Crystal.setColor(Color.SKY);
 			crystalmoment++;
+			teleportzähler=0;
 		}
 		
 		if (c.getPosition().x<=0) {
@@ -129,7 +137,7 @@ public class PlayState extends State{
 		map.render(sb);
 		sb.begin();
 		
-		Crystal.setPosition(100, 100);
+		Crystal.setPosition(250, 250);
 		Crystal.setRotation(crystalmoment);
 		Crystal.draw(sb);
 		
