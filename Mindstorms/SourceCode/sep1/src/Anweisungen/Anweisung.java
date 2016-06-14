@@ -21,19 +21,19 @@ public class Anweisung implements KeyListener {
 		code=event.getKeyCode();
 		
 		switch(code){
-		case KeyEvent.VK_I: 
+		case KeyEvent.VK_UP: 
 			events.oben();
 			break;
 			
-		case KeyEvent.VK_K:
+		case KeyEvent.VK_DOWN:
 			events.unten();
 			break;
 			
-		case KeyEvent.VK_J:
+		case KeyEvent.VK_LEFT:
 			events.links();
 			break;
 			
-		case KeyEvent.VK_L:
+		case KeyEvent.VK_RIGHT:
 			events.rechts();
 			break;
 			
