@@ -10,7 +10,7 @@ import com.character.Character;
 import com.character.Drachenmensch;
 import com.character.Krieger;
 import com.character.Magier;
-import com.character.Schütze;
+import com.character.Schuetze;
 import com.mygdx.game.MyGdxGame;
 
 import com.grafiken.*;
@@ -55,7 +55,7 @@ public class PlayState extends State{
 		}
 		else if(characterauswahl==4){
 			System.out.println("Schütze");
-			c=new Schütze(100,100,s.getTextureRegion(3),2.5f);
+			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f);
 			System.out.println("Schütze");
 		}
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
