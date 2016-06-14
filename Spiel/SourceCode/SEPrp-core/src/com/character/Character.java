@@ -27,6 +27,7 @@ public class Character {
 	int INT;
 	int STA;
 	
+	int MaxHP;
 	int Angriff;
 	int Verteidigung;
 	int AtkSpeed;
