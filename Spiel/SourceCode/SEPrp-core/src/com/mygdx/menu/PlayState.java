@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.character.Character;
-import com.character.Drachenmensch;
+import com.character.Schurke;
 import com.character.Krieger;
 import com.character.Magier;
 import com.character.Schuetze;
@@ -50,7 +50,7 @@ public class PlayState extends State{
 		}
 		else if(characterauswahl==3){
 			System.out.println("Drachenmensch");
-			c=new Drachenmensch(100,100,s.getTextureRegion(2),2.5f);
+			c=new Schurke(100,100,s.getTextureRegion(2),2.5f);
 			System.out.println("Drachenmensch");
 		}
 		else if(characterauswahl==4){

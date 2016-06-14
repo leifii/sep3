@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 
-public class Drachenmensch extends Character{
+public class Schurke extends Character{
 	
 	private Vector3 position;
 	
@@ -22,7 +22,7 @@ public class Drachenmensch extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Drachenmensch(int x,int y,TextureRegion sprite,float speed){
+	public Schurke(int x,int y,TextureRegion sprite,float speed){
 		super(y, y, sprite, speed);
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
