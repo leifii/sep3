@@ -58,6 +58,7 @@ public class Character {
 		 Verteidigung=1;
 		 AtkSpeed=1;
 	}
+	
 	public void expSammeln(int Monsterexp,boolean monsterkilled){
 		//if monsterkilled
 		//exp+=Monsterexp;
