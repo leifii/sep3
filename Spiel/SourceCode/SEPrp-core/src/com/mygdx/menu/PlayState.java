@@ -12,14 +12,16 @@ import com.character.Krieger;
 import com.character.Magier;
 import com.character.Schütze;
 import com.mygdx.game.MyGdxGame;
+
 import com.grafiken.*;
 
 public class PlayState extends State{
-	
-	int crystalmoment=0;
+
+	int drehmoment=0;
 	int teleportzähler=0;
-	private Texture crystal=new Texture("grafiken/crystal.png");
-	private Sprite Crystal=new Sprite(crystal);
+	private Texture portal=new Texture("grafiken/crystal.png");
+	private Sprite Portal=new Sprite(portal);
+	
 	
 	
 	private Character c;
@@ -86,10 +88,13 @@ public class PlayState extends State{
 		handleInput();
 		c.update(dt);
 		
-		if (c.getPosition().x>=Crystal.getX()-10 && c.getPosition().x<=Crystal.getX()+50 &&  c.getPosition().y<=Crystal.getY()+50 && c.getPosition().y>=Crystal.getY()-10) {
-			crystalmoment+=3;
+		//////////////////////////////////////////////////////////////////////PORTAL ANFANG
+		
+
+		if (c.getPosition().x>=Portal.getX()-10 && c.getPosition().x<=Portal.getX()+50 &&  c.getPosition().y<=Portal.getY()+50 && c.getPosition().y>=Portal.getY()-10) {
+			drehmoment+=3;
 			teleportzähler+=1;
-		Crystal.setColor(Color.GOLD);
+		Portal.setColor(Color.GOLD);
 		if (teleportzähler==200) {
 			c.getPosition().x=2926;
 		c.getPosition().y=209;
@@ -97,10 +102,13 @@ public class PlayState extends State{
 		
 		}
 		else {
-			Crystal.setColor(Color.SKY);
-			crystalmoment++;
+			Portal.setColor(Color.SKY);
+			drehmoment++;
 			teleportzähler=0;
 		}
+	
+		
+		//////////////////////////////////////////////////////////////////////PORTAL ENDE
 		
 		if (c.getPosition().x<=0) {
 			c.getPosition().x=0;
@@ -137,9 +145,11 @@ public class PlayState extends State{
 		map.render(sb);
 		sb.begin();
 		
-		Crystal.setPosition(250, 250);
-		Crystal.setRotation(crystalmoment);
-		Crystal.draw(sb);
+		Portal.setPosition(200,200);
+		Portal.setRotation(drehmoment);
+		Portal.draw(sb);
+	
+		
 		
 //		sb.draw(s.getTextureRegion(0),MyGdxGame.WIDTH/2,MyGdxGame.HEIGHT/2);
 	//	sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
