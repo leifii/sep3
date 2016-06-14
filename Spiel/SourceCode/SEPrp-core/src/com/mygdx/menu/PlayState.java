@@ -175,6 +175,13 @@ public class PlayState extends State{
 		cam.position.set(c.getPosition().x,c.getPosition().y,0);
 		cam.update();
 		}
+		
+		if (Gdx.input.isKeyPressed(Keys.UP)) {
+			cam.zoom-=0.01f;
+		}
+		else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+			cam.zoom+=0.01f;
+		}
 	/**KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA*/	
 		
 		sb.end();
