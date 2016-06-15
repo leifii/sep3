@@ -17,6 +17,7 @@ import com.character.Krieger;
 import com.character.Magier;
 import com.character.Schuetze;
 import com.mygdx.game.MyGdxGame;
+import com.npc.NPC;
 import com.objects.Truhe;
 import com.objects.Portal;
 import com.grafiken.*;
@@ -26,6 +27,7 @@ public class PlayState extends State {
 	
 	Truhe Truhe[]=new Truhe[]{new Truhe(100, 200),new Truhe(150,200),new Truhe(200,200),new Truhe(250,200)};
 	
+	NPC Npc=new NPC(120, 300, "grafiken/Kobold.png");
 	
 	private Character c;
 	private Map map;
@@ -110,7 +112,11 @@ public class PlayState extends State {
 		
 		c.draw(sb);
 		
-
+		// NPCs //
+		Npc.render(this, sb, c.getBounds(), c);
+		
+		
+		// NPCs //
 		
 		// TRUHEN //
 		for (int i = 0; i < Truhe.length; i++) {
