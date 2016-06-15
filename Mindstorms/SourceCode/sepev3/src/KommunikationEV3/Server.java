@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Drucksensorverarbeitung.Drucksensor;
+import Steuerbefehle.Steuerbefehl;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
@@ -39,8 +41,11 @@ public class Server{
 			sSocket.close();
 			
 			// Stream 
-
-			KommunikationEV3 com1 = new KommunikationEV3(roboter1);
+			Steuerbefehl steuerbefehl = new Steuerbefehl();
+			Drucksensor drucksensor = new Drucksensor();
+			KommunikationEV3 com1 = new KommunikationEV3(roboter1, steuerbefehl, drucksensor);
+			
+			while(true){
 			com1.empfangen();
 			com1.senden();
 			
@@ -57,7 +62,7 @@ public class Server{
 //			roboter4.close();
 			
 //			System.out.println("Habe fertig!");                  //Konsolenausgabe bei Test am PC
-			                                                     //
+			}                                                //
 			
 			}
 			
