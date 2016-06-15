@@ -60,7 +60,7 @@ public class NewMenuState extends MenuState {
 		textButtonStyle.pressedOffsetX=1;
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
-		NinePatch patch= new NinePatch(new Texture("border2.9.png"));
+		NinePatch patch= new NinePatch(new Texture("userInterface/border2.9.png"));
 		
 		TextButtonStyle textButtonStyle1=new TextButtonStyle();
 		textButtonStyle1.up= skin.getDrawable("blank-2");

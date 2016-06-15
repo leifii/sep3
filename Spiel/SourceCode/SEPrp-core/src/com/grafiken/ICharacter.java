@@ -6,14 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public interface ICharacter {
-	public void render(SpriteBatch sb);
+	public void render(SpriteBatch sb); //zeichnet den Charakter auf die Mitte des Bildes
 	
-	public TextureRegion getTextureRegion(int index); //returned einen bestimmten Charakter z.B.0=Krieger,1=Mage
+	public TextureRegion getTextureRegion(int index); //returned einen bestimmten Charakter 0=Krieger,1=Mage,2=Schurke, 3=BogenschÃ¼tze
 	public Sprite getSprite(int index);
 	
 	
-	public TextureRegion[][] getAnimation(int index); //returned ein Array für einen bestimmten Charakter(index, bisher nur 0)
-														//Das returnte Array ist zweidimensional und enthält für jede Reihe(erster Index)4 Animationen
-														//jede Reihe stellt eine Bewegungsrichtung dar
+	public TextureRegion[][] getAnimation(int index); //zweidimensionales Array ------Index 0=> 4*4 Animationen, Index 1=> 2*4 Animationen(links+rechts)
 	public Texture getGegner(int index);
 }
