@@ -43,6 +43,7 @@ public class Character implements ICharacter{
 		return character[index];
 	}
 	public TextureRegion[][] getAnimation(int index){
+		
 		return Animation[index];
 	}
 	@Override
@@ -54,5 +55,6 @@ public class Character implements ICharacter{
 		else return gegner2;
 		
 	}
+	
 
 }

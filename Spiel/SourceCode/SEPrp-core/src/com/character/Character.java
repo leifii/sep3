@@ -9,6 +9,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.menu.InventoryState;
@@ -25,7 +27,8 @@ public class Character {
 	private Vector3 position;
 	
 	private TextureRegion character;
-	private Texture character1;
+
+	int richtung=0;
 	
 	float laufspeed;
 	int STR;
@@ -38,6 +41,8 @@ public class Character {
 	int Verteidigung;
 	int AtkSpeed;
 	
+	TextureRegion [] keyframes,keyframes1,keyframes2,keyframes3,keyframes4,keyframes5,keyframes6,keyframes7;
+	Animation Animation,Animation1,Animation2,Animation3,Animation4,Animation5,Animation6,Animation7;
 	int exp;
 	int neededexp;
 	int level;
@@ -51,12 +56,46 @@ public class Character {
 //	    character1=new Texture(sprite);    
 //	}
 	
-	public Character (int x,int y,TextureRegion sprite,float speed, ArrayList<skill> skills, float hitcd){
+	public Character (int x,int y,TextureRegion[][] animation,float speed, ArrayList<skill> skills, float hitcd){
 		//this.hitcd = skills.gethitcd;
 		this.skills = skills;
+		keyframes=new TextureRegion[4];
+		keyframes1=new TextureRegion[4];
+		keyframes2=new TextureRegion[4];
+		keyframes3=new TextureRegion[4];
+		keyframes4=new TextureRegion[]{animation[0][0]};
+		keyframes5=new TextureRegion[]{animation[3][0]};
+		keyframes6=new TextureRegion[]{animation[2][0]};
+		keyframes7=new TextureRegion[]{animation[1][0]};
+		
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
-		character=sprite;
+		for(int i=0;i<4;i++){
+			keyframes[i]=animation[0][i];}
+		for(int i=0;i<4;i++){
+			keyframes1[i]=animation[1][i];}
+		for(int i=0;i<4;i++){
+			keyframes2[i]=animation[2][i];}
+		for(int i=0;i<4;i++){
+			keyframes3[i]=animation[3][i];}
+//		character=sprite;
+		Animation =new Animation(0.25f, keyframes);
+		Animation1 =new Animation(0.25f, keyframes1);
+		Animation2 =new Animation(0.25f, keyframes2);
+		Animation3 =new Animation(0.25f, keyframes3);
+		Animation4 =new Animation(0.25f, keyframes4);
+		Animation5 =new Animation(0.25f, keyframes5);
+		Animation6 =new Animation(0.25f, keyframes6);
+		Animation7 =new Animation(0.25f, keyframes7);
+		Animation.setPlayMode(PlayMode.LOOP);
+		Animation1.setPlayMode(PlayMode.LOOP);
+		Animation2.setPlayMode(PlayMode.LOOP);
+		Animation3.setPlayMode(PlayMode.LOOP);
+		Animation4.setPlayMode(PlayMode.LOOP);
+		Animation5.setPlayMode(PlayMode.LOOP);
+		Animation6.setPlayMode(PlayMode.LOOP);
+		Animation7.setPlayMode(PlayMode.LOOP);
+		
 		level=1;
 		exp=0;
 		neededexp=100;
@@ -69,6 +108,36 @@ public class Character {
 		 Angriff=1;
 		 Verteidigung=1;
 		 AtkSpeed=1;
+	}
+	
+	public Animation getAnimation(){
+		if(richtung==0){
+			return Animation;
+		}
+		else if(richtung==1){
+			return Animation1;
+		}
+		else if(richtung==2){
+			return Animation2;
+		}
+		else if(richtung==3){
+			return Animation3;
+		}
+		else if(richtung==4){
+			return Animation4;
+		}
+		else if(richtung==5){
+			return Animation5;
+		}
+		else if(richtung==6){
+			return Animation6;
+		}
+		else if(richtung==7){
+			return Animation7;
+		}
+		else{
+		return	Animation4;
+		}
 	}
 	
 	public float getLaufspeed() {
@@ -180,6 +249,10 @@ public class Character {
 		}
 		
 	}
+	public int getRichtung(){
+		return richtung;
+	}
+	
 	public void levelup(){
 		level++;
 	}
@@ -187,40 +260,57 @@ public class Character {
 	public void update(float dt){
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y+=2*laufspeed;
+			richtung=3;
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y-=laufspeed*(1/Math.sqrt(2));
 				position.x-=2*laufspeed;
 				position.x+=laufspeed*(1/Math.sqrt(2));
+			
 			}
 			else if (Gdx.input.isKeyPressed(Keys.D)) {
 				position.y-=laufspeed*(1/Math.sqrt(2));
 				position.x+=2*laufspeed;
 				position.x-=laufspeed*(1/Math.sqrt(2));
+			
 			}
 		}
 		else if (Gdx.input.isKeyPressed(Keys.S)) {
 			position.y-=2*laufspeed;
+			richtung=0;
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y+=laufspeed*(1/Math.sqrt(2));
 				position.x-=2*laufspeed;
 				position.x+=laufspeed*(1/Math.sqrt(2));
+				
 			}
 			else if (Gdx.input.isKeyPressed(Keys.D)) {
 				position.y+=laufspeed*(1/Math.sqrt(2));
 				position.x+=2*laufspeed;
 				position.x-=laufspeed*(1/Math.sqrt(2));
+				
 			}
 		}
 			else if (Gdx.input.isKeyPressed(Keys.A)) {
 			position.x-=2*laufspeed;
-		
+			richtung=1;
 		}
 		else if (Gdx.input.isKeyPressed(Keys.D)) {
 			position.x+=2*laufspeed;
-	
+			richtung=2;
+		}
+		else if(richtung==0) {
+			richtung=4;
+		}
+		else if(richtung==3) {
+			richtung=5;
+		}
+		else if(richtung==2) {
+			richtung=6;
+		}
+		else if(richtung==1) {
+			richtung=7;
 		}
 		
-	
 	}
 	public Vector3 getPosition(){
 		return position;
@@ -228,9 +318,7 @@ public class Character {
 	public TextureRegion getTextureRegion(){
 		return character;
 	}
-	public Texture getTexture(){
-		return character1;
-	}
+	
 	public void dispose(){
 //		character.dispose();
 	}

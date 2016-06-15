@@ -6,7 +6,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import com.badlogic.gdx.utils.Json.Serializable;
+
 import com.character.Character;
 import com.character.Schurke;
 import com.character.Krieger;
@@ -19,7 +23,7 @@ import com.grafiken.*;
 public class PlayState extends State {
 
 	int drehmoment=0;
-	int teleportz�hler[]=new int[]{0,0};
+	int teleportzähler[]=new int[]{0,0};
 	private Texture portal=new Texture("grafiken/crystal.png");
 	
 	private Sprite Portale[]=new Sprite[]{(new Sprite(portal)),(new Sprite(portal))};
@@ -29,6 +33,8 @@ public class PlayState extends State {
 	private Character c;
 	private Map map;
 	private ICharacter s;
+	private float currentFrameTime;
+	TextureRegion currentFrame;
 	
 	
 	public PlayState(GameStateManager gsm,int characterauswahl) {
@@ -38,10 +44,11 @@ public class PlayState extends State {
 		
 		s=new com.grafiken.Character();
 		map=new Map(cam);
+		
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(100,100,s.getTextureRegion(0),2.5f,null,0);
+			c=new Krieger(100,100,s.getAnimation(0),2.5f,null,0);
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
@@ -55,9 +62,9 @@ public class PlayState extends State {
 			System.out.println("Drachenmensch");
 		}
 		else if(characterauswahl==4){
-			System.out.println("Sch�tze");
+			System.out.println("Schï¿½tze");
 			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f,null,0);
-			System.out.println("Sch�tze");
+			System.out.println("Schï¿½tze");
 		}
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 	}
@@ -76,6 +83,8 @@ public class PlayState extends State {
 		// TODO Auto-generated method stub
 		handleInput();
 		c.update(dt);
+		currentFrameTime+=dt;
+		currentFrame=c.getAnimation().getKeyFrame(currentFrameTime);
 		
 		//////////////////////////////////////////////////////////////////////PORTALSHIT ANFANG////////////////////////
 		
@@ -83,9 +92,9 @@ public class PlayState extends State {
 
 		if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+50 &&  c.getPosition().y<=Portale[0].getY()+50 && c.getPosition().y>=Portale[0].getY()-10) {
 			drehmoment+=3;
-			teleportz�hler[0]+=1;
+			teleportzähler[0]+=1;
 		Portale[0].setColor(Color.GOLD);
-		if (teleportz�hler[0]==200) {
+		if (teleportzähler[0]==200) {
 			c.getPosition().x=Portale[1].getX()+70;
 		c.getPosition().y=Portale[1].getY();
 		}
@@ -94,7 +103,7 @@ public class PlayState extends State {
 		else {
 			Portale[0].setColor(Color.SKY);
 			drehmoment++;
-			teleportz�hler[0]=0;
+			teleportzähler[0]=0;
 		}
 		
 		//=================================================================//ERSTES PORTAL ENDE
@@ -103,9 +112,9 @@ public class PlayState extends State {
 		
 		if (c.getPosition().x>=Portale[1].getX()-10 && c.getPosition().x<=Portale[1].getX()+50 &&  c.getPosition().y<=Portale[1].getY()+50 && c.getPosition().y>=Portale[1].getY()-10) {
 			drehmoment+=3;
-			teleportz�hler[1]+=1;
+			teleportzähler[1]+=1;
 		Portale[1].setColor(Color.GOLD);
-		if (teleportz�hler[1]==200) {
+		if (teleportzähler[1]==200) {
 			c.getPosition().x=Portale[0].getX()+70;
 		c.getPosition().y=Portale[0].getY();
 		}
@@ -114,7 +123,7 @@ public class PlayState extends State {
 		else {
 			Portale[1].setColor(Color.SKY);
 			drehmoment++;
-			teleportz�hler[1]=0;
+			teleportzähler[1]=0;
 		}
 		
 		//=================================================================//ZWEITES PORTAL ENDE
@@ -152,27 +161,27 @@ public class PlayState extends State {
 	/**KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA*/	
 		if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2 && c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2)
 			{sb.setProjectionMatrix(cam.combined);
-			sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
+			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
 			cam.position.set(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
 			cam.update();
 			
 			}
 		else if(c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2){
 			sb.setProjectionMatrix(cam.combined);
-			sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
+			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
 			cam.position.set(Gdx.graphics.getWidth()/2,c.getPosition().y,0);
 			cam.update();
 			
 		}
 		else if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2){
 			sb.setProjectionMatrix(cam.combined);
-			sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
+			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
 			cam.position.set(c.getPosition().x,Gdx.graphics.getHeight()/2,0);
 			cam.update();
 		}
 		else{
 		sb.setProjectionMatrix(cam.combined);	
-		sb.draw(c.getTextureRegion(), c.getPosition().x, c.getPosition().y);
+		sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
 		cam.position.set(c.getPosition().x,c.getPosition().y,0);
 		cam.update();
 		}
