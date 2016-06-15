@@ -24,12 +24,14 @@ public class Krieger extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Krieger(int x,int y,TextureRegion[][] sprite,float speed,ArrayList<skill> skills, float hitcd){
-		super(x, y, sprite, speed, skills, hitcd);
+	public Krieger(int x,int y,TextureRegion[][] sprite,float speed){
+		super(x, y, sprite, speed);
 		System.out.println(sprite);
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
 		
+		skills = new ArrayList<skill>();
+		skills.add(new skill(this.getPosition().x, this.getPosition().y, 200, 0, 1, 1, 1, 0, 2, 1, g.getSkill(6), false));
 	}
 	
 	@Override

@@ -11,8 +11,8 @@ import com.mygdx.menu.MenuState;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
-	public static final int WIDTH=1920;
-	public static final int HEIGHT=1080;
+	public static final int WIDTH=1440;
+	public static final int HEIGHT=900;
 	public static final String TITLE ="sepRP-Gruppe-L";
 	private GameStateManager gsm;
 	

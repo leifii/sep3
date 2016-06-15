@@ -52,7 +52,7 @@ public class PlayState extends State {
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(100,100,s.getAnimation(0),2.5f,null,0);
+			c=new Krieger(100,100,s.getAnimation(0),2.5f);
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
@@ -70,6 +70,7 @@ public class PlayState extends State {
 			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f,null,0);
 			System.out.println("SchÜtze");
 		}
+		
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 	}
 
@@ -81,6 +82,7 @@ public class PlayState extends State {
 		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
 			Gdx.app.exit();
 		}
+		
 	}
 
 	@Override
@@ -152,6 +154,12 @@ public class PlayState extends State {
 		
 		map.render(sb);
 		sb.begin();
+
+		
+		c.draw(sb);
+		
+	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
+
 		
 		// TRUHEN //
 		Truhe[0].render(this, sb,c.getBounds());
@@ -163,6 +171,7 @@ public class PlayState extends State {
 	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //
 		
 		
+
 		Portale[0].setPosition(2926,1000);
 		Portale[0].setRotation(drehmoment);
 		Portale[0].draw(sb);
@@ -172,6 +181,9 @@ public class PlayState extends State {
 		Portale[1].draw(sb);
 		
 	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
+		
+		
+		
 		
 	/**KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA*/	
 		if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2 && c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2)
