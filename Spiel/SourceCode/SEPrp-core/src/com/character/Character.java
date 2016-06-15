@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -23,14 +24,22 @@ import com.grafiken.*;
 public class Character {
 
 
-	private ArrayList<skill> skills;
+	protected ArrayList<skill> skills;
+	
+	protected IObjekte g;
 	
 	private Vector3 position;
 	
 	private TextureRegion character;
+
+	
+	private float cd;
+	
+
 	
 	private Rectangle bounds;
 	
+
 	int richtung=0;
 	
 	float laufspeed;
@@ -50,7 +59,7 @@ public class Character {
 	int neededexp;
 	int level;
 	
-	float hitcd;
+	
 	
 	
 //	public Character (int x,int y,String sprite,float speed){
@@ -59,14 +68,20 @@ public class Character {
 //	    character1=new Texture(sprite);    
 //	}
 	
-	public Character (int x,int y,TextureRegion[][] animation,float speed, ArrayList<skill> skills, float hitcd){
-		//this.hitcd = skills.gethitcd;
+
+	public Character (int x,int y, TextureRegion[][] animation,float speed){
+		
+		
+		g = new Objekte();
+
+	
 		
 		bounds=new Rectangle(x,y,32,48);
 
 		
 		///////////////////MOVEMENT//ANGFANG//////////////////////////////////
 		this.skills = skills;
+
 		keyframes=new TextureRegion[4];
 		keyframes1=new TextureRegion[4];
 		keyframes2=new TextureRegion[4];
@@ -185,8 +200,18 @@ public class Character {
 
 
 	public void update(float dt){
+
+		
+		cd = skills.get(0).gethitcd();
+		
+		for(int i = 0; i < skills.size(); i++){
+			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);
+		}
+		
+
 		
 		bounds.setPosition(this.getPosition().x,this.getPosition().y);
+
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y+=2*laufspeed;
@@ -254,13 +279,20 @@ public class Character {
 	}
 	
 	
-	/*public void angriff(){
+	public void angriff(){
 	
-		if(skills.gethitcd() == 0)
+		if(cd == 0)
 			return;
+			
+	}
+	
+	public void handleInput(){
 		
-		
-	}*/
+	}
+	
+	public void draw(SpriteBatch sb){
+		skills.get(0).draw(sb);
+	}
 	
 	
 	

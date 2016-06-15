@@ -1,7 +1,9 @@
 package com.character;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class skill {
 
@@ -28,20 +30,26 @@ public class skill {
 	protected int height;
 	
 	private boolean remove;
+	private boolean alive;
 	
 	boolean locked;
 	//boolean ready;
 	
 	
-	skill(int lvl, int dmg, int dmgfaktor, int cdnow, int cd, int cdfaktor, String bild, boolean locked){
+	skill(float x, float y, float dx, float dy, int lvl, int dmg, int dmgfaktor, int cdnow, int cd, int cdfaktor, Texture bild, boolean locked){
 		this.lvl = lvl;
 		this.dmg = dmg;
 		this.dmgfaktor = dmgfaktor;
 		this.cdnow = cdnow;
 		this.cd = cd;
 		this.cdfaktor = cdfaktor;
-		this.bild = new Texture(Gdx.files.internal(bild));
+		this.bild = bild;
 		this.locked = locked;
+		this.x = x;
+		this.y = y;
+		this.dx = dx;
+		this.dy = dy;
+		lifeTime = 3;
 		
 	}
 	
@@ -56,15 +64,51 @@ public class skill {
 		return remove;
 	}
 	
-	public void update(float dt){
+	public void update(float dt, float xx, float yy){
+		handleInput(xx, yy);
+		if(alive == true){
 		x += dx * dt;
 		y += dy * dt;
 		
+		cdnow -= dt;
+				
 		lifeTimer += dt;
 		if(lifeTimer > lifeTime){
 			remove = true;
+			alive = false;
+		}
+		if(cdnow > 0){
+			remove = false;
+		}
+		System.out.println("penis");
+		}
+		
+	}
+	
+	public void handleInput(float x, float y){
+		if(cdnow < 0.1){
+			if(Gdx.input.isKeyPressed(Keys.NUM_1)){
+				this.x = x;
+				this.y = y;
+				cdnow = cd;
+				lifeTimer = 0;
+				System.out.println("druecke 1");
+				alive = true;
+				
+			}
+		}
+
+		
+		
+	}
+	
+	
+	public void draw(SpriteBatch s){
+		if(alive == true){
+		s.draw(bild,x,y);
 		}
 	}
+	
 	
 	public void upgrade(){
 		lvl += 1;
@@ -72,9 +116,7 @@ public class skill {
 		cd -= 1*cdfaktor;
 	}
 	
-	public void cdtimer(){
-		
-	}
+	
 	
 	
 	
