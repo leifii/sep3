@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import lejos.utility.Delay;
+import Anweisungen.Anweisung;
+
 
 public class Client {
 
@@ -26,16 +29,19 @@ public class Client {
 			
 			
 			//Stream
+			Anweisung keylistener = new Anweisung();
+			Kommunikation com1 = new Kommunikation(roboter1, keylistener);
 			
-			Kommunikation com1 = new Kommunikation(roboter1);
+			while(true){
 			com1.senden();
 			com1.empfangen();
-			
+			Delay.msDelay(10);
+			}
 			
 			
 			//Stream ende
 			
-			System.out.println("Verbindung getrennt!");
+		//	System.out.println("Verbindung getrennt!");
 			}
 			
 			catch(UnknownHostException e ) {
