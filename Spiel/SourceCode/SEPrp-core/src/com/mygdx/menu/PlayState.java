@@ -114,7 +114,7 @@ public class PlayState extends State {
 		
 		// TRUHEN //
 		for (int i = 0; i < Truhe.length; i++) {
-			Truhe[i].render(this, sb,c.getBounds());
+			Truhe[i].render(this, sb,c.getBounds(),c);
 		}
 		// TRUHEN //
 		

@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.mygdx.menu.PlayState;
+import com.character.Character;
 
 public class Truhe {
 
@@ -32,13 +33,17 @@ public class Truhe {
 	
 
 
-	public void render(PlayState ps,SpriteBatch sb,Rectangle Character){
+	public void render(PlayState ps,SpriteBatch sb,Rectangle Character,Character c){
 		sb.draw(Zustand[i],position.x,position.y);
-		if (Gdx.input.isKeyJustPressed(Keys.O)&& bounds.overlaps(Character)) {
+		if ( bounds.overlaps(Character)) {
+//			c.getPosition().x=position.x-10;		KOLLISIONSSCHEISSE
+//			c.getPosition().y=position.y-10;		KOLLISIONSSCHEISSE
 			
+			if(Gdx.input.isKeyJustPressed(Keys.O)){
 		i++;
 		if (i>0) {
 			i=1;
+		}
 		}
 		}
 		
