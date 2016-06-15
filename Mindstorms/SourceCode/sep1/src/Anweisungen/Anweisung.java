@@ -1,15 +1,27 @@
 package Anweisungen ;
 
+import java.applet.Applet;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent; 
 import java.awt.event.KeyListener;
 
-public class Anweisung implements KeyListener {
+public class Anweisung extends Applet implements KeyListener {
 	
-	private final IAnweisung events;
+//	private final IAnweisung events;
+//	
+//	Anweisung(IAnweisung taste){
+//		events=taste;
+//	}
 	
-	Anweisung(IAnweisung taste){
-		events=taste;
+	public void init(){
+		this.addKeyListener(this);
 	}
+	
+	public void paint(Graphics g){
+		setSize(500,500);
+		g.drawString("test",25,0);
+	}
+	
 	
 	public void keyTyped(KeyEvent e){
 		
@@ -22,31 +34,35 @@ public class Anweisung implements KeyListener {
 		
 		switch(code){
 		case KeyEvent.VK_UP: 
-			events.oben();
+			oben();
+			System.out.println("oben");
 			break;
 			
 		case KeyEvent.VK_DOWN:
-			events.unten();
+			unten();
+			System.out.println("unten");
 			break;
 			
 		case KeyEvent.VK_LEFT:
-			events.links();
+			links();
+			System.out.println("links");
 			break;
 			
 		case KeyEvent.VK_RIGHT:
-			events.rechts();
+			rechts();
+			System.out.println("rechts");
 			break;
 			
-		case KeyEvent.VK_A:
-			events.stop();
+		case KeyEvent.VK_P:
+			pause();
 			break;
 			
 		case KeyEvent.VK_S:
-			events.start();
+			start();
 			break;
 			
 		case KeyEvent.VK_E:
-			events.verlassen();
+			pauseende();
 			break;
 		}
 	}
@@ -55,5 +71,35 @@ public class Anweisung implements KeyListener {
 		
 	}
 
+	
+	// Methoden für Rückgabewerte
+	
+	public boolean oben(){
+		return true;
+	}
+	
+	public boolean unten(){
+		return true;
+	}
+	
+	public boolean links(){
+		return true;
+	}
+	
+	public boolean rechts(){
+		return true;
+	}
+	
+	public boolean spielstart(){
+		return true;
+	}
+	
+	public boolean pause(){
+		return true;
+	}
+	
+	public boolean pauseende(){
+		return true;
+	}
 
 } 

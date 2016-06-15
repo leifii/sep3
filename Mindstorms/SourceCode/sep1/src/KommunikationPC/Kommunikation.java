@@ -5,19 +5,25 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import Anweisungen.Anweisung;
+
+
 public class Kommunikation implements IKommunikation{
 	
 	Socket socket;
+	byte[] nachricht= new byte[9];
+	Anweisung keylistener;
 	
 	
-	public Kommunikation(Socket soc){
+	public Kommunikation(Socket soc, Anweisung keylistener){
 		
 		socket = soc;
+		this.keylistener = keylistener;
 		
 	}
 	
 	public void senden(){
-		byte[] nachricht = {4,5,2,3,8,9,1,0,3};
+		
 		try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
@@ -39,7 +45,6 @@ public class Kommunikation implements IKommunikation{
 			
 			int length = in.readInt();		//Länge der Nachricht lesen
 			if(length>0){
-				byte[] nachricht = new byte[length];
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
 				
 				System.out.println("Nachricht empfangen");
@@ -59,8 +64,44 @@ public class Kommunikation implements IKommunikation{
 		
 
 	}
-	public int erzeugeByteArray(){
-		return 1;
+	
+	
+	
+	public byte[] erzeugeByteArray(){
+		
+	int wert = 0;
+	
+	if(keylistener.oben()){
+		wert=004;
+	}
+	
+	else if(keylistener.unten()){
+		wert=006;
+	}
+	
+	else if(keylistener.rechts()){
+		wert=005;
+	}
+	
+	else if(keylistener.links()){
+		wert=007;
+	}
+	 
+	 
+	
+	
+	nachricht[0]=00;
+	nachricht[1]=01;
+	nachricht[2]=02;
+	nachricht[3]=03;
+	nachricht[4]=04;
+	nachricht[5]=05;
+	nachricht[6]=06;
+	nachricht[7]=07;
+	nachricht[8]=(byte) wert;
+	
+		
+		return nachricht;
 	}
 
 }

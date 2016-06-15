@@ -1,11 +1,11 @@
 package Anweisungen;
 
 public interface IAnweisung {
-	void oben();
-	void unten();
-	void links();
-	void rechts();
-	void start();
-	void stop();
-	void verlassen();
+	boolean oben();
+	boolean unten();
+	boolean links();
+	boolean rechts();
+	boolean spielstart();
+	boolean pause();
+	boolean pauseende();
 }
