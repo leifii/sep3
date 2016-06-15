@@ -76,7 +76,7 @@ public class NewMenuState extends MenuState {
 		buttonN= new TextButton("Nein", textButtonStyle1);
 		buttonN.pad(20);		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
-		label= new Label("Möchtest du ein neues Spiel starten?",labelStyle);
+		label= new Label("MÃ¶chtest du ein neues Spiel starten?",labelStyle);
 		label.setFontScale(1.2f);
 		Image Rahmen=new Image(patch);
 		
