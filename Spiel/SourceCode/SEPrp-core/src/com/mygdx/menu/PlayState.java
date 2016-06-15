@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Json.Serializable;
 
 import com.character.Character;
@@ -17,11 +17,14 @@ import com.character.Krieger;
 import com.character.Magier;
 import com.character.Schuetze;
 import com.mygdx.game.MyGdxGame;
-
+import com.objects.Truhe;
 import com.grafiken.*;
 
 public class PlayState extends State {
 
+	
+	Truhe Truhe1=new Truhe(120, 120);
+	
 	int drehmoment=0;
 	int teleportzähler[]=new int[]{0,0};
 	private Texture portal=new Texture("grafiken/crystal.png");
@@ -62,9 +65,9 @@ public class PlayState extends State {
 			System.out.println("Drachenmensch");
 		}
 		else if(characterauswahl==4){
-			System.out.println("Schï¿½tze");
+			System.out.println("SchÜtze");
 			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f,null,0);
-			System.out.println("Schï¿½tze");
+			System.out.println("SchÜtze");
 		}
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 	}
@@ -72,7 +75,8 @@ public class PlayState extends State {
 	
 	@Override
 	protected void handleInput() {
-
+		
+		
 		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
 			Gdx.app.exit();
 		}
@@ -82,6 +86,7 @@ public class PlayState extends State {
 	public void update(float dt) {
 		// TODO Auto-generated method stub
 		handleInput();
+//		Truhe1.Öffne(c.getBounds());
 		c.update(dt);
 		currentFrameTime+=dt;
 		currentFrame=c.getAnimation().getKeyFrame(currentFrameTime);
@@ -147,7 +152,16 @@ public class PlayState extends State {
 		
 		map.render(sb);
 		sb.begin();
-	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
+		
+		// TRUHEN //
+		Truhe1.render(this, sb,c.getBounds());
+		
+		
+		// TRUHEN //
+		
+	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //
+		
+		
 		Portale[0].setPosition(2926,1000);
 		Portale[0].setRotation(drehmoment);
 		Portale[0].draw(sb);

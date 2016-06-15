@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.menu.InventoryState;
 import com.mygdx.menu.MapState;
@@ -27,7 +28,9 @@ public class Character {
 	private Vector3 position;
 	
 	private TextureRegion character;
-
+	
+	private Rectangle bounds;
+	
 	int richtung=0;
 	
 	float laufspeed;
@@ -58,6 +61,11 @@ public class Character {
 	
 	public Character (int x,int y,TextureRegion[][] animation,float speed, ArrayList<skill> skills, float hitcd){
 		//this.hitcd = skills.gethitcd;
+		
+		bounds=new Rectangle(x,y,32,48);
+
+		
+		///////////////////MOVEMENT//ANGFANG//////////////////////////////////
 		this.skills = skills;
 		keyframes=new TextureRegion[4];
 		keyframes1=new TextureRegion[4];
@@ -95,7 +103,7 @@ public class Character {
 		Animation5.setPlayMode(PlayMode.LOOP);
 		Animation6.setPlayMode(PlayMode.LOOP);
 		Animation7.setPlayMode(PlayMode.LOOP);
-		
+///////////////////MOVEMENT//ENDE//////////////////////////////////
 		level=1;
 		exp=0;
 		neededexp=100;
@@ -109,6 +117,7 @@ public class Character {
 		 Verteidigung=1;
 		 AtkSpeed=1;
 	}
+	
 	
 	public Animation getAnimation(){
 		if(richtung==0){
@@ -257,7 +266,26 @@ public class Character {
 		level++;
 	}
 	
+	public boolean collision(Rectangle object){
+		if (bounds.overlaps(object)) {
+			return true;
+		}
+		return false;
+	}
+	public Rectangle getBounds() {
+		return bounds;
+	}
+
+
+	public void setBounds(Rectangle bounds) {
+		this.bounds = bounds;
+	}
+
+
 	public void update(float dt){
+		
+		bounds.setPosition(this.getPosition().x,this.getPosition().y);
+
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y+=2*laufspeed;
 			richtung=3;
