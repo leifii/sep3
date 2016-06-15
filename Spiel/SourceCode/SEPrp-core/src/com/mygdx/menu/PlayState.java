@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Json.Serializable;
 import com.character.Character;
 import com.character.Schurke;
 import com.character.Krieger;
@@ -15,10 +16,10 @@ import com.mygdx.game.MyGdxGame;
 
 import com.grafiken.*;
 
-public class PlayState extends State{
+public class PlayState extends State {
 
 	int drehmoment=0;
-	int teleportzähler[]=new int[]{0,0};
+	int teleportzï¿½hler[]=new int[]{0,0};
 	private Texture portal=new Texture("grafiken/crystal.png");
 	
 	private Sprite Portale[]=new Sprite[]{(new Sprite(portal)),(new Sprite(portal))};
@@ -54,9 +55,9 @@ public class PlayState extends State{
 			System.out.println("Drachenmensch");
 		}
 		else if(characterauswahl==4){
-			System.out.println("Schütze");
+			System.out.println("Schï¿½tze");
 			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f,null,0);
-			System.out.println("Schütze");
+			System.out.println("Schï¿½tze");
 		}
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 	}
@@ -82,9 +83,9 @@ public class PlayState extends State{
 
 		if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+50 &&  c.getPosition().y<=Portale[0].getY()+50 && c.getPosition().y>=Portale[0].getY()-10) {
 			drehmoment+=3;
-			teleportzähler[0]+=1;
+			teleportzï¿½hler[0]+=1;
 		Portale[0].setColor(Color.GOLD);
-		if (teleportzähler[0]==200) {
+		if (teleportzï¿½hler[0]==200) {
 			c.getPosition().x=Portale[1].getX()+70;
 		c.getPosition().y=Portale[1].getY();
 		}
@@ -93,7 +94,7 @@ public class PlayState extends State{
 		else {
 			Portale[0].setColor(Color.SKY);
 			drehmoment++;
-			teleportzähler[0]=0;
+			teleportzï¿½hler[0]=0;
 		}
 		
 		//=================================================================//ERSTES PORTAL ENDE
@@ -102,9 +103,9 @@ public class PlayState extends State{
 		
 		if (c.getPosition().x>=Portale[1].getX()-10 && c.getPosition().x<=Portale[1].getX()+50 &&  c.getPosition().y<=Portale[1].getY()+50 && c.getPosition().y>=Portale[1].getY()-10) {
 			drehmoment+=3;
-			teleportzähler[1]+=1;
+			teleportzï¿½hler[1]+=1;
 		Portale[1].setColor(Color.GOLD);
-		if (teleportzähler[1]==200) {
+		if (teleportzï¿½hler[1]==200) {
 			c.getPosition().x=Portale[0].getX()+70;
 		c.getPosition().y=Portale[0].getY();
 		}
@@ -113,7 +114,7 @@ public class PlayState extends State{
 		else {
 			Portale[1].setColor(Color.SKY);
 			drehmoment++;
-			teleportzähler[1]=0;
+			teleportzï¿½hler[1]=0;
 		}
 		
 		//=================================================================//ZWEITES PORTAL ENDE
