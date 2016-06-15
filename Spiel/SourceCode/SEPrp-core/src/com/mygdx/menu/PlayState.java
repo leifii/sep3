@@ -27,22 +27,13 @@ public class PlayState extends State {
 	Truhe Truhe[]=new Truhe[]{new Truhe(100, 200),new Truhe(150,200),new Truhe(200,200),new Truhe(250,200)};
 	
 	
-//	int drehmoment=0;
-//	int teleportzähler[]=new int[]{0,0};
-//	private Texture portal=new Texture("grafiken/crystal.png");
-//	
-//	private Sprite Portale[]=new Sprite[]{(new Sprite(portal)),(new Sprite(portal))};
-	
-	
-	
-	
 	private Character c;
 	private Map map;
 	private ICharacter s;
 	private float currentFrameTime;
 	TextureRegion currentFrame;
 	
-	Portal Portal[]=new Portal[]{new Portal(50, 50, 500, 500)};
+	Portal Portal[]=new Portal[]{new Portal(50, 50, 500, 500),new Portal(500, 500, 50, 50)};
 	
 	public PlayState(GameStateManager gsm,int characterauswahl) {
 		super(gsm);
@@ -96,49 +87,7 @@ public class PlayState extends State {
 		currentFrameTime+=dt;
 		currentFrame=c.getAnimation().getKeyFrame(currentFrameTime);
 		
-		//////////////////////////////////////////////////////////////////////PORTALSHIT ANFANG////////////////////////
 		
-		//=================================================================//ERSTES PORTAL ANFANG
-
-//		if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+40 &&  c.getPosition().y<=Portale[0].getY()+40 && c.getPosition().y>=Portale[0].getY()-10) {
-//			drehmoment+=3;
-//			teleportzähler[0]+=1;
-//		Portale[0].setColor(Color.GOLD);
-//		if (teleportzähler[0]==200) {
-//			c.getPosition().x=Portale[1].getX()+70;
-//		c.getPosition().y=Portale[1].getY();
-//		}
-//		
-//		}
-//		else {
-//			Portale[0].setColor(Color.SKY);
-//			drehmoment++;
-//			teleportzähler[0]=0;
-//		}
-		
-		//=================================================================//ERSTES PORTAL ENDE
-		
-		//=================================================================//ZWEITES PORTAL ANFANG
-		
-//		if (c.getPosition().x>=Portale[1].getX()-10 && c.getPosition().x<=Portale[1].getX()+40 &&  c.getPosition().y<=Portale[1].getY()+40 && c.getPosition().y>=Portale[1].getY()-10) {
-//			drehmoment+=3;
-//			teleportzähler[1]+=1;
-//		Portale[1].setColor(Color.GOLD);
-//		if (teleportzähler[1]==200) {
-//			c.getPosition().x=Portale[0].getX()+70;
-//		c.getPosition().y=Portale[0].getY();
-//		}
-//		
-//		}
-//		else {
-//			Portale[1].setColor(Color.SKY);
-//			drehmoment++;
-//			teleportzähler[1]=0;
-//		}
-		
-		//=================================================================//ZWEITES PORTAL ENDE
-		
-		//////////////////////////////////////////////////////////////////////PORTALSHIT ENDE////////////////////////////////
 		
 		if (c.getPosition().x<=0) {
 			c.getPosition().x=0;
@@ -161,7 +110,6 @@ public class PlayState extends State {
 		
 		c.draw(sb);
 		
-	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
 
 		
 		// TRUHEN //
@@ -171,19 +119,10 @@ public class PlayState extends State {
 		Truhe[3].render(this, sb,c.getBounds());
 		// TRUHEN //
 		
-	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //
-		
+		// PORTALE //
 		Portal[0].render(sb,c);
-		
-//		Portale[0].setPosition(2926,1000);
-//		Portale[0].setRotation(drehmoment);
-//		Portale[0].draw(sb);
-//		
-//		Portale[1].setPosition(50,50);
-//		Portale[1].setRotation(drehmoment);
-//		Portale[1].draw(sb);
-		
-	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //	
+		Portal[1].render(sb,c);
+		// PORTALE //
 		
 		
 		
