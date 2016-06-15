@@ -77,10 +77,8 @@ public class skill {
 			remove = true;
 			alive = false;
 		}
-		if(cdnow > 0){
-			remove = false;
-		}
-		System.out.println("penis");
+		
+		System.out.println("hmm");
 		}
 		
 	}
