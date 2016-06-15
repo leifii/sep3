@@ -1,19 +1,20 @@
 package de.SEPL.ServerClient;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.Socket; 
+import java.net.Socket;
 
-public class FileClient {
+public class FileClient implements IAuktionshausClient {
 
 	static BufferedReader reader;
 	static Socket client;
 	static PrintWriter writer;
 
-	public static void sendIt(String wrapped) {
+	public void sendIt(String wrapped) {
 		try {
 			client = new Socket("localhost", 5554);
 
@@ -33,11 +34,11 @@ public class FileClient {
 		}
 	}
 
-	public static void shutDown() {
+	public void shutDown() {
 		sendIt("shutdown\n");
 	}
 
-	public static String[] getContent() {
+	public String[] getContent() {
 		String[] items = new String[256];
 		int i = 0;
 
@@ -52,29 +53,27 @@ public class FileClient {
 				tempString = reader.readLine();
 				i++;
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 
 		return items;
 	}
 
-	public static void deleteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
+	public void deleteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
 			int geschicklichkeit, int wert) {
-		String wrapped = "deleteItem\n" + art + "," + name + "," + seltenheit + "," + staerke + "," + intelligenz + "," + stamina + ","
-				+ geschicklichkeit + "," + wert;
+		String wrapped = "deleteItem\n" + art + "," + name + "," + seltenheit + "," + staerke + "," + intelligenz + ","
+				+ stamina + "," + geschicklichkeit + "," + wert;
 
 		sendIt(wrapped);
 	}
 
-	public static void pasteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
+	public void pasteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
 			int geschicklichkeit, int wert) {
 
-		String wrapped = "pasteItem\n" + art + "," + name + "," + seltenheit + "," + staerke + "," + intelligenz + "," + stamina + ","
-				+ geschicklichkeit + "," + wert;
+		String wrapped = "pasteItem\n" + art + "," + name + "," + seltenheit + "," + staerke + "," + intelligenz + ","
+				+ stamina + "," + geschicklichkeit + "," + wert;
 
 		sendIt(wrapped);
 	}
