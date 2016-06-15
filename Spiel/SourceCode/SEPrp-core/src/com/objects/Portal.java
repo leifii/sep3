@@ -42,8 +42,8 @@ public class Portal {
 			teleportzähler[0]+=1;
 		portal.setColor(Color.GOLD);
 		if (teleportzähler[0]==200) {
-			c.getPosition().x+=700;
-		c.getPosition().y+=700;
+			c.getPosition().x=teleOrt.x;
+		c.getPosition().y=teleOrt.y;
 		}
 		
 		}
@@ -57,36 +57,7 @@ public class Portal {
 		portal.draw(sb);
 	}
 	
-//	int drehmoment=0;
-//	int teleportzähler[]=new int[]{0,0};
-//	private Texture portal=new Texture("grafiken/crystal.png");
-//	
-//	private Sprite Portale[]=new Sprite[]{(new Sprite(portal)),(new Sprite(portal))};
-	
-//	
-//	
-//	
-//	
-//	if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+40 &&  c.getPosition().y<=Portale[0].getY()+40 && c.getPosition().y>=Portale[0].getY()-10) {
-//		drehmoment+=3;
-//		teleportzähler[0]+=1;
-//	Portale[0].setColor(Color.GOLD);
-//	if (teleportzähler[0]==200) {
-//		c.getPosition().x=Portale[1].getX()+70;
-//	c.getPosition().y=Portale[1].getY();
-//	}
-//	
-//	}
-//	else {
-//		Portale[0].setColor(Color.SKY);
-//		drehmoment++;
-//		teleportzähler[0]=0;
-//	}
-//	
-//	
-	
-//
-//	Portale[0].setPosition(2926,1000);
-//	Portale[0].setRotation(drehmoment);
-//	Portale[0].draw(sb);
+	public void dispose(){
+		this.dispose();
+	}
 }
