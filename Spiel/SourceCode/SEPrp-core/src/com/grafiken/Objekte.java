@@ -20,7 +20,7 @@ public class Objekte implements IObjekte{
 
 	@Override
 	public Texture getItem(int index) {
-		items=new Texture[]{new Texture("grafiken/sword.png")};
+		items=new Texture[]{new Texture("grafiken/sword.png"),new Texture("grafiken/coin.png")};
 		return null;
 	}
 	public Texture getChest(boolean opened){

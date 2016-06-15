@@ -3,11 +3,15 @@ package com.mygdx.menu;
 import com.android.ide.common.rendering.api.SessionParams.Key;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.ai.steer.behaviors.Alignment;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleShader.AlignMode;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -16,6 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.MyGdxGame;
 
 public class NewGameCharacterState extends NewMenuState {
@@ -34,6 +42,8 @@ public class NewGameCharacterState extends NewMenuState {
 	private TextButton buttonJ, buttonN,buttonM,buttonK;
 	private BitmapFont white;
 	private Label label;
+	private Drawable drawable;
+	
 	
 
 	
@@ -56,6 +66,14 @@ public class NewGameCharacterState extends NewMenuState {
 		skin=new Skin(atlas);
 		
 		table=new Table(skin);
+		
+//		table.setWidth(Gdx.graphics.getWidth()*0.9f);
+//		table.setHeight(Gdx.graphics.getHeight()*0.9f);
+//		table.pad(100, 100, 600, 100);
+		table.setWidth(Gdx.graphics.getWidth()*0.9f);
+		table.align(Align.center|Align.top);
+		table.setPosition(0,Gdx.graphics.getHeight());
+		
 		white=new BitmapFont(Gdx.files.internal("white.fnt"));
 		
 		TextButtonStyle textButtonStyle=new TextButtonStyle();
@@ -64,18 +82,14 @@ public class NewGameCharacterState extends NewMenuState {
 		textButtonStyle.pressedOffsetX=1;
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
-		NinePatch patch= new NinePatch(new Texture("border2.9.png"));
+//		NinePatch patch= new NinePatch(new Texture("userInterface/border2.9.png"));
 		
-		TextButtonStyle textButtonStyle1=new TextButtonStyle();
-		textButtonStyle1.up= skin.getDrawable("blank-2");
-		textButtonStyle1.down=skin.getDrawable("blank-4");
-		textButtonStyle1.pressedOffsetX=1;
-		textButtonStyle1.pressedOffsetY=-1;
-		textButtonStyle1.font=white;
+		
 		
 		buttonJ=new TextButton("Krieger", textButtonStyle);
 		buttonJ.pad(20);
-		table.setBounds(Gdx.graphics.getWidth()/2-300, Gdx.graphics.getHeight()/2-buttonJ.getMinHeight(),buttonJ.getMinWidth(),buttonJ.getMinHeight() );
+//		table.setBounds(Gdx.graphics.getWidth()/2-400, Gdx.graphics.getHeight()/2-buttonJ.getMinHeight(),buttonJ.getMinWidth(),buttonJ.getMinHeight() );
+//		table.setBounds(Gdx.graphics.getWidth()/2-400, Gdx.graphics.getHeight()/2-50,800,400 );
 		
 		buttonN= new TextButton("Magier", textButtonStyle);
 		buttonN.pad(20);
@@ -87,22 +101,45 @@ public class NewGameCharacterState extends NewMenuState {
 		buttonK.pad(20);
 		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
-		label= new Label("               	Wähle mit welcher Klasse DU spielen möchtest",labelStyle);
+
+		label= new Label("Wähle mit welcher Klasse DU spielen moechtest",labelStyle);
+
 		label.setFontScale(1.2f);
-		Image Rahmen=new Image(patch);
+//		Image Rahmen=new Image(patch);
+		Image Rahmen=new Image(new Texture("userInterface/border2.png"));
+		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f);
+		Rahmen.setWidth(Gdx.graphics.getWidth()*1.1f);
+		Rahmen.setHeight(Gdx.graphics.getHeight()*0.5f);
+//		drawable=new NinePatchDrawable(patch);
+//		Rahmen.setFillParent(true);
+//		Rahmen.setHeight(Gdx.graphics.getHeight());
+//		Rahmen.setPosition(0, 0);
 		
-		table.add(label).width(150);
+		
+		
+		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);
 		table.row();
-		table.getCell(label).spaceBottom(20);
-		table.add(buttonJ).padLeft(Gdx.graphics.getWidth()/2f);
-		table.getCell(buttonJ).spaceLeft(100);
+//		table.getCell(label).spaceBottom(20);
+		table.add(buttonJ);
+		table.add(buttonJ);
+//		table.getCell(buttonJ).spaceLeft(100);
 		table.add(buttonN);
 		table.add(buttonM);
 		table.add(buttonK);
-		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getMinWidth()*2, table.getMinHeight()*2);
-
+//		table.add(Rahmen).prefWidth(Rahmen.getWidth()/2).height(Rahmen.getHeight()/2).center();
+//		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getMinWidth()*2, table.getMinHeight()*2);
+//		table.setDebug(true);
+//		Rahmen.setPosition(0, 0);
+//		table.setBackground(Rahmen.getDrawable());
+//		table.setFillParent(true);
+//		Rahmen.setBounds(table.getX(), table.getOriginY(), table.getWidth(), table.getPrefHeight());
+//		Rahmen.setFillParent(true);
+//		Rahmen.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		
+		
 		stage.addActor(Rahmen);
 		stage.addActor(table);
+		
 		/////////////////////////////////////////////////CHARAKTERAUSWAHL//////////////////////////////// END
 		
 /***/	/////////////////////////////////////////////////CHARAKTEREDITOR//////////////////////////////// BEGIN
