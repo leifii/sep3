@@ -10,8 +10,8 @@ public class skill {
 	int lvl;
 	int dmg;
 	int dmgfaktor;
-	int cdnow;
-	int cd;
+	float cdnow;
+	float cd;
 	int cdfaktor;
 	
 	private Texture bild;
@@ -66,11 +66,13 @@ public class skill {
 	
 	public void update(float dt, float xx, float yy){
 		handleInput(xx, yy);
+		cdnow -= dt;
 		if(alive == true){
 		x += dx * dt;
 		y += dy * dt;
 		
-		cdnow -= dt;
+		
+		System.out.println(cdnow);
 				
 		lifeTimer += dt;
 		if(lifeTimer > lifeTime){
@@ -78,7 +80,7 @@ public class skill {
 			alive = false;
 		}
 		
-		System.out.println("hmm");
+		
 		}
 		
 	}
@@ -90,7 +92,6 @@ public class skill {
 				this.y = y;
 				cdnow = cd;
 				lifeTimer = 0;
-				System.out.println("druecke 1");
 				alive = true;
 				
 			}
