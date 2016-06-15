@@ -4,12 +4,12 @@ public interface IAuktionshausClient {
 	
 	 void shutDown();
 	
-	 String getContent();
+	 String[] getContent();
 	
-	 void deleteItem(String art, String name, double seltenheit, int intelligenz, int stamina,
+	 void deleteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
 			int geschicklichkeit, int wert);
 	
-	 void pasteItem(String art, String name, double seltenheit, int intelligenz, int stamina,
+	 void pasteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
 			int geschicklichkeit, int wert);
 		
 
