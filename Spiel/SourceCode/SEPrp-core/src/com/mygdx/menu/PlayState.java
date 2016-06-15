@@ -38,7 +38,7 @@ public class PlayState extends State {
 	public PlayState(GameStateManager gsm,int characterauswahl) {
 		super(gsm);
 		
-		// TODO Auto-generated constructor stub
+
 		
 		s=new com.grafiken.Character();
 		map=new Map(cam);
@@ -113,15 +113,15 @@ public class PlayState extends State {
 
 		
 		// TRUHEN //
-		Truhe[0].render(this, sb,c.getBounds());
-		Truhe[1].render(this, sb,c.getBounds());
-		Truhe[2].render(this, sb,c.getBounds());
-		Truhe[3].render(this, sb,c.getBounds());
+		for (int i = 0; i < Truhe.length; i++) {
+			Truhe[i].render(this, sb,c.getBounds());
+		}
 		// TRUHEN //
 		
 		// PORTALE //
-		Portal[0].render(sb,c);
-		Portal[1].render(sb,c);
+		for (int i = 0; i < Portal.length; i++) {
+			Portal[i].render(sb,c);
+		}
 		// PORTALE //
 		
 		
@@ -171,6 +171,7 @@ public class PlayState extends State {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		c.dispose();
+		this.dispose();
 	
 	}
 
