@@ -83,11 +83,11 @@ public class NewGameCharacterState extends NewMenuState {
 		buttonM=new TextButton("Schurke",textButtonStyle);
 		buttonM.pad(20);
 		
-		buttonK=new TextButton("Schütze",textButtonStyle);
+		buttonK=new TextButton("Schï¿½tze",textButtonStyle);
 		buttonK.pad(20);
 		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
-		label= new Label("               	Wähle mit welcher Klasse DU spielen möchtest",labelStyle);
+		label= new Label("               	Waehle mit welcher Klasse DU spielen moechtest",labelStyle);
 		label.setFontScale(1.2f);
 		Image Rahmen=new Image(patch);
 		
