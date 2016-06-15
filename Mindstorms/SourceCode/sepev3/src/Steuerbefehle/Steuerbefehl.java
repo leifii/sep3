@@ -90,4 +90,7 @@ public class Steuerbefehl implements ILinienverfolgung, ISteuerbefehl{
 		//Fragen während Präsenzstunde bzgl. Implementierung...
 		//Muss Methoden ausführen, sind jedoch nicht static. Lösungsvorschlag?
 	}
+	
+	
+	
 }

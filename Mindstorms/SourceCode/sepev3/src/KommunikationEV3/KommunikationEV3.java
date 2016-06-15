@@ -6,23 +6,31 @@ import java.io.IOException;
 import java.net.Socket;
 
 
+
+
+import Drucksensorverarbeitung.Drucksensor;
 import Drucksensorverarbeitung.IDrucksensor;
 import Steuerbefehle.ISteuerbefehl;
+import Steuerbefehle.Steuerbefehl;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 
-public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDrucksensor{
+public class KommunikationEV3 implements IKommunikation{
 
 	Socket socket;
+	byte[] nachricht= new byte[9];
+	Steuerbefehl steuerbefehl;
+	Drucksensor drucksensor;
 	
-	public KommunikationEV3(Socket soc){
+	public KommunikationEV3(Socket soc, Steuerbefehl steuerbefehl, Drucksensor drucksensor){
 		socket = soc;
+		this.steuerbefehl = steuerbefehl;
+		this.drucksensor = drucksensor;
 	}
 	
 	public void senden(){
 		
-		byte[] nachricht = {6,6,6,6,6,6,6,6,6};
-		try {
+			try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
 			out.write(nachricht);
@@ -46,7 +54,6 @@ public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDruckse
 			
 			int length = in.readInt();		//L�nge der Nachricht lesen
 			if(length>0){
-				byte[] nachricht = new byte[length];
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
 				
 //				System.out.println("Nachricht empfangen");                         //Konsolenausgabe bei Test am PC
@@ -74,29 +81,36 @@ public class KommunikationEV3 implements IKommunikation, ISteuerbefehl, IDruckse
 		return 1;
 	}
 	
-	public boolean druckSensor(boolean druck){
-		return druck;
-	}
 	
-	@Override
-	public void fahreVorwaerts() {
-		// TODO Auto-generated method stub
+	public void nachrichtverarbeiten(){
 		
-	}
-	@Override
-	public void MotorSuchtLinie() {
-		// TODO Auto-generated method stub
+		int wert = nachricht[8];
 		
-	}
-	@Override
-	public void drehenLinks() {
-		// TODO Auto-generated method stub
+		if(wert==004){
+			steuerbefehl.fahreVorwaerts();
+		}
 		
-	}
-	@Override
-	public void drehenRechts() {
-		// TODO Auto-generated method stub
+		else if(wert==005){
+			steuerbefehl.drehenLinks();
+		}
+
+		else if(wert==007){
+			steuerbefehl.drehenRechts();
+		}
+
+		else if(wert==006){
+	
+		}
 		
+	
 	}
+
+	@Override
+	public boolean druckSensor(boolean druck) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 	
 }
