@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Gegner {
 	private Texture bild;
-	double laufspeed;
+	float laufspeed;
 	int STR;
 	int INT;
 	int STA;
@@ -13,7 +13,7 @@ public class Gegner {
 	int Verteidigung;
 	int AtkSpeed;
 	int exp;
-	Gegner(double laufspeed,int STR,int INT,int STA,int Angriff,int Verteidigung, int AtkSpeed,String bild,int exp){
+	Gegner(float laufspeed,int STR,int INT,int STA,int Angriff,int Verteidigung, int AtkSpeed,String bild,int exp){
 		this.laufspeed=laufspeed;
 		this.STR=STR;
 		this.INT=INT;
