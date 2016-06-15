@@ -31,12 +31,7 @@ public class Truhe {
 	}
 	
 
-//	public void Öffne(Rectangle Character){
-//		if (Gdx.input.isKeyPressed(Keys.O)&& bounds.overlaps(Character)) {
-//			geöffnet=true;
-//		}
-		
-//	}
+
 	public void render(PlayState ps,SpriteBatch sb,Rectangle Character){
 		sb.draw(Zustand[i],position.x,position.y);
 		if (Gdx.input.isKeyJustPressed(Keys.O)&& bounds.overlaps(Character)) {

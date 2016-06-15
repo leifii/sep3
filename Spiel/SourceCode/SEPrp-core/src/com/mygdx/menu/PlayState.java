@@ -23,7 +23,8 @@ import com.grafiken.*;
 public class PlayState extends State {
 
 	
-	Truhe Truhe1=new Truhe(120, 120);
+	Truhe Truhe[]=new Truhe[]{new Truhe(100, 200),new Truhe(150,200),new Truhe(200,200),new Truhe(250,200)};
+	
 	
 	int drehmoment=0;
 	int teleportzähler[]=new int[]{0,0};
@@ -86,7 +87,6 @@ public class PlayState extends State {
 	public void update(float dt) {
 		// TODO Auto-generated method stub
 		handleInput();
-//		Truhe1.Öffne(c.getBounds());
 		c.update(dt);
 		currentFrameTime+=dt;
 		currentFrame=c.getAnimation().getKeyFrame(currentFrameTime);
@@ -95,7 +95,7 @@ public class PlayState extends State {
 		
 		//=================================================================//ERSTES PORTAL ANFANG
 
-		if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+50 &&  c.getPosition().y<=Portale[0].getY()+50 && c.getPosition().y>=Portale[0].getY()-10) {
+		if (c.getPosition().x>=Portale[0].getX()-10 && c.getPosition().x<=Portale[0].getX()+40 &&  c.getPosition().y<=Portale[0].getY()+40 && c.getPosition().y>=Portale[0].getY()-10) {
 			drehmoment+=3;
 			teleportzähler[0]+=1;
 		Portale[0].setColor(Color.GOLD);
@@ -115,7 +115,7 @@ public class PlayState extends State {
 		
 		//=================================================================//ZWEITES PORTAL ANFANG
 		
-		if (c.getPosition().x>=Portale[1].getX()-10 && c.getPosition().x<=Portale[1].getX()+50 &&  c.getPosition().y<=Portale[1].getY()+50 && c.getPosition().y>=Portale[1].getY()-10) {
+		if (c.getPosition().x>=Portale[1].getX()-10 && c.getPosition().x<=Portale[1].getX()+40 &&  c.getPosition().y<=Portale[1].getY()+40 && c.getPosition().y>=Portale[1].getY()-10) {
 			drehmoment+=3;
 			teleportzähler[1]+=1;
 		Portale[1].setColor(Color.GOLD);
@@ -154,9 +154,10 @@ public class PlayState extends State {
 		sb.begin();
 		
 		// TRUHEN //
-		Truhe1.render(this, sb,c.getBounds());
-		
-		
+		Truhe[0].render(this, sb,c.getBounds());
+		Truhe[1].render(this, sb,c.getBounds());
+		Truhe[2].render(this, sb,c.getBounds());
+		Truhe[3].render(this, sb,c.getBounds());
 		// TRUHEN //
 		
 	//PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE PORTALE //
@@ -166,7 +167,7 @@ public class PlayState extends State {
 		Portale[0].setRotation(drehmoment);
 		Portale[0].draw(sb);
 		
-		Portale[1].setPosition(200,200);
+		Portale[1].setPosition(50,50);
 		Portale[1].setRotation(drehmoment);
 		Portale[1].draw(sb);
 		
