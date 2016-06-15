@@ -39,7 +39,7 @@ public class Truhe {
 //			c.getPosition().x=position.x-10;		KOLLISIONSSCHEISSE
 //			c.getPosition().y=position.y-10;		KOLLISIONSSCHEISSE
 			
-			if(Gdx.input.isKeyJustPressed(Keys.O)){
+			if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
 		i++;
 		if (i>0) {
 			i=1;
