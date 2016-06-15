@@ -6,4 +6,5 @@ public interface IObjekte {
 	
 	public Texture getSkill(int index);
 	public Texture getItem(int index);
+	public Texture getChest(boolean opened);
 }
