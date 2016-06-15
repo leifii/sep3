@@ -65,7 +65,7 @@ public class MenuState extends State{
 			gsm.push(new LoadMenuState(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.N)) {
-			//*HIER KANN MAN NOCH DEN NEW GAME BUTTON UPDATEN "AS PRESSED"*//
+			
 			
 			gsm.push(new NewMenuState(gsm));
 		}
@@ -91,7 +91,7 @@ public class MenuState extends State{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("HURRA!");
-		}
+	}
 	}
 
 	@Override
@@ -129,7 +129,6 @@ public class MenuState extends State{
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		background[0].dispose();
 		background[1].dispose();	
 		background[2].dispose();
 		background[3].dispose();

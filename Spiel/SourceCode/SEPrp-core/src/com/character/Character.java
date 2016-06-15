@@ -45,11 +45,11 @@ public class Character {
 	float hitcd;
 	
 	
-/*	public Character (int x,int y,String sprite,float speed){
-		laufspeed=speed;
-		position=new Vector3(x,y,0);
-	    character1=new Texture(sprite);    
-	}*/
+//	public Character (int x,int y,String sprite,float speed){
+//		laufspeed=speed;
+//		position=new Vector3(x,y,0);
+//	    character1=new Texture(sprite);    
+//	}
 	
 	public Character (int x,int y,TextureRegion sprite,float speed, ArrayList<skill> skills, float hitcd){
 		//this.hitcd = skills.gethitcd;

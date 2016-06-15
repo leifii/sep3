@@ -40,22 +40,22 @@ public class PlayState extends State{
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(100,100,s.getTextureRegion(0),2.5f);
+			c=new Krieger(100,100,s.getTextureRegion(0),2.5f,null,0);
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
 			System.out.println("Magier");
-			c=new Magier(100,100,s.getTextureRegion(1),2.5f);
+			c=new Magier(100,100,s.getTextureRegion(1),2.5f,null,0);
 			System.out.println("Magier");
 		}
 		else if(characterauswahl==3){
 			System.out.println("Drachenmensch");
-			c=new Schurke(100,100,s.getTextureRegion(2),2.5f);
+			c=new Schurke(100,100,s.getTextureRegion(2),2.5f,null,0);
 			System.out.println("Drachenmensch");
 		}
 		else if(characterauswahl==4){
 			System.out.println("Schütze");
-			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f);
+			c=new Schuetze(100,100,s.getTextureRegion(3),2.5f,null,0);
 			System.out.println("Schütze");
 		}
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //

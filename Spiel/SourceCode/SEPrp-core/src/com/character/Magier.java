@@ -1,5 +1,7 @@
 package com.character;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -22,8 +24,8 @@ public class Magier extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Magier(int x,int y,TextureRegion sprite,float speed){
-		super(y, y, sprite, speed);
+	public Magier(int x,int y,TextureRegion sprite,float speed,ArrayList<skill> skills, float hitcd){
+		super(x, y, sprite, speed,skills,hitcd);
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
 		character=sprite;
