@@ -397,7 +397,7 @@ public void actionPerformed(ActionEvent e) {
 					UIManager.setLookAndFeel(
 							UIManager.getSystemLookAndFeelClassName()); //Hiermit wird erreicht das das Programm unter 
                                                                         //jedem Betriebsystem genau so aussieht wie es 
-					 													//der Anwender von nativen Anwendungen kennt
+					 													//der Anwender von nativen Anwendungen kennt.
 					Menu menu1 = new Menu();
 					menu1.setVisible(true);
 
