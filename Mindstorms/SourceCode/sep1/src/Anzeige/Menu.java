@@ -193,7 +193,7 @@ public void setzeSpielvorbereitungsdisplay(){
 }
 
 
-//Methode zum erstellen des Siegdisplayd
+//Methode zum erstellen des Siegdisplay
 public void setzeSiegbildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
