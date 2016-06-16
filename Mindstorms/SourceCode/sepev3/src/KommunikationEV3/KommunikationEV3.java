@@ -100,8 +100,10 @@ public class KommunikationEV3 implements IKommunikation{
 //			spielstart();
 		}
 		
-		else if(wert==002){
+		else if(wert==2){
 //			pause();
+			MotorL.stop();
+			MotorR.stop();
 		}
 		
 		else if(wert==003){
