@@ -29,7 +29,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	
 	boolean inputFinished = false;
 	private String[] roboterBelegung = new String[4];
-	public 	String comboBoxInhalt[] = {"Modus1", "Modus2", "Modus3", "Modus4"};
+	public 	String comboBoxInhalt[] = {"Modus 1", "Modus 2", "Modus 3", "Modus 4"};
 	private JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	private JPanel startDisplay = new JPanel();
 	private JPanel siegDisplay = new JPanel();
@@ -251,31 +251,31 @@ public boolean eingabeKorrekt(){
 }
 
 //Action Listener , noch nicht voll funktionsfähig. Was nach einer Aktion passieren soll muss noch korrekt implementiert werden
+// System.out.println(roboterBelegung[0]); o.ä. Anweisungen dienen nur zu Überprüfung und werden später noch gelöscht
+// Action Listener der Buttons müssen jetzt nur noch Implementiert werden
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	if (e.getSource()== cbAuswahl1){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-		this.roboterBelegung[0]= "Modus 2";
-		this.roboterBelegung[1]= "Modus 2";
-		this.roboterBelegung[2]= "Modus 2";
-		this.roboterBelegung[3]= "Modus 2";
-		
-//		switch(msg){
-//		case "Modus 1" : roboterBelegung[0] = "Modus 1";
-//		break;
-//		case "Modus 2" : roboterBelegung[0] = "Modus 2";
-//		break;
-//		case "Modus 3" : roboterBelegung[0] = "Modus 3";
-//		break;
-//		case "Modus 4" : roboterBelegung[0] = "Modus 4";
-//		break;
-//		}
+//		System.out.println(msg);		
+		switch(msg){
+		case "Modus 1" : roboterBelegung[0] = "Modus 1";
+		break;
+		case "Modus 2" : roboterBelegung[0] = "Modus 2";
+		break;
+		case "Modus 3" : roboterBelegung[0] = "Modus 3";
+		break;
+		case "Modus 4" : roboterBelegung[0] = "Modus 4";
+		break;
+		}
+//		System.out.println(roboterBelegung[0]);
 	}
 	else if (e.getSource()== cbAuswahl2){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
+//		System.out.println(msg);
 		switch(msg){
 		case "Modus 1" : roboterBelegung[1] = "Modus 1";
 		break;
@@ -286,10 +286,12 @@ public void actionPerformed(ActionEvent e) {
 		case "Modus 4" : roboterBelegung[1] = "Modus 4";
 		break;
 		}	
+//		System.out.println(roboterBelegung[1]);
 	}
 	else if (e.getSource()== cbAuswahl3){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
+//		System.out.println(msg);
 		switch(msg){
 		case "Modus 1" : roboterBelegung[2] = "Modus 1";
 		break;
@@ -299,11 +301,13 @@ public void actionPerformed(ActionEvent e) {
 		break;
 		case "Modus 4" : roboterBelegung[2] = "Modus 4";
 		break;
-		}		
+		}	
+//		System.out.println(roboterBelegung[2]);
 	}
 	else if (e.getSource()== cbAuswahl4){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
+//		System.out.println(msg);
 		switch(msg){
 		case "Modus 1" : roboterBelegung[3] = "Modus 1";
 		break;
@@ -314,6 +318,7 @@ public void actionPerformed(ActionEvent e) {
 		case "Modus 4" : roboterBelegung[3] = "Modus 4";
 		break;
 		}	
+//		System.out.println(roboterBelegung[3]);
 	}	
 }
 
