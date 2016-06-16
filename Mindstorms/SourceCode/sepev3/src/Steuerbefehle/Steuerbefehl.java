@@ -56,7 +56,7 @@ public class Steuerbefehl implements ILinienverfolgung, ISteuerbefehl{
 		MotorL.rotateTo(90);
 			
 		if (aufLinie(false)){
-			MotorL.rotateTo(180);;	
+			MotorL.rotateTo(180);
 			}
 		MotorL.close();
 	}

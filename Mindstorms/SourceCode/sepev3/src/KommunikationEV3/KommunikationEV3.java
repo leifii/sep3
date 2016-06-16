@@ -8,11 +8,15 @@ import java.net.Socket;
 
 
 
+
 import Drucksensorverarbeitung.Drucksensor;
 import Drucksensorverarbeitung.IDrucksensor;
 import Steuerbefehle.ISteuerbefehl;
 import Steuerbefehle.Steuerbefehl;
 import lejos.hardware.lcd.LCD;
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.port.MotorPort;
+import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
 public class KommunikationEV3 implements IKommunikation{
@@ -34,12 +38,7 @@ public class KommunikationEV3 implements IKommunikation{
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
 			out.write(nachricht);
-//		    System.out.println("Nachricht gesendet");                              //Konsolenausgabe bei Test am PC
-//		    LCD.drawString("Nachricht", 0, 2);                                     //Displayausgabe bei Test am EV3
-//		    LCD.drawString("gesendet!", 0, 3);                                     //
-//		    Delay.msDelay(2000);                                                   //
-//		    LCD.clear();                                                           //
-			 
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +55,7 @@ public class KommunikationEV3 implements IKommunikation{
 			if(length>0){
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
 				
-//				System.out.println("Nachricht empfangen");                         //Konsolenausgabe bei Test am PC
+
 				LCD.drawString("Nachricht", 0, 1);                                 //Displayausgabe bei Test am EV3
 				LCD.drawString("empfangen:", 0, 2);                                //
 				
@@ -65,8 +64,7 @@ public class KommunikationEV3 implements IKommunikation{
 					LCD.drawInt(nachricht[i], i+1, 4);
 				}
 				
-//				System.out.println("");
-				//Delay.msDelay(5000);
+
 				
 				nachrichtverarbeiten();
 			}
@@ -103,19 +101,37 @@ public class KommunikationEV3 implements IKommunikation{
 //			endPause();
 		}
 		
-		else if(wert==004){
-			steuerbefehl.fahreVorwaerts();
+		else if(wert==4){
+//			steuerbefehl.fahreVorwaerts();
+			RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
+			RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+			MotorL.setSpeed(500);
+			MotorR.setSpeed(500);
+			MotorL.forward();
+			MotorR.forward();
+			
+		
 		}
 		
-		else if(wert==005){
-			steuerbefehl.drehenLinks();
+		else if(wert==5){
+//			steuerbefehl.drehenLinks();
+			RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
+			MotorL.setSpeed(400);
+			MotorL.rotateTo(90);
+			
+			
+			
 		}
 
-		else if(wert==007){
-			steuerbefehl.drehenRechts();
+		else if(wert==7){
+//			steuerbefehl.drehenRechts();
+			RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+			MotorR.setSpeed(400);
+			MotorR.rotateTo(90);
+			
 		}
 
-		else if(wert==006){
+		else if(wert==6){
 	
 		}
 		
