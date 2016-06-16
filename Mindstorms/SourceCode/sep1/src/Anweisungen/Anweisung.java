@@ -61,8 +61,9 @@ public Anweisung(){
 					rechts();
 				
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+				else if(e.getKeyCode() == KeyEvent.VK_SPACE){
 					feedbackText.append("You");
+					pause();
 					
 					
 				}
@@ -97,22 +98,22 @@ public Anweisung(){
 	// Methoden für Rückgabewerte
 	
 	public boolean oben(){
-		richtung = 1;
+		richtung = 4;
 		return true;
 	}
 	
 	public boolean unten(){
-		richtung = 2;
+		richtung = 6;
 		return true;
 	}
 	
 	public boolean links(){
-		richtung = 3;
+		richtung = 5;
 		return true;
 	}
 	
 	public boolean rechts(){
-		richtung = 4;
+		richtung = 7;
 		return true;
 	}
 	
@@ -121,6 +122,7 @@ public Anweisung(){
 	}
 	
 	public boolean pause(){
+		richtung = 2;
 		return true;
 	}
 	
