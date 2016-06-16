@@ -12,13 +12,11 @@ public class Kommunikation implements IKommunikation{
 	
 	Socket socket;
 	byte[] nachricht= new byte[9];
-	Anweisung keylistener;
 	
 	
-	public Kommunikation(Socket soc, Anweisung keylistener){
+	public Kommunikation(Socket soc){
 		
 		socket = soc;
-		this.keylistener = keylistener;
 		
 	}
 	
@@ -69,22 +67,26 @@ public class Kommunikation implements IKommunikation{
 	
 	public byte[] erzeugeByteArray(){
 		
-	int wert = 0;
 	
-	if(keylistener.richtung ==1){
-		wert=004;
+	
+	if(Anweisung.richtung ==1){
+		
+		nachricht[8]=4;
 	}
 	
-	else if(keylistener.richtung ==2){
-		wert=006;
+	else if(Anweisung.richtung ==2){
+		
+		nachricht[8]=6;
 	}
 	
-	else if(keylistener.richtung ==4){
-		wert=005;
+	else if(Anweisung.richtung ==4){
+		
+		nachricht[8]=5;
 	}
 	
-	else if(keylistener.richtung ==3){
-		wert=007;
+	else if(Anweisung.richtung ==3){
+		
+		nachricht[8]=7;
 	}
 	 
 	 
@@ -98,7 +100,7 @@ public class Kommunikation implements IKommunikation{
 	nachricht[5]=05;
 	nachricht[6]=06;
 	nachricht[7]=07;
-	nachricht[8]=(byte) wert;
+	//nachricht[8]=(byte) wert;
 	
 		
 		return nachricht;
