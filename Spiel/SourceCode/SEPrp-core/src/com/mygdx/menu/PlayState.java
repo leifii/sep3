@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.character.Character;
 import com.character.Krieger;
 import com.character.Magier;
@@ -49,7 +50,7 @@ public class PlayState extends State {
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(100,100,s.getAnimation(0),2.5f);
+			c=new Krieger(100,100,s.getAnimation(0),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
@@ -80,7 +81,7 @@ public class PlayState extends State {
 		gegnerList = new LinkedList<Gegner>();
 		
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200,200,s.getAnimation(0),a1.MS);
+		Gegner testGegner = new Gegner(200,200,s.getAnimation(0),a1.MS,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
 		testGegner.setAttributes(a1);
 		
 		gegnerList.add(testGegner);
