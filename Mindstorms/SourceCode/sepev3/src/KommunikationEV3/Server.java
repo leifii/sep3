@@ -48,21 +48,26 @@ public class Server{
 			while(true){
 			com1.empfangen();
 			com1.senden();
-			
+
+			if(Button.getButtons() != 0){  	//Die Methode soll angeblich 0 zurückgeben, wenn kein button gedruckt ist
+				roboter1.close();			//also kann man jetzt mit beliebigem button press den Roboter beenden
+			}
+			}
 			// Stream ende 
-			LCD.drawString("Habe fertig!", 0, 6);                 //Displayausgabe bei Test am EV3
-			Delay.msDelay(5000);
-			LCD.clear(6);
-			LCD.drawString("PressAnyButton", 0, 6);
+		//	LCD.drawString("Habe fertig!", 0, 6);                 //Displayausgabe bei Test am EV3
+		//	Delay.msDelay(5000);
 			
-			Button.waitForAnyPress();                            //Drücke beliebigen Button zum Beenden
-			roboter1.close();
+		//	LCD.clear(6);
+		//	LCD.drawString("PressAnyButton", 0, 6);
+			
+		//	Button.waitForAnyPress();                            //Drücke beliebigen Button zum Beenden
+		//	roboter1.close();
 //			roboter2.close();
 //			roboter3.close();
 //			roboter4.close();
 			
 //			System.out.println("Habe fertig!");                  //Konsolenausgabe bei Test am PC
-			}                                                //
+			                                                //
 			
 			}
 			

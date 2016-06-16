@@ -29,7 +29,7 @@ public class KommunikationEV3 implements IKommunikation{
 	}
 	
 	public void senden(){
-		
+		erzeugeByteArray();
 			try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
@@ -64,8 +64,11 @@ public class KommunikationEV3 implements IKommunikation{
 					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
 					LCD.drawInt(nachricht[i], i+1, 4);
 				}
+				
 //				System.out.println("");
-				Delay.msDelay(5000);
+				//Delay.msDelay(5000);
+				
+				nachrichtverarbeiten();
 			}
 			
 			
