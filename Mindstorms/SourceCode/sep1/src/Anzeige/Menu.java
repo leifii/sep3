@@ -22,20 +22,21 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
-	boolean inputFinished = false;
-	private String[] roboterBelegung = new String[4];
+	public boolean inputFinished = false;
+	public String[] roboterBelegung = new String[4];
 	public 	String comboBoxInhalt[] = {"Modus 1", "Modus 2", "Modus 3", "Modus 4"};
-	private JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
-	private JPanel startDisplay = new JPanel();
-	private JPanel siegDisplay = new JPanel();
-	private JPanel niederlageDisplay = new JPanel();
-	private JPanel spielvorbereitungsDisplay = new JPanel();
+	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
+	public JPanel startDisplay = new JPanel();
+	public JPanel siegDisplay = new JPanel();
+	public JPanel niederlageDisplay = new JPanel();
+	public JPanel spielvorbereitungsDisplay = new JPanel();
+	public JPanel pausenDisplay = new JPanel();
 	public JLabel lbUeberschrift = new JLabel("SEPMAN");
 	public JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
 	public JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
 	public JLabel lbBeschriftung3= new JLabel("ROBOTER 3:");
 	public JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
-	private JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
+	public JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
 	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
@@ -217,7 +218,7 @@ public void setzeSiegbildschirm(){
 	startDisplay.setVisible(false);
 	siegDisplay.setLayout(null);
 	siegDisplay.setVisible(true);
-	siegDisplay.setBackground(Color.GRAY);
+	siegDisplay.setBackground(Color.GREEN);
 	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
     getContentPane().add(siegDisplay);
@@ -226,10 +227,26 @@ public void setzeSiegbildschirm(){
 
 //Methode zum erstellen des Niederlagedisplays
 public void setzeNiederlageBildschirm(){
+	display.setVisible(false);
+	startDisplay.setVisible(false);
+	siegDisplay.setLayout(null);
+	siegDisplay.setVisible(true);
+	siegDisplay.setBackground(Color.RED);
+	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	
+    getContentPane().add(niederlageDisplay);
 	
 }
 //Methode zum erstellen des Pausendisplays
 public void setzePausenBildschrim(){
+	display.setVisible(false);
+	startDisplay.setVisible(false);
+	siegDisplay.setLayout(null);
+	siegDisplay.setVisible(true);
+	siegDisplay.setBackground(Color.GRAY);
+	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	
+    getContentPane().add(niederlageDisplay);
 	
 }
 // Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
