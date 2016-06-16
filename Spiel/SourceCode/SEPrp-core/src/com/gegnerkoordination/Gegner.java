@@ -2,6 +2,7 @@ package com.gegnerkoordination;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.character.Character;
 
 //TODO abstract class
@@ -12,15 +13,15 @@ public class Gegner extends Character {
 	
 	
 	//public Character (int x,int y, TextureRegion[][] animation,float speed){
-	public Gegner(int x, int y, TextureRegion[][] animation ,Attributes attributes, int exp){
-		super(x, y, animation, attributes.MS);
+	public Gegner(int x, int y, TextureRegion[][] animation ,Attributes attributes, int exp, TiledMapTileLayer collisionLayer){
+		super(x, y, animation, attributes.MS, collisionLayer);
 		setAttributes(attributes);
 		this.exp=exp;
 		
 	}
 	
-	public Gegner (int x,int y, TextureRegion[][] animation,float speed){
-		super(x,y,animation,speed);
+	public Gegner (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer collisionLayer){
+		super(x,y,animation,speed, collisionLayer);
 		setLaufspeed(speed);
 	}
 	
