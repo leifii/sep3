@@ -10,5 +10,5 @@ public interface IMenu {
 	public void setzeSiegbildschirm();
 	public void setzeNiederlageBildschirm();
 	public void setzePausenBildschrim();
-//	public String[] getRoboterbelegung();
+	public String[] getRoboterbelegung();
 }

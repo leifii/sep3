@@ -17,14 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-
-
 public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
-	public 	String comboBoxInhalt[] = {"Modus 1", "Modus 2", "Modus 3", "Modus 4"};
+	public String comboBoxInhalt[] = {"Modus 1", "Modus 2", "Modus 3", "Modus 4"};
 	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	public JPanel startDisplay = new JPanel();
 	public JPanel siegDisplay = new JPanel();
@@ -40,8 +38,11 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
+	public JButton btnEnde2 = new JButton();
 	public JButton btnZurueck = new JButton();
 	public JButton btnStartfinal = new JButton();
+	public JButton btnSpielfortsetzen = new JButton();
+	public JButton btnNeuesSpiel = new JButton();
 	public JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
@@ -61,9 +62,6 @@ public void initComponents() {
 //	 Nur noch zu Testzwecken hier drin 
 //	setzeSpielvorbereitungsdisplay();
 //	setzeAuswahldisplay();              
-
-
-	
 	validate();
 
 }
@@ -78,11 +76,7 @@ public void setzeStartbildschirm(){
 	btnAuswahlfenster.setText("START");
 	btnAuswahlfenster.setBounds(210, 200, 200, 50);
 	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));      // 
-	btnAuswahlfenster.addActionListener(new ActionListener() {                      // Beim klicken auf den Button btnAuswahlfenster wird die Methoden aufgerufen welche dend Auswahldisplay erstellt
-		public void actionPerformed(ActionEvent e) {                               // Der ActionListener wird noch umgeschrieben
-			setzeAuswahldisplay();                                                //
-		}
-	});
+	btnAuswahlfenster.addActionListener(this);
 	startDisplay.add(btnAuswahlfenster);
 	
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
@@ -108,24 +102,14 @@ public void setzeAuswahldisplay (){
 	lbUeberschrift.setBounds(20, 6, 580	, 50);
 	display.add(lbUeberschrift);
 	
-	btnStart.addActionListener(new ActionListener() {             // ActionListener wird noch umgeschrieben
-		public void actionPerformed(ActionEvent e) {           
-			if (eingabeKorrekt()){
-			setzeSpielvorbereitungsdisplay();                      // Methode zum erstellen des Spielvorbereitungsdisplays wird aufgerufen
-			}
-		}
-	});
+	btnStart.addActionListener(this);
 	btnStart.setSize(210, 50);
 	btnStart.setLocation(215, 95);
 	btnStart.setText("Start");
 	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(btnStart);
-	btnEnde.addActionListener(new ActionListener() {               //Action Listener wird noch umgeschrieben
-		public void actionPerformed(ActionEvent e) {
-			dispose();                                            //Das Fenster wird geschlossen 
-		}
-	});
 	
+	btnEnde.addActionListener(this);           
 	btnEnde.setSize(210, 50);
 	btnEnde.setLocation(215, 155);
 	btnEnde.setText("Ende");
@@ -187,11 +171,7 @@ public void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.setBackground(Color.WHITE);
 	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-	btnZurueck.addActionListener(new ActionListener() {  //ActionListener wird noch umgeschrieben
-		public void actionPerformed(ActionEvent e) {
-			setzeAuswahldisplay();                   //  Methode zum erstellen des  Auswahldisplays wird aufgerufen 
-		}
-	});
+	btnZurueck.addActionListener(this);
 	spielvorbereitungsDisplay.add(btnZurueck);
 	btnZurueck.setBounds(200, 400, 240, 50);
 	btnZurueck.setText("Zurück");
@@ -201,6 +181,7 @@ public void setzeSpielvorbereitungsdisplay(){
 	btnStartfinal.setBounds(200, 340, 240, 50);
 	btnStartfinal.setText("Roboter positioniert ,Spiel starten !!");
 	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnStartfinal.addActionListener(this);
 	
 	spielvorbereitungsDisplay.add(lbHinweis1);
 	lbHinweis1.setBounds(100, 100, 300, 100);
@@ -222,8 +203,19 @@ public void setzeSiegbildschirm(){
 	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
     getContentPane().add(siegDisplay);
+    
+	spielvorbereitungsDisplay.add(	btnEnde2 );
+	btnEnde2.setBounds(200, 340, 240, 50);
+	btnEnde2.setText("Spiel Beenden");
+	btnEnde2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnEnde2.addActionListener(this); 
+	
+	spielvorbereitungsDisplay.add(	btnNeuesSpiel );
+	btnNeuesSpiel.setBounds(200, 340, 240, 50);
+	btnNeuesSpiel.setText("Spiel Beenden");
+	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnNeuesSpiel.addActionListener(this);
 }
-
 
 //Methode zum erstellen des Niederlagedisplays
 public void setzeNiederlageBildschirm(){
@@ -234,8 +226,24 @@ public void setzeNiederlageBildschirm(){
 	siegDisplay.setBackground(Color.RED);
 	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-    getContentPane().add(niederlageDisplay);
+	spielvorbereitungsDisplay.add(	btnEnde2 );
+	btnEnde2.setBounds(200, 340, 240, 50);
+	btnEnde2.setText("Spiel Beenden");
+	btnEnde2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnEnde2.addActionListener(this); 
 	
+	spielvorbereitungsDisplay.add(	btnNeuesSpiel );
+	btnNeuesSpiel.setBounds(200, 340, 240, 50);
+	btnNeuesSpiel.setText("Spiel Beenden");
+	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnNeuesSpiel.addActionListener(this);
+	
+	
+
+	
+	
+    getContentPane().add(niederlageDisplay);
+
 }
 //Methode zum erstellen des Pausendisplays
 public void setzePausenBildschrim(){
@@ -251,10 +259,11 @@ public void setzePausenBildschrim(){
 	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 15));
 	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-	spielvorbereitungsDisplay.add(btnStartfinal);
-	btnStartfinal.setBounds(200, 340, 240, 50);
-	btnStartfinal.setText("Roboter positioniert ,Spiel fortsetzen !!");
-	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	spielvorbereitungsDisplay.add(btnSpielfortsetzen );
+	btnSpielfortsetzen.setBounds(200, 340, 240, 50);
+	btnSpielfortsetzen.setText("Roboter positioniert ,Spiel fortsetzen !!");
+	btnSpielfortsetzen.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnSpielfortsetzen.addActionListener(this); 
 	
     getContentPane().add(niederlageDisplay);
 	
@@ -266,18 +275,16 @@ public boolean eingabeKorrekt() {
 	for (int i = 0; i< 4; i++){
 		if( roboterBelegung[i]== null ){
 			System.out.println(roboterBelegung[i]);
-			System.out.println("Fehlerhafte Auswahl");
+			System.out.println("Fehlerhafte Auswahl");     // Abfrage ob alle Roboter ausgewählt 
 			check = false;
 		}
 	}
 	for (int i = 0; i < roboterBelegung.length-1; ++i){
 		  for (int j = i+1; j < roboterBelegung.length; ++j){
-		    if (roboterBelegung[i] == roboterBelegung[j]){
+		    if (roboterBelegung[i] == roboterBelegung[j]){      // Abfrage ob kein Modus doppelt ausgewählt wurde 
 		    	check = false;
 		    	System.out.println("Fehlerhafte Auswahl");
 		    }
-		     
-
 		  }
 	}
 	return  check;
@@ -294,13 +301,13 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);		
 		switch(msg){
-		case "Modus 1" : roboterBelegung[0] = "Modus 1";
+		case "Modus 1" : roboterBelegung[0] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[0] = "Modus 2";
+		case "Modus 2" : roboterBelegung[0] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[0] = "Modus 3";
+		case "Modus 3" : roboterBelegung[0] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[0] = "Modus 4";
+		case "Modus 4" : roboterBelegung[0] = "4";
 		break;
 		}
 //		System.out.println(roboterBelegung[0]);
@@ -310,13 +317,13 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[1] = "Modus 1";
+		case "Modus 1" : roboterBelegung[1] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[1] = "Modus 2";
+		case "Modus 2" : roboterBelegung[1] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[1] = "Modus 3";
+		case "Modus 3" : roboterBelegung[1] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[1] = "Modus 4";
+		case "Modus 4" : roboterBelegung[1] = "4";
 		break;
 		}	
 //		System.out.println(roboterBelegung[1]);
@@ -326,13 +333,13 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[2] = "Modus 1";
+		case "Modus 1" : roboterBelegung[2] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[2] = "Modus 2";
+		case "Modus 2" : roboterBelegung[2] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[2] = "Modus 3";
+		case "Modus 3" : roboterBelegung[2] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[2] = "Modus 4";
+		case "Modus 4" : roboterBelegung[2] = "4";
 		break;
 		}	
 //		System.out.println(roboterBelegung[2]);
@@ -342,17 +349,44 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[3] = "Modus 1";
+		case "Modus 1" : roboterBelegung[3] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[3] = "Modus 2";
+		case "Modus 2" : roboterBelegung[3] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[3] = "Modus 3";
+		case "Modus 3" : roboterBelegung[3] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[3] = "Modus 4";
+		case "Modus 4" : roboterBelegung[3] = "4";
 		break;
 		}	
 //		System.out.println(roboterBelegung[3]);
 	}	
+	else if (e.getSource()== btnEnde ){
+		dispose();
+	}
+	else if (e.getSource()== btnEnde2 ){
+		dispose();
+	}
+	else if (e.getSource() == btnAuswahlfenster){
+		setzeAuswahldisplay(); 
+	}
+	else if( e.getSource()	== btnStart){
+		if(eingabeKorrekt()){
+		setzeSpielvorbereitungsdisplay();
+		}
+	}
+	else if(e.getSource()== btnZurueck){
+		setzeAuswahldisplay();  
+	}
+	else if(e.getSource() ==btnStartfinal){
+//		erstelle Spielfeld
+	}
+	else if(e.getSource() ==btnSpielfortsetzen ){
+		// spiel fortsetzen 
+	}
+	else if (e.getSource()== btnNeuesSpiel){
+		setzeAuswahldisplay();
+	}
+	
 }
 
 //Main Mehtoden 
@@ -373,13 +407,17 @@ public void actionPerformed(ActionEvent e) {
 			}
 		});
 	}
-	//Get Methode welche ein Array zurückliefer in dem gespeichert ist welcher Robotor welchen Modus hat
-	public String[] getRoboterBelegung() {
-		return roboterBelegung;
-	}
+
 	// Set-Methode um das Array welches die Roboterbelegung speichert zu manipulieren. Bedarf für diese Methode muss noch geklärt werden
 	public void setRoboterBelegung(String[] roboterBelegung) {
 		this.roboterBelegung = roboterBelegung;
+	}
+	
+	// gibt ein Array mit der Modi-Belgung der Roboter wieder 
+	@Override
+	public String[] getRoboterbelegung() {
+		// TODO Auto-generated method stub
+		return roboterBelegung;
 	}
 
 }
