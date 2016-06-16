@@ -1,6 +1,7 @@
 package KommunikationPC;
 
 
+import java.awt.EventQueue;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
@@ -29,13 +30,22 @@ public class Client {
 			
 			
 			//Stream
-			Anweisung keylistener = new Anweisung();
-			Kommunikation com1 = new Kommunikation(roboter1, keylistener);
+			//Anweisung keylistener = new Anweisung();
+			Kommunikation com1 = new Kommunikation(roboter1);
+			EventQueue.invokeLater(new Runnable(){
+
+				@Override
+				public void run() {
+					new Anweisung();
+				}
+			});
+			
+			
 			
 			while(true){
 			com1.senden();
 			com1.empfangen();
-			Delay.msDelay(10);
+//			Delay.msDelay(10);
 			}
 			
 			
