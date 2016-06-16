@@ -45,7 +45,7 @@ public class Client {
 			while(true){
 			com1.senden();
 			com1.empfangen();
-//			Delay.msDelay(10);
+			Delay.msDelay(10);
 			}
 			
 			
