@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Map {
 	OrthogonalTiledMapRenderer renderer;
-	TiledMap map;
+	private TiledMap map;
 	OrthographicCamera cam;
 	
 	
@@ -16,8 +16,8 @@ public class Map {
 		this.cam=cam;
 		cam.setToOrtho(false);
 		cam.update();
-		map=new TmxMapLoader().load("grafiken/test.tmx");
-		renderer=new OrthogonalTiledMapRenderer(map);
+		setMap(new TmxMapLoader().load("grafiken/test.tmx"));
+		renderer=new OrthogonalTiledMapRenderer(getMap());
 	}
 
 	
@@ -25,5 +25,15 @@ public class Map {
 	cam.update();
 	renderer.setView(cam);
 	renderer.render();
+	}
+
+
+	public TiledMap getMap() {
+		return map;
+	}
+
+
+	public void setMap(TiledMap map) {
+		this.map = map;
 	}
 }
