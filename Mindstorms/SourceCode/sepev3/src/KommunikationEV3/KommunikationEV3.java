@@ -25,11 +25,16 @@ public class KommunikationEV3 implements IKommunikation{
 	byte[] nachricht= new byte[9];
 	Steuerbefehl steuerbefehl;
 	Drucksensor drucksensor;
+	int letzterwert = 0;
+	RegulatedMotor MotorL;
+	RegulatedMotor MotorR;
 	
 	public KommunikationEV3(Socket soc, Steuerbefehl steuerbefehl, Drucksensor drucksensor){
 		socket = soc;
 		this.steuerbefehl = steuerbefehl;
 		this.drucksensor = drucksensor;
+		MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
+		MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
 	}
 	
 	public void senden(){
@@ -51,19 +56,20 @@ public class KommunikationEV3 implements IKommunikation{
 		try {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
-			int length = in.readInt();		//L�nge der Nachricht lesen
-			if(length>0){
+								//L�nge der Nachricht lesen
+			if(in.readInt()>0){
+			
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
 				
 
-				LCD.drawString("Nachricht", 0, 1);                                 //Displayausgabe bei Test am EV3
-				LCD.drawString("empfangen:", 0, 2);                                //
-				
-				for(int i = 0; i<nachricht.length; i++){
-					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
-					LCD.drawInt(nachricht[i], i+1, 4);
-				}
-				
+//				LCD.drawString("Nachricht", 0, 1);                                 //Displayausgabe bei Test am EV3
+//				LCD.drawString("empfangen:", 0, 2);                                //
+//				
+//				for(int i = 0; i<nachricht.length; i++){
+//					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
+//					LCD.drawInt(nachricht[i], i+1, 4);
+//				}
+//				
 
 				
 				nachrichtverarbeiten();
@@ -85,10 +91,11 @@ public class KommunikationEV3 implements IKommunikation{
 	
 	public void nachrichtverarbeiten(){
 		
+		
 		int wert = nachricht[8];
 		
 		
-		
+
 		if(wert==001){
 //			spielstart();
 		}
@@ -103,32 +110,35 @@ public class KommunikationEV3 implements IKommunikation{
 		
 		else if(wert==4){
 //			steuerbefehl.fahreVorwaerts();
-			RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
-			RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+			
+
 			MotorL.setSpeed(500);
 			MotorR.setSpeed(500);
 			MotorL.forward();
 			MotorR.forward();
+			
+
 			
 		
 		}
 		
 		else if(wert==5){
 //			steuerbefehl.drehenLinks();
-			RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
+			MotorR.stop();
 			MotorL.setSpeed(400);
 			MotorL.rotateTo(90);
-			
+
 			
 			
 		}
 
 		else if(wert==7){
 //			steuerbefehl.drehenRechts();
-			RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+			MotorL.stop();
 			MotorR.setSpeed(400);
 			MotorR.rotateTo(90);
 			
+
 		}
 
 		else if(wert==6){
@@ -182,6 +192,9 @@ public class KommunikationEV3 implements IKommunikation{
 		else if(wert==127){
 //			spielende();
 		}
+		
+		
+		
 		
 	
 	}
