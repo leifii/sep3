@@ -168,7 +168,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	    
 		}
 		
-		Planeinit Spiel=new Planeinit(name,Nord,Süsd,Ost,West,power);
+		Planeinit Spiel=new Planeinit(name,Nord,Süd,Ost,West,power);
 		Spielbrett=Spiel.getSpiel();
 		
 	    br.close();
