@@ -23,7 +23,7 @@ public class Kommunikation implements IKommunikation{
 	}
 	
 	public void senden(){
-		
+		erzeugeByteArray();
 		try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			out.writeInt(nachricht.length);
@@ -71,19 +71,19 @@ public class Kommunikation implements IKommunikation{
 		
 	int wert = 0;
 	
-	if(keylistener.oben()){
+	if(keylistener.richtung ==1){
 		wert=004;
 	}
 	
-	else if(keylistener.unten()){
+	else if(keylistener.richtung ==2){
 		wert=006;
 	}
 	
-	else if(keylistener.rechts()){
+	else if(keylistener.richtung ==4){
 		wert=005;
 	}
 	
-	else if(keylistener.links()){
+	else if(keylistener.richtung ==3){
 		wert=007;
 	}
 	 

@@ -12,6 +12,7 @@ public class Anweisung extends Applet implements KeyListener {
 //	Anweisung(IAnweisung taste){
 //		events=taste;
 //	}
+	public int richtung = 0;
 	
 	public void init(){
 		this.addKeyListener(this);
@@ -75,18 +76,22 @@ public class Anweisung extends Applet implements KeyListener {
 	// Methoden für Rückgabewerte
 	
 	public boolean oben(){
+		richtung = 1;
 		return true;
 	}
 	
 	public boolean unten(){
+		richtung = 2;
 		return true;
 	}
 	
 	public boolean links(){
+		richtung = 3;
 		return true;
 	}
 	
 	public boolean rechts(){
+		richtung = 4;
 		return true;
 	}
 	
