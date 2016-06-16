@@ -7,20 +7,18 @@ import lejos.robotics.SampleProvider;
 
 public class Drucksensor implements IDrucksensor{
 	
-	public boolean druckSensor(boolean druck){
+	public boolean druckSensor(){
 		@SuppressWarnings("resource")
 		
-		SensorModes druckSensor= new EV3TouchSensor(SensorPort.S1);
+		SensorModes druckSensor= new EV3TouchSensor(SensorPort.S3);
 		SampleProvider touch= druckSensor.getMode("Touch");
 		float sample[]=new float [touch.sampleSize()];
 		touch.fetchSample(sample, 0);
 		
 		if (sample[0]==1) // Wenn druckSensor den Wert 1 (aktiv) zurückgibt.
-			druck=true;
+			return true;
 		
-		else druck=false;
-		
-		return druck;
+		else return false;
 	}
 	
 }
