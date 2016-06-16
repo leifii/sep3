@@ -378,7 +378,7 @@ public void actionPerformed(ActionEvent e) {
 		setzeAuswahldisplay();  
 	}
 	else if(e.getSource() ==btnStartfinal){
-		// spielfeld erstellen
+		// Spielfeld erstellen
 	}
 	else if(e.getSource() ==btnSpielfortsetzen ){
 		// spiel fortsetzen 
