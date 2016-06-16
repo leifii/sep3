@@ -5,7 +5,5 @@ public interface ISteuerbefehl { //Muss eigentlich nur "IKommunikation" benutzt 
 								//Steuerbefehl muss Anweisungswert von "IKommunikation" nehmen.
 
 	public void fahreGeradeaus();
-	public void drehenLinks();
-	public void drehenRechts();
-	public void rotieren();
+
 }
