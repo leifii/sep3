@@ -1,26 +1,24 @@
 package com.mygdx.menu;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Json.Serializable;
-
 import com.character.Character;
-import com.character.Schurke;
 import com.character.Krieger;
 import com.character.Magier;
 import com.character.Schuetze;
-import com.mygdx.game.MyGdxGame;
+import com.character.Schurke;
+import com.gegnerkoordination.Attributes;
+import com.gegnerkoordination.Gegner;
+import com.grafiken.ICharacter;
+import com.grafiken.Map;
 import com.npc.NPC;
-import com.objects.Truhe;
 import com.objects.Portal;
-import com.grafiken.*;
+import com.objects.Truhe;
 
 public class PlayState extends State {
 
@@ -28,6 +26,8 @@ public class PlayState extends State {
 	Truhe Truhe[]=new Truhe[]{new Truhe(100, 200),new Truhe(150,200),new Truhe(200,200),new Truhe(250,200)};
 	
 	NPC Npc=new NPC(120, 300, "grafiken/Kobold.png");
+	
+	private List<Gegner> gegnerList;
 	
 	private Character c;
 	private Map map;
@@ -44,6 +44,7 @@ public class PlayState extends State {
 		
 		s=new com.grafiken.Character();
 		map=new Map(cam);
+		
 		
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
@@ -68,8 +69,23 @@ public class PlayState extends State {
 		}
 		
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
+
+		
+		initGegner();
+		
+		
 	}
 
+	private void initGegner() {
+		gegnerList = new LinkedList<Gegner>();
+		
+		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
+		Gegner testGegner = new Gegner(200,200,s.getAnimation(0),a1.MS);
+		testGegner.setAttributes(a1);
+		
+		gegnerList.add(testGegner);
+		
+	}
 	
 	@Override
 	protected void handleInput() {
@@ -86,6 +102,13 @@ public class PlayState extends State {
 		// TODO Auto-generated method stub
 		handleInput();
 		c.update(dt);
+		
+		if(gegnerList != null)
+			for(Gegner g : gegnerList) {
+				g.update(dt);
+				g.follow(c);
+			}
+		
 		currentFrameTime+=dt;
 		currentFrame=c.getAnimation().getKeyFrame(currentFrameTime);
 		
@@ -130,6 +153,12 @@ public class PlayState extends State {
 		}
 		// PORTALE //
 		
+		// GEGNER //
+		if(gegnerList != null)
+			for(Gegner g : gegnerList)
+				g.draw(sb);
+		
+		//GEGNER //
 		
 		
 		

@@ -8,7 +8,7 @@ public class Objekte implements IObjekte{
 	Texture[]items;
 	Texture[] chests;
 	public Objekte(){
-		skills=new Texture[]{new Texture("grafiken/Energiekugel.png"),new Texture("grafiken/Energiekugel1.png"),new Texture("grafiken/Energiekugel2.png"),new Texture("grafiken/Energiekugel3.png"),new Texture("grafiken/fire.png"),new Texture("grafiken/fire1.png"), new Texture("grafiken/fire2.png")};
+		skills=new Texture[]{new Texture("grafiken/Energiekugel.png"),new Texture("grafiken/Energiekugel1.png"),new Texture("grafiken/Energiekugel2.png"),new Texture("grafiken/Energiekugel3.png"),new Texture("grafiken/Fire.png"),new Texture("grafiken/Fire1.png"), new Texture("grafiken/Fire2.png")};
 		chests=new Texture[]{new Texture("grafiken/Chest.png"),new Texture("grafiken/Chesto.png")};
 	}
 	
