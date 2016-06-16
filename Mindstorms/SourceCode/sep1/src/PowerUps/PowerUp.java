@@ -1,5 +1,5 @@
 package PowerUps;
 
-public class PowerUp implements IPowerUp{
+public class PowerUp implements IPowerUp {
 
 }
