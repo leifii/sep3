@@ -1,5 +1,5 @@
 package Kollisionen;
 
-public class Kollision implements IKollision {
+public class Kollision {
 
 }
