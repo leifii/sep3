@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 
 public class Krieger extends Character{
@@ -24,8 +25,8 @@ public class Krieger extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Krieger(int x,int y,TextureRegion[][] sprite,float speed){
-		super(x, y, sprite, speed);
+	public Krieger(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer collisionLayer){
+		super(x, y, sprite, speed, collisionLayer);
 		System.out.println(sprite);
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
