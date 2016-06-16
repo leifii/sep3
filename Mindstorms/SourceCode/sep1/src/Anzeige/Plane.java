@@ -1,4 +1,4 @@
-
+package Anzeige;
 
 public class Plane implements IPlane{
 	
@@ -13,7 +13,7 @@ public class Plane implements IPlane{
 	{
 		return nKante;
 	}
-	public boolean getSüd()
+	public boolean getSÃ¼d()
 	{
 		return sKante;
 	}
@@ -27,8 +27,9 @@ public class Plane implements IPlane{
 	}
 	
 	
-	/*public static void main(String[] args) //Plane Standard()
+	public static void main(String[] args) //Plane Standard()
 	{
+		/*
 		//Planeinit hilfs;
 		int[] knoten=new int[36];
 		boolean[] n=new boolean[36];
@@ -51,6 +52,8 @@ public class Plane implements IPlane{
 		
 		 //hilfs= new Planeinit(knoten,n,s,o,w,power);
 		//return hilfs;
-	}*/
+		 * 
+		 */
+	}
 	
 }
