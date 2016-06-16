@@ -1,8 +1,11 @@
 package com.npc;
 
+import java.awt.Font;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -16,15 +19,14 @@ public class Dialog {
 
 	
 	
-	
 	Texture Dialogfenster;
-	
 	
 	
 	
 	public Dialog(int x,int y,String source){
 		position=new Vector3(x, y, 0);
 		Dialogfenster=new Texture(source);
+		
 		
 	}
 	

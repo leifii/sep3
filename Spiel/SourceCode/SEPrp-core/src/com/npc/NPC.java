@@ -26,7 +26,7 @@ public class NPC {
 			position=new Vector3(x, y, 0);
 			bounds=new Rectangle(x, y, 32, 48);
 			NPCtexture=new Texture(source);
-			Dialog=new Dialog(x+500,y-200 , "dialogfenster.png");
+			Dialog=new Dialog(x+500,y+200 , "dialogfenster1.png");
 		}
 		
 		
