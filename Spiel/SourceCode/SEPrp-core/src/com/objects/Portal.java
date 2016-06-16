@@ -1,5 +1,7 @@
 package com.objects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,7 +21,7 @@ public class Portal {
 	
 	int drehmoment=0;
 	
-
+	int benutzt=0;
 	
 	
 	public Portal(int posX,int posyY,int teleX,int teleY){
@@ -37,13 +39,14 @@ public class Portal {
 	
 	}
 	public void render(SpriteBatch sb,Character c){
-		if (c.getPosition().x>=position.x-10 && c.getPosition().x<=position.x+40 &&  c.getPosition().y<=position.y+40 && c.getPosition().y>=position.y-10) {
+		if (c.getPosition().x>=position.x-10 && c.getPosition().x<=position.x+40 &&  c.getPosition().y<=position.y+40 && c.getPosition().y>=position.y-10 && benutzt<3) {
 			drehmoment+=3;
 			teleportzähler[0]+=1;
 		portal.setColor(Color.GOLD);
-		if (teleportzähler[0]==200) {
+		if (teleportzähler[0]==200 ) {
 			c.getPosition().x=teleOrt.x;
 		c.getPosition().y=teleOrt.y;
+		benutzt++;
 		}
 		
 		}
@@ -51,6 +54,12 @@ public class Portal {
 			portal.setColor(Color.SKY);
 			drehmoment++;
 			teleportzähler[0]=0;
+		}
+		if(benutzt==3){
+			portal.setColor(Color.BLACK);
+		}
+		if (c.getPosition().x>=position.x-10 && c.getPosition().x<=position.x+40 &&  c.getPosition().y<=position.y+40 && c.getPosition().y>=position.y-10 && benutzt==3 && Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			Gdx.app.exit();
 		}
 		portal.setPosition(position.x,position.y);
 		portal.setRotation(drehmoment);
