@@ -19,7 +19,7 @@ public class Steuerbefehl implements ISteuerbefehl{ //ISteuerbefehl nicht nötig
 		Steuerbefehl stb = new Steuerbefehl();
 		
 		while (i<1){
-			init_motoren(150);
+			init_motoren(100);
 			
 				stb.fahreGeradeaus();		
 			
@@ -56,24 +56,5 @@ public class Steuerbefehl implements ISteuerbefehl{ //ISteuerbefehl nicht nötig
 		lvfg.geradeaus();	// Während der Roboter auf der Linie ist soll er Vorwärts fahren (Methode aus Klasse "Linienverfolung")
 	}
 	
-	public void drehenLinks(){	//Drehen nur auf Knoten möglich. Befehl zur Ausfuhrung in Main Methode, später Klasse "Anweisung".
-		ILinienverfolgung.MotorR.forward();
-		
-	}
-		
-	public void drehenRechts(){
-		ILinienverfolgung.MotorL.forward();
-	}
-	
-	public void rotieren(){
-			ILinienverfolgung.MotorL.backward();
-			ILinienverfolgung.MotorR.forward();
-	}
-	
-	public boolean aufKnoten(){
-		if (lvfg.aufKnoten()==true)
-			return true;
-		
-		else return false;}
 }
 
