@@ -126,9 +126,10 @@ public class KommunikationEV3 implements IKommunikation{
 		
 		else if(wert==5){
 //			steuerbefehl.drehenLinks();
-			MotorR.stop();
-			MotorL.setSpeed(400);
-			MotorL.forward();
+
+			MotorL.stop();
+			MotorR.setSpeed(400);
+			MotorR.forward();
 
 			
 			
@@ -136,9 +137,10 @@ public class KommunikationEV3 implements IKommunikation{
 
 		else if(wert==7){
 //			steuerbefehl.drehenRechts();
-			MotorL.stop();
-			MotorR.setSpeed(400);
-			MotorR.forward();
+
+			MotorR.stop();
+			MotorL.setSpeed(400);
+			MotorL.forward();
 			
 
 		}
