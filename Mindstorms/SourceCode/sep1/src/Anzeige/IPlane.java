@@ -1,7 +1,7 @@
-
+package Anzeige;
 public interface IPlane {
 	boolean getNord();
-	boolean getSüd();
+	boolean getSÃ¼d();
 	boolean getWest();
 	boolean getOst();
 
