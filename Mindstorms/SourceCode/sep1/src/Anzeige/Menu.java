@@ -25,12 +25,12 @@ import java.awt.event.ActionEvent;
 
 
 public class Menu extends JFrame implements IMenu , ActionListener{
-//	private static final long serialVersionUID = 3498199861043935813L; //WIESO???
+//	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
 	boolean inputFinished = false;
 	private String[] roboterBelegung = new String[4];
 	public 	String comboBoxInhalt[] = {"Modus1", "Modus2", "Modus3", "Modus4"};
-	private JPanel display = new JPanel();
+	private JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	private JPanel startDisplay = new JPanel();
 	private JPanel siegDisplay = new JPanel();
 	private JPanel niederlageDisplay = new JPanel();
@@ -50,25 +50,29 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
-	
+
+	// Konstruktor	
 	public Menu() {
 		super();
 		initComponents();
 	}
-
+// Initialisierung des Fenster + Aufrufen des Startbildschirms
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(600,500);
 	setTitle("SEPman");
 	setzeStartbildschirm();
+//	 Nur noch zu Testzwecken hier drin 
 //	setzeSpielvorbereitungsdisplay();
-//	setzeAuswahldisplay();
+//	setzeAuswahldisplay();              
 
 
 	
 	validate();
 
 }
+
+// Diese Methoden erstell den Startbildschirm 
 public void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
@@ -77,10 +81,10 @@ public void setzeStartbildschirm(){
 	
 	btnAuswahlfenster.setText("START");
 	btnAuswahlfenster.setBounds(210, 200, 200, 50);
-	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-	btnAuswahlfenster.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			setzeAuswahldisplay();
+	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));      // 
+	btnAuswahlfenster.addActionListener(new ActionListener() {                      // Beim klicken auf den Button btnAuswahlfenster wird die Methoden aufgerufen welche dend Auswahldisplay erstellt
+		public void actionPerformed(ActionEvent e) {                               // Der ActionListener wird noch umgeschrieben
+			setzeAuswahldisplay();                                                //
 		}
 	});
 	startDisplay.add(btnAuswahlfenster);
@@ -93,6 +97,7 @@ public void setzeStartbildschirm(){
     getContentPane().add(startDisplay);
 }
 
+// Methode zum erstellen des Auswahldisplays
 public void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
     spielvorbereitungsDisplay.setVisible(false);
@@ -107,10 +112,10 @@ public void setzeAuswahldisplay (){
 	lbUeberschrift.setBounds(20, 6, 580	, 50);
 	display.add(lbUeberschrift);
 	
-	btnStart.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
+	btnStart.addActionListener(new ActionListener() {             // ActionListener wird noch umgeschrieben
+		public void actionPerformed(ActionEvent e) {           
 			if (eingabeKorrekt()){
-			setzeSpielvorbereitungsdisplay();
+			setzeSpielvorbereitungsdisplay();                      // Methode zum erstellen des Spielvorbereitungsdisplays wird aufgerufen
 			}
 		}
 	});
@@ -119,9 +124,9 @@ public void setzeAuswahldisplay (){
 	btnStart.setText("Start");
 	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(btnStart);
-	btnEnde.addActionListener(new ActionListener() {
+	btnEnde.addActionListener(new ActionListener() {               //Action Listener wird noch umgeschrieben
 		public void actionPerformed(ActionEvent e) {
-			dispose();
+			dispose();                                            //Das Fenster wird geschlossen 
 		}
 	});
 	
@@ -150,30 +155,31 @@ public void setzeAuswahldisplay (){
 	cbAuswahl1.setSelectedIndex(0);
 	cbAuswahl1.setSize(114, 30);
 	cbAuswahl1.setLocation(311, 215);
-	cbAuswahl1.addActionListener(this);
+	cbAuswahl1.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl1);
 	
 	cbAuswahl2.setSelectedIndex(1);
 	cbAuswahl2.setSize(114, 30);
 	cbAuswahl2.setLocation(311, 250);
-	cbAuswahl2.addActionListener(this);
+	cbAuswahl2.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl2);
 	
 	cbAuswahl3.setSelectedIndex(2);
 	cbAuswahl3.setSize(114, 30);
 	cbAuswahl3.setLocation(311, 290);
-	cbAuswahl3.addActionListener(this);
+	cbAuswahl3.addActionListener(this);                //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl3);
 	
 	cbAuswahl4.setSelectedIndex(3);
 	cbAuswahl4.setSize(114, 30);
 	cbAuswahl4.setLocation(311, 330);
-	cbAuswahl4.addActionListener(this);
+	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl4);
 	
 	getContentPane().add(display);
 }
 
+// Methode zum erstellen des Spielvorbereitungsdisplay
 public void setzeSpielvorbereitungsdisplay(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
@@ -185,9 +191,9 @@ public void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.setBackground(Color.WHITE);
 	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-	btnZurueck.addActionListener(new ActionListener() {
+	btnZurueck.addActionListener(new ActionListener() {  //ActionListener wird noch umgeschrieben
 		public void actionPerformed(ActionEvent e) {
-			setzeAuswahldisplay();
+			setzeAuswahldisplay();                   //  Methode zum erstellen des  Auswahldisplays wird aufgerufen 
 		}
 	});
 	spielvorbereitungsDisplay.add(btnZurueck);
@@ -209,6 +215,8 @@ public void setzeSpielvorbereitungsdisplay(){
 	getContentPane().add(spielvorbereitungsDisplay);
 }
 
+
+//Methode zum erstellen des Siegdisplayd
 public void setzeSiegbildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
@@ -220,14 +228,16 @@ public void setzeSiegbildschirm(){
     getContentPane().add(siegDisplay);
 }
 
+
+//Methode zum erstellen des Niederlagedisplays
 public void setzeNiederlageBildschirm(){
 	
 }
-
+//Methode zum erstellen des Pausendisplays
 public void setzePausenBildschrim(){
 	
 }
-
+// Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
 public boolean eingabeKorrekt(){
 	boolean check = false;
 	int k = 0;
@@ -239,6 +249,8 @@ public boolean eingabeKorrekt(){
 	}
 	return check;
 }
+
+//Action Listener , noch nicht voll funktionsfähig. Was nach einer Aktion passieren soll muss noch korrekt implementiert werden
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
@@ -304,6 +316,8 @@ public void actionPerformed(ActionEvent e) {
 		}	
 	}	
 }
+
+//Main Mehtoden 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -321,9 +335,11 @@ public void actionPerformed(ActionEvent e) {
 			}
 		});
 	}
+	//Get Methode welche ein Array zurückliefer in dem gespeichert ist welcher Robotor welchen Modus hat
 	public String[] getRoboterBelegung() {
 		return roboterBelegung;
 	}
+	// Set-Methode um das Array welches die Roboterbelegung speichert zu manipulieren. Bedarf für diese Methode muss noch geklärt werden
 	public void setRoboterBelegung(String[] roboterBelegung) {
 		this.roboterBelegung = roboterBelegung;
 	}
