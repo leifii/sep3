@@ -33,7 +33,7 @@ public class Linienverfolgung implements ILinienverfolgung {
 	}
 	
 	public boolean aufKnoten(){
-		if (light_aktuell>0.20 && light_aktuell<0.30){ // Lichtwerte eines Knotens. AN SPIELFELD ANPASSEN.
+		if (light_aktuell>0.13 && light_aktuell<0.21){ // Lichtwerte eines Knotens. AN SPIELFELD ANPASSEN.
 			LCD.drawString("<- or ->", 1, 3);
 			
 			MotorR.stop();
