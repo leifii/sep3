@@ -1,7 +1,6 @@
 package Anzeige;
 
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -10,15 +9,11 @@ import javax.swing.UIManager;
 import javax.swing.JLabel;
 
 import javax.swing.JComboBox;
-import javax.print.DocFlavor.STRING;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 
 
