@@ -1,9 +1,15 @@
 package Linienverfolger;
 
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.port.MotorPort;
+import lejos.robotics.RegulatedMotor;
+
 public interface ILinienverfolgung {
 
-	public boolean aufLinie(boolean linie);
-	public boolean aufKnoten(boolean knoten);
-	public boolean sucheLinie(boolean suchelinie);
+	RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
+	RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+	
+	
+	public boolean aufKnoten();
 	
 }
