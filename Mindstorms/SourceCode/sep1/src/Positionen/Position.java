@@ -1,5 +1,5 @@
 package Positionen;
 
-public class Position implements IPosition{
+public class Position {
 
 }
