@@ -61,7 +61,7 @@ public class KommunikationEV3 implements IKommunikation{
 				LCD.drawString("empfangen:", 0, 2);                                //
 				
 				for(int i = 0; i<nachricht.length; i++){
-//					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
+					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
 					LCD.drawInt(nachricht[i], i+1, 4);
 				}
 //				System.out.println("");
@@ -86,7 +86,21 @@ public class KommunikationEV3 implements IKommunikation{
 		
 		int wert = nachricht[8];
 		
-		if(wert==004){
+		
+		
+		if(wert==001){
+//			spielstart();
+		}
+		
+		else if(wert==002){
+//			pause();
+		}
+		
+		else if(wert==003){
+//			endPause();
+		}
+		
+		else if(wert==004){
 			steuerbefehl.fahreVorwaerts();
 		}
 		
@@ -100,6 +114,54 @@ public class KommunikationEV3 implements IKommunikation{
 
 		else if(wert==006){
 	
+		}
+		
+		else if(wert==011 || wert==012 || wert==013){
+			if(wert==011){
+//				deaktiviereGeist1();
+			}
+			else if(wert==012){
+//				deaktiviereGeist2();
+			}
+			else if(wert==013){
+//				deaktiviereGeist3();
+			}
+		}
+		
+		else if(wert==021 || wert==022 || wert==023){
+			if(wert==021){
+//				aktiviereGeist1();
+			}
+			else if(wert==022){
+//				aktiviereGeist2();
+			}
+			else if(wert==023){
+//				aktiviereGeist3();
+			}
+		}
+		
+		else if(wert==100){
+//			powerUpEnd();
+		}
+		
+		else if(wert==101){
+//			geistVerfolgung();
+		}
+		
+		else if(wert==102){
+//			geistVerteidigung();
+		}
+		
+		else if(wert==103){
+//			geistZufall();
+		}
+		
+		else if(wert==104){
+//			sepman();
+		}
+		
+		else if(wert==127){
+//			spielende();
 		}
 		
 	
