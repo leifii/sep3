@@ -69,24 +69,29 @@ public class Kommunikation implements IKommunikation{
 		
 	
 	
-	if(Anweisung.richtung ==1){
+	if(Anweisung.richtung ==4){
 		
 		nachricht[8]=4;
 	}
 	
-	else if(Anweisung.richtung ==2){
+	else if(Anweisung.richtung ==6){
 		
 		nachricht[8]=6;
 	}
 	
-	else if(Anweisung.richtung ==4){
+	else if(Anweisung.richtung ==5){
 		
 		nachricht[8]=5;
 	}
 	
-	else if(Anweisung.richtung ==3){
+	else if(Anweisung.richtung ==7){
 		
 		nachricht[8]=7;
+	}
+	
+	else if(Anweisung.richtung ==2){
+		
+		nachricht[8]=2;
 	}
 	 
 	 
