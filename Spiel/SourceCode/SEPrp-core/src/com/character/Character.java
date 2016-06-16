@@ -3,6 +3,7 @@ package com.character;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.android.sdklib.devices.Camera;
 import com.badlogic.gdx.Gdx;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.gegnerkoordination.Attributes;
 import com.mygdx.menu.InventoryState;
 import com.mygdx.menu.MapState;
 import com.mygdx.menu.PauseState;
@@ -24,7 +26,7 @@ import com.grafiken.*;
 public class Character {
 
 
-	protected ArrayList<skill> skills;
+	protected ArrayList<Skill> skills;
 	
 	protected IObjekte g;
 	
@@ -68,7 +70,7 @@ public class Character {
 //	    character1=new Texture(sprite);    
 //	}
 	
-
+	
 	public Character (int x,int y, TextureRegion[][] animation,float speed){
 		
 		
@@ -80,7 +82,7 @@ public class Character {
 
 		
 		///////////////////MOVEMENT//ANGFANG//////////////////////////////////
-		this.skills = skills;
+		
 
 		keyframes=new TextureRegion[4];
 		keyframes1=new TextureRegion[4];
@@ -133,6 +135,10 @@ public class Character {
 		 AtkSpeed=1;
 	}
 	
+	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, float speed) {
+		this(x, y, animation, speed);
+		this.skills = skills;
+	}
 	
 	public Animation getAnimation(){
 		if(richtung==0){
@@ -177,6 +183,10 @@ public class Character {
 	}
 	public int getRichtung(){
 		return richtung;
+	}
+	
+	public void setRichtung(int richtung) {
+		this.richtung = richtung;
 	}
 	
 	public void levelup(){
@@ -267,6 +277,12 @@ public class Character {
 		}
 		
 	}
+	
+	public void move(float dx, float dy) {
+		position.x += dx;
+		position.y += dy;
+	}
+	
 	public Vector3 getPosition(){
 		return position;
 	}
@@ -296,9 +312,24 @@ public class Character {
 	
 	
 	
+	/*
+	 * this.STR=STR;
+		this.INT=INT;
+		this.STA=STA;
+		this.Angriff=Angriff;
+		this.Verteidigung=Verteidigung;
+		this.AtkSpeed=AtkSpeed;
+	 */
 	
-	
-	
+	public void setAttributes(Attributes attributes) {
+		this.STR = attributes.STR;
+		this.INT =  attributes.INT;
+		this.STA =  attributes.STA;
+		this.Angriff =  attributes.ATK;
+		this.Verteidigung = attributes.DEF;
+		this.AtkSpeed =  attributes.AS;
+		this.laufspeed  =  attributes.MS;
+	}
 	
 	
 	public float getLaufspeed() {

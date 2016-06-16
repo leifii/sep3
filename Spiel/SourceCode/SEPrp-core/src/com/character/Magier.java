@@ -24,7 +24,7 @@ public class Magier extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Magier(int x,int y,TextureRegion sprite,float speed,ArrayList<skill> skills, float hitcd){
+	public Magier(int x,int y,TextureRegion sprite,float speed,ArrayList<Skill> skills, float hitcd){
 		super(x, y, sprite, speed,skills,hitcd);
 		laufspeed=speed;
 		position=new Vector3(x,y,0);

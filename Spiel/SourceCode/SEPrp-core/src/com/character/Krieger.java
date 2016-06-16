@@ -30,9 +30,9 @@ public class Krieger extends Character{
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
 		
-		skills = new ArrayList<skill>();
-
-		skills.add(new skill(this.getPosition().x, this.getPosition().y, 300, 0, 1, 1, 1, 0, 5, 1, g.getSkill(6), false));
+		
+		skills = new ArrayList<Skill>();
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 300, 0, 1, 1, 1, 0, 5, 1, g.getSkill(6), false));
 
 	}
 	

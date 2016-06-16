@@ -1,8 +1,14 @@
 package com.gegnerkoordination;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 public class Ork extends Gegner {
-	Ork(int STR,int INT,int STA,int Angriff,int Verteidigung,int AtkSpeed) {
-		super(2,STR,INT,STA,Angriff,Verteidigung,AtkSpeed,"fortsetzenbutton",40);
+
+	private static TextureRegion[][] animation;
+	
+	Ork(int x, int y, Attributes attributes, int exp) {
+		super(x, y, animation, attributes, exp);
 	}
+	
 
 }

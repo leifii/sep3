@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class skill {
+public class Skill {
 
 	int lvl;
 	int dmg;
@@ -36,7 +36,7 @@ public class skill {
 	//boolean ready;
 	
 	
-	skill(float x, float y, float dx, float dy, int lvl, int dmg, int dmgfaktor, int cdnow, int cd, int cdfaktor, Texture bild, boolean locked){
+	public Skill(float x, float y, float dx, float dy, int lvl, int dmg, int dmgfaktor, int cdnow, int cd, int cdfaktor, Texture bild, boolean locked){
 		this.lvl = lvl;
 		this.dmg = dmg;
 		this.dmgfaktor = dmgfaktor;
