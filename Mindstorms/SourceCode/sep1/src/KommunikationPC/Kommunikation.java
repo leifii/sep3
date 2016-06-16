@@ -67,6 +67,30 @@ public class Kommunikation implements IKommunikation{
 	
 	public byte[] erzeugeByteArray(){
 		
+		for(int i = 0; i < nachricht.length-1; i++){
+			if(i == 0){
+//				nachricht[0] = getPosG1();
+			}
+			else if(i==1){
+//				nachricht[1] = getDestG2();
+			}
+			else if(i==2){
+//				nachricht[2] = getPosG2();
+			}
+			else if(i==3){
+//				nachricht[3] = getDestG2();
+			}
+			else if(i==4){
+//				nachricht[4] = getPosG3();
+			}
+			else if(i==5){
+//				nachricht[5] = getPosSepman();
+			}
+			else if(i==6){
+//				nachricht[6] = getDestSepman();
+			}
+		}
+		
 	
 	
 	if(Anweisung.richtung ==4){
