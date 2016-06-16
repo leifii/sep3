@@ -246,6 +246,16 @@ public void setzePausenBildschrim(){
 	siegDisplay.setBackground(Color.GRAY);
 	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
+	spielvorbereitungsDisplay.add(lbHinweis1);
+	lbHinweis1.setBounds(100, 100, 300, 100);
+	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 15));
+	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	
+	spielvorbereitungsDisplay.add(btnStartfinal);
+	btnStartfinal.setBounds(200, 340, 240, 50);
+	btnStartfinal.setText("Roboter positioniert ,Spiel fortsetzen !!");
+	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	
     getContentPane().add(niederlageDisplay);
 	
 }
