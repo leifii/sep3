@@ -1,96 +1,79 @@
 package Steuerbefehle ;
 
 import Linienverfolger.ILinienverfolgung;
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-import lejos.robotics.RegulatedMotor;
+import Linienverfolger.Linienverfolgung;
+import lejos.hardware.Button;
 
-public class Steuerbefehl implements ILinienverfolgung, ISteuerbefehl{
-
-	public void fahreVorwaerts(){
-		RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
-		RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
-		
-		while (aufLinie(true) || aufKnoten(true)){ // Während der Roboter auf der Linie oder ein Knoten ist soll er Vorwärts fahren.
-			MotorL.setSpeed(500);
-			MotorR.setSpeed(500);
-			MotorL.forward();
-			MotorR.forward();
-		
-			if (aufKnoten(true) || aufLinie(false)) //Sobald er den nächsten Knoten erreicht hat oder nicht mehr auf Linie ist, wird nicht mehr vorwärtsgefahren (stop).
-				MotorL.stop();
-				MotorR.stop();
-				break;
-		}
-		
-		MotorL.close();
-		MotorR.close();
-	}
-
-	public void MotorSuchtLinie(){
-		RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
-		RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
-		
-		while (sucheLinie(true)){ 	//Während der Roboter nicht auf der Linie ist, soll er zurückfahren.
-			MotorL.setSpeed(200);
-			MotorR.setSpeed(200);
-			MotorL.backward();
-			MotorR.backward();
-			
-			if (sucheLinie(false))		//Wenn er die Linie findet, wird nicht mehr zurückgefahren (stop).
-				break;
-		}
-		
-		drehenLinks();//Anschließend wird zu 90 Grad nach links gedreht
-						//bis die Linie zur Seite gefunden wird (die noch nicht gefahren wurde).Methode drehenLinks().
-			
-		
-		fahreVorwaerts(); //Anschließend wird der Befehl (Vorwärts bis zum nächsten Knoten) weitergeführt.
-		MotorL.close();
-		MotorR.close();
+	
+public class Steuerbefehl implements ISteuerbefehl{ //ISteuerbefehl nicht nötig. Steuerbefehl bekommt, gibt nicht
+	private static Linienverfolgung lvfg;
+	
+	static int i=0;
+	
+	public Steuerbefehl(){
+		super();
+		lvfg=new Linienverfolgung();
 	}
 	
-	public void drehenLinks(){
-		RegulatedMotor MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
-		MotorL.setSpeed(400);
-		MotorL.rotateTo(90);
+	public static void main (String [] args) throws InterruptedException{
+		Steuerbefehl stb = new Steuerbefehl();
+		
+		while (i<1){
+			init_motoren(150);
 			
-		if (aufLinie(false)){
-			MotorL.rotateTo(180);
+				stb.fahreGeradeaus();		
+			
+			if (lvfg.aufKnoten()==true){
+				
+				if (Button.RIGHT.isDown()){					//in "KommunikationEV3" empfangen, jeweils die Anweisungswerte übernehmen. 
+					ILinienverfolgung.MotorR.rotateTo(45);
+					
+				}
+				if (Button.LEFT.isDown()){
+					ILinienverfolgung.MotorL.rotateTo(45);
+					
+				}
+				if (Button.DOWN.isDown()){
+					ILinienverfolgung.MotorR.rotateTo(180);
+				}
+				if(Button.ESCAPE.isDown()){ 
+					i=1;
+				}
 			}
-		MotorL.close();
+			if(Button.ESCAPE.isDown()){ 
+					i=1;
+			}
+	}
+	}
+	
+		
+	public static void init_motoren(int speed){
+        ILinienverfolgung.MotorL.setSpeed(speed);
+        ILinienverfolgung.MotorR.setSpeed(speed);
+	}
+	
+	public void fahreGeradeaus(){
+		lvfg.geradeaus();	// Während der Roboter auf der Linie ist soll er Vorwärts fahren (Methode aus Klasse "Linienverfolung")
+	}
+	
+	public void drehenLinks(){	//Drehen nur auf Knoten möglich. Befehl zur Ausfuhrung in Main Methode, später Klasse "Anweisung".
+		ILinienverfolgung.MotorR.forward();
+		
 	}
 		
 	public void drehenRechts(){
+		ILinienverfolgung.MotorL.forward();
+	}
+	
+	public void rotieren(){
+			ILinienverfolgung.MotorL.backward();
+			ILinienverfolgung.MotorR.forward();
+	}
+	
+	public boolean aufKnoten(){
+		if (lvfg.aufKnoten()==true)
+			return true;
 		
-		RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
-		MotorR.setSpeed(400);
-		MotorR.rotateTo(90);
-		
-		if (aufLinie(false)){
-			MotorR.rotateTo(180);	
-			}
-		MotorR.close();
-	}
-	
-	@Override
-	public boolean aufKnoten(boolean knoten) {
-			return knoten;
-	}
-	
-	public boolean aufLinie(boolean linie) {
-			return linie;
-	}
-
-	@Override
-	public boolean sucheLinie(boolean sucheLinie) {
-		return sucheLinie;
-	}
-	public static void main (String [] args){
-		//Fragen während Präsenzstunde bzgl. Implementierung...
-		//Muss Methoden ausführen, sind jedoch nicht static. Lösungsvorschlag?
-	}
-	
-	
-	
+		else return false;}
 }
+
