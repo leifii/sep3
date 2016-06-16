@@ -3,7 +3,9 @@ package com.character;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import com.android.sdklib.devices.Camera;
 import com.badlogic.gdx.Gdx;
@@ -14,13 +16,17 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.gegnerkoordination.Attributes;
+import com.gegnerkoordination.Gegner;
 import com.mygdx.menu.InventoryState;
 import com.mygdx.menu.MapState;
 import com.mygdx.menu.PauseState;
 import com.mygdx.menu.SkillState;
+import com.npc.NPC;
 import com.grafiken.*;
 
 public class Character {
@@ -34,6 +40,8 @@ public class Character {
 	
 	private TextureRegion character;
 
+	private TiledMapTileLayer collisionLayer;
+	
 	
 	private float cd;
 	
@@ -71,12 +79,12 @@ public class Character {
 //	}
 	
 	
-	public Character (int x,int y, TextureRegion[][] animation,float speed){
+	public Character (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer collisionLayer){
 		
 		
 		g = new Objekte();
 
-	
+		this.collisionLayer= collisionLayer;
 		
 		bounds=new Rectangle(x,y,32,48);
 
@@ -135,8 +143,8 @@ public class Character {
 		 AtkSpeed=1;
 	}
 	
-	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, float speed) {
-		this(x, y, animation, speed);
+	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, float speed, TiledMapTileLayer collisionLayer) {
+		this(x, y, animation, speed, collisionLayer);
 		this.skills = skills;
 	}
 	
@@ -210,7 +218,7 @@ public class Character {
 
 
 	public void update(float dt){
-
+//	public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 		
 		cd = skills.get(0).gethitcd();
 		
@@ -222,30 +230,96 @@ public class Character {
 		
 		bounds.setPosition(this.getPosition().x,this.getPosition().y);
 
+		float oldX=this.getPosition().x, oldY=this.getPosition().y;
+		boolean collisionX=false, collisionY=false;
+		
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y+=2*laufspeed;
 			richtung=3;
+
+//			if(gegnerList.getFirst()!=null){
+//				for( ListIterator<Gegner> geg = gegnerList.listIterator();geg.next()!=null;geg.next()){
+					
+//				}
+//			}
+			
+			collisionY=false;
+			
+			collisionY = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+			if(!collisionY)
+				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth()/2,position.y+collisionLayer.getTileHeight());
+			if(!collisionY)
+				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+
+			
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y-=laufspeed*(1/Math.sqrt(2));
 				position.x-=2*laufspeed;
 				position.x+=laufspeed*(1/Math.sqrt(2));
-			
+				
+				collisionX=false;
+				
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight()/2);
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				
+				if(collisionX)
+					position.x=oldX;
+				
 			}
 			else if (Gdx.input.isKeyPressed(Keys.D)) {
 				position.y-=laufspeed*(1/Math.sqrt(2));
 				position.x+=2*laufspeed;
 				position.x-=laufspeed*(1/Math.sqrt(2));
+				
+				collisionX=false;
+				
+				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight()/2);
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				
+				if(collisionX)
+					position.x=oldX;
 			
 			}
+			
+			if(collisionY)
+				position.y=oldY;
+
 		}
 		else if (Gdx.input.isKeyPressed(Keys.S)) {
 			position.y-=2*laufspeed;
 			richtung=0;
+			
+			collisionY=false;
+			
+			collisionY = isCellBlocked(position.x,position.y);
+			if(!collisionY)
+				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth()/2,position.y);
+			if(!collisionY)
+				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y);
+
+			
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y+=laufspeed*(1/Math.sqrt(2));
 				position.x-=2*laufspeed;
 				position.x+=laufspeed*(1/Math.sqrt(2));
+				
+				collisionX=false;
+				
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight()/2);
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				
+				if(collisionX)
+					position.x=oldX;
 				
 			}
 			else if (Gdx.input.isKeyPressed(Keys.D)) {
@@ -253,15 +327,51 @@ public class Character {
 				position.x+=2*laufspeed;
 				position.x-=laufspeed*(1/Math.sqrt(2));
 				
+				collisionX=false;
+				
+				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight()/2);
+				if(!collisionX)
+					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				
+				if(collisionX)
+					position.x=oldX;
 			}
+
+			if(collisionY)
+				position.y=oldY;
+
 		}
 			else if (Gdx.input.isKeyPressed(Keys.A)) {
 			position.x-=2*laufspeed;
 			richtung=1;
+			
+			collisionX=false;
+			
+			collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+			if(!collisionX)
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight()/2);
+			if(!collisionX)
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+			
+			if(collisionX)
+				position.x=oldX;
 		}
 		else if (Gdx.input.isKeyPressed(Keys.D)) {
 			position.x+=2*laufspeed;
 			richtung=2;
+			
+			collisionX=false;
+			
+			collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+			if(!collisionX)
+				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight()/2);
+			if(!collisionX)
+				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+			
+			if(collisionX)
+				position.x=oldX;
 		}
 		else if(richtung==0) {
 			richtung=4;
@@ -275,7 +385,16 @@ public class Character {
 		else if(richtung==1) {
 			richtung=7;
 		}
+		if(isCellBlocked(position.x,position.y)){
+			position.x=oldX;
+			position.y=oldY;
+		}
 		
+	}
+	
+	private boolean isCellBlocked(float x, float y){
+		Cell cell = collisionLayer.getCell((int) (x/collisionLayer.getTileWidth()), (int) (y/collisionLayer.getTileHeight()));
+		return cell!=null && cell.getTile()!=null && cell.getTile().getProperties().containsKey("blocked");
 	}
 	
 	public void move(float dx, float dy) {
