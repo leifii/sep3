@@ -260,16 +260,27 @@ public void setzePausenBildschrim(){
 	
 }
 // Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
-public boolean eingabeKorrekt(){
-	boolean check = false;
+public boolean eingabeKorrekt() {
+	boolean check = true;
 	int k = 0;
-	for (int i = 0; i< 3; i++){
-		if(roboterBelegung[k]== roboterBelegung[i]){
+	for (int i = 0; i< 4; i++){
+		if( roboterBelegung[i]== null ){
 			System.out.println(roboterBelegung[i]);
-			check = true;
+			System.out.println("Fehlerhafte Auswahl");
+			check = false;
 		}
 	}
-	return check;
+	for (int i = 0; i < roboterBelegung.length-1; ++i){
+		  for (int j = i+1; j < roboterBelegung.length; ++j){
+		    if (roboterBelegung[i] == roboterBelegung[j]){
+		    	check = false;
+		    	System.out.println("Fehlerhafte Auswahl");
+		    }
+		     
+
+		  }
+	}
+	return  check;
 }
 
 //Action Listener , noch nicht voll funktionsfähig. Was nach einer Aktion passieren soll muss noch korrekt implementiert werden
