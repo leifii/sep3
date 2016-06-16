@@ -48,6 +48,8 @@ public class Server{
 			while(true){
 			com1.empfangen();
 			com1.senden();
+			Delay.msDelay(10);
+			
 
 			if(Button.getButtons() != 0){  	//Die Methode soll angeblich 0 zurückgeben, wenn kein button gedruckt ist
 				roboter1.close();			//also kann man jetzt mit beliebigem button press den Roboter beenden
