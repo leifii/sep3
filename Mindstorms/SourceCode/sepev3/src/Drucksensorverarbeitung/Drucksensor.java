@@ -20,7 +20,7 @@ public class Drucksensor implements IDrucksensor{
 		touch.fetchSample(sample, 0);
 		touch2.fetchSample(sample2, 0);
 		
-		if (sample[0]==1 || sample2[0]==1) // Wenn druckSensor den Wert 1 (aktiv) zurückgibt.
+		if (sample[0]==1 || sample2[0]==1) // Wenn druckSensor oder druckSensor2 den Wert 1 (aktiv) zurückgibt.
 			return true;
 		
 		else return false;
