@@ -112,5 +112,6 @@
 	<classpathentry kind="lib" path="/Jars/wagon-http-2.4.jar"/>
 	<classpathentry kind="lib" path="/Jars/wagon-http-shared4-2.4.jar"/>
 	<classpathentry kind="lib" path="/Jars/wagon-provider-api-2.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SEPrp-core"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
