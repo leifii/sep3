@@ -135,7 +135,7 @@ public class PlayState extends State implements Serializable {
 			 temp.x=mapPixelWidth-32;
 			c.setPosition(temp);
 		}
-		if (c.getPosition().y>=mapPixelHeight-2) {
+		if (c.getPosition().y>=mapPixelHeight-32) {
 			Vector3 temp=c.getPosition();
 			 temp.y=mapPixelHeight-32;
 			c.setPosition(temp);		}
