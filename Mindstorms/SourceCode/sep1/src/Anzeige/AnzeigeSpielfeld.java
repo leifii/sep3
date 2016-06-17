@@ -281,7 +281,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		jTracker.setBackground(Color.RED);
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 50, 50);
 		contentPane.add(jTracker);
-		ImageIcon Herz=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\images.jpg");
+		ImageIcon Herz=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\herz.gif");
 		JLabel Leben1=new JLabel(Herz);
 		//Leben1.setVisible(true);
 		Leben1.setSize(50, 50);
