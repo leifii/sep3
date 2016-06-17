@@ -3,13 +3,30 @@ package com.mygdx.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.MyGdxGame;
 
 public class LoadMenuState extends MenuState {
 
 	
-	private Texture background;
+	private Image background;
+	private Stage stage;
+	private TextureAtlas atlas;
+	private Skin skin;
+	private Table table;
+	private BitmapFont white;
 	private MainMenuButton loadbutton;
 	private MainMenuButton newgamebutton;
 	
@@ -17,7 +34,49 @@ public class LoadMenuState extends MenuState {
 	
 	public LoadMenuState(GameStateManager gsm) {
 		super(gsm);
-		background=new Texture("back.jpg");
+		stage=new Stage();
+		background=new Image(new Texture("userInterface/dark background.png"));
+		stage.addActor(background);
+		background.setFillParent(true);
+		Gdx.input.setInputProcessor(stage);
+		
+		atlas=new TextureAtlas("userInterface/border1.txt");
+		skin=new Skin(atlas);
+		
+		table=new Table(skin);
+		table.setBackground(skin.getDrawable("border2.1"));
+		table.getBackground().setMinHeight(Gdx.graphics.getHeight()/2);
+		table.getBackground().setMinWidth(Gdx.graphics.getWidth()/2);
+		table.setWidth(Gdx.graphics.getWidth());
+		table.setBounds(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/4, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		
+		white=new BitmapFont(Gdx.files.internal("white.fnt"));
+		
+		LabelStyle labelstyle= new LabelStyle();
+		labelstyle.font=white;
+		Label label=new Label("Spielstände", labelstyle);
+		label.setFontScale(1.5f);
+		
+		TextButtonStyle textButtonStyle=new TextButtonStyle();
+		textButtonStyle.up= skin.getDrawable("Rahmen");
+		textButtonStyle.pressedOffsetX=1;
+		textButtonStyle.pressedOffsetY=-1;
+		textButtonStyle.font=white;
+		
+		TextButton Load1= new TextButton("Spielstand 1",textButtonStyle);
+		Load1.pad(30);
+		TextButton Load2= new TextButton("Spielstand 2",textButtonStyle);
+		Load2.pad(30);
+		TextButton Load3= new TextButton("Spielstand 3",textButtonStyle);
+		Load3.pad(30);
+		
+		table.add(label).pad(50).row();
+		table.add(Load1).row();
+		table.add(Load2).align(Align.center).row();
+		table.add(Load3).row();
+		table.pack();
+		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
+		stage.addActor(table);
 	
 		loadmenuwindow=new LoadMenuWindow(1728/2-160,1080/2-200,"loadmenuwindow.jpg");
 		loadbutton=new MainMenuButton(1728/2-77,1080/2-66,"loadbutton.jpg");
@@ -29,10 +88,10 @@ public class LoadMenuState extends MenuState {
 	protected void handleInput() {
 		// TODO Auto-generated method stub
 		if (Gdx.input.isKeyJustPressed(Keys.L)) {
-			gsm.push(new MenuState(gsm));
+			gsm.push(new NewMenuState1(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			gsm.push(new MenuState(gsm));
+			gsm.push(new NewMenuState1(gsm));
 		}
 	}
 
@@ -46,18 +105,18 @@ public class LoadMenuState extends MenuState {
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
 		sb.begin();
-		sb.draw(background,0,0,MyGdxGame.WIDTH,MyGdxGame.HEIGHT);
 		sb.draw(loadbutton.getTexture(), loadbutton.getPosition().x, loadbutton.getPosition().y);
 		sb.draw(newgamebutton.getTexture(), newgamebutton.getPosition().x, newgamebutton.getPosition().y);
 		sb.draw(beendenbutton.getTexture(), beendenbutton.getPosition().x, beendenbutton.getPosition().y);
 		sb.draw(loadmenuwindow.getTexture(), loadmenuwindow.getPosition().x, loadmenuwindow.getPosition().y);
+		stage.act();
+		stage.draw();
 		sb.end();
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		background.dispose();
 		loadmenuwindow.dispose();
 		loadbutton.dispose();
 		newgamebutton.dispose();

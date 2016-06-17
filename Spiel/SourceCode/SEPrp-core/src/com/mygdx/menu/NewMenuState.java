@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -88,6 +89,12 @@ public class NewMenuState extends MenuState {
 		table.add(buttonN);
 		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getMinWidth()*2, table.getMinHeight()*2);
 //		table.setBackground(new TextureRegionDrawable(new TextureRegion(Rahmen));
+		Image background= new Image(new Texture("userInterface/dark background.png"));
+		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
+		
+		stage.addActor(background);
+		background.setFillParent(true);
+		Rahmen.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(5)));
 		stage.addActor(Rahmen);
 		stage.addActor(table);
 		
@@ -96,13 +103,13 @@ public class NewMenuState extends MenuState {
 	
 	protected void handleInput() {
 		if (Gdx.input.isKeyJustPressed(Keys.N) || buttonN.isChecked() ) {
-			gsm.push(new MenuState(gsm));
+			gsm.push(new NewMenuState1(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) ) {
-			gsm.push(new MenuState(gsm));
+			gsm.push(new NewMenuState1(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.J) || buttonJ.isChecked()) {
-		 
+			click.play();
 			gsm.push(new NewGameCharacterState(gsm));
 		}
 	}
@@ -122,6 +129,7 @@ public class NewMenuState extends MenuState {
 		sb.draw(newgamebutton.getTexture(), newgamebutton.getPosition().x, newgamebutton.getPosition().y);
 		sb.draw(beendenbutton.getTexture(), beendenbutton.getPosition().x, beendenbutton.getPosition().y);
 		sb.draw(newgamewindow.getTexture(), newgamewindow.getPosition().x, newgamewindow.getPosition().y);
+		stage.act();
 		stage.draw();
 		sb.end();
 	}

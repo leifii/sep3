@@ -28,7 +28,7 @@ public class MenuState extends State{
 	 private int indexback;
 	 private int framecounter;
 	 
-	 private Sound click;
+	 protected Sound click;
 
 	public MenuState(GameStateManager gsm) {
 		super(gsm);
@@ -53,7 +53,7 @@ public class MenuState extends State{
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
-		/*BSP FÜR KEYLISTENER:
+		/*BSP Fï¿½R KEYLISTENER:
 		 * if(Gdx.input.isKeyPressed(Keys.DPAD_LEFT)) 
          * marioX -= Gdx.graphics.getDeltaTime() * marioSpeed;
 		 */

@@ -1,0 +1,19 @@
+border0.png
+size: 697, 435
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+border2.1
+  rotate: false
+  xy: 0, 0
+  size: 617, 435
+  orig: 617, 435
+  offset: 0, 0
+  index: -1
+Rahmen
+  rotate: false
+  xy: 618, 0
+  size: 80, 40
+  orig: 80, 40
+  offset: 0, 0
+  index: -1

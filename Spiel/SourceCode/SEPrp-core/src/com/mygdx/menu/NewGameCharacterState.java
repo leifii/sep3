@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.particles.ParticleShader.AlignMode;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -67,9 +68,7 @@ public class NewGameCharacterState extends NewMenuState {
 		
 		table=new Table(skin);
 		
-//		table.setWidth(Gdx.graphics.getWidth()*0.9f);
-//		table.setHeight(Gdx.graphics.getHeight()*0.9f);
-//		table.pad(100, 100, 600, 100);
+
 		table.setWidth(Gdx.graphics.getWidth()*0.9f);
 		table.align(Align.center|Align.top);
 		table.setPosition(0,Gdx.graphics.getHeight());
@@ -88,9 +87,7 @@ public class NewGameCharacterState extends NewMenuState {
 		
 		buttonJ=new TextButton("Krieger", textButtonStyle);
 		buttonJ.pad(20);
-//		table.setBounds(Gdx.graphics.getWidth()/2-400, Gdx.graphics.getHeight()/2-buttonJ.getMinHeight(),buttonJ.getMinWidth(),buttonJ.getMinHeight() );
-//		table.setBounds(Gdx.graphics.getWidth()/2-400, Gdx.graphics.getHeight()/2-50,800,400 );
-		
+
 		buttonN= new TextButton("Magier", textButtonStyle);
 		buttonN.pad(20);
 		
@@ -105,38 +102,28 @@ public class NewGameCharacterState extends NewMenuState {
 		label= new Label("Wähle mit welcher Klasse DU spielen moechtest",labelStyle);
 
 		label.setFontScale(1.2f);
-//		Image Rahmen=new Image(patch);
 		Image Rahmen=new Image(new Texture("userInterface/border2.png"));
 		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f);
 		Rahmen.setWidth(Gdx.graphics.getWidth()*1.1f);
 		Rahmen.setHeight(Gdx.graphics.getHeight()*0.5f);
-//		drawable=new NinePatchDrawable(patch);
-//		Rahmen.setFillParent(true);
-//		Rahmen.setHeight(Gdx.graphics.getHeight());
-//		Rahmen.setPosition(0, 0);
+
 		
 		
 		
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);
 		table.row();
-//		table.getCell(label).spaceBottom(20);
 		table.add(buttonJ);
 		table.add(buttonJ);
-//		table.getCell(buttonJ).spaceLeft(100);
 		table.add(buttonN);
 		table.add(buttonM);
 		table.add(buttonK);
-//		table.add(Rahmen).prefWidth(Rahmen.getWidth()/2).height(Rahmen.getHeight()/2).center();
-//		Rahmen.setBounds(table.getX()-label.getMinWidth()/2, table.getY()-table.getHeight(), label.getMinWidth()*2, table.getMinHeight()*2);
-//		table.setDebug(true);
-//		Rahmen.setPosition(0, 0);
-//		table.setBackground(Rahmen.getDrawable());
-//		table.setFillParent(true);
-//		Rahmen.setBounds(table.getX(), table.getOriginY(), table.getWidth(), table.getPrefHeight());
-//		Rahmen.setFillParent(true);
-//		Rahmen.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
+
+		Image img=new Image(new Texture("userInterface/dark background.png"));
+		img.setFillParent(true);
+		Rahmen.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
 		
-		
+		stage.addActor(img);
 		stage.addActor(Rahmen);
 		stage.addActor(table);
 		
@@ -174,6 +161,7 @@ public class NewGameCharacterState extends NewMenuState {
 		sb.draw(beendenbutton.getTexture(), beendenbutton.getPosition().x, beendenbutton.getPosition().y);
 		
 		///////////////////////////CHARACTEREDITOR////////////////////////////////////////////////////////
+		stage.act();
 		stage.draw();
 	
 	if (Gdx.input.isKeyJustPressed(Keys.NUM_1) || buttonJ.isChecked()) {
