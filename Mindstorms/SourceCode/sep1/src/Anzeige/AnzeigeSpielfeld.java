@@ -305,29 +305,35 @@ public class AnzeigeSpielfeld extends JFrame {
 		contentPane.add(Leben2);
 		Leben3.setLocation(110, 10);
 		contentPane.add(Leben3);
-		ImageIcon linie=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Linie.png");
-		JLabel line=new JLabel(linie);
-		JLabel[] low=new JLabel[1];
-		line.setLocation(75, 110);
-		contentPane.add(line);
-		int z=0;
+		ImageIcon linie1=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Linie.png");
+		JLabel line1=new JLabel(linie1);
+		//JLabel[] low=new JLabel[1];
+		//line.setSize(150, 150);
+		//line.setLocation(ele[0].getX()+75, ele[0].getY());
+		//contentPane.add(line);
+		ImageIcon linie2=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Linie2.png");
+		JLabel line2=new JLabel(linie2);
 		
-	/*	for(JLabel k:low)
+		for(int z=0;z<Größe;z++)
 		{
 			if(Spielbrett[z].getNord()==true)
 			{
-								
+				line2=new JLabel(linie2);
+				line2.setLocation(ele[z].getX(), ele[z].getY()+50);
+				line2.setSize(50, 100);
+				contentPane.add(line2);				
 			}
 			if(Spielbrett[z].getOst()==true)
 			{
-				k=new JLabel(linie);
-				k.setLocation(ele[z].getX()+75, ele[z].getY());
-				contentPane.add(k);
+				line1=new JLabel(linie1);
+				line1.setLocation(ele[z].getX()+50, ele[z].getY());
+				line1.setSize(100, 50);
+				contentPane.add(line1);
 			}
-			z++;
+			
 				
 		}
-		*/
+		
 		
 		
 		
