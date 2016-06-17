@@ -2,6 +2,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.io.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -275,10 +276,29 @@ public class AnzeigeSpielfeld extends JFrame {
 		contentPane.add(jGuard);
 		
 		JLabel jTracker = new JLabel("Tracker");
+		
 		jTracker.setForeground(Color.BLUE);
 		jTracker.setBackground(Color.RED);
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 50, 50);
 		contentPane.add(jTracker);
+		ImageIcon Herz=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\images.jpg");
+		JLabel Leben1=new JLabel(Herz);
+		//Leben1.setVisible(true);
+		Leben1.setSize(50, 50);
+		
+		//Leben.setForeground(Color.RED);
+		//Leben.setBackground(Color.black);
+		
+		Leben1.setLocation(10, 10);
+		contentPane.add(Leben1);
+		JLabel Leben2=new JLabel(Herz);
+		JLabel Leben3=new JLabel(Herz);
+		Leben2.setSize(50, 50);
+		Leben3.setSize(50, 50);
+		Leben2.setLocation(60, 10);
+		contentPane.add(Leben2);
+		Leben3.setLocation(110, 10);
+		contentPane.add(Leben3);
 		
 	}
 }
