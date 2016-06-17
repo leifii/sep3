@@ -1,4 +1,4 @@
-package Anzeige;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -22,8 +22,8 @@ public class AnzeigeSpielfeld extends JFrame {
 	static int Defender;
 	static int Random;
 	static int Tracer;
-	static int GrÃ¶ÃŸe;
-	static int LÃ¤nge;
+	static int Größe;
+	static int Länge;
 	static int Breite;
 
 	/**
@@ -36,7 +36,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	    String hilfs = null;
 	    int[] name=new int[1];
 	    boolean[] Nord=new boolean[1];
-	    boolean[] SÃ¼d=new boolean[1];
+	    boolean[] Süd=new boolean[1];
 	    boolean[] West=new boolean[1];
 	    boolean[] Ost=new boolean[1];
 	    boolean[] power=new boolean[1];
@@ -59,17 +59,17 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	String s1=String.valueOf(hilfs1)+String.valueOf(hilfs2);
 	    	String s2=String.valueOf(hilfs3)+String.valueOf(hilfs4);
 	    	Breite=Integer.parseInt(s1);
-	    	LÃ¤nge=Integer.parseInt(s2);
+	    	Länge=Integer.parseInt(s2);
 	    }
 	    else if(hilfs.length()<11 && hilfs.contains("end")==false&&hilfs.length()>=2)
 	    {
-	    	GrÃ¶ÃŸe= Integer.parseInt(hilfs);
-	    	name=new int[GrÃ¶ÃŸe];
-	    	Nord=new boolean[GrÃ¶ÃŸe];
-	 	    SÃ¼d=new boolean[GrÃ¶ÃŸe];
-	 	    West=new boolean[GrÃ¶ÃŸe];
-	 	    Ost=new boolean[GrÃ¶ÃŸe];
-	 	    power=new boolean[GrÃ¶ÃŸe];
+	    	Größe= Integer.parseInt(hilfs);
+	    	name=new int[Größe];
+	    	Nord=new boolean[Größe];
+	 	    Süd=new boolean[Größe];
+	 	    West=new boolean[Größe];
+	 	    Ost=new boolean[Größe];
+	 	    power=new boolean[Größe];
 	    	
 	    }
 	    else if(hilfs.length()==11)
@@ -88,9 +88,9 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	else
 	    		Nord[u]=false;
 	    	if(String.valueOf(hilfs3)=="y")
-	    		SÃ¼d[u]=true;
+	    		Süd[u]=true;
 	    	else
-	    		SÃ¼d[u]=false;
+	    		Süd[u]=false;
 	    	if(String.valueOf(hilfs4)=="y")
 	    		Ost[u]=true;
 	    	else
@@ -126,9 +126,9 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	else
 	    		Nord[u]=false;
 	    	if(String.valueOf(hilfs3)=="y")
-	    		SÃ¼d[u]=true;
+	    		Süd[u]=true;
 	    	else
-	    		SÃ¼d[u]=false;
+	    		Süd[u]=false;
 	    	if(String.valueOf(hilfs4)=="y")
 	    		Ost[u]=true;
 	    	else
@@ -168,7 +168,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	    
 		}
 		
-		Planeinit Spiel=new Planeinit(name,Nord,SÃ¼d,Ost,West,power);
+		Planeinit Spiel=new Planeinit(name,Nord,Süd,Ost,West,power);
 		Spielbrett=Spiel.getSpiel();
 		
 	    br.close();
@@ -192,7 +192,39 @@ public class AnzeigeSpielfeld extends JFrame {
 	/**
 	 * Create the frame.
 	 * @param Spielfeld 
+	 * 
 	 */
+	public JLabel[] erzeugeSpielfeld()
+	{
+		int zahl=1;
+		int i=0;
+		int k=0;
+		JLabel[] ele=new JLabel[Größe];
+		for(JLabel j:ele)
+		{
+			
+				if(k>=Breite)
+				{
+					k=0;
+					i++;
+				}
+
+					j=new JLabel(String.valueOf(zahl));
+					j.setBackground(Color.BLACK);
+					j.setBounds(100+k*200,100+i*200,20,20);
+					contentPane.add(j);
+					
+				zahl++;
+				ele[zahl-2]=j;
+				k++;
+					
+			
+			
+		}
+		return ele;
+	}
+	
+	
 	public AnzeigeSpielfeld() {
 		
 		
@@ -203,35 +235,41 @@ public class AnzeigeSpielfeld extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setBounds(100, 100, (LÃ¤nge+1)*200, (Breite+1)*200);
+		
+		
+		setBounds(100, 100, (Länge+1)*150, (Breite+1)*150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel Sepman = new JLabel("SEPMAN");
-		Sepman.setForeground(Color.RED);
-		Sepman.setBackground(Color.RED);
-		Sepman.setBounds(336, 526, 50, 50);
-		contentPane.add(Sepman);
+		JLabel[] ele=erzeugeSpielfeld();
 		
-		JLabel Random = new JLabel("Random");
-		Random.setForeground(Color.ORANGE);
-		Random.setBackground(Color.RED);
-		Random.setBounds(275, 202, 50, 50);
-		contentPane.add(Random);
 		
-		JLabel Guard = new JLabel("Guard");
-		Guard.setForeground(Color.RED);
-		Guard.setBackground(Color.RED);
-		Guard.setBounds(141, 274, 50, 50);
-		contentPane.add(Guard);
 		
-		JLabel Tracker = new JLabel("Tracker");
-		Tracker.setForeground(Color.BLUE);
-		Tracker.setBackground(Color.RED);
-		Tracker.setBounds(210, 92, 50, 50);
-		contentPane.add(Tracker);
+		JLabel jSepman = new JLabel("SEPMAN");
+		jSepman.setForeground(Color.RED);
+		jSepman.setBackground(Color.RED);
+		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 50, 50);
+		contentPane.add(jSepman);
+		
+		JLabel jRandom = new JLabel("Random");
+		jRandom.setForeground(Color.ORANGE);
+		jRandom.setBackground(Color.RED);
+		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 50, 50);
+		contentPane.add(jRandom);
+		
+		JLabel jGuard = new JLabel("Guard");
+		jGuard.setForeground(Color.RED);
+		jGuard.setBackground(Color.RED);
+		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 50, 50);
+		contentPane.add(jGuard);
+		
+		JLabel jTracker = new JLabel("Tracker");
+		jTracker.setForeground(Color.BLUE);
+		jTracker.setBackground(Color.RED);
+		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 50, 50);
+		contentPane.add(jTracker);
 		
 	}
 }
