@@ -63,7 +63,7 @@ public class PlayState extends State implements Serializable {
 		}
 		else if(characterauswahl==2){
 			System.out.println("Magier");
-			c=new Magier(100,100,s.getTextureRegion(1),2.5f,null,0);
+			c=new Magier(100,100,s.getAnimation(1),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
 			System.out.println("Magier");
 		}
 		else if(characterauswahl==3){
