@@ -8,6 +8,9 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.Json.Serializable;
+import com.badlogic.gdx.utils.JsonValue;
 import com.character.Character;
 import com.character.Krieger;
 import com.character.Magier;
@@ -21,7 +24,8 @@ import com.npc.NPC;
 import com.objects.Portal;
 import com.objects.Truhe;
 
-public class PlayState extends State {
+public class PlayState extends State implements Serializable {
+
 
 	
 	Truhe Truhe[]=new Truhe[]{new Truhe(100, 200),new Truhe(150,200),new Truhe(200,200),new Truhe(250,200)};
@@ -209,6 +213,18 @@ public class PlayState extends State {
 		c.dispose();
 		this.dispose();
 	
+	}
+
+	@Override
+	public void read(Json arg0, JsonValue arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void write(Json arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
