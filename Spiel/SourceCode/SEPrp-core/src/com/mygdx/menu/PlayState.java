@@ -252,10 +252,10 @@ public class PlayState extends State implements Serializable {
 		cam.update();
 		}
 		
-		if (Gdx.input.isKeyPressed(Keys.UP)) {
+		if (Gdx.input.isKeyPressed(Keys.UP) && cam.zoom>0.3) {
 			cam.zoom-=0.01f;
 		}
-		else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+		else if (Gdx.input.isKeyPressed(Keys.DOWN) && cam.zoom<1) {
 			cam.zoom+=0.01f;
 		}
 	/**KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA*/	
