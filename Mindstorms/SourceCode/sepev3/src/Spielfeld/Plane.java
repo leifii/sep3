@@ -1,5 +1,6 @@
 
-public class Plane {
+
+public class Plane implements IPlane{
 	
 	int knoten;
 	boolean nKante;
@@ -8,10 +9,27 @@ public class Plane {
 	boolean wKante;
 	boolean powerup;
 	
+	public boolean getNord()
+	{
+		return nKante;
+	}
+	public boolean getSüd()
+	{
+		return sKante;
+	}
+	public boolean getOst()
+	{
+		return oKante;
+	}
+	public boolean getWest()
+	{
+		return wKante;
+	}
+	
 	
 	public static void main(String[] args) //Plane Standard()
 	{
-		Planeinit hilfs;
+		//Planeinit hilfs;
 		int[] knoten=new int[36];
 		boolean[] n=new boolean[36];
 		boolean[] s=new boolean[36];
@@ -31,7 +49,7 @@ public class Plane {
 			power[i]=false;
 		}
 		
-		 hilfs= new Planeinit(knoten,n,s,o,w,power);
+		 //hilfs= new Planeinit(knoten,n,s,o,w,power);
 		//return hilfs;
 	}
 	
