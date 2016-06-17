@@ -16,22 +16,37 @@ import java.math.*;
 
 public class AnzeigeSpielfeld extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	 static Plane[] Spielbrett;
-	static int Sepman;
-	static int Defender;
-	static int Random;
-	static int Tracer;
-	static int Größe;
-	static int Länge;
-	static int Breite;
-
+	 Plane[] Spielbrett;
+	 int Sepman;
+	 int Defender;
+	 int Random;
+	 int Tracer;
+	 int Größe;
+	 int Länge;
+	 int Breite;
+	 AnzeigeSpielfeld haha;
+	Planeinit Spiel;
 	/**
 	 * Launch the application.
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
-		FileReader fr = new FileReader("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Spielfeld.txt");
+
+
+
+	/**
+	 * Create the frame.
+	 * @param Spielfeld 
+	 * @throws IOException 
+	 * 
+	 */
+	public void create(String a) throws IOException
+	{
+		FileReader fr = new FileReader(a);
 	    BufferedReader br = new BufferedReader(fr);
 	    String hilfs = null;
 	    int[] name=new int[1];
@@ -168,32 +183,17 @@ public class AnzeigeSpielfeld extends JFrame {
 	    
 		}
 		
-		Planeinit Spiel=new Planeinit(name,Nord,Süd,Ost,West,power);
+		Spiel=new Planeinit(name,Nord,Süd,Ost,West,power);
 		Spielbrett=Spiel.getSpiel();
 		
 	    br.close();
 	    
 	    
 	    
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AnzeigeSpielfeld frame = new AnzeigeSpielfeld();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
 	}
-
-
-
-	/**
-	 * Create the frame.
-	 * @param Spielfeld 
-	 * 
-	 */
+	
+	
 	public JLabel[] erzeugeSpielfeld()
 	{
 		int zahl=1;
@@ -211,7 +211,7 @@ public class AnzeigeSpielfeld extends JFrame {
 
 					j=new JLabel(String.valueOf(zahl));
 					j.setBackground(Color.BLACK);
-					j.setBounds(100+k*200,100+i*200,20,20);
+					j.setBounds(100+k*150,100+i*150,20,20);
 					contentPane.add(j);
 					
 				zahl++;
@@ -225,10 +225,10 @@ public class AnzeigeSpielfeld extends JFrame {
 	}
 	
 	
-	public AnzeigeSpielfeld() {
+	public AnzeigeSpielfeld(String a) throws IOException {
 		
 		
-		
+		create(a);
 		
 		
 		
@@ -244,8 +244,17 @@ public class AnzeigeSpielfeld extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel[] ele=erzeugeSpielfeld();
-		
-		
+	/*			EventQueue.invokeLater(new Runnable() {
+		public void run() {
+			try {
+				AnzeigeSpielfeld frame = new AnzeigeSpielfeld();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	});*/
+		//haha.setVisible(true);
 		
 		JLabel jSepman = new JLabel("SEPMAN");
 		jSepman.setForeground(Color.RED);
