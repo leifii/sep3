@@ -99,23 +99,29 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	char hilfs6=ch[10];
 	    	String s=String.valueOf(hilfs1);
 	    	name[u]=Integer.parseInt(s);
-	    	if(String.valueOf(hilfs2)=="y")
+	    	String y="y";
+	    	
+	    	if(String.valueOf(hilfs2).contains(y)==true)
 	    		Nord[u]=true;
 	    	else
 	    		Nord[u]=false;
-	    	if(String.valueOf(hilfs3)=="y")
+	    	
+	    	if(String.valueOf(hilfs3).contains(y)==true)
 	    		Süd[u]=true;
 	    	else
 	    		Süd[u]=false;
-	    	if(String.valueOf(hilfs4)=="y")
+	    	
+	    	if(String.valueOf(hilfs4).contains(y)==true)
 	    		Ost[u]=true;
 	    	else
 	    		Ost[u]=false;
-	    	if(String.valueOf(hilfs5)=="y")
+	    	
+	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		West[u]=true;
 	    	else
 	    		West[u]=false;
-	    	if(String.valueOf(hilfs6)=="y")
+	    	
+	    	if(String.valueOf(hilfs6).contains(y)==true)
 	    		power[u]=true;
 	    	else
 	    		power[u]=false;
@@ -133,27 +139,27 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	char hilfs4=ch[7];
 	    	char hilfs5=ch[9];
 	    	char hilfs6=ch[11];
-	    	
+	    	String y="y";
 	    	String s=String.valueOf(hilfs1)+String.valueOf(hilfs11);
 	    	name[u]=Integer.parseInt(s);
 	    	
-	    	if(String.valueOf(hilfs2)=="y")
+	    	if(String.valueOf(hilfs2).contains(y)==true)
 	    		Nord[u]=true;
 	    	else
 	    		Nord[u]=false;
-	    	if(String.valueOf(hilfs3)=="y")
+	    	if(String.valueOf(hilfs3).contains(y)==true)
 	    		Süd[u]=true;
 	    	else
 	    		Süd[u]=false;
-	    	if(String.valueOf(hilfs4)=="y")
+	    	if(String.valueOf(hilfs4).contains(y)==true)
 	    		Ost[u]=true;
 	    	else
 	    		Ost[u]=false;
-	    	if(String.valueOf(hilfs5)=="y")
+	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		West[u]=true;
 	    	else
 	    		West[u]=false;
-	    	if(String.valueOf(hilfs6)=="y")
+	    	if(String.valueOf(hilfs6).contains(y)==true)
 	    		power[u]=true;
 	    	else
 	    		power[u]=false;
@@ -299,6 +305,31 @@ public class AnzeigeSpielfeld extends JFrame {
 		contentPane.add(Leben2);
 		Leben3.setLocation(110, 10);
 		contentPane.add(Leben3);
+		ImageIcon linie=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Linie.jpg");
+		JLabel line=new JLabel(linie);
+		JLabel[] low=new JLabel[1];
+		line.setLocation(75, 110);
+		contentPane.add(line);
+		int z=0;
+		
+	/*	for(JLabel k:low)
+		{
+			if(Spielbrett[z].getNord()==true)
+			{
+								
+			}
+			if(Spielbrett[z].getOst()==true)
+			{
+				k=new JLabel(linie);
+				k.setLocation(ele[z].getX()+75, ele[z].getY());
+				contentPane.add(k);
+			}
+			z++;
+				
+		}
+		*/
+		
+		
 		
 	}
 }
