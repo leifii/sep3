@@ -19,13 +19,15 @@ public class Character implements ICharacter{
 	
 
 	public Character(){
-		texture=new Texture("grafiken/mage with head+s.png");
+//		texture=new Texture("grafiken/mage with head+s.png");
 		texture1=new Texture("grafiken/Archer.png");
-		character=new Sprite[]{(new Sprite(texture))};
+//		character=new Sprite[]{(new Sprite(texture))};
 		TextureRegion[][] character1=TextureRegion.split(new Texture("grafiken/squire_m.png"),32,48);
 		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief Spreadsheet.png"), 32, 48);
-		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(new Texture("grafiken/Thief Spreadsheet.png"),0,0,32,48), new TextureRegion(texture1)};
-		Animation=new TextureRegion [][][]{character1,character2};
+		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/Mage Spreadsheet.png"), 32, 48);
+		
+//		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(new Texture("grafiken/Thief Spreadsheet.png"),0,0,32,48), new TextureRegion(texture1)};
+		Animation=new TextureRegion [][][]{character1,character3, character2};
 	}
 	@Override
 	public void render(SpriteBatch sb) {
