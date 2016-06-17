@@ -43,7 +43,7 @@ public class Gegner extends Character {
 		final int abstand = 50;
 		
 		double currentDistance = Math.sqrt(Math.pow(x-getPosition().x, 2) + Math.pow(y - getPosition().y, 2));
-		System.out.println(getPosition().x + "x" + getPosition().y + " at " + getLaufspeed() + " " + currentDistance);
+		//System.out.println(getPosition().x + "x" + getPosition().y + " at " + getLaufspeed() + " " + currentDistance);
 		
 		boolean move = currentDistance > abstand;
 
