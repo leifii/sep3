@@ -193,57 +193,57 @@ public class PlayState extends State implements Serializable {
 		mapPixelHeight = mapHeight * tilePixelHeight;
 		
 		//links unten
-		if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2 && c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2)
+		if(c.getPosition().y>=0-32 && c.getPosition().y< Gdx.graphics.getHeight()/2-32 && c.getPosition().x>=0-32 && c.getPosition().x< Gdx.graphics.getWidth()/2-32)
 			{sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
+			cam.position.set(Gdx.graphics.getWidth()/2-32,Gdx.graphics.getHeight()/2-32,0);
 			cam.update();
 			
 			}
 		//links oben
-		else if(c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2  && c.getPosition().y>mapPixelHeight-Gdx.graphics.getHeight()/2 && c.getPosition().y< mapPixelHeight){
+		else if(c.getPosition().x>=0-32 && c.getPosition().x< Gdx.graphics.getWidth()/2-32  && c.getPosition().y>mapPixelHeight-Gdx.graphics.getHeight()/2+32 && c.getPosition().y<= mapPixelHeight+32){
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(c.getPosition().x, mapPixelHeight-Gdx.graphics.getHeight()/2, Gdx.graphics.getHeight()/2);
+			cam.position.set(Gdx.graphics.getWidth()/2-32, mapPixelHeight-Gdx.graphics.getHeight()/2+32, 0);
 			cam.update();
 		}
 		//rechts oben
-		else if(c.getPosition().x>mapPixelWidth-Gdx.graphics.getWidth()/2 && c.getPosition().x< mapPixelWidth && c.getPosition().y>mapPixelHeight-Gdx.graphics.getHeight()/2 && c.getPosition().y< mapPixelHeight){
+		else if(c.getPosition().x>mapPixelWidth-Gdx.graphics.getWidth()/2+32 && c.getPosition().x<= mapPixelWidth+32 && c.getPosition().y>mapPixelHeight-Gdx.graphics.getHeight()/2+32 && c.getPosition().y<= mapPixelHeight+32){
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(mapPixelWidth-Gdx.graphics.getWidth()/2, mapPixelHeight-Gdx.graphics.getHeight()/2, 0);
+			cam.position.set(mapPixelWidth-Gdx.graphics.getWidth()/2+32, mapPixelHeight-Gdx.graphics.getHeight()/2+32, 0);
 			cam.update();
 		}
 		//rechts unten
-		else if(c.getPosition().x>mapPixelWidth-Gdx.graphics.getWidth()/2 && c.getPosition().x< mapPixelWidth && c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2){			
+		else if(c.getPosition().x>mapPixelWidth-Gdx.graphics.getWidth()/2+32 && c.getPosition().x<= mapPixelWidth+32 && c.getPosition().y>=0-32 && c.getPosition().y< Gdx.graphics.getHeight()/2-32){			
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(mapPixelWidth-Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
+			cam.position.set(mapPixelWidth-Gdx.graphics.getWidth()/2+32,Gdx.graphics.getHeight()/2-32,0);
 		}
 		
 				
-		else if(c.getPosition().x>=0 && c.getPosition().x< Gdx.graphics.getWidth()/2){ 			//Mitte links
+		else if(c.getPosition().x>=0-32 && c.getPosition().x< Gdx.graphics.getWidth()/2-32){ 			//Mitte links
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(Gdx.graphics.getWidth()/2,c.getPosition().y,0);
+			cam.position.set(Gdx.graphics.getWidth()/2-32,c.getPosition().y,0);
 			cam.update();
 			
 		}
-		else if(c.getPosition().y>=0 && c.getPosition().y< Gdx.graphics.getHeight()/2){			//Mitte unten
+		else if(c.getPosition().y>=0-32 && c.getPosition().y< Gdx.graphics.getHeight()/2-32){			//Mitte unten
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(c.getPosition().x,Gdx.graphics.getHeight()/2,0);
+			cam.position.set(c.getPosition().x,Gdx.graphics.getHeight()/2-32,0);
 			cam.update();
 		}
-		else if(c.getPosition().y>mapPixelHeight-Gdx.graphics.getHeight()/2 && c.getPosition().y< mapPixelHeight){		//Mitte oben
+		else if(c.getPosition().y>mapPixelHeight-Gdx.graphics.getHeight()/2+32 &&  c.getPosition().y<= mapPixelHeight+32){		//Mitte oben
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(c.getPosition().x, mapPixelHeight-Gdx.graphics.getHeight()/2,0);
+			cam.position.set(c.getPosition().x, mapPixelHeight-Gdx.graphics.getHeight()/2+32,0);
 		}
-		else if(c.getPosition().x>mapPixelWidth-Gdx.graphics.getWidth()/2 && c.getPosition().x< mapPixelWidth){			//Mitte rechts
+		else if(c.getPosition().x>mapPixelWidth-Gdx.graphics.getWidth()/2+32 && c.getPosition().x<= mapPixelWidth+32){			//Mitte rechts
 			sb.setProjectionMatrix(cam.combined);
 			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(mapPixelWidth-Gdx.graphics.getWidth()/2,c.getPosition().y,0);
+			cam.position.set(mapPixelWidth-Gdx.graphics.getWidth()/2+32,c.getPosition().y,0);
 		}
 		else{
 		sb.setProjectionMatrix(cam.combined);	
