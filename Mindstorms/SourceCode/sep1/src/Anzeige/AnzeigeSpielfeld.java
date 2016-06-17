@@ -111,12 +111,12 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	else
 	    		Süd[u]=false;
 	    	
-	    	if(String.valueOf(hilfs4).contains(y)==true)
+	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		Ost[u]=true;
 	    	else
 	    		Ost[u]=false;
 	    	
-	    	if(String.valueOf(hilfs5).contains(y)==true)
+	    	if(String.valueOf(hilfs4).contains(y)==true)
 	    		West[u]=true;
 	    	else
 	    		West[u]=false;
@@ -151,11 +151,11 @@ public class AnzeigeSpielfeld extends JFrame {
 	    		Süd[u]=true;
 	    	else
 	    		Süd[u]=false;
-	    	if(String.valueOf(hilfs4).contains(y)==true)
+	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		Ost[u]=true;
 	    	else
 	    		Ost[u]=false;
-	    	if(String.valueOf(hilfs5).contains(y)==true)
+	    	if(String.valueOf(hilfs4).contains(y)==true)
 	    		West[u]=true;
 	    	else
 	    		West[u]=false;
@@ -319,7 +319,7 @@ public class AnzeigeSpielfeld extends JFrame {
 			if(Spielbrett[z].getNord()==true)
 			{
 				line2=new JLabel(linie2);
-				line2.setLocation(ele[z].getX(), ele[z].getY()+50);
+				line2.setLocation(ele[z].getX(), ele[z].getY()-100);
 				line2.setSize(50, 100);
 				contentPane.add(line2);				
 			}
