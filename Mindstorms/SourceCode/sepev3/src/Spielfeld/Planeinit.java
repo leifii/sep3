@@ -1,5 +1,5 @@
 
-public class Planeinit {
+public class Planeinit implements IPlaneinit{
 	Plane[] plane;
 	int i=0;
 	int si=0;
@@ -24,4 +24,9 @@ public class Planeinit {
 			i++;
 		}
 	}	
+	
+	public Plane getInfo(int knoten)
+	{
+		return plane[knoten];
+	}
 }
