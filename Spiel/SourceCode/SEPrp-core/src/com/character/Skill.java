@@ -72,7 +72,7 @@ public class Skill {
 		y += dy * dt;
 		
 		
-		System.out.println(cdnow);
+		//System.out.println(cdnow);
 				
 		lifeTimer += dt;
 		if(lifeTimer > lifeTime){
