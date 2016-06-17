@@ -1,0 +1,19 @@
+border3.png
+size: 817, 435
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+border2.2
+  rotate: false
+  xy: 0, 0
+  size: 617, 435
+  orig: 617, 435
+  offset: 0, 0
+  index: -1
+Button
+  rotate: false
+  xy: 617, 0
+  size: 200, 80
+  orig: 200, 80
+  offset: 0, 0
+  index: -1
