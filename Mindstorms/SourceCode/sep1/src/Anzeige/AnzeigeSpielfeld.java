@@ -305,7 +305,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		contentPane.add(Leben2);
 		Leben3.setLocation(110, 10);
 		contentPane.add(Leben3);
-		ImageIcon linie=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Linie.jpg");
+		ImageIcon linie=new ImageIcon("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Linie.png");
 		JLabel line=new JLabel(linie);
 		JLabel[] low=new JLabel[1];
 		line.setLocation(75, 110);
