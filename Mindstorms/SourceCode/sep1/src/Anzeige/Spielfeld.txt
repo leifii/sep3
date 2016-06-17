@@ -1,4 +1,4 @@
-#Name des Knotens in int/Norden/Süden/Westen/Osten/powerup(y/n)/
+#Name des Knotens in int/Norden/Süden/Westen/Osten/powerup(y/n)
 #
 36
 #
@@ -41,8 +41,8 @@
 36+y+y+y+y+y
 #
 #
-01+23+23+45+++
-#
+01+23+20+35+++
+#Def/Sepman/Tracer/Random
 06x06
 #
 end
