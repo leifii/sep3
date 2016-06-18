@@ -49,16 +49,25 @@ public class Linienverfolgung implements ILinienverfolgung {
 		else return false;
 }
 	
-	public void drehenLinks(){		//Drehtechnik muss verbessert werden... Ziel-> tatsächliche 90° Umdrehung.
-		MotorL.stop();
-		MotorR.setSpeed(400);
-		MotorR.forward();
+	public void drehenLinks(){
+		MotorR.resetTachoCount();
+		while(MotorR.getTachoCount()<=240){
+			MotorL.backward();
+			MotorR.forward();
+		}
 	}
 	
-	public void drehenRechts(){		//Drehtechnik muss verbessert werden... Ziel-> tatsächliche 90° Umdrehung.
-		MotorR.stop();
-		MotorL.setSpeed(400);
-		MotorL.forward();	
+	public void drehenRechts(){		
+		MotorL.resetTachoCount();
+		while(MotorL.getTachoCount()<=240){
+			MotorR.backward();
+			MotorL.forward();
+		}
+		
+		//MotorR.stop();
+		//MotorL.setSpeed(400);
+		//MotorL.forward();	
+		
 	}
 	
 	public void stop(){
