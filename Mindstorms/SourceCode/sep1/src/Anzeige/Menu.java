@@ -47,7 +47,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
-
+// test commit
 	// Konstruktor	
 	public Menu() {
 		super();
