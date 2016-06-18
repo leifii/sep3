@@ -40,7 +40,7 @@ public class Character {
 	
 	private TextureRegion character;
 
-	private TiledMapTileLayer collisionLayer;
+	private TiledMapTileLayer[] collisionLayer;
 	
 	
 	private float cd;
@@ -79,7 +79,7 @@ public class Character {
 //	}
 	
 	
-	public Character (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer collisionLayer){
+	public Character (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer[] collisionLayer){
 		
 		
 		g = new Objekte();
@@ -143,7 +143,7 @@ public class Character {
 		 AtkSpeed=1;
 	}
 	
-	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, float speed, TiledMapTileLayer collisionLayer) {
+	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, float speed, TiledMapTileLayer[] collisionLayer) {
 		this(x, y, animation, speed, collisionLayer);
 		this.skills = skills;
 	}
@@ -225,7 +225,6 @@ public class Character {
 		cd = skills.get(0).gethitcd();
 		
 		
-		
 		for(int i = 0; i < skills.size(); i++){
 			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);	
 			skills.get(i).direction(this);
@@ -243,19 +242,14 @@ public class Character {
 			position.y+=2*laufspeed;
 			richtung=3;
 
-//			if(gegnerList.getFirst()!=null){
-//				for( ListIterator<Gegner> geg = gegnerList.listIterator();geg.next()!=null;geg.next()){
-					
-//				}
-//			}
 			
 			collisionY=false;
 			
-			collisionY = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+			collisionY = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 			if(!collisionY)
-				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth()/2,position.y+collisionLayer.getTileHeight());
+				collisionY = isCellBlocked(position.x+collisionLayer[0].getTileWidth()/2,position.y+collisionLayer[0].getTileHeight());
 			if(!collisionY)
-				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				collisionY = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 
 			
 			if (Gdx.input.isKeyPressed(Keys.A)) {
@@ -265,11 +259,11 @@ public class Character {
 				
 				collisionX=false;
 				
-				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight()/2);
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight()/2);
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 				
 				if(collisionX)
 					position.x=oldX;
@@ -282,11 +276,11 @@ public class Character {
 				
 				collisionX=false;
 				
-				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight()/2);
+					collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight()/2);
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+					collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 				
 				if(collisionX)
 					position.x=oldX;
@@ -305,10 +299,10 @@ public class Character {
 			
 			collisionY = isCellBlocked(position.x,position.y);
 			if(!collisionY)
-				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth()/2,position.y);
+				collisionY = isCellBlocked(position.x+collisionLayer[0].getTileWidth()/2,position.y);
 			if(!collisionY)
-				collisionY = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y);
-
+				collisionY = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y);
+			
 			
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y+=laufspeed*(1/Math.sqrt(2));
@@ -317,11 +311,11 @@ public class Character {
 				
 				collisionX=false;
 				
-				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight()/2);
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight()/2);
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+					collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 				
 				if(collisionX)
 					position.x=oldX;
@@ -334,11 +328,11 @@ public class Character {
 				
 				collisionX=false;
 				
-				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight()/2);
+					collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight()/2);
 				if(!collisionX)
-					collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+					collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 				
 				if(collisionX)
 					position.x=oldX;
@@ -354,11 +348,11 @@ public class Character {
 			
 			collisionX=false;
 			
-			collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+			collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 			if(!collisionX)
-				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight()/2);
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight()/2);
 			if(!collisionX)
-				collisionX = isCellBlocked(position.x,position.y+collisionLayer.getTileHeight());
+				collisionX = isCellBlocked(position.x,position.y+collisionLayer[0].getTileHeight());
 			
 			if(collisionX)
 				position.x=oldX;
@@ -369,11 +363,11 @@ public class Character {
 			
 			collisionX=false;
 			
-			collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+			collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 			if(!collisionX)
-				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight()/2);
+				collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight()/2);
 			if(!collisionX)
-				collisionX = isCellBlocked(position.x+collisionLayer.getTileWidth(),position.y+collisionLayer.getTileHeight());
+				collisionX = isCellBlocked(position.x+collisionLayer[0].getTileWidth(),position.y+collisionLayer[0].getTileHeight());
 			
 			if(collisionX)
 				position.x=oldX;
@@ -398,8 +392,13 @@ public class Character {
 	}
 	
 	private boolean isCellBlocked(float x, float y){
-		Cell cell = collisionLayer.getCell((int) (x/collisionLayer.getTileWidth()), (int) (y/collisionLayer.getTileHeight()));
-		return cell!=null && cell.getTile()!=null && cell.getTile().getProperties().containsKey("blocked");
+		Cell cell;
+		boolean blocked=false;
+		for(int i=0;i<collisionLayer.length;i++){
+			cell = collisionLayer[i].getCell((int) (x/collisionLayer[i].getTileWidth()), (int) (y/collisionLayer[i].getTileHeight()));
+			blocked = blocked || (cell!=null && cell.getTile()!=null && cell.getTile().getProperties().containsKey("blocked"));
+		}
+		return blocked;
 	}
 	
 	public void move(float dx, float dy) {

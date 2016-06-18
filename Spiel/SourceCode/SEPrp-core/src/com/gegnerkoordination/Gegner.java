@@ -13,14 +13,14 @@ public class Gegner extends Character {
 	
 	
 	//public Character (int x,int y, TextureRegion[][] animation,float speed){
-	public Gegner(int x, int y, TextureRegion[][] animation ,Attributes attributes, int exp, TiledMapTileLayer collisionLayer){
+	public Gegner(int x, int y, TextureRegion[][] animation ,Attributes attributes, int exp, TiledMapTileLayer[] collisionLayer){
 		super(x, y, animation, attributes.MS, collisionLayer);
 		setAttributes(attributes);
 		this.exp=exp;
 		
 	}
 	
-	public Gegner (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer collisionLayer){
+	public Gegner (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer[] collisionLayer){
 		super(x,y,animation,speed, collisionLayer);
 		setLaufspeed(speed);
 	}

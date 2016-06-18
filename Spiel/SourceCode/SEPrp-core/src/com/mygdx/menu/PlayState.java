@@ -43,6 +43,7 @@ public class PlayState extends State implements Serializable {
 	TextureRegion currentFrame;
 	int mapPixelWidth;
 	int mapPixelHeight;
+	private TiledMapTileLayer[] collisionLayer;
 	
 	Portal Portal[]=new Portal[]{new Portal(50, 50, 500, 500),new Portal(500, 500, 50, 50)};
 	
@@ -53,17 +54,19 @@ public class PlayState extends State implements Serializable {
 		
 		s=new com.grafiken.Character();
 		map=new Map(cam);
-		
+		collisionLayer=new TiledMapTileLayer[2];
+		collisionLayer[0]=(TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
+		collisionLayer[1]=(TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 		
 	// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		if(characterauswahl==1){
 			System.out.println("Krieger");
-			c=new Krieger(100,100,s.getAnimation(0),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
+			c=new Krieger(100,100,s.getAnimation(0),2.5f,collisionLayer);
 			System.out.println("Krieger");
 		}
 		else if(characterauswahl==2){
 			System.out.println("Magier");
-			c=new Magier(100,100,s.getAnimation(1),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
+			c=new Magier(100,100,s.getAnimation(1),2.5f,collisionLayer);
 			System.out.println("Magier");
 		}
 		else if(characterauswahl==3){
@@ -89,7 +92,7 @@ public class PlayState extends State implements Serializable {
 		gegnerList = new LinkedList<Gegner>();
 		
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200,200,s.getAnimation(0),a1.MS,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
+		Gegner testGegner = new Gegner(200,200,s.getAnimation(0),a1.MS,collisionLayer);
 		
 		testGegner.setAttributes(a1);
 		
