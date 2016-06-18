@@ -10,31 +10,22 @@ import java.net.Socket;
 
 
 import Drucksensorverarbeitung.Drucksensor;
-import Drucksensorverarbeitung.IDrucksensor;
-import Steuerbefehle.ISteuerbefehl;
-import Steuerbefehle.Steuerbefehl;
-import lejos.hardware.lcd.LCD;
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-import lejos.robotics.RegulatedMotor;
-import lejos.utility.Delay;
+import Linienverfolger.Linienverfolgung;
+
 
 public class KommunikationEV3 implements IKommunikation{
-
+	
+	Linienverfolgung lvfg;
+	Drucksensor druck;
 	Socket socket;
 	byte[] nachricht= new byte[9];
-	Steuerbefehl steuerbefehl;
-	Drucksensor drucksensor;
-	int letzterwert = 0;
-	RegulatedMotor MotorL;
-	RegulatedMotor MotorR;
 	
-	public KommunikationEV3(Socket soc, Steuerbefehl steuerbefehl, Drucksensor drucksensor){
+	int letzterwert = 0;
+	
+	public KommunikationEV3(Socket soc, Drucksensor druck){
 		socket = soc;
-		this.steuerbefehl = steuerbefehl;
-		this.drucksensor = drucksensor;
-		MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
-		MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+		lvfg=new Linienverfolgung();
+		druck=new Drucksensor();
 	}
 	
 	public void senden(){
@@ -56,7 +47,7 @@ public class KommunikationEV3 implements IKommunikation{
 		try {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
-								//L�nge der Nachricht lesen
+								//Lï¿½nge der Nachricht lesen
 			if(in.readInt()>0){
 			
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
@@ -88,12 +79,6 @@ public class KommunikationEV3 implements IKommunikation{
 		return 1;
 	}
 	
-	
-	
-	
-	
-	
-	
 	public void nachrichtverarbeiten(){
 		
 		
@@ -107,47 +92,26 @@ public class KommunikationEV3 implements IKommunikation{
 		
 		else if(wert==2){
 //			pause();
-			MotorL.stop();
-			MotorR.stop();
+			lvfg.stop();
 		}
 		
 		else if(wert==003){
 //			endPause();
 		}
 		
-		else if(wert==4){
-//			steuerbefehl.fahreVorwaerts();
-			
-
-			MotorL.setSpeed(500);
-			MotorR.setSpeed(500);
-			MotorL.forward();
-			MotorR.forward();
-			
-
-			
 		
-		}
-		
-		else if(wert==5){
-//			steuerbefehl.drehenLinks();
-
-			MotorL.stop();
-			MotorR.setSpeed(400);		//motorL vielleicht nicht stoppen sondern r�ckw�rts laufen lassen
-			MotorR.forward();
-
-			
-			
-		}
-
-		else if(wert==7){
-//			steuerbefehl.drehenRechts();
-
-			MotorR.stop();
-			MotorL.setSpeed(400);
-			MotorL.forward();
-			
-
+		else if (wert==4 || wert==5 || wert==7){
+				
+				lvfg.geradeaus(); //EV3 fährt nach dem ersten geradeaus Befehl automatisch nachdem es Knoten verlässt geradeaus.
+				
+				if (lvfg.aufKnoten()==true){
+					if(wert==5){ 
+						lvfg.drehenLinks();		//Taste Links dreht nach Links
+					}
+					if(wert==7){
+						lvfg.drehenRechts();		//Taste Rechts dreht nach Rechts
+					}
+				}
 		}
 
 		else if(wert==6){
@@ -201,19 +165,10 @@ public class KommunikationEV3 implements IKommunikation{
 		else if(wert==127){
 //			spielende();
 		}
-		
-		
-		
-		
 	
 	}
 
-	@Override
-	public boolean druckSensor(boolean druck) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean druckSensor() {
+		return druck.druckSensor(); //Boolean Wert der für später benutzt werden kann.
 	}
-
-	
-	
 }
