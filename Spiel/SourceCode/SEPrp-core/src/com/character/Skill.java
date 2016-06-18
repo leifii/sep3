@@ -14,6 +14,8 @@ public class Skill {
 	float cd;
 	int cdfaktor;
 	
+	public int direction;
+	
 	private Texture bild;
 	private float lifeTime;
 	private float lifeTimer;
@@ -28,6 +30,8 @@ public class Skill {
 	
 	protected int width;
 	protected int height;
+	
+	protected Character c;
 	
 	private boolean remove;
 	private boolean alive;
@@ -68,6 +72,22 @@ public class Skill {
 		handleInput(xx, yy);
 		cdnow -= dt;
 		if(alive == true){
+			if(direction == 0 || direction  == 4){
+				dx = 0;
+				dy = -300;
+			}
+			else if(direction == 1 || direction == 7){
+				dx = -300;
+				dy = 0;
+			}
+			else if (direction == 2 || direction == 6){
+				dx = 300;
+				dy = 0;
+			}
+			else if (direction == 3 || direction == 5){
+				dx = 0;
+				dy = 300;
+			}
 		x += dx * dt;
 		y += dy * dt;
 		
@@ -116,6 +136,12 @@ public class Skill {
 	}
 	
 	
+	public int direction(Character c){
+		return direction = c.getRichtung();
+	}
+
+
+
 	
 	
 	
