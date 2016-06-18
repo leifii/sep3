@@ -6,5 +6,5 @@ public interface IKommunikation {
 	public void empfangen();
 	public int erzeugeByteArray();
 	public void nachrichtverarbeiten();
-	public boolean druckSensor(boolean druck);
+	public boolean druckSensor();
 }
