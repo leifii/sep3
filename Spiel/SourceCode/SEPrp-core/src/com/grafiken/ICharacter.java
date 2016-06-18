@@ -14,5 +14,7 @@ public interface ICharacter {
 	
 	public TextureRegion[][] getAnimation(int index); //zweidimensionales Array ------Index 0=> 4*4 Animationen, Index 1=> 2*4 Animationen(links+rechts)
 	public Texture getGegner(int index);
-	public TextureRegion[][] getGegnerAnimation(int index); //returned Schleim für index 1 (Position 0,0 und 0,1 im Array)
+	public TextureRegion[][] getGegnerAnimation(int index); //returned Schleim für index 0 (Position 0,0 und 0,1 im Array)
+	
+	public TextureRegion[][] getAngriff(int index); //Array mit Angriffsbildern , 00=oben 01=rechts, 10=unten, 11=rechts (siehe Assets)
 }
