@@ -25,7 +25,7 @@ public class Magier extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Magier(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer collisionLayer){
+	public Magier(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer[] collisionLayer){
 		super(x, y, sprite, speed, collisionLayer);
 		System.out.println(sprite);
 		laufspeed=speed;

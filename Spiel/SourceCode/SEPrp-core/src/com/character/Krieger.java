@@ -25,7 +25,7 @@ public class Krieger extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Krieger(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer collisionLayer){
+	public Krieger(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer[] collisionLayer){
 		super(x, y, sprite, speed, collisionLayer);
 		System.out.println(sprite);
 		laufspeed=speed;
