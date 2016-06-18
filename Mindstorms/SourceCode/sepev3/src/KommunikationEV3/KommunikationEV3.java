@@ -133,7 +133,7 @@ public class KommunikationEV3 implements IKommunikation{
 //			steuerbefehl.drehenLinks();
 
 			MotorL.stop();
-			MotorR.setSpeed(400);
+			MotorR.setSpeed(400);		//motorL vielleicht nicht stoppen sondern rückwärts laufen lassen
 			MotorR.forward();
 
 			
