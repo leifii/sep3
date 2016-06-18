@@ -49,7 +49,7 @@ public class Character {
 	
 	private Rectangle bounds;
 	
-
+	 
 	int richtung=0;
 	
 	float laufspeed;
@@ -220,10 +220,15 @@ public class Character {
 	public void update(float dt){
 //	public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 		
+		
+		
 		cd = skills.get(0).gethitcd();
 		
+		
+		
 		for(int i = 0; i < skills.size(); i++){
-			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);
+			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);	
+			skills.get(i).direction(this);
 		}
 		
 
