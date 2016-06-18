@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Drucksensorverarbeitung.Drucksensor;
-import Steuerbefehle.Steuerbefehl;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
@@ -41,9 +40,9 @@ public class Server{
 			sSocket.close();
 			
 			// Stream 
-			Steuerbefehl steuerbefehl = new Steuerbefehl();
+		
 			Drucksensor drucksensor = new Drucksensor();
-			KommunikationEV3 com1 = new KommunikationEV3(roboter1, steuerbefehl, drucksensor);
+			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
 			
 			while(true){
 			com1.empfangen();
@@ -51,7 +50,7 @@ public class Server{
 			
 			
 
-			if(Button.getButtons() != 0){  	//Die Methode soll angeblich 0 zurückgeben, wenn kein button gedruckt ist
+			if(Button.getButtons() != 0){  	//Die Methode soll angeblich 0 zurÃ¼ckgeben, wenn kein button gedruckt ist
 				roboter1.close();			//also kann man jetzt mit beliebigem button press den Roboter beenden
 			}
 			}
@@ -62,7 +61,7 @@ public class Server{
 		//	LCD.clear(6);
 		//	LCD.drawString("PressAnyButton", 0, 6);
 			
-		//	Button.waitForAnyPress();                            //Drücke beliebigen Button zum Beenden
+		//	Button.waitForAnyPress();                            //DrÃ¼cke beliebigen Button zum Beenden
 		//	roboter1.close();
 //			roboter2.close();
 //			roboter3.close();
