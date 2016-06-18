@@ -15,8 +15,10 @@ public class Character implements ICharacter{
 	TextureRegion[] char1;
 	Texture gegner1,gegner2;
 	TextureRegion [][]charAnimation;
+	TextureRegion [][] angriffKrieger;
 	TextureRegion[][][] Animation;
 	TextureRegion[][][] Gegner;
+	TextureRegion[][][] Angriff;
 	
 
 	public Character(){
@@ -27,6 +29,8 @@ public class Character implements ICharacter{
 		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief Spreadsheet.png"), 32, 48);
 		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/Mage Spreadsheet.png"), 32, 48);
 		
+		angriffKrieger = TextureRegion.split(new Texture("grafiken/AngriffKrieger.png"), 56, 56);
+		Gegner= new TextureRegion[][][]{angriffKrieger};
 		TextureRegion[][] gegner1=TextureRegion.split(new Texture("grafiken/Slime.png"),35,32);
 		Gegner=new TextureRegion[][][]{gegner1};
 		
@@ -51,6 +55,10 @@ public class Character implements ICharacter{
 	public TextureRegion[][] getAnimation(int index){
 		
 		return Animation[index];
+	}
+	
+	public TextureRegion[][] getAngriff(int index){
+		return Angriff[index];
 	}
 	@Override
 	public Texture getGegner(int index ) {
