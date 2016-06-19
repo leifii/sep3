@@ -28,6 +28,7 @@ public class Character implements ICharacter{
 		TextureRegion[][] character1=TextureRegion.split(new Texture("grafiken/squire_m.png"),32,48);
 		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief Spreadsheet.png"), 32, 48);
 		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/Mage Spreadsheet.png"), 32, 48);
+		TextureRegion[][] character4=TextureRegion.split(new Texture("grafiken/Archer Spreadsheet.png"), 32, 48);
 		
 		angriffKrieger = TextureRegion.split(new Texture("grafiken/AngriffKrieger.png"), 56, 56);
 		Gegner= new TextureRegion[][][]{angriffKrieger};
@@ -35,7 +36,7 @@ public class Character implements ICharacter{
 		Gegner=new TextureRegion[][][]{gegner1};
 		
 //		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(new Texture("grafiken/Thief Spreadsheet.png"),0,0,32,48), new TextureRegion(texture1)};
-		Animation=new TextureRegion [][][]{character1,character3, character2};
+		Animation=new TextureRegion [][][]{character1,character3, character2, character4};
 	}
 	@Override
 	public void render(SpriteBatch sb) {

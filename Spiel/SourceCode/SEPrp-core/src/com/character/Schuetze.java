@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 
 public class Schuetze extends Character{
@@ -24,11 +25,14 @@ public class Schuetze extends Character{
 	int Verteidigung;
 	int AtkSpeed;
 	
-	public Schuetze(int x,int y,TextureRegion sprite,float speed,ArrayList<Skill> skills, float hitcd){
-		super(x, y, sprite, speed,skills,hitcd);
+	public Schuetze(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer collisionLayer){
+		super(x, y, sprite, speed, collisionLayer);
 		laufspeed=speed;
 		position=new Vector3(x,y,0);
-		character=sprite;
+		
+		
+		skills = new ArrayList<Skill>();
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 300, 0, 1, 1, 1, 0, 5, 1, g.getSkill(6), false));
 	}
 	
 	@Override

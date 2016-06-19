@@ -67,12 +67,15 @@ public class PlayState extends State implements Serializable {
 			c = new Magier(100, 100, s.getAnimation(1), 2.5f, collisionLayer);
 			System.out.println("Magier");
 		} else if (characterauswahl == 3) {
-			System.out.println("Drachenmensch");
-			c = new Schurke(100, 100, s.getTextureRegion(2), 2.5f, null, 0);
-			System.out.println("Drachenmensch");
+
+			c=new Schurke(100,100,s.getAnimation(2),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
+
+
 		} else if (characterauswahl == 4) {
 			System.out.println("SchÜtze");
-			c = new Schuetze(100, 100, s.getTextureRegion(3), 2.5f, null, 0);
+
+			c=new Schuetze(100,100,s.getAnimation(3),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
+
 			System.out.println("SchÜtze");
 		}
 
