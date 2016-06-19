@@ -26,8 +26,8 @@ public class Character implements ICharacter{
 		texture1=new Texture("grafiken/Archer.png");
 //		character=new Sprite[]{(new Sprite(texture))};
 		TextureRegion[][] character1=TextureRegion.split(new Texture("grafiken/squire_m.png"),32,48);
-		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief Spreadsheet.png"), 32, 48);
-		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/Mage Spreadsheet.png"), 32, 48);
+		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief_Spreadsheet.png"), 32, 48);
+		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/Mage_Spreadsheet.png"), 32, 48);
 		TextureRegion[][] character4=TextureRegion.split(new Texture("grafiken/Archer Spreadsheet.png"), 32, 48);
 		
 		angriffKrieger = TextureRegion.split(new Texture("grafiken/AngriffKrieger.png"), 56, 56);

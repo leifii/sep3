@@ -2,15 +2,9 @@ package com.character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
 
-import com.android.sdklib.devices.Camera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,15 +14,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.gegnerkoordination.Attributes;
-import com.gegnerkoordination.Gegner;
-import com.mygdx.menu.InventoryState;
-import com.mygdx.menu.MapState;
-import com.mygdx.menu.PauseState;
-import com.mygdx.menu.SkillState;
-import com.npc.NPC;
-import com.grafiken.*;
+import com.grafiken.IObjekte;
+import com.grafiken.Objekte;
 
-public class Character implements Serializable {
+public class Character implements Serializable, IDrawable {
 
 	/**
 	 * 
@@ -185,6 +174,16 @@ public class Character implements Serializable {
 		this.richtung = richtung;
 	}
 
+	public void setRichtung(Direction direction) {
+		switch(direction) {
+		case SOUTH:	richtung = 0; break;
+		case WEST:	richtung = 1; break;
+		case EAST:	richtung = 2; break;
+		case NORTH:	richtung = 3; break;
+		}
+
+	}
+	
 	public void levelup() {
 		level++;
 	}
@@ -394,6 +393,14 @@ public class Character implements Serializable {
 			position.y += dy;
 		}
 	}
+	
+	public void setX(float x) {
+		position.x = x;
+	}
+	
+	public void setY(float y) {
+		position.y = y;
+	}
 
 	public Vector3 getPosition() {
 		return position;
@@ -535,6 +542,10 @@ public class Character implements Serializable {
 
 	public void setPosition(Vector3 position) {
 		this.position = position;
+	}
+	
+	public enum Direction {
+		NORTH, SOUTH, EAST, WEST;
 	}
 
 }

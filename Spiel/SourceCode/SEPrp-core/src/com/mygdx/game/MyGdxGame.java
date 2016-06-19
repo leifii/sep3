@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.grafiken.Map;
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.MenuState;
-import com.mygdx.menu.NewMenuState1;
+import com.mygdx.menu.NewMenuState;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -24,7 +24,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	
 	Gdx.gl.glClearColor(0f, 0f, 0f, 1);
 	
-	gsm.push(new NewMenuState1(gsm));
+	gsm.push(new MenuState(gsm));
 	}
 
 	@Override

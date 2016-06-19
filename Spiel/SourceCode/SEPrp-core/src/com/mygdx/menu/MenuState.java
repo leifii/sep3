@@ -74,6 +74,17 @@ public class MenuState extends State{
 			Gdx.app.exit();
 		}
 		
+		if(Gdx.input.isKeyJustPressed(Keys.NUM_0))
+			gsm.push(new NewGameCharacterState(gsm));
+		
+		if(Gdx.input.isKeyJustPressed(Keys.NUM_1))
+			gsm.push(new PlayState(gsm, 1));
+		else if(Gdx.input.isKeyJustPressed(Keys.NUM_2))
+			gsm.push(new PlayState(gsm, 2));
+		else if(Gdx.input.isKeyJustPressed(Keys.NUM_3))
+			gsm.push(new PlayState(gsm, 3));
+		else if(Gdx.input.isKeyJustPressed(Keys.NUM_4))
+			gsm.push(new PlayState(gsm, 4));
 	}
 
 	@Override

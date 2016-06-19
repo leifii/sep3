@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
+import com.character.IDrawable;
 import com.character.Krieger;
 import com.character.Magier;
 import com.character.Schuetze;
@@ -20,6 +21,7 @@ import com.gegnerkoordination.Gegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.npc.NPC;
+import com.objects.Equipment;
 import com.objects.Portal;
 import com.objects.Truhe;
 
@@ -35,6 +37,7 @@ public class PlayState extends State implements Serializable {
 	NPC Npc = new NPC(120, 300, "grafiken/Kobold.png");
 
 	private List<Gegner> gegnerList;
+	private List<IDrawable> itemList;
 
 	private Character c;
 	private Map map;
@@ -83,6 +86,7 @@ public class PlayState extends State implements Serializable {
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 
 		initGegner();
+		itemList = new LinkedList<IDrawable>();
 
 	}
 
@@ -104,6 +108,9 @@ public class PlayState extends State implements Serializable {
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
+		
+		if(Gdx.input.isKeyJustPressed(Keys.O))
+			itemList.add(Equipment.spawnRandomItem(c.getPosition()));
 
 	}
 
@@ -175,6 +182,11 @@ public class PlayState extends State implements Serializable {
 				g.draw(sb);
 
 		// GEGNER //
+		
+		// ITEMS //
+		if(itemList != null)
+			for(IDrawable d : itemList)
+				d.draw(sb);
 
 		/**
 		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
