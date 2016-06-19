@@ -43,7 +43,7 @@ public class Character implements Serializable {
 
 	private TextureRegion character;
 
-	private TiledMapTileLayer[] collisionLayer;
+	protected TiledMapTileLayer[] collisionLayer;
 
 	private float cd;
 
@@ -371,7 +371,7 @@ public class Character implements Serializable {
 
 	}
 
-	private boolean isCellBlocked(float x, float y) {
+	protected boolean isCellBlocked(float x, float y) {
 		Cell cell;
 		boolean blocked = false;
 		for (int i = 0; i < collisionLayer.length; i++) {
@@ -384,8 +384,15 @@ public class Character implements Serializable {
 	}
 
 	public void move(float dx, float dy) {
-		position.x += dx;
-		position.y += dy;
+		int korrekturx=0,korrektury=0;
+		if(dx>0)
+			korrekturx=32;
+		if(dy>0)
+			korrektury=48;
+		if(!isCellBlocked(position.x+dx+korrekturx,position.y+dy+korrektury)){
+			position.x += dx;
+			position.y += dy;
+		}
 	}
 
 	public Vector3 getPosition() {
