@@ -2,15 +2,8 @@
 
 public class Spieldaten implements ISpieldaten {
 	
-	
-	
 	int Leben = 3 ;
-	
-	
-	
-	
-	
-	
+	int[] Modus = new int[4]; // Hinzugefügt von Mark
 	
 	public void setLifes(int lifes){
 		
@@ -40,9 +33,7 @@ public class Spieldaten implements ISpieldaten {
 	}
 	public int[][] defenderPos(){
 		
-		
-		
-		
+				
 	}
 	public int[][] tracerPos(){
 		
@@ -82,6 +73,18 @@ public class Spieldaten implements ISpieldaten {
 		
 		
 		return true;
+		
+	}
+    // Hinzugefügt von Mark
+	@Override
+	public String[] getRoboterbelegung() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	// Hinzugefügt von Mark
+	@Override
+	public void setRoboterbelegung(int pos, int wert) {
+		// TODO Auto-generated method stub
 		
 	}
 	

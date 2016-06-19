@@ -14,6 +14,8 @@ public interface ISpieldaten {
 	public int[][] powerUp3();
 	public int[] gefahreneKanten();
 	public boolean kanteGefahren(int kante);
+	public String[] getRoboterbelegung(); // Hinzugefügt von Mark
+	public void  setRoboterbelegung (int pos, int wert); // Hinzugefügt von Mark
 	
 	
 	
