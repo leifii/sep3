@@ -1,11 +1,15 @@
 package Anzeige;
 
+
 import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+
+import Spieldatenverarbeitung.ISpieldaten;
+
 import javax.swing.JLabel;
 
 import javax.swing.JComboBox;
@@ -15,6 +19,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 
 
 public class Menu extends JFrame implements IMenu , ActionListener{
@@ -47,7 +52,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
-// test commit
+
 	// Konstruktor	
 	public Menu() {
 		super();
@@ -317,7 +322,7 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[1] = "1";
+		case "Modus 1" : roboterBelegung[1] = "1"; //setRoboterbelegung (1, 1);
 		break;
 		case "Modus 2" : roboterBelegung[1] = "2";
 		break;
