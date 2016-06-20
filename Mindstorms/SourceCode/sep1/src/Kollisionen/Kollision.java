@@ -2,7 +2,7 @@ package Kollisionen;
 
 public class Kollision implements IKollision {
 	
-	public void kollision(){
+	public static void kollision(){
 		
 		if(PowerUps.PowerUp.isPowerUpAktiv()){
 			//pausiere spiel
