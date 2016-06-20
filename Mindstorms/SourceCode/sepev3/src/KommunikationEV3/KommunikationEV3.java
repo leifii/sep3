@@ -22,6 +22,11 @@ public class KommunikationEV3 implements IKommunikation{
 	
 	int letzterwert = 0;
 	
+	
+	public byte[] getNachricht()
+	{
+		return nachricht;
+	}
 	public KommunikationEV3(Socket soc, Drucksensor druck){
 		socket = soc;
 		lvfg=new Linienverfolgung();
