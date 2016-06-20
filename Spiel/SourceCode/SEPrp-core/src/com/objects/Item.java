@@ -1,6 +1,8 @@
 package com.objects;
 
-public abstract class Item {
+import com.character.IDrawable;
+
+public abstract class Item implements IDrawable {
 
 	private final String NAME;
 	private final ItemType TYPE;
