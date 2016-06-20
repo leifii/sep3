@@ -1,3 +1,5 @@
+package Anzeige;
+
 import java.io.IOException;
 
 public class AnzeigeSpielfeldinit implements ISpielfeldinit {
@@ -18,7 +20,7 @@ public class AnzeigeSpielfeldinit implements ISpielfeldinit {
 public static void main(String[] args) throws IOException
 {
 	AnzeigeSpielfeldinit rr=new AnzeigeSpielfeldinit();
-	rr.Spielfeldinit("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Spielfeld.txt");
+	rr.Spielfeldinit("/Users/markleifeld/Desktop/SEPMan/sep1/src/Anzeige/Spielfeld.txt");
 }
 
 
