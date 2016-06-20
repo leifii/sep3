@@ -44,42 +44,42 @@ public class Spieldatenverarbeitung  {
 		IBewegung.goNorth();	
 		}
 	}
-		public void geist2(){
+	public void geist2(){
 			
-			int start = arrayname[02];
-			int ziel = arrayname[03];
+		int start = arrayname[02];
+		int ziel = arrayname[03];
 			
-			if(ziel-start == 1){
-			IBewegung.goEast();
-			}
-			else if(ziel-start == -1){
-			IBewegung.goWest();
-			}
-			else if(ziel-start == 10){
-			IBewegung.goSouth();	
-			}
-			else if(ziel-start == -10){
-			IBewegung.goNorth();	
-			}
+		if(ziel-start == 1){
+		IBewegung.goEast();
+		}
+		else if(ziel-start == -1){
+		IBewegung.goWest();
+		}
+		else if(ziel-start == 10){
+		IBewegung.goSouth();	
+		}
+		else if(ziel-start == -10){
+		IBewegung.goNorth();	
+	    	}
 		}
 		
 		
-		public void geist3(){
+	public void geist3(){
 			
-			int start = arrayname[04];
-			int ziel = arrayname[05];
+		int start = arrayname[04];
+		int ziel = arrayname[05];
 			
-			if(ziel-start == 1){
-			//	goEast();
-			}
-			else if(ziel-start == -1){
-			//	goWest();
-			}
-			else if(ziel-start == 10){
-			//	goSouth();	
-			}
-			else if(ziel-start == -10){
-			//	goNorth();	
+		if(ziel-start == 1){
+		IBewegung.goEast();
+		}
+		else if(ziel-start == -1){
+		IBewegung.goWest();
+		}
+		else if(ziel-start == 10){
+		IBewegung.goSouth();	
+		}
+		else if(ziel-start == -10){
+		IBewegung.goNorth();	
 			}
 		}
 }
