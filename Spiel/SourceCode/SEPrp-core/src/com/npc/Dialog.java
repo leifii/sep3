@@ -36,9 +36,10 @@ public class Dialog  {
 		int zähler=0;
 		int erlaubt=3;
 		
+	
 		char TEXT[]=text.toCharArray();
 		for (int i = 0; i < TEXT.length; i++) {
-			if ((i%30>=25) && TEXT[i]==' ') {
+			if ((i%28>=24) && TEXT[i]==' ' ) {
 				
 				neuerText+="\n";
 				zähler++;
@@ -46,16 +47,18 @@ public class Dialog  {
 			else {
 				neuerText+=TEXT[i];
 			}
+			
+		
 			if (zähler>erlaubt) {
 				geändert-=0.01f;
 				if (geändert<=0.5f) {
 					geändert=0.5f;
 				}
 			}
-
+	}
 			
 		
-		}
+		
 		return neuerText;
 	}
 
