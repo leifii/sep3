@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.character.Attributes;
 import com.character.Character;
 
 //TODO abstract class
@@ -15,15 +16,13 @@ public class Gegner extends Character {
 	
 	//public Character (int x,int y, TextureRegion[][] animation,float speed){
 	public Gegner(int x, int y, TextureRegion[][] animation ,Attributes attributes, int exp, TiledMapTileLayer[] collisionLayer){
-		super(x, y, animation, attributes.MS, collisionLayer);
-		setAttributes(attributes);
+		super(x, y, animation, collisionLayer, attributes);
 		this.exp=exp;
 		
 	}
 	
-	public Gegner (int x,int y, TextureRegion[][] animation,float speed, TiledMapTileLayer[] collisionLayer){
-		super(x,y,animation,speed, collisionLayer);
-		setLaufspeed(speed);
+	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes){
+		super(x,y,animation,collisionLayer, attributes);
 	}
 	
 	public void update(float dt) {
@@ -61,32 +60,20 @@ public class Gegner extends Character {
 			int dxSign = x > getPosition().x ? 1 : -1;
 			dx *= dxSign;
 			dy *= dySign;
-			
-			//direction
-			Direction dir = null;
-			if(dy > 0)
-				dir = Direction.NORTH;
-			else if(dy < 0)
-				dir = Direction.SOUTH;
-			else if(dx > 0)
-				dir = Direction.EAST;
-			else if(dx < 0)
-				dir = Direction.WEST;
-			
-			setRichtung(dir);
+
+		} 
 		
-		//not moving - standing animation
-		} else {
-			int richtung = 0;
-			switch(getRichtung()) {
-			case 0: richtung = 4; break;
-			case 3: richtung = 5; break;
-			case 2: richtung = 6; break;
-			case 1: richtung = 7; break;
-			}
-			
-			setRichtung(richtung);
-		}
+		//direction
+		Direction dir = Direction.SOUTH_STAND;
+		if(y > getPosition().y) 
+			dir = move ? Direction.NORTH : Direction.NORTH_STAND;
+		else if(y < getPosition().y)
+			dir = move ? Direction.SOUTH : Direction.SOUTH_STAND;
+		else if(x > getPosition().x)
+			dir = move ? Direction.EAST : Direction.EAST_STAND;
+		else if(x < getPosition().x)
+			dir = move ? Direction.WEST : Direction.WEST_STAND;
+		setRichtung(dir);
 		
 		
 
@@ -102,6 +89,10 @@ public class Gegner extends Character {
 		}
 		
 		move((float)dx, (float)dy);
+		
+	}
+	
+	public void attack() {
 		
 	}
 	

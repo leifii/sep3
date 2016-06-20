@@ -16,18 +16,8 @@ public class Schuetze extends Character{
 	private Texture character1;
 	
 	
-	float laufspeed;
-	int STR;
-	int INT;
-	int STA;
-	
-	int Angriff;
-	int Verteidigung;
-	int AtkSpeed;
-	
-	public Schuetze(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer collisionLayer){
-		super(x, y, sprite, speed, collisionLayer);
-		laufspeed=speed;
+	public Schuetze(int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes){
+		super(x, y, sprite, collisionLayer, attributes);
 		position=new Vector3(x,y,0);
 		
 		

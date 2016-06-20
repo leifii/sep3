@@ -13,7 +13,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.gegnerkoordination.Attributes;
 import com.grafiken.IObjekte;
 import com.grafiken.Objekte;
 
@@ -31,6 +30,7 @@ public class Character implements Serializable, IDrawable {
 	private Vector3 position;
 
 	private TextureRegion character;
+	private Inventory inventory;
 
 	protected TiledMapTileLayer[] collisionLayer;
 
@@ -40,16 +40,10 @@ public class Character implements Serializable, IDrawable {
 
 	int richtung = 0;
 
-	float laufspeed;
-	int STR;
-	int INT;
-	int STA;
+	//int STR, INT, STA, ATK, DEF, AS; float MS
+	private Attributes attributes;
 	int DEX;
-
 	int MaxHP;
-	int Angriff;
-	int Verteidigung;
-	int AtkSpeed;
 
 	TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6, keyframes7;
 	Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
@@ -63,7 +57,7 @@ public class Character implements Serializable, IDrawable {
 	// character1=new Texture(sprite);
 	// }
 
-	public Character(int x, int y, TextureRegion[][] animation, float speed, TiledMapTileLayer[] collisionLayer) {
+	public Character(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes) {
 
 		g = new Objekte();
 
@@ -82,7 +76,7 @@ public class Character implements Serializable, IDrawable {
 		keyframes6 = new TextureRegion[] { animation[2][0] };
 		keyframes7 = new TextureRegion[] { animation[1][0] };
 
-		laufspeed = speed;
+		this.attributes = attributes;
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
 			keyframes[i] = animation[0][i];
@@ -118,19 +112,11 @@ public class Character implements Serializable, IDrawable {
 		exp = 0;
 		neededexp = 100;
 
-		STR = 1;
-		INT = 1;
-		STA = 1;
-		DEX = 1;
-
-		Angriff = 1;
-		Verteidigung = 1;
-		AtkSpeed = 1;
 	}
 
-	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, float speed,
-			TiledMapTileLayer[] collisionLayer) {
-		this(x, y, animation, speed, collisionLayer);
+	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, 
+			TiledMapTileLayer[] collisionLayer, Attributes attributes) {
+		this(x, y, animation, collisionLayer, attributes);
 		this.skills = skills;
 	}
 
@@ -180,6 +166,11 @@ public class Character implements Serializable, IDrawable {
 		case WEST:	richtung = 1; break;
 		case EAST:	richtung = 2; break;
 		case NORTH:	richtung = 3; break;
+		
+		case SOUTH_STAND:	richtung = 4; break;
+		case WEST_STAND:	richtung = 7; break;
+		case EAST_STAND:	richtung = 6; break;
+		case NORTH_STAND:	richtung = 5; break;
 		}
 
 	}
@@ -219,7 +210,7 @@ public class Character implements Serializable, IDrawable {
 		boolean collisionX = false, collisionY = false;
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
-			position.y += 2 * laufspeed;
+			position.y += 2 * attributes.getMS();
 			richtung = 3;
 
 			collisionY = false;
@@ -233,9 +224,9 @@ public class Character implements Serializable, IDrawable {
 						position.y + collisionLayer[0].getTileHeight());
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
-				position.y -= laufspeed * (1 / Math.sqrt(2));
-				position.x -= 2 * laufspeed;
-				position.x += laufspeed * (1 / Math.sqrt(2));
+				position.y -= attributes.getMS() * (1 / Math.sqrt(2));
+				position.x -= 2 * attributes.getMS();
+				position.x += attributes.getMS() * (1 / Math.sqrt(2));
 
 				collisionX = false;
 
@@ -249,9 +240,9 @@ public class Character implements Serializable, IDrawable {
 					position.x = oldX;
 
 			} else if (Gdx.input.isKeyPressed(Keys.D)) {
-				position.y -= laufspeed * (1 / Math.sqrt(2));
-				position.x += 2 * laufspeed;
-				position.x -= laufspeed * (1 / Math.sqrt(2));
+				position.y -= attributes.getMS() * (1 / Math.sqrt(2));
+				position.x += 2 * attributes.getMS();
+				position.x -= attributes.getMS() * (1 / Math.sqrt(2));
 
 				collisionX = false;
 
@@ -273,7 +264,7 @@ public class Character implements Serializable, IDrawable {
 				position.y = oldY;
 
 		} else if (Gdx.input.isKeyPressed(Keys.S)) {
-			position.y -= 2 * laufspeed;
+			position.y -= 2 * attributes.getMS();
 			richtung = 0;
 
 			collisionY = false;
@@ -285,9 +276,9 @@ public class Character implements Serializable, IDrawable {
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(), position.y);
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
-				position.y += laufspeed * (1 / Math.sqrt(2));
-				position.x -= 2 * laufspeed;
-				position.x += laufspeed * (1 / Math.sqrt(2));
+				position.y += attributes.getMS() * (1 / Math.sqrt(2));
+				position.x -= 2 * attributes.getMS();
+				position.x += attributes.getMS() * (1 / Math.sqrt(2));
 
 				collisionX = false;
 
@@ -301,9 +292,9 @@ public class Character implements Serializable, IDrawable {
 					position.x = oldX;
 
 			} else if (Gdx.input.isKeyPressed(Keys.D)) {
-				position.y += laufspeed * (1 / Math.sqrt(2));
-				position.x += 2 * laufspeed;
-				position.x -= laufspeed * (1 / Math.sqrt(2));
+				position.y += attributes.getMS() * (1 / Math.sqrt(2));
+				position.x += 2 * attributes.getMS();
+				position.x -= attributes.getMS() * (1 / Math.sqrt(2));
 
 				collisionX = false;
 
@@ -324,7 +315,7 @@ public class Character implements Serializable, IDrawable {
 				position.y = oldY;
 
 		} else if (Gdx.input.isKeyPressed(Keys.A)) {
-			position.x -= 2 * laufspeed;
+			position.x -= 2 * attributes.getMS();
 			richtung = 1;
 
 			collisionX = false;
@@ -338,7 +329,7 @@ public class Character implements Serializable, IDrawable {
 			if (collisionX)
 				position.x = oldX;
 		} else if (Gdx.input.isKeyPressed(Keys.D)) {
-			position.x += 2 * laufspeed;
+			position.x += 2 * attributes.getMS();
 			richtung = 2;
 
 			collisionX = false;
@@ -435,45 +426,11 @@ public class Character implements Serializable, IDrawable {
 	 */
 
 	public void setAttributes(Attributes attributes) {
-		this.STR = attributes.STR;
-		this.INT = attributes.INT;
-		this.STA = attributes.STA;
-		this.Angriff = attributes.ATK;
-		this.Verteidigung = attributes.DEF;
-		this.AtkSpeed = attributes.AS;
-		this.laufspeed = attributes.MS;
+		this.attributes = attributes;
 	}
 
 	public float getLaufspeed() {
-		return laufspeed;
-	}
-
-	public void setLaufspeed(float laufspeed) {
-		this.laufspeed = laufspeed;
-	}
-
-	public int getSTR() {
-		return STR;
-	}
-
-	public void setSTR(int sTR) {
-		STR = sTR;
-	}
-
-	public int getINT() {
-		return INT;
-	}
-
-	public void setINT(int iNT) {
-		INT = iNT;
-	}
-
-	public int getSTA() {
-		return STA;
-	}
-
-	public void setSTA(int sTA) {
-		STA = sTA;
+		return attributes.getMS();
 	}
 
 	public int getDEX() {
@@ -492,30 +449,7 @@ public class Character implements Serializable, IDrawable {
 		MaxHP = maxHP;
 	}
 
-	public int getAngriff() {
-		return Angriff;
-	}
-
-	public void setAngriff(int angriff) {
-		Angriff = angriff;
-	}
-
-	public int getVerteidigung() {
-		return Verteidigung;
-	}
-
-	public void setVerteidigung(int verteidigung) {
-		Verteidigung = verteidigung;
-	}
-
-	public int getAtkSpeed() {
-		return AtkSpeed;
-	}
-
-	public void setAtkSpeed(int atkSpeed) {
-		AtkSpeed = atkSpeed;
-	}
-
+	
 	public int getExp() {
 		return exp;
 	}
@@ -544,8 +478,12 @@ public class Character implements Serializable, IDrawable {
 		this.position = position;
 	}
 	
+	public Attributes getAttributes() {
+		return attributes;
+	}
+	
 	public enum Direction {
-		NORTH, SOUTH, EAST, WEST;
+		NORTH, SOUTH, EAST, WEST, NORTH_STAND, SOUTH_STAND, EAST_STAND, WEST_STAND;
 	}
 
 }

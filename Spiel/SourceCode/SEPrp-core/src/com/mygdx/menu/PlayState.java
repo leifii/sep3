@@ -3,6 +3,7 @@ package com.mygdx.menu;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,13 +11,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
+import com.character.Attributes;
 import com.character.Character;
 import com.character.IDrawable;
 import com.character.Krieger;
 import com.character.Magier;
-import com.character.Schuetze;
-import com.character.Schurke;
-import com.gegnerkoordination.Attributes;
 import com.gegnerkoordination.Gegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
@@ -61,23 +60,23 @@ public class PlayState extends State implements Serializable {
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
+		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 2.5f);
 		if (characterauswahl == 1) {
 			System.out.println("Krieger");
-			c = new Krieger(100, 100, s.getAnimation(0), 2.5f, collisionLayer);
-			System.out.println("Krieger");
+			c = new Krieger(100, 100, s.getAnimation(0),collisionLayer, attributes);
 		} else if (characterauswahl == 2) {
 			System.out.println("Magier");
-			c = new Magier(100, 100, s.getAnimation(1), 2.5f, collisionLayer);
-			System.out.println("Magier");
+			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes);
 		} else if (characterauswahl == 3) {
-
-			c=new Schurke(100,100,s.getAnimation(2),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
-
+			//TODO 
+			//int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes)
+			//c=new Schurke(100,100,s.getAnimation(2),(TiledMapTileLayer[]) map.getMap().getLayers().get("Objekte"), attributes);
+			
 
 		} else if (characterauswahl == 4) {
 			System.out.println("SchÜtze");
 
-			c=new Schuetze(100,100,s.getAnimation(3),2.5f,(TiledMapTileLayer) map.getMap().getLayers().get("Objekte"));
+			//c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer) map.getMap().getLayers().get("Objekte"), attributes);
 
 			System.out.println("SchÜtze");
 		}
@@ -94,10 +93,7 @@ public class PlayState extends State implements Serializable {
 		gegnerList = new LinkedList<Gegner>();
 
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), a1.MS, collisionLayer);
-
-		testGegner.setAttributes(a1);
-
+		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1);
 		gegnerList.add(testGegner);
 
 	}
@@ -108,6 +104,9 @@ public class PlayState extends State implements Serializable {
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
+
+		if(Gdx.input.isKeyJustPressed(Keys.I))
+			gsm.push(new InventoryState(gsm, this, c));
 		
 		if(Gdx.input.isKeyJustPressed(Keys.O))
 			itemList.add(Equipment.spawnRandomItem(c.getPosition()));

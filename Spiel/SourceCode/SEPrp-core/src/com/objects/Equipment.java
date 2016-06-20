@@ -4,12 +4,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.IDrawable;
 
-public class Equipment implements IDrawable {
+public class Equipment extends Item implements IDrawable {
 	
 	private EquipmentType type;
 	private float x, y;
 
 	public Equipment(float x, float y, EquipmentType type) {
+		super(type.toString(), type.getType(), type.getValue(), type.getRarity());
 		this.x = x;
 		this.y = y;
 		this.type = type;
@@ -20,7 +21,7 @@ public class Equipment implements IDrawable {
 		sb.draw(type.getTexture(), x, y);
 	}
 	
-	public EquipmentType getType() {
+	public EquipmentType getEquipmentType() {
 		return type;
 	}
 	

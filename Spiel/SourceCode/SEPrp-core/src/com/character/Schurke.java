@@ -14,20 +14,8 @@ public class Schurke extends Character{
 	private TextureRegion character;
 
 	private Texture character1;
-	
-	
-	float laufspeed;
-	int STR;
-	int INT;
-	int STA;
-	
-	int Angriff;
-	int Verteidigung;
-	int AtkSpeed;
-	
-	public Schurke(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer collisionLayer){
-		super(x, y, sprite, speed, collisionLayer);
-		laufspeed=speed;
+	public Schurke(int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes){
+		super(x, y, sprite, collisionLayer, attributes);
 		position=new Vector3(x,y,0);
 		
 		
