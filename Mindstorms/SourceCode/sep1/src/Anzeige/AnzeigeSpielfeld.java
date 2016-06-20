@@ -1,4 +1,4 @@
-
+package Anzeige;
 
 
 
@@ -30,8 +30,8 @@ public class AnzeigeSpielfeld extends JFrame {
 	 int Defender;
 	 int Random;
 	 int Tracer;
-	 int Gr��e;
-	 int L�nge;
+	 int Größe;
+	 int Länge;
 	 int Breite;
 	 AnzeigeSpielfeld haha;
 	Planeinit Spiel;
@@ -55,7 +55,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	    String hilfs = null;
 	    int[] name=new int[1];
 	    boolean[] Nord=new boolean[1];
-	    boolean[] S�d=new boolean[1];
+	    boolean[] Süd=new boolean[1];
 	    boolean[] West=new boolean[1];
 	    boolean[] Ost=new boolean[1];
 	    boolean[] power=new boolean[1];
@@ -80,17 +80,17 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	String s1=String.valueOf(hilfs1)+String.valueOf(hilfs2);
 	    	String s2=String.valueOf(hilfs3)+String.valueOf(hilfs4);
 	    	Breite=Integer.parseInt(s1);
-	    	L�nge=Integer.parseInt(s2);
+	    	Länge=Integer.parseInt(s2);
 	    }
 	    else if(hilfs.length()<11 && hilfs.contains("end")==false&&hilfs.length()>=2)
 	    {
-	    	Gr��e= Integer.parseInt(hilfs);
-	    	name=new int[Gr��e];
-	    	Nord=new boolean[Gr��e];
-	 	    S�d=new boolean[Gr��e];
-	 	    West=new boolean[Gr��e];
-	 	    Ost=new boolean[Gr��e];
-	 	    power=new boolean[Gr��e];
+	    	Größe= Integer.parseInt(hilfs);
+	    	name=new int[Größe];
+	    	Nord=new boolean[Größe];
+	 	    Süd=new boolean[Größe];
+	 	    West=new boolean[Größe];
+	 	    Ost=new boolean[Größe];
+	 	    power=new boolean[Größe];
 	    	
 	    }
 	    else if(hilfs.length()==11)
@@ -112,9 +112,9 @@ public class AnzeigeSpielfeld extends JFrame {
 	    		Nord[u]=false;
 	    	
 	    	if(String.valueOf(hilfs3).contains(y)==true)
-	    		S�d[u]=true;
+	    		Süd[u]=true;
 	    	else
-	    		S�d[u]=false;
+	    		Süd[u]=false;
 	    	
 	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		Ost[u]=true;
@@ -153,9 +153,9 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	else
 	    		Nord[u]=false;
 	    	if(String.valueOf(hilfs3).contains(y)==true)
-	    		S�d[u]=true;
+	    		Süd[u]=true;
 	    	else
-	    		S�d[u]=false;
+	    		Süd[u]=false;
 	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		Ost[u]=true;
 	    	else
@@ -200,7 +200,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	    
 		}
 		
-		Spiel=new Planeinit(name,Nord,S�d,Ost,West,power,pos);//so ists richtig
+		Spiel=new Planeinit(name,Nord,Süd,Ost,West,power,pos);//so ists richtig
 		Spielbrett=Spiel.getSpiel();
 	    br.close();
 	}
@@ -210,7 +210,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		int zahl=1;
 		int i=0;
 		int k=0;
-		JLabel[] ele=new JLabel[Gr��e];
+		JLabel[] ele=new JLabel[Größe];
 		for(JLabel j:ele)
 		{
 				if(k>=Breite)
@@ -245,7 +245,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		
 		
 		
-		setBounds(100, 100, (L�nge+1)*150, (Breite+1)*150);
+		setBounds(100, 100, (Länge+1)*150, (Breite+1)*150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -315,7 +315,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		ImageIcon linie2=new ImageIcon("Linie2.png");
 		JLabel line2=new JLabel(linie2);
 		
-		for(int z=0;z<Gr��e;z++)
+		for(int z=0;z<Größe;z++)
 		{
 			if(Spielbrett[z].getNord()==true)
 			{
