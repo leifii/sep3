@@ -8,6 +8,10 @@ public class Plane implements IPlane{
 	boolean oKante;
 	boolean wKante;
 	boolean powerup;
+	public int getPosition()
+	{
+		return knoten;
+	}
 	
 	public boolean getNord()
 	{
@@ -24,6 +28,10 @@ public class Plane implements IPlane{
 	public boolean getWest()
 	{
 		return wKante;
+	}
+	public boolean getPowerup()
+	{
+		return powerup;
 	}
 	
 	

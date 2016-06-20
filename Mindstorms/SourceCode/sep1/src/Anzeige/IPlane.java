@@ -4,5 +4,9 @@ public interface IPlane {
 	boolean getSüd();
 	boolean getWest();
 	boolean getOst();
+	int getPosition();
+	boolean getPowerup();
+	
+	
 
 }
