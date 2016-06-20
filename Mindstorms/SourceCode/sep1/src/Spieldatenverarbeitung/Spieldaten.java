@@ -7,6 +7,7 @@ public class Spieldaten implements ISpieldaten {
 //	int[] Kanten = new int[48];		//3 = Random ; 4 = Defense ; 5,6,7,8 = PowerUps
 	int[][] Position = new int[2][48];	// 0 = Knoten ; 1 = Kanten
 	int[] Modus = new int[4]; // Hinzugefügt von Mark
+	int[] gefahreneK = new int[48];
 	
 	
 	void startbelegung(){
@@ -278,19 +279,22 @@ public class Spieldaten implements ISpieldaten {
 	
 	public int[] gefahreneKanten(){
 
-		int a[] =null;
-
-		return a;
-
+		return gefahreneK;
 
 	}
 	public boolean kanteGefahren(int kante){
 
-
-
-		return true;
-
+		int x = 0;
+		while(x<49){
+			if(gefahreneK[x] == kante){
+				return true;
+				}
+			else x++;
+		}
+		return false;
 	}
+	
+	
 	// Hinzugefügt von Mark
 	@Override
 	public String[] getRoboterbelegung() {
