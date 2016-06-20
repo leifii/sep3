@@ -233,7 +233,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	}
 	
 	
-	public AnzeigeSpielfeld(String a) throws IOException {
+	public AnzeigeSpielfeld(String a,JPanel panel) throws IOException {
 		
 		
 		create(a);
@@ -246,7 +246,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		
 		
 		setBounds(100, 100, (Länge+1)*150, (Breite+1)*150);
-		contentPane = new JPanel();
+		contentPane = panel;
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
