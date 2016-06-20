@@ -1,6 +1,6 @@
 package KommunikationEV3;
 
-public class Spieldatenverarbeitung extends IBewegung {
+public class Spieldatenverarbeitung  {
 
 	public Spieldatenverarbeitung(int k){
 	}
