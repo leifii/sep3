@@ -279,16 +279,22 @@ public boolean eingabeKorrekt() {
 	int k = 0;
 	for (int i = 0; i< 4; i++){
 		if( roboterBelegung[i]== null ){
-			System.out.println(roboterBelegung[i]);
-			System.out.println("Fehlerhafte Auswahl");     // Abfrage ob alle Roboter ausgewählt 
+//			System.out.println(roboterBelegung[i]);
+//			System.out.println("Fehlerhafte Auswahl");     // Abfrage ob alle Roboter ausgewählt 
 			check = false;
+			//
+			// POPUP Fenster einbauen bei unvollständiger eingabe
+			//
 		}
 	}
 	for (int i = 0; i < roboterBelegung.length-1; ++i){
 		  for (int j = i+1; j < roboterBelegung.length; ++j){
 		    if (roboterBelegung[i] == roboterBelegung[j]){      // Abfrage ob kein Modus doppelt ausgewählt wurde 
 		    	check = false;
-		    	System.out.println("Fehlerhafte Auswahl");
+//		    	System.out.println("Fehlerhafte Auswahl");
+		    	//
+		    	// POPUP Fenster bei doppelter eingabe 
+		    	//
 		    }
 		  }
 	}
