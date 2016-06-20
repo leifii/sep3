@@ -39,7 +39,7 @@ public class Dialog  {
 	
 		char TEXT[]=text.toCharArray();
 		for (int i = 0; i < TEXT.length; i++) {
-			if ((i%28>=24) && TEXT[i]==' ' ) {
+			if ((i%30>=20) && TEXT[i]==' ' ) {
 				
 				neuerText+="\n";
 				zähler++;
