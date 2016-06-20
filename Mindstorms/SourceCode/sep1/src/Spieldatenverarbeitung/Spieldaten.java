@@ -103,36 +103,121 @@ public class Spieldaten implements ISpieldaten {
 						return x+100; 					//Kanten 100-148
 				}
 			}
-	
-		
-		
 		}
 		
+		return  200 ;
 		
-
-		return x;
 	}
+	
 	public int defenderPos(){
-		int a =0;
 
-		return a;
-
+		int x = 0;
+		int y = 0;
+		
+		while(y == 0 ){
+			
+			while(x < 37){
+				
+				if(Position[0][x]!= 4){
+					x++;
+				}
+				else
+					
+					return x ;							//Knoten 00-36
+			}
+		
+			y++;
+			x=0;
+			while (y == 1){
+				
+				while(x<49){
+					if(Position[1][x] != 4){
+						x++;
+				}
+					else 
+						return x+100; 					//Kanten 100-148
+				}
+			}
+		}
+		
+		return  200 ;
+		
 	}
+
+	
 	public int tracerPos(){
 
-		int a =0;
 
-		return a;
-
-
+		int x = 0;
+		int y = 0;
+		
+		while(y == 0 ){
+			
+			while(x < 37){
+				
+				if(Position[0][x]!= 2){
+					x++;
+				}
+				else
+					
+					return x ;							//Knoten 00-36
+			}
+		
+			y++;
+			x=0;
+			while (y == 1){
+				
+				while(x<49){
+					if(Position[1][x] != 2){
+						x++;
+				}
+					else 
+						return x+100; 					//Kanten 100-148
+				}
+			}
+		}
+		
+		return  200 ;
+		
 	}
+
+	
 	public int randomPos(){
-		int a =0;
 
-		return a;
-
-
+		int x = 0;
+		int y = 0;
+		
+		while(y == 0 ){
+			
+			while(x < 37){
+				
+				if(Position[0][x]!= 3){
+					x++;
+				}
+				else
+					
+					return x ;							//Knoten 00-36
+			}
+		
+			y++;
+			x=0;
+			while (y == 1){
+				
+				while(x<49){
+					if(Position[1][x] != 3){
+						x++;
+				}
+					else 
+						return x+100; 					//Kanten 100-148
+				}
+			}
+		}
+		
+		return  200 ;
+		
 	}
+
+	
 	public int powerUp1(){
 		int a =0;
 
