@@ -2,7 +2,7 @@ package PowerUps;
 
 public class PowerUp implements IPowerUp {
 	
-	boolean powerUpAktiv = false;
+	static boolean powerUpAktiv = false;
 	
 	public void aktivierePowerUp(){
 		powerUpAktiv = true;
@@ -13,7 +13,7 @@ public class PowerUp implements IPowerUp {
 		powerUpAktiv = false;
 	}
 	
-	public boolean isPowerUpAktiv(){
+	public static boolean isPowerUpAktiv(){
 		return powerUpAktiv;
 	}
 
