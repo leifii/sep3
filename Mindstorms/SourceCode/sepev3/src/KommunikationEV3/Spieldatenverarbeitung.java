@@ -13,16 +13,16 @@ public class Spieldatenverarbeitung  {
 		int ziel = arrayname[07];
 		
 		if(ziel-start == 1){
-		//	goEast();
+		IBewegung.goEast();
 		}
 		else if(ziel-start == -1){
-		//	goWest();
+		IBewegung.goWest();
 		}
 		else if(ziel-start == 10){
-		//	goSouth();	
+		IBewegung.goSouth();	
 		}
 		else if(ziel-start == -10){
-		//	goNorth();	
+		IBewegung.goNorth();	
 		}
 	}
 	
@@ -32,16 +32,16 @@ public class Spieldatenverarbeitung  {
 		int ziel = arrayname[01];
 		
 		if(ziel-start == 1){
-		//	goEast();
+		IBewegung.goEast();
 		}
 		else if(ziel-start == -1){
-		//	goWest();
+		IBewegung.goWest();
 		}
 		else if(ziel-start == 10){
-		//	goSouth();	
+		IBewegung.goSouth();	
 		}
 		else if(ziel-start == -10){
-		//	goNorth();	
+		IBewegung.goNorth();	
 		}
 	}
 		public void geist2(){
@@ -50,16 +50,16 @@ public class Spieldatenverarbeitung  {
 			int ziel = arrayname[03];
 			
 			if(ziel-start == 1){
-			//	goEast();
+			IBewegung.goEast();
 			}
 			else if(ziel-start == -1){
-			//	goWest();
+			IBewegung.goWest();
 			}
 			else if(ziel-start == 10){
-			//	goSouth();	
+			IBewegung.goSouth();	
 			}
 			else if(ziel-start == -10){
-			//	goNorth();	
+			IBewegung.goNorth();	
 			}
 		}
 		
