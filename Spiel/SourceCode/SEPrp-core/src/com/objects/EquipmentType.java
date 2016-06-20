@@ -1,7 +1,7 @@
 package com.objects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.gegnerkoordination.Attributes;
+import com.character.Attributes;
 import com.grafiken.Objekte;
 
 public enum EquipmentType {
@@ -12,6 +12,9 @@ public enum EquipmentType {
 	Lederschuh(ItemType.Helm, 5, 2, 			0, 	0, 	0, 	0, 0, 3, 0,		0,15),
 	Lederrüstung(ItemType.Brustpanzer, 5, 2,	0, 	0, 	0, 	0, 0, 3, 0,		0, 5);
 	
+	/*
+	Holzschwert, Lederhelm,	Holzschild,	Lederschuh,	Lederrüstung
+	 */
 	private Attributes attributes;
 	private int value, rarity;
 	private TextureRegion texture;

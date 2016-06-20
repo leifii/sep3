@@ -14,21 +14,10 @@ public class Magier extends Character{
 	private TextureRegion character;
 
 	private Texture character1;
-	
-	
-	float laufspeed;
-	int STR;
-	int INT;
-	int STA;
-	
-	int Angriff;
-	int Verteidigung;
-	int AtkSpeed;
-	
-	public Magier(int x,int y,TextureRegion[][] sprite,float speed, TiledMapTileLayer[] collisionLayer){
-		super(x, y, sprite, speed, collisionLayer);
+
+	public Magier(int x,int y,TextureRegion[][] sprite,TiledMapTileLayer[] collisionLayer, Attributes attributes){
+		super(x, y, sprite, collisionLayer, attributes);
 		System.out.println(sprite);
-		laufspeed=speed;
 		position=new Vector3(x,y,0);
 
 		

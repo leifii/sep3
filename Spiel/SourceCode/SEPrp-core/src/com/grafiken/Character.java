@@ -1,5 +1,8 @@
 package com.grafiken;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,7 +20,7 @@ public class Character implements ICharacter{
 	TextureRegion [][]charAnimation;
 	TextureRegion [][] angriffKrieger;
 	TextureRegion[][][] Animation;
-	TextureRegion[][][] Gegner;
+	List<TextureRegion[][]> gegnerList = new LinkedList<TextureRegion[][]>();
 	TextureRegion[][][] Angriff;
 	
 
@@ -31,9 +34,9 @@ public class Character implements ICharacter{
 		TextureRegion[][] character4=TextureRegion.split(new Texture("grafiken/Archer Spreadsheet.png"), 32, 48);
 		
 		angriffKrieger = TextureRegion.split(new Texture("grafiken/AngriffKrieger.png"), 56, 56);
-		Gegner= new TextureRegion[][][]{angriffKrieger};
-		TextureRegion[][] gegner1=TextureRegion.split(new Texture("grafiken/Slime.png"),35,32);
-		Gegner=new TextureRegion[][][]{gegner1};
+//		Gegner= new TextureRegion[][][]{angriffKrieger};
+		
+		gegnerList.add(TextureRegion.split(new Texture("grafiken/Slime.png"),35,32));
 		
 //		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(new Texture("grafiken/Thief Spreadsheet.png"),0,0,32,48), new TextureRegion(texture1)};
 		Animation=new TextureRegion [][][]{character1,character3, character2, character4};
@@ -72,7 +75,7 @@ public class Character implements ICharacter{
 	}
 	@Override
 	public TextureRegion[][] getGegnerAnimation(int index) {
-		return Gegner[index];
+		return gegnerList.get(index);
 	}
 	
 

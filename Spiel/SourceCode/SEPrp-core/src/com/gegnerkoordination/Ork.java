@@ -2,6 +2,7 @@ package com.gegnerkoordination;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.character.Attributes;
 
 public class Ork extends Gegner {
 
