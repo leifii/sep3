@@ -1,81 +1,95 @@
- package Spieldatenverarbeitung;
+package Spieldatenverarbeitung;
 
 public class Spieldaten implements ISpieldaten {
-	
+
 	int Leben = 3 ;
 	int[] Modus = new int[4]; // Hinzugefügt von Mark
-	
+
 	public void setLifes(int lifes){
-		
+
 		if (lifes < 0) 
 			System.out.println("Bitte einen Wert zwischen 0 und 3 angeben.");
-		
+
 		else if (lifes > 3)
 			System.out.println("Bitte einen Wert zwischen 0 und 3 angeben.");
-			
+
 		else Leben = lifes;
-		
-		}
-	
-	public int getLifes(){
-		
-		return Leben;
-		
-		
+
 	}
-	
-	
+
+	public int getLifes(){
+
+		return Leben;
+
+
+	}
+
+
 	public int[][] SEPMANPos(){
-		
-		
-		
-		return 
+
+		int a[][] =null;
+
+		return a;
 	}
 	public int[][] defenderPos(){
-		
-				
+		int a[][] =null;
+
+		return a;
+
 	}
 	public int[][] tracerPos(){
-		
-		
-		
-		
+
+		int a[][] =null;
+
+		return a;
+
+
 	}
 	public int[][] randomPos(){
-		
-		
-		
+		int a[][] =null;
+
+		return a;
+
+
 	}
 	public int[][] powerUp1(){
-		
-		
-		
-		
+		int a[][] =null;
+
+		return a;
+
+
+
 	}
 	public int[][] powerUp2(){
-		
-		
-		
+
+		int a[][] =null;
+
+		return a;
+
 	}
 	public int[][] powerUp3(){
-		
-		
-		
+
+		int a[][] =null;
+
+		return a;
+
 	}
 	public int[] gefahreneKanten(){
-		
-		
-		
-		return 
+
+		int a[] =null;
+
+		return a;
+
+
 	}
 	public boolean kanteGefahren(int kante){
-		
-		
-		
+
+
+
 		return true;
-		
+
 	}
-    // Hinzugefügt von Mark
+	// Hinzugefügt von Mark
 	@Override
 	public String[] getRoboterbelegung() {
 		// TODO Auto-generated method stub
@@ -85,18 +99,18 @@ public class Spieldaten implements ISpieldaten {
 	@Override
 	public void setRoboterbelegung(int pos, int wert) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 
 }
