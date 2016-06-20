@@ -16,11 +16,16 @@ public class Schuetze extends Character{
 	private Texture character1;
 	
 	
+
+	
 	public Schuetze(int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes){
-		super(x, y, sprite, collisionLayer, attributes);
+		super(x, y, sprite,  collisionLayer, attributes);
+
+
 		position=new Vector3(x,y,0);
+
 		
-		
+
 		skills = new ArrayList<Skill>();
 		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 300, 0, 1, 1, 1, 0, 5, 1, g.getSkill(6), false));
 	}

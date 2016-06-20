@@ -9,6 +9,7 @@ import com.grafiken.Map;
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.MenuState;
 import com.mygdx.menu.NewMenuState;
+import com.mygdx.menu.NewMenuState1;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -24,7 +25,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	
 	Gdx.gl.glClearColor(0f, 0f, 0f, 1);
 	
-	gsm.push(new MenuState(gsm));
+	gsm.push(new NewMenuState1(gsm));
 	}
 
 	@Override

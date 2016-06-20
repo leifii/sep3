@@ -16,6 +16,8 @@ import com.character.Character;
 import com.character.IDrawable;
 import com.character.Krieger;
 import com.character.Magier;
+import com.character.Schuetze;
+import com.character.Schurke;
 import com.gegnerkoordination.Gegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
@@ -68,15 +70,20 @@ public class PlayState extends State implements Serializable {
 			System.out.println("Magier");
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes);
 		} else if (characterauswahl == 3) {
-			//TODO 
-			//int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes)
-			//c=new Schurke(100,100,s.getAnimation(2),(TiledMapTileLayer[]) map.getMap().getLayers().get("Objekte"), attributes);
+
+
+			c= new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes);
+
 			
 
 		} else if (characterauswahl == 4) {
 			System.out.println("SchÜtze");
 
+
+			c=new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes);
+
 			//c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer) map.getMap().getLayers().get("Objekte"), attributes);
+
 
 			System.out.println("SchÜtze");
 		}

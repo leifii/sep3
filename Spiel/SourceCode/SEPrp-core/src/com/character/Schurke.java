@@ -14,8 +14,10 @@ public class Schurke extends Character{
 	private TextureRegion character;
 
 	private Texture character1;
+
 	public Schurke(int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes){
-		super(x, y, sprite, collisionLayer, attributes);
+		super(x, y, sprite,  collisionLayer, attributes);
+
 		position=new Vector3(x,y,0);
 		
 		
