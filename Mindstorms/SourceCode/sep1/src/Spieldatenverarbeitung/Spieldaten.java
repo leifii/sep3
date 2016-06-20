@@ -287,13 +287,30 @@ public class Spieldaten implements ISpieldaten {
 		int x = 0;
 		while(x<49){
 			if(gefahreneK[x] == kante){
+				x = 49 ;
 				return true;
+				
 				}
+			
 			else x++;
 		}
 		return false;
 	}
 	
+	
+	public void kanteBefahren(int kante){
+		
+		int x = 0;
+		while(x<49){
+			if(gefahreneK[x] == 0){
+				gefahreneK[x] = kante ;
+				x = 49;
+			}
+			else x++;
+		}
+		
+		
+	}
 	
 	// Hinzugefügt von Mark
 	@Override
