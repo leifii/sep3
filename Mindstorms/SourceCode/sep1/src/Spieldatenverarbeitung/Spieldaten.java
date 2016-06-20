@@ -218,37 +218,17 @@ public class Spieldaten implements ISpieldaten {
 	}
 
 	
-	public int powerUp1(){
-		
-
+	public int getPowerUp1(){
 		return 106;
-
-
-
 	}
-	public int powerUp2(){
-
-		
-
+	public int getPowerUp2(){
 		return 17;
-
 	}
-	public int powerUp3(){
-
-		
-
+	public int getPowerUp3(){
 		return 20;
-		
-		
 	}
-	
-	public int powerUp4(){
-
-		
-
+	public int getPowerUp4(){
 		return 31;
-		
-		
 	}
 	
 	public void setSEPMANPos(int pos){
