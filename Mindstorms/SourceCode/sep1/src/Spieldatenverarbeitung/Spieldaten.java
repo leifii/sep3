@@ -5,12 +5,13 @@ public class Spieldaten implements ISpieldaten {
 	int Leben = 3 ;
 	int[] Knoten = new int[36] ;	//0 = frei ; 1 = sepMan ; 2 = Verfolgung
 	int[] Kanten = new int[48];		//3 = Random ; 4 = Defense ; 5,6,7,8 = PowerUps
+	int[][] Position = new int[2][48];	// 0 = Knoten ; 1 = Kanten
 	int[] Modus = new int[4]; // Hinzugefügt von Mark
 	
 	
 	void startbelegung(){
 		
-			int x = 0;
+/*			int x = 0;
 			while(x < 37){	
 			Knoten[x] = 0 ;
 			x++;	}
@@ -28,7 +29,27 @@ public class Spieldaten implements ISpieldaten {
 		while(y<49){
 			Kanten[y] = 0;
 		}
-			
+			*/
+		
+		int x = 0;
+		while(x < 37){	
+		Position[0][x] = 0 ;
+		x++;	}
+		
+	Position[0][3] = 2;
+	Position[0][6] = 5;
+	Position[0][17] = 6;
+	Position[0][18] = 3;
+	Position[0][19] = 4;
+	Position[0][20] = 7;
+	Position[0][31] = 8;
+	Position[0][34] = 1;
+	
+	int y = 0;
+	while(y<49){
+		Position[1][y] = 0;
+	}
+	
 			
 		
 	}
@@ -55,9 +76,41 @@ public class Spieldaten implements ISpieldaten {
 
 	public int SEPMANPos(){
 
-		int a =0;
+		int x = 0;
+		int y = 0;
+		
+		while(y == 0 ){
+			
+			while(x < 37){
+				
+				if(Position[0][x]!= 1){
+					x++;
+				}
+				else
+					
+					return x ;							//Knoten 00-36
+			}
+		
+			y++;
+			x=0;
+			while (y == 1){
+				
+				while(x<49){
+					if(Position[1][x] != 1){
+						x++;
+				}
+					else 
+						return x+100; 					//Kanten 100-148
+				}
+			}
+	
+		
+		
+		}
+		
+		
 
-		return a;
+		return x;
 	}
 	public int defenderPos(){
 		int a =0;
