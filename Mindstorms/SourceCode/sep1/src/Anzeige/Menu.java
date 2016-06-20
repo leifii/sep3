@@ -388,7 +388,7 @@ public void actionPerformed(ActionEvent e) {
 	else if(e.getSource() ==btnStartfinal){
 		try {
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
-			rr.Spielfeldinit("/Users/markleifeld/Desktop/SEPMan/sep1/src/Anzeige/Spielfeld.txt");
+			rr.Spielfeldinit("Spielfeld.txt");
 			dispose();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
