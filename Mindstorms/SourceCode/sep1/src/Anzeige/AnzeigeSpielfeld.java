@@ -1,4 +1,4 @@
-package Anzeige;
+
 
 
 
@@ -25,12 +25,13 @@ public class AnzeigeSpielfeld extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	 Plane[] Spielbrett;
+	 int[] pos=new int[4];
 	 int Sepman;
 	 int Defender;
 	 int Random;
 	 int Tracer;
-	 int GrÃ¶ÃŸe;
-	 int LÃ¤nge;
+	 int Größe;
+	 int Länge;
 	 int Breite;
 	 AnzeigeSpielfeld haha;
 	Planeinit Spiel;
@@ -54,10 +55,12 @@ public class AnzeigeSpielfeld extends JFrame {
 	    String hilfs = null;
 	    int[] name=new int[1];
 	    boolean[] Nord=new boolean[1];
-	    boolean[] SÃ¼d=new boolean[1];
+	    boolean[] Süd=new boolean[1];
 	    boolean[] West=new boolean[1];
 	    boolean[] Ost=new boolean[1];
 	    boolean[] power=new boolean[1];
+	    
+	    
 	    
 	    int u=0;
 	    hilfs=br.readLine();
@@ -77,17 +80,17 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	String s1=String.valueOf(hilfs1)+String.valueOf(hilfs2);
 	    	String s2=String.valueOf(hilfs3)+String.valueOf(hilfs4);
 	    	Breite=Integer.parseInt(s1);
-	    	LÃ¤nge=Integer.parseInt(s2);
+	    	Länge=Integer.parseInt(s2);
 	    }
 	    else if(hilfs.length()<11 && hilfs.contains("end")==false&&hilfs.length()>=2)
 	    {
-	    	GrÃ¶ÃŸe= Integer.parseInt(hilfs);
-	    	name=new int[GrÃ¶ÃŸe];
-	    	Nord=new boolean[GrÃ¶ÃŸe];
-	 	    SÃ¼d=new boolean[GrÃ¶ÃŸe];
-	 	    West=new boolean[GrÃ¶ÃŸe];
-	 	    Ost=new boolean[GrÃ¶ÃŸe];
-	 	    power=new boolean[GrÃ¶ÃŸe];
+	    	Größe= Integer.parseInt(hilfs);
+	    	name=new int[Größe];
+	    	Nord=new boolean[Größe];
+	 	    Süd=new boolean[Größe];
+	 	    West=new boolean[Größe];
+	 	    Ost=new boolean[Größe];
+	 	    power=new boolean[Größe];
 	    	
 	    }
 	    else if(hilfs.length()==11)
@@ -109,9 +112,9 @@ public class AnzeigeSpielfeld extends JFrame {
 	    		Nord[u]=false;
 	    	
 	    	if(String.valueOf(hilfs3).contains(y)==true)
-	    		SÃ¼d[u]=true;
+	    		Süd[u]=true;
 	    	else
-	    		SÃ¼d[u]=false;
+	    		Süd[u]=false;
 	    	
 	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		Ost[u]=true;
@@ -150,9 +153,9 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	else
 	    		Nord[u]=false;
 	    	if(String.valueOf(hilfs3).contains(y)==true)
-	    		SÃ¼d[u]=true;
+	    		Süd[u]=true;
 	    	else
-	    		SÃ¼d[u]=false;
+	    		Süd[u]=false;
 	    	if(String.valueOf(hilfs5).contains(y)==true)
 	    		Ost[u]=true;
 	    	else
@@ -179,20 +182,25 @@ public class AnzeigeSpielfeld extends JFrame {
 	    	char hilfs33=ch[7];
 	    	char hilfs4=ch[9];
 	    	char hilfs44=ch[10];
+	    	
 	    	String s1=String.valueOf(hilfs1)+String.valueOf(hilfs11);
 	    	Defender=Integer.parseInt(s1);
+	    	pos[3]=Defender;
 	    	String s2=String.valueOf(hilfs2)+String.valueOf(hilfs22);
 	    	Sepman=Integer.parseInt(s2);
+	    	pos[0]=Sepman;
 	    	String s3=String.valueOf(hilfs3)+String.valueOf(hilfs33);
 	    	Tracer=Integer.parseInt(s3);
+	    	pos[2]=Tracer;
 	    	String s4=String.valueOf(hilfs4)+String.valueOf(hilfs44);
 	    	Random=Integer.parseInt(s4);
+	    	pos[1]=Random;
 
 	    }
 	    
 		}
 		
-		Spiel=new Planeinit(name,Nord,SÃ¼d,Ost,West,power);
+		Spiel=new Planeinit(name,Nord,Süd,Ost,West,power,pos);
 		Spielbrett=Spiel.getSpiel();
 	    br.close();
 	}
@@ -202,7 +210,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		int zahl=1;
 		int i=0;
 		int k=0;
-		JLabel[] ele=new JLabel[GrÃ¶ÃŸe];
+		JLabel[] ele=new JLabel[Größe];
 		for(JLabel j:ele)
 		{
 				if(k>=Breite)
@@ -237,7 +245,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		
 		
 		
-		setBounds(100, 100, (LÃ¤nge+1)*150, (Breite+1)*150);
+		setBounds(100, 100, (Länge+1)*150, (Breite+1)*150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -280,7 +288,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		jTracker.setBackground(Color.RED);
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 50, 50);
 		contentPane.add(jTracker);
-		ImageIcon Herz=new ImageIcon("/Users/markleifeld/Desktop/SEPMan/sep1/src/Anzeige/herz.gif");
+		ImageIcon Herz=new ImageIcon("herz.gif");
 		JLabel Leben1=new JLabel(Herz);
 		//Leben1.setVisible(true);
 		Leben1.setSize(50, 50);
@@ -298,29 +306,29 @@ public class AnzeigeSpielfeld extends JFrame {
 		contentPane.add(Leben2);
 		Leben3.setLocation(110, 10);
 		contentPane.add(Leben3);
-		ImageIcon linie1=new ImageIcon("/Users/markleifeld/Desktop/SEPMan/sep1/src/Anzeige/Linie.png");
+		ImageIcon linie1=new ImageIcon("Linie.png");
 		JLabel line1=new JLabel(linie1);
 		//JLabel[] low=new JLabel[1];
 		//line.setSize(150, 150);
 		//line.setLocation(ele[0].getX()+75, ele[0].getY());
 		//contentPane.add(line);
-		ImageIcon linie2=new ImageIcon("/Users/markleifeld/Desktop/SEPMan/sep1/src/Anzeige/Linie2.png");
+		ImageIcon linie2=new ImageIcon("Linie2.png");
 		JLabel line2=new JLabel(linie2);
 		
-		for(int z=0;z<GrÃ¶ÃŸe;z++)
+		for(int z=0;z<Größe;z++)
 		{
 			if(Spielbrett[z].getNord()==true)
 			{
 				line2=new JLabel(linie2);
 				line2.setLocation(ele[z].getX(), ele[z].getY()-100);
-				line2.setSize(50, 100);
+				line2.setSize(10, 100);
 				contentPane.add(line2);				
 			}
 			if(Spielbrett[z].getOst()==true)
 			{
 				line1=new JLabel(linie1);
 				line1.setLocation(ele[z].getX()+50, ele[z].getY());
-				line1.setSize(100, 50);
+				line1.setSize(100, 10);
 				contentPane.add(line1);
 			}
 			
