@@ -41,7 +41,7 @@ public class Kommunikation implements IKommunikation{
 		try {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
-			int length = in.readInt();		//Länge der Nachricht lesen
+			int length = in.readInt();		//Lï¿½nge der Nachricht lesen
 			if(length>0){
 				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
 				
@@ -51,6 +51,8 @@ public class Kommunikation implements IKommunikation{
 					System.out.print(nachricht[i]);
 				}
 				System.out.println("");
+				
+				nachrichtVerarbeiten(nachricht);
 			}
 			
 			
@@ -133,6 +135,53 @@ public class Kommunikation implements IKommunikation{
 	
 		
 		return nachricht;
+	}
+	
+	
+	
+	
+	
+	public static void nachrichtVerarbeiten(byte[] whatever){
+		
+		for(int i=0; i<whatever.length; i++){
+			if(i==0){
+//				setAusgangsKnoten(whatever[i]);           Ausgangsknoten des Roboters. Die Nummer des Knotens, von dem der Roboter kommt.
+			}
+			else if(i==1){
+//				setZielKnoten(whatever[i]);               Zielknoten des Roboters. Die Nummers des Knotens, zu dem der Roboter geht.
+			}
+			else if(i==2){
+				if(whatever[i]==1){
+//					kollision();                          Wird aufgerufen, wenn der Drucksensor aktiviert ist, es also zu einer Kollision kam.
+				}
+			}
+			else if(i==3){								//Aktivierungsstatus des Roboters. 0 = Inaktiv; 1 = Aktiv
+				if(whatever[i]==0){
+//					doSmthWhileInactive();                Verarbeitung der Mitteilung, dass Roboter inaktiv ist.                 
+				}
+				else{
+//					doSmthWhileActive();                  Verarbeitung der Mitteilung, dass Roboter aktiv ist.
+				}
+			}
+			else if(i==4){								//PowerUp-Status des Sepman. 0 = Inaktiv; 1 = Aktiv
+				if(whatever[i]==0){
+//					powerUpInaktiv();                     Verarbeitung der Mitteilung, dass PowerUp-Status inaktiv ist.
+				}
+				else{
+//					powerUpAktiv();                       Verarbeitung der Mitteilung, dass PowerUp-Status aktiv iss.
+				}
+			}
+			else if(i==5){                              //Pausenstatus des Spiels. 0 = nicht pausiert; 1 = pausiert            
+				if(whatever[i]==0){
+//					spielNichtPausiert();
+				}
+				else{
+//					spielPausiert();
+				}
+			}
+			
+		}
+		
 	}
 
 }
