@@ -1,3 +1,4 @@
+package Anzeige;
 import java.io.IOException;
 
 public class AnzeigeSpielfeldinit implements ISpielfeldinit {
