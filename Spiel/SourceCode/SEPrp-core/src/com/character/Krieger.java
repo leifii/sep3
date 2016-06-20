@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public class Krieger extends Character{
 	
@@ -15,8 +16,8 @@ public class Krieger extends Character{
 
 	private Texture character1;
 
-	public Krieger(int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes){
-		super(x, y, sprite, collisionLayer, attributes);
+	public Krieger(int x,int y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
+		super(x, y, sprite, collisionLayer, attributes, body);
 		System.out.println(sprite);
 		position=new Vector3(x,y,0);
 		
