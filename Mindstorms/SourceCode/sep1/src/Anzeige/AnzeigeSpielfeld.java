@@ -313,14 +313,14 @@ public class AnzeigeSpielfeld extends JFrame {
 			{
 				line2=new JLabel(linie2);
 				line2.setLocation(ele[z].getX(), ele[z].getY()-100);
-				line2.setSize(10, 100);
+				line2.setSize(50, 100);
 				contentPane.add(line2);				
 			}
 			if(Spielbrett[z].getOst()==true)
 			{
 				line1=new JLabel(linie1);
 				line1.setLocation(ele[z].getX()+50, ele[z].getY());
-				line1.setSize(100, 10);
+				line1.setSize(100, 50);
 				contentPane.add(line1);
 			}
 			
