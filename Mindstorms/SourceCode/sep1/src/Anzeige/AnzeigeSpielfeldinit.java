@@ -13,10 +13,11 @@ public class AnzeigeSpielfeldinit implements ISpielfeldinit {
 	}
 	
 	
-	public void Spielfeldinit(String a, JPanel panel) throws IOException
+	public JPanel Spielfeldinit(String a, JPanel panel) throws IOException
 	{ 
 		haha=new AnzeigeSpielfeld(a,panel);
 		haha.setVisible(true);
+		return haha.getPanel();
 	}
 public static void main(String[] args) throws IOException
 {
