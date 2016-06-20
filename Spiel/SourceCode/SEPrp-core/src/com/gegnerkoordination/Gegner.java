@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
@@ -26,8 +27,8 @@ public class Gegner extends Character {
 	private float time;
 	
 	
-	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes){
-		super(x,y,animation,collisionLayer, attributes);
+	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
+		super(x,y,animation,collisionLayer, attributes, body);
 		exp = 20; //TMP
 	}
 	
