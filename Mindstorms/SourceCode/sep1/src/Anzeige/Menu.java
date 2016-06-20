@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import Spieldatenverarbeitung.ISpieldaten;
+//import Spieldatenverarbeitung.ISpieldaten;
 
 import javax.swing.JLabel;
 
@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 
@@ -242,11 +243,7 @@ public void setzeNiederlageBildschirm(){
 	btnNeuesSpiel.setText("Spiel Beenden");
 	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	btnNeuesSpiel.addActionListener(this);
-	
-	
 
-	
-	
     getContentPane().add(niederlageDisplay);
 
 }
@@ -328,7 +325,7 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[1] = "1"; //setRoboterbelegung (1, 1);
+		case "Modus 1" : roboterBelegung[1] = "1";
 		break;
 		case "Modus 2" : roboterBelegung[1] = "2";
 		break;
@@ -389,7 +386,14 @@ public void actionPerformed(ActionEvent e) {
 		setzeAuswahldisplay();  
 	}
 	else if(e.getSource() ==btnStartfinal){
-		// Spielfeld erstellen
+		try {
+			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
+			rr.Spielfeldinit("/Users/markleifeld/Desktop/SEPMan/sep1/src/Anzeige/Spielfeld.txt");
+			dispose();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	else if(e.getSource() ==btnSpielfortsetzen ){
 		// Spiel fortsetzen 
@@ -405,10 +409,7 @@ public void actionPerformed(ActionEvent e) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(
-							UIManager.getSystemLookAndFeelClassName()); //Hiermit wird erreicht das das Programm unter 
-                                                                        //jedem Betriebsystem genau so aussieht wie es 
-					 													//der Anwender von nativen Anwendungen kennt.
+					
 					Menu menu1 = new Menu();
 					menu1.setVisible(true);
 

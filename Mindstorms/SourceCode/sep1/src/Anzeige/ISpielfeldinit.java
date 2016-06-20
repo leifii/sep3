@@ -1,3 +1,5 @@
+package Anzeige;
+
 import java.io.IOException;
 
 public interface ISpielfeldinit {
