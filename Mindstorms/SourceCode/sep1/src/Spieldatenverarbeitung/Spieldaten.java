@@ -23,7 +23,10 @@ public class Spieldaten implements ISpieldaten {
 		Knoten[17] = 6;
 		Knoten[18] = 3;
 		Knoten[19] = 4;
-		
+		Knoten[20] = 7;
+		Knoten[31] = 8;
+		Knoten[34] = 1;
+	
 		
 	}
 
