@@ -391,7 +391,13 @@ public void actionPerformed(ActionEvent e) {
 		try {
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
-			this.spielvorbereitungsDisplay.setVisible(false);
+			this.spielvorbereitungsDisplay.setLayout(null);
+			spielvorbereitungsDisplay.setVisible(false);
+			spielvorbereitungsDisplay.setEnabled(false);
+			setBounds(100, 100, 150*(1+rr.haha.Breite), 150*(1+rr.haha.Länge));
+			
+			getContentPane().add(thorbensPanel);
+			
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

@@ -31,8 +31,8 @@ public class AnzeigeSpielfeld extends JFrame {
 	 int Random;
 	 int Tracer;
 	 int Größe;
-	 int Länge;
-	 int Breite;
+	 public int Länge;
+	 public int Breite;
 	 AnzeigeSpielfeld haha;
 	Planeinit Spiel;
 	/**
