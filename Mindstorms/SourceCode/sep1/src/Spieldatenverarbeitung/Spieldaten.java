@@ -3,8 +3,8 @@ package Spieldatenverarbeitung;
 public class Spieldaten implements ISpieldaten {
 
 	int Leben = 3 ;
-	int[] Knoten = new int[36] ;	//0 = frei ; 1 = sepMan ; 2 = Verfolgung
-	int[] Kanten = new int[48];		//3 = Random ; 4 = Defense ; 5,6,7,8 = PowerUps
+//	int[] Knoten = new int[36] ;	//0 = frei ; 1 = sepMan ; 2 = Verfolgung
+//	int[] Kanten = new int[48];		//3 = Random ; 4 = Defense ; 5,6,7,8 = PowerUps
 	int[][] Position = new int[2][48];	// 0 = Knoten ; 1 = Kanten
 	int[] Modus = new int[4]; // Hinzugefügt von Mark
 	
