@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
@@ -28,7 +29,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
-	public String comboBoxInhalt[] = {"Modus 1", "Modus 2", "Modus 3", "Modus 4"};
+	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
 	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	public JPanel startDisplay = new JPanel();
 	public JPanel siegDisplay = new JPanel();
@@ -62,7 +63,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 // Initialisierung des Fenster + Aufrufen des Startbildschirms
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setSize(600,500);
+	setSize(1050,1050);
 	setTitle("SEPman");
 	setzeStartbildschirm();
 //	 Nur noch zu Testzwecken hier drin 
@@ -109,14 +110,14 @@ public void setzeAuswahldisplay (){
 	display.add(lbUeberschrift);
 	
 	btnStart.addActionListener(this);
-	btnStart.setSize(210, 50);
+	btnStart.setSize(300, 50);
 	btnStart.setLocation(215, 95);
 	btnStart.setText("Start");
 	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(btnStart);
 	
 	btnEnde.addActionListener(this);           
-	btnEnde.setSize(210, 50);
+	btnEnde.setSize(300, 50);
 	btnEnde.setLocation(215, 155);
 	btnEnde.setText("Ende");
 	btnEnde.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -139,25 +140,25 @@ public void setzeAuswahldisplay (){
 	display.add(lbBeschriftung4);
 	
 	cbAuswahl1.setSelectedIndex(0);
-	cbAuswahl1.setSize(114, 30);
+	cbAuswahl1.setSize(200, 30);
 	cbAuswahl1.setLocation(311, 215);
 	cbAuswahl1.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl1);
 	
-	cbAuswahl2.setSelectedIndex(1);
-	cbAuswahl2.setSize(114, 30);
+	cbAuswahl2.setSelectedIndex(0);
+	cbAuswahl2.setSize(200, 30);
 	cbAuswahl2.setLocation(311, 250);
 	cbAuswahl2.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl2);
 	
-	cbAuswahl3.setSelectedIndex(2);
-	cbAuswahl3.setSize(114, 30);
+	cbAuswahl3.setSelectedIndex(0);
+	cbAuswahl3.setSize(200, 30);
 	cbAuswahl3.setLocation(311, 290);
 	cbAuswahl3.addActionListener(this);                //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl3);
 	
-	cbAuswahl4.setSelectedIndex(3);
-	cbAuswahl4.setSize(114, 30);
+	cbAuswahl4.setSelectedIndex(0);
+	cbAuswahl4.setSize(200, 30);
 	cbAuswahl4.setLocation(311, 330);
 	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl4);
@@ -309,9 +310,9 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);		
 		switch(msg){
-		case "Modus 1" : roboterBelegung[0] = "1";
+		case "SepMAN" : roboterBelegung[0] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[0] = "2";
+		case "Verfolger" : roboterBelegung[0] = "2";
 		break;
 		case "Modus 3" : roboterBelegung[0] = "3";
 		break;
@@ -325,13 +326,13 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[1] = "1";
+		case "SepMAN" : roboterBelegung[1] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[1] = "2";
+		case "Verfolger" : roboterBelegung[1] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[1] = "3";
+		case "Verteidiger" : roboterBelegung[1] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[1] = "4";
+		case "Verpeilter" : roboterBelegung[1] = "4";
 		break;
 		}	
 //		System.out.println(roboterBelegung[1]);
@@ -341,13 +342,13 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[2] = "1";
+		case "SepMAN" : roboterBelegung[2] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[2] = "2";
+		case "Verfolger" : roboterBelegung[2] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[2] = "3";
+		case "Verteidiger" : roboterBelegung[2] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[2] = "4";
+		case "Verpeilter" : roboterBelegung[2] = "4";
 		break;
 		}	
 //		System.out.println(roboterBelegung[2]);
@@ -357,13 +358,13 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);
 		switch(msg){
-		case "Modus 1" : roboterBelegung[3] = "1";
+		case "SepMAN" : roboterBelegung[3] = "1";
 		break;
-		case "Modus 2" : roboterBelegung[3] = "2";
+		case "Verfolger" : roboterBelegung[3] = "2";
 		break;
-		case "Modus 3" : roboterBelegung[3] = "3";
+		case "Verteidiger" : roboterBelegung[3] = "3";
 		break;
-		case "Modus 4" : roboterBelegung[3] = "4";
+		case "Verpeilter" : roboterBelegung[3] = "4";
 		break;
 		}	
 //		System.out.println(roboterBelegung[3]);
@@ -401,7 +402,6 @@ public void actionPerformed(ActionEvent e) {
 	else if (e.getSource()== btnNeuesSpiel){
 		setzeAuswahldisplay();
 	}
-	
 }
 
 //Main Mehtoden 
