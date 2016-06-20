@@ -1,28 +1,34 @@
 package com.gegnerkoordination;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
+import com.mygdx.menu.PlayState;
+import com.objects.Equipment;
+import com.objects.EquipmentType;
+import com.objects.Experience;
+import com.objects.Item;
+import com.objects.Truhe;
 
 //TODO abstract class
 public class Gegner extends Character {
+
+	private static final long serialVersionUID = -7164803939794243989L;
 	private int exp;
 	private TextureRegion currentFrame;
 	private float time;
 	
 	
-	//public Character (int x,int y, TextureRegion[][] animation,float speed){
-	public Gegner(int x, int y, TextureRegion[][] animation ,Attributes attributes, int exp, TiledMapTileLayer[] collisionLayer){
-		super(x, y, animation, collisionLayer, attributes);
-		this.exp=exp;
-		
-	}
-	
 	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes){
 		super(x,y,animation,collisionLayer, attributes);
+		exp = 20; //TMP
 	}
 	
 	public void update(float dt) {
@@ -36,14 +42,14 @@ public class Gegner extends Character {
 		sb.draw(currentFrame, getPosition().x, getPosition().y);
 	}
 	
-
 	public void follow(Character c) {
-		float x = c.getPosition().x, y = c.getPosition().y;
+		goToPosition(c.getPosition(), !getBounds().overlaps(c.getBounds()));
+		attack();
+	}
+
+	public void goToPosition(Vector3 destination, boolean move) {
+		float x = destination.x, y = destination.y;
 		double dx = 0, dy = 0;
-		final int abstand = 50;
-		
-		float currentDistance = Vector2.dst(x, y, getPosition().x, getPosition().y);
-		boolean move = currentDistance > abstand;
 
 		if(move) {
 			//movement
@@ -55,24 +61,24 @@ public class Gegner extends Character {
 			} else if(x != getPosition().x) {
 				dx = 2 * getLaufspeed();
 			}
-			
-			int dySign = y > getPosition().y ? 1 : -1;
-			int dxSign = x > getPosition().x ? 1 : -1;
-			dx *= dxSign;
-			dy *= dySign;
+		}
 
-		} 
+		
+		int dySign = y > getPosition().y ? 1 : -1;
+		int dxSign = x > getPosition().x ? 1 : -1;
+		dx *= dxSign;
+		dy *= dySign;
 		
 		//direction
-		Direction dir = Direction.SOUTH_STAND;
+		AnimationDirection dir = AnimationDirection.SOUTH_STAND;
 		if(y > getPosition().y) 
-			dir = move ? Direction.NORTH : Direction.NORTH_STAND;
+			dir = move ? AnimationDirection.NORTH_WALK : AnimationDirection.NORTH_STAND;
 		else if(y < getPosition().y)
-			dir = move ? Direction.SOUTH : Direction.SOUTH_STAND;
+			dir = move ? AnimationDirection.SOUTH_WALK : AnimationDirection.SOUTH_STAND;
 		else if(x > getPosition().x)
-			dir = move ? Direction.EAST : Direction.EAST_STAND;
+			dir = move ? AnimationDirection.EAST_WALK : AnimationDirection.EAST_STAND;
 		else if(x < getPosition().x)
-			dir = move ? Direction.WEST : Direction.WEST_STAND;
+			dir = move ? AnimationDirection.WEST_WALK : AnimationDirection.WEST_STAND;
 		setRichtung(dir);
 		
 		
@@ -96,8 +102,27 @@ public class Gegner extends Character {
 		
 	}
 	
-	public void killed(Character c) {
-		c.expSammeln(exp, true);
+	public void killed() {
+		List<Item> items = new LinkedList<Item>();
+		for(EquipmentType e : equips)
+			items.add(new Equipment(e));
+		items.add(new Experience(getExp()));
+		Truhe t = new Truhe(getPosition().x, getPosition().y, false, items.toArray(new Item[0]));
+		
+		PlayState.getInstance().addDrawable(t);
+		markToDispose();
 	}
+	
+	private List<EquipmentType> equips = new LinkedList<EquipmentType>();
+	public void addLoot(int exp, EquipmentType...equipments) {
+		this.exp = exp;
+		for(EquipmentType e : equipments)
+			equips.add(e);
+	}
+	
+	public void addLoot(EquipmentType...equipments) {
+		addLoot(0, equipments);
+	}
+
 	
 }

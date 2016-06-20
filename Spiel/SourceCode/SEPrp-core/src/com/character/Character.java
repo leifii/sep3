@@ -2,6 +2,10 @@ package com.character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -15,6 +19,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.grafiken.IObjekte;
 import com.grafiken.Objekte;
+import com.mygdx.menu.PlayState;
+import com.objects.Equipment;
+import com.objects.Item;
+import com.objects.ItemType;
 
 public class Character implements Serializable, IDrawable {
 
@@ -37,8 +45,10 @@ public class Character implements Serializable, IDrawable {
 	private float cd;
 
 	private Rectangle bounds;
+	private boolean disposable = false;
+	private boolean visible = true;
 
-	int richtung = 0;
+	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 
 	//int STR, INT, STA, ATK, DEF, AS; float MS
 	private Attributes attributes;
@@ -47,6 +57,7 @@ public class Character implements Serializable, IDrawable {
 
 	TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6, keyframes7;
 	Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
+	Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 	int exp;
 	int neededexp;
 	int level;
@@ -90,28 +101,24 @@ public class Character implements Serializable, IDrawable {
 		for (int i = 0; i < 4; i++) {
 			keyframes3[i] = animation[3][i];
 		}
-		// character=sprite;
-		Animation = new Animation(0.25f, keyframes);
-		Animation1 = new Animation(0.25f, keyframes1);
-		Animation2 = new Animation(0.25f, keyframes2);
-		Animation3 = new Animation(0.25f, keyframes3);
-		Animation4 = new Animation(0.25f, keyframes4);
-		Animation5 = new Animation(0.25f, keyframes5);
-		Animation6 = new Animation(0.25f, keyframes6);
-		Animation7 = new Animation(0.25f, keyframes7);
-		Animation.setPlayMode(PlayMode.LOOP);
-		Animation1.setPlayMode(PlayMode.LOOP);
-		Animation2.setPlayMode(PlayMode.LOOP);
-		Animation3.setPlayMode(PlayMode.LOOP);
-		Animation4.setPlayMode(PlayMode.LOOP);
-		Animation5.setPlayMode(PlayMode.LOOP);
-		Animation6.setPlayMode(PlayMode.LOOP);
-		Animation7.setPlayMode(PlayMode.LOOP);
+
+		animationMap.put(AnimationDirection.SOUTH_WALK, new Animation(0.25f, keyframes));
+		animationMap.put(AnimationDirection.WEST_WALK, new Animation(0.25f, keyframes1));
+		animationMap.put(AnimationDirection.EAST_WALK, new Animation(0.25f, keyframes2));
+		animationMap.put(AnimationDirection.NORTH_WALK, new Animation(0.25f, keyframes3));
+		animationMap.put(AnimationDirection.SOUTH_STAND, new Animation(0.25f, keyframes4));
+		animationMap.put(AnimationDirection.NORTH_STAND, new Animation(0.25f, keyframes5));
+		animationMap.put(AnimationDirection.EAST_STAND, new Animation(0.25f, keyframes6));
+		animationMap.put(AnimationDirection.WEST_STAND, new Animation(0.25f, keyframes7));
+
+		for(Entry<AnimationDirection, Animation> a : animationMap.entrySet())
+			a.getValue().setPlayMode(PlayMode.LOOP);
+
 		/////////////////// MOVEMENT//ENDE//////////////////////////////////
 		level = 1;
 		exp = 0;
 		neededexp = 100;
-
+		inventory = new Inventory();
 	}
 
 	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, 
@@ -121,28 +128,10 @@ public class Character implements Serializable, IDrawable {
 	}
 
 	public Animation getAnimation() {
-		if (richtung == 0) {
-			return Animation;
-		} else if (richtung == 1) {
-			return Animation1;
-		} else if (richtung == 2) {
-			return Animation2;
-		} else if (richtung == 3) {
-			return Animation3;
-		} else if (richtung == 4) {
-			return Animation4;
-		} else if (richtung == 5) {
-			return Animation5;
-		} else if (richtung == 6) {
-			return Animation6;
-		} else if (richtung == 7) {
-			return Animation7;
-		} else {
-			return Animation4;
-		}
+		return animationMap.get(richtung);
 	}
 
-	public void expSammeln(int Monsterexp, boolean monsterkilled) {
+	public void expSammeln(int Monsterexp) {
 		// if monsterkilled
 		// exp+=Monsterexp;
 		if (exp >= neededexp) {
@@ -152,27 +141,12 @@ public class Character implements Serializable, IDrawable {
 
 	}
 
-	public int getRichtung() {
+	public AnimationDirection getRichtung() {
 		return richtung;
 	}
 
-	public void setRichtung(int richtung) {
-		this.richtung = richtung;
-	}
-
-	public void setRichtung(Direction direction) {
-		switch(direction) {
-		case SOUTH:	richtung = 0; break;
-		case WEST:	richtung = 1; break;
-		case EAST:	richtung = 2; break;
-		case NORTH:	richtung = 3; break;
-		
-		case SOUTH_STAND:	richtung = 4; break;
-		case WEST_STAND:	richtung = 7; break;
-		case EAST_STAND:	richtung = 6; break;
-		case NORTH_STAND:	richtung = 5; break;
-		}
-
+	public void setRichtung(AnimationDirection direction) {
+		richtung = direction;
 	}
 	
 	public void levelup() {
@@ -211,7 +185,7 @@ public class Character implements Serializable, IDrawable {
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y += 2 * attributes.getMS();
-			richtung = 3;
+			richtung = AnimationDirection.NORTH_WALK;
 
 			collisionY = false;
 
@@ -265,7 +239,7 @@ public class Character implements Serializable, IDrawable {
 
 		} else if (Gdx.input.isKeyPressed(Keys.S)) {
 			position.y -= 2 * attributes.getMS();
-			richtung = 0;
+			richtung = AnimationDirection.SOUTH_WALK;
 
 			collisionY = false;
 
@@ -316,7 +290,7 @@ public class Character implements Serializable, IDrawable {
 
 		} else if (Gdx.input.isKeyPressed(Keys.A)) {
 			position.x -= 2 * attributes.getMS();
-			richtung = 1;
+			richtung = AnimationDirection.WEST_WALK;
 
 			collisionX = false;
 
@@ -330,7 +304,7 @@ public class Character implements Serializable, IDrawable {
 				position.x = oldX;
 		} else if (Gdx.input.isKeyPressed(Keys.D)) {
 			position.x += 2 * attributes.getMS();
-			richtung = 2;
+			richtung = AnimationDirection.EAST_WALK;
 
 			collisionX = false;
 
@@ -345,19 +319,21 @@ public class Character implements Serializable, IDrawable {
 
 			if (collisionX)
 				position.x = oldX;
-		} else if (richtung == 0) {
-			richtung = 4;
-		} else if (richtung == 3) {
-			richtung = 5;
-		} else if (richtung == 2) {
-			richtung = 6;
-		} else if (richtung == 1) {
-			richtung = 7;
+		} else if (richtung == AnimationDirection.NORTH_WALK) {
+			richtung = AnimationDirection.NORTH_STAND;
+		} else if (richtung == AnimationDirection.EAST_WALK) {
+			richtung = AnimationDirection.EAST_STAND;
+		} else if (richtung == AnimationDirection.SOUTH_WALK) {
+			richtung = AnimationDirection.SOUTH_STAND;
+		} else if (richtung == AnimationDirection.WEST_WALK) {
+			richtung = AnimationDirection.WEST_STAND;
 		}
 		if (isCellBlocked(position.x, position.y)) {
 			position.x = oldX;
 			position.y = oldY;
 		}
+		
+		
 
 	}
 
@@ -454,10 +430,6 @@ public class Character implements Serializable, IDrawable {
 		return exp;
 	}
 
-	public void setExp(int exp) {
-		this.exp = exp;
-	}
-
 	public int getNeededexp() {
 		return neededexp;
 	}
@@ -482,8 +454,47 @@ public class Character implements Serializable, IDrawable {
 		return attributes;
 	}
 	
-	public enum Direction {
-		NORTH, SOUTH, EAST, WEST, NORTH_STAND, SOUTH_STAND, EAST_STAND, WEST_STAND;
+	public void gainItems(List<Item> items) {
+		gainItems(items.toArray(new Item[0]));
+	}
+	
+	public void gainItems(Item...items) {
+		for(Item i : items) {
+			System.out.println("gained " + i.getNAME());
+			if(i.getType() == ItemType.Experience) {
+				expSammeln(i.getValue());
+				PlayState.getInstance().addTempDrawable(i);
+				
+			} else if(i.getType() == ItemType.Gold) {
+				inventory.addGold(i.getValue());
+				PlayState.getInstance().addTempDrawable(i);
+			} else {
+				inventory.getItemList().add(i);
+				if(i instanceof Equipment) {
+					Equipment e = (Equipment) i;
+					e.setAsIcon();
+					PlayState.getInstance().addTempDrawable(e);
+				}
+			}
+			
+		}
 	}
 
+	public boolean isDisposable() {
+		return disposable;
+	}
+	
+	public void markToDispose() {
+		disposable = true;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	
 }

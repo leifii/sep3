@@ -1,23 +1,20 @@
 package com.objects;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.character.IDrawable;
 import com.mygdx.menu.PlayState;
-import com.character.Character;
 
-public class Truhe implements Serializable {
+public class Truhe implements Serializable, IDrawable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	Vector3 position;
 	Rectangle bounds;
@@ -26,29 +23,63 @@ public class Truhe implements Serializable {
 	Texture Open = new Texture("grafiken/Chesto.png");
 
 	Texture Zustand[] = new Texture[] { Closed, Open };
-	int i = 0;
+	private List<Item> itemList;
+	private boolean open = false;
+	
+	private boolean disposable, visible, permanent;
+	private float alpha = 1;
 
-	public Truhe(int x, int y) {
+	public Truhe(float x, float y, boolean permanent, Item...items) {
 		position = new Vector3(x, y, 0);
 		bounds = new Rectangle(x, y, 40, 40);
-
+		itemList = new LinkedList<Item>();
+		for(Item i : items)
+			itemList.add(i);
+		
+		visible = true;
+		disposable = false;
+		this.permanent = permanent;
+	}
+	
+	public Truhe(float x, float y, Item...items) {
+		this(x, y, true, items);
+	}
+	
+	public void addItem(Item i) {
+		itemList.add(i);
 	}
 
-	public void render(PlayState ps, SpriteBatch sb, Rectangle Character, Character c) {
-		sb.draw(Zustand[i], position.x, position.y);
-		if (bounds.overlaps(Character)) {
+	@Override
+	public void draw(SpriteBatch sb) {
+		if(visible) {
+			sb.setColor(1, 1, 1, alpha);
+			sb.draw(Zustand[open ? 1 : 0], position.x, position.y);
+			sb.setColor(1, 1, 1, 1);
+		}
+		
+		if (bounds.overlaps(PlayState.getInstance().getPlayer().getBounds())) {
 			// c.getPosition().x=position.x-10; KOLLISIONSSCHEISSE
 			// c.getPosition().y=position.y-10; KOLLISIONSSCHEISSE
 
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-				i++;
-				if (i > 0) {
-					i = 1;
+				if(!open) {
+					//addToInventory
+					//TODO popups gained Items, evtl Menu
+					PlayState.getInstance().getPlayer().gainItems(itemList);
 				}
+				open = true;
 			}
 		}
-
+		
+		if(open && !permanent && alpha > 0) {
+			alpha -= 0.005;
+			if(alpha <= 0) {
+				disposable = true;
+				alpha = 0;
+			}
+		}
 	}
+
 
 	public void dispose() {
 		this.dispose();
@@ -87,6 +118,21 @@ public class Truhe implements Serializable {
 
 	public void setOpen(Texture open) {
 		Open = open;
+	}
+
+	@Override
+	public boolean isDisposable() {
+		return disposable;
+	}
+
+	@Override
+	public boolean isVisible() {
+		return visible;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }

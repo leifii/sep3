@@ -20,7 +20,7 @@ public class Skill implements Serializable {
 	float cd;
 	int cdfaktor;
 
-	public int direction;
+	public AnimationDirection direction;
 
 	private transient Texture bild;
 	private float lifeTime;
@@ -75,16 +75,16 @@ public class Skill implements Serializable {
 		handleInput(xx, yy);
 		cdnow -= dt;
 		if (alive == true) {
-			if (direction == 0 || direction == 4) {
+			if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {
 				dx = 0;
 				dy = -300;
-			} else if (direction == 1 || direction == 7) {
+			} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
 				dx = -300;
 				dy = 0;
-			} else if (direction == 2 || direction == 6) {
+			} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
 				dx = 300;
 				dy = 0;
-			} else if (direction == 3 || direction == 5) {
+			} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
 				dx = 0;
 				dy = 300;
 			}
@@ -129,7 +129,7 @@ public class Skill implements Serializable {
 		cd -= 1 * cdfaktor;
 	}
 
-	public int direction(Character c) {
+	public AnimationDirection direction(Character c) {
 		return direction = c.getRichtung();
 	}
 

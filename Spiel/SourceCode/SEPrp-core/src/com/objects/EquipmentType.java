@@ -47,7 +47,7 @@ public enum EquipmentType {
 		return rarity;
 	}
 
-	public TextureRegion getTexture() {
+	public TextureRegion getTextureRegion() {
 		return texture;
 	}
 	

@@ -1,6 +1,7 @@
 package com.mygdx.menu;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,6 +24,9 @@ import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.npc.NPC;
 import com.objects.Equipment;
+import com.objects.EquipmentType;
+import com.objects.Experience;
+import com.objects.Gold;
 import com.objects.Portal;
 import com.objects.Truhe;
 
@@ -33,12 +37,13 @@ public class PlayState extends State implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	Truhe Truhe[] = new Truhe[] { new Truhe(100, 200), new Truhe(150, 200), new Truhe(200, 200), new Truhe(250, 200) };
-
+	List<Truhe> truhenListe = new LinkedList<Truhe>();
+	List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
+	
 	NPC Npc = new NPC(120, 300, "grafiken/Kobold.png");
 
 	private List<Gegner> gegnerList;
-	private List<IDrawable> itemList;
+	private List<IDrawable> drawableList;
 
 	private Character c;
 	private Map map;
@@ -51,6 +56,11 @@ public class PlayState extends State implements Serializable {
 
 	Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
 
+	private static PlayState instance;
+	public static PlayState getInstance() {
+		return instance;
+	}
+	
 	public PlayState(GameStateManager gsm, int characterauswahl) {
 		super(gsm);
 
@@ -92,8 +102,10 @@ public class PlayState extends State implements Serializable {
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 
 		initGegner();
-		itemList = new LinkedList<IDrawable>();
-
+		drawableList = new LinkedList<IDrawable>();
+		truhenListe.add(new Truhe(100, 200, new Experience(100), new Gold(30)));
+		
+		instance = this;
 	}
 
 	private void initGegner() {
@@ -101,6 +113,7 @@ public class PlayState extends State implements Serializable {
 
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
 		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1);
+		testGegner.addLoot(EquipmentType.Lederrüstung);
 		gegnerList.add(testGegner);
 
 	}
@@ -116,8 +129,10 @@ public class PlayState extends State implements Serializable {
 			gsm.push(new InventoryState(gsm, this, c));
 		
 		if(Gdx.input.isKeyJustPressed(Keys.O))
-			itemList.add(Equipment.spawnRandomItem(c.getPosition()));
-
+			drawableList.add(Equipment.spawnRandomItem(c.getPosition()));
+		if(Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
+			for(Gegner g : gegnerList)
+				g.killed();
 	}
 
 	@Override
@@ -171,8 +186,8 @@ public class PlayState extends State implements Serializable {
 		// NPCs //
 
 		// TRUHEN //
-		for (int i = 0; i < Truhe.length; i++) {
-			Truhe[i].render(this, sb, c.getBounds(), c);
+		for (Truhe t : truhenListe) {
+			t.draw(sb);
 		}
 		// TRUHEN //
 
@@ -183,16 +198,49 @@ public class PlayState extends State implements Serializable {
 		// PORTALE //
 
 		// GEGNER //
-		if (gegnerList != null)
-			for (Gegner g : gegnerList)
-				g.draw(sb);
+		if(gegnerList != null) {
+			Iterator<Gegner> iter = gegnerList.listIterator();
+			while(iter.hasNext()) {
+				IDrawable d = iter.next();
+				
+				if(d.isVisible())
+					d.draw(sb);
+				if(d.isDisposable())
+					iter.remove();
+			}
+		}
 
 		// GEGNER //
 		
+		
+		
 		// ITEMS //
-		if(itemList != null)
-			for(IDrawable d : itemList)
-				d.draw(sb);
+		if(drawableList != null) {
+			Iterator<IDrawable> iter = drawableList.listIterator();
+			while(iter.hasNext()) {
+				IDrawable d = iter.next();
+
+				if(d.isDisposable())
+					iter.remove();
+				if(d.isVisible())
+					d.draw(sb);
+			}
+		}
+		
+		if(tempDrawableList != null) {
+			Iterator<IDrawable> iter = tempDrawableList.listIterator();
+			while(iter.hasNext()) {
+				IDrawable d = iter.next();
+				
+				if(d.isDisposable())
+					iter.remove();
+				if(d.isVisible()) {
+					d.draw(sb);
+					break;
+				}
+
+			}
+		}
 
 		/**
 		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
@@ -294,4 +342,20 @@ public class PlayState extends State implements Serializable {
 
 	}
 
+	public void addDrawable(IDrawable drawable) {
+		drawableList.add(drawable);
+	}
+	
+	public void addTempDrawable(IDrawable drawable) {
+		tempDrawableList.add(drawable);
+	}
+	
+	public Character getPlayer() {
+		return c;
+	}
+	
+	public List<IDrawable> getTempDrawable() {
+		return tempDrawableList;
+	}
+	
 }
