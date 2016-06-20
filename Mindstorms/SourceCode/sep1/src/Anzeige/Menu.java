@@ -64,7 +64,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 // Initialisierung des Fenster + Aufrufen des Startbildschirms
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setSize(1050,1050);
+	setSize(700,500);
 	setTitle("SEPman");
 	setzeStartbildschirm();
 //	 Nur noch zu Testzwecken hier drin 
@@ -82,7 +82,7 @@ public void setzeStartbildschirm(){
 	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));	
 	
 	btnAuswahlfenster.setText("START");
-	btnAuswahlfenster.setBounds(210, 200, 200, 50);
+	btnAuswahlfenster.setBounds(260, 200, 200, 50);
 	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));      // 
 	btnAuswahlfenster.addActionListener(this);
 	startDisplay.add(btnAuswahlfenster);
@@ -90,7 +90,7 @@ public void setzeStartbildschirm(){
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 70));
-	lbUeberschrift.setBounds(20,20 , 580, 70);
+	lbUeberschrift.setBounds(80,20 , 580, 70);
 	startDisplay.add(lbUeberschrift);
     getContentPane().add(startDisplay);
 }
@@ -107,7 +107,7 @@ public void setzeAuswahldisplay (){
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 50));
-	lbUeberschrift.setBounds(20, 6, 580	, 50);
+	lbUeberschrift.setBounds(80, 6, 580	, 50);
 	display.add(lbUeberschrift);
 	
 	btnStart.addActionListener(this);
