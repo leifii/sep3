@@ -13,11 +13,17 @@ public class Spieldatenverarbeitung implements {
 		int ziel = arrayname[07];
 		
 		if(ziel-start == 1){
-			goWest();
+		//	goEast();
 		}
-		
-		
-		
+		else if(ziel-start == -1){
+		//	goWest();
+		}
+		else if(ziel-start == 10){
+		//	goSouth();	
+		}
+		else if(ziel-start == -10){
+		//	goNorth();	
+		}
 	}
 	
 	
