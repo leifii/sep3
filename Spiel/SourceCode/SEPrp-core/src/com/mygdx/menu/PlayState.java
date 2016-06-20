@@ -11,7 +11,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.character.Attributes;
 import com.character.Character;
 import com.character.IDrawable;
@@ -40,7 +48,7 @@ public class PlayState extends State implements Serializable {
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 	
-	NPC Npc = new NPC(120, 300, "grafiken/Kobold.png");
+	NPC Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!");
 
 	private List<Gegner> gegnerList;
 	private List<IDrawable> drawableList;
@@ -53,6 +61,9 @@ public class PlayState extends State implements Serializable {
 	int mapPixelWidth;
 	int mapPixelHeight;
 	private TiledMapTileLayer[] collisionLayer;
+	
+	private World world;
+	private Box2DDebugRenderer b2dr;
 
 	Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
 
@@ -64,25 +75,30 @@ public class PlayState extends State implements Serializable {
 	public PlayState(GameStateManager gsm, int characterauswahl) {
 		super(gsm);
 
+		world=new World(new Vector2(0,0),true);
+		b2dr=new Box2DDebugRenderer();
+		
 		s = new com.grafiken.Character();
 		map = new Map(cam);
 		collisionLayer = new TiledMapTileLayer[2];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+		
+		Body body=createDynamicBody(100,100);
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 2.5f);
 		if (characterauswahl == 1) {
 			System.out.println("Krieger");
-			c = new Krieger(100, 100, s.getAnimation(0),collisionLayer, attributes);
+			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
 		} else if (characterauswahl == 2) {
 			System.out.println("Magier");
-			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes);
+			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
 
 
-			c= new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes);
+			c= new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
 
 			
 
@@ -90,7 +106,7 @@ public class PlayState extends State implements Serializable {
 			System.out.println("SchÜtze");
 
 
-			c=new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes);
+			c=new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
 
 			//c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer) map.getMap().getLayers().get("Objekte"), attributes);
 
@@ -112,7 +128,7 @@ public class PlayState extends State implements Serializable {
 		gegnerList = new LinkedList<Gegner>();
 
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1);
+		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200,200));
 		testGegner.addLoot(EquipmentType.Lederrüstung);
 		gegnerList.add(testGegner);
 
@@ -166,7 +182,9 @@ public class PlayState extends State implements Serializable {
 			temp.y = mapPixelHeight - 32;
 			c.setPosition(temp);
 		}
-
+		
+		world.step(dt, 6, 2);
+		
 		cam.update();
 
 	}
@@ -332,6 +350,9 @@ public class PlayState extends State implements Serializable {
 		 */
 
 		sb.end();
+		
+//		b2dr.render(world, cam.combined);
+		
 	}
 
 	@Override
@@ -340,6 +361,35 @@ public class PlayState extends State implements Serializable {
 		c.dispose();
 		this.dispose();
 
+	}
+	
+	public Body createDynamicBody(int x, int y) {
+		BodyDef bdef=new BodyDef();
+		FixtureDef fdef=new FixtureDef();
+		PolygonShape shape=new PolygonShape();
+		bdef.position.set(x,y);
+		bdef.type=BodyType.DynamicBody;
+		Body body=world.createBody(bdef);
+		shape.setAsBox(16, 24);
+		fdef.shape=shape;
+		body.createFixture(fdef);
+		shape.setAsBox(16, 4, new Vector2(0,-22), 0);
+		fdef.shape=shape;
+		fdef.isSensor=true;
+		body.createFixture(fdef);
+		shape.setAsBox(16, 4, new Vector2(0,22), 0);
+		fdef.shape=shape;
+		fdef.isSensor=true;
+		body.createFixture(fdef);
+		shape.setAsBox(4, 24, new Vector2(14,0), 0);
+		fdef.shape=shape;
+		fdef.isSensor=true;
+		body.createFixture(fdef);
+		shape.setAsBox(4, 24, new Vector2(-14,0), 0);
+		fdef.shape=shape;
+		fdef.isSensor=true;
+		body.createFixture(fdef);
+		return body;
 	}
 
 	public void addDrawable(IDrawable drawable) {
