@@ -22,14 +22,12 @@ public class NPC {
 		
 		
 		
-		public NPC(int x,int y,String source){
+		public NPC(int x,int y,String source,String TEXT){
 			position=new Vector3(x, y, 0);
 			bounds=new Rectangle(x, y, 32, 48);
 			NPCtexture=new Texture(source);
-			Dialog=new Dialog(x+500,y+200 , "dialogfenster1.png");
-		}
-		
-		
+			Dialog=new Dialog(TEXT,x+500,y+200,"dialogfenster.png");
+			}
 		
 
 		public void render(PlayState ps,SpriteBatch sb,Rectangle Character,Character c){
