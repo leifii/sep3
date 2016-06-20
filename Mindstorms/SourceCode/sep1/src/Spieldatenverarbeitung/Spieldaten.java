@@ -74,7 +74,7 @@ public class Spieldaten implements ISpieldaten {
 	}
 
 
-	public int SEPMANPos(){
+	public int getSEPMANPos(){
 
 		int x = 0;
 		int y = 0;
@@ -109,7 +109,7 @@ public class Spieldaten implements ISpieldaten {
 		
 	}
 	
-	public int defenderPos(){
+	public int getDefenderPos(){
 
 		int x = 0;
 		int y = 0;
@@ -145,7 +145,7 @@ public class Spieldaten implements ISpieldaten {
 	}
 
 	
-	public int tracerPos(){
+	public int getTracerPos(){
 
 
 		int x = 0;
@@ -182,7 +182,7 @@ public class Spieldaten implements ISpieldaten {
 	}
 
 	
-	public int randomPos(){
+	public int getRandomPos(){
 
 		int x = 0;
 		int y = 0;
@@ -249,6 +249,51 @@ public class Spieldaten implements ISpieldaten {
 		return 31;
 		
 		
+	}
+	
+	public void setSEPMANPos(int pos){
+		
+		if(pos < 100){
+			Position[0][pos] = 1 ;
+		}
+		else{
+			Position[1][pos] = 1 ;
+			
+		}
+	}
+	
+	public void setDefenderPos(int pos){
+		
+		if(pos < 100){
+			Position[0][pos] = 4 ;
+		}
+		else{
+			Position[1][pos] = 4 ;
+			
+		}
+	}
+	
+	public void setTracerPos(int pos){
+		
+		if(pos < 100){
+			Position[0][pos] = 2 ;
+		}
+		else{
+			Position[1][pos] = 2 ;
+			
+		}
+	}
+	
+	
+	public void setRandomPos(int pos){
+		
+		if(pos < 100){
+			Position[0][pos] = 3 ;
+		}
+		else{
+			Position[1][pos] = 3 ;
+			
+		}
 	}
 	
 	public int[] gefahreneKanten(){
