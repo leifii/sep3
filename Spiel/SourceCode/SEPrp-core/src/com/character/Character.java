@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.grafiken.IObjekte;
 import com.grafiken.Objekte;
 import com.mygdx.menu.PlayState;
@@ -41,6 +42,7 @@ public class Character implements Serializable, IDrawable {
 	private Inventory inventory;
 
 	protected TiledMapTileLayer[] collisionLayer;
+	protected Body body;
 
 	private float cd;
 
@@ -68,11 +70,12 @@ public class Character implements Serializable, IDrawable {
 	// character1=new Texture(sprite);
 	// }
 
-	public Character(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes) {
+	public Character(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes,Body body) {
 
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
+		this.body=body;
 
 		bounds = new Rectangle(x, y, 32, 48);
 
@@ -122,8 +125,8 @@ public class Character implements Serializable, IDrawable {
 	}
 
 	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, 
-			TiledMapTileLayer[] collisionLayer, Attributes attributes) {
-		this(x, y, animation, collisionLayer, attributes);
+			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
+		this(x, y, animation, collisionLayer, attributes, body);
 		this.skills = skills;
 	}
 
@@ -186,7 +189,7 @@ public class Character implements Serializable, IDrawable {
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y += 2 * attributes.getMS();
 			richtung = AnimationDirection.NORTH_WALK;
-
+			
 			collisionY = false;
 
 			collisionY = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
@@ -332,7 +335,8 @@ public class Character implements Serializable, IDrawable {
 			position.x = oldX;
 			position.y = oldY;
 		}
-		
+
+		body.setTransform(position.x+16, position.y+24, 0);
 		
 
 	}
@@ -359,6 +363,7 @@ public class Character implements Serializable, IDrawable {
 			position.x += dx;
 			position.y += dy;
 		}
+		body.setTransform(position.x+16, position.y+24, 0);
 	}
 	
 	public void setX(float x) {
