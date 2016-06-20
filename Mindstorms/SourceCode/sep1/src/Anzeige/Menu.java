@@ -35,6 +35,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JPanel siegDisplay = new JPanel();
 	public JPanel niederlageDisplay = new JPanel();
 	public JPanel spielvorbereitungsDisplay = new JPanel();
+	public JPanel thorbenbautnurscheiße = new JPanel();
 	public JPanel pausenDisplay = new JPanel();
 	public JLabel lbUeberschrift = new JLabel("SEPMAN");
 	public JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
@@ -389,7 +390,7 @@ public void actionPerformed(ActionEvent e) {
 	else if(e.getSource() ==btnStartfinal){
 		try {
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
-			rr.Spielfeldinit("Spielfeld.txt");
+			rr.Spielfeldinit("Spielfeld.txt", thorbenbautnurscheiße);
 			dispose();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
