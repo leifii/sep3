@@ -23,7 +23,7 @@ public class AnzeigeSpielfeld extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	public JPanel contentPane;
 	 Plane[] Spielbrett;
 	 int[] pos=new int[4];
 	 int Sepman;
@@ -48,6 +48,10 @@ public class AnzeigeSpielfeld extends JFrame {
 	 * @throws IOException 
 	 * 
 	 */
+	public JPanel getPanel()
+	{
+		return contentPane;
+	}
 	public void create(String a) throws IOException
 	{
 		FileReader fr = new FileReader(a);
