@@ -11,7 +11,7 @@ public class Spieldaten implements ISpieldaten {
 	void startbelegung(){
 		
 			int x = 0;
-			while(x < 49){	
+			while(x < 37){	
 			Knoten[x] = 0 ;
 			x++;	}
 			
@@ -23,7 +23,13 @@ public class Spieldaten implements ISpieldaten {
 		Knoten[20] = 7;
 		Knoten[31] = 8;
 		Knoten[34] = 1;
-	
+		
+		int y = 0;
+		while(y<49){
+			Kanten[y] = 0;
+		}
+			
+			
 		
 	}
 
