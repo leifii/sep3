@@ -219,34 +219,34 @@ public class Spieldaten implements ISpieldaten {
 
 	
 	public int powerUp1(){
-		int a =0;
+		
 
-		return a;
+		return 106;
 
 
 
 	}
 	public int powerUp2(){
 
-		int a =0;
+		
 
-		return a;
+		return 17;
 
 	}
 	public int powerUp3(){
 
-		int a =0;
+		
 
-		return a;
+		return 20;
 		
 		
 	}
 	
 	public int powerUp4(){
 
-		int a =0;
+		
 
-		return a;
+		return 31;
 		
 		
 	}
