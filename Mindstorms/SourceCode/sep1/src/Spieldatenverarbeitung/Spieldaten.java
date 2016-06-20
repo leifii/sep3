@@ -3,6 +3,8 @@ package Spieldatenverarbeitung;
 public class Spieldaten implements ISpieldaten {
 
 	int Leben = 3 ;
+	int[] Knoten = new int[36] ;
+	int[] Kanten = new int[48];
 	int[] Modus = new int[4]; // Hinzugefügt von Mark
 
 	public void setLifes(int lifes){
@@ -25,55 +27,66 @@ public class Spieldaten implements ISpieldaten {
 	}
 
 
-	public int[][] SEPMANPos(){
+	public int SEPMANPos(){
 
-		int a[][] =null;
+		int a =0;
 
 		return a;
 	}
-	public int[][] defenderPos(){
-		int a[][] =null;
+	public int defenderPos(){
+		int a =0;
 
 		return a;
 
 	}
-	public int[][] tracerPos(){
+	public int tracerPos(){
 
-		int a[][] =null;
-
-		return a;
-
-
-	}
-	public int[][] randomPos(){
-		int a[][] =null;
+		int a =0;
 
 		return a;
 
 
 	}
-	public int[][] powerUp1(){
-		int a[][] =null;
+	public int randomPos(){
+		int a =0;
+
+		return a;
+
+
+	}
+	public int powerUp1(){
+		int a =0;
 
 		return a;
 
 
 
 	}
-	public int[][] powerUp2(){
+	public int powerUp2(){
 
-		int a[][] =null;
-
-		return a;
-
-	}
-	public int[][] powerUp3(){
-
-		int a[][] =null;
+		int a =0;
 
 		return a;
 
 	}
+	public int powerUp3(){
+
+		int a =0;
+
+		return a;
+		
+		
+	}
+	
+	public int powerUp4(){
+
+		int a =0;
+
+		return a;
+		
+		
+	}
+	
 	public int[] gefahreneKanten(){
 
 		int a[] =null;
