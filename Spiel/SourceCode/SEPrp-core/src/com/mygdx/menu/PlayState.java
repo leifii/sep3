@@ -157,6 +157,12 @@ public class PlayState extends State implements Serializable {
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
+		if(Gdx.input.isKeyJustPressed(Keys.K)){
+			de.SEPL.GameScore.GameScoreManagement.saveGameScore(c); 
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.L)){
+			de.SEPL.GameScore.GameScoreManagement.loadGameScore(); 
+		}
 		handleInput();
 		c.update(dt);
 
