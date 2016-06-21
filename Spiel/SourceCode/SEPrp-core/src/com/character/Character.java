@@ -34,21 +34,21 @@ public class Character implements IDrawable, Serializable{
 
 	protected ArrayList<Skill> skills;
 
-	protected IObjekte g;
+	transient protected IObjekte g;
 
 	private Vector3 position;
 
-	private TextureRegion character;
-	private Inventory inventory;
+	transient private TextureRegion character;
+	transient private Inventory inventory;
 
-	protected TiledMapTileLayer[] collisionLayer;
-	protected Body body;
+	transient protected TiledMapTileLayer[] collisionLayer;
+	transient protected Body body;
 
 	private float cd;
 
-	private Rectangle bounds;
-	private boolean disposable = false;
-	private boolean visible = true;
+	transient private Rectangle bounds;
+	transient private boolean disposable = false;
+	transient private boolean visible = true;
 
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 
