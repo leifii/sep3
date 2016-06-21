@@ -51,8 +51,8 @@ public class PlayState extends State implements Serializable {
 	
 	NPC Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!");
 
-	private List<Gegner> gegnerList;
-	private List<IDrawable> drawableList;
+	private transient List<Gegner> gegnerList;
+	private transient List<IDrawable> drawableList;
 
 	private Character c;
 	private transient Map map;
