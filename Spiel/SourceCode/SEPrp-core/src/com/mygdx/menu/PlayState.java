@@ -91,7 +91,7 @@ public class PlayState extends State implements Serializable {
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
-		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 2.5f);
+		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
 		if (characterauswahl == 1) {
 			System.out.println("Krieger");
 			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
@@ -130,7 +130,7 @@ public class PlayState extends State implements Serializable {
 	private void initGegner() {
 		gegnerList = new LinkedList<Gegner>();
 
-		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 0.5f);
+		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
 		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200,200));
 		testGegner.addLoot(EquipmentType.Lederrüstung);
 		gegnerList.add(testGegner);

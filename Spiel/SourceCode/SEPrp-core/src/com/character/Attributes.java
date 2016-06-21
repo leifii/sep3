@@ -8,9 +8,9 @@ public class Attributes implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int STR, INT, STA, ATK, DEF, AS;
+	private int STR, INT, DEX, STA, ATK, DEF, AS;
 	private float MS;
-	public Attributes(int STR, int INT,int STA,int ATK,int DEF, int AS, float MS) {
+	public Attributes(int STR, int INT, int DEX, int STA, int ATK, int DEF, int AS, float MS) {
 		this.setSTR(STR);
 		this.setINT(INT);
 		this.setSTA(STA);
@@ -60,6 +60,12 @@ public class Attributes implements Serializable {
 	}
 	public void setMS(float mS) {
 		MS = mS;
+	}
+	public int getDEX() {
+		return DEX;
+	}
+	public void setDEX(int dEX) {
+		DEX = dEX;
 	}
 
 }
