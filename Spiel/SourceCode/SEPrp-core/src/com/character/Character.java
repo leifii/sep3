@@ -25,7 +25,7 @@ import com.objects.Equipment;
 import com.objects.Item;
 import com.objects.ItemType;
 
-public class Character implements Serializable, IDrawable {
+public class Character implements IDrawable, Serializable{
 
 	/**
 	 * 
