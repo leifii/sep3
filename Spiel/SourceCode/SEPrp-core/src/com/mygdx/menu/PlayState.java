@@ -156,7 +156,6 @@ public class PlayState extends State implements Serializable {
 
 	@Override
 	public void update(float dt) {
-		// TODO Auto-generated method stub
 		if(Gdx.input.isKeyJustPressed(Keys.K)){
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
