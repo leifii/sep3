@@ -58,8 +58,7 @@ public class GameScoreManagement {
 			Object obj = ois.readObject();
 			if (obj instanceof com.character.Character) {
 				com.character.Character so = (com.character.Character) obj;
-				System.out.println("Objekt der Klasse PlayState geladen. Und jetzt?");
-				// TODO PlayState neu instanziieren
+				// TODO Character neu instanziieren
 
 			}
 			gameLoaded = true;
