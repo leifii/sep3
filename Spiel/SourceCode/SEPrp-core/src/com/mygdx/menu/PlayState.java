@@ -47,9 +47,9 @@ public class PlayState extends State implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
-	List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
+	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 	
-	NPC Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!");
+	transient NPC Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!");
 
 	private transient List<Gegner> gegnerList;
 	private transient List<IDrawable> drawableList;
