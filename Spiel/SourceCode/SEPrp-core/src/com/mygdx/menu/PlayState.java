@@ -55,20 +55,20 @@ public class PlayState extends State implements Serializable {
 	private List<IDrawable> drawableList;
 
 	private Character c;
-	private Map map;
-	private ICharacter s;
-	private float currentFrameTime;
-	TextureRegion currentFrame;
-	int mapPixelWidth;
-	int mapPixelHeight;
-	private TiledMapTileLayer[] collisionLayer;
+	private transient Map map;
+	private transient ICharacter s;
+	private transient float currentFrameTime;
+	transient TextureRegion currentFrame;
+	transient int mapPixelWidth;
+	transient int mapPixelHeight;
+	transient private TiledMapTileLayer[] collisionLayer;
 	
-	private World world;
-	private Box2DDebugRenderer b2dr;
+	transient private World world;
+	transient private Box2DDebugRenderer b2dr;
 
-	Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
+	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
 
-	private static PlayState instance;
+	private static transient PlayState instance;
 	public static PlayState getInstance() {
 		return instance;
 	}
