@@ -9,8 +9,9 @@ import java.io.ObjectOutputStream;
 public class GameScoreManagement {
 
 	// Speichere aktuellen Spielstand
-	public static void saveGameScore(com.character.Character character) {
+	public static boolean saveGameScore(com.character.Character character) {
 
+		boolean gameSaved = false;
 		// Streams zum speichern öffnen
 		ObjectOutputStream oos = null;
 		FileOutputStream fos = null;
@@ -20,6 +21,7 @@ public class GameScoreManagement {
 			fos = new FileOutputStream("score.ser");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(character);
+			gameSaved = true;
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -37,12 +39,15 @@ public class GameScoreManagement {
 				} catch (IOException e) {
 				}
 		}
+		return gameSaved;
 
 	}
 
 	// Lade Spielstand
-	public static void loadGameScore() {
+	public static boolean loadGameScore() {
 
+		boolean gameLoaded = false;
+		
 		// Streams zum lesen öffnen
 		ObjectInputStream ois = null;
 		FileInputStream fis = null;
@@ -57,6 +62,7 @@ public class GameScoreManagement {
 				// TODO PlayState neu instanziieren
 
 			}
+			gameLoaded = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -73,5 +79,7 @@ public class GameScoreManagement {
 				} catch (IOException e) {
 				}
 		}
+		
+		return gameLoaded;
 	}
 }
