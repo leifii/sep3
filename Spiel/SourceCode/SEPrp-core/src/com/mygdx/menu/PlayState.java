@@ -163,7 +163,9 @@ public class PlayState extends State implements Serializable {
 			}
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.L)){
-			de.SEPL.GameScore.GameScoreManagement.loadGameScore(); 
+			if (de.SEPL.GameScore.GameScoreManagement.loadGameScore() == true) {
+				System.out.println("Laden erflogreich.");
+			}
 		}
 		handleInput();
 		c.update(dt);
