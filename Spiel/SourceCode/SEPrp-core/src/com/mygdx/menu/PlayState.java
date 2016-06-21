@@ -25,6 +25,7 @@ import com.character.Character;
 import com.character.IDrawable;
 import com.character.Krieger;
 import com.character.Magier;
+import com.character.MyContactListener;
 import com.character.Schuetze;
 import com.character.Schurke;
 import com.gegnerkoordination.Gegner;
@@ -77,6 +78,8 @@ public class PlayState extends State implements Serializable {
 
 		world=new World(new Vector2(0,0),true);
 		b2dr=new Box2DDebugRenderer();
+		MyContactListener cl=new MyContactListener();
+		world.setContactListener(cl);
 		
 		s = new com.grafiken.Character();
 		map = new Map(cam);
@@ -183,7 +186,7 @@ public class PlayState extends State implements Serializable {
 			c.setPosition(temp);
 		}
 		
-		world.step(dt, 6, 2);
+		world.step(dt, 8, 8);
 		
 		cam.update();
 
@@ -370,25 +373,26 @@ public class PlayState extends State implements Serializable {
 		bdef.position.set(x,y);
 		bdef.type=BodyType.DynamicBody;
 		Body body=world.createBody(bdef);
+		body.setUserData("body");
 		shape.setAsBox(16, 24);
 		fdef.shape=shape;
 		body.createFixture(fdef);
-		shape.setAsBox(16, 4, new Vector2(0,-22), 0);
+		shape.setAsBox(18, 10, new Vector2(0,-20), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
-		body.createFixture(fdef);
-		shape.setAsBox(16, 4, new Vector2(0,22), 0);
+		body.createFixture(fdef).setUserData("south");
+		shape.setAsBox(18, 10, new Vector2(0,20), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
-		body.createFixture(fdef);
-		shape.setAsBox(4, 24, new Vector2(14,0), 0);
+		body.createFixture(fdef).setUserData("north");
+		shape.setAsBox(10, 26, new Vector2(12,0), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
-		body.createFixture(fdef);
-		shape.setAsBox(4, 24, new Vector2(-14,0), 0);
+		body.createFixture(fdef).setUserData("east");
+		shape.setAsBox(10, 26, new Vector2(-12,0), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
-		body.createFixture(fdef);
+		body.createFixture(fdef).setUserData("west");
 		return body;
 	}
 
