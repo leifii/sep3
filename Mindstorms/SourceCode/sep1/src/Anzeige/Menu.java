@@ -395,6 +395,7 @@ public void actionPerformed(ActionEvent e) {
 			spielvorbereitungsDisplay.setVisible(false);
 			spielvorbereitungsDisplay.setEnabled(false);
 			setBounds(100, 100, 150*(1+rr.haha.Breite), 150*(1+rr.haha.Länge));
+			thorbensPanel.setBackground(Color.white);
 			
 			getContentPane().add(thorbensPanel);
 			
