@@ -57,9 +57,9 @@ public class Character implements IDrawable, Serializable{
 	int DEX;
 	int MaxHP;
 
-	TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6, keyframes7;
-	Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
-	Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
+	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6, keyframes7;
+	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
+	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 	int exp;
 	int neededexp;
 	int level;
