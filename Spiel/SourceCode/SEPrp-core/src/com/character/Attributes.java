@@ -1,7 +1,13 @@
 package com.character;
 
-public class Attributes {
+import java.io.Serializable;
+
+public class Attributes implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int STR, INT, STA, ATK, DEF, AS;
 	private float MS;
 	public Attributes(int STR, int INT,int STA,int ATK,int DEF, int AS, float MS) {
