@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 public class GameScoreManagement {
 
 	// Speichere aktuellen Spielstand
-	public static void saveGameScore(com.mygdx.menu.PlayState playState) {
+	public static void saveGameScore(com.character.Character character) {
 
 		// Streams zum speichern öffnen
 		ObjectOutputStream oos = null;
@@ -19,7 +19,7 @@ public class GameScoreManagement {
 			// File anlegen und Objekt speichern
 			fos = new FileOutputStream("score.ser");
 			oos = new ObjectOutputStream(fos);
-			oos.writeObject(playState);
+			oos.writeObject(character);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -51,8 +51,8 @@ public class GameScoreManagement {
 			fis = new FileInputStream("score.ser");
 			ois = new ObjectInputStream(fis);
 			Object obj = ois.readObject();
-			if (obj instanceof com.mygdx.menu.PlayState) {
-				com.mygdx.menu.PlayState so = (com.mygdx.menu.PlayState) obj;
+			if (obj instanceof com.character.Character) {
+				com.character.Character so = (com.character.Character) obj;
 				System.out.println("Objekt der Klasse PlayState geladen. Und jetzt?");
 				// TODO PlayState neu instanziieren
 
