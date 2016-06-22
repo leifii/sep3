@@ -375,17 +375,17 @@ public class Character implements IDrawable, Serializable {
 		int korrekturx = 0, korrektury = 0;
 		if (dx > 0) {
 			korrekturx = 32;
-			if (((boolean[]) getBody().getUserData())[2])
+			if (getBody().getUserData()!=null && ((boolean[]) getBody().getUserData())[2])
 				dx = 0;
 		}
-		if (dx < 0 && ((boolean[]) getBody().getUserData())[3])
+		if (dx < 0 && getBody().getUserData()!=null &&((boolean[]) getBody().getUserData())[3])
 			dx = 0;
 		if (dy > 0) {
 			korrektury = 48;
-			if (((boolean[]) getBody().getUserData())[0])
+			if (getBody().getUserData()!=null && ((boolean[]) getBody().getUserData())[0])
 				dy = 0;
 		}
-		if (dy < 0 && ((boolean[]) getBody().getUserData())[1])
+		if (dy < 0 && getBody().getUserData()!=null && ((boolean[]) getBody().getUserData())[1])
 			dy = 0;
 		if (!isCellBlocked(position.x + dx + korrekturx, position.y + dy + korrektury)) {
 			position.x += dx;
