@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 public class GameScoreManagement {
 
 	// Speichere aktuellen Spielstand
-	public boolean saveGameScore(com.character.Character character) {
+	public static boolean saveGameScore(com.character.Character character) {
 
 		boolean gameSaved = false;
 		// Streams zum speichern öffnen
@@ -44,7 +44,7 @@ public class GameScoreManagement {
 	}
 
 	// Lade Spielstand
-	public boolean loadGameScore() {
+	public static boolean loadGameScore() {
 
 		boolean gameLoaded = false;
 
@@ -83,8 +83,8 @@ public class GameScoreManagement {
 	}
 
 //	public void setCharacter(com.character.Character so) {
-//		com.character.Character.setCharacterValues(so.exp, so.neededexp);
-//
+//		c.setCharacterValues(so.exp, so.neededexp);
+//		
 //	}
 
 }
