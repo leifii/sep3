@@ -81,4 +81,21 @@ public class GameScoreManagement {
 		
 		return gameLoaded;
 	}
+	
+	
+	public void setCharacter(){
+		int i = com.character.Character.exp;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
