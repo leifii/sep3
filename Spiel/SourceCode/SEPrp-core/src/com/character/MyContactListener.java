@@ -11,41 +11,99 @@ public class MyContactListener implements ContactListener {
 	@Override
 	public void beginContact(Contact c) {
 		// TODO Auto-generated method stub
+		System.out.println("begin contact");
 		Fixture fa=c.getFixtureA();
 		Fixture fb=c.getFixtureB();
+		boolean[] b;
 		if(fa.getUserData()!=null && fa.getUserData().equals("north")){
-			fa.getBody().setUserData("contact north");
+			b=(boolean[]) fa.getBody().getUserData();
+			b[0]=true;
+			fa.getBody().setUserData(b);
 		}
 		if(fa.getUserData()!=null && fa.getUserData().equals("south")){
-			fa.getBody().setUserData("contact south");
+			b=(boolean[]) fa.getBody().getUserData();
+			b[1]=true;
+			fa.getBody().setUserData(b);
 		}
 		if(fa.getUserData()!=null && fa.getUserData().equals("east")){
-			fa.getBody().setUserData("contact east");
+			b=(boolean[]) fa.getBody().getUserData();
+			b[2]=true;
+			fa.getBody().setUserData(b);
 		}
 		if(fa.getUserData()!=null && fa.getUserData().equals("west")){
-			fa.getBody().setUserData("contact west");
+			b=(boolean[]) fa.getBody().getUserData();
+			b[3]=true;
+			fa.getBody().setUserData(b);
 		}
 		if(fb.getUserData()!=null && fb.getUserData().equals("north")){
-			fb.getBody().setUserData("contact north");
+			b=(boolean[]) fb.getBody().getUserData();
+			b[0]=true;
+			fb.getBody().setUserData(b);
 		}
 		if(fb.getUserData()!=null && fb.getUserData().equals("south")){
-			fb.getBody().setUserData("contact south");
+			b=(boolean[]) fb.getBody().getUserData();
+			b[1]=true;
+			fb.getBody().setUserData(b);
 		}
 		if(fb.getUserData()!=null && fb.getUserData().equals("east")){
-			fb.getBody().setUserData("contact east");
+			b=(boolean[]) fb.getBody().getUserData();
+			b[2]=true;
+			fb.getBody().setUserData(b);
 		}
 		if(fb.getUserData()!=null && fb.getUserData().equals("west")){
-			fb.getBody().setUserData("contact west");
+			b=(boolean[]) fb.getBody().getUserData();
+			b[3]=true;
+			fb.getBody().setUserData(b);
 		}
 	}
 
 	@Override
 	public void endContact(Contact c) {
 		// TODO Auto-generated method stub
+		System.out.println("end contact");
 		Fixture fa=c.getFixtureA();
 		Fixture fb=c.getFixtureB();
-		fa.getBody().setUserData("body");
-		fb.getBody().setUserData("body");
+		boolean[] b;
+		if(fa.getUserData()!=null && fa.getUserData().equals("north")){
+			b=(boolean[]) fa.getBody().getUserData();
+			b[0]=false;
+			fa.getBody().setUserData(b);
+		}
+		if(fa.getUserData()!=null && fa.getUserData().equals("south")){
+			b=(boolean[]) fa.getBody().getUserData();
+			b[1]=false;
+			fa.getBody().setUserData(b);
+		}
+		if(fa.getUserData()!=null && fa.getUserData().equals("east")){
+			b=(boolean[]) fa.getBody().getUserData();
+			b[2]=false;
+			fa.getBody().setUserData(b);
+		}
+		if(fa.getUserData()!=null && fa.getUserData().equals("west")){
+			b=(boolean[]) fa.getBody().getUserData();
+			b[3]=false;
+			fa.getBody().setUserData(b);
+		}
+		if(fb.getUserData()!=null && fb.getUserData().equals("north")){
+			b=(boolean[]) fb.getBody().getUserData();
+			b[0]=false;
+			fb.getBody().setUserData(b);
+		}
+		if(fb.getUserData()!=null && fb.getUserData().equals("south")){
+			b=(boolean[]) fb.getBody().getUserData();
+			b[1]=false;
+			fb.getBody().setUserData(b);
+		}
+		if(fb.getUserData()!=null && fb.getUserData().equals("east")){
+			b=(boolean[]) fb.getBody().getUserData();
+			b[2]=false;
+			fb.getBody().setUserData(b);
+		}
+		if(fb.getUserData()!=null && fb.getUserData().equals("west")){
+			b=(boolean[]) fb.getBody().getUserData();
+			b[3]=false;
+			fb.getBody().setUserData(b);
+		}
 	}
 
 	@Override

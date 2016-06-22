@@ -200,7 +200,7 @@ public class Character implements IDrawable, Serializable{
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight());
 			if (!collisionY && body.getUserData()!=null)
-				collisionY = body.getUserData().equals("contact north");
+				collisionY = ((boolean []) body.getUserData())[0];
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y -= attributes.getMS() * (1 / Math.sqrt(2));
@@ -215,7 +215,7 @@ public class Character implements IDrawable, Serializable{
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX && body.getUserData()!=null)
-					collisionX = body.getUserData().equals("contact west");
+					collisionX = ((boolean []) body.getUserData())[3];
 
 				if (collisionX)
 					position.x = oldX;
@@ -236,7 +236,7 @@ public class Character implements IDrawable, Serializable{
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 							position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX && body.getUserData()!=null)
-					collisionX = body.getUserData().equals("contact east");
+					collisionX = ((boolean []) body.getUserData())[2];
 
 				if (collisionX)
 					position.x = oldX;
@@ -258,7 +258,7 @@ public class Character implements IDrawable, Serializable{
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(), position.y);
 			if (!collisionY && body.getUserData()!=null)
-				collisionY = body.getUserData().equals("contact south");
+				collisionY = ((boolean []) body.getUserData())[1];
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y += attributes.getMS() * (1 / Math.sqrt(2));
@@ -273,7 +273,7 @@ public class Character implements IDrawable, Serializable{
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX && body.getUserData()!=null)
-					collisionX = body.getUserData().equals("contact west");
+					collisionX = ((boolean []) body.getUserData())[3];
 
 				if (collisionX)
 					position.x = oldX;
@@ -294,7 +294,7 @@ public class Character implements IDrawable, Serializable{
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 							position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX && body.getUserData()!=null)
-					collisionX = body.getUserData().equals("contact east");
+					collisionX = ((boolean []) body.getUserData())[2];
 
 				if (collisionX)
 					position.x = oldX;
@@ -315,7 +315,7 @@ public class Character implements IDrawable, Serializable{
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
 			if (!collisionX && body.getUserData()!=null)
-				collisionX = body.getUserData().equals("contact west");
+				collisionX = ((boolean []) body.getUserData())[3];
 
 			if (collisionX)
 				position.x = oldX;
@@ -334,7 +334,7 @@ public class Character implements IDrawable, Serializable{
 				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight());
 			if (!collisionX && body.getUserData()!=null)
-				collisionX = body.getUserData().equals("contact east");
+				collisionX = ((boolean []) body.getUserData())[2];
 
 			if (collisionX)
 				position.x = oldX;
@@ -371,10 +371,20 @@ public class Character implements IDrawable, Serializable{
 
 	public void move(float dx, float dy) {
 		int korrekturx=0,korrektury=0;
-		if(dx>0)
+		if(dx>0){
 			korrekturx=32;
-		if(dy>0)
+			if(((boolean[]) body.getUserData())[2])
+				dx=0;
+		}
+		if(dx<0 && ((boolean[]) body.getUserData())[3])
+			dx=0;
+		if(dy>0){
 			korrektury=48;
+			if(((boolean[]) body.getUserData())[0])
+				dy=0;
+		}
+		if(dy<0 && ((boolean[]) body.getUserData())[1])
+			dy=0;
 		if(!isCellBlocked(position.x+dx+korrekturx,position.y+dy+korrektury)){
 			position.x += dx;
 			position.y += dy;
