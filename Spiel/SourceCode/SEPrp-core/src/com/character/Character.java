@@ -42,7 +42,7 @@ public class Character implements IDrawable, Serializable {
 	transient private Inventory inventory;
 
 	transient protected TiledMapTileLayer[] collisionLayer;
-	transient protected Body body;
+	private transient Body body;
 
 	private float cd;
 
@@ -77,7 +77,7 @@ public class Character implements IDrawable, Serializable {
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
-		this.body = body;
+		this.setBody(body);
 
 		bounds = new Rectangle(x, y, 32, 48);
 
@@ -202,8 +202,8 @@ public class Character implements IDrawable, Serializable {
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight());
-			if (!collisionY && body.getUserData() != null)
-				collisionY = ((boolean[]) body.getUserData())[0];
+			if (!collisionY && getBody().getUserData() != null)
+				collisionY = ((boolean[]) getBody().getUserData())[0];
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y -= attributes.getMS() * (1 / Math.sqrt(2));
@@ -217,8 +217,8 @@ public class Character implements IDrawable, Serializable {
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData() != null)
-					collisionX = ((boolean[]) body.getUserData())[3];
+				if (!collisionX && getBody().getUserData() != null)
+					collisionX = ((boolean[]) getBody().getUserData())[3];
 
 				if (collisionX)
 					position.x = oldX;
@@ -238,8 +238,8 @@ public class Character implements IDrawable, Serializable {
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 							position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData() != null)
-					collisionX = ((boolean[]) body.getUserData())[2];
+				if (!collisionX && getBody().getUserData() != null)
+					collisionX = ((boolean[]) getBody().getUserData())[2];
 
 				if (collisionX)
 					position.x = oldX;
@@ -260,8 +260,8 @@ public class Character implements IDrawable, Serializable {
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() / 2, position.y);
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(), position.y);
-			if (!collisionY && body.getUserData() != null)
-				collisionY = ((boolean[]) body.getUserData())[1];
+			if (!collisionY && getBody().getUserData() != null)
+				collisionY = ((boolean[]) getBody().getUserData())[1];
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y += attributes.getMS() * (1 / Math.sqrt(2));
@@ -275,8 +275,8 @@ public class Character implements IDrawable, Serializable {
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData() != null)
-					collisionX = ((boolean[]) body.getUserData())[3];
+				if (!collisionX && getBody().getUserData() != null)
+					collisionX = ((boolean[]) getBody().getUserData())[3];
 
 				if (collisionX)
 					position.x = oldX;
@@ -296,8 +296,8 @@ public class Character implements IDrawable, Serializable {
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 							position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData() != null)
-					collisionX = ((boolean[]) body.getUserData())[2];
+				if (!collisionX && getBody().getUserData() != null)
+					collisionX = ((boolean[]) getBody().getUserData())[2];
 
 				if (collisionX)
 					position.x = oldX;
@@ -317,8 +317,8 @@ public class Character implements IDrawable, Serializable {
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
-			if (!collisionX && body.getUserData() != null)
-				collisionX = ((boolean[]) body.getUserData())[3];
+			if (!collisionX && getBody().getUserData() != null)
+				collisionX = ((boolean[]) getBody().getUserData())[3];
 
 			if (collisionX)
 				position.x = oldX;
@@ -336,8 +336,8 @@ public class Character implements IDrawable, Serializable {
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight());
-			if (!collisionX && body.getUserData() != null)
-				collisionX = ((boolean[]) body.getUserData())[2];
+			if (!collisionX && getBody().getUserData() != null)
+				collisionX = ((boolean[]) getBody().getUserData())[2];
 
 			if (collisionX)
 				position.x = oldX;
@@ -355,7 +355,7 @@ public class Character implements IDrawable, Serializable {
 			position.y = oldY;
 		}
 
-		body.setTransform(position.x + 16, position.y + 24, 0);
+		getBody().setTransform(position.x + 16, position.y + 24, 0);
 
 	}
 
@@ -375,23 +375,23 @@ public class Character implements IDrawable, Serializable {
 		int korrekturx = 0, korrektury = 0;
 		if (dx > 0) {
 			korrekturx = 32;
-			if (((boolean[]) body.getUserData())[2])
+			if (((boolean[]) getBody().getUserData())[2])
 				dx = 0;
 		}
-		if (dx < 0 && ((boolean[]) body.getUserData())[3])
+		if (dx < 0 && ((boolean[]) getBody().getUserData())[3])
 			dx = 0;
 		if (dy > 0) {
 			korrektury = 48;
-			if (((boolean[]) body.getUserData())[0])
+			if (((boolean[]) getBody().getUserData())[0])
 				dy = 0;
 		}
-		if (dy < 0 && ((boolean[]) body.getUserData())[1])
+		if (dy < 0 && ((boolean[]) getBody().getUserData())[1])
 			dy = 0;
 		if (!isCellBlocked(position.x + dx + korrekturx, position.y + dy + korrektury)) {
 			position.x += dx;
 			position.y += dy;
 		}
-		body.setTransform(position.x + 16, position.y + 24, 0);
+		getBody().setTransform(position.x + 16, position.y + 24, 0);
 	}
 
 	public void setX(float x) {
@@ -531,6 +531,14 @@ public class Character implements IDrawable, Serializable {
 	public void setCharacterValues(int exp, int neededExp) {
 		this.exp = exp;
 		this.neededexp = neededExp;
+	}
+
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
 	}
 
 }
