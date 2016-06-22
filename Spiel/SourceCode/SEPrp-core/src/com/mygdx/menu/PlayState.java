@@ -151,7 +151,7 @@ public class PlayState extends State implements Serializable {
 			drawableList.add(Equipment.spawnRandomItem(c.getPosition()));
 		if(Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
 			for(Gegner g : gegnerList)
-				g.killed();
+				killGegner(g);
 	}
 
 	@Override
@@ -402,6 +402,11 @@ public class PlayState extends State implements Serializable {
 		fdef.isSensor=true;
 		body.createFixture(fdef).setUserData("west");
 		return body;
+	}
+	
+	public void killGegner(Gegner g){
+		g.killed();
+		world.destroyBody(g.getBody());
 	}
 
 	public void addDrawable(IDrawable drawable) {
