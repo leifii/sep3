@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.character.IDrawable;
 import com.mygdx.menu.PlayState;
 
@@ -18,6 +19,7 @@ public class Truhe implements Serializable, IDrawable {
 	private static final long serialVersionUID = 1L;
 	Vector3 position;
 	Rectangle bounds;
+	private Body body;
 
 	Texture Closed = new Texture("grafiken/Chest.png");
 	Texture Open = new Texture("grafiken/Chesto.png");
@@ -26,10 +28,12 @@ public class Truhe implements Serializable, IDrawable {
 	private List<Item> itemList;
 	private boolean open = false;
 	
+	private boolean destroyable = false;
+	
 	private boolean disposable, visible, permanent;
 	private float alpha = 1;
 
-	public Truhe(float x, float y, boolean permanent, Item...items) {
+	public Truhe(float x, float y, boolean permanent, Body body, Item...items) {
 		position = new Vector3(x, y, 0);
 		bounds = new Rectangle(x, y, 40, 40);
 		itemList = new LinkedList<Item>();
@@ -38,11 +42,12 @@ public class Truhe implements Serializable, IDrawable {
 		
 		visible = true;
 		disposable = false;
-		this.permanent = permanent;
+		this.setPermanent(permanent);
+		this.setBody(body);
 	}
 	
-	public Truhe(float x, float y, Item...items) {
-		this(x, y, true, items);
+	public Truhe(float x, float y, Body body, Item...items) {
+		this(x, y, true, body, items);
 	}
 	
 	public void addItem(Item i) {
@@ -53,7 +58,7 @@ public class Truhe implements Serializable, IDrawable {
 	public void draw(SpriteBatch sb) {
 		if(visible) {
 			sb.setColor(1, 1, 1, alpha);
-			sb.draw(Zustand[open ? 1 : 0], position.x, position.y);
+			sb.draw(Zustand[isOpen() ? 1 : 0], position.x, position.y);
 			sb.setColor(1, 1, 1, 1);
 		}
 		
@@ -62,19 +67,20 @@ public class Truhe implements Serializable, IDrawable {
 			// c.getPosition().y=position.y-10; KOLLISIONSSCHEISSE
 
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-				if(!open) {
+				if(!isOpen()) {
 					//addToInventory
 					//TODO popups gained Items, evtl Menu
 					PlayState.getInstance().getPlayer().gainItems(itemList);
 				}
-				open = true;
+				setOpen(true);
 			}
 		}
 		
-		if(open && !permanent && alpha > 0) {
+		if(isOpen() && !isPermanent() && alpha > 0) {
 			alpha -= 0.005;
 			if(alpha <= 0) {
 				disposable = true;
+				setDestroyable(true);
 				alpha = 0;
 			}
 		}
@@ -133,6 +139,38 @@ public class Truhe implements Serializable, IDrawable {
 	@Override
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	public boolean isPermanent() {
+		return permanent;
+	}
+
+	public void setPermanent(boolean permanent) {
+		this.permanent = permanent;
+	}
+
+	public boolean isDestroyable() {
+		return destroyable;
+	}
+
+	public void setDestroyable(boolean destroyable) {
+		this.destroyable = destroyable;
 	}
 
 }
