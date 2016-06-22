@@ -11,7 +11,6 @@ public class MyContactListener implements ContactListener {
 	@Override
 	public void beginContact(Contact c) {
 		// TODO Auto-generated method stub
-		System.out.println("begin contact");
 		Fixture fa=c.getFixtureA();
 		Fixture fb=c.getFixtureB();
 		boolean[] b;
@@ -60,7 +59,6 @@ public class MyContactListener implements ContactListener {
 	@Override
 	public void endContact(Contact c) {
 		// TODO Auto-generated method stub
-		System.out.println("end contact");
 		Fixture fa=c.getFixtureA();
 		Fixture fb=c.getFixtureB();
 		boolean[] b;
