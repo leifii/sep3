@@ -195,14 +195,12 @@ public class PlayState extends State implements Serializable {
 			c.setPosition(temp);
 		}
 		
-//		if (Gdx.input.isKeyPressed(Keys.SPACE)){
-			for(Truhe t:truhenListe){
-				if(t.isDestroyable()){
-					removeTruhe(t);
-					t.setDestroyable(false);
-				}
+		for(Truhe t:truhenListe){
+			if(t.isDestroyable()){
+				removeTruhe(t);
+				t.setDestroyable(false);
 			}
-//		}
+		}
 		
 		world.step(dt, 8, 8);
 		
