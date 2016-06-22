@@ -108,7 +108,9 @@ public class Gegner extends Character {
 		for(EquipmentType e : equips)
 			items.add(new Equipment(e));
 		items.add(new Experience(getExp()));
-		Truhe t = new Truhe(getPosition().x, getPosition().y, false, items.toArray(new Item[0]));
+		Truhe t = new Truhe(getPosition().x, getPosition().y, false, PlayState.getInstance().createTruhenBody(getPosition().x,getPosition().y), items.toArray(new Item[0]));
+		
+		PlayState.getInstance().addTruhe(t);
 		
 		PlayState.getInstance().addDrawable(t);
 		markToDispose();
