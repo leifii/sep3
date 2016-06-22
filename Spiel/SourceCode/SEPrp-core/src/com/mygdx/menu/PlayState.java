@@ -76,7 +76,7 @@ public class PlayState extends State implements Serializable {
 	public PlayState(GameStateManager gsm, int characterauswahl) {
 		super(gsm);
 
-		world=new World(new Vector2(0,0),true);
+		world=new World(new Vector2(0,0),false);
 		b2dr=new Box2DDebugRenderer();
 		MyContactListener cl=new MyContactListener();
 		world.setContactListener(cl);
@@ -363,7 +363,7 @@ public class PlayState extends State implements Serializable {
 
 		sb.end();
 		
-//		b2dr.render(world, cam.combined);
+		b2dr.render(world, cam.combined);
 		
 	}
 
@@ -382,23 +382,22 @@ public class PlayState extends State implements Serializable {
 		bdef.position.set(x,y);
 		bdef.type=BodyType.DynamicBody;
 		Body body=world.createBody(bdef);
-		body.setUserData("body");
-		shape.setAsBox(16, 24);
-		fdef.shape=shape;
-		body.createFixture(fdef);
-		shape.setAsBox(18, 10, new Vector2(0,-20), 0);
+// 0 für north, 1 für south, 2 für east, 3 für west
+		boolean[] contact={false,false,false,false};
+		body.setUserData(contact);
+		shape.setAsBox(13, 6, new Vector2(0,-22), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
 		body.createFixture(fdef).setUserData("south");
-		shape.setAsBox(18, 10, new Vector2(0,20), 0);
+		shape.setAsBox(13, 6, new Vector2(0,22), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
 		body.createFixture(fdef).setUserData("north");
-		shape.setAsBox(10, 26, new Vector2(12,0), 0);
+		shape.setAsBox(6, 21, new Vector2(14,0), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
 		body.createFixture(fdef).setUserData("east");
-		shape.setAsBox(10, 26, new Vector2(-12,0), 0);
+		shape.setAsBox(6, 21, new Vector2(-14,0), 0);
 		fdef.shape=shape;
 		fdef.isSensor=true;
 		body.createFixture(fdef).setUserData("west");
