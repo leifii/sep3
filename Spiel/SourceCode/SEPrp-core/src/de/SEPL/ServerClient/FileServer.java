@@ -1,4 +1,5 @@
 package de.SEPL.ServerClient;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +12,11 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+/* Dies ist der Server für das Auktionhaus. Er muss serperat gestartet werden,
+ * und das bevor das Spiel gestartet wird.
+ * Wird der Server im späteren Verlauf des Projekts auf einen zweiten PC ausgelagert,
+ * muss die IP-Adresse entsprechend im Clienten angepasst werden.*/
 
 public class FileServer {
 
