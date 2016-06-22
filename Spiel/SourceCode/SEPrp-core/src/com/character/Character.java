@@ -25,7 +25,7 @@ import com.objects.Equipment;
 import com.objects.Item;
 import com.objects.ItemType;
 
-public class Character implements IDrawable, Serializable{
+public class Character implements IDrawable, Serializable {
 
 	/**
 	 * 
@@ -52,12 +52,13 @@ public class Character implements IDrawable, Serializable{
 
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 
-	//int STR, INT, STA, ATK, DEF, AS; float MS
+	// int STR, INT, STA, ATK, DEF, AS; float MS
 	private Attributes attributes;
 	int DEX;
 	int MaxHP;
 
-	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6, keyframes7;
+	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6,
+			keyframes7;
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 	public static int exp;
@@ -70,12 +71,13 @@ public class Character implements IDrawable, Serializable{
 	// character1=new Texture(sprite);
 	// }
 
-	public Character(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes,Body body) {
+	public Character(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
+			Attributes attributes, Body body) {
 
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
-		this.body=body;
+		this.body = body;
 
 		bounds = new Rectangle(x, y, 32, 48);
 
@@ -114,7 +116,7 @@ public class Character implements IDrawable, Serializable{
 		animationMap.put(AnimationDirection.EAST_STAND, new Animation(0.25f, keyframes6));
 		animationMap.put(AnimationDirection.WEST_STAND, new Animation(0.25f, keyframes7));
 
-		for(Entry<AnimationDirection, Animation> a : animationMap.entrySet())
+		for (Entry<AnimationDirection, Animation> a : animationMap.entrySet())
 			a.getValue().setPlayMode(PlayMode.LOOP);
 
 		/////////////////// MOVEMENT//ENDE//////////////////////////////////
@@ -124,11 +126,12 @@ public class Character implements IDrawable, Serializable{
 		inventory = new Inventory();
 	}
 
-	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills, 
+	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills,
 			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
 		this(x, y, animation, collisionLayer, attributes, body);
 		this.skills = skills;
 	}
+	
 
 	public Animation getAnimation() {
 		return animationMap.get(richtung);
@@ -151,7 +154,7 @@ public class Character implements IDrawable, Serializable{
 	public void setRichtung(AnimationDirection direction) {
 		richtung = direction;
 	}
-	
+
 	public void levelup() {
 		level++;
 	}
@@ -189,7 +192,7 @@ public class Character implements IDrawable, Serializable{
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			position.y += 2 * attributes.getMS();
 			richtung = AnimationDirection.NORTH_WALK;
-			
+
 			collisionY = false;
 
 			collisionY = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
@@ -199,8 +202,8 @@ public class Character implements IDrawable, Serializable{
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight());
-			if (!collisionY && body.getUserData()!=null)
-				collisionY = ((boolean []) body.getUserData())[0];
+			if (!collisionY && body.getUserData() != null)
+				collisionY = ((boolean[]) body.getUserData())[0];
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y -= attributes.getMS() * (1 / Math.sqrt(2));
@@ -214,8 +217,8 @@ public class Character implements IDrawable, Serializable{
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData()!=null)
-					collisionX = ((boolean []) body.getUserData())[3];
+				if (!collisionX && body.getUserData() != null)
+					collisionX = ((boolean[]) body.getUserData())[3];
 
 				if (collisionX)
 					position.x = oldX;
@@ -235,8 +238,8 @@ public class Character implements IDrawable, Serializable{
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 							position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData()!=null)
-					collisionX = ((boolean []) body.getUserData())[2];
+				if (!collisionX && body.getUserData() != null)
+					collisionX = ((boolean[]) body.getUserData())[2];
 
 				if (collisionX)
 					position.x = oldX;
@@ -257,8 +260,8 @@ public class Character implements IDrawable, Serializable{
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() / 2, position.y);
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(), position.y);
-			if (!collisionY && body.getUserData()!=null)
-				collisionY = ((boolean []) body.getUserData())[1];
+			if (!collisionY && body.getUserData() != null)
+				collisionY = ((boolean[]) body.getUserData())[1];
 
 			if (Gdx.input.isKeyPressed(Keys.A)) {
 				position.y += attributes.getMS() * (1 / Math.sqrt(2));
@@ -272,8 +275,8 @@ public class Character implements IDrawable, Serializable{
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData()!=null)
-					collisionX = ((boolean []) body.getUserData())[3];
+				if (!collisionX && body.getUserData() != null)
+					collisionX = ((boolean[]) body.getUserData())[3];
 
 				if (collisionX)
 					position.x = oldX;
@@ -293,8 +296,8 @@ public class Character implements IDrawable, Serializable{
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 							position.y + collisionLayer[0].getTileHeight());
-				if (!collisionX && body.getUserData()!=null)
-					collisionX = ((boolean []) body.getUserData())[2];
+				if (!collisionX && body.getUserData() != null)
+					collisionX = ((boolean[]) body.getUserData())[2];
 
 				if (collisionX)
 					position.x = oldX;
@@ -314,8 +317,8 @@ public class Character implements IDrawable, Serializable{
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
-			if (!collisionX && body.getUserData()!=null)
-				collisionX = ((boolean []) body.getUserData())[3];
+			if (!collisionX && body.getUserData() != null)
+				collisionX = ((boolean[]) body.getUserData())[3];
 
 			if (collisionX)
 				position.x = oldX;
@@ -333,8 +336,8 @@ public class Character implements IDrawable, Serializable{
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight());
-			if (!collisionX && body.getUserData()!=null)
-				collisionX = ((boolean []) body.getUserData())[2];
+			if (!collisionX && body.getUserData() != null)
+				collisionX = ((boolean[]) body.getUserData())[2];
 
 			if (collisionX)
 				position.x = oldX;
@@ -352,8 +355,7 @@ public class Character implements IDrawable, Serializable{
 			position.y = oldY;
 		}
 
-		body.setTransform(position.x+16, position.y+24, 0);
-		
+		body.setTransform(position.x + 16, position.y + 24, 0);
 
 	}
 
@@ -370,32 +372,32 @@ public class Character implements IDrawable, Serializable{
 	}
 
 	public void move(float dx, float dy) {
-		int korrekturx=0,korrektury=0;
-		if(dx>0){
-			korrekturx=32;
-			if(((boolean[]) body.getUserData())[2])
-				dx=0;
+		int korrekturx = 0, korrektury = 0;
+		if (dx > 0) {
+			korrekturx = 32;
+			if (((boolean[]) body.getUserData())[2])
+				dx = 0;
 		}
-		if(dx<0 && ((boolean[]) body.getUserData())[3])
-			dx=0;
-		if(dy>0){
-			korrektury=48;
-			if(((boolean[]) body.getUserData())[0])
-				dy=0;
+		if (dx < 0 && ((boolean[]) body.getUserData())[3])
+			dx = 0;
+		if (dy > 0) {
+			korrektury = 48;
+			if (((boolean[]) body.getUserData())[0])
+				dy = 0;
 		}
-		if(dy<0 && ((boolean[]) body.getUserData())[1])
-			dy=0;
-		if(!isCellBlocked(position.x+dx+korrekturx,position.y+dy+korrektury)){
+		if (dy < 0 && ((boolean[]) body.getUserData())[1])
+			dy = 0;
+		if (!isCellBlocked(position.x + dx + korrekturx, position.y + dy + korrektury)) {
 			position.x += dx;
 			position.y += dy;
 		}
-		body.setTransform(position.x+16, position.y+24, 0);
+		body.setTransform(position.x + 16, position.y + 24, 0);
 	}
-	
+
 	public void setX(float x) {
 		position.x = x;
 	}
-	
+
 	public void setY(float y) {
 		position.y = y;
 	}
@@ -456,7 +458,6 @@ public class Character implements IDrawable, Serializable{
 		MaxHP = maxHP;
 	}
 
-	
 	public int getExp() {
 		return exp;
 	}
@@ -480,41 +481,41 @@ public class Character implements IDrawable, Serializable{
 	public void setPosition(Vector3 position) {
 		this.position = position;
 	}
-	
+
 	public Attributes getAttributes() {
 		return attributes;
 	}
-	
+
 	public void gainItems(List<Item> items) {
 		gainItems(items.toArray(new Item[0]));
 	}
-	
-	public void gainItems(Item...items) {
-		for(Item i : items) {
+
+	public void gainItems(Item... items) {
+		for (Item i : items) {
 			System.out.println("gained " + i.getNAME());
-			if(i.getType() == ItemType.Experience) {
+			if (i.getType() == ItemType.Experience) {
 				expSammeln(i.getValue());
 				PlayState.getInstance().addTempDrawable(i);
-				
-			} else if(i.getType() == ItemType.Gold) {
+
+			} else if (i.getType() == ItemType.Gold) {
 				inventory.addGold(i.getValue());
 				PlayState.getInstance().addTempDrawable(i);
 			} else {
 				inventory.getItemList().add(i);
-				if(i instanceof Equipment) {
+				if (i instanceof Equipment) {
 					Equipment e = (Equipment) i;
 					e.setAsIcon();
 					PlayState.getInstance().addTempDrawable(e);
 				}
 			}
-			
+
 		}
 	}
 
 	public boolean isDisposable() {
 		return disposable;
 	}
-	
+
 	public void markToDispose() {
 		disposable = true;
 	}
@@ -527,5 +528,9 @@ public class Character implements IDrawable, Serializable{
 		this.visible = visible;
 	}
 
-	
+	public void setCharacterValues(int exp, int neededExp) {
+		this.exp = exp;
+		this.neededexp = neededExp;
+	}
+
 }
