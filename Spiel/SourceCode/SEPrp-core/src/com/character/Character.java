@@ -60,9 +60,9 @@ public class Character implements IDrawable, Serializable{
 	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6, keyframes7;
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
-	int exp;
-	int neededexp;
-	int level;
+	public static int exp;
+	public static int neededexp;
+	public static int level;
 
 	// public Character (int x,int y,String sprite,float speed){
 	// laufspeed=speed;
