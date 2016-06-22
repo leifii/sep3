@@ -86,10 +86,13 @@ public class Kommunikation implements IKommunikation{
 //				nachricht[4] = getPosG3();
 			}
 			else if(i==5){
-//				nachricht[5] = getPosSepman();
+//				nachricht[5] = getDestG3();
 			}
 			else if(i==6){
-//				nachricht[6] = getDestSepman();
+//				nachricht[6] = getPosSepman();
+			}
+			else if(i==7){
+//				nachricht[7] = getDestSepman();
 			}
 		}
 		
