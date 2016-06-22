@@ -63,7 +63,7 @@ public class PlayState extends State implements Serializable {
 	transient int mapPixelHeight;
 	transient private TiledMapTileLayer[] collisionLayer;
 	
-	transient private World world;
+	public transient World world;
 	transient private Box2DDebugRenderer b2dr;
 
 	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
@@ -122,7 +122,7 @@ public class PlayState extends State implements Serializable {
 
 		initGegner();
 		drawableList = new LinkedList<IDrawable>();
-		truhenListe.add(new Truhe(100, 200, new Experience(100), new Gold(30)));
+		truhenListe.add(new Truhe(100, 200, createTruhenBody(100,200), new Experience(100), new Gold(30)));
 		
 		instance = this;
 	}
@@ -194,6 +194,15 @@ public class PlayState extends State implements Serializable {
 			temp.y = mapPixelHeight - 32;
 			c.setPosition(temp);
 		}
+		
+//		if (Gdx.input.isKeyPressed(Keys.SPACE)){
+			for(Truhe t:truhenListe){
+				if(t.isDestroyable()){
+					removeTruhe(t);
+					t.setDestroyable(false);
+				}
+			}
+//		}
 		
 		world.step(dt, 8, 8);
 		
@@ -363,7 +372,7 @@ public class PlayState extends State implements Serializable {
 
 		sb.end();
 		
-//		b2dr.render(world, cam.combined);
+		b2dr.render(world, cam.combined);
 		
 	}
 
@@ -379,7 +388,7 @@ public class PlayState extends State implements Serializable {
 		BodyDef bdef=new BodyDef();
 		FixtureDef fdef=new FixtureDef();
 		PolygonShape shape=new PolygonShape();
-		bdef.position.set(x,y);
+		bdef.position.set(x+16,y+24);
 		bdef.type=BodyType.DynamicBody;
 		Body body=world.createBody(bdef);
 // 0 für north, 1 für south, 2 für east, 3 für west
@@ -404,9 +413,31 @@ public class PlayState extends State implements Serializable {
 		return body;
 	}
 	
+	public Body createTruhenBody(float x, float y){
+		BodyDef bdef=new BodyDef();
+		FixtureDef fdef=new FixtureDef();
+		PolygonShape shape=new PolygonShape();
+		bdef.position.set(x+24,y+20);
+		bdef.type=BodyType.DynamicBody;
+		Body body=world.createBody(bdef);
+		shape.setAsBox(18, 18);
+		fdef.shape=shape;
+		fdef.isSensor=true;
+		body.createFixture(fdef);
+		return body;
+	}
+	
+	public void removeTruhe(Truhe t){
+		world.destroyBody(t.getBody());
+	}
+	
 	public void killGegner(Gegner g){
 		g.killed();
 		world.destroyBody(g.getBody());
+	}
+	
+	public void addTruhe(Truhe t){
+		truhenListe.add(t);
 	}
 
 	public void addDrawable(IDrawable drawable) {
