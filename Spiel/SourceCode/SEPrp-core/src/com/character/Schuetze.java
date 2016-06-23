@@ -29,10 +29,10 @@ public class Schuetze extends Character{
 
 		skills = new ArrayList<Skill>();
 			//		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(3), false, 1, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,10,g.getSkill(7), true, 2, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,5,1,2,1,1,3,g.getSkill(0), false, 4, 0, this));
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(12), false, 1, 0, this)); //eigentlich 3-fach pfeil
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,10,1,1,3,g.getSkill(8), true, 2, 0, this));	//heal over time
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,20,1,10,1,1,20,g.getSkill(0), false, 3, 0, this));	//falle
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,1,45,1,1,3,g.getSkill(13), false, 4, 0, this));	//großer pfeil
 	}
 	
 	@Override

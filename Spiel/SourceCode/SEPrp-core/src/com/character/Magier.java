@@ -25,10 +25,10 @@ public class Magier extends Character{
 
 		skills = new ArrayList<Skill>();
 //		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(3), false, 1, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,10,g.getSkill(7), true, 2, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,5,1,2,1,1,3,g.getSkill(0), false, 4, 0, this));
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(6), false, 1, 0, this));	//feuerball
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,40,1,15,1,1,2.5f,g.getSkill(9), true, 2, 0, this));	//eisschild
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,20,1,5,1,1,3,g.getSkill(2), false, 3, 0, this));	//eis/wasserball
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,1,45,1,1,3,g.getSkill(17), false, 4, 0, this));	//geist
 
 
 	}
