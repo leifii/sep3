@@ -41,7 +41,7 @@ public class NewGameCharacterState extends NewMenuState {
 	private Label label;
 	private Drawable drawable;
 
-	protected NewGameCharacterState(GameStateManager gsm) {
+	public NewGameCharacterState(GameStateManager gsm) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
 		back = new Texture("back.jpg");
