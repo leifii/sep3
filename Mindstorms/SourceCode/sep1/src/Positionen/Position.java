@@ -1,5 +1,10 @@
 package Positionen;
 
-public class Position {
+import Anzeige.Plane;
 
+public class Position extends Plane {
+
+	public int getposition(){
+		return getposition();
+	}
 }
