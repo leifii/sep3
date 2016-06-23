@@ -124,7 +124,7 @@ public class PlayState extends State implements Serializable {
 		instance = this;
 	}
 
-	// Konstruktor für das Laden gespeicherter Spiele
+	// Konstruktor für das Laden gespeicherter Spiele --Dom--
 	public PlayState(GameStateManager gsm, int characterauswahl, Vector3 position, int exp) {
 		// TODO weitere Attribute dem Kontruktor übergeben!!
 		super(gsm);
