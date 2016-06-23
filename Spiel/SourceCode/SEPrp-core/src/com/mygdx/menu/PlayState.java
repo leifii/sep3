@@ -48,7 +48,7 @@ public class PlayState extends State implements Serializable {
 
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
-	
+
 	transient NPC Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!");
 
 	private transient List<Gegner> gegnerList;
@@ -62,32 +62,33 @@ public class PlayState extends State implements Serializable {
 	transient int mapPixelWidth;
 	transient int mapPixelHeight;
 	transient private TiledMapTileLayer[] collisionLayer;
-	
+
 	public transient World world;
 	transient private Box2DDebugRenderer b2dr;
 
 	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
 
 	private static transient PlayState instance;
+
 	public static PlayState getInstance() {
 		return instance;
 	}
-	
+
 	public PlayState(GameStateManager gsm, int characterauswahl) {
 		super(gsm);
 
-		world=new World(new Vector2(0,0),false);
-		b2dr=new Box2DDebugRenderer();
-		MyContactListener cl=new MyContactListener();
+		world = new World(new Vector2(0, 0), false);
+		b2dr = new Box2DDebugRenderer();
+		MyContactListener cl = new MyContactListener();
 		world.setContactListener(cl);
-		
+
 		s = new com.grafiken.Character();
 		map = new Map(cam);
 		collisionLayer = new TiledMapTileLayer[2];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
-		
-		Body body=createDynamicBody(100,100);
+
+		Body body = createDynamicBody(100, 100);
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
@@ -100,19 +101,15 @@ public class PlayState extends State implements Serializable {
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
 
-
-			c= new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
-
-			
+			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
 
 		} else if (characterauswahl == 4) {
 			System.out.println("SchÜtze");
 
+			c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
 
-			c=new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
-
-			//c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer) map.getMap().getLayers().get("Objekte"), attributes);
-
+			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
+			// map.getMap().getLayers().get("Objekte"), attributes);
 
 			System.out.println("SchÜtze");
 		}
@@ -122,8 +119,52 @@ public class PlayState extends State implements Serializable {
 
 		initGegner();
 		drawableList = new LinkedList<IDrawable>();
-		truhenListe.add(new Truhe(100, 200, createTruhenBody(100,200), new Experience(100), new Gold(30)));
-		
+		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
+
+		instance = this;
+	}
+
+	// Konstruktor für das Laden gespeicherter Spiele
+	public PlayState(GameStateManager gsm, int characterauswahl, Vector3 position, int exp) {
+		// TODO weitere Attribute dem Kontruktor übergeben!!
+		super(gsm);
+
+		world = new World(new Vector2(0, 0), false);
+		b2dr = new Box2DDebugRenderer();
+		MyContactListener cl = new MyContactListener();
+		world.setContactListener(cl);
+
+		s = new com.grafiken.Character();
+		map = new Map(cam);
+		collisionLayer = new TiledMapTileLayer[2];
+		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
+		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+
+		Body body = createDynamicBody(100, 100);
+
+		// CHARAKTERAUSWAHL
+		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
+		if (characterauswahl == 1) {
+			System.out.println("Krieger");
+			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
+		} else if (characterauswahl == 2) {
+			System.out.println("Magier");
+			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
+		} else if (characterauswahl == 3) {
+			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
+		} else if (characterauswahl == 4) {
+			System.out.println("SchÜtze");
+			c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
+			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
+			// map.getMap().getLayers().get("Objekte"), attributes);
+			System.out.println("SchÜtze");
+		}
+		// --------------
+
+		initGegner();
+		drawableList = new LinkedList<IDrawable>();
+		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
+
 		instance = this;
 	}
 
@@ -131,7 +172,7 @@ public class PlayState extends State implements Serializable {
 		gegnerList = new LinkedList<Gegner>();
 
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200,200));
+		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200, 200));
 		testGegner.addLoot(EquipmentType.Lederrüstung);
 		gegnerList.add(testGegner);
 
@@ -144,20 +185,20 @@ public class PlayState extends State implements Serializable {
 			Gdx.app.exit();
 		}
 
-		if(Gdx.input.isKeyJustPressed(Keys.I))
+		if (Gdx.input.isKeyJustPressed(Keys.I))
 			gsm.push(new InventoryState(gsm, this, c));
-		
-		if(Gdx.input.isKeyJustPressed(Keys.O))
+
+		if (Gdx.input.isKeyJustPressed(Keys.O))
 			drawableList.add(Equipment.spawnRandomItem(c.getPosition()));
-		if(Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
-			for(Gegner g : gegnerList)
+		if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
+			for (Gegner g : gegnerList)
 				killGegner(g);
-		if(Gdx.input.isKeyJustPressed(Keys.K)){
+		if (Gdx.input.isKeyJustPressed(Keys.K)) {
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
 			}
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.L)){
+		if (Gdx.input.isKeyJustPressed(Keys.L)) {
 			if (de.SEPL.GameScore.GameScoreManagement.loadGameScore() == true) {
 				System.out.println("Laden erflogreich.");
 			}
@@ -194,16 +235,16 @@ public class PlayState extends State implements Serializable {
 			temp.y = mapPixelHeight - 32;
 			c.setPosition(temp);
 		}
-		
-		for(Truhe t:truhenListe){
-			if(t.isDestroyable()){
+
+		for (Truhe t : truhenListe) {
+			if (t.isDestroyable()) {
 				removeTruhe(t);
 				t.setDestroyable(false);
 			}
 		}
-		
+
 		world.step(dt, 8, 8);
-		
+
 		cam.update();
 
 	}
@@ -235,43 +276,41 @@ public class PlayState extends State implements Serializable {
 		// PORTALE //
 
 		// GEGNER //
-		if(gegnerList != null) {
+		if (gegnerList != null) {
 			Iterator<Gegner> iter = gegnerList.listIterator();
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				IDrawable d = iter.next();
-				
-				if(d.isVisible())
+
+				if (d.isVisible())
 					d.draw(sb);
-				if(d.isDisposable())
+				if (d.isDisposable())
 					iter.remove();
 			}
 		}
 
 		// GEGNER //
-		
-		
-		
+
 		// ITEMS //
-		if(drawableList != null) {
+		if (drawableList != null) {
 			Iterator<IDrawable> iter = drawableList.listIterator();
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				IDrawable d = iter.next();
 
-				if(d.isDisposable())
+				if (d.isDisposable())
 					iter.remove();
-				if(d.isVisible())
+				if (d.isVisible())
 					d.draw(sb);
 			}
 		}
-		
-		if(tempDrawableList != null) {
+
+		if (tempDrawableList != null) {
 			Iterator<IDrawable> iter = tempDrawableList.listIterator();
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				IDrawable d = iter.next();
-				
-				if(d.isDisposable())
+
+				if (d.isDisposable())
 					iter.remove();
-				if(d.isVisible()) {
+				if (d.isVisible()) {
 					d.draw(sb);
 					break;
 				}
@@ -369,9 +408,9 @@ public class PlayState extends State implements Serializable {
 		 */
 
 		sb.end();
-		
+
 		b2dr.render(world, cam.combined);
-		
+
 	}
 
 	@Override
@@ -381,77 +420,77 @@ public class PlayState extends State implements Serializable {
 		this.dispose();
 
 	}
-	
+
 	public Body createDynamicBody(int x, int y) {
-		BodyDef bdef=new BodyDef();
-		FixtureDef fdef=new FixtureDef();
-		PolygonShape shape=new PolygonShape();
-		bdef.position.set(x+16,y+24);
-		bdef.type=BodyType.DynamicBody;
-		Body body=world.createBody(bdef);
-// 0 für north, 1 für south, 2 für east, 3 für west
-		boolean[] contact={false,false,false,false};
+		BodyDef bdef = new BodyDef();
+		FixtureDef fdef = new FixtureDef();
+		PolygonShape shape = new PolygonShape();
+		bdef.position.set(x + 16, y + 24);
+		bdef.type = BodyType.DynamicBody;
+		Body body = world.createBody(bdef);
+		// 0 für north, 1 für south, 2 für east, 3 für west
+		boolean[] contact = { false, false, false, false };
 		body.setUserData(contact);
-		shape.setAsBox(13, 6, new Vector2(0,-22), 0);
-		fdef.shape=shape;
-		fdef.isSensor=true;
+		shape.setAsBox(13, 6, new Vector2(0, -22), 0);
+		fdef.shape = shape;
+		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("south");
-		shape.setAsBox(13, 6, new Vector2(0,22), 0);
-		fdef.shape=shape;
-		fdef.isSensor=true;
+		shape.setAsBox(13, 6, new Vector2(0, 22), 0);
+		fdef.shape = shape;
+		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("north");
-		shape.setAsBox(6, 21, new Vector2(14,0), 0);
-		fdef.shape=shape;
-		fdef.isSensor=true;
+		shape.setAsBox(6, 21, new Vector2(14, 0), 0);
+		fdef.shape = shape;
+		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("east");
-		shape.setAsBox(6, 21, new Vector2(-14,0), 0);
-		fdef.shape=shape;
-		fdef.isSensor=true;
+		shape.setAsBox(6, 21, new Vector2(-14, 0), 0);
+		fdef.shape = shape;
+		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("west");
 		return body;
 	}
-	
-	public Body createTruhenBody(float x, float y){
-		BodyDef bdef=new BodyDef();
-		FixtureDef fdef=new FixtureDef();
-		PolygonShape shape=new PolygonShape();
-		bdef.position.set(x+24,y+20);
-		bdef.type=BodyType.DynamicBody;
-		Body body=world.createBody(bdef);
+
+	public Body createTruhenBody(float x, float y) {
+		BodyDef bdef = new BodyDef();
+		FixtureDef fdef = new FixtureDef();
+		PolygonShape shape = new PolygonShape();
+		bdef.position.set(x + 24, y + 20);
+		bdef.type = BodyType.DynamicBody;
+		Body body = world.createBody(bdef);
 		shape.setAsBox(18, 18);
-		fdef.shape=shape;
-		fdef.isSensor=true;
+		fdef.shape = shape;
+		fdef.isSensor = true;
 		body.createFixture(fdef);
 		return body;
 	}
-	
-	public void removeTruhe(Truhe t){
+
+	public void removeTruhe(Truhe t) {
 		world.destroyBody(t.getBody());
 	}
-	
-	public void killGegner(Gegner g){
+
+	public void killGegner(Gegner g) {
 		g.killed();
 		world.destroyBody(g.getBody());
 	}
-	
-	public void addTruhe(Truhe t){
+
+	public void addTruhe(Truhe t) {
 		truhenListe.add(t);
 	}
 
 	public void addDrawable(IDrawable drawable) {
 		drawableList.add(drawable);
 	}
-	
+
 	public void addTempDrawable(IDrawable drawable) {
 		tempDrawableList.add(drawable);
 	}
-	
+
 	public Character getPlayer() {
 		return c;
 	}
-	
+
 	public List<IDrawable> getTempDrawable() {
 		return tempDrawableList;
 	}
-	
+
 }
