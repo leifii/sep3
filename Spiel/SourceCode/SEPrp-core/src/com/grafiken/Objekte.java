@@ -10,7 +10,7 @@ public class Objekte implements IObjekte{
 	Texture[] chests;
 	final public static TextureRegion[][] ITEMS2 =  TextureRegion.split(new Texture("grafiken/items1.png"),32,32);
 	public Objekte(){
-		skills=new Texture[]{new Texture("grafiken/Energiekugel.png"),new Texture("grafiken/Energiekugel1.png"),new Texture("grafiken/Energiekugel2.png"),new Texture("grafiken/Energiekugel3.png"),new Texture("grafiken/Fire.png"),new Texture("grafiken/Fire1.png"), new Texture("grafiken/Fire2.png"), new Texture("grafiken/aura.png")};
+		skills=new Texture[]{new Texture("grafiken/Energiekugel.png"),new Texture("grafiken/Energiekugel1.png"),new Texture("grafiken/Energiekugel2.png"),new Texture("grafiken/Energiekugel3.png"),new Texture("grafiken/Fire.png"),new Texture("grafiken/Fire1.png"), new Texture("grafiken/Fire2.png"), new Texture("grafiken/aura.png"), new Texture("grafiken/aura-grün.png"), new Texture("grafiken/Stein.png")};
 		chests=new Texture[]{new Texture("grafiken/Chest.png"),new Texture("grafiken/Chesto.png")};
 		
 	}
