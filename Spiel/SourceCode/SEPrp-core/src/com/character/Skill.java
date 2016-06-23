@@ -212,7 +212,7 @@ public class Skill implements Serializable {
 	public void buffed(Character c){
 		if(buff == true && alive == true){
 			if(c instanceof Krieger){
-				
+				System.out.println("hallo");
 			}
 		}
 	}
