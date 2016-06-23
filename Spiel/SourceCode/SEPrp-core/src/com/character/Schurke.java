@@ -23,7 +23,7 @@ public class Schurke extends Character{
 		
 		
 		skills = new ArrayList<Skill>();
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 300, 0, 1, 1, 1, 0, 5, 1, g.getSkill(6), false));
+		
 	}
 	
 	@Override
