@@ -52,7 +52,7 @@ public class Skill implements Serializable {
 	
 
 	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime, 
-			Texture bild, boolean buff, int button, int helpNr /*boolean locked*/) {
+			Texture bild, boolean buff, int button, int helpNr, Character c /*boolean locked*/) {
 		this.x = x;
 		this.y = y;
 		this.lvl = lvl;
@@ -65,6 +65,7 @@ public class Skill implements Serializable {
 		this.bild = bild;
 		this.buff = buff;
 		this.button = button;
+		this.c = c;
 		remove = false;
 		cdnow = 0;
 		
