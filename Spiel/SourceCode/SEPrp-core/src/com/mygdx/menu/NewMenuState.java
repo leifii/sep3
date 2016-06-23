@@ -33,7 +33,7 @@ public class NewMenuState extends MenuState {
 	private BitmapFont white;
 	private Label label;
 
-	protected NewMenuState(GameStateManager gsm) {
+	public NewMenuState(GameStateManager gsm) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
 		back = new Texture("back.jpg");
