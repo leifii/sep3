@@ -19,7 +19,7 @@ public class Planeinit implements IPlaneinit{
 		}
 		for(int k: knoten)
 		{
-			plane[i].knoten=k;
+			plane[i].knotenNR=k;
 			plane[i].nKante=n[i];
 			plane[i].sKante=s[i];
 			plane[i].oKante=o[i];
