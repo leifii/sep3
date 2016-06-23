@@ -383,6 +383,10 @@ public void actionPerformed(ActionEvent e) {
 		if(eingabeKorrekt()){
 		setzeSpielvorbereitungsdisplay();
 		}
+		else {
+			lbUeberschrift.setForeground(Color.red);
+			lbUeberschrift.setText("Falsche Eingabe");
+		}
 	}
 	else if(e.getSource()== btnZurueck){
 		setzeAuswahldisplay();  
