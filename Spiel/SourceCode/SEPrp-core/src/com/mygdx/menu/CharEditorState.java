@@ -89,11 +89,14 @@ public class CharEditorState extends State {
 		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f-420);
 		Rahmen.setWidth(Gdx.graphics.getWidth()*1.1f);
 		Rahmen.setHeight(Gdx.graphics.getHeight()*1.5f);
-
 		
+		Image character=new Image(new Texture("grafiken/Archer.png"));
+		character.setWidth(Gdx.graphics.getWidth());
+		character.setHeight(Gdx.graphics.getHeight());
 		
-		
+//		table.debug();
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);  
+		table.add(character).padTop(200);
 		table.row();
 		Label augenfarbe= new Label(" Augenfarbe   ", labelStyle);
 		table.add(augenfarbe);
@@ -104,8 +107,13 @@ public class CharEditorState extends State {
 		table.add(haarfarbe);
 		table.add(buttonK);
 		table.add(buttonL);
-		
-
+		table.row();
+		Label Name= new Label("Name:   ", labelStyle);
+//		
+//		TextField name=new TextField("",  new Skin(Gdx.files.internal("")));
+//
+		table.add(Name);
+		table.add(new Label("Eingabe",labelStyle));
 		table.add(buttonM);
 		
 		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
