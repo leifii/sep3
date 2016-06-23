@@ -99,7 +99,7 @@ public class GameScoreManagement {
 		config.height = MyGdxGame.HEIGHT;
 		config.title = MyGdxGame.TITLE;
 		config.fullscreen = true;
-		new LwjglApplication(new MyGdxGame(), config);
+		//new LwjglApplication(new MyGdxGame(), config);
 		
 		//TODO characterID implementieren
 		int characterID = 1;
