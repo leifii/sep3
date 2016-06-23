@@ -44,7 +44,7 @@ public class Character implements IDrawable, Serializable {
 	transient protected TiledMapTileLayer[] collisionLayer;
 	private transient Body body;
 
-	private float cd;
+	//private float cd;
 
 	transient private Rectangle bounds;
 	transient private boolean disposable = false;
@@ -183,7 +183,7 @@ public class Character implements IDrawable, Serializable {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 
 
-		cd = skills.get(0).gethitcd();
+		//cd = skills.get(0).gethitcd();
 
 		for (int i = 0; i < skills.size(); i++) {
 			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);
@@ -429,8 +429,8 @@ public class Character implements IDrawable, Serializable {
 
 	public void angriff() {
 
-		if (cd == 0)
-			return;
+//		if (cd == 0)
+//			return;
 
 	}
 
@@ -439,7 +439,9 @@ public class Character implements IDrawable, Serializable {
 	}
 
 	public void draw(SpriteBatch sb) {
-		skills.get(0).draw(sb);
+		for (int i = 0; i < skills.size(); i++){
+			skills.get(i).draw(sb);
+		}
 	}
 
 	/*

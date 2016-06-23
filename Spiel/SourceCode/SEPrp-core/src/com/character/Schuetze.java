@@ -28,7 +28,11 @@ public class Schuetze extends Character{
 		
 
 		skills = new ArrayList<Skill>();
-		
+			//		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(3), false, 1, 0));
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(0), true, 2, 0));
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0));
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,5,1,2,1,1,3,g.getSkill(7), false, 4, 0));
 	}
 	
 	@Override
