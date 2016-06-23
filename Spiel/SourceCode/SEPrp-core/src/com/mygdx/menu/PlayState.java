@@ -125,7 +125,7 @@ public class PlayState extends State implements Serializable {
 	}
 
 	// Konstruktor für das Laden gespeicherter Spiele --Dom--
-	public PlayState(GameStateManager gsm, int characterauswahl, Vector3 position, int exp) {
+	public PlayState(GameStateManager gsm, int characterauswahl, Vector3 position) {
 		// TODO weitere Attribute dem Kontruktor übergeben!!
 		super(gsm);
 
@@ -146,7 +146,7 @@ public class PlayState extends State implements Serializable {
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
 		if (characterauswahl == 1) {
 			System.out.println("Krieger");
-			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
+			c = new Krieger(position.x, position.y, s.getAnimation(0), collisionLayer, attributes, body);
 		} else if (characterauswahl == 2) {
 			System.out.println("Magier");
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
