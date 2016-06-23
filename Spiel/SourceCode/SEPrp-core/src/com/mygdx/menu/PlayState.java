@@ -181,9 +181,10 @@ public class PlayState extends State implements Serializable {
 	@Override
 	protected void handleInput() {
 
-		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
+		
 
 		if (Gdx.input.isKeyJustPressed(Keys.I))
 			gsm.push(new InventoryState(gsm, this, c));

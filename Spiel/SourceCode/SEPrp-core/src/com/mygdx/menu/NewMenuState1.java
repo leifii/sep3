@@ -119,6 +119,9 @@ public class NewMenuState1 extends State {
 		stage.act();
 		stage.draw();
 		
+		if (Gdx.input.isKeyJustPressed(Keys.C)) {
+			gsm.push(new CharEditorState(gsm, new PlayState(gsm, 1), 1));
+			}
 		batch.end();
 	}
 	
