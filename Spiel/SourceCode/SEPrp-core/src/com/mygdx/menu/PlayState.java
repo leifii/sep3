@@ -152,10 +152,6 @@ public class PlayState extends State implements Serializable {
 		if(Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
 			for(Gegner g : gegnerList)
 				killGegner(g);
-	}
-
-	@Override
-	public void update(float dt) {
 		if(Gdx.input.isKeyJustPressed(Keys.K)){
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
@@ -166,6 +162,10 @@ public class PlayState extends State implements Serializable {
 				System.out.println("Laden erflogreich.");
 			}
 		}
+	}
+
+	@Override
+	public void update(float dt) {
 		handleInput();
 		c.update(dt);
 
