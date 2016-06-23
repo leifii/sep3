@@ -1,16 +1,12 @@
 package KommunikationEV3;
 
 public class Spieldatenverarbeitung  {
-
-	public Spieldatenverarbeitung(int k){
-	}
-	byte[] arrayname = KommunikationEV3.getNachricht() ;
 	
 	
-	public void sepman(){
+	public void sepman(byte[] com_array){
 		
-		int start = arrayname[06];
-		int ziel = arrayname[07];
+		int start = com_array[06];
+		int ziel = com_array[07];
 		
 		if(ziel-start == 1){
 		IBewegung.goEast();
@@ -26,10 +22,10 @@ public class Spieldatenverarbeitung  {
 		}
 	}
 	
-	public void geist1(){
+	public void geist1(byte[] com_array){
 		
-		int start = arrayname[00];
-		int ziel = arrayname[01];
+		int start = com_array[00];
+		int ziel = com_array[01];
 		
 		if(ziel-start == 1){
 		IBewegung.goEast();
@@ -44,10 +40,10 @@ public class Spieldatenverarbeitung  {
 		IBewegung.goNorth();	
 		}
 	}
-	public void geist2(){
+	public void geist2(byte[] com_array){
 			
-		int start = arrayname[02];
-		int ziel = arrayname[03];
+		int start = com_array[02];
+		int ziel = com_array[03];
 			
 		if(ziel-start == 1){
 		IBewegung.goEast();
@@ -64,10 +60,10 @@ public class Spieldatenverarbeitung  {
 		}
 		
 		
-	public void geist3(){
+	public void geist3(byte[] com_array){
 			
-		int start = arrayname[04];
-		int ziel = arrayname[05];
+		int start = com_array[04];
+		int ziel = com_array[05];
 			
 		if(ziel-start == 1){
 		IBewegung.goEast();

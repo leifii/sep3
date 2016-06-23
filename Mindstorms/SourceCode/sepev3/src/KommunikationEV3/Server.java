@@ -16,7 +16,8 @@ public class Server{
 
 		public static void main(String[] args) throws IOException, ClassNotFoundException {
 	
-			
+			byte[] nachricht = new byte[9];
+			int mode;
 			ServerSocket sSocket = new ServerSocket(18415);
 //		    System.out.println("Ich akzeptiere gerade!");        //Konsolenausgabe bei Test am PC
 			LCD.drawString("Ich akzeptiere", 0, 2);              //Displayausgabe bei Test am EV3
@@ -43,10 +44,38 @@ public class Server{
 		
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
+			Spieldatenverarbeitung sdv = new Spieldatenverarbeitung();
+			nachricht = com1.empfangen();
+			com1.senden();
+			
+			mode = nachricht[8];
 			
 			while(true){
-			com1.empfangen();
-			com1.senden();
+			nachricht = com1.empfangen();
+			
+			
+			
+			if(mode == 104){
+				// TODO Sepman
+				com1.senden();
+			}
+			
+			else if(mode == 103){
+				// TODO Zufall
+				com1.senden();
+			}
+			
+			else if(mode == 102){
+				// TODO Verteidigung
+				com1.senden();
+			}
+			
+			else if(mode == 101){
+				// TODO Verfolgung
+				com1.senden();
+			}
+			
+			
 			
 			
 
