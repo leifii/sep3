@@ -198,11 +198,11 @@ public class PlayState extends State implements Serializable {
 				System.out.println("Speichern erfolgreich.");
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.L)) {
-			if (de.SEPL.GameScore.GameScoreManagement.loadGameScore() == true) {
-				System.out.println("Laden erflogreich.");
-			}
-		}
+//		if (Gdx.input.isKeyJustPressed(Keys.L)) {
+//			if (de.SEPL.GameScore.GameScoreManagement.loadGameScore() == true) {
+//				System.out.println("Laden erflogreich.");
+//			}
+//		}
 	}
 
 	@Override
