@@ -6,6 +6,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.character.Character;
+import com.mygdx.game.MyGdxGame;
+import com.mygdx.menu.GameStateManager;
+import com.mygdx.menu.NewGameCharacterState;
+import com.mygdx.menu.NewMenuState;
+import com.mygdx.menu.NewMenuState1;
+import com.mygdx.menu.PlayState;
+
 public class GameScoreManagement {
 
 	// Speichere aktuellen Spielstand
@@ -57,8 +67,9 @@ public class GameScoreManagement {
 			ois = new ObjectInputStream(fis);
 			Object obj = ois.readObject();
 			if (obj instanceof com.character.Character) {
-				com.character.Character so = (com.character.Character) obj;
+				com.character.Character loadedCharacter = (com.character.Character) obj;
 				// TODO Character neu instanziieren
+				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter);
 
 			}
 			gameLoaded = true;
@@ -82,8 +93,24 @@ public class GameScoreManagement {
 		return gameLoaded;
 	}
 
-	public void setCharacter(com.character.Character so) {
-		//com.mygdx.menu.PlayState loadedGame = new com.mygdx.menu.PlayState();		
+	public static void setCharacter(com.character.Character loadedCharacter) {
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = MyGdxGame.WIDTH;
+		config.height = MyGdxGame.HEIGHT;
+		config.title = MyGdxGame.TITLE;
+		config.fullscreen = true;
+		new LwjglApplication(new MyGdxGame(), config);
+		
+		//TODO characterID implementieren
+		int characterID = 1;
+		
+		GameStateManager gsm = new GameStateManager();
+		gsm.push(new NewGameCharacterState(gsm));
+		PlayState playstate = new PlayState(gsm, characterID, loadedCharacter.getPosition());
+		gsm.push(playstate);
+		
+
+
 	}
 
 }
