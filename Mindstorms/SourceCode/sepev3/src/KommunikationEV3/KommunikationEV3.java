@@ -46,7 +46,7 @@ public class KommunikationEV3 implements IKommunikation{
 		}
 		
 	}
-	public void empfangen(){
+	public byte[] empfangen(){
 		
 		
 		try {
@@ -68,8 +68,10 @@ public class KommunikationEV3 implements IKommunikation{
 //				
 
 				
-				nachrichtverarbeiten();
+				//nachrichtverarbeiten();
 			}
+			
+			
 			
 			
 		
@@ -77,6 +79,8 @@ public class KommunikationEV3 implements IKommunikation{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return nachricht;
 		
 		
 	}
