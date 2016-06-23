@@ -16,7 +16,7 @@ public class Magier extends Character{
 
 	private Texture character1;
 
-	public Magier(int x,int y,TextureRegion[][] sprite,TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
+	public Magier(float x,float y,TextureRegion[][] sprite,TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
 		super(x, y, sprite, collisionLayer, attributes, body);
 		System.out.println(sprite);
 		position=new Vector3(x,y,0);
