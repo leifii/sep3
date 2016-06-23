@@ -29,6 +29,7 @@ public class LoadMenuState extends MenuState {
 	private BitmapFont white;
 	private MainMenuButton loadbutton;
 	private MainMenuButton newgamebutton;
+	private TextButton Load1;
 	
 	private LoadMenuWindow loadmenuwindow;
 	
@@ -63,7 +64,7 @@ public class LoadMenuState extends MenuState {
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
 		
-		TextButton Load1= new TextButton("Spielstand 1",textButtonStyle);
+		Load1= new TextButton("Spielstand 1",textButtonStyle);
 		Load1.pad(30);
 		TextButton Load2= new TextButton("Spielstand 2",textButtonStyle);
 		Load2.pad(30);
@@ -92,6 +93,9 @@ public class LoadMenuState extends MenuState {
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new NewMenuState1(gsm));
+		}
+		if (Load1.isChecked()) {
+			de.SEPL.GameScore.GameScoreManagement.loadGameScore();
 		}
 	}
 
