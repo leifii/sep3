@@ -2,7 +2,7 @@ package Anzeige;
 
 public class Plane implements IPlane{
 	
-	int knoten;
+	int knotenNR;
 	boolean nKante;
 	boolean sKante;
 	boolean oKante;
@@ -10,7 +10,7 @@ public class Plane implements IPlane{
 	boolean powerup;
 	public int getPosition()
 	{
-		return knoten;
+		return knotenNR;
 	}
 	
 	public boolean getNord()
