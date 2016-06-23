@@ -109,11 +109,14 @@ public class CharEditorState extends State {
 		table.add(buttonL);
 		table.row();
 		Label Name= new Label("Name:   ", labelStyle);
-//		
-//		TextField name=new TextField("",  new Skin(Gdx.files.internal("")));
-//
 		table.add(Name);
+		
+//		Skin skin = new Skin();
+//		skin.addRegions(atlas);
+//		TextField name=new TextField("", skin);
+//		table.add(name);
 		table.add(new Label("Eingabe",labelStyle));
+		
 		table.add(buttonM);
 		
 		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
