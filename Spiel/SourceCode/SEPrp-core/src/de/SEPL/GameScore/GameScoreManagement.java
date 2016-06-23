@@ -82,9 +82,8 @@ public class GameScoreManagement {
 		return gameLoaded;
 	}
 
-//	public void setCharacter(com.character.Character so) {
-//		c.setCharacterValues(so.exp, so.neededexp);
-//		
-//	}
+	public void setCharacter(com.character.Character so) {
+		//com.mygdx.menu.PlayState loadedGame = new com.mygdx.menu.PlayState();		
+	}
 
 }
