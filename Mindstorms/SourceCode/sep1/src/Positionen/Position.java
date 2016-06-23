@@ -4,7 +4,7 @@ import Anzeige.Plane;
 
 public class Position extends Plane {
 
-	public int getposition(){
-		return getposition();
+	public int getpositiontoll(){
+		return 0;
 	}
 }
