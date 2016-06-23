@@ -71,7 +71,7 @@ public class Character implements IDrawable, Serializable {
 	// character1=new Texture(sprite);
 	// }
 
-	public Character(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
+	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body) {
 
 		g = new Objekte();
