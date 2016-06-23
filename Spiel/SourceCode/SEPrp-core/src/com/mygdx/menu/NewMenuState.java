@@ -110,6 +110,7 @@ public class NewMenuState extends MenuState {
 			click.play();
 			gsm.push(new NewGameCharacterState(gsm));
 		}
+		
 	}
 
 	@Override

@@ -57,8 +57,7 @@ public class MenuState extends State{
 		 * if(Gdx.input.isKeyPressed(Keys.DPAD_LEFT)) 
          * marioX -= Gdx.graphics.getDeltaTime() * marioSpeed;
 		 */
-		
-		
+	
 	
 		if (Gdx.input.isKeyJustPressed(Keys.L)) {
 			loadbutton=new MainMenuButton(1728/2-77,1080/2-66,"loadbuttonpressed.jpg");

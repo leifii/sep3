@@ -2,10 +2,12 @@ package com.mygdx.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 
@@ -23,14 +26,17 @@ public class CharEditorState extends State {
 	PlayState playstate;
 	int charauswahl=0;
 	
+	  
+
+	
 	private Skin skin;
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
-	private TextButton buttonJ, buttonN,buttonM,buttonK;
+	private TextButton buttonJ, buttonN,buttonM,buttonK,buttonL;
 	private BitmapFont white;
 	private Label label;
-	private Drawable drawable;
+
 	
 	protected CharEditorState(GameStateManager gsm,PlayState ps,int ch) {
 		super(gsm);
@@ -60,35 +66,48 @@ public class CharEditorState extends State {
 		textButtonStyle.font=white;
 		
 		buttonJ=new TextButton("<", textButtonStyle);
-		buttonJ.pad(20);
+		buttonJ.pad(5);
 
 		buttonN= new TextButton(">", textButtonStyle);
-		buttonN.pad(20);
+		buttonN.pad(5);
 		
 		buttonM=new TextButton("Bestätigen",textButtonStyle);
 		buttonM.pad(25);
-//		
-//		buttonK=new TextButton("4",textButtonStyle);
-//		buttonK.pad(20);
+
+		buttonK=new TextButton("<", textButtonStyle);
+		buttonK.pad(5);
+
+		buttonL= new TextButton(">", textButtonStyle);
+		buttonL.pad(5);
+	
 		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
 		label= new Label("Wähle dein Aussehen",labelStyle);
 		label.setFontScale(1.2f);
 		Image Rahmen=new Image(new Texture("userInterface/border2.png"));
-		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f);
+		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f-420);
 		Rahmen.setWidth(Gdx.graphics.getWidth()*1.1f);
-		Rahmen.setHeight(Gdx.graphics.getHeight()*0.5f);
+		Rahmen.setHeight(Gdx.graphics.getHeight()*1.5f);
 
 		
 		
 		
-		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);
+		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);  
 		table.row();
+		Label augenfarbe= new Label(" Augenfarbe   ", labelStyle);
+		table.add(augenfarbe);
 		table.add(buttonJ);
 		table.add(buttonN);
+		table.row();
+		Label haarfarbe= new Label("Haarfarbe   ", labelStyle);
+		table.add(haarfarbe);
+		table.add(buttonK);
+		table.add(buttonL);
+		
+
 		table.add(buttonM);
-//		table.add(buttonK);
+		
 		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
 
 		Image img=new Image(new Texture("userInterface/dark background.png"));
@@ -132,10 +151,7 @@ public class CharEditorState extends State {
 			playstate=new PlayState(gsm, charauswahl);
 			gsm.push(playstate);
 	}
-//		if (Gdx.input.isKeyJustPressed(Keys.NUM_4)|| buttonK.isChecked()) {
-//			playstate=new PlayState(gsm, 4);
-//			gsm.push(playstate);
-//	}
+
 
 		
 		sb.end();
