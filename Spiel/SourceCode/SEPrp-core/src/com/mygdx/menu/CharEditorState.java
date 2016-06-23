@@ -1,17 +1,11 @@
 package com.mygdx.menu;
 
-import com.android.ide.common.rendering.api.SessionParams.Key;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.ai.steer.behaviors.Alignment;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.particles.ParticleShader.AlignMode;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -22,19 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.mygdx.game.MyGdxGame;
 
-public class NewGameCharacterState extends NewMenuState {
+public class CharEditorState extends State {
+
 	PlayState playstate;
-	Texture back;
-	private MainMenuButton loadbutton;
-	private MainMenuButton newgamebutton;
-
-	
-	
 	
 	private Skin skin;
 	private TextureAtlas atlas;
@@ -45,20 +31,10 @@ public class NewGameCharacterState extends NewMenuState {
 	private Label label;
 	private Drawable drawable;
 	
-	
-
-	
-	protected NewGameCharacterState(GameStateManager gsm) {
+	protected CharEditorState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
-		back=new Texture("back.jpg");
-		loadbutton=new MainMenuButton(1728/2-77,1080/2-66,"loadbutton.jpg");
-		newgamebutton=new MainMenuButton(1728/2-77, 1080/2-172, "newgamebutton.jpg");
-		beendenbutton=new MainMenuButton(1728/2-77,1080/2-280,"beendenbutton.jpg");
-		
-	
-		
-		/////////////////////////////////////////////////CHARAKTERAUSWAHL//////////////////////////////// BEGIN
+		this.playstate=ps;
 		
 		stage=new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -81,26 +57,22 @@ public class NewGameCharacterState extends NewMenuState {
 		textButtonStyle.pressedOffsetX=1;
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
-//		NinePatch patch= new NinePatch(new Texture("userInterface/border2.9.png"));
 		
-		
-		
-		buttonJ=new TextButton("Krieger", textButtonStyle);
+		buttonJ=new TextButton("<", textButtonStyle);
 		buttonJ.pad(20);
 
-		buttonN= new TextButton("Magier", textButtonStyle);
+		buttonN= new TextButton(">", textButtonStyle);
 		buttonN.pad(20);
 		
-		buttonM=new TextButton("Schurke",textButtonStyle);
-		buttonM.pad(20);
-		
-		buttonK=new TextButton("Schütze",textButtonStyle);
-		buttonK.pad(20);
+		buttonM=new TextButton("Bestätigen",textButtonStyle);
+		buttonM.pad(25);
+//		
+//		buttonK=new TextButton("4",textButtonStyle);
+//		buttonK.pad(20);
 		
 		LabelStyle labelStyle= new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-		label= new Label("Wähle mit welcher Klasse DU spielen moechtest",labelStyle);
-
+		label= new Label("Wähle dein Aussehen",labelStyle);
 		label.setFontScale(1.2f);
 		Image Rahmen=new Image(new Texture("userInterface/border2.png"));
 		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f);
@@ -113,10 +85,9 @@ public class NewGameCharacterState extends NewMenuState {
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);
 		table.row();
 		table.add(buttonJ);
-		table.add(buttonJ);
 		table.add(buttonN);
 		table.add(buttonM);
-		table.add(buttonK);
+//		table.add(buttonK);
 		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
 
 		Image img=new Image(new Texture("userInterface/dark background.png"));
@@ -126,25 +97,16 @@ public class NewGameCharacterState extends NewMenuState {
 		stage.addActor(img);
 		stage.addActor(Rahmen);
 		stage.addActor(table);
-		
-		/////////////////////////////////////////////////CHARAKTERAUSWAHL//////////////////////////////// END
-		
-/***/	/////////////////////////////////////////////////CHARAKTEREDITOR//////////////////////////////// BEGIN
-
-		
-		
-/***/	/////////////////////////////////////////////////CHARAKTEREDITOR//////////////////////////////// END
-		
 	}
-	
 
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			gsm.push(new NewMenuState(gsm));
+			gsm.push(new NewGameCharacterState(gsm));
+			}
 	}
-	}
+
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
@@ -154,36 +116,25 @@ public class NewGameCharacterState extends NewMenuState {
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
-		sb.begin();
-		sb.draw(back,0,0,MyGdxGame.WIDTH,MyGdxGame.HEIGHT);
-		sb.draw(loadbutton.getTexture(), loadbutton.getPosition().x, loadbutton.getPosition().y);
-		sb.draw(newgamebutton.getTexture(), newgamebutton.getPosition().x, newgamebutton.getPosition().y);
-		sb.draw(beendenbutton.getTexture(), beendenbutton.getPosition().x, beendenbutton.getPosition().y);
 		
-		///////////////////////////CHARACTEREDITOR////////////////////////////////////////////////////////
+		sb.begin();
 		stage.act();
 		stage.draw();
-	
-	if (Gdx.input.isKeyJustPressed(Keys.NUM_1) || buttonJ.isChecked()) {
-		playstate=new PlayState(gsm, 1);
-		gsm.push(new CharEditorState(gsm, playstate));
-}
-	if (Gdx.input.isKeyJustPressed(Keys.NUM_2)|| buttonN.isChecked()) {
-		playstate=new PlayState(gsm, 2);
-		gsm.push(playstate);
-}
-	if (Gdx.input.isKeyJustPressed(Keys.NUM_3)|| buttonM.isChecked()) {
-		playstate=new PlayState(gsm, 3);
-		gsm.push(playstate);
-}
-	if (Gdx.input.isKeyJustPressed(Keys.NUM_4)|| buttonK.isChecked()) {
-		playstate=new PlayState(gsm, 4);
-		gsm.push(playstate);
-}
-
 		
-		
-		///////////////////////////CHARACTEREDITOR////////////////////////////////////////////////////////
+		if ( buttonJ.isChecked()) {
+			
+	}
+		if ( buttonN.isChecked()) {
+			
+	}
+		if ( buttonM.isChecked()) {
+			playstate=new PlayState(gsm, 1);
+			gsm.push(playstate);
+	}
+//		if (Gdx.input.isKeyJustPressed(Keys.NUM_4)|| buttonK.isChecked()) {
+//			playstate=new PlayState(gsm, 4);
+//			gsm.push(playstate);
+//	}
 
 		
 		sb.end();
@@ -192,10 +143,8 @@ public class NewGameCharacterState extends NewMenuState {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		back.dispose();
-		stage.dispose();
-		atlas.dispose();
-		skin.dispose();
+		
+		this.dispose();
 	}
 
 }
