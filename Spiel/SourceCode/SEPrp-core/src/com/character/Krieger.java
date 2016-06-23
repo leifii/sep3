@@ -22,11 +22,11 @@ public class Krieger extends Character{
 		position=new Vector3(x,y,0);
 
 		skills = new ArrayList<Skill>();										
-		//				x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(3), false, 1, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,10,g.getSkill(7), true, 2, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0, this));
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,5,1,2,1,1,3,g.getSkill(0), false, 4, 0, this));
+		//				x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button, character
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(11), false, 1, 0, this));	//steinwurf
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,10,1,1,1.5f,g.getSkill(8), true, 2, 0, this));	//heal
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0, this));		//muss neu gemacht werden
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,45,1,1,15,g.getSkill(7), true, 4, 0, this));	//berserker
 
 	}
 	
