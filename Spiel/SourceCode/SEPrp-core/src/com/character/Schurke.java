@@ -27,7 +27,7 @@ public class Schurke extends Character{
 		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(15), false, 1, 0, this));	//giftdolchwurf
 		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,10,g.getSkill(10), true, 2, 0, this));	//unsichtbar (noch nicht drin)
 		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0, this));	//execute
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,5,1,2,1,1,3,g.getSkill(13), false, 4, 0, this));	//dolchfächer (noch nicht drin)
+		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,5,1,2,1,1,3,g.getSkill(14), false, 4, 0, this));	//dolchfächer (noch nicht drin)
 	}
 	
 	@Override
