@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.Align;
 public class CharEditorState extends State {
 
 	PlayState playstate;
+	int charauswahl=0;
 	
 	private Skin skin;
 	private TextureAtlas atlas;
@@ -31,11 +32,11 @@ public class CharEditorState extends State {
 	private Label label;
 	private Drawable drawable;
 	
-	protected CharEditorState(GameStateManager gsm,PlayState ps) {
+	protected CharEditorState(GameStateManager gsm,PlayState ps,int ch) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
 		this.playstate=ps;
-		
+		charauswahl=ch;
 		stage=new Stage();
 		Gdx.input.setInputProcessor(stage);
 		
@@ -128,7 +129,7 @@ public class CharEditorState extends State {
 			
 	}
 		if ( buttonM.isChecked()) {
-			playstate=new PlayState(gsm, 1);
+			playstate=new PlayState(gsm, charauswahl);
 			gsm.push(playstate);
 	}
 //		if (Gdx.input.isKeyJustPressed(Keys.NUM_4)|| buttonK.isChecked()) {
