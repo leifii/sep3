@@ -56,6 +56,7 @@ public class Character implements IDrawable, Serializable {
 	private Attributes attributes;
 	int DEX;
 	int MaxHP;
+	int currentHP;
 
 	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6,
 			keyframes7;
@@ -93,6 +94,7 @@ public class Character implements IDrawable, Serializable {
 		keyframes7 = new TextureRegion[] { animation[1][0] };
 
 		this.attributes = attributes;
+		currentHP = MaxHP;
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
 			keyframes[i] = animation[0][i];
@@ -180,12 +182,20 @@ public class Character implements IDrawable, Serializable {
 	public void update(float dt) {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 
+
 		cd = skills.get(0).gethitcd();
 
 		for (int i = 0; i < skills.size(); i++) {
 			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);
+
 			skills.get(i).direction(this);
+			skills.get(i).buffed(this);
 		}
+		//cd = skills.get(0).gethitcd();
+		
+		
+		
+		
 
 		bounds.setPosition(this.getPosition().x, this.getPosition().y);
 

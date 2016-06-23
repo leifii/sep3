@@ -29,38 +29,46 @@ public class Skill implements Serializable {
 	protected float x;
 	protected float y;
 
-	protected float dx; // richtung in die der skill sich bewegt
+	protected float dx; 	
 	protected float dy;
-
+	
 	protected float speed;
-
+	
+	protected int button;			//auf welcher taste der skill liegt
+	protected int position;
 	protected int width;
 	protected int height;
 
+	protected boolean look;
+	
 	protected Character c;
 
 	private boolean remove;
 	private boolean alive;
 
-	boolean locked;
-	// boolean ready;
+	//protected boolean locked;
+	protected boolean buff;
+	protected int helpNr;
+	
 
-	public Skill(float x, float y, float dx, float dy, int lvl, int dmg, int dmgfaktor, int cdnow, int cd, int cdfaktor,
-			Texture bild, boolean locked) {
+	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime, 
+			Texture bild, boolean buff, int button, int helpNr /*boolean locked*/) {
+		this.x = x;
+		this.y = y;
 		this.lvl = lvl;
 		this.dmg = dmg;
 		this.dmgfaktor = dmgfaktor;
-		this.cdnow = cdnow;
 		this.cd = cd;
 		this.cdfaktor = cdfaktor;
+		this.speed = speed;
+		this.lifeTime = lifeTime;
 		this.bild = bild;
-		this.locked = locked;
-		this.x = x;
-		this.y = y;
-		this.dx = dx;
-		this.dy = dy;
-		lifeTime = 3;
-
+		this.buff = buff;
+		this.button = button;
+		remove = false;
+		cdnow = 0;
+		
+		
 	}
 
 	public float gethitcd() {
@@ -73,49 +81,117 @@ public class Skill implements Serializable {
 
 	public void update(float dt, float xx, float yy) {
 		handleInput(xx, yy);
-		cdnow -= dt;
-		if (alive == true) {
-			if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {
-				dx = 0;
-				dy = -300;
-			} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
-				dx = -300;
-				dy = 0;
-			} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
-				dx = 300;
-				dy = 0;
-			} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
-				dx = 0;
-				dy = 300;
-			}
-			x += dx * dt;
-			y += dy * dt;
+		cdnow -= dt;					//cd nach Benutzung reduzieren
+		
+		lifeTimer += dt;
+		if (lifeTimer > lifeTime) {
+			remove = true;
+			alive = false;
+			
+		}
+		
 
-			// System.out.println(cdnow);
+			
+		if (alive == true && buff == false){			//falls kein Buff, dann bewegen
+			x += dx * dt * speed;
+			y += dy * dt * speed;
+		}
+		else if(alive == true && buff == true){			//falls Buff, dann auf Spielerposition halten
+			x = c.getPosition().x;
+			y = c.getPosition().y;
+		}
+			
 
-			lifeTimer += dt;
-			if (lifeTimer > lifeTime) {
-				remove = true;
-				alive = false;
-			}
+			
+
 
 		}
 
-	}
+	
 
 	public void handleInput(float x, float y) {
-		if (cdnow < 0.1) {
-			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
+		if (cdnow < 0.1) {				//falls skill benutzbar
+			if (button == 1){
+			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {	
 				this.x = x;
 				this.y = y;
 				cdnow = cd;
 				lifeTimer = 0;
 				alive = true;
-
+				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
+					dx = 0 * speed;
+					dy = -300 * speed;
+				} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
+					dx = -300 * speed;
+					dy = 0 * speed;
+				} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
+					dx = 300 * speed;
+					dy = 0 * speed;
+				} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
+					dx = 0 * speed;
+					dy = 300 * speed;
+				} } }
+			if (button == 2){						//auf taste 2 sind alle buffs
+				if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
+					this.x = x;
+					this.y = y;
+					cdnow = cd;
+					lifeTimer = 0;
+					alive = true;
+				}
 			}
+			if (button == 3){
+				if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
+					this.x = x;
+					this.y = y;
+					cdnow = cd;
+					lifeTimer = 0;
+					alive = true;
+					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
+						dx = 0 * speed;
+						dy = -300 * speed;
+					} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
+						dx = -300 * speed;
+						dy = 0 * speed;
+					} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
+						dx = 300 * speed;
+						dy = 0 * speed;
+					} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
+						dx = 0 * speed;
+						dy = 300 * speed;
+					} 
+				}
+			}
+			if (button == 4){
+				if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
+					this.x = x;
+					this.y = y;
+					cdnow = cd;
+					lifeTimer = 0;
+					alive = true;
+					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
+						dx = 0 * speed;
+						dy = -300 * speed;
+					} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
+						dx = -300 * speed;
+						dy = 0 * speed;
+					} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
+						dx = 300 * speed;
+						dy = 0 * speed;
+					} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
+						dx = 0 * speed;
+						dy = 300 * speed;
+					} 
+				}
+			}
+			if (button == 0){
+				
+			}
+			}
+			else remove = true;
 		}
 
-	}
+	
 
 	public void draw(SpriteBatch s) {
 		if (alive == true) {
@@ -131,6 +207,14 @@ public class Skill implements Serializable {
 
 	public AnimationDirection direction(Character c) {
 		return direction = c.getRichtung();
+	}
+	
+	public void buffed(Character c){
+		if(buff == true && alive == true){
+			if(c instanceof Krieger){
+				
+			}
+		}
 	}
 
 }
