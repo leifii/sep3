@@ -29,8 +29,8 @@ public class CharEditorState extends State {
 	int charauswahl=0;
 	
 	int augenindex=0;
-	Texture[]augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-	Image charbild[]= new Image[]{new Image(augen[0]),new Image(augen[1]),new Image(augen[2])};
+	Texture[]augen;
+	Image charbild[];
 
 	private Skin skin;
 	private TextureAtlas atlas;
@@ -44,13 +44,23 @@ public class CharEditorState extends State {
 	protected CharEditorState(GameStateManager gsm,PlayState ps,int ch) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
-	
-		
-			
-		
-		
 		this.playstate=ps;
 		charauswahl=ch;
+		
+		if (charauswahl==1) {	//Krieger
+								
+		}
+		else if (charauswahl==2) {	//Magier
+			
+		}
+		
+		else if (charauswahl==3) {		//Schurke
+			
+		}
+		else if (charauswahl==4) {			//Schütze			
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
+		charbild=	new Image[]{new Image(augen[0]),new Image(augen[1]),new Image(augen[2])};
+		}
 		stage=new Stage();
 		Gdx.input.setInputProcessor(stage);
 		
