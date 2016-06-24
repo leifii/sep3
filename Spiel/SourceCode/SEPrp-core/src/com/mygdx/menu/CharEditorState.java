@@ -27,10 +27,12 @@ public class CharEditorState extends State {
 
 	PlayState playstate;
 	int charauswahl=0;
-	
-	  
 
+	  
 	
+	String augenfarbe[]=new String[]{"grafiken/Archer.png","grafiken/ArcherEye2.png","grafiken/ArcherEye2.png"};
+	Image charbild= new Image(new Texture(augenfarbe[0]));
+	int i;
 	private Skin skin;
 	private TextureAtlas atlas;
 	private Stage stage;
@@ -43,6 +45,7 @@ public class CharEditorState extends State {
 	protected CharEditorState(GameStateManager gsm,PlayState ps,int ch) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
+		i=1;
 		this.playstate=ps;
 		charauswahl=ch;
 		stage=new Stage();
@@ -98,14 +101,14 @@ public class CharEditorState extends State {
 		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f-200);
 		Rahmen.setWidth(Gdx.graphics.getWidth()*0.95f);
 		Rahmen.setHeight(Gdx.graphics.getHeight()*1.0f);
-		Sprite bild= new Sprite(new Texture("grafiken/Archer.png"));
 		
-		
-		Image character=new Image(bild);
+//		Sprite charbild= new Sprite(new Texture(augenfarbe[i]));
+//
+//		Image character=new Image(charbild);
 		
 //		table.debug();
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);  
-		table.add(character).padTop(140).width(200).height(200);
+//		table.add(character).padTop(140).width(200).height(200);
 		table.row();
 		Label augenfarbe= new Label(" Augenfarbe   ", labelStyle);
 		table.add(augenfarbe);
@@ -144,9 +147,11 @@ public class CharEditorState extends State {
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
+		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new NewGameCharacterState(gsm));
 			}
+		
 	}
 
 	@Override
@@ -154,18 +159,43 @@ public class CharEditorState extends State {
 		// TODO Auto-generated method stub
 		handleInput();
 	}
-
+int x=1;
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
 		
-		sb.begin();
+		
+		if (x<160) {
+			
+		charbild.scaleBy(0.1f);
+		}
+		x+=1;
+		
+		
+		if (buttonN.isChecked()) {
+			if (i==0) {
+				i=0;
+			}
+			else {
+				i--;
+			}
+		}
+			if (buttonK.isChecked()) {
+				if (i==2) {
+					i=2;
+				}
+				else {
+					i++;
+				}
+		}
+		stage.addActor(charbild);	
 		stage.act();
 		stage.draw();
 		
-		if ( buttonJ.isChecked()) {
-			
-	}
+
+		
+		
+		
 		if ( buttonN.isChecked()) {
 			
 	}
@@ -176,7 +206,7 @@ public class CharEditorState extends State {
 
 
 		
-		sb.end();
+		
 	}
 
 	@Override
