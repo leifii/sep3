@@ -103,7 +103,7 @@ public class CharEditorState extends State {
 		
 		Image character=new Image(bild);
 		
-		table.debug();
+//		table.debug();
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);  
 		table.add(character).padTop(140).width(200).height(200);
 		table.row();
