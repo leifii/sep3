@@ -178,9 +178,10 @@ float XX=0;float YY=0;
 		// TODO Auto-generated method stub
 		
 		x+=1;
-		if (x<160) {
+		if (x<=180) {
 			
 		charbild[augenindex].scaleBy(0.1f);
+		charbild[augenindex].setRotation(-x*2);
 		XX=charbild[augenindex].getScaleX();
 		YY=charbild[augenindex].getScaleY();
 		}
