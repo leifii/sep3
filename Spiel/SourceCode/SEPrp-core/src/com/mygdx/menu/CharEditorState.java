@@ -29,8 +29,9 @@ public class CharEditorState extends State {
 	int charauswahl=0;
 	
 	int augenindex=0;
+	int haarindex=0;
 	Texture[]augen;
-	Image charbild[];
+	Image charbild[][];
 
 	private Skin skin;
 	private TextureAtlas atlas;
@@ -62,7 +63,7 @@ public class CharEditorState extends State {
 		}
 		else if (charauswahl==4) {			//Schütze			
 			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-		charbild=	new Image[]{new Image(augen[0]),new Image(augen[1]),new Image(augen[2])};
+		charbild=	new Image[][]{{new Image(augen[0])},{new Image(augen[1])},{new Image(augen[2])}};
 		}
 		stage=new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -180,10 +181,10 @@ float XX=0;float YY=0;
 		x+=1;
 		if (x<=180) {
 			
-		charbild[augenindex].scaleBy(0.1f);
-		charbild[augenindex].setRotation(-x*2);
-		XX=charbild[augenindex].getScaleX();
-		YY=charbild[augenindex].getScaleY();
+		charbild[augenindex][haarindex].scaleBy(0.1f);
+		charbild[augenindex][haarindex].setRotation(-x*2);
+		XX=charbild[augenindex][haarindex].getScaleX();
+		YY=charbild[augenindex][haarindex].getScaleY();
 		}
 		
 		
@@ -201,7 +202,7 @@ float XX=0;float YY=0;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			charbild[augenindex].setScale(XX,YY);	
+			charbild[augenindex][haarindex].setScale(XX,YY);	
 
 				
 		
@@ -218,13 +219,43 @@ float XX=0;float YY=0;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				charbild[augenindex].setScale(XX,YY);	
-
+				charbild[augenindex][haarindex].setScale(XX,YY);	
 					
 		}
+			if (buttonK.isPressed()) {	
+				haarindex--;
+				if (haarindex==-1) {
+					haarindex=2;
+					
+				}
+				try {
+					Thread.sleep(250);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				charbild[augenindex][haarindex].setScale(XX,YY);	
+
+					
+			
+			}
+				if (buttonL.isPressed()){
+					haarindex++;
+					if (haarindex==3) {
+						haarindex=0;
+						
+					}
+					try {
+						Thread.sleep(250);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					charbild[augenindex][haarindex].setScale(XX,YY);	
+						
+			}
 		
-		
-		stage.addActor(charbild[augenindex]);
+		stage.addActor(charbild[augenindex][haarindex]);
 		stage.act();
 		stage.draw();
 		
