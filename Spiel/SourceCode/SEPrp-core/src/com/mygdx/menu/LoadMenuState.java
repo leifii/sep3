@@ -95,7 +95,8 @@ public class LoadMenuState extends MenuState {
 			gsm.push(new NewMenuState1(gsm));
 		}
 		if (Load1.isChecked()) {
-			de.SEPL.GameScore.GameScoreManagement.loadGameScore();
+			//gsm.push();
+			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm);
 		}
 	}
 
