@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.character.Character;
 import com.mygdx.menu.PlayState;
 
@@ -20,13 +21,15 @@ public class NPC {
 		Texture NPCtexture;
 		boolean angesprochen=false;
 		
+		private Body body;
 		
 		
-		public NPC(int x,int y,String source,String TEXT){
+		public NPC(int x,int y,String source,String TEXT,Body body){
 			position=new Vector3(x, y, 0);
 			bounds=new Rectangle(x, y, 32, 48);
 			NPCtexture=new Texture(source);
 			Dialog=new Dialog(TEXT,x+500,y+200,"dialogfenster.png");
+			this.body=body;
 			}
 		
 
