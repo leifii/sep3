@@ -45,6 +45,10 @@ public class CharEditorState extends State {
 		super(gsm);
 		// TODO Auto-generated constructor stub
 	
+		
+			
+		
+		
 		this.playstate=ps;
 		charauswahl=ch;
 		stage=new Stage();
@@ -177,27 +181,32 @@ float XX=0;float YY=0;
 				augenindex=2;
 				
 			}
-			
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			charbild[augenindex].setScale(XX,YY);	
 
 				
 		
 		}
-			if (buttonN.isPressed()) {
-//			augenindex++;
-			if (augenindex==0) {
-				augenindex=1;
-			}
-			else if(augenindex==1) {if (augenindex==1) {
-				augenindex=2;
-			}
-			else if(augenindex==2){ if(augenindex==2) {
+			if (buttonN.isPressed()){
+				augenindex++;
+				if (augenindex==3) {
 					augenindex=0;
+					
 				}
-			}
-			}
-				charbild[augenindex].setScale(XX,YY);
-				
+				try {
+					Thread.sleep(250);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				charbild[augenindex].setScale(XX,YY);	
+
+					
 		}
 		
 		
