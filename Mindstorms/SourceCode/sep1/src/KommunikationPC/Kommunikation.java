@@ -126,15 +126,7 @@ public class Kommunikation implements IKommunikation{
 	 
 	
 	
-	nachricht[0]=00;
-	nachricht[1]=01;
-	nachricht[2]=02;
-	nachricht[3]=03;
-	nachricht[4]=04;
-	nachricht[5]=05;
-	nachricht[6]=06;
-	nachricht[7]=07;
-	//nachricht[8]=(byte) wert;
+	
 	
 		
 		return nachricht;
