@@ -48,14 +48,17 @@ public class CharEditorState extends State {
 		charauswahl=ch;
 		
 		if (charauswahl==1) {	//Krieger
-								
+//					augen=
+//			charbild=
 		}
 		else if (charauswahl==2) {	//Magier
-			
+//			augen=
+//			charbild=
 		}
 		
 		else if (charauswahl==3) {		//Schurke
-			
+//			augen=
+//			charbild=
 		}
 		else if (charauswahl==4) {			//Schütze			
 			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
