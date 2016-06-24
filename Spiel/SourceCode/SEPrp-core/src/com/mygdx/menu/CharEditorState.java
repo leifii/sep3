@@ -31,6 +31,7 @@ public class CharEditorState extends State {
 	int augenindex=0;
 	int haarindex=0;
 	Texture[]augen;
+	Texture[]haare;
 	Image charbild[][];
 
 	private Skin skin;
@@ -63,7 +64,8 @@ public class CharEditorState extends State {
 		}
 		else if (charauswahl==4) {			//Schütze			
 			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-		charbild=	new Image[][]{{new Image(augen[0])},{new Image(augen[1])},{new Image(augen[2])}};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
 		}
 		stage=new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -193,7 +195,7 @@ float XX=0;float YY=0;
 		if (buttonJ.isPressed()) {	
 			augenindex--;
 			if (augenindex==-1) {
-				augenindex=2;
+				augenindex=augen.length-1;
 				
 			}
 			try {
@@ -209,7 +211,7 @@ float XX=0;float YY=0;
 		}
 			if (buttonN.isPressed()){
 				augenindex++;
-				if (augenindex==3) {
+				if (augenindex==augen.length) {
 					augenindex=0;
 					
 				}
@@ -225,7 +227,7 @@ float XX=0;float YY=0;
 			if (buttonK.isPressed()) {	
 				haarindex--;
 				if (haarindex==-1) {
-					haarindex=2;
+					haarindex=1;
 					
 				}
 				try {
@@ -241,7 +243,7 @@ float XX=0;float YY=0;
 			}
 				if (buttonL.isPressed()){
 					haarindex++;
-					if (haarindex==3) {
+					if (haarindex==2) {
 						haarindex=0;
 						
 					}
