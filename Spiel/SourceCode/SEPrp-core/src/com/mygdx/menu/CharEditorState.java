@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 
@@ -60,10 +62,17 @@ public class CharEditorState extends State {
 		
 		TextButtonStyle textButtonStyle=new TextButtonStyle();
 		textButtonStyle.up= skin.getDrawable("blank-2");
-		textButtonStyle.down=skin.getDrawable("blank-3");
+//		textButtonStyle.down=skin.getDrawable("blank-3");
 		textButtonStyle.pressedOffsetX=1;
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
+		
+		TextButtonStyle ConfirmButtonStyle= new TextButtonStyle();
+		ConfirmButtonStyle.up= skin.getDrawable("blank-2");
+		ConfirmButtonStyle.down=skin.getDrawable("blank-3");
+		ConfirmButtonStyle.pressedOffsetX=1;
+		ConfirmButtonStyle.pressedOffsetY=-1;
+		ConfirmButtonStyle.font=white;
 		
 		buttonJ=new TextButton("<", textButtonStyle);
 		buttonJ.pad(5);
@@ -71,7 +80,7 @@ public class CharEditorState extends State {
 		buttonN= new TextButton(">", textButtonStyle);
 		buttonN.pad(5);
 		
-		buttonM=new TextButton("Bestätigen",textButtonStyle);
+		buttonM=new TextButton("Bestätigen",ConfirmButtonStyle);
 		buttonM.pad(25);
 
 		buttonK=new TextButton("<", textButtonStyle);
@@ -86,17 +95,17 @@ public class CharEditorState extends State {
 		label= new Label("Wähle dein Aussehen",labelStyle);
 		label.setFontScale(1.2f);
 		Image Rahmen=new Image(new Texture("userInterface/border2.png"));
-		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f-420);
-		Rahmen.setWidth(Gdx.graphics.getWidth()*1.1f);
-		Rahmen.setHeight(Gdx.graphics.getHeight()*1.5f);
+		Rahmen.setPosition(0, Gdx.graphics.getHeight()*0.1f+buttonJ.getMinHeight()*1.5f-200);
+		Rahmen.setWidth(Gdx.graphics.getWidth()*0.95f);
+		Rahmen.setHeight(Gdx.graphics.getHeight()*1.0f);
+		Sprite bild= new Sprite(new Texture("grafiken/Archer.png"));
 		
-		Image character=new Image(new Texture("grafiken/Archer.png"));
-		character.setWidth(Gdx.graphics.getWidth());
-		character.setHeight(Gdx.graphics.getHeight());
 		
-//		table.debug();
+		Image character=new Image(bild);
+		
+		table.debug();
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);  
-		table.add(character).padTop(200);
+		table.add(character).padTop(140).width(200).height(200);
 		table.row();
 		Label augenfarbe= new Label(" Augenfarbe   ", labelStyle);
 		table.add(augenfarbe);
@@ -113,9 +122,11 @@ public class CharEditorState extends State {
 		
 //		Skin skin = new Skin();
 //		skin.addRegions(atlas);
-//		TextField name=new TextField("", skin);
-//		table.add(name);
-		table.add(new Label("Eingabe",labelStyle));
+		TextFieldStyle abc=new TextFieldStyle();
+		abc.font=white;
+		TextField name=new TextField("",abc);
+		table.add(name);
+		
 		
 		table.add(buttonM);
 		
