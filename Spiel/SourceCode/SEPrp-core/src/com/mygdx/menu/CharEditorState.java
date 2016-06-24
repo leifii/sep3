@@ -27,12 +27,12 @@ public class CharEditorState extends State {
 
 	PlayState playstate;
 	int charauswahl=0;
-
-	  
+	int augenindex=0;
+	Texture[]augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
 	
-	String augenfarbe[]=new String[]{"grafiken/Archer.png","grafiken/ArcherEye2.png","grafiken/ArcherEye2.png"};
-	Image charbild= new Image(new Texture(augenfarbe[0]));
-	int i;
+	
+	Image charbild[]= new Image[]{new Image(augen[0]),new Image(augen[1]),new Image(augen[2])};
+
 	private Skin skin;
 	private TextureAtlas atlas;
 	private Stage stage;
@@ -45,7 +45,7 @@ public class CharEditorState extends State {
 	protected CharEditorState(GameStateManager gsm,PlayState ps,int ch) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
-		i=1;
+	
 		this.playstate=ps;
 		charauswahl=ch;
 		stage=new Stage();
@@ -102,13 +102,10 @@ public class CharEditorState extends State {
 		Rahmen.setWidth(Gdx.graphics.getWidth()*0.95f);
 		Rahmen.setHeight(Gdx.graphics.getHeight()*1.0f);
 		
-//		Sprite charbild= new Sprite(new Texture(augenfarbe[i]));
-//
-//		Image character=new Image(charbild);
-		
+
 //		table.debug();
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight()/2-50);  
-//		table.add(character).padTop(140).width(200).height(200);
+
 		table.row();
 		Label augenfarbe= new Label(" Augenfarbe   ", labelStyle);
 		table.add(augenfarbe);
@@ -122,9 +119,7 @@ public class CharEditorState extends State {
 		table.row();
 		Label Name= new Label("Name:   ", labelStyle);
 		table.add(Name);
-		
-//		Skin skin = new Skin();
-//		skin.addRegions(atlas);
+
 		TextFieldStyle abc=new TextFieldStyle();
 		abc.font=white;
 		TextField name=new TextField("",abc);
@@ -160,35 +155,47 @@ public class CharEditorState extends State {
 		handleInput();
 	}
 int x=1;
+
+float XX=0;float YY=0;
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
 		
-		
+		x+=1;
 		if (x<160) {
 			
-		charbild.scaleBy(0.1f);
+		charbild[augenindex].scaleBy(0.1f);
+		
+		XX=charbild[augenindex].getScaleX();
+		YY=charbild[augenindex].getScaleY();
 		}
-		x+=1;
 		
 		
-		if (buttonN.isChecked()) {
-			if (i==0) {
-				i=0;
+		else{
+			
+		if (buttonJ.isChecked()) {	
+			if (augenindex==0) {
+				augenindex=0;
+				
 			}
 			else {
-				i--;
+				augenindex--;
+
+				charbild[augenindex].setScale(XX,YY);
 			}
 		}
-			if (buttonK.isChecked()) {
-				if (i==2) {
-					i=2;
+			if (buttonN.isChecked()) {
+				if (augenindex==2) {
+					augenindex=2;
 				}
-				else {
-					i++;
+				else if(augenindex<2){
+					augenindex++;
+				charbild[augenindex].setScale(XX,YY);
 				}
 		}
-		stage.addActor(charbild);	
+		}
+		
+		stage.addActor(charbild[augenindex]);
 		stage.act();
 		stage.draw();
 		
