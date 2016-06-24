@@ -208,13 +208,13 @@ public class Character implements IDrawable, Serializable {
 
 			collisionY = false;
 
-			collisionY = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
+			collisionY = isCellBlocked(position.x, position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() / 2,
-						position.y + collisionLayer[0].getTileHeight());
+						position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY)
 				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
-						position.y + collisionLayer[0].getTileHeight());
+						position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY && getBody().getUserData() != null)
 				collisionY = ((boolean[]) getBody().getUserData())[0];
 
@@ -225,11 +225,12 @@ public class Character implements IDrawable, Serializable {
 
 				collisionX = false;
 
-				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
+				collisionX = isCellBlocked(position.x, position.y - 20 + collisionLayer[0].getTileHeight());
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
+					collisionX = isCellBlocked(position.x, position.y //+ collisionLayer[0].getTileHeight()
+							);
 				if (!collisionX && getBody().getUserData() != null)
 					collisionX = ((boolean[]) getBody().getUserData())[3];
 
@@ -250,7 +251,8 @@ public class Character implements IDrawable, Serializable {
 							position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
-							position.y + collisionLayer[0].getTileHeight());
+							position.y //+ collisionLayer[0].getTileHeight()
+							);
 				if (!collisionX && getBody().getUserData() != null)
 					collisionX = ((boolean[]) getBody().getUserData())[2];
 
@@ -325,11 +327,12 @@ public class Character implements IDrawable, Serializable {
 
 			collisionX = false;
 
-			collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
+			collisionX = isCellBlocked(position.x, position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
-				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight());
+				collisionX = isCellBlocked(position.x, position.y //+ collisionLayer[0].getTileHeight()
+						);
 			if (!collisionX && getBody().getUserData() != null)
 				collisionX = ((boolean[]) getBody().getUserData())[3];
 
@@ -342,13 +345,14 @@ public class Character implements IDrawable, Serializable {
 			collisionX = false;
 
 			collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
-					position.y + collisionLayer[0].getTileHeight());
+					position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
 						position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
-						position.y + collisionLayer[0].getTileHeight());
+						position.y //+ collisionLayer[0].getTileHeight()
+						);
 			if (!collisionX && getBody().getUserData() != null)
 				collisionX = ((boolean[]) getBody().getUserData())[2];
 
@@ -394,7 +398,7 @@ public class Character implements IDrawable, Serializable {
 		if (dx < 0 && getBody().getUserData() != null && ((boolean[]) getBody().getUserData())[3])
 			dx = 0;
 		if (dy > 0) {
-			korrektury = 48;
+			korrektury = 28;
 			if (getBody().getUserData() != null && ((boolean[]) getBody().getUserData())[0])
 				dy = 0;
 		}
