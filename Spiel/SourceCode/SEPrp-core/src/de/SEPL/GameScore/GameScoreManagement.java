@@ -5,15 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.character.Character;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.NewGameCharacterState;
-import com.mygdx.menu.NewMenuState;
-import com.mygdx.menu.NewMenuState1;
 import com.mygdx.menu.PlayState;
 
 public class GameScoreManagement {
@@ -54,7 +49,7 @@ public class GameScoreManagement {
 	}
 
 	// Lade Spielstand
-	public static boolean loadGameScore() {
+	public static boolean loadGameScore(GameStateManager gsm) {
 
 		boolean gameLoaded = false;
 
@@ -69,7 +64,7 @@ public class GameScoreManagement {
 			if (obj instanceof com.character.Character) {
 				com.character.Character loadedCharacter = (com.character.Character) obj;
 				// TODO Character neu instanziieren
-				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter);
+				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter, gsm);
 
 			}
 			gameLoaded = true;
@@ -93,7 +88,7 @@ public class GameScoreManagement {
 		return gameLoaded;
 	}
 
-	public static void setCharacter(com.character.Character loadedCharacter) {
+	public static void setCharacter(com.character.Character loadedCharacter, GameStateManager gsm) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = MyGdxGame.WIDTH;
 		config.height = MyGdxGame.HEIGHT;
@@ -104,8 +99,8 @@ public class GameScoreManagement {
 		//TODO characterID implementieren
 		int characterID = 1;
 		
-		GameStateManager gsm = new GameStateManager();
-		gsm.push(new NewGameCharacterState(gsm));
+		//GameStateManager gsm = new GameStateManager();
+		//gsm.push(new NewGameCharacterState(gsm));
 		PlayState playstate = new PlayState(gsm, characterID, loadedCharacter.getPosition());
 		gsm.push(playstate);
 		
