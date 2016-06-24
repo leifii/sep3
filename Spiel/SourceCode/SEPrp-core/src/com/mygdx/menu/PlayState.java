@@ -74,7 +74,7 @@ public class PlayState extends State implements Serializable {
 		return instance;
 	}
 
-	public PlayState(GameStateManager gsm, int characterauswahl) {
+	public PlayState(GameStateManager gsm, int characterauswahl,int design) {
 		super(gsm);
 
 		world = new World(new Vector2(0, 0), false);
@@ -106,14 +106,14 @@ public class PlayState extends State implements Serializable {
 			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
 
 		} else if (characterauswahl == 4) {
-			System.out.println("SchÜtze");
-
+			System.out.println("Schurke");
+			if(design==0){
 			c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
-
+			}
 			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 			// map.getMap().getLayers().get("Objekte"), attributes);
 
-			System.out.println("SchÜtze");
+			System.out.println("Schütze");
 		}
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------

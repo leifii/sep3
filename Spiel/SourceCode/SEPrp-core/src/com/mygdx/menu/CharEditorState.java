@@ -27,7 +27,7 @@ public class CharEditorState extends State {
 
 	PlayState playstate;
 	int charauswahl=0;
-	
+	int design=0;
 	int augenindex=0;
 	int haarindex=0;
 	Texture[]augen;
@@ -261,15 +261,32 @@ float XX=0;float YY=0;
 		stage.act();
 		stage.draw();
 		
-
-		
-		
+	// DESIGN 
+		if (haarindex==0 && augenindex==0) {
+			design=0;
+		}
+		else if (haarindex==0 && augenindex==1) {
+			design=1;
+		}
+		else if	(haarindex==0 && augenindex==2){
+			design=2;
+		}
+		else if(haarindex==1 && augenindex==0){
+			design=3;
+		}
+		else if(haarindex==1 && augenindex==1){
+			design=4;
+		}
+		else if (haarindex==1 && augenindex==2) {
+			design=5;
+		}
+	// DESIGN
 		
 		if ( buttonN.isChecked()) {
 			
 	}
 		if ( buttonM.isChecked()) {
-			playstate=new PlayState(gsm, charauswahl);
+			playstate=new PlayState(gsm, charauswahl,design);
 			gsm.push(playstate);
 	}
 
