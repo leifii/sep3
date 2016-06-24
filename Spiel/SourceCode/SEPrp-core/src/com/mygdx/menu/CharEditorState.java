@@ -27,10 +27,9 @@ public class CharEditorState extends State {
 
 	PlayState playstate;
 	int charauswahl=0;
+	
 	int augenindex=0;
 	Texture[]augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-	
-	
 	Image charbild[]= new Image[]{new Image(augen[0]),new Image(augen[1]),new Image(augen[2])};
 
 	private Skin skin;
@@ -165,35 +164,42 @@ float XX=0;float YY=0;
 		if (x<160) {
 			
 		charbild[augenindex].scaleBy(0.1f);
-		
 		XX=charbild[augenindex].getScaleX();
 		YY=charbild[augenindex].getScaleY();
 		}
 		
 		
-		else{
+	
 			
-		if (buttonJ.isChecked()) {	
-			if (augenindex==0) {
-				augenindex=0;
+		if (buttonJ.isPressed()) {	
+			augenindex--;
+			if (augenindex==-1) {
+				augenindex=2;
 				
 			}
-			else {
-				augenindex--;
+			
+			charbild[augenindex].setScale(XX,YY);	
 
-				charbild[augenindex].setScale(XX,YY);
+				
+		
+		}
+			if (buttonN.isPressed()) {
+//			augenindex++;
+			if (augenindex==0) {
+				augenindex=1;
 			}
-		}
-			if (buttonN.isChecked()) {
-				if (augenindex==2) {
-					augenindex=2;
+			else if(augenindex==1) {if (augenindex==1) {
+				augenindex=2;
+			}
+			else if(augenindex==2){ if(augenindex==2) {
+					augenindex=0;
 				}
-				else if(augenindex<2){
-					augenindex++;
+			}
+			}
 				charbild[augenindex].setScale(XX,YY);
-				}
+				
 		}
-		}
+		
 		
 		stage.addActor(charbild[augenindex]);
 		stage.act();
