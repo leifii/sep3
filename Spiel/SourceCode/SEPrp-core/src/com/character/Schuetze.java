@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.mygdx.menu.PlayState;
 
 public class Schuetze extends Character{
 	
@@ -27,12 +28,12 @@ public class Schuetze extends Character{
 
 		
 
-		skills = new ArrayList<Skill>();
+		setSkills(new ArrayList<Skill>());
 			//		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(12), false, 1, 0, this)); //eigentlich 3-fach pfeil
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,10,1,1,3,g.getSkill(8), true, 2, 0, this));	//heal over time
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,20,1,10,1,1,20,g.getSkill(0), false, 3, 0, this));	//falle
-		skills.add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,1,45,1,1,3,g.getSkill(13), false, 4, 0, this));	//großer pfeil
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(12), false, 1, 0, this, 10)); //eigentlich 3-fach pfeil
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,10,1,1,3,g.getSkill(8), true, 2, 0, this, 1));	//heal over time
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,20,1,10,1,1,20,g.getSkill(0), false, 3, 0, this, 10));	//falle
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,1,45,1,1,3,g.getSkill(13), false, 4, 0, this, 10));	//großer pfeil
 	}
 	
 	@Override
