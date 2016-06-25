@@ -32,7 +32,7 @@ public class Character implements IDrawable, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected ArrayList<Skill> skills;
+	private ArrayList<Skill> skills;
 
 	transient protected IObjekte g;
 
@@ -56,7 +56,7 @@ public class Character implements IDrawable, Serializable {
 	private Attributes attributes;
 	int DEX;
 	int MaxHP;
-	int currentHP;
+	private int currentHP;
 
 	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6,
 			keyframes7;
@@ -79,6 +79,7 @@ public class Character implements IDrawable, Serializable {
 
 		this.collisionLayer = collisionLayer;
 		this.setBody(body);
+		body.getFixtureList().get(0).setUserData(this);
 
 		bounds = new Rectangle(x, y, 32, 48);
 
@@ -94,7 +95,7 @@ public class Character implements IDrawable, Serializable {
 		keyframes7 = new TextureRegion[] { animation[1][0] };
 
 		this.attributes = attributes;
-		currentHP = MaxHP;
+		setCurrentHP(MaxHP);
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
 			keyframes[i] = animation[0][i];
@@ -131,7 +132,7 @@ public class Character implements IDrawable, Serializable {
 	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills,
 			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
 		this(x, y, animation, collisionLayer, attributes, body);
-		this.skills = skills;
+		this.setSkills(skills);
 	}
 	
 	public void setCharacter(int exp){
@@ -185,11 +186,11 @@ public class Character implements IDrawable, Serializable {
 
 		//cd = skills.get(0).gethitcd();
 
-		for (int i = 0; i < skills.size(); i++) {
-			skills.get(i).update(dt, this.getPosition().x, this.getPosition().y);
+		for (int i = 0; i < getSkills().size(); i++) {
+			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
 
-			skills.get(i).direction(this);
-			skills.get(i).buffed(this);
+			getSkills().get(i).direction(this);
+			getSkills().get(i).buffed(this);
 		}
 		//cd = skills.get(0).gethitcd();
 		
@@ -443,8 +444,8 @@ public class Character implements IDrawable, Serializable {
 	}
 
 	public void draw(SpriteBatch sb) {
-		for (int i = 0; i < skills.size(); i++){
-			skills.get(i).draw(sb);
+		for (int i = 0; i < getSkills().size(); i++){
+			getSkills().get(i).draw(sb);
 		}
 	}
 
@@ -555,4 +556,19 @@ public class Character implements IDrawable, Serializable {
 		this.body = body;
 	}
 
+	public ArrayList<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(ArrayList<Skill> skills) {
+		this.skills = skills;
+	}
+
+	public int getCurrentHP() {
+		return currentHP;
+	}
+
+	public void setCurrentHP(int currentHP) {
+		this.currentHP = currentHP;
+	}
 }

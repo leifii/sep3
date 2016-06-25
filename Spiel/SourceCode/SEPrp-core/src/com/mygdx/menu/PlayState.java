@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -28,6 +29,7 @@ import com.character.Magier;
 import com.character.MyContactListener;
 import com.character.Schuetze;
 import com.character.Schurke;
+import com.character.Skill;
 import com.gegnerkoordination.Gegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
@@ -88,9 +90,9 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 		
-		Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300));
+		Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300,"npc"));
 
-		Body body = createDynamicBody(100, 100);
+		Body body = createDynamicBody(100, 100, "charakter");
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
@@ -142,7 +144,7 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
-		Body body = createDynamicBody(100, 100);
+		Body body = createDynamicBody(100, 100, "charakter");
 
 		// CHARAKTERAUSWAHL
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
@@ -174,7 +176,7 @@ public class PlayState extends State implements Serializable {
 		gegnerList = new LinkedList<Gegner>();
 
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200, 200));
+		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200, 200, "gegner"));
 		testGegner.addLoot(EquipmentType.Lederrüstung);
 		gegnerList.add(testGegner);
 
@@ -212,6 +214,15 @@ public class PlayState extends State implements Serializable {
 	public void update(float dt) {
 		handleInput();
 		c.update(dt);
+		
+		for(Skill s : c.getSkills()){
+			if(s.isAlive() && s.getBody()==null)
+				s.setBody(createSkillBody(s));
+			if(!s.isAlive() && s.getBody()!=null){
+				world.destroyBody(s.getBody());
+				s.setBody(null);
+			}
+		}
 
 		if (gegnerList != null)
 			for (Gegner g : gegnerList) {
@@ -245,6 +256,8 @@ public class PlayState extends State implements Serializable {
 				t.setDestroyable(false);
 			}
 		}
+		
+		
 
 		world.step(dt, 8, 8);
 
@@ -424,7 +437,7 @@ public class PlayState extends State implements Serializable {
 
 	}
 
-	public Body createDynamicBody(int x, int y) {
+	public Body createDynamicBody(int x, int y, String a) {		//String a = "gegner", "charakter" oder"npc"
 		BodyDef bdef = new BodyDef();
 		FixtureDef fdef = new FixtureDef();
 		PolygonShape shape = new PolygonShape();
@@ -434,6 +447,14 @@ public class PlayState extends State implements Serializable {
 		// 0 für north, 1 für south, 2 für east, 3 für west
 		boolean[] contact = { false, false, false, false };
 		body.setUserData(contact);
+		shape.setAsBox(10, 10);
+		fdef.shape = shape;
+		fdef.isSensor = true;
+		body.createFixture(fdef);
+		shape.setAsBox(10, 10);
+		fdef.shape = shape;
+		fdef.isSensor = true;
+		body.createFixture(fdef).setUserData(a);
 		shape.setAsBox(13, 6, new Vector2(0, -22), 0);
 		fdef.shape = shape;
 		fdef.isSensor = true;
@@ -464,6 +485,21 @@ public class PlayState extends State implements Serializable {
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef);
+		return body;
+	}
+	
+	public Body createSkillBody(Skill skill){
+		BodyDef bdef = new BodyDef();
+		FixtureDef fdef = new FixtureDef();
+		CircleShape shape = new CircleShape();
+		bdef.position.set(skill.getX() + 16, skill.getY() + 16);
+		bdef.type = BodyType.DynamicBody;
+		Body body = world.createBody(bdef);
+		shape.setRadius(skill.getRadius());
+		fdef.shape = shape;
+		fdef.isSensor = true;
+		body.createFixture(fdef).setUserData("skill");
+		body.setUserData(skill);
 		return body;
 	}
 

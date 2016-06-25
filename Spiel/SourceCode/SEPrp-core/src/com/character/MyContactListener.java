@@ -5,6 +5,9 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.gegnerkoordination.Gegner;
+import com.mygdx.menu.PlayState;
+import com.npc.NPC;
 
 public class MyContactListener implements ContactListener {
 	
@@ -53,6 +56,25 @@ public class MyContactListener implements ContactListener {
 			b=(boolean[]) fb.getBody().getUserData();
 			b[3]=true;
 			fb.getBody().setUserData(b);
+		}
+		//0 für String, 1 für Objekt (in der FixtureList)
+		if(fa.getUserData()!=null && fa.getUserData().equals("skill") && fb.getBody().getFixtureList().size>1 &&
+				!fb.getBody().getFixtureList().get(1).getUserData().equals("charakter")){
+			Skill s = ((Skill) fa.getBody().getUserData());
+			s.setAlive(false);
+			if(fb.getBody().getFixtureList().get(1).getUserData().equals("gegner")){
+				Gegner g = ((Gegner) fb.getBody().getFixtureList().get(0).getUserData());
+				g.setCurrentHP(g.getCurrentHP()-s.dmg);
+			}
+		}
+		if(fb.getUserData()!=null && fb.getUserData().equals("skill") && fa.getBody().getFixtureList().size>1 &&
+				!fa.getBody().getFixtureList().get(1).getUserData().equals("charakter")){
+			Skill s = ((Skill) fb.getBody().getUserData());
+			s.setAlive(false);
+			if(fa.getBody().getFixtureList().get(1).getUserData().equals("gegner")){
+				Gegner g = ((Gegner) fa.getBody().getFixtureList().get(0).getUserData());
+				g.setCurrentHP(g.getCurrentHP()-s.dmg);
+			}
 		}
 	}
 

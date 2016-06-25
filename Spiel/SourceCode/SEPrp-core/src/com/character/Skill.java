@@ -6,6 +6,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.mygdx.menu.PlayState;
 
 public class Skill implements Serializable {
 
@@ -21,13 +27,16 @@ public class Skill implements Serializable {
 	int cdfaktor;
 
 	public AnimationDirection direction;
+	
+	private Body body;
+	private int radius;
 
 	private transient Texture bild;
 	private float lifeTime;
 	private float lifeTimer;
 
-	protected float x;
-	protected float y;
+	private float x;
+	private float y;
 
 	protected float dx; 	
 	protected float dy;
@@ -35,7 +44,7 @@ public class Skill implements Serializable {
 	protected float speed;
 	
 	protected int button;			//auf welcher taste der skill liegt
-	protected int position;
+	private int position;
 	protected int width;
 	protected int height;
 
@@ -52,9 +61,9 @@ public class Skill implements Serializable {
 	
 
 	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime, 
-			Texture bild, boolean buff, int button, int helpNr, Character c /*boolean locked*/) {
-		this.x = x;
-		this.y = y;
+			Texture bild, boolean buff, int button, int helpNr, Character c, int radius /*boolean locked*/) {
+		this.setX(x);
+		this.setY(y);
 		this.lvl = lvl;
 		this.dmg = dmg;
 		this.dmgfaktor = dmgfaktor;
@@ -68,8 +77,7 @@ public class Skill implements Serializable {
 		this.c = c;
 		remove = false;
 		cdnow = 0;
-		
-		
+		this.setRadius(radius);
 	}
 
 	public float gethitcd() {
@@ -87,26 +95,26 @@ public class Skill implements Serializable {
 		lifeTimer += dt;
 		if (lifeTimer > lifeTime) {
 			remove = true;
-			alive = false;
+			setAlive(false);
 			
 		}
 		
 
 			
-		if (alive == true && buff == false){			//falls kein Buff, dann bewegen
-			x += dx * dt * speed;
-			y += dy * dt * speed;
+		if (isAlive() == true && buff == false){			//falls kein Buff, dann bewegen
+			setX(getX() + dx * dt * speed);
+			setY(getY() + dy * dt * speed);
 		}
-		else if(alive == true && buff == true){			//falls Buff, dann auf Spielerposition halten
-			x = c.getPosition().x;
-			y = c.getPosition().y;
+		else if(isAlive() == true && buff == true){			//falls Buff, dann auf Spielerposition halten
+			setX(c.getPosition().x);
+			setY(c.getPosition().y);
 		}
+		
+		if(body!=null)
+			body.setTransform(getX()+16, getY()+16, 0);
 			
 
-			
-
-
-		}
+	}
 
 	
 
@@ -114,11 +122,11 @@ public class Skill implements Serializable {
 		if (cdnow < 0.1) {				//falls skill benutzbar
 			if (button == 1){
 			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {	
-				this.x = x;
-				this.y = y;
+				this.setX(x);
+				this.setY(y);
 				cdnow = cd;
 				lifeTimer = 0;
-				alive = true;
+				setAlive(true);
 				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
 					dx = 0 * speed;
 					dy = -300 * speed;
@@ -131,23 +139,24 @@ public class Skill implements Serializable {
 				} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
 					dx = 0 * speed;
 					dy = 300 * speed;
-				} } }
+				}
+			} }
 			if (button == 2){						//auf taste 2 sind alle buffs
 				if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
-					this.x = x;
-					this.y = y;
+					this.setX(x);
+					this.setY(y);
 					cdnow = cd;
 					lifeTimer = 0;
-					alive = true;
+					setAlive(true);
 				}
 			}
 			if (button == 3){
 				if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
-					this.x = x;
-					this.y = y;
+					this.setX(x);
+					this.setY(y);
 					cdnow = cd;
 					lifeTimer = 0;
-					alive = true;
+					setAlive(true);
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
 						dx = 0 * speed;
 						dy = -300 * speed;
@@ -165,11 +174,11 @@ public class Skill implements Serializable {
 			}
 			if (button == 4){
 				if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
-					this.x = x;
-					this.y = y;
+					this.setX(x);
+					this.setY(y);
 					cdnow = cd;
 					lifeTimer = 0;
-					alive = true;
+					setAlive(true);
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
 						dx = 0 * speed;
 						dy = -300 * speed;
@@ -195,8 +204,8 @@ public class Skill implements Serializable {
 	
 
 	public void draw(SpriteBatch s) {
-		if (alive == true) {
-			s.draw(bild, x, y);
+		if (isAlive() == true) {
+			s.draw(bild, getX(), getY());
 		}
 	}
 
@@ -211,11 +220,50 @@ public class Skill implements Serializable {
 	}
 	
 	public void buffed(Character c){
-		if(buff == true && alive == true){
+		if(buff == true && isAlive() == true){
 			if(c instanceof Krieger){
 				System.out.println("buff");
 			}
 		}
 	}
 
+	public float getX() {
+		return x;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
 }
