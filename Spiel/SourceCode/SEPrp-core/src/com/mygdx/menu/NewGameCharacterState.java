@@ -153,17 +153,17 @@ public class NewGameCharacterState extends NewMenuState {
 		stage.draw();
 
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_1) || buttonJ.isChecked()) {
-	gsm.push(new PlayState(gsm, 1, 0));
-//			gsm.push(new CharEditorState(gsm, 1));
+//	gsm.push(new PlayState(gsm, 1, 0));
+			gsm.push(new CharEditorState(gsm, 1));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_2) || buttonN.isChecked()) {
-			gsm.push(new PlayState(gsm, 2, 0));
-//			gsm.push(new CharEditorState(gsm, 2));
+//			gsm.push(new PlayState(gsm, 2, 0));
+			gsm.push(new CharEditorState(gsm, 2));
 		
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_3) || buttonM.isChecked()) {
-			gsm.push(new PlayState(gsm, 3, 0));
-//			gsm.push(new CharEditorState(gsm, 3));
+//			gsm.push(new PlayState(gsm, 3, 0));
+			gsm.push(new CharEditorState(gsm, 3));
 			
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_4) || buttonK.isChecked()) {
