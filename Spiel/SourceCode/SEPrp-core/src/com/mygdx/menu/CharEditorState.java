@@ -50,17 +50,23 @@ public class CharEditorState extends State {
 		charauswahl=ch;
 		
 		if (charauswahl==1) {	//Krieger
-//					augen=
-//			charbild=
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
 		}
 		else if (charauswahl==2) {	//Magier
-//			augen=
-//			charbild=
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
 		}
 		
 		else if (charauswahl==3) {		//Schurke
-//			augen=
-//			charbild=
+//			augen=new Texture[]{new Texture("grafiken/Schurke.png"),new Texture("grafiken/SchurkeEye1.png"),new Texture("grafiken/SchurkeEye2.png")};
+//			haare=new Texture[]{new Texture("grafiken/SchurkeRed.png"),new Texture("grafiken/SchurkeRedEye1.png"),new Texture("grafiken/SchurkeRedEye2.png")};
+//			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
 		}
 		else if (charauswahl==4) {			//Schütze			
 			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
