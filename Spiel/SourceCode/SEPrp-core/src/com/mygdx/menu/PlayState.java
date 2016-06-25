@@ -112,6 +112,26 @@ public class PlayState extends State implements Serializable {
 			if(design==0){
 			c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
 			}
+			else{
+				c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body); //Solange Animation nicht fertig ist	
+			}
+//			if(design==1){
+//				c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
+//				}
+//			if(design==2){
+//				c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
+//				}
+//			if(design==3){
+//				c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
+//				}
+//			if(design==4){
+//				c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
+//				}
+//			if(design==5){
+//				c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
+//				}
+			
+			
 			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 			// map.getMap().getLayers().get("Objekte"), attributes);
 

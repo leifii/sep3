@@ -43,10 +43,10 @@ public class CharEditorState extends State {
 	private Label label;
 
 	
-	protected CharEditorState(GameStateManager gsm,PlayState ps,int ch) {
+	protected CharEditorState(GameStateManager gsm,int ch) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
-		this.playstate=ps;
+	
 		charauswahl=ch;
 		
 		if (charauswahl==1) {	//Krieger
