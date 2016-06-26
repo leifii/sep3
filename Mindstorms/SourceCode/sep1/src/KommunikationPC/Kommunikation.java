@@ -5,21 +5,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import Anweisungen.Anweisung;
+import Anzeige.Menu;
 
-
-public class Kommunikation implements IKommunikation{
-	
+public class Kommunikation implements IKommunikation{	
 	Socket socket;
 	byte[] nachricht= new byte[9];
-	
-	
-	public Kommunikation(Socket soc){
-		
-		socket = soc;
-		
+	public Kommunikation(Socket soc){	
+		socket = soc;	
 	}
-	
 	public void senden(){
 		erzeugeByteArray();
 		try {
@@ -30,14 +23,9 @@ public class Kommunikation implements IKommunikation{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
-	public void empfangen(){
-		
-	
-		
+	public void empfangen(){	
 		try {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
@@ -53,28 +41,19 @@ public class Kommunikation implements IKommunikation{
 				System.out.println("");
 				
 				nachrichtVerarbeiten(nachricht);
-			}
-			
-			
-		
+			}	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-
 	}
-	
-	
-	
 	public byte[] erzeugeByteArray(){
-		
 		for(int i = 0; i < nachricht.length-1; i++){
 			if(i == 0){
 //				nachricht[0] = getPosG1();
 			}
 			else if(i==1){
-//				nachricht[1] = getDestG2();
+//				nachricht[1] = getDestG1();
 			}
 			else if(i==2){
 //				nachricht[2] = getPosG2();
@@ -86,19 +65,13 @@ public class Kommunikation implements IKommunikation{
 //				nachricht[4] = getPosG3();
 			}
 			else if(i==5){
-//				nachricht[5] = getDestG3();
+//				nachricht[5] = getPosSepman();
 			}
 			else if(i==6){
-//				nachricht[6] = getPosSepman();
-			}
-			else if(i==7){
-//				nachricht[7] = getDestSepman();
+//				nachricht[6] = getDestSepman();
 			}
 		}
-		
-	
-	
-	if(Anweisung.richtung ==4){
+	if(Modus.richtung ==4){
 		
 		nachricht[8]=4;
 	}
@@ -122,19 +95,17 @@ public class Kommunikation implements IKommunikation{
 		
 		nachricht[8]=2;
 	}
-	 
-	 
-	
-	
-	
-	
-		
+	nachricht[0]=00;
+	nachricht[1]=01;
+	nachricht[2]=02;
+	nachricht[3]=03;
+	nachricht[4]=04;
+	nachricht[5]=05;
+	nachricht[6]=06;
+	nachricht[7]=07;
+	//nachricht[8]=(byte) wert;		
 		return nachricht;
 	}
-	
-	
-	
-	
 	
 	public static void nachrichtVerarbeiten(byte[] whatever){
 		
