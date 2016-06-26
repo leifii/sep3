@@ -291,10 +291,6 @@ public boolean eingabeKorrekt() {
 	return  check;
 }
 
-
-
-
-
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
@@ -328,7 +324,7 @@ public void actionPerformed(ActionEvent e) {
 		case "Verpeilter" : roboterBelegung[1] = "4";
 		break;
 		}	
-//		System.out.println(roboterBelegung[1]);
+
 	}
 	else if (e.getSource()== cbAuswahl3){
 		JComboBox cb =(JComboBox)e.getSource();
@@ -344,7 +340,6 @@ public void actionPerformed(ActionEvent e) {
 		case "Verpeilter" : roboterBelegung[2] = "4";
 		break;
 		}	
-//		System.out.println(roboterBelegung[2]);
 	}
 	else if (e.getSource()== cbAuswahl4){
 		JComboBox cb =(JComboBox)e.getSource();
@@ -359,13 +354,7 @@ public void actionPerformed(ActionEvent e) {
 		break;
 		case "Verpeilter" : roboterBelegung[3] = "4";
 		break;
-		}	
-//		System.out.println(roboterBelegung[3]);
-		
-		
-		
-		
-		
+		}				
 	}	
 	else if (e.getSource()== btnEnde ){
 		dispose();
@@ -379,6 +368,11 @@ public void actionPerformed(ActionEvent e) {
 	else if( e.getSource()	== btnStart){
 		if(eingabeKorrekt()){
 		setzeSpielvorbereitungsdisplay();
+		}
+		else{
+			lbUeberschrift.setText("FEHLERHAFTE EINGABE");
+			lbUeberschrift.setForeground(Color.RED);
+			lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 45));
 		}
 	}
 	else if(e.getSource()== btnZurueck){
