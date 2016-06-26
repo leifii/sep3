@@ -100,8 +100,11 @@ public class NewMenuState extends MenuState {
 	}
 
 	protected void handleInput() {
+		click=Gdx.audio.newSound(Gdx.files.internal("dragstone.mp3"));
+		
 		if (Gdx.input.isKeyJustPressed(Keys.N) || buttonN.isChecked()) {
 			gsm.push(new NewMenuState1(gsm));
+			click.play();
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new NewMenuState1(gsm));

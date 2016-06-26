@@ -127,9 +127,11 @@ public class NewGameCharacterState extends NewMenuState {
 
 	@Override
 	protected void handleInput() {
+		
 		// TODO Auto-generated method stub
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new NewMenuState(gsm));
+		
 		}
 	}
 
@@ -142,6 +144,7 @@ public class NewGameCharacterState extends NewMenuState {
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
+		click=Gdx.audio.newSound(Gdx.files.internal("dragstone.mp3"));
 		sb.begin();
 		sb.draw(back, 0, 0, MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
 		sb.draw(loadbutton.getTexture(), loadbutton.getPosition().x, loadbutton.getPosition().y);
@@ -155,20 +158,21 @@ public class NewGameCharacterState extends NewMenuState {
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_1) || buttonJ.isChecked()) {
 //	gsm.push(new PlayState(gsm, 1, 0));
 			gsm.push(new CharEditorState(gsm, 1));
+			click.play();
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_2) || buttonN.isChecked()) {
 //			gsm.push(new PlayState(gsm, 2, 0));
 			gsm.push(new CharEditorState(gsm, 2));
-		
+			click.play();
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_3) || buttonM.isChecked()) {
 //			gsm.push(new PlayState(gsm, 3, 0));
 			gsm.push(new CharEditorState(gsm, 3));
-			
+			click.play();
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_4) || buttonK.isChecked()) {
 			gsm.push(new CharEditorState(gsm,4));
-		
+			click.play();
 		}
 
 		/////////////////////////// CHARACTEREDITOR////////////////////////////////////////////////////////
