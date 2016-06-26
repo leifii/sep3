@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package Anzeige;
 
 public class Plane implements IPlane{
