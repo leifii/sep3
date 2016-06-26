@@ -6,6 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -30,6 +32,7 @@ public class Skill implements Serializable {
 	
 	private Body body;
 	private int radius;
+	private TiledMapTileLayer[] collisionLayer;
 
 	private transient Texture bild;
 	private float lifeTime;
@@ -61,7 +64,7 @@ public class Skill implements Serializable {
 	
 
 	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime, 
-			Texture bild, boolean buff, int button, int helpNr, Character c, int radius /*boolean locked*/) {
+			Texture bild, boolean buff, int button, int helpNr, Character c, int radius, TiledMapTileLayer[] collisionLayer /*boolean locked*/) {
 		this.setX(x);
 		this.setY(y);
 		this.lvl = lvl;
@@ -78,6 +81,7 @@ public class Skill implements Serializable {
 		remove = false;
 		cdnow = 0;
 		this.setRadius(radius);
+		this.collisionLayer=collisionLayer;
 	}
 
 	public float gethitcd() {
@@ -113,7 +117,8 @@ public class Skill implements Serializable {
 		if(body!=null)
 			body.setTransform(getX()+16, getY()+16, 0);
 			
-
+		if(isCellBlocked(x,y))
+			alive=false;
 	}
 
 	
@@ -227,6 +232,18 @@ public class Skill implements Serializable {
 		}
 	}
 
+	private boolean isCellBlocked(float x, float y) {
+		Cell cell;
+		boolean blocked = false;
+		for (int i = 0; i < collisionLayer.length; i++) {
+			cell = collisionLayer[i].getCell((int) (x / collisionLayer[i].getTileWidth()),
+					(int) (y / collisionLayer[i].getTileHeight()));
+			blocked = blocked || (cell != null && cell.getTile() != null
+					&& cell.getTile().getProperties().containsKey("blocked"));
+		}
+		return blocked;
+	}
+	
 	public float getX() {
 		return x;
 	}
