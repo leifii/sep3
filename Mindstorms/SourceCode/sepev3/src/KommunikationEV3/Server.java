@@ -7,8 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Drucksensorverarbeitung.Drucksensor;
-import RoboterModus.IModus;
-import RoboterModus.Zufall;
+import RoboterModus.*;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
@@ -47,7 +46,7 @@ public class Server{
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
 			Spieldatenverarbeitung sdv = new Spieldatenverarbeitung();
-			IModus geistmode;
+			IModus robomode;
 			
 			nachricht = com1.empfangen();
 			com1.senden();
@@ -55,8 +54,15 @@ public class Server{
 			mode = nachricht[8];
 			
 			switch (mode){
-			case 101: geistmode = new Verfolger();
-			case 103: geistmode = new Zufall(); 
+			case 101: robomode = new Verfolger();
+			break;
+			case 102: robomode = new Verteidiger();
+			break;
+			case 103: robomode = new Zufall(); 
+			break;
+			case 104: robomode = new Sepman();
+			break;
+			default: robomode = new Zufall();
 			break;
 			}
 			
@@ -72,7 +78,8 @@ public class Server{
 			
 			else if(mode == 103){
 				// TODO Zufall
-				
+				robomode.setNachricht(nachricht);
+				robomode.run();
 				com1.senden();
 			}
 			

@@ -1,9 +1,10 @@
 package RoboterModus;
 
 
+import java.util.Random;
+
 import Linienverfolger.Linienverfolgung;
-import KommunikationEV3.IKommunikation;
-import KommunikationEV3.KommunikationEV3;
+
 
 
 public class Zufall implements IModus{
@@ -11,10 +12,14 @@ public class Zufall implements IModus{
 	int zielposition =0;
 	int änderung=0;
 	byte[] nachricht= new byte[9];
+	Random r;
 	
 	
 	
-	public void geistZufall(){
+	public void run(){
+		int zahl = r.nextInt(3);
+		
+		
 		
 		
 		
@@ -33,8 +38,6 @@ public class Zufall implements IModus{
 		return zielposition;
 		
 	}
-	
-	
 	
 	
 	public void setNachricht(byte[] mes){
