@@ -1,3 +1,5 @@
+package Spielfeld;
+
 
 public class Planeinit implements IPlaneinit{
 	Plane[] plane;
