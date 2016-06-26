@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -29,10 +30,15 @@ public class Skill implements Serializable {
 	int cdfaktor;
 
 	public AnimationDirection direction;
+
+	
+	Sprite hallo;
+
 	
 	private Body body;
 	private int radius;
 	private TiledMapTileLayer[] collisionLayer;
+
 
 	private transient Texture bild;
 	private float lifeTime;
@@ -50,7 +56,8 @@ public class Skill implements Serializable {
 	private int position;
 	protected int width;
 	protected int height;
-
+	
+	protected boolean aktiviert;
 	protected boolean look;
 	
 	protected Character c;
@@ -77,11 +84,15 @@ public class Skill implements Serializable {
 		this.bild = bild;
 		this.buff = buff;
 		this.button = button;
+		this.helpNr = helpNr;
 		this.c = c;
 		remove = false;
 		cdnow = 0;
+		hallo = new Sprite(bild);
+		aktiviert = false;
 		this.setRadius(radius);
 		this.collisionLayer=collisionLayer;
+
 	}
 
 	public float gethitcd() {
@@ -113,9 +124,21 @@ public class Skill implements Serializable {
 			setX(c.getPosition().x);
 			setY(c.getPosition().y);
 		}
+
+		if (c instanceof Krieger && button == 4 && alive == false){		//dmgfaktor nach cd wieder runtersetzen (4.skill)
+			setDmgFaktor(1);
+		}
+		if (c instanceof Magier && button == 2 && alive == false && aktiviert == true){	//hp vom schild wieder entfernen
+			c.currentHP -= dmg;
+			aktiviert = false;
+		}
+			
+
+
 		
 		if(body!=null)
 			body.setTransform(getX()+16, getY()+16, 0);
+
 			
 		if(isCellBlocked(x,y))
 			alive=false;
@@ -144,8 +167,11 @@ public class Skill implements Serializable {
 				} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
 					dx = 0 * speed;
 					dy = 300 * speed;
+
+				} }
 				}
-			} }
+
+			
 			if (button == 2){						//auf taste 2 sind alle buffs
 				if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
 					this.setX(x);
@@ -153,6 +179,11 @@ public class Skill implements Serializable {
 					cdnow = cd;
 					lifeTimer = 0;
 					setAlive(true);
+					if(c instanceof Krieger || c instanceof Magier){		//instant heal, bei mage schild
+						c.heal(dmg);
+						aktiviert = true;									
+					}
+					
 				}
 			}
 			if (button == 3){
@@ -184,19 +215,58 @@ public class Skill implements Serializable {
 					cdnow = cd;
 					lifeTimer = 0;
 					setAlive(true);
+					if(c instanceof Krieger){		//heal + höherer dmgFaktor
+						c.heal(dmg);
+						setDmgFaktor(2);
+					}
+					if (c instanceof Schurke){
+						if (helpNr == 1){	//south
+							dx = 0 * speed;
+							dy = -300 * speed;
+						}
+						if (helpNr == 2){	//west
+							dx = -300 * speed;
+							dy = 0 * speed;
+						}
+						if (helpNr == 3){	//east
+							dx = 300 * speed;
+							dy = 0 * speed;
+						}
+						if (helpNr == 4){	//north
+							dx = 0 * speed;
+							dy = 300 * speed;
+						}
+					}
+					else {
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
+//						if (c instanceof Schuetze){
+//							System.out.println("skill 4 wird benutzt runter");
+//							hallo.setRotation(90);
+//						}
 						dx = 0 * speed;
 						dy = -300 * speed;
 					} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
+//						if (c instanceof Schuetze){
+//							hallo.setRotation(90);
+//							System.out.println("skill 4 wird benutzt links");
+//						}
 						dx = -300 * speed;
 						dy = 0 * speed;
 					} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
+//						if (c instanceof Schuetze){
+//							hallo.setRotation(90);
+//							System.out.println("skill 4 wird benutzt rechts");
+//						}
 						dx = 300 * speed;
 						dy = 0 * speed;
 					} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
+//						if (c instanceof Schuetze){
+//							hallo.setRotation(90);
+//							System.out.println("skill 4 wird benutzt hoch");
+//						}
 						dx = 0 * speed;
 						dy = 300 * speed;
-					} 
+					} }
 				}
 			}
 			if (button == 0){
@@ -209,27 +279,44 @@ public class Skill implements Serializable {
 	
 
 	public void draw(SpriteBatch s) {
+
+//		if (alive == true) {
+//			if (c instanceof Schuetze){
+//				if (Gdx.input.isKeyJustPressed(Keys.NUM_4)){
+//					hallo.setRotation(90);
+//					s.draw(hallo, x, y);
+//				}
+//			}
+//			else 
+//				s.draw(hallo, x, y);
+			//s.draw(bild, x, y);
+
 		if (isAlive() == true) {
 			s.draw(bild, getX(), getY());
+
 		}
 	}
 
 	public void upgrade() {
 		lvl += 1;
-		dmg += 2 * dmgfaktor;
-		cd -= 1 * cdfaktor;
+		dmg += (dmg/4); //* dmgfaktor;	würde beim krieger in berserker zu stärkerem skill up führen
+		cd -= (cd/8) * cdfaktor;
 	}
 
 	public AnimationDirection direction(Character c) {
 		return direction = c.getRichtung();
 	}
 	
-	public void buffed(Character c){
-		if(buff == true && isAlive() == true){
-			if(c instanceof Krieger){
-				System.out.println("buff");
-			}
-		}
+//	public void buffed(Character c){
+//		if(buff == true && isAlive() == true){
+//			if(c instanceof Krieger){
+//				System.out.println("buff");
+//			}
+//		}
+//	}
+	
+	public void setDmgFaktor(int dmgfaktor){
+		this.dmgfaktor = dmgfaktor;
 	}
 
 	private boolean isCellBlocked(float x, float y) {

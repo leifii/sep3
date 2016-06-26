@@ -56,7 +56,7 @@ public class Character implements IDrawable, Serializable {
 	private Attributes attributes;
 	int DEX;
 	int MaxHP;
-	private int currentHP;
+	protected int currentHP;
 
 	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6,
 			keyframes7;
@@ -194,7 +194,7 @@ public class Character implements IDrawable, Serializable {
 			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
 
 			getSkills().get(i).direction(this);
-			getSkills().get(i).buffed(this);
+			//getSkills().get(i).buffed(this);
 		}
 		//cd = skills.get(0).gethitcd();
 		
@@ -558,6 +558,11 @@ public class Character implements IDrawable, Serializable {
 
 	public void setBody(Body body) {
 		this.body = body;
+	}
+	
+
+	public void heal(int hp){
+		currentHP += hp;
 	}
 
 	public ArrayList<Skill> getSkills() {
