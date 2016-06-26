@@ -269,7 +269,7 @@ float XX=0;float YY=0;
 		
 	// DESIGN 
 		if (haarindex==0 && augenindex==0) {
-			design=0;
+			design=0;			
 		}
 		else if (haarindex==0 && augenindex==1) {
 			design=1;
@@ -277,26 +277,25 @@ float XX=0;float YY=0;
 		else if	(haarindex==0 && augenindex==2){
 			design=2;
 		}
-		else if(haarindex==1 && augenindex==0){
+		else if (haarindex==0 && augenindex==3) {
 			design=3;
 		}
-		else if(haarindex==1 && augenindex==1){
+		else if(haarindex==1 && augenindex==0){
 			design=4;
 		}
-		else if (haarindex==1 && augenindex==2) {
+		else if(haarindex==1 && augenindex==1){
 			design=5;
 		}
-		else if (haarindex==1 && augenindex==3) {
+		else if (haarindex==1 && augenindex==2) {
 			design=6;
 		}
-		else if (haarindex==0 && augenindex==3) {
+		else if (haarindex==1 && augenindex==3) {
 			design=7;
 		}
+		
 	// DESIGN
 		
-		if ( buttonN.isChecked()) {
-			
-	}
+		
 		if ( buttonM.isChecked()) {
 			playstate=new PlayState(gsm, charauswahl,design);
 			gsm.push(playstate);
