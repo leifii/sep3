@@ -23,11 +23,18 @@ public class Schurke extends Character{
 		
 		
 		setSkills(new ArrayList<Skill>());
-		//		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(15), false, 1, 0, this, 10, collisionLayer));	//giftdolchwurf
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,10,g.getSkill(10), true, 2, 0, this, 1, collisionLayer));	//unsichtbar (noch nicht drin)
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,3,g.getSkill(6), false, 3, 0, this, 1, collisionLayer));	//execute
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,15,1,1,3,g.getSkill(14), false, 4, 1, this, 10, collisionLayer));	//dolchfächer (noch nicht drin)
+		//		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button, helpNr, character, radius, collision
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,1,1,1,3,g.getSkill(14), false, 0, 0, this, 10, collisionLayer));	//auto-attack
+		
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,1,g.getSkill(14), false, 1, 0, this, 10, collisionLayer));// 3-fach dolch
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,0.9f,1.5f,g.getSkill(14), false, 1, 0, this, 10, collisionLayer)); 
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,0.8f,2,g.getSkill(14), false, 1, 0, this, 10, collisionLayer));
+		
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,1,2,1,1,10,g.getSkill(10), true, 2, 0, this, 1, collisionLayer));	//unsichtbar 
+		
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(15), false, 3, 0, this, 10, collisionLayer));	//giftdolchwurf
+		
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,15,1,1,3,g.getSkill(14), false, 4, 1, this, 10, collisionLayer));	//dolchfächer 
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,15,1,1,3,g.getSkill(14), false, 4, 2, this, 10, collisionLayer));
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,15,1,1,3,g.getSkill(14), false, 4, 3, this, 10, collisionLayer));
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,15,1,1,3,g.getSkill(14), false, 4, 4, this, 10, collisionLayer));

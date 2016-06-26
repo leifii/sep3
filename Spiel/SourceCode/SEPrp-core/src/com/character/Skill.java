@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.menu.PlayState;
+
 
 public class Skill implements Serializable {
 
@@ -38,7 +40,9 @@ public class Skill implements Serializable {
 	private Body body;
 	private int radius;
 	private TiledMapTileLayer[] collisionLayer;
-
+	
+	
+	private TextureRegion [][] a;
 
 	private transient Texture bild;
 	private float lifeTime;
@@ -61,6 +65,7 @@ public class Skill implements Serializable {
 	protected boolean look;
 	
 	protected Character c;
+	com.grafiken.Character ic = new com.grafiken.Character();
 
 	private boolean remove;
 	private boolean alive;
@@ -92,7 +97,7 @@ public class Skill implements Serializable {
 		aktiviert = false;
 		this.setRadius(radius);
 		this.collisionLayer=collisionLayer;
-
+		a = ic.getGegnerAnimation(0);
 	}
 
 	public float gethitcd() {
@@ -157,6 +162,28 @@ public class Skill implements Serializable {
 
 	public void handleInput(float x, float y) {
 		if (cdnow < 0.1) {				//falls skill benutzbar
+			if (button == 0){
+				if (Gdx.input.isKeyPressed(Keys.SPACE)){
+					this.setX(x);
+					this.setY(y);
+					cdnow = cd;
+					lifeTimer = 0;
+					setAlive(true);
+					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
+						dx = 0 * speed;
+						dy = -300 * speed;
+					} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
+						dx = -300 * speed;
+						dy = 0 * speed;
+					} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
+						dx = 300 * speed;
+						dy = 0 * speed;
+					} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
+						dx = 0 * speed;
+						dy = 300 * speed;
+					}
+				}
+			}
 			if (button == 1){
 			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {	
 				this.setX(x);
@@ -304,7 +331,26 @@ public class Skill implements Serializable {
 			//s.draw(bild, x, y);
 
 		if (isAlive() == true) {
-			s.draw(hallo, getX(), getY());
+			if (c instanceof Schuetze && button == 4){
+				//hallo.setScale(1000, 1000);
+				//hallo.setSize(1000, 1000);
+				System.out.println("skill 4 schuetze");
+			}
+			if (c instanceof Krieger && button == 0){
+				if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
+					s.draw(a[0][0], getX(), getY());
+				}
+				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND){
+					s.draw(a[1][1], getX(), getY());
+				}
+				if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND){
+					s.draw(a[0][1], getX(), getY());
+				}
+				if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND){
+					s.draw(a[1][0], getX(), getY());
+				}
+			}
+			else s.draw(hallo, getX(), getY());
 		}
 	}
 
