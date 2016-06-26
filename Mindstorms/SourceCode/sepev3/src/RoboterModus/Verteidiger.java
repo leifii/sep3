@@ -14,4 +14,16 @@ public class Verteidiger implements IModus{
 		return 0;
 	}
 
+	@Override
+	public int run() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setNachricht(byte[] mes) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

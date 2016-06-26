@@ -7,7 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Drucksensorverarbeitung.Drucksensor;
+import Linienverfolger.Linienverfolgung;
 import RoboterModus.*;
+import Spielfeld.Planeinit;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
@@ -46,6 +48,8 @@ public class Server{
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
 			Spieldatenverarbeitung sdv = new Spieldatenverarbeitung();
+			Planeinit planes = new Planeinit(null,null,null,null,null,null);
+			Linienverfolgung lvfg=new Linienverfolgung();
 			IModus robomode;
 			
 			nachricht = com1.empfangen();
@@ -58,11 +62,11 @@ public class Server{
 			break;
 			case 102: robomode = new Verteidiger();
 			break;
-			case 103: robomode = new Zufall(); 
+			case 103: robomode = new Zufall(planes, lvfg);
 			break;
 			case 104: robomode = new Sepman();
 			break;
-			default: robomode = new Zufall();
+			default: robomode = new Zufall(planes, lvfg);
 			break;
 			}
 			
