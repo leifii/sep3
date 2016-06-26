@@ -19,6 +19,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
@@ -27,6 +28,7 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
+	public int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
 	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
@@ -66,10 +68,8 @@ public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(700,500);
 	setTitle("SEPman");
-	setzeStartbildschirm();
-//	 Nur noch zu Testzwecken hier drin 
-//	setzeSpielvorbereitungsdisplay();
-//	setzeAuswahldisplay();              
+//	addKeyListener(this);
+	setzeStartbildschirm();            
 	validate();
 
 }
@@ -162,8 +162,7 @@ public void setzeAuswahldisplay (){
 	cbAuswahl4.setSize(200, 30);
 	cbAuswahl4.setLocation(311, 330);
 	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
-	display.add(cbAuswahl4);
-	
+	display.add(cbAuswahl4);	
 	getContentPane().add(display);
 }
 
@@ -190,6 +189,7 @@ public void setzeSpielvorbereitungsdisplay(){
 	btnStartfinal.setText("Roboter positioniert ,Spiel starten !!");
 	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	btnStartfinal.addActionListener(this);
+	
 	
 	spielvorbereitungsDisplay.add(lbHinweis1);
 	lbHinweis1.setBounds(100, 100, 300, 100);
@@ -383,10 +383,6 @@ public void actionPerformed(ActionEvent e) {
 		if(eingabeKorrekt()){
 		setzeSpielvorbereitungsdisplay();
 		}
-		else {
-			lbUeberschrift.setForeground(Color.red);
-			lbUeberschrift.setText("Falsche Eingabe");
-		}
 	}
 	else if(e.getSource()== btnZurueck){
 		setzeAuswahldisplay();  
@@ -395,15 +391,46 @@ public void actionPerformed(ActionEvent e) {
 		try {
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
-			this.spielvorbereitungsDisplay.setLayout(null);
-			spielvorbereitungsDisplay.setVisible(false);
-			spielvorbereitungsDisplay.setEnabled(false);
-			setBounds(100, 100, 150*(1+rr.haha.Breite), 150*(1+rr.haha.Länge));
-			thorbensPanel.setBackground(Color.white);
-			
-			getContentPane().add(thorbensPanel);
-			
-			
+			thorbensPanel.addKeyListener(new KeyListener(){
+				public void keyPressed(KeyEvent l) {
+					// TODO Auto-generated method stub
+					if(l.getKeyCode() == KeyEvent.VK_UP){
+					     System.out.println("HAHA");
+					     oben();
+						}
+						
+						else if(l.getKeyCode() == KeyEvent.VK_0){
+							System.out.println("HAHA");
+						}
+						
+						else if(l.getKeyCode() == KeyEvent.VK_DOWN){
+							System.out.println("HAHA");
+						}
+						
+						else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
+							System.out.println("HAHA");
+						}
+						
+						else if(l.getKeyCode() == KeyEvent.VK_SPACE){
+							System.out.println("HAHA");
+						}	
+				}
+				@Override
+				public void keyTyped(KeyEvent e) {
+					// TODO Auto-generated method stub
+					// wird nicht genutzt
+					
+				}
+
+				@Override
+				public void keyReleased(KeyEvent e) {
+					// TODO Auto-generated method stub
+					// wird nicht genutzt
+					
+				}
+			});
+            thorbensPanel.setFocusable(true);
+			this.spielvorbereitungsDisplay.setVisible(false);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -416,7 +443,6 @@ public void actionPerformed(ActionEvent e) {
 		setzeAuswahldisplay();
 	}
 }
-
 //Main Mehtoden 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -444,5 +470,39 @@ public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		return roboterBelegung;
 	}
-
+	// Methoden f�r R�ckgabewerte
+	
+		public boolean oben(){
+			richtung = 4;
+			return true;
+		}
+		
+		public boolean unten(){
+			richtung = 6;
+			return true;
+		}
+		
+		public boolean links(){
+			richtung = 5;
+			return true;
+		}
+		
+		public boolean rechts(){
+			richtung = 7;
+			return true;
+		}
+		
+		public boolean spielstart(){
+			return true;
+		}
+		
+		public boolean pause(){
+			richtung = 2;
+			return true;
+		}
+		
+		public boolean pauseende(){
+			return true;
+		}
+	
 }
