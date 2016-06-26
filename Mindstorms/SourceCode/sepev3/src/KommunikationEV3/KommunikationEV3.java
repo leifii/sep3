@@ -4,11 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
-
-
-
-
 import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 
@@ -18,15 +13,18 @@ public class KommunikationEV3 implements IKommunikation{
 	Linienverfolgung lvfg;
 	Drucksensor druck;
 	Socket socket;
-	byte[] nachricht= new byte[9];
+	byte[] nachrichtsenden= new byte[9];
+	byte[] nachrichtempfangen= new byte[9];
 	
 	int letzterwert = 0;
 	
 	
 	public byte[] getNachricht()
 	{
-		return nachricht;
+		return nachrichtempfangen;
 	}
+	
+	
 	public KommunikationEV3(Socket soc, Drucksensor druck){
 		socket = soc;
 		lvfg=new Linienverfolgung();
@@ -37,8 +35,8 @@ public class KommunikationEV3 implements IKommunikation{
 		erzeugeByteArray();
 			try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-			out.writeInt(nachricht.length);
-			out.write(nachricht);
+			out.writeInt(nachrichtsenden.length);
+			out.write(nachrichtsenden);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -55,7 +53,7 @@ public class KommunikationEV3 implements IKommunikation{
 								//Lï¿½nge der Nachricht lesen
 			if(in.readInt()>0){
 			
-				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
+				in.readFully(nachrichtempfangen, 0, nachrichtempfangen.length);	//Speicherort der Nachricht, Anfang, Ende
 				
 
 //				LCD.drawString("Nachricht", 0, 1);                                 //Displayausgabe bei Test am EV3
@@ -80,7 +78,7 @@ public class KommunikationEV3 implements IKommunikation{
 			e.printStackTrace();
 		}
 		
-		return nachricht;
+		return nachrichtempfangen;
 		
 		
 	}
@@ -91,7 +89,7 @@ public class KommunikationEV3 implements IKommunikation{
 	public void nachrichtverarbeiten(){
 		
 		
-		int wert = nachricht[8];
+		int wert = nachrichtempfangen[8];
 		
 		
 
