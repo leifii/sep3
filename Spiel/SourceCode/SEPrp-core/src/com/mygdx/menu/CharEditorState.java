@@ -2,6 +2,7 @@ package com.mygdx.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.backends.lwjgl.audio.Mp3.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -180,12 +182,12 @@ public class CharEditorState extends State {
 		handleInput();
 	}
 int x=1;
-
+Sound buttonclick;
 float XX=0;float YY=0;
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
-		
+		buttonclick=(Sound) Gdx.audio.newSound(Gdx.files.internal("toggle_switch.mp3"));
 		x+=1;
 		if (x<=180) {
 			
@@ -193,12 +195,14 @@ float XX=0;float YY=0;
 		charbild[augenindex][haarindex].setRotation(-x*2);
 		XX=charbild[augenindex][haarindex].getScaleX();
 		YY=charbild[augenindex][haarindex].getScaleY();
+
 		}
 		
 		
 	
 			
 		if (buttonJ.isPressed()) {	
+			buttonclick.play();
 			augenindex--;
 			if (augenindex==-1) {
 				augenindex=augen.length-1;
@@ -216,6 +220,7 @@ float XX=0;float YY=0;
 		
 		}
 			if (buttonN.isPressed()){
+				buttonclick.play();
 				augenindex++;
 				if (augenindex==augen.length) {
 					augenindex=0;
@@ -231,6 +236,7 @@ float XX=0;float YY=0;
 					
 		}
 			if (buttonK.isPressed()) {	
+				buttonclick.play();
 				haarindex--;
 				if (haarindex==-1) {
 					haarindex=1;
@@ -248,6 +254,7 @@ float XX=0;float YY=0;
 			
 			}
 				if (buttonL.isPressed()){
+					buttonclick.play();
 					haarindex++;
 					if (haarindex==2) {
 						haarindex=0;

@@ -1,4 +1,4 @@
-items.png
+﻿items.png
 = Swords and daggers =
 * By Tuomo Untinen
 = Axes =
@@ -192,3 +192,5 @@ effects.png
 * Adaptation by Tuomo Untinen
 
 
+
+toggle_switch= By www.freesfx.co.uk
