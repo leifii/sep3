@@ -1,3 +1,5 @@
+package Spielfeld;
+
 
 
 public class Plane implements IPlane{
@@ -13,7 +15,7 @@ public class Plane implements IPlane{
 	{
 		return nKante;
 	}
-	public boolean getSüd()
+	public boolean getSÃ¼d()
 	{
 		return sKante;
 	}
