@@ -95,6 +95,10 @@ public class Character implements IDrawable, Serializable {
 		keyframes7 = new TextureRegion[] { animation[1][0] };
 
 		this.attributes = attributes;
+		
+		///////////////////Wie wird MaxHP ausgerechnet?/////////////////////////
+		MaxHP=100;
+		
 		setCurrentHP(MaxHP);
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
