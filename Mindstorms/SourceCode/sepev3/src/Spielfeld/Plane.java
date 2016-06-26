@@ -1,7 +1,6 @@
 package Spielfeld;
 
 
-
 public class Plane implements IPlane{
 	
 	int knoten;
@@ -15,7 +14,7 @@ public class Plane implements IPlane{
 	{
 		return nKante;
 	}
-	public boolean getSüd()
+	public boolean getSued()
 	{
 		return sKante;
 	}
