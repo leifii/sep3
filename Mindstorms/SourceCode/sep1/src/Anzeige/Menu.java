@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package Anzeige;
 
 
@@ -308,12 +313,10 @@ public void actionPerformed(ActionEvent e) {
 		case "Modus 4" : roboterBelegung[0] = "4";
 		break;
 		}
-//		System.out.println(roboterBelegung[0]);
 	}
 	else if (e.getSource()== cbAuswahl2){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-//		System.out.println(msg);
 		switch(msg){
 		case "SepMAN" : roboterBelegung[1] = "1";
 		break;
@@ -329,7 +332,6 @@ public void actionPerformed(ActionEvent e) {
 	else if (e.getSource()== cbAuswahl3){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-//		System.out.println(msg);
 		switch(msg){
 		case "SepMAN" : roboterBelegung[2] = "1";
 		break;
@@ -344,7 +346,6 @@ public void actionPerformed(ActionEvent e) {
 	else if (e.getSource()== cbAuswahl4){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-//		System.out.println(msg);
 		switch(msg){
 		case "SepMAN" : roboterBelegung[3] = "1";
 		break;
@@ -403,7 +404,7 @@ public void actionPerformed(ActionEvent e) {
 							rechts();
 							System.out.println(richtung);
 						}
-						
+		
 						else if(l.getKeyCode() == KeyEvent.VK_SPACE){
 							pause();
 							System.out.println(richtung); 
@@ -413,14 +414,11 @@ public void actionPerformed(ActionEvent e) {
 				public void keyTyped(KeyEvent e) {
 					// TODO Auto-generated method stub
 					// wird nicht genutzt
-					
 				}
-
 				@Override
 				public void keyReleased(KeyEvent e) {
 					// TODO Auto-generated method stub
 					// wird nicht genutzt
-					
 				}
 			});
             thorbensPanel.setFocusable(true);
@@ -442,17 +440,14 @@ public void actionPerformed(ActionEvent e) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
 					Menu menu1 = new Menu();
 					menu1.setVisible(true);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
 	// Set-Methode um das Array welches die Roboterbelegung speichert zu manipulieren. Bedarf für diese Methode muss noch geklärt werden
 	public void setRoboterBelegung(String[] roboterBelegung) {
 		this.roboterBelegung = roboterBelegung;
