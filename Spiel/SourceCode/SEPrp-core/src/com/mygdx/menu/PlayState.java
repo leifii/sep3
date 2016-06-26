@@ -505,6 +505,10 @@ public class PlayState extends State implements Serializable {
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef);
+		shape.setAsBox(1, 1);
+		fdef.shape = shape;
+		fdef.isSensor = true;
+		body.createFixture(fdef).setUserData("truhe");
 		return body;
 	}
 	
