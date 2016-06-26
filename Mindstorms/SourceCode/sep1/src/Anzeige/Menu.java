@@ -291,6 +291,10 @@ public boolean eingabeKorrekt() {
 	return  check;
 }
 
+
+
+
+
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
@@ -357,6 +361,11 @@ public void actionPerformed(ActionEvent e) {
 		break;
 		}	
 //		System.out.println(roboterBelegung[3]);
+		
+		
+		
+		
+		
 	}	
 	else if (e.getSource()== btnEnde ){
 		dispose();
@@ -463,37 +472,29 @@ public void actionPerformed(ActionEvent e) {
 	}
 	// Methoden f�r R�ckgabewerte
 	
-		public boolean oben(){
+		public void oben(){
 			richtung = 4;
-			return true;
 		}
 		
-		public boolean unten(){
+		public void unten(){
 			richtung = 6;
-			return true;
 		}
 		
-		public boolean links(){
+		public void links(){
 			richtung = 5;
-			return true;
 		}
 		
-		public boolean rechts(){
+		public void rechts(){
 			richtung = 7;
-			return true;
 		}
 		
-		public boolean spielstart(){
-			return true;
+		public void pause(){
+			richtung = 2;	 
+		}
+		@Override
+		public int getTaste() {
+			// TODO Auto-generated method stub
+			return richtung;
 		}
 		
-		public boolean pause(){
-			richtung = 2;
-			return true;
-		}
-		
-		public boolean pauseende(){
-			return true;
-		}
-	
 }
