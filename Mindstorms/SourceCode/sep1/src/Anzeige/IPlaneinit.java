@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package Anzeige;
 public interface IPlaneinit {
 	Plane getInfo(int arrayposition);//gibt Knoten an der Position zurück
