@@ -45,6 +45,7 @@ public class Server{
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
 			Spieldatenverarbeitung sdv = new Spieldatenverarbeitung();
+			
 			nachricht = com1.empfangen();
 			com1.senden();
 			
@@ -62,6 +63,7 @@ public class Server{
 			
 			else if(mode == 103){
 				// TODO Zufall
+				
 				com1.senden();
 			}
 			
