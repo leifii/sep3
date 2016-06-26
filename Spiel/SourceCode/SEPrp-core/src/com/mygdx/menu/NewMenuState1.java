@@ -37,13 +37,14 @@ public class NewMenuState1 extends State {
 	private Table table;
 	private BitmapFont white;
 	private Sound click;
+
 	TextButton NewGame,LoadGame,EndGame;
 	boolean cl;
-
+	
 	public NewMenuState1(GameStateManager gsm) {
 		super(gsm);
 		cl=true;
-		click= Gdx.audio.newSound(Gdx.files.internal("pindrop.mp3"));
+		
 		// TODO Auto-generated constructor stub
 		stage=new Stage();
 		
@@ -140,8 +141,10 @@ public class NewMenuState1 extends State {
 
 	@Override
 	public void handleInput() {
+		click=Gdx.audio.newSound(Gdx.files.internal("dragstone.mp3"));
 		if (Gdx.input.isKeyJustPressed(Keys.L) || LoadGame.isPressed()) {
 			if(cl)
+				
 			click.play();
 			cl=false;
 			SequenceAction action;
