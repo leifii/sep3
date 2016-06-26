@@ -28,11 +28,7 @@ public class Zufall implements IModus{
 	public void run(){
 		int zahl;
 		Plane knoten;
-		
-		boolean nord = false;
-		boolean sued = false;
-		boolean ost = false;
-		boolean west = false;
+
 		
 		boolean[] richtungen = {false, false, false, false};
 		int blickrichtung = -1;
