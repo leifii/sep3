@@ -50,28 +50,28 @@ public class CharEditorState extends State {
 		charauswahl=ch;
 		
 		if (charauswahl==1) {	//Krieger
-			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
-			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/Archer-Eyes1.png"),new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/Schütze_blauE.png"),new Texture("grafiken/Schütze_grünE.png"),new Texture("grafiken/Schütze_rotE.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])},{new Image(augen[3]),new Image(haare[3])}};
 		}
 		else if (charauswahl==2) {	//Magier
-			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
-			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/Archer-Eyes1.png"),new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/Schütze_blauE.png"),new Texture("grafiken/Schütze_grünE.png"),new Texture("grafiken/Schütze_rotE.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])},{new Image(augen[3]),new Image(haare[3])}};
 		}
 		
 		else if (charauswahl==3) {		//Schurke
 //			augen=new Texture[]{new Texture("grafiken/Schurke.png"),new Texture("grafiken/SchurkeEye1.png"),new Texture("grafiken/SchurkeEye2.png")};
 //			haare=new Texture[]{new Texture("grafiken/SchurkeRed.png"),new Texture("grafiken/SchurkeRedEye1.png"),new Texture("grafiken/SchurkeRedEye2.png")};
 //			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
-			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
-			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/Archer-Eyes1.png"),new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/Schütze_blauE.png"),new Texture("grafiken/Schütze_grünE.png"),new Texture("grafiken/Schütze_rotE.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])},{new Image(augen[3]),new Image(haare[3])}};
 		}
 		else if (charauswahl==4) {			//Schütze			
-			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/ArcherEye1.png"),new Texture("grafiken/ArcherEye2.png")};
-			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/ArcherBlueEye1.png"),new Texture("grafiken/ArcherBlueEye2.png")};
-			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])}};
+			augen=new Texture[]{new Texture("grafiken/Archer.png"),new Texture("grafiken/Archer-Eyes1.png"),new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png")};
+			haare=new Texture[]{new Texture("grafiken/ArcherBlue.png"),new Texture("grafiken/Schütze_blauE.png"),new Texture("grafiken/Schütze_grünE.png"),new Texture("grafiken/Schütze_rotE.png")};
+			charbild=	new Image[][]{{new Image(augen[0]),new Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new Image(augen[2]),new Image(haare[2])},{new Image(augen[3]),new Image(haare[3])}};
 		}
 		stage=new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -285,6 +285,12 @@ float XX=0;float YY=0;
 		}
 		else if (haarindex==1 && augenindex==2) {
 			design=5;
+		}
+		else if (haarindex==1 && augenindex==3) {
+			design=6;
+		}
+		else if (haarindex==0 && augenindex==3) {
+			design=7;
 		}
 	// DESIGN
 		
