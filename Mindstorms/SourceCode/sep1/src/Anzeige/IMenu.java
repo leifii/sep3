@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package Anzeige;
 
 import javax.print.DocFlavor.STRING;
