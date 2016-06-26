@@ -57,7 +57,7 @@ public class MyContactListener implements ContactListener {
 			b[3]=true;
 			fb.getBody().setUserData(b);
 		}
-		//0 für String, 1 für Objekt (in der FixtureList)
+		//1 für String, 0 für Objekt (in der FixtureList)
 		if(fa.getUserData()!=null && fa.getUserData().equals("skill") && fb.getBody().getFixtureList().size>1 &&
 				!fb.getBody().getFixtureList().get(1).getUserData().equals("charakter")){
 			Skill s = ((Skill) fa.getBody().getUserData());
