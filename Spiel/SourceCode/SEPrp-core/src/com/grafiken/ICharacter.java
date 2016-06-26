@@ -17,4 +17,5 @@ public interface ICharacter {
 	public TextureRegion[][] getGegnerAnimation(int index); //returned Schleim für index 0 (Position 0,0 und 0,1 im Array)
 	
 	public TextureRegion[][] getAngriff(int index); //Array mit Angriffsbildern , 00=oben 01=rechts, 10=unten, 11=rechts (siehe Assets)
+	public TextureRegion[][] getSchütze(int index); //einzelne Kollorierungen des Schützens
 }
