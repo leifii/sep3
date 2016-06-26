@@ -121,6 +121,11 @@ public class Skill implements Serializable {
 			setY(getY() + dy * dt * speed);
 		}
 		else if(isAlive() == true && buff == true){			//falls Buff, dann auf Spielerposition halten
+			if (c instanceof Schuetze && button == 3 && aktiviert == true){		//schuetzen falle soll liegen bleiben
+				setX(c.getPosition().x);
+				setY(c.getPosition().y);
+				aktiviert = false;
+			}
 			setX(c.getPosition().x);
 			setY(c.getPosition().y);
 		}
@@ -193,6 +198,9 @@ public class Skill implements Serializable {
 					cdnow = cd;
 					lifeTimer = 0;
 					setAlive(true);
+					if (c instanceof Schuetze ){
+						aktiviert = true;
+					}
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
 						dx = 0 * speed;
 						dy = -300 * speed;
