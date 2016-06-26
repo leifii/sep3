@@ -126,6 +126,6 @@ public class Gegner extends Character {
 	public void addLoot(EquipmentType...equipments) {
 		addLoot(0, equipments);
 	}
-
+	
 	
 }
