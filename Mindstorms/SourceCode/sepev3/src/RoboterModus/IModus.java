@@ -1,7 +1,9 @@
 package RoboterModus;
 
 public interface IModus {
-
-	public int getModus();
+	
+	public int getPos();
+	public int getDest();
+	
 
 }

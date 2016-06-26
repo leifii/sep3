@@ -6,7 +6,7 @@ import KommunikationEV3.IKommunikation;
 import KommunikationEV3.KommunikationEV3;
 
 
-public class Zufall implements IZufall{
+public class Zufall implements IModus{
 	int aktuelleposition=26;
 	int zielposition =0;
 	int änderung=0;
@@ -14,21 +14,21 @@ public class Zufall implements IZufall{
 	
 	
 	
+	public void geistZufall(){
+		
+		
+		
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	public int getPosG3(){
+
+	public int getPos(){
 		
 		return aktuelleposition;
 	}
 	
 	
-	public int getDestG3(){
+	public int getDest(){
 		
 		return zielposition;
 		
