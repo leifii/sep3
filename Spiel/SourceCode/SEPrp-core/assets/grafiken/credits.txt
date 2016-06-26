@@ -193,4 +193,4 @@ effects.png
 
 
 
-toggle_switch= By www.freesfx.co.uk
+toggle_switch,drag_stone= By www.freesfx.co.uk

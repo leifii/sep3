@@ -43,7 +43,7 @@ public class NewMenuState1 extends State {
 	public NewMenuState1(GameStateManager gsm) {
 		super(gsm);
 		cl=true;
-		click=Gdx.audio.newSound(Gdx.files.internal("pindrop.mp3"));
+		click= Gdx.audio.newSound(Gdx.files.internal("pindrop.mp3"));
 		// TODO Auto-generated constructor stub
 		stage=new Stage();
 		
