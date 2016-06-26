@@ -121,13 +121,17 @@ public class Skill implements Serializable {
 			setY(getY() + dy * dt * speed);
 		}
 		else if(isAlive() == true && buff == true){			//falls Buff, dann auf Spielerposition halten
-			if (c instanceof Schuetze && button == 3 && aktiviert == true){		//schuetzen falle soll liegen bleiben
+			if (c instanceof Schuetze && button == 3){		//schuetzen falle soll liegen bleiben
+				if (aktiviert == true) {
 				setX(c.getPosition().x);
 				setY(c.getPosition().y);
 				aktiviert = false;
+				}
 			}
+			else {
 			setX(c.getPosition().x);
 			setY(c.getPosition().y);
+			}
 		}
 
 		if (c instanceof Krieger && button == 4 && alive == false){		//dmgfaktor nach cd wieder runtersetzen (4.skill)
@@ -300,8 +304,7 @@ public class Skill implements Serializable {
 			//s.draw(bild, x, y);
 
 		if (isAlive() == true) {
-			s.draw(bild, getX(), getY());
-
+			s.draw(hallo, getX(), getY());
 		}
 	}
 
