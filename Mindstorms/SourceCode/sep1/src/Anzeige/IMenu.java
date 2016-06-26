@@ -11,4 +11,11 @@ public interface IMenu {
 	public void setzeNiederlageBildschirm();
 	public void setzePausenBildschrim();
 	public String[] getRoboterbelegung();
+	boolean oben();
+	boolean unten();
+	boolean links();
+	boolean rechts();
+	boolean spielstart();
+	boolean pause();
+	boolean pauseende();
 }

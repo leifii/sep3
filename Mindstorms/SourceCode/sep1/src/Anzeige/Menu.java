@@ -278,31 +278,19 @@ public boolean eingabeKorrekt() {
 	int k = 0;
 	for (int i = 0; i< 4; i++){
 		if( roboterBelegung[i]== null ){
-//			System.out.println(roboterBelegung[i]);
-//			System.out.println("Fehlerhafte Auswahl");     // Abfrage ob alle Roboter ausgewählt 
 			check = false;
-			//
-			// POPUP Fenster einbauen bei unvollständiger eingabe
-			//
 		}
 	}
 	for (int i = 0; i < roboterBelegung.length-1; ++i){
 		  for (int j = i+1; j < roboterBelegung.length; ++j){
 		    if (roboterBelegung[i] == roboterBelegung[j]){      // Abfrage ob kein Modus doppelt ausgewählt wurde 
 		    	check = false;
-//		    	System.out.println("Fehlerhafte Auswahl");
-		    	//
-		    	// POPUP Fenster bei doppelter eingabe 
-		    	//
 		    }
 		  }
 	}
 	return  check;
 }
 
-//Action Listener , noch nicht voll funktionsfähig. Was nach einer Aktion passieren soll muss noch korrekt implementiert werden
-// System.out.println(roboterBelegung[0]); o.ä. Anweisungen dienen nur zu Überprüfung und werden später noch gelöscht
-// Action Listener der Buttons müssen jetzt nur noch Implementiert werden
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
@@ -395,24 +383,27 @@ public void actionPerformed(ActionEvent e) {
 				public void keyPressed(KeyEvent l) {
 					// TODO Auto-generated method stub
 					if(l.getKeyCode() == KeyEvent.VK_UP){
-					     System.out.println("HAHA");
 					     oben();
+					     System.out.println(richtung);
 						}
-						
-						else if(l.getKeyCode() == KeyEvent.VK_0){
-							System.out.println("HAHA");
+						else if(l.getKeyCode() == KeyEvent.VK_LEFT){
+							links();
+							System.out.println(richtung);
 						}
 						
 						else if(l.getKeyCode() == KeyEvent.VK_DOWN){
-							System.out.println("HAHA");
+							unten();
+							System.out.println(richtung);
 						}
 						
 						else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
-							System.out.println("HAHA");
+							rechts();
+							System.out.println(richtung);
 						}
 						
 						else if(l.getKeyCode() == KeyEvent.VK_SPACE){
-							System.out.println("HAHA");
+							pause();
+							System.out.println(richtung); 
 						}	
 				}
 				@Override
