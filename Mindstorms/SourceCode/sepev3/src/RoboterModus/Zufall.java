@@ -102,32 +102,38 @@ public class Zufall implements IModus{
 		
 		else if(blickrichtung + 1 == zahl){
 			lvfg.drehenLinks();
+			lvfg.geradeaus();
 		}
 		
 		else if(blickrichtung + 2 == zahl){
 			lvfg.drehenLinks();
 			lvfg.drehenLinks();
+			lvfg.geradeaus();
 		}
 		
 		else if(blickrichtung + 3 == zahl){
 			lvfg.drehenLinks();
 			lvfg.drehenLinks();
 			lvfg.drehenLinks();
+			lvfg.geradeaus();
 		}
 		
 		else if(blickrichtung - 1 == zahl){
 			lvfg.drehenRechts();
+			lvfg.geradeaus();
 		}
 		
 		else if(blickrichtung - 2 == zahl){
 			lvfg.drehenRechts();
 			lvfg.drehenRechts();
+			lvfg.geradeaus();
 		}
 		
 		else if(blickrichtung - 3 == zahl){
 			lvfg.drehenRechts();
 			lvfg.drehenRechts();
 			lvfg.drehenRechts();
+			lvfg.geradeaus();
 		}
 		
 		
