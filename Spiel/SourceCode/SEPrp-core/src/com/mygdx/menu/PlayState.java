@@ -215,9 +215,9 @@ public class PlayState extends State implements Serializable {
 
 		if (Gdx.input.isKeyJustPressed(Keys.O))
 			drawableList.add(Equipment.spawnRandomItem(c.getPosition()));
-		if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
-			for (Gegner g : gegnerList)
-				killGegner(g);
+//		if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
+//			for (Gegner g : gegnerList)
+//				killGegner(g);
 		if (Gdx.input.isKeyJustPressed(Keys.K)) {
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
@@ -248,6 +248,8 @@ public class PlayState extends State implements Serializable {
 			for (Gegner g : gegnerList) {
 				g.update(dt);
 				g.follow(c);
+				if(g.getCurrentHP()<=0)
+					killGegner(g);
 			}
 
 		currentFrameTime += dt;
@@ -445,7 +447,7 @@ public class PlayState extends State implements Serializable {
 
 		sb.end();
 
-		b2dr.render(world, cam.combined);
+//		b2dr.render(world, cam.combined);
 
 	}
 
