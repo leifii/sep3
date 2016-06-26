@@ -51,7 +51,7 @@ public class PlayState extends State implements Serializable {
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 
-	transient NPC Npc;
+	transient NPC [] Npc;
 	
 	private transient List<Gegner> gegnerList;
 	private transient List<IDrawable> drawableList;
@@ -90,7 +90,7 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 		
-		Npc = new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300,"npc"));
+		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300,"npc")),new NPC(120, 360, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,360,"npc"))};
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
@@ -302,8 +302,11 @@ public class PlayState extends State implements Serializable {
 		c.draw(sb);
 
 		// NPCs //
-		Npc.render(this, sb, c.getBounds(), c);
-
+		for (int i = 0; i < Npc.length; i++) {
+			
+		
+		Npc[i].render(this, sb, c.getBounds(), c);
+}
 		// NPCs //
 
 		// TRUHEN //
