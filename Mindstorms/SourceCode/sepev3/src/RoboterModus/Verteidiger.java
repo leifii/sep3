@@ -31,4 +31,10 @@ public class Verteidiger extends IModus{
 		
 	}
 
+	@Override
+	public void nachrichtenverarbeitung() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
