@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package Positionen;
 
 public interface IPosition {
