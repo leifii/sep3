@@ -53,7 +53,7 @@ public class Server{
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
 			Spieldatenverarbeitung sdv = new Spieldatenverarbeitung();
-			Planeinit planes = new Planeinit(null,null,null,null,null,null);
+			Planeinit planes = new Planeinit(null,null,null,null,null,null);       //TODO muss noch initialisiert werden
 			Linienverfolgung lvfg=new Linienverfolgung();
 			IModus robomode;
 			
@@ -67,11 +67,11 @@ public class Server{
 			break;
 			case 102: robomode = new Verteidiger();
 			break;
-			case 103: robomode = new Zufall(planes, lvfg);
+			case 103: robomode = new Zufall(26, planes, lvfg, drucksensor);
 			break;
 			case 104: robomode = new Sepman();
 			break;
-			default: robomode = new Zufall(planes, lvfg);
+			default: robomode = new Zufall(26, planes, lvfg, drucksensor);
 			break;
 			}
 			

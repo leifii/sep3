@@ -1,5 +1,5 @@
 /**
- * @author ${user}
+ * @author ${Katharina Böse}
  *
  * 
  */
@@ -8,61 +8,70 @@ package RoboterModus;
 
 import java.util.Random;
 
+import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Plane;
 import Spielfeld.Planeinit;
 
 
 
-public class Zufall implements IModus{
-	Planeinit planeinit;
-	int aktuelleposition=26;
-	int zielposition =0;
-	int änderung=0;
-	int letzterKnoten;
-	Linienverfolgung lvfg;
-	byte[] nachricht= new byte[9];
+public class Zufall extends IModus{
+
 	Random r;
 	
-	public Zufall(Planeinit plane, Linienverfolgung lvfg){
+	public Zufall(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
 		this.planeinit = plane;
 		this.lvfg = lvfg;
+		this.sensor = drucksensor;
+		aktuelleposition = start;
 		letzterKnoten = aktuelleposition +1;
 	}
 	
 	public void run(){
-		int zahl;
+		int zufallszahl;
 		Plane knoten;
 
 		
-		boolean[] richtungen = {false, false, false, false};
-		int blickrichtung = -1;
-		// nord = 0, west = 1, sued = 2, ost = 3;
+		//Richtungen in die man gehen kann von der aktellen Position aus
+		
+		boolean[] richtungen = {false, false, false, false};	// Position im Array: nord = 0, west = 1, sued = 2, ost = 3;
+		
+		int blickrichtung = -1;									// nord = 0, west = 1, sued = 2, ost = 3;
 		
 		knoten = planeinit.getInfo(aktuelleposition);
 		
-		if(knoten.getNord() && (aktuelleposition - 10) != letzterKnoten){
+		if(knoten.getNord() && (aktuelleposition - 10) != letzterKnoten && (aktuelleposition - 10) != nachricht[1] && (aktuelleposition - 10) != nachricht[3] ){
 			richtungen[0] = true;
 		}
 		
-		if(knoten.getSued() && (aktuelleposition + 10) != letzterKnoten){
+		if(knoten.getSued() && (aktuelleposition + 10) != letzterKnoten&& (aktuelleposition + 10) != nachricht[1] && (aktuelleposition + 10) != nachricht[3] ){
 			richtungen[2] = true;
 		}
 		
-		if(knoten.getOst() && (aktuelleposition + 1) != letzterKnoten){
+		if(knoten.getOst() && (aktuelleposition + 1) != letzterKnoten && (aktuelleposition + 1) != nachricht[1] && (aktuelleposition + 1) != nachricht[3] ){
 			richtungen[3] = true;
 		}
 		
-		if(knoten.getWest() && (aktuelleposition - 1) != letzterKnoten){
+		if(knoten.getWest() && (aktuelleposition - 1) != letzterKnoten&& (aktuelleposition - 1) != nachricht[1] && (aktuelleposition - 1) != nachricht[3] ){
 			richtungen[1] = true;
 		}
 		
+		//Mögliche Richtungen gesetzt  
+		
+		
+		//Richtung zufällig auswählen
+		
 		while(true){
-			zahl  =r.nextInt(4);
-			if(richtungen[zahl] == true){
+			zufallszahl  =r.nextInt(4);					// nord = 0, west = 1, sued = 2, ost = 3;
+			
+			if(richtungen[zufallszahl] == true){
 				break;
 			}
 		}
+		
+		
+		//Blickrichtung des Geistes
+		
 		
 		if(aktuelleposition -1 == letzterKnoten){
 			blickrichtung = 3;
@@ -80,92 +89,91 @@ public class Zufall implements IModus{
 			blickrichtung = 0;
 		}
 		
+		//setzen der letzten Position
 		
 		letzterKnoten = aktuelleposition;
 		
+		//setzen der neuen zielposition Position
 		
-		
-		if(zahl == 0){
-			aktuelleposition -= 10;
+		if(zufallszahl == 0){
+			zielposition -= 10;
 		}
 		
-		else if(zahl == 1){
-			aktuelleposition -= 1;
+		else if(zufallszahl == 1){
+			zielposition -= 1;
 		}
 		
-		else if(zahl == 2){
-			aktuelleposition += 10;
+		else if(zufallszahl == 2){
+			zielposition += 10;
 		}
 		
-		else if(zahl == 3){
-			aktuelleposition +=1;
+		else if(zufallszahl == 3){
+			zielposition +=1;
 		}
 		
-		if(zahl == blickrichtung){
+		
+		
+		
+		//fahren des Roboters zu der nächsten Postion
+		
+		if(zufallszahl == blickrichtung){
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung + 1 == zahl){
+		else if(blickrichtung + 1 == zufallszahl){
 			lvfg.drehenLinks();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung + 2 == zahl){
-			lvfg.drehenLinks();
-			lvfg.drehenLinks();
-			lvfg.geradeaus();
-		}
-		
-		else if(blickrichtung + 3 == zahl){
-			lvfg.drehenLinks();
+		else if(blickrichtung + 2 == zufallszahl){
 			lvfg.drehenLinks();
 			lvfg.drehenLinks();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung - 1 == zahl){
+		else if(blickrichtung + 3 == zufallszahl){
 			lvfg.drehenRechts();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung - 2 == zahl){
+		else if(blickrichtung - 1 == zufallszahl){
+			lvfg.drehenRechts();
+			lvfg.geradeaus();
+		}
+		
+		else if(blickrichtung - 2 == zufallszahl){
 			lvfg.drehenRechts();
 			lvfg.drehenRechts();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung - 3 == zahl){
-			lvfg.drehenRechts();
-			lvfg.drehenRechts();
-			lvfg.drehenRechts();
+		else if(blickrichtung - 3 == zufallszahl){
+			lvfg.drehenLinks();
 			lvfg.geradeaus();
 		}
 		
+		//setzen der neuen aktuellen Position
+		
+		aktuelleposition = zielposition;
 		
 		
+	}
 
+	@Override
+	public void nachrichtenverarbeitung() {
+		
+		if(nachricht[8]==1 || nachricht[8]==3) pause=false;
+		if(nachricht[8]==127 || nachricht[8]==2) pause = true;
+		if(nachricht[8]==13) aktivierung=false;
+		if(nachricht[8]==23) aktivierung=true;
+	
 		
 	}
 	
 
-	public int getPos(){
-		
-		return aktuelleposition;
-	}
 	
-	
-	public int getDest(){
-		
-		return zielposition;
-		
-	}
-	
-	
-	public void setNachricht(byte[] mes){
-		
-		nachricht = mes;
-		
-	}
+
+
 	
 	
 

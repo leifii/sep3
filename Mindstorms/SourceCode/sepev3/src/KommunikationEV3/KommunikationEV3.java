@@ -87,8 +87,25 @@ public class KommunikationEV3 implements IKommunikation{
 		
 		
 	}
-	public int erzeugeByteArray(){
-		return 1;
+	public byte[] erzeugeByteArray(int ausgangsknoten, int zielknoten, boolean sensor, boolean aktivierung, boolean powerup, boolean pause){
+		byte[] mes = new byte[9];
+		
+		mes[0] = (byte) ausgangsknoten;
+		mes[1] = (byte) zielknoten;
+		
+		if(sensor) mes[2] = 1;
+		else mes[2] = 0;
+		
+		if(aktivierung) mes[3] = 1;
+		else mes[3] = 0;
+		
+		if(powerup) mes[4] = 1;
+		else mes[4] = 0;
+		
+		if(pause) mes[5] = 1;
+		else mes[5] = 0;
+		
+		return mes;
 	}
 	
 	public void nachrichtverarbeiten(){
@@ -183,4 +200,6 @@ public class KommunikationEV3 implements IKommunikation{
 	public boolean druckSensor() {
 		return druck.druckSensor(); //Boolean Wert der für später benutzt werden kann.
 	}
+
+
 }

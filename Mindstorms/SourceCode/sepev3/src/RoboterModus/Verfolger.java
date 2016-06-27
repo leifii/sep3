@@ -5,7 +5,7 @@
  */
 package RoboterModus;
 
-public class Verfolger implements IModus{
+public class Verfolger extends IModus{
 
 	@Override
 	public int getPos() {
