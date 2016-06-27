@@ -188,7 +188,7 @@ float XX=0;float YY=0;
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
 		buttonclick=(Sound) Gdx.audio.newSound(Gdx.files.internal("toggle_switch.mp3"));
-		x+=1;
+		x++;
 		if (x<=180) {
 			
 		charbild[augenindex][haarindex].scaleBy(0.1f);
@@ -270,7 +270,9 @@ float XX=0;float YY=0;
 						
 			}
 		
-		stage.addActor(charbild[augenindex][haarindex]);
+		if (x>50) {
+			stage.addActor(charbild[augenindex][haarindex]);
+		}
 		stage.act();
 		stage.draw();
 		
