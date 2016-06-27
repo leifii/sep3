@@ -190,7 +190,7 @@ public class Character implements IDrawable, Serializable {
 	public void update(float dt) {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 
-
+System.out.println("X= "+this.getPosition().x+" Y= "+this.getPosition().y);
 		//cd = skills.get(0).gethitcd();
 
 		for (int i = 0; i < getSkills().size(); i++) {

@@ -68,7 +68,7 @@ public class PlayState extends State implements Serializable {
 	public transient World world;
 	transient private Box2DDebugRenderer b2dr;
 
-	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 500, 500), new Portal(500, 500, 50, 50) };
+	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 2934, 312), new Portal(2934, 312, 50, 50) };
 
 	private static transient PlayState instance;
 
@@ -90,15 +90,16 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
-		Npc = new NPC[] { new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120, 300, "npc")),
-				new NPC(120, 360, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120, 360, "npc")) };
+		
+		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300,"npc")),new NPC(2339, 459, "grafiken/Kobold.png", "Hallo!", createDynamicBody(2339,459,"npc")),new NPC(1032, 1318, "grafiken/Kobold.png", "Hallo!", createDynamicBody(1032,1318,"npc"))};
+
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
-		c.setDesign(design);
+		
 		if (characterauswahl == 1) {
 			//System.out.println("Krieger");
 			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
@@ -146,8 +147,8 @@ public class PlayState extends State implements Serializable {
 			
 			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 			// map.getMap().getLayers().get("Objekte"), attributes);
+c.setDesign(design);
 
-			System.out.println("Schütze");
 		}
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
@@ -158,6 +159,7 @@ public class PlayState extends State implements Serializable {
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
 
 		instance = this;
+
 	}
 	
 	public void setCharacterType(int animationType, Attributes attributes, Body body){
@@ -470,6 +472,7 @@ public class PlayState extends State implements Serializable {
 
 	}
 
+	
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
