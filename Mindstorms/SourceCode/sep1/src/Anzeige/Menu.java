@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -47,6 +48,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public String[] roboterBelegung = new String[4];
 	public String[] roboterIPs = new String[4];
 	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
+//    ImageIcon pcm = new ImageIcon();
 	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	public JPanel startDisplay = new JPanel();
 	public JPanel siegDisplay = new JPanel();
@@ -317,24 +319,27 @@ public void setzeSpielvorbereitungsdisplay(){
 	spielvorbereitungsDisplay.setLayout(null);
 	spielvorbereitungsDisplay.setVisible(true);
 	spielvorbereitungsDisplay.setBackground(Color.WHITE);
-	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	spielvorbereitungsDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20));
 	
 	btnZurueck.addActionListener(this);
 	spielvorbereitungsDisplay.add(btnZurueck);
-	btnZurueck.setBounds(200, 400, 240, 50);
+	btnZurueck.setBounds(200, 435, 500, 75);
+	btnZurueck.setFont(new Font("Arial", Font.BOLD, 50));
 	btnZurueck.setText("Zurück");
-	btnZurueck.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnZurueck.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	
 	
 	spielvorbereitungsDisplay.add(btnStartfinal);
-	btnStartfinal.setBounds(200, 340, 240, 50);
-	btnStartfinal.setText("Roboter positioniert ,Spiel starten !!");
-	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnStartfinal.setBounds(200, 340, 500, 75);
+	btnStartfinal.setFont(new Font("Arial", Font.BOLD, 50));
+	btnStartfinal.setText("Spiel starten !!");
+	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	btnStartfinal.addActionListener(this);
 	
 	
 	spielvorbereitungsDisplay.add(lbHinweis1);
-	lbHinweis1.setBounds(100, 100, 300, 100);
-	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 15));
+	lbHinweis1.setBounds(40, 100, 400, 100);
+	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 20));
 	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
 	
