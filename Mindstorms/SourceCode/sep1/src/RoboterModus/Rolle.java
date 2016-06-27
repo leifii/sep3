@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package RoboterModus;
 
 public enum Rolle {
