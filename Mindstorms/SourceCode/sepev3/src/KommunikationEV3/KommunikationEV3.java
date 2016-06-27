@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package KommunikationEV3;
 
 import java.io.DataInputStream;
