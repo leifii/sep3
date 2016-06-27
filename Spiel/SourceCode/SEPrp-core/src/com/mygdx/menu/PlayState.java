@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
@@ -49,10 +50,10 @@ public class PlayState extends State implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	boolean besucht;
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
-
+	private Texture Kobolddorflabel;
 	transient NPC[] Npc;
 	public Key keys;
 	private transient List<Gegner> gegnerList;
@@ -80,7 +81,8 @@ public class PlayState extends State implements Serializable {
 
 	public PlayState(GameStateManager gsm, int characterauswahl, int design) {
 		super(gsm);
-
+		besucht=false;
+		Kobolddorflabel=new Texture("grafiken/KoboldDorfLabel.png");
 		world = new World(new Vector2(0, 0), false);
 		b2dr = new Box2DDebugRenderer();
 		MyContactListener cl = new MyContactListener();
@@ -324,7 +326,16 @@ c.setDesign(design);
 		sb.begin();
 
 		c.draw(sb);
-
+		
+		if (c.getPosition().x>1495 && c.getPosition().x<1696 && c.getPosition().y>0 && c.getPosition().y<1000 && !besucht) {
+			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		}
+		if (c.getPosition().x>1695) {
+			besucht=true;
+		}
+		if (c.getPosition().x<1495) {
+			besucht=false;
+		}
 		// NPCs //
 		for (int i = 0; i < Npc.length; i++) {
 
