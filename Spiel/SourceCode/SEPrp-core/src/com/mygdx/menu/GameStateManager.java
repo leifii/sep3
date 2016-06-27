@@ -8,11 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameStateManager {
 	private Stack<State> states;
-	Music a;
+	Music a,b;
 	
 	public GameStateManager(){
 		states= new Stack<State>();
 		a=Gdx.audio.newMusic(Gdx.files.internal(("Rise of Spirit.mp3")));
+		b=Gdx.audio.newMusic(Gdx.files.internal("TownTheme.mp3"));
 	}
 	public void push(State state){
 		states.push(state);
@@ -35,5 +36,8 @@ public class GameStateManager {
 			a.play();
 		}
 		else a.stop();
+		if(states.peek() instanceof PlayState){
+			b.play();
+		}
 	}
 }
