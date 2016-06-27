@@ -83,7 +83,7 @@ public class Kommunikation implements IKommunikation{
 			}
 			else if(i==2){
 				if(whatever[i]==1){
-					Kollisionen.Kollision.kollision();    // Wird aufgerufen, wenn der Drucksensor aktiviert ist, es also zu einer Kollision kam.
+					Kollisionen.Kollision.setkollision();    // Wird aufgerufen, wenn der Drucksensor aktiviert ist, es also zu einer Kollision kam.
 				}
 			}
 			else if(i==3){								//Aktivierungsstatus des Roboters. 0 = Inaktiv; 1 = Aktiv
