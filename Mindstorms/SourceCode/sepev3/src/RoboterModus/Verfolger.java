@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package RoboterModus;
 
 public class Verfolger implements IModus{
@@ -15,9 +20,9 @@ public class Verfolger implements IModus{
 	}
 
 	@Override
-	public int run() {
+	public void run() {
 		// TODO Auto-generated method stub
-		return 0;
+	 
 	}
 
 	@Override
