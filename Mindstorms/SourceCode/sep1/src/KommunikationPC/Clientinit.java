@@ -1,10 +1,15 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package KommunikationPC;
 
 public class Clientinit {
 			public Client ii;
 			public Clientinit()
 			{
-				ii=new Client();
+				ii=new Client(null, null, 0);
 			}
 			
 			
