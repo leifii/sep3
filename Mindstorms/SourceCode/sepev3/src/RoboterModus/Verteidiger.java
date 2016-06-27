@@ -5,7 +5,7 @@
  */
 package RoboterModus;
 
-public class Verteidiger implements IModus{
+public class Verteidiger extends IModus{
 
 	@Override
 	public int getPos() {

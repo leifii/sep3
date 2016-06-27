@@ -5,7 +5,7 @@
  */
 package RoboterModus;
 
-public class Sepman implements IModus{
+public class Sepman extends IModus{
 
 	@Override
 	public int getPos() {
