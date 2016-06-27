@@ -21,6 +21,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
 import com.character.IDrawable;
@@ -219,6 +220,44 @@ c.setDesign(design);
 		// System.out.println("Laden erflogreich.");
 		// }
 		// }
+		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+			if(((boolean[]) c.getBody().getUserData())[0] && (c.getRichtung()==AnimationDirection.NORTH_ATTACK || 
+					c.getRichtung()==AnimationDirection.NORTH_STAND || c.getRichtung()==AnimationDirection.NORTH_WALK) &&
+					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
+				for(Gegner g : gegnerList){
+					if(((boolean[]) g.getBody().getUserData())[1]){
+						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+					}
+				}
+			}
+			if(((boolean[]) c.getBody().getUserData())[1] && (c.getRichtung()==AnimationDirection.SOUTH_ATTACK || 
+					c.getRichtung()==AnimationDirection.SOUTH_STAND || c.getRichtung()==AnimationDirection.SOUTH_WALK) &&
+					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
+				for(Gegner g : gegnerList){
+					if(((boolean[]) g.getBody().getUserData())[0]){
+						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+					}
+				}
+			}
+			if(((boolean[]) c.getBody().getUserData())[2] && (c.getRichtung()==AnimationDirection.EAST_ATTACK || 
+					c.getRichtung()==AnimationDirection.EAST_STAND || c.getRichtung()==AnimationDirection.EAST_WALK) &&
+					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
+				for(Gegner g : gegnerList){
+					if(((boolean[]) g.getBody().getUserData())[3]){
+						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+					}
+				}
+			}
+			if(((boolean[]) c.getBody().getUserData())[3] && (c.getRichtung()==AnimationDirection.WEST_ATTACK || 
+					c.getRichtung()==AnimationDirection.WEST_STAND || c.getRichtung()==AnimationDirection.WEST_WALK) &&
+					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
+				for(Gegner g : gegnerList){
+					if(((boolean[]) g.getBody().getUserData())[2]){
+						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+					}
+				}
+			}
+		}
 	}
 
 	@Override
