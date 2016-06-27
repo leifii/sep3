@@ -2,13 +2,17 @@ package com.mygdx.menu;
 
 import java.util.Stack;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameStateManager {
 	private Stack<State> states;
+	Music a;
 	
 	public GameStateManager(){
 		states= new Stack<State>();
+		a=Gdx.audio.newMusic(Gdx.files.internal(("Rise of Spirit.mp3")));
 	}
 	public void push(State state){
 		states.push(state);
@@ -26,5 +30,10 @@ public class GameStateManager {
 	
 	public void render(SpriteBatch sb){
 		states.peek().render(sb);
+		if(states.peek() instanceof NewMenuState1 || states.peek() instanceof NewMenuState || states.peek() instanceof NewGameCharacterState
+				|| states.peek() instanceof CharEditorState || states.peek() instanceof LoadMenuState ){
+			a.play();
+		}
+		else a.stop();
 	}
 }
