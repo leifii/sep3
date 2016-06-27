@@ -31,7 +31,7 @@ public class Character implements IDrawable, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Skill> skills;
+	transient private ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
 	transient private Inventory inventory;
@@ -48,12 +48,12 @@ public class Character implements IDrawable, Serializable {
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 	
 	// Variablen, die gespeichert werden (müssen)
-	int design;
-	private Vector3 position;
-	private Attributes attributes;
-	int DEX;
-	int MaxHP;
-	protected int currentHP;
+	public int design;
+	public Vector3 position;
+	public Attributes attributes;
+	public int DEX;
+	public int MaxHP;
+	public int currentHP;
 	public static int exp;
 	public static int neededexp;
 	public static int level;
@@ -190,7 +190,7 @@ public class Character implements IDrawable, Serializable {
 	public void update(float dt) {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 
-System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.getPosition().y);
+//System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.getPosition().y);
 		//cd = skills.get(0).gethitcd();
 
 		for (int i = 0; i < getSkills().size(); i++) {
