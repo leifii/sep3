@@ -89,7 +89,7 @@ public class NewGameCharacterState extends NewMenuState {
 
 		LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-		label = new Label("Wähle mit welcher Klasse DU spielen moechtest", labelStyle);
+		label = new Label("Wähle mit welcher Klasse du spielen moechtest", labelStyle);
 
 		label.setFontScale(1.2f);
 		Image Rahmen = new Image(new Texture("userInterface/border2.png"));
