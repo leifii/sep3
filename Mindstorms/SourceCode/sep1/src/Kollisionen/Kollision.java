@@ -10,6 +10,7 @@ import Anzeige.IMenu;
 
 public class Kollision implements IKollision, IMenu {
 	
+	public static boolean kollidiert  = false;
 	public void kollision(){
 		
 		if(PowerUps.PowerUp.isPowerUpAktiv()){
