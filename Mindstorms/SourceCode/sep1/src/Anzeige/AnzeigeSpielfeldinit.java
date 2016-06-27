@@ -26,9 +26,9 @@ public class AnzeigeSpielfeldinit implements ISpielfeldinit {
 	}
 public static void main(String[] args) throws IOException
 {
-	JPanel j=new JPanel();
-	AnzeigeSpielfeldinit rr=new AnzeigeSpielfeldinit();
-	rr.Spielfeldinit("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Spielfeld.txt", j);
+//	JPanel j=new JPanel();
+//	AnzeigeSpielfeldinit rr=new AnzeigeSpielfeldinit();
+//	rr.Spielfeldinit("C:\\Users\\Thorben2\\workspace\\yolo\\src\\Anzeige\\Spielfeld.txt", j);
 }
 
 
