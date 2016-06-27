@@ -26,7 +26,7 @@ public class NPC {
 		
 		public NPC(int x,int y,String source,String TEXT,Body body){
 			position=new Vector3(x, y, 0);
-			bounds=new Rectangle(x, y, 32, 48);
+			bounds=new Rectangle(x-2, y-2, 36, 52);
 			NPCtexture=new Texture(source);
 			Dialog=new Dialog(TEXT,x+32,y+48,"dialogfenster.png");
 			this.body=body;
