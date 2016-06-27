@@ -31,7 +31,7 @@ public class Schuetze extends Character{
 		setSkills(new ArrayList<Skill>());
 
 //		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button, helpNr, character, radius, collision
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,1,1,1,3,g.getSkill(12), false, 0, 0, this, 10, collisionLayer));//auto-attack
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,1,1,1,2,g.getSkill(12), false, 0, 0, this, 10, collisionLayer));//auto-attack
 		
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,1,g.getSkill(12), false, 1, 0, this, 10, collisionLayer));// 3-fach pfeil
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,0.9f,1.5f,g.getSkill(12), false, 1, 0, this, 10, collisionLayer));

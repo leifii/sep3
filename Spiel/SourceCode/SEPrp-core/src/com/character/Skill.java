@@ -331,10 +331,19 @@ public class Skill implements Serializable {
 			//s.draw(bild, x, y);
 
 		if (isAlive() == true) {
-			if (c instanceof Schuetze && button == 4){
+			if (c instanceof Schuetze){
+				if (button == 4){
 				//hallo.setScale(1000, 1000);
 				//hallo.setSize(1000, 1000);
-				System.out.println("skill 4 schuetze");
+				
+				}
+				if (button == 0){
+					if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
+						hallo.setRotation(90);
+						s.draw(hallo, x, y);
+						System.out.println("skill 0 schuetze");
+					}
+				}
 			}
 			if (c instanceof Krieger && button == 0){
 				if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
