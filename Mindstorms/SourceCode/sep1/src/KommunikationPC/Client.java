@@ -1,5 +1,5 @@
 /**
- * @author ${user}
+ * @author ${Tristan}
  *
  * 
  */
@@ -7,16 +7,15 @@
 package KommunikationPC;
 
 
-import java.awt.EventQueue;
-import java.io.EOFException;
+
+
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
-import lejos.utility.Delay;
 
-/////@Author 
-///////Tristan
+
+
+
 
 
 public class Client implements Runnable {
@@ -26,7 +25,7 @@ public class Client implements Runnable {
 	int port;
 	
 	
-	public Client (String ip, String modus, int port){
+	public Client (String ip, String modus, int port){     //Konstruktor neues Objekt vom Typ Client
 		
 		this.ip    = ip;
 		this.modus = modus;
@@ -39,51 +38,61 @@ public class Client implements Runnable {
 		// TODO Auto-generated method stub
 		
 		try{
-			Socket client = new Socket(ip, port);
-			Kommunikation kom = new Kommunikation(client);
+			Socket client = new Socket(ip, port);           		 //Initialisierung eines Objekts des Typs Socket
+			Kommunikation kom = new Kommunikation(client);  		 //Initialisierung eines Objekts des Typs Kommunikation
 			
-			if(modus == "Tracer"){
+			if(modus == "Tracer"){                                   //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] tracer = {0, 0, 0, 0, 0, 0, 0, 0, 101};
 				kom.senden(tracer);
+				Thread.sleep(10);
 			}
 			
-			if(modus == "Defender"){
+			if(modus == "Defender"){								 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] defender = {0, 0, 0, 0, 0, 0, 0, 0, 102};
 				kom.senden(defender);
+				Thread.sleep(10);
 				
 			}
 			
-			if(modus == "Random"){
+			if(modus == "Random"){									 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] random = {0, 0, 0, 0, 0, 0, 0, 0, 103};
 				kom.senden(random);
+				Thread.sleep(10);
 				
 			}
 			
-			if(modus == "Sepman"){
+			if(modus == "Sepman"){									 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] sepman = {0, 0, 0, 0, 0, 0, 0, 0, 104};
 				kom.senden(sepman);
+				Thread.sleep(10);
+				
+			}
+			while(true){                                              //Sendet alle 10ms ein ByteArray mit den aktuellen Positionen sämtlicher
+																	  //Roboter, ihren Zielpositionen und den Spielinformationen und
+				                                                      //empfängt das "Antwort"-ByteArray.
+				
+				kom.senden(Kommunikation.erzeugeByteArray());
+				kom.empfangen();
+				try{
+					Thread.sleep(10);
+				}catch(InterruptedException e){
+					e.printStackTrace();
+				}
 				
 			}
 			
-		}
-		catch(IOException e){
+		}catch(IOException e){
 			e.printStackTrace();
 		  }
+		 catch(InterruptedException e){
+			 e.printStackTrace();
+		 }
 		
-		while(true){
-			Kommunikation.senden(Kommunikation.erzeugeByteArray());
-			
-			try{
-			Thread.sleep(10);
-			}
-			catch(InterruptedException e){
-				e.printStackTrace();
-			}
-		}
+		
 		
 	}		
 }
