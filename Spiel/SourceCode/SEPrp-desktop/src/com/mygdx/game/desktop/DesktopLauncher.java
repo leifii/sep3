@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		config.height=MyGdxGame.HEIGHT;
 		config.title=MyGdxGame.TITLE;
 	
-	config.fullscreen=false;
+	config.fullscreen=true;
 		
 		new LwjglApplication(new MyGdxGame(), config);
 	}
