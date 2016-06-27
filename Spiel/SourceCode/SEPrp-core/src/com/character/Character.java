@@ -189,8 +189,9 @@ public class Character implements IDrawable, Serializable {
 
 	public void update(float dt) {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
-
-//System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.getPosition().y);
+// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS /BIJAN
+System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.getPosition().y);
+// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS /BIJAN
 		//cd = skills.get(0).gethitcd();
 
 		for (int i = 0; i < getSkills().size(); i++) {
