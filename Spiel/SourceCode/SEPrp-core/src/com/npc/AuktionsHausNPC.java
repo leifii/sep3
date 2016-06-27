@@ -18,11 +18,7 @@ public class AuktionsHausNPC extends NPC{
 	@Override
 	public void render(PlayState ps, SpriteBatch sb, Rectangle Character, Character c) {
 		sb.draw(NPCtexture,position.x,position.y);
-//
-//		if (Character.overlaps(bounds) && Gdx.input.isKeyJustPressed(Keys.SPACE) && angesprochen==false) {
-//		
-//			angesprochen=true;
-//		}
+
 		if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) ) {
 			angesprochen=false;
 			Gdx.app.exit();

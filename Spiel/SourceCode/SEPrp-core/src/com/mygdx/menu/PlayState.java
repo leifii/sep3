@@ -71,6 +71,7 @@ public class PlayState extends State implements Serializable {
 
 	public transient World world;
 	transient private Box2DDebugRenderer b2dr;
+	
 
 	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 2934, 312), new Portal(2934, 312, 50, 50) };
 
@@ -380,6 +381,7 @@ public class PlayState extends State implements Serializable {
 
 		// KEYS//
 		keys.render(sb, c);
+		
 		// KEYS//
 		// ITEMS //
 		if (drawableList != null) {
