@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package KommunikationPC;
 
 import java.io.DataInputStream;
@@ -10,10 +15,7 @@ import Anzeige.Menu;
 public class Kommunikation implements IKommunikation{	
 	
 	static Socket socket;
-	byte[] nachricht= new byte[9];
-	
-	
-	
+	byte[] nachricht= new byte[9];	
 	public Kommunikation(Socket soc){	
 		socket = soc;	
 	}
@@ -71,7 +73,7 @@ public class Kommunikation implements IKommunikation{
 			msg[7] = (byte) zkftPos[0];
 			
 			
-			msg[8] = (byte) Anzeige.Menu.getTaste();
+			msg[8] = (byte) Anzeige.Menu.richtung;
 					
 			return msg;
 	}
