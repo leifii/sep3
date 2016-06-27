@@ -100,17 +100,17 @@ public class PlayState extends State implements Serializable {
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
 		c.setDesign(design);
 		if (characterauswahl == 1) {
-			System.out.println("Krieger");
+			//System.out.println("Krieger");
 			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
 		} else if (characterauswahl == 2) {
-			System.out.println("Magier");
+			//System.out.println("Magier");
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
 
 			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
 
 		} else if (characterauswahl == 4) {
-			System.out.println("Schurke");
+			//System.out.println("Schurke");
 			
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
 			
