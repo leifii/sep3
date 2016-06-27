@@ -51,8 +51,8 @@ public class PlayState extends State implements Serializable {
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 
-	transient NPC [] Npc;
-	
+	transient NPC[] Npc;
+
 	private transient List<Gegner> gegnerList;
 	private transient List<IDrawable> drawableList;
 
@@ -76,7 +76,7 @@ public class PlayState extends State implements Serializable {
 		return instance;
 	}
 
-	public PlayState(GameStateManager gsm, int characterauswahl,int design) {
+	public PlayState(GameStateManager gsm, int characterauswahl, int design) {
 		super(gsm);
 
 		world = new World(new Vector2(0, 0), false);
@@ -89,8 +89,9 @@ public class PlayState extends State implements Serializable {
 		collisionLayer = new TiledMapTileLayer[2];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
-		
-		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300,"npc")),new NPC(120, 360, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,360,"npc"))};
+
+		Npc = new NPC[] { new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120, 300, "npc")),
+				new NPC(120, 360, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120, 360, "npc")) };
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
@@ -110,33 +111,42 @@ public class PlayState extends State implements Serializable {
 
 		} else if (characterauswahl == 4) {
 			System.out.println("Schurke");
-			if(design==0){
-			c = new Schuetze(100, 100, s.getSchütze(0), collisionLayer, attributes, body);
-			}
-//			else{
-//				c = new Schuetze(100, 100, s.getAnimation(index), collisionLayer, attributes, body); //Solange Animation nicht fertig ist	
+			
+			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
+			
+			
+			// Unnötig, int design kann direkt übergeben werden, denke ich.
+			
+//			if (design == 0) {
+//				c = new Schuetze(100, 100, s.getSchütze(0), collisionLayer, attributes, body);
 //			}
-			if(design==1){
-				c = new Schuetze(100, 100, s.getSchütze(1), collisionLayer, attributes, body);
-				}
-			if(design==2){
-				c = new Schuetze(100, 100, s.getSchütze(2), collisionLayer, attributes, body);
-				}
-			if(design==3){
-				c = new Schuetze(100, 100, s.getSchütze(3), collisionLayer, attributes, body);
-				}
-			if(design==4){
-				c = new Schuetze(100, 100, s.getSchütze(4), collisionLayer, attributes, body);
-				}
-			if(design==5){
-				c = new Schuetze(100, 100, s.getSchütze(5), collisionLayer, attributes, body);
-				}
-			if(design==6){
-				c = new Schuetze(100, 100, s.getSchütze(6), collisionLayer, attributes, body);
-				}
-			if(design==7){
-				c = new Schuetze(100, 100, s.getSchütze(7), collisionLayer, attributes, body);
-				}
+//			// else{
+//			// c = new Schuetze(100, 100, s.getAnimation(index), collisionLayer,
+//			// attributes, body); //Solange Animation nicht fertig ist
+//			// }
+//			if (design == 1) {
+//				c = new Schuetze(100, 100, s.getSchütze(1), collisionLayer, attributes, body);
+//			}
+//			if (design == 2) {
+//				c = new Schuetze(100, 100, s.getSchütze(2), collisionLayer, attributes, body);
+//			}
+//			if (design == 3) {
+//				c = new Schuetze(100, 100, s.getSchütze(3), collisionLayer, attributes, body);
+//			}
+//			if (design == 4) {
+//				c = new Schuetze(100, 100, s.getSchütze(4), collisionLayer, attributes, body);
+//			}
+//			if (design == 5) {
+//				c = new Schuetze(100, 100, s.getSchütze(5), collisionLayer, attributes, body);
+//			}
+//			if (design == 6) {
+//				c = new Schuetze(100, 100, s.getSchütze(6), collisionLayer, attributes, body);
+//			}
+//			if (design == 7) {
+//				c = new Schuetze(100, 100, s.getSchütze(7), collisionLayer, attributes, body);
+//			}
+			//---------------
+			
 			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 			// map.getMap().getLayers().get("Objekte"), attributes);
 
@@ -201,7 +211,8 @@ public class PlayState extends State implements Serializable {
 		gegnerList = new LinkedList<Gegner>();
 
 		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1, createDynamicBody(200, 200, "gegner"));
+		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1,
+				createDynamicBody(200, 200, "gegner"));
 		testGegner.addLoot(EquipmentType.Lederrüstung);
 		gegnerList.add(testGegner);
 
@@ -212,39 +223,38 @@ public class PlayState extends State implements Serializable {
 
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
-//		gsm.push(new CharEditorState(gsm, 4));
+			// gsm.push(new CharEditorState(gsm, 4));
 		}
-		
 
 		if (Gdx.input.isKeyJustPressed(Keys.I))
 			gsm.push(new InventoryState(gsm, this, c));
 
 		if (Gdx.input.isKeyJustPressed(Keys.O))
 			drawableList.add(Equipment.spawnRandomItem(c.getPosition()));
-//		if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
-//			for (Gegner g : gegnerList)
-//				killGegner(g);
+		// if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
+		// for (Gegner g : gegnerList)
+		// killGegner(g);
 		if (Gdx.input.isKeyJustPressed(Keys.K)) {
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
 			}
 		}
-//		if (Gdx.input.isKeyJustPressed(Keys.L)) {
-//			if (de.SEPL.GameScore.GameScoreManagement.loadGameScore() == true) {
-//				System.out.println("Laden erflogreich.");
-//			}
-//		}
+		// if (Gdx.input.isKeyJustPressed(Keys.L)) {
+		// if (de.SEPL.GameScore.GameScoreManagement.loadGameScore() == true) {
+		// System.out.println("Laden erflogreich.");
+		// }
+		// }
 	}
 
 	@Override
 	public void update(float dt) {
 		handleInput();
 		c.update(dt);
-		
-		for(Skill s : c.getSkills()){
-			if(s.isAlive() && s.getBody()==null)
+
+		for (Skill s : c.getSkills()) {
+			if (s.isAlive() && s.getBody() == null)
 				s.setBody(createSkillBody(s));
-			if(!s.isAlive() && s.getBody()!=null){
+			if (!s.isAlive() && s.getBody() != null) {
 				world.destroyBody(s.getBody());
 				s.setBody(null);
 			}
@@ -254,7 +264,7 @@ public class PlayState extends State implements Serializable {
 			for (Gegner g : gegnerList) {
 				g.update(dt);
 				g.follow(c);
-				if(g.getCurrentHP()<=0)
+				if (g.getCurrentHP() <= 0)
 					killGegner(g);
 			}
 
@@ -284,8 +294,6 @@ public class PlayState extends State implements Serializable {
 				t.setDestroyable(false);
 			}
 		}
-		
-		
 
 		world.step(dt, 8, 8);
 
@@ -304,10 +312,9 @@ public class PlayState extends State implements Serializable {
 
 		// NPCs //
 		for (int i = 0; i < Npc.length; i++) {
-			
-		
-		Npc[i].render(this, sb, c.getBounds(), c);
-}
+
+			Npc[i].render(this, sb, c.getBounds(), c);
+		}
 		// NPCs //
 
 		// TRUHEN //
@@ -456,7 +463,7 @@ public class PlayState extends State implements Serializable {
 
 		sb.end();
 
-//		b2dr.render(world, cam.combined);
+		// b2dr.render(world, cam.combined);
 
 	}
 
@@ -468,7 +475,10 @@ public class PlayState extends State implements Serializable {
 
 	}
 
-	public Body createDynamicBody(int x, int y, String a) {		//String a = "gegner", "charakter" oder"npc"
+	public Body createDynamicBody(int x, int y, String a) { // String a =
+															// "gegner",
+															// "charakter"
+															// oder"npc"
 		BodyDef bdef = new BodyDef();
 		FixtureDef fdef = new FixtureDef();
 		PolygonShape shape = new PolygonShape();
@@ -522,8 +532,8 @@ public class PlayState extends State implements Serializable {
 		body.createFixture(fdef).setUserData("truhe");
 		return body;
 	}
-	
-	public Body createSkillBody(Skill skill){
+
+	public Body createSkillBody(Skill skill) {
 		BodyDef bdef = new BodyDef();
 		FixtureDef fdef = new FixtureDef();
 		CircleShape shape = new CircleShape();
