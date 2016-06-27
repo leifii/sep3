@@ -192,10 +192,10 @@ public class CharEditorState extends State {
 		}
 
 		//Load-Test --Dom--
-		if (Gdx.input.isKeyJustPressed(Keys.L)){
-			GameScoreManagement.loadGameScore(gsm);
-			System.out.println("Hier");
-		}
+//		if (Gdx.input.isKeyJustPressed(Keys.L)){
+//			GameScoreManagement.loadGameScore(gsm);
+//			System.out.println("Hier");
+//		}
 		//----
 	}
 
