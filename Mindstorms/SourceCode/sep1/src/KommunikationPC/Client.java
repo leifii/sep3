@@ -5,16 +5,8 @@
  */
 
 package KommunikationPC;
-
-
-
-
 import java.io.IOException;
 import java.net.Socket;
-
-
-
-
 
 
 
@@ -33,7 +25,7 @@ public class Client implements Runnable {
 		
 	}
 
-	@Override
+//	@Override   ====>Overridden 
 	public void run() {
 		// TODO Auto-generated method stub
 		
@@ -91,8 +83,5 @@ public class Client implements Runnable {
 		 catch(InterruptedException e){
 			 e.printStackTrace();
 		 }
-		
-		
-		
-	}		
-}
+		}		
+	}
