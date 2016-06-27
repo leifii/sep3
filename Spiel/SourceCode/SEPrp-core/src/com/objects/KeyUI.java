@@ -13,8 +13,8 @@ public class KeyUI {
 	}
 	public void Render(SpriteBatch sb, boolean foundGold,boolean foundBlack,boolean foundWhite){
 	sb.draw(key[0], Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);	
-	sb.draw(key[1], Gdx.graphics.getWidth()/2+200, Gdx.graphics.getHeight()/2);	
-	sb.draw(key[2], Gdx.graphics.getWidth()/2+400, Gdx.graphics.getHeight()/2);	
+	sb.draw(key[1], Gdx.graphics.getWidth()/2+100, Gdx.graphics.getHeight()/2);	
+	sb.draw(key[2], Gdx.graphics.getWidth()/2+200, Gdx.graphics.getHeight()/2);	
 	if (foundGold) {
 		key[0]=new Texture("grafiken/keyGoldBig.png");
 	}
