@@ -219,10 +219,10 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 			collisionY = isCellBlocked(position.x, position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() / 2,
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2 / 2,
 						position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 						position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY && getBody().getUserData() != null)
 				collisionY = ((boolean[]) getBody().getUserData())[0];
@@ -253,13 +253,13 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 				collisionX = false;
 
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 						position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 							position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 							position.y //+ collisionLayer[0].getTileHeight()
 							);
 				if (!collisionX && getBody().getUserData() != null)
@@ -281,9 +281,9 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 			collisionY = isCellBlocked(position.x, position.y);
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() / 2, position.y);
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2 / 2, position.y);
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth(), position.y);
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2, position.y);
 			if (!collisionY && getBody().getUserData() != null)
 				collisionY = ((boolean[]) getBody().getUserData())[1];
 
@@ -312,13 +312,13 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 				collisionX = false;
 
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 						position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 							position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 							position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX && getBody().getUserData() != null)
 					collisionX = ((boolean[]) getBody().getUserData())[2];
@@ -353,13 +353,13 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 			collisionX = false;
 
-			collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+			collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 					position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionX)
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 						position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth(),
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
 						position.y //+ collisionLayer[0].getTileHeight()
 						);
 			if (!collisionX && getBody().getUserData() != null)
