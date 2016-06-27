@@ -65,7 +65,7 @@ public class Kommunikation implements IKommunikation{
 			msg[7] = (byte) zkftPos[0];
 			
 			
-			msg[8] = (byte) Anzeige.Menu.richtung;
+			msg[8] = (byte) Anzeige.Menu.richtung;                    //////ToDo: restliche Nachrichten ergänzen!
 					
 			return msg;
 	}
