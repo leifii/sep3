@@ -91,7 +91,7 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
 		
-		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png", "Hallo!", createDynamicBody(120,300,"npc")),new NPC(2339, 459, "grafiken/Kobold.png", "Hallo!", createDynamicBody(2339,459,"npc")),new NPC(1032, 1318, "grafiken/Kobold.png", "Hallo!", createDynamicBody(1032,1318,"npc"))};
+		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png", "Hallo[name]! Ich erkläre dir wie das Spiel funktioniert.", createDynamicBody(120,300,"npc")),new NPC(2339, 459, "grafiken/Kobold.png", "Hallo!", createDynamicBody(2339,459,"npc")),new NPC(1032, 1318, "grafiken/Kobold.png", "Hallo!", createDynamicBody(1032,1318,"npc"))};
 
 
 		Body body = createDynamicBody(100, 100, "charakter");
@@ -112,6 +112,11 @@ public class PlayState extends State implements Serializable {
 		} else if (characterauswahl == 4) {
 			//System.out.println("Schurke");
 			//c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
+<<<<<<< .mine
+			}
+	
+		
+=======
 			
 			// Unnötig, int design kann direkt übergeben werden, denke ich.
 			
@@ -144,12 +149,13 @@ public class PlayState extends State implements Serializable {
 				c = new Schuetze(100, 100, s.getSchütze(7), collisionLayer, attributes, body);
 			}
 			//---------------
+>>>>>>> .r760
 			
 			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 			// map.getMap().getLayers().get("Objekte"), attributes);
 c.setDesign(design);
 
-		}
+		
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
