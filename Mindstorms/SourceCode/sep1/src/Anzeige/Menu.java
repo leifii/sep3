@@ -545,7 +545,6 @@ public void actionPerformed(ActionEvent e) {
 				}
 			});
             thorbensPanel.setFocusable(true);
-            thorbensPanel.setVisible(true);
              add(thorbensPanel);
 			this.spielvorbereitungsDisplay.setVisible(false);
 		} catch (IOException e1) {
