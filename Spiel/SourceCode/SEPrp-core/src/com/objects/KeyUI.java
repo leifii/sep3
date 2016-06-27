@@ -37,9 +37,9 @@ public class KeyUI {
 	for (int i = 0; i < keys.length; i++) {
 		
 	
-		keys[0].setPosition(ps.c.position.x-100-32, ps.c.position.y+40);
-		keys[1].setPosition(ps.c.position.x-32, ps.c.position.y+40);
-		keys[2].setPosition(ps.c.position.x+100-32, ps.c.position.y+40);
+		keys[0].setPosition(ps.c.position.x-100-42, ps.c.position.y+40);
+		keys[1].setPosition(ps.c.position.x-42, ps.c.position.y+40);
+		keys[2].setPosition(ps.c.position.x+100-42, ps.c.position.y+40);
 		keys[i].draw(sb);
 	}
 	
