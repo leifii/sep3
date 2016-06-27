@@ -110,7 +110,7 @@ public class PlayState extends State implements Serializable {
 		} else if (characterauswahl == 4) {
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
 
-			
+			}
 		
 		
 			
@@ -126,9 +126,7 @@ c.setDesign(design);
 		initGegner();
 		drawableList = new LinkedList<IDrawable>();
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
-
-		instance = this;}
-
+		instance = this;
 	}
 	
 	public void setCharacterType(int animationType, Attributes attributes, Body body){
