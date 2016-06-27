@@ -10,14 +10,14 @@ import java.net.Socket;
 
 
 
-public class Client implements Runnable {
-	
+public class Client implements Runnable {                  //Klasse Client implementiert Runnable, um mehrer Instanzen simultan laufen zu lassen
+														   //Pro Clientobjekt ein Thread, der alle 10ms ein ByteArray verschickt
 	String ip;
 	String modus;
 	int port;
 	
 	
-	public Client (String ip, String modus, int port){     //Konstruktor neues Objekt vom Typ Client
+	public Client (String ip, String modus, int port){     //Konstruktor - neues Objekt vom Typ Client. 
 		
 		this.ip    = ip;
 		this.modus = modus;
