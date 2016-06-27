@@ -27,6 +27,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.MyGdxGame;
 
+import de.SEPL.GameScore.GameScoreManagement;
+
 public class NewGameCharacterState extends NewMenuState {
 	PlayState playstate;
 	Texture back;
@@ -133,6 +135,7 @@ public class NewGameCharacterState extends NewMenuState {
 			gsm.push(new NewMenuState(gsm));
 		
 		}
+		
 	}
 
 	@Override
