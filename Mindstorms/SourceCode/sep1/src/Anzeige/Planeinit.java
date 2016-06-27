@@ -50,4 +50,13 @@ public class Planeinit implements IPlaneinit{
 	{
 		return pos;
 	}
+
+
+
+
+	@Override
+	public int[] setRoboter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
