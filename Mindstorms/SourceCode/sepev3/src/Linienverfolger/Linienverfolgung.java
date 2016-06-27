@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package Linienverfolger;
 
 import lejos.hardware.lcd.LCD;
