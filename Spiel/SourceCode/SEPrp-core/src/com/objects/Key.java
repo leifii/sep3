@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
+import com.mygdx.menu.PlayState;
 
 public class Key {
 	Texture texturKeyBlack=new Texture("grafiken/KeyBlack.png");
@@ -20,8 +21,8 @@ public class Key {
 	boolean whiteaufgehoben;
 	boolean goldaufgehoben;
 	KeyUI ui;
-	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold){
-		ui=new KeyUI();
+	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold,PlayState ps){
+		ui=new KeyUI(ps);
 		positionBlack=new Vector3(xBlack, yBlack, 0);
 		positionWhite=new Vector3(xWhite, yWhite, 0);
 		positionGold=new Vector3(xGold, yGold, 0);
