@@ -8283,11 +8283,6 @@
     <property name="blocked" value=""/>
    </properties>
   </tile>
-  <tile id="679">
-   <properties>
-    <property name="blocked" value=""/>
-   </properties>
-  </tile>
   <tile id="680">
    <properties>
     <property name="blocked" value=""/>
