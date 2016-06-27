@@ -127,7 +127,7 @@ c.setDesign(design);
 		drawableList = new LinkedList<IDrawable>();
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
 
-		instance = this;
+		instance = this;}
 
 	}
 	
