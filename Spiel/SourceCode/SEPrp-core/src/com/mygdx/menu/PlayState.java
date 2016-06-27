@@ -40,6 +40,7 @@ import com.objects.Experience;
 import com.objects.Gold;
 import com.objects.Portal;
 import com.objects.Truhe;
+import com.objects.Key;
 
 public class PlayState extends State implements Serializable {
 
@@ -52,7 +53,7 @@ public class PlayState extends State implements Serializable {
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 
 	transient NPC[] Npc;
-
+	public Key keys;
 	private transient List<Gegner> gegnerList;
 	private transient List<IDrawable> drawableList;
 
@@ -90,7 +91,7 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
-		
+		keys=new Key(200, 200, 250, 200, 300, 200);
 		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png", "Hallo[name]! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")),
 				new NPC(2339, 459, "grafiken/Kobold.png", "Willkommen im Dorf!", createDynamicBody(2339,459,"npc")),
 				new NPC(1032, 1318, "grafiken/Kobold.png", "Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc"))};
@@ -296,7 +297,7 @@ c.setDesign(design);
 			t.draw(sb);
 		}
 		// TRUHEN //
-
+		
 		// PORTALE //
 		for (int i = 0; i < Portal.length; i++) {
 			Portal[i].render(sb, c);
@@ -318,6 +319,9 @@ c.setDesign(design);
 
 		// GEGNER //
 
+		 // KEYS//
+		keys.render(sb, c);
+		// KEYS//
 		// ITEMS //
 		if (drawableList != null) {
 			Iterator<IDrawable> iter = drawableList.listIterator();
