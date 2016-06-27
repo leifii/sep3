@@ -31,41 +31,35 @@ public class Character implements IDrawable, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private ArrayList<Skill> skills;
-
 	transient protected IObjekte g;
-
-	private Vector3 position;
-
 	transient private TextureRegion character;
 	transient private Inventory inventory;
-
 	transient protected TiledMapTileLayer[] collisionLayer;
 	private transient Body body;
-
 	//private float cd;
-
 	transient private Rectangle bounds;
 	transient private boolean disposable = false;
 	transient private boolean visible = true;
-
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
-
-	// int STR, INT, STA, ATK, DEF, AS; float MS
-	private Attributes attributes;
-	int DEX;
-	int MaxHP;
-	protected int currentHP;
-
 	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6,
 			keyframes7;
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
+	
+	// Variablen, die gespeichert werden (müssen)
+	private Vector3 position;
+	private Attributes attributes;
+	int DEX;
+	int MaxHP;
+	protected int currentHP;
 	public static int exp;
 	public static int neededexp;
 	public static int level;
+	// int STR, INT, STA, ATK, DEF, AS; float MS
 
+	
+	
 	// public Character (int x,int y,String sprite,float speed){
 	// laufspeed=speed;
 	// position=new Vector3(x,y,0);
