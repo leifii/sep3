@@ -1,3 +1,8 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
 package PowerUps;
 
 public interface IPowerUp {
