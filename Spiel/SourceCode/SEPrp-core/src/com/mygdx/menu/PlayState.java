@@ -99,9 +99,11 @@ public class PlayState extends State implements Serializable {
 
 		keys=new Key(200, 200, 250, 200, 300, 200,this);
 		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png","[TutorialNPC]  "+"Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")),
-				new NPC(2339, 459, "grafiken/KoboldKönig.png","[Koboldkönig]  "+"Willkommen im Dorf!", createDynamicBody(2339,459,"npc")),
+				new NPC(2339, 459, "grafiken/KoboldKönig.png","[Koboldkönig]  "+"Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!", createDynamicBody(2339,459,"npc")),
 				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  "+"Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc")),
-				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"),gsm,this)		
+				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"),gsm,this),		
+				new NPC(1563, 381, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(1563,381,"npc")),
+				new NPC(2235, 317, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(2235,317,"npc")),
 		};
 
 
@@ -342,14 +344,14 @@ public class PlayState extends State implements Serializable {
 
 		c.draw(sb);
 		// KOBOLD DORF LABEL//
-		if (c.getPosition().x > 1495 && c.getPosition().x < 1696 && c.getPosition().y > 0 && c.getPosition().y < 1000
+		if (c.getPosition().x > 1595 && c.getPosition().x < 1796 && c.getPosition().y > 0 && c.getPosition().y < 1000
 				&& !besucht) {
 			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		}
-		if (c.getPosition().x > 1695) {
+		if (c.getPosition().x > 1795) {
 			besucht = true;
 		}
-		if (c.getPosition().x < 1495) {
+		if (c.getPosition().x < 1595) {
 			besucht = false;
 		}
 		// KOBOLDORFLABEL //
