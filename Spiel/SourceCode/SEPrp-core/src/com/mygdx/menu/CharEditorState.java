@@ -201,7 +201,7 @@ float XX=0;float YY=0;
 		
 	
 			
-		if (buttonJ.isPressed() && x==180) {	
+		if (buttonJ.isPressed() && x>=180) {	
 			buttonclick.play();
 			augenindex--;
 			if (augenindex==-1) {
@@ -219,7 +219,7 @@ float XX=0;float YY=0;
 				
 		
 		}
-			if (buttonN.isPressed() &&  x==180){
+			if (buttonN.isPressed() &&  x>=180){
 				buttonclick.play();
 				augenindex++;
 				if (augenindex==augen.length) {
@@ -235,7 +235,7 @@ float XX=0;float YY=0;
 				charbild[augenindex][haarindex].setScale(XX,YY);	
 					
 		}
-			if (buttonK.isPressed() &&  x==180) {	
+			if (buttonK.isPressed() &&  x>=180) {	
 				buttonclick.play();
 				haarindex--;
 				if (haarindex==-1) {
@@ -253,7 +253,7 @@ float XX=0;float YY=0;
 					
 			
 			}
-				if (buttonL.isPressed() &&  x==180){
+				if (buttonL.isPressed() &&  x>=180){
 					buttonclick.play();
 					haarindex++;
 					if (haarindex==2) {
