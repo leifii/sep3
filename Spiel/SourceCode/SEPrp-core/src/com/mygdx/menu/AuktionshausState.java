@@ -26,7 +26,7 @@ public class AuktionshausState extends State{
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
-	private TextButton buttonJ, buttonN;
+	private TextButton buttonJ, buttonN ,buttonK;
 	private BitmapFont white;
 	private Label label;	
 	
@@ -66,11 +66,12 @@ PlayState playstate;
 	ConfirmButtonStyle.font = white;
 
 	buttonJ = new TextButton("Kaufen", textButtonStyle);
-	buttonJ.pad(5);
+	buttonJ.pad(10);
 
 	buttonN = new TextButton("Verkaufen", textButtonStyle);
-	buttonN.pad(5);
+	buttonN.pad(10);
 
+	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
 	label = new Label("Drücke ESC zum beenden.", labelStyle);
@@ -104,7 +105,10 @@ PlayState playstate;
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(playstate);
 		}
-		
+		if (buttonN.isChecked()) {
+		}
+		if (buttonJ.isChecked()) {
+		}
 	}
 
 	public void update(float dt) {
@@ -112,7 +116,9 @@ PlayState playstate;
 		handleInput();
 	}
 	public void render(SpriteBatch sb) {
+		stage.act();
 	
+		stage.draw();
 	}
 
 	public void dispose() {

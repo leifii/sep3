@@ -19,20 +19,28 @@ public class AuktionsHausNPC extends NPC{
 gsm=gsmm;
 auktionshaus=new AuktionshausState(gsm,playstate);
 	}
-
+boolean angesprochen2=false;
 	@Override
 	public void render(PlayState ps, SpriteBatch sb, Rectangle Character, Character c) {
 		sb.draw(NPCtexture,position.x,position.y);
 
-		if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) ) {
+		if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) && !angesprochen2 ) {
 			angesprochen=false;
+			angesprochen2=true;
+			if (angesprochen2 && Gdx.input.isKeyJustPressed(Keys.SPACE) ) {
+			angesprochen2=false;
 			gsm.push(auktionshaus);
+			
+			}
 			
 		}
 		
-			if (c.getPosition().x<position.x+200 && c.getPosition().x>position.x-200 && c.getPosition().y<position.y+200 && c.getPosition().y>position.y-200) {
+			if (c.getPosition().x<position.x+200 && c.getPosition().x>position.x-200 && c.getPosition().y<position.y+200 && c.getPosition().y>position.y-200 ) {
 				angesprochen=true;
 				Dialog.render(ps, sb, Character, c, angesprochen);
+			}
+			else {
+				angesprochen=false;
 			}
 			
 	}
