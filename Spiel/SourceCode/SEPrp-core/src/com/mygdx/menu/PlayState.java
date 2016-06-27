@@ -97,6 +97,7 @@ public class PlayState extends State implements Serializable {
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
+		c.setDesign(design);
 		if (characterauswahl == 1) {
 			System.out.println("Krieger");
 			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);

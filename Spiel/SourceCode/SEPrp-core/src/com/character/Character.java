@@ -30,6 +30,7 @@ public class Character implements IDrawable, Serializable {
 	/**
 	 * 
 	 */
+	int design;
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Skill> skills;
 	transient protected IObjekte g;
@@ -68,7 +69,7 @@ public class Character implements IDrawable, Serializable {
 
 	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body) {
-
+		
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
@@ -125,6 +126,14 @@ public class Character implements IDrawable, Serializable {
 		exp = 0;
 		neededexp = 100;
 		inventory = new Inventory();
+	}
+
+	public int getDesign() {
+		return design;
+	}
+
+	public void setDesign(int design) {
+		this.design = design;
 	}
 
 	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills,
