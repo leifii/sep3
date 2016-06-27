@@ -1,3 +1,9 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
+
 package Drucksensorverarbeitung;
 
 import lejos.hardware.port.SensorPort;

@@ -1,3 +1,9 @@
+/**
+ * @author ${user}
+ *
+ * 
+ */
+
 package Drucksensorverarbeitung;
 
 
