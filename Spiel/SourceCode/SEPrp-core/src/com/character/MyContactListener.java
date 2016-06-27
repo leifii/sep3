@@ -6,8 +6,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gegnerkoordination.Gegner;
-import com.mygdx.menu.PlayState;
-import com.npc.NPC;
 
 public class MyContactListener implements ContactListener {
 	
@@ -64,7 +62,7 @@ public class MyContactListener implements ContactListener {
 			s.setAlive(false);
 			if(fb.getBody().getFixtureList().get(1).getUserData().equals("gegner")){
 				Gegner g = ((Gegner) fb.getBody().getFixtureList().get(0).getUserData());
-				g.setCurrentHP(g.getCurrentHP()-s.dmg);
+				g.setCurrentHP(g.getCurrentHP()-s.getDmg());
 			}
 		}
 		if(fb.getUserData()!=null && fb.getUserData().equals("skill") && fa.getBody().getFixtureList().size>1 &&
@@ -73,7 +71,7 @@ public class MyContactListener implements ContactListener {
 			s.setAlive(false);
 			if(fa.getBody().getFixtureList().get(1).getUserData().equals("gegner")){
 				Gegner g = ((Gegner) fa.getBody().getFixtureList().get(0).getUserData());
-				g.setCurrentHP(g.getCurrentHP()-s.dmg);
+				g.setCurrentHP(g.getCurrentHP()-s.getDmg());
 			}
 		}
 	}
@@ -135,7 +133,7 @@ public class MyContactListener implements ContactListener {
 	@Override
 	public void preSolve(Contact arg0, Manifold arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
