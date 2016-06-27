@@ -101,7 +101,7 @@ public class PlayState extends State implements Serializable {
 		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png","[TutorialNPC]  "+"Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")),
 				new NPC(2339, 459, "grafiken/KoboldKönig.png","[Koboldkönig]  "+"Willkommen im Dorf!", createDynamicBody(2339,459,"npc")),
 				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  "+"Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc")),
-				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"))		
+				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"),gsm,this)		
 		};
 
 
