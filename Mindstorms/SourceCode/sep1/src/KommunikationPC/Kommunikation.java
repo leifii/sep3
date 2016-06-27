@@ -5,24 +5,21 @@
  */
 package KommunikationPC;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import Anzeige.Menu;
-
 public class Kommunikation implements IKommunikation{	
 	
-	static Socket socket;
+	Socket socket;
 	byte[] nachricht= new byte[9];	
+	
 	public Kommunikation(Socket soc){	
-		socket = soc;	
+		this.socket = soc;	
 	}
 
 	
 	
-	public static void senden(byte[] toSend){
+	public void senden(byte[] toSend){                  //Methode ermöglicht das Schreiben von Daten auf einen Stream.
 		
 		try {
 			socket.getOutputStream().write(toSend);
@@ -35,16 +32,11 @@ public class Kommunikation implements IKommunikation{
 	
 	
 	
-	public void empfangen(){	
+	public void empfangen(){	                        //Methode ermöglicht das Empfangen bzw. Lesen von Daten in einem Stream
 		try {
-			DataInputStream in = new DataInputStream(socket.getInputStream());
+			socket.getInputStream().read(nachricht);
+			nachrichtVerarbeiten(nachricht);
 			
-			int length = in.readInt();		//L�nge der Nachricht lesen
-			if(length>0){
-				in.readFully(nachricht, 0, nachricht.length);	//Speicherort der Nachricht, Anfang, Ende
-				
-				nachrichtVerarbeiten(nachricht);
-			}	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,12 +45,12 @@ public class Kommunikation implements IKommunikation{
 	
 	
 	
-	public static byte[] erzeugeByteArray(){
+	public static byte[] erzeugeByteArray(){            //Methode erzeugt das vom PC an die Roboter zu sendende ByteArray
 			byte[] msg    = new byte[9];
-			int[] aktPos  = new int[3];
-			int[] zkftPos = new int[3];
-			aktPos = Positionen.Position.getAktuellePos();
-			zkftPos= Positionen.Position.getZielPos();
+			int[] aktPos  = {1,2,3,4};     	 //new int[3];
+			int[] zkftPos =	{5,6,7,8};		 //new int[3];
+//			aktPos = Positionen.Position.getAktuellePos();       ToDo: getter für aktuelle Position
+//			zkftPos= Positionen.Position.getZielPos();           ToDo: getter für Zielposition
 			
 			msg[0] = (byte) aktPos[2];     //Position "Tracker"
 			msg[1] = (byte) zkftPos[2];
@@ -80,7 +72,7 @@ public class Kommunikation implements IKommunikation{
 	
 	
 	
-	public  void nachrichtVerarbeiten(byte[] whatever){
+	public  void nachrichtVerarbeiten(byte[] whatever){            //Methode wertet das vom Roboter empfangene ByteArray aus
 		
 		for(int i=0; i<whatever.length; i++){
 			if(i==0){
