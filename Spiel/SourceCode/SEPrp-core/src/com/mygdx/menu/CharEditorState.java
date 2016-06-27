@@ -196,6 +196,7 @@ public class CharEditorState extends State {
 			GameScoreManagement.loadGameScore(gsm);
 			System.out.println("Hier");
 		}
+		//----
 	}
 
 	@Override
