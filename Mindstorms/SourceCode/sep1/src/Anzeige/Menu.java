@@ -511,26 +511,26 @@ public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					if(l.getKeyCode() == KeyEvent.VK_UP){
 					     oben();
-					     System.out.println(richtung);
+//					     System.out.println(richtung);
 						}
 						else if(l.getKeyCode() == KeyEvent.VK_LEFT){
 							links();
-							System.out.println(richtung);
+//							System.out.println(richtung);
 						}
 						
 						else if(l.getKeyCode() == KeyEvent.VK_DOWN){
 							unten();
-							System.out.println(richtung);
+//							System.out.println(richtung);
 						}
 						
 						else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
 							rechts();
-							System.out.println(richtung);
+//							System.out.println(richtung);
 						}
 		
 						else if(l.getKeyCode() == KeyEvent.VK_SPACE){
 							pause();
-							System.out.println(richtung); 
+//							System.out.println(richtung); 
 						}	
 				}
 				@Override
@@ -545,6 +545,8 @@ public void actionPerformed(ActionEvent e) {
 				}
 			});
             thorbensPanel.setFocusable(true);
+            thorbensPanel.setVisible(true);
+             add(thorbensPanel);
 			this.spielvorbereitungsDisplay.setVisible(false);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
