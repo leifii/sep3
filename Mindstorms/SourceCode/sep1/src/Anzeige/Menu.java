@@ -45,6 +45,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
+	public String[] roboterIPs = new String[4];
 	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
 	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	public JPanel startDisplay = new JPanel();
@@ -214,12 +215,15 @@ public void setzeAuswahldisplay (){
     display.add(lbip1Punkt2);	
     
 	tfIp1Feld1.setBounds(570, 350, 40, 20);
+	tfIp1Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp1Feld1);	
 	
 	tfIp1Feld2.setBounds(620, 350, 40, 20);
+	tfIp1Feld2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp1Feld2);	
 	
 	tfIp1Feld3.setBounds(670, 350, 40, 20);
+	tfIp1Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp1Feld3);
     
 //    2. Roboter Ip Auswahl
@@ -236,12 +240,15 @@ public void setzeAuswahldisplay (){
 	display.add(lbip2Punkt2);	
 	
 	tfIp2Feld1.setBounds(570, 390, 40, 20);
+	tfIp2Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));	
 	display.add(tfIp2Feld1);	
 	
     tfIp2Feld2.setBounds(620, 390, 40, 20);
+	tfIp2Feld2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
     display.add(tfIp2Feld2);	
     
 	tfIp2Feld3.setBounds(670, 390, 40, 20);
+	tfIp2Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp2Feld3);
 	
 	
@@ -261,12 +268,15 @@ public void setzeAuswahldisplay (){
 	display.add(lbip3Punkt2);	
 	
 	tfIp3Feld1.setBounds(570, 430, 40, 20);
+	tfIp3Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp3Feld1);	
 	
 	tfIp3Feld2.setBounds(620, 430, 40, 20);
+	tfIp3Feld2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp3Feld2);	
 	
 	tfIp3Feld3.setBounds(670, 430, 40, 20);
+	tfIp3Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp3Feld3);
 	
 //	4. Roboter IP Auswahl
@@ -284,12 +294,15 @@ public void setzeAuswahldisplay (){
 	display.add(lbip4Punkt2);	
 	
 	tfIp4Feld1.setBounds(570, 470, 40, 20);
+	tfIp4Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp4Feld1);	
 	
 	tfIp4Feld2.setBounds(620, 470, 40, 20);
+	tfIp4Feld2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp4Feld2);	
 	
 	tfIp4Feld3.setBounds(670, 470, 40, 20);
+	tfIp4Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp4Feld3);
 	getContentPane().add(display);
 }
@@ -427,7 +440,7 @@ public void actionPerformed(ActionEvent e) {
 		String msg= (String)cb.getSelectedItem();
 //		System.out.println(msg);		
 		switch(msg){
-		case "SepMAN" : roboterBelegung[0] = "1";
+		case "SepMAN" : roboterBelegung[0] = "Sepman";
 		break;
 		case "Verfolger" : roboterBelegung[0] = "2";
 		break;
@@ -441,13 +454,13 @@ public void actionPerformed(ActionEvent e) {
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
 		switch(msg){
-		case "SepMAN" : roboterBelegung[1] = "1";
+		case "SepMAN" : roboterBelegung[1] = "Sepman";
 		break;
-		case "Verfolger" : roboterBelegung[1] = "2";
+		case "Verfolger" : roboterBelegung[1] = "Tracer";
 		break;
-		case "Verteidiger" : roboterBelegung[1] = "3";
+		case "Verteidiger" : roboterBelegung[1] = "Defender";
 		break;
-		case "Verpeilter" : roboterBelegung[1] = "4";
+		case "Verpeilter" : roboterBelegung[1] = "Random";
 		break;
 		}	
 
@@ -456,13 +469,13 @@ public void actionPerformed(ActionEvent e) {
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
 		switch(msg){
-		case "SepMAN" : roboterBelegung[2] = "1";
+		case "SepMAN" : roboterBelegung[2] = "Sepman";
 		break;
-		case "Verfolger" : roboterBelegung[2] = "2";
+		case "Verfolger" : roboterBelegung[2] = "Tracer";
 		break;
-		case "Verteidiger" : roboterBelegung[2] = "3";
+		case "Verteidiger" : roboterBelegung[2] = "Defender";
 		break;
-		case "Verpeilter" : roboterBelegung[2] = "4";
+		case "Verpeilter" : roboterBelegung[2] = "Random";
 		break;
 		}	
 	}
@@ -470,13 +483,13 @@ public void actionPerformed(ActionEvent e) {
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
 		switch(msg){
-		case "SepMAN" : roboterBelegung[3] = "1";
+		case "SepMAN" : roboterBelegung[3] = "Sepman";
 		break;
-		case "Verfolger" : roboterBelegung[3] = "2";
+		case "Verfolger" : roboterBelegung[3] = "Tracer";
 		break;
-		case "Verteidiger" : roboterBelegung[3] = "3";
+		case "Verteidiger" : roboterBelegung[3] = "Defender";
 		break;
-		case "Verpeilter" : roboterBelegung[3] = "4";
+		case "Verpeilter" : roboterBelegung[3] = "Random";
 		break;
 		}				
 	}	
@@ -611,9 +624,9 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 public void setClients(){
-//	Client clint1 = new Client(123456, this.roboterBelegung[0], 18415);
-//	Client clint1 = new Client(123456, this.roboterBelegung[1], 18415);
-//	Client clint1 = new Client(123456, this.roboterBelegung[2], 18415);
-//	Client clint1 = new Client(123456, this.roboterBelegung[3], 18415);	
+	Client clint1 = new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415);
+	Client clint2 = new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415);
+	Client clint3 = new Client(this.roboterIPs[2], this.roboterBelegung[2], 18415);
+	Client clint4 = new Client(this.roboterIPs[3], this.roboterBelegung[3], 18415);	
 }
 }
