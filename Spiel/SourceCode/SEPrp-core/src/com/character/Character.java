@@ -30,7 +30,6 @@ public class Character implements IDrawable, Serializable {
 	/**
 	 * 
 	 */
-	int design;
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Skill> skills;
 	transient protected IObjekte g;
@@ -49,6 +48,7 @@ public class Character implements IDrawable, Serializable {
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 	
 	// Variablen, die gespeichert werden (müssen)
+	int design;
 	private Vector3 position;
 	private Attributes attributes;
 	int DEX;
