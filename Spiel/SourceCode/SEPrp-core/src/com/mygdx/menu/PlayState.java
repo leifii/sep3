@@ -326,7 +326,7 @@ c.setDesign(design);
 		sb.begin();
 
 		c.draw(sb);
-		
+		// KOBOLD DORF LABEL//
 		if (c.getPosition().x>1495 && c.getPosition().x<1696 && c.getPosition().y>0 && c.getPosition().y<1000 && !besucht) {
 			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 		}
@@ -336,6 +336,7 @@ c.setDesign(design);
 		if (c.getPosition().x<1495) {
 			besucht=false;
 		}
+		// KOBOLDORFLABEL //
 		// NPCs //
 		for (int i = 0; i < Npc.length; i++) {
 
