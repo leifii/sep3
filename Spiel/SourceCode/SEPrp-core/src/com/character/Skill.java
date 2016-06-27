@@ -25,9 +25,9 @@ public class Skill implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	int lvl;
-	int dmg;
+	private int dmg;
 	int dmgfaktor;
-	float cdnow;
+	private float cdnow;
 	float cd;
 	int cdfaktor;
 
@@ -80,7 +80,7 @@ public class Skill implements Serializable {
 		this.setX(x);
 		this.setY(y);
 		this.lvl = lvl;
-		this.dmg = dmg;
+		this.setDmg(dmg);
 		this.dmgfaktor = dmgfaktor;
 		this.cd = cd;
 		this.cdfaktor = cdfaktor;
@@ -92,7 +92,7 @@ public class Skill implements Serializable {
 		this.helpNr = helpNr;
 		this.c = c;
 		remove = false;
-		cdnow = 0;
+		setCdnow(0);
 		hallo = new Sprite(bild);
 		aktiviert = false;
 		this.setRadius(radius);
@@ -101,7 +101,7 @@ public class Skill implements Serializable {
 	}
 
 	public float gethitcd() {
-		return cdnow;
+		return getCdnow();
 	}
 
 	public boolean shouldRemove() {
@@ -110,7 +110,7 @@ public class Skill implements Serializable {
 
 	public void update(float dt, float xx, float yy) {
 		handleInput(xx, yy);
-		cdnow -= dt;					//cd nach Benutzung reduzieren
+		setCdnow(getCdnow() - dt);					//cd nach Benutzung reduzieren
 		
 		lifeTimer += dt;
 		if (lifeTimer > lifeTime) {
@@ -143,7 +143,7 @@ public class Skill implements Serializable {
 			setDmgFaktor(1);
 		}
 		if (c instanceof Magier && button == 2 && alive == false && aktiviert == true){	//hp vom schild wieder entfernen
-			c.currentHP -= dmg;
+			c.currentHP -= getDmg();
 			aktiviert = false;
 		}
 			
@@ -161,12 +161,12 @@ public class Skill implements Serializable {
 	
 
 	public void handleInput(float x, float y) {
-		if (cdnow < 0.1) {				//falls skill benutzbar
+		if (getCdnow() < 0.1) {				//falls skill benutzbar
 			if (button == 0){
 				if (Gdx.input.isKeyPressed(Keys.SPACE)){
 					this.setX(x);
 					this.setY(y);
-					cdnow = cd;
+					setCdnow(cd);
 					lifeTimer = 0;
 					setAlive(true);
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
@@ -188,7 +188,7 @@ public class Skill implements Serializable {
 			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {	
 				this.setX(x);
 				this.setY(y);
-				cdnow = cd;
+				setCdnow(cd);
 				lifeTimer = 0;
 				setAlive(true);
 				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
@@ -212,11 +212,11 @@ public class Skill implements Serializable {
 				if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
 					this.setX(x);
 					this.setY(y);
-					cdnow = cd;
+					setCdnow(cd);
 					lifeTimer = 0;
 					setAlive(true);
 					if(c instanceof Krieger || c instanceof Magier){		//instant heal, bei mage schild
-						c.heal(dmg);
+						c.heal(getDmg());
 						aktiviert = true;									
 					}
 					
@@ -226,7 +226,7 @@ public class Skill implements Serializable {
 				if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
 					this.setX(x);
 					this.setY(y);
-					cdnow = cd;
+					setCdnow(cd);
 					lifeTimer = 0;
 					setAlive(true);
 					if (c instanceof Schuetze ){
@@ -251,11 +251,11 @@ public class Skill implements Serializable {
 				if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
 					this.setX(x);
 					this.setY(y);
-					cdnow = cd;
+					setCdnow(cd);
 					lifeTimer = 0;
 					setAlive(true);
 					if(c instanceof Krieger){		//heal + höherer dmgFaktor
-						c.heal(dmg);
+						c.heal(getDmg());
 						setDmgFaktor(2);
 					}
 					if (c instanceof Schurke){
@@ -356,7 +356,7 @@ public class Skill implements Serializable {
 
 	public void upgrade() {
 		lvl += 1;
-		dmg += (dmg/4); //* dmgfaktor;	würde beim krieger in berserker zu stärkerem skill up führen
+		setDmg(getDmg() + (getDmg()/4)); //* dmgfaktor;	würde beim krieger in berserker zu stärkerem skill up führen
 		cd -= (cd/8) * cdfaktor;
 	}
 
@@ -426,5 +426,21 @@ public class Skill implements Serializable {
 
 	public void setRadius(int radius) {
 		this.radius = radius;
+	}
+
+	public int getDmg() {
+		return dmg;
+	}
+
+	public void setDmg(int dmg) {
+		this.dmg = dmg;
+	}
+
+	public float getCdnow() {
+		return cdnow;
+	}
+
+	public void setCdnow(float cdnow) {
+		this.cdnow = cdnow;
 	}
 }
