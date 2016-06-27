@@ -1,5 +1,5 @@
 /**
- * @author ${user}
+ * @author ${Mark}
  *
  * 
  */
@@ -14,71 +14,73 @@ public class Kollision implements IKollision, IMenu {
 		
 		if(PowerUps.PowerUp.isPowerUpAktiv()){
 			setzePausenBildschrim();
-			//pausiere spiel
-			//setze Roboter, der mit aktiviertem PowerUp getroffen wurde zurück
-			//setze spiel fort
-			
 		}
 		else{
 		   setzePausenBildschrim();
-			//reduziere leben des sepman um 1
-			//setze alle Roboter auf ihre Startposition
-			//setze Spiel fort
-			
+		   // Reduziere leben um 1
 		}
 }
 
 	@Override
 	public void initComponents() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public void setzeStartbildschirm() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public void setzeAuswahldisplay() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public void setzeSpielvorbereitungsdisplay() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public void setzeSiegbildschirm() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public void setzeNiederlageBildschirm() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public void setzePausenBildschrim() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		
 	}
 
 	@Override
 	public String[] getRoboterbelegung() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		return null;
 	}
 
 	@Override
 	public int getTaste() {
 		// TODO Auto-generated method stub
+		// Wird nicht verwendet
 		return 0;
 	}  
 }
