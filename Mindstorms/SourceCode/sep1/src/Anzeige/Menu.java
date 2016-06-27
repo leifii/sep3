@@ -4,6 +4,12 @@
  * 
  */
 package Anzeige;
+// Die Klasse Menü visualisiet die Komplette Menüführung 
+// Zusätzlich initialisiert sie die Clients mit den passenden Ip-Adressen und Roboter Modi
+//  Sowohl der KeyListener als der ActionListener(für die Buttons) befinden sich in dieser Klasse 
+// Jedes Menü wird über ein eigenes JPanel realisiert
+// Methoden zum erstellen der Menüs heißen "erzeuge"+ das passende Menü. Diese Methoden stehen auch alle im Interface IMenu
+// Das Spielfeld Panel (thorbensPanel) wird von der Klasse AnzeigeSpielfeld gestaltet 
 
 
 import java.awt.EventQueue;
@@ -11,7 +17,10 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import KommunikationPC.Client;
 
 //import Spieldatenverarbeitung.ISpieldaten;
 
@@ -33,7 +42,7 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
-	public int richtung = 0 ; 
+	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
 	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
@@ -49,7 +58,31 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
 	public JLabel lbBeschriftung3= new JLabel("ROBOTER 3:");
 	public JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
+	public JLabel lbIp1Beschriftung = new JLabel("1. IP-Adresse");
+	public JLabel lbip1Punkt1= new JLabel(".");
+	public JLabel lbip1Punkt2= new JLabel(".");
+	public JLabel lbip2Beschriftung= new JLabel("2. IP-Adresse");
+	public JLabel lbip2Punkt1= new JLabel(".");
+	public JLabel lbip2Punkt2= new JLabel(".");
+	public JLabel lbip3Beschriftung= new JLabel("3. IP-Adresse");
+	public JLabel lbip3Punkt1= new JLabel(".");
+	public JLabel lbip3Punkt2= new JLabel(".");
+	public JLabel lbip4Beschriftung= new JLabel("4. IP-Adresse");
+	public JLabel lbip4Punkt1= new JLabel(".");
+	public JLabel lbip4Punkt2= new JLabel(".");
 	public JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
+	public JTextField tfIp1Feld1 = new JTextField("198");
+	public JTextField tfIp1Feld2 = new JTextField("162");
+	public JTextField tfIp1Feld3 = new JTextField("1");
+	public JTextField tfIp2Feld1 = new JTextField("198");
+	public JTextField tfIp2Feld2 = new JTextField("162");
+	public JTextField tfIp2Feld3 = new JTextField("2");
+	public JTextField tfIp3Feld1 = new JTextField("198");
+	public JTextField tfIp3Feld2 = new JTextField("162");
+	public JTextField tfIp3Feld3 = new JTextField("3");
+	public JTextField tfIp4Feld1 = new JTextField("198");
+	public JTextField tfIp4Feld2 = new JTextField("162");
+	public JTextField tfIp4Feld3 = new JTextField("4");
 	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
@@ -71,7 +104,7 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 // Initialisierung des Fenster + Aufrufen des Startbildschirms
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setSize(700,500);
+	setSize(1020,720);
 	setTitle("SEPman");
 //	addKeyListener(this);
 	setzeStartbildschirm();            
@@ -84,18 +117,19 @@ public void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
 	startDisplay.setBackground(Color.gray);
-	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));	
+	startDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20));	
 	
 	btnAuswahlfenster.setText("START");
-	btnAuswahlfenster.setBounds(260, 200, 200, 50);
-	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));      // 
+	btnAuswahlfenster.setFont(new Font("Arial", Font.BOLD, 50));
+	btnAuswahlfenster.setBounds(240, 200, 500, 75);
+	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));      // 
 	btnAuswahlfenster.addActionListener(this);
 	startDisplay.add(btnAuswahlfenster);
 	
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
-	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 70));
-	lbUeberschrift.setBounds(80,20 , 580, 70);
+	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 100));
+	lbUeberschrift.setBounds(140,20 , 700, 100);
 	startDisplay.add(lbUeberschrift);
     getContentPane().add(startDisplay);
 }
@@ -459,7 +493,7 @@ public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		return roboterBelegung;
 	}
-	// Methoden f�r R�ckgabewerte
+	// Methoden für Belgung der Richtungsvariable
 	
 		public void oben(){
 			richtung = 4;
@@ -481,9 +515,15 @@ public void actionPerformed(ActionEvent e) {
 			richtung = 2;	 
 		}
 		@Override
-		public int getTaste() {
+		public  int getTaste() {
 			// TODO Auto-generated method stub
 			return richtung;
 		}
 		
+public void setClients(){
+//	Client clint1 = new Client(123456, this.roboterBelegung[0], 18415);
+//	Client clint1 = new Client(123456, this.roboterBelegung[1], 18415);
+//	Client clint1 = new Client(123456, this.roboterBelegung[2], 18415);
+//	Client clint1 = new Client(123456, this.roboterBelegung[3], 18415);	
+}
 }
