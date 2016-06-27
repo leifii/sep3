@@ -81,8 +81,8 @@ public class PlayState extends State implements Serializable {
 
 	public PlayState(GameStateManager gsm, int characterauswahl, int design) {
 		super(gsm);
-		besucht=false;
-		Kobolddorflabel=new Texture("grafiken/KoboldDorfLabel.png");
+		besucht = false;
+		Kobolddorflabel = new Texture("grafiken/KoboldDorfLabel.png");
 		world = new World(new Vector2(0, 0), false);
 		b2dr = new Box2DDebugRenderer();
 		MyContactListener cl = new MyContactListener();
@@ -94,22 +94,26 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
-		keys=new Key(200, 200, 250, 200, 300, 200);
-		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png","[TutorialNPC]  "+"Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")),
-				new NPC(2339, 459, "grafiken/Kobold.png","[Bürgermeister]  "+"Willkommen im Dorf!", createDynamicBody(2339,459,"npc")),
-				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  "+"Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc")),
-				};
-
+		keys = new Key(200, 200, 250, 200, 300, 200);
+		Npc = new NPC[] {
+				new NPC(120, 300, "grafiken/Kobold.png",
+						"[TutorialNPC]  "
+								+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
+						createDynamicBody(120, 300, "npc")),
+				new NPC(2339, 459, "grafiken/Kobold.png", "[Bürgermeister]  " + "Willkommen im Dorf!",
+						createDynamicBody(2339, 459, "npc")),
+				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
+						createDynamicBody(1032, 1318, "npc")), };
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
-		
+
 		if (characterauswahl == 1) {
 			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
-			//setCharacterType(0, attributes, body);
+			// setCharacterType(0, attributes, body);
 		} else if (characterauswahl == 2) {
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
@@ -117,15 +121,11 @@ public class PlayState extends State implements Serializable {
 		} else if (characterauswahl == 4) {
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
 
-			}
-		
-		
-			
-			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
-			// map.getMap().getLayers().get("Objekte"), attributes);
-c.setDesign(design);
+		}
 
-		
+		// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
+		// map.getMap().getLayers().get("Objekte"), attributes);
+		c.setDesign(design);
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
@@ -135,12 +135,10 @@ c.setDesign(design);
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
 		instance = this;
 	}
-	
-	public void setCharacterType(int animationType, Attributes attributes, Body body){
+
+	public void setCharacterType(int animationType, Attributes attributes, Body body) {
 		c = new Krieger(100, 100, s.getAnimation(animationType), collisionLayer, attributes, body);
 	}
-	
-	
 
 	// Konstruktor für das Laden gespeicherter Spiele --Dom--
 	public PlayState(GameStateManager gsm, int characterauswahl, Vector3 position) {
@@ -223,39 +221,47 @@ c.setDesign(design);
 		// System.out.println("Laden erflogreich.");
 		// }
 		// }
-		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
-			if(((boolean[]) c.getBody().getUserData())[0] && (c.getRichtung()==AnimationDirection.NORTH_ATTACK || 
-					c.getRichtung()==AnimationDirection.NORTH_STAND || c.getRichtung()==AnimationDirection.NORTH_WALK) &&
-					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
-				for(Gegner g : gegnerList){
-					if(((boolean[]) g.getBody().getUserData())[1]){
+		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			if (((boolean[]) c.getBody().getUserData())[0]
+					&& (c.getRichtung() == AnimationDirection.NORTH_ATTACK
+							|| c.getRichtung() == AnimationDirection.NORTH_STAND
+							|| c.getRichtung() == AnimationDirection.NORTH_WALK)
+					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				for (Gegner g : gegnerList) {
+					if (((boolean[]) g.getBody().getUserData())[1]) {
 						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
 					}
 				}
 			}
-			if(((boolean[]) c.getBody().getUserData())[1] && (c.getRichtung()==AnimationDirection.SOUTH_ATTACK || 
-					c.getRichtung()==AnimationDirection.SOUTH_STAND || c.getRichtung()==AnimationDirection.SOUTH_WALK) &&
-					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
-				for(Gegner g : gegnerList){
-					if(((boolean[]) g.getBody().getUserData())[0]){
+			if (((boolean[]) c.getBody().getUserData())[1]
+					&& (c.getRichtung() == AnimationDirection.SOUTH_ATTACK
+							|| c.getRichtung() == AnimationDirection.SOUTH_STAND
+							|| c.getRichtung() == AnimationDirection.SOUTH_WALK)
+					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				for (Gegner g : gegnerList) {
+					if (((boolean[]) g.getBody().getUserData())[0]) {
 						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
 					}
 				}
 			}
-			if(((boolean[]) c.getBody().getUserData())[2] && (c.getRichtung()==AnimationDirection.EAST_ATTACK || 
-					c.getRichtung()==AnimationDirection.EAST_STAND || c.getRichtung()==AnimationDirection.EAST_WALK) &&
-					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
-				for(Gegner g : gegnerList){
-					if(((boolean[]) g.getBody().getUserData())[3]){
+			if (((boolean[]) c.getBody().getUserData())[2]
+					&& (c.getRichtung() == AnimationDirection.EAST_ATTACK
+							|| c.getRichtung() == AnimationDirection.EAST_STAND
+							|| c.getRichtung() == AnimationDirection.EAST_WALK)
+					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				for (Gegner g : gegnerList) {
+					if (((boolean[]) g.getBody().getUserData())[3]) {
 						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
 					}
 				}
 			}
-			if(((boolean[]) c.getBody().getUserData())[3] && (c.getRichtung()==AnimationDirection.WEST_ATTACK || 
-					c.getRichtung()==AnimationDirection.WEST_STAND || c.getRichtung()==AnimationDirection.WEST_WALK) &&
-					c.getSkills().get(0).getCdnow()<0.1 && c instanceof Krieger){
-				for(Gegner g : gegnerList){
-					if(((boolean[]) g.getBody().getUserData())[2]){
+			if (((boolean[]) c.getBody().getUserData())[3]
+					&& (c.getRichtung() == AnimationDirection.WEST_ATTACK
+							|| c.getRichtung() == AnimationDirection.WEST_STAND
+							|| c.getRichtung() == AnimationDirection.WEST_WALK)
+					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				for (Gegner g : gegnerList) {
+					if (((boolean[]) g.getBody().getUserData())[2]) {
 						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
 					}
 				}
@@ -327,14 +333,15 @@ c.setDesign(design);
 
 		c.draw(sb);
 		// KOBOLD DORF LABEL//
-		if (c.getPosition().x>1495 && c.getPosition().x<1696 && c.getPosition().y>0 && c.getPosition().y<1000 && !besucht) {
-			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		if (c.getPosition().x > 1495 && c.getPosition().x < 1696 && c.getPosition().y > 0 && c.getPosition().y < 1000
+				&& !besucht) {
+			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		}
-		if (c.getPosition().x>1695) {
-			besucht=true;
+		if (c.getPosition().x > 1695) {
+			besucht = true;
 		}
-		if (c.getPosition().x<1495) {
-			besucht=false;
+		if (c.getPosition().x < 1495) {
+			besucht = false;
 		}
 		// KOBOLDORFLABEL //
 		// NPCs //
@@ -349,7 +356,7 @@ c.setDesign(design);
 			t.draw(sb);
 		}
 		// TRUHEN //
-		
+
 		// PORTALE //
 		for (int i = 0; i < Portal.length; i++) {
 			Portal[i].render(sb, c);
@@ -371,7 +378,7 @@ c.setDesign(design);
 
 		// GEGNER //
 
-		 // KEYS//
+		// KEYS//
 		keys.render(sb, c);
 		// KEYS//
 		// ITEMS //
@@ -497,7 +504,6 @@ c.setDesign(design);
 
 	}
 
-	
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
