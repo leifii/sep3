@@ -25,6 +25,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 
+import de.SEPL.GameScore.GameScoreManagement;
+
 public class CharEditorState extends State {
 
 	PlayState playstate;
@@ -189,6 +191,11 @@ public class CharEditorState extends State {
 			gsm.push(new NewGameCharacterState(gsm));
 		}
 
+		//Load-Test --Dom--
+		if (Gdx.input.isKeyJustPressed(Keys.L)){
+			GameScoreManagement.loadGameScore(gsm);
+			System.out.println("Hier");
+		}
 	}
 
 	@Override
