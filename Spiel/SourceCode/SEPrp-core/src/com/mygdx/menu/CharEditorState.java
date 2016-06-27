@@ -199,7 +199,7 @@ float XX=0;float YY=0;
 		}
 		
 		
-	
+		
 			
 		if (buttonJ.isPressed() && x>=180) {	
 			buttonclick.play();
@@ -305,7 +305,7 @@ float XX=0;float YY=0;
 	// DESIGN
 		
 		
-		if ( buttonM.isChecked()) {
+		if ( buttonM.isChecked() || Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 			playstate=new PlayState(gsm, charauswahl,design);
 			gsm.push(playstate);
 	}
