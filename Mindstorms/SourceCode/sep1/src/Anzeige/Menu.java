@@ -64,28 +64,36 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JLabel lbIp1Beschriftung = new JLabel("1. IP-Adresse");
 	public JLabel lbip1Punkt1= new JLabel(".");
 	public JLabel lbip1Punkt2= new JLabel(".");
+	public JLabel lbip1Punkt3= new JLabel(".");
 	public JLabel lbip2Beschriftung= new JLabel("2. IP-Adresse");
 	public JLabel lbip2Punkt1= new JLabel(".");
 	public JLabel lbip2Punkt2= new JLabel(".");
+	public JLabel lbip2Punkt3= new JLabel(".");
 	public JLabel lbip3Beschriftung= new JLabel("3. IP-Adresse");
 	public JLabel lbip3Punkt1= new JLabel(".");
 	public JLabel lbip3Punkt2= new JLabel(".");
+	public JLabel lbip3Punkt3= new JLabel(".");
 	public JLabel lbip4Beschriftung= new JLabel("4. IP-Adresse");
 	public JLabel lbip4Punkt1= new JLabel(".");
 	public JLabel lbip4Punkt2= new JLabel(".");
+	public JLabel lbip4Punkt3= new JLabel(".");
 	public JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
 	public JTextField tfIp1Feld1 = new JTextField("198");
 	public JTextField tfIp1Feld2 = new JTextField("162");
 	public JTextField tfIp1Feld3 = new JTextField("1");
+	public JTextField tfIp1Feld4 = new JTextField("1");
 	public JTextField tfIp2Feld1 = new JTextField("198");
 	public JTextField tfIp2Feld2 = new JTextField("162");
 	public JTextField tfIp2Feld3 = new JTextField("2");
+	public JTextField tfIp2Feld4 = new JTextField("1");
 	public JTextField tfIp3Feld1 = new JTextField("198");
 	public JTextField tfIp3Feld2 = new JTextField("162");
 	public JTextField tfIp3Feld3 = new JTextField("3");
+	public JTextField tfIp3Feld4 = new JTextField("1");
 	public JTextField tfIp4Feld1 = new JTextField("198");
 	public JTextField tfIp4Feld2 = new JTextField("162");
 	public JTextField tfIp4Feld3 = new JTextField("4");
+	public JTextField tfIp4Feld4 = new JTextField("1");
 	public JButton btnAuswahlfenster = new JButton();
 	public JButton btnStart = new JButton();
 	public JButton btnEnde = new JButton();
@@ -202,7 +210,8 @@ public void setzeAuswahldisplay (){
 	cbAuswahl4.setSelectedIndex(0);
 	cbAuswahl4.setBounds(170, 470, 200, 30);
 	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
-	display.add(cbAuswahl4);	
+	display.add(cbAuswahl4);
+	
 //	1.Roboter IP-Auswahl
 	lbIp1Beschriftung.setBounds(440, 350, 140, 20);
 	lbIp1Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
@@ -214,7 +223,11 @@ public void setzeAuswahldisplay (){
 	
     lbip1Punkt2.setBounds(660, 350, 10, 20);
     lbip1Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
-    display.add(lbip1Punkt2);	
+    display.add(lbip1Punkt2);
+    
+	lbip1Punkt3.setBounds(710, 350, 10, 20);
+	lbip1Punkt3.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip1Punkt3);
     
 	tfIp1Feld1.setBounds(570, 350, 40, 20);
 	tfIp1Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -227,6 +240,10 @@ public void setzeAuswahldisplay (){
 	tfIp1Feld3.setBounds(670, 350, 40, 20);
 	tfIp1Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp1Feld3);
+	
+	tfIp1Feld4.setBounds(720, 350, 40, 20);
+	tfIp1Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	display.add(tfIp1Feld4);
     
 //    2. Roboter Ip Auswahl
 	lbip2Beschriftung.setBounds(440, 390, 140, 20);
@@ -241,6 +258,10 @@ public void setzeAuswahldisplay (){
 	lbip2Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
 	display.add(lbip2Punkt2);	
 	
+	lbip2Punkt3.setBounds(710, 390, 10, 20);
+	lbip2Punkt3.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip2Punkt3);
+	
 	tfIp2Feld1.setBounds(570, 390, 40, 20);
 	tfIp2Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));	
 	display.add(tfIp2Feld1);	
@@ -252,6 +273,10 @@ public void setzeAuswahldisplay (){
 	tfIp2Feld3.setBounds(670, 390, 40, 20);
 	tfIp2Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp2Feld3);
+	
+	tfIp2Feld4.setBounds(720, 390, 40, 20);
+	tfIp2Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	display.add(tfIp2Feld4);
 	
 	
 	
@@ -269,6 +294,10 @@ public void setzeAuswahldisplay (){
 	lbip3Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
 	display.add(lbip3Punkt2);	
 	
+	lbip3Punkt3.setBounds(710, 430, 10, 20);
+	lbip3Punkt3.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip3Punkt3);
+	
 	tfIp3Feld1.setBounds(570, 430, 40, 20);
 	tfIp3Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp3Feld1);	
@@ -280,6 +309,10 @@ public void setzeAuswahldisplay (){
 	tfIp3Feld3.setBounds(670, 430, 40, 20);
 	tfIp3Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp3Feld3);
+	
+	tfIp3Feld4.setBounds(720, 430, 40, 20);
+	tfIp3Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	display.add(tfIp3Feld4);
 	
 //	4. Roboter IP Auswahl
 	
@@ -295,6 +328,10 @@ public void setzeAuswahldisplay (){
 	lbip4Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
 	display.add(lbip4Punkt2);	
 	
+	lbip4Punkt3.setBounds(710, 470, 10, 20);
+	lbip4Punkt3.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip4Punkt3);
+	
 	tfIp4Feld1.setBounds(570, 470, 40, 20);
 	tfIp4Feld1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp4Feld1);	
@@ -306,6 +343,10 @@ public void setzeAuswahldisplay (){
 	tfIp4Feld3.setBounds(670, 470, 40, 20);
 	tfIp4Feld3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp4Feld3);
+	
+	tfIp4Feld4.setBounds(720, 470, 40, 20);
+	tfIp4Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	display.add(tfIp4Feld4);
 	getContentPane().add(display);
 }
 
@@ -435,6 +476,14 @@ public boolean eingabeKorrekt() {
 		  }
 	}
 	return  check;
+}
+
+public void ipsSchreiben(){
+	roboterIPs[0] =tfIp1Feld1.getText() + "." + tfIp1Feld2.getText() +"." +  tfIp1Feld3.getText()+ "."+ tfIp1Feld4.getText();
+	roboterIPs[1] =tfIp2Feld1.getText() + "." + tfIp2Feld2.getText() +"." +  tfIp2Feld3.getText()+ "."+ tfIp2Feld4.getText();
+	roboterIPs[2] =tfIp3Feld1.getText() + "." + tfIp3Feld2.getText() +"." +  tfIp3Feld3.getText()+ "."+ tfIp3Feld4.getText();
+	roboterIPs[3] =tfIp4Feld1.getText() + "." + tfIp4Feld2.getText() +"." +  tfIp4Feld3.getText()+ "."+ tfIp4Feld4.getText();
+			
 }
 
 @Override
@@ -629,9 +678,17 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 public void setClients(){
-	Client clint1 = new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415);
-	Client clint2 = new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415);
-	Client clint3 = new Client(this.roboterIPs[2], this.roboterBelegung[2], 18415);
-	Client clint4 = new Client(this.roboterIPs[3], this.roboterBelegung[3], 18415);	
+//	Client clint1 = new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415);
+//	Client clint2 = new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415);
+//	Client clint3 = new Client(this.roboterIPs[2], this.roboterBelegung[2], 18415);
+//	Client clint4 = new Client(this.roboterIPs[3], this.roboterBelegung[3], 18415);	
+	 Thread client1 = new Thread(new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415));
+	 client1.start();
+	 Thread client2 = new Thread(new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415));
+	 client2.start();
+	 Thread client3 = new Thread(new Client(this.roboterIPs[2], this.roboterBelegung[2], 18415));
+	 client3.start();
+	 Thread client4 = new Thread(new Client(this.roboterIPs[3], this.roboterBelegung[3], 18415));
+	 client4.start();
 }
 }
