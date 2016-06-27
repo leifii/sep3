@@ -21,7 +21,6 @@ import com.objects.Truhe;
 //TODO abstract class
 public class Gegner extends Character {
 
-	private static final long serialVersionUID = -7164803939794243989L;
 	private int exp;
 	private TextureRegion currentFrame;
 	private float time;
