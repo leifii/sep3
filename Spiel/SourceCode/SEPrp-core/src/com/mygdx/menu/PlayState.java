@@ -111,38 +111,38 @@ public class PlayState extends State implements Serializable {
 			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
 		} else if (characterauswahl == 4) {
 			//System.out.println("Schurke");
-			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
+			//c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
 			
 			// Unnötig, int design kann direkt übergeben werden, denke ich.
 			
-//			if (design == 0) {
-//				c = new Schuetze(100, 100, s.getSchütze(0), collisionLayer, attributes, body);
-//			}
-//			// else{
-//			// c = new Schuetze(100, 100, s.getAnimation(index), collisionLayer,
-//			// attributes, body); //Solange Animation nicht fertig ist
-//			// }
-//			if (design == 1) {
-//				c = new Schuetze(100, 100, s.getSchütze(1), collisionLayer, attributes, body);
-//			}
-//			if (design == 2) {
-//				c = new Schuetze(100, 100, s.getSchütze(2), collisionLayer, attributes, body);
-//			}
-//			if (design == 3) {
-//				c = new Schuetze(100, 100, s.getSchütze(3), collisionLayer, attributes, body);
-//			}
-//			if (design == 4) {
-//				c = new Schuetze(100, 100, s.getSchütze(4), collisionLayer, attributes, body);
-//			}
-//			if (design == 5) {
-//				c = new Schuetze(100, 100, s.getSchütze(5), collisionLayer, attributes, body);
-//			}
-//			if (design == 6) {
-//				c = new Schuetze(100, 100, s.getSchütze(6), collisionLayer, attributes, body);
-//			}
-//			if (design == 7) {
-//				c = new Schuetze(100, 100, s.getSchütze(7), collisionLayer, attributes, body);
-//			}
+			if (design == 0) {
+				c = new Schuetze(100, 100, s.getSchütze(0), collisionLayer, attributes, body);
+			}
+			// else{
+			// c = new Schuetze(100, 100, s.getAnimation(index), collisionLayer,
+			// attributes, body); //Solange Animation nicht fertig ist
+			// }
+			if (design == 1) {
+				c = new Schuetze(100, 100, s.getSchütze(1), collisionLayer, attributes, body);
+			}
+			if (design == 2) {
+				c = new Schuetze(100, 100, s.getSchütze(2), collisionLayer, attributes, body);
+			}
+			if (design == 3) {
+				c = new Schuetze(100, 100, s.getSchütze(3), collisionLayer, attributes, body);
+			}
+			if (design == 4) {
+				c = new Schuetze(100, 100, s.getSchütze(4), collisionLayer, attributes, body);
+			}
+			if (design == 5) {
+				c = new Schuetze(100, 100, s.getSchütze(5), collisionLayer, attributes, body);
+			}
+			if (design == 6) {
+				c = new Schuetze(100, 100, s.getSchütze(6), collisionLayer, attributes, body);
+			}
+			if (design == 7) {
+				c = new Schuetze(100, 100, s.getSchütze(7), collisionLayer, attributes, body);
+			}
 			//---------------
 			
 			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
