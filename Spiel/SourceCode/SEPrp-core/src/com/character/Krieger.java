@@ -2,6 +2,8 @@ package com.character;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -46,6 +48,14 @@ public class Krieger extends Character{
 		// TODO Auto-generated method stub
 		return super.getPosition();
 	}
+	
+//	public void handleInput(){
+//		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+//			if(((boolean[]) body.getUserData())[0] && (richtung == AnimationDirection.NORTH_ATTACK)){
+//				if(bounds)
+//			}
+//		}
+//	}
 
 //	@Override
 //	public Texture getTexture() {
