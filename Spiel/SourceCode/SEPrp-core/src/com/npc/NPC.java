@@ -20,7 +20,7 @@ public class NPC {
 		
 		Texture NPCtexture;
 		boolean angesprochen=false;
-		
+		private String text;
 		private Body body;
 		
 		
@@ -30,6 +30,7 @@ public class NPC {
 			NPCtexture=new Texture(source);
 			Dialog=new Dialog(TEXT,x+32,y+48,"dialogfenster.png");
 			this.body=body;
+			text=TEXT;
 			}
 		
 
@@ -42,6 +43,7 @@ public class NPC {
 			}
 			else if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) || Character.overlaps(bounds)==false) {
 				angesprochen=false;
+				
 			}
 			
 				Dialog.render(ps, sb, Character, c, angesprochen);
