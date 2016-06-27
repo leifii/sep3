@@ -117,8 +117,8 @@ public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1020,720);
 	setTitle("SEPman");
-	setzeAuswahldisplay ();
-//	setzeStartbildschirm();            
+//	setzeAuswahldisplay ();
+	setzeStartbildschirm();            
 	validate();
 
 }
@@ -678,10 +678,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 public void setClients(){
-//	Client clint1 = new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415);
-//	Client clint2 = new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415);
-//	Client clint3 = new Client(this.roboterIPs[2], this.roboterBelegung[2], 18415);
-//	Client clint4 = new Client(this.roboterIPs[3], this.roboterBelegung[3], 18415);	
+	
 	 Thread client1 = new Thread(new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415));
 	 client1.start();
 	 Thread client2 = new Thread(new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415));
