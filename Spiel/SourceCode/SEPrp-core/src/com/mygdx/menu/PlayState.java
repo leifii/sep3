@@ -106,14 +106,10 @@ public class PlayState extends State implements Serializable {
 			//System.out.println("Magier");
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
-
 			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
-
 		} else if (characterauswahl == 4) {
 			//System.out.println("Schurke");
-			
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
-			
 			
 			// Unnötig, int design kann direkt übergeben werden, denke ich.
 			
