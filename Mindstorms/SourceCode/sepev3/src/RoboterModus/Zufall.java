@@ -28,6 +28,8 @@ public class Zufall extends IModus{
 	}
 	
 	public void run(){
+		if(pause==false && aktivierung==true){
+		
 		int zufallszahl;
 		Plane knoten;
 
@@ -156,7 +158,10 @@ public class Zufall extends IModus{
 		
 		aktuelleposition = zielposition;
 		
+		}
 		
+		else
+			lvfg.stop();
 	}
 
 	@Override

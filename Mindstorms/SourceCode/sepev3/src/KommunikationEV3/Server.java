@@ -58,7 +58,7 @@ public class Server{
 			IModus robomode;
 			
 			nachricht = com1.empfangen();
-			com1.senden();
+			
 			
 			mode = nachricht[8];
 			
@@ -74,6 +74,7 @@ public class Server{
 			default: robomode = new Zufall(26, planes, lvfg, drucksensor);
 			break;
 			}
+			com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
 			
 			while(true){
 			nachricht = com1.empfangen();
@@ -82,24 +83,24 @@ public class Server{
 			
 			if(mode == 104){
 				// TODO Sepman
-				com1.senden();
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
 			}
 			
 			else if(mode == 103){
 				// TODO Zufall
 				robomode.setNachricht(nachricht);
 				robomode.run();
-				com1.senden();
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
 			}
 			
 			else if(mode == 102){
 				// TODO Verteidigung
-				com1.senden();
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
 			}
 			
 			else if(mode == 101){
 				// TODO Verfolgung
-				com1.senden();
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
 			}
 			
 			

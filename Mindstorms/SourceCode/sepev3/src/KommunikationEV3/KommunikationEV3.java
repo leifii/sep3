@@ -36,12 +36,11 @@ public class KommunikationEV3 implements IKommunikation{
 		druck=new Drucksensor();
 	}
 	
-	public void senden(){
-		erzeugeByteArray();
+	public void senden(byte[] message){
 			try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-			out.writeInt(nachrichtsenden.length);
-			out.write(nachrichtsenden);
+			out.writeInt(message.length);
+			out.write(message);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

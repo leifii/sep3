@@ -47,5 +47,17 @@ public abstract class IModus {					//eine abstract class kann Variablen beinhalt
 		return sensor.druckSensor();
 	}
 	
+	public boolean getAktivierung(){
+		return aktivierung;
+	}
+	
+	public boolean getPause(){
+		return pause;
+	}
+	
+	public boolean getPowerup(){
+		return powerup;
+	}
+	
 
 }
