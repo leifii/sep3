@@ -129,7 +129,7 @@ public void setzeStartbildschirm(){
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 100));
-	lbUeberschrift.setBounds(140,20 , 700, 100);
+	lbUeberschrift.setBounds(140, 20 , 700, 100);
 	startDisplay.add(lbUeberschrift);
     getContentPane().add(startDisplay);
 }
@@ -146,132 +146,152 @@ public void setzeAuswahldisplay (){
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 100));
-	lbUeberschrift.setBounds(140,20 , 700, 100);
+	lbUeberschrift.setBounds(140, 20 , 700, 100);
 	display.add(lbUeberschrift);
 	
 	btnStart.addActionListener(this);
-	btnStart.setSize(300, 50);
-	btnStart.setLocation(215, 95);
+	btnStart.setBounds(240, 140, 500, 75);
 	btnStart.setText("Start");
-	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnStart.setFont(new Font("Arial", Font.BOLD, 50));
+	btnStart.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnStart.setBackground(Color.WHITE);
 	display.add(btnStart);
 	
 	btnEnde.addActionListener(this);           
-	btnEnde.setSize(300, 50);
-	btnEnde.setLocation(215, 155);
+	btnEnde.setBounds(240, 235, 500, 75);
+	btnEnde.setFont(new Font("Arial", Font.BOLD, 50));
 	btnEnde.setText("Ende");
-	btnEnde.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnEnde.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnEnde.setBackground(Color.white);
 	display.add(btnEnde);
 	
-	lbBeschriftung1.setFont(new Font("Arial", Font.BOLD, 15));
-	lbBeschriftung1.setBounds(215, 225, 102, 18);
+	lbBeschriftung1.setFont(new Font("Arial", Font.BOLD, 17));
+	lbBeschriftung1.setBounds(50, 350, 110, 20);
 	display.add(lbBeschriftung1);
 	
-	lbBeschriftung2.setFont(new Font("Arial", Font.BOLD, 15));
-	lbBeschriftung2.setBounds(215, 261, 102, 18);
+	lbBeschriftung2.setFont(new Font("Arial", Font.BOLD, 17));
+	lbBeschriftung2.setBounds(50, 390, 110, 20);
 	display.add(lbBeschriftung2);
-	lbBeschriftung3.setFont(new Font("Arial", Font.BOLD, 15));
+	lbBeschriftung3.setFont(new Font("Arial", Font.BOLD, 17));
 	
-	lbBeschriftung3.setBounds(215, 300, 102, 16);
+	lbBeschriftung3.setBounds(50, 430, 110, 20);
 	display.add(lbBeschriftung3);
-	lbBeschriftung4.setFont(new Font("Arial", Font.BOLD, 15));
+	lbBeschriftung4.setFont(new Font("Arial", Font.BOLD, 17));
 	
-	lbBeschriftung4.setBounds(215, 340, 102, 16);
+	lbBeschriftung4.setBounds(50, 470, 110, 20);
 	display.add(lbBeschriftung4);
 	
 	cbAuswahl1.setSelectedIndex(0);
-	cbAuswahl1.setSize(200, 30);
-	cbAuswahl1.setLocation(311, 215);
+    cbAuswahl1.setBounds(170, 350, 200, 30);
 	cbAuswahl1.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl1);
 	
 	cbAuswahl2.setSelectedIndex(0);
-	cbAuswahl2.setSize(200, 30);
-	cbAuswahl2.setLocation(311, 250);
+	cbAuswahl2.setBounds(170, 390, 200, 30);
 	cbAuswahl2.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl2);
 	
 	cbAuswahl3.setSelectedIndex(0);
-	cbAuswahl3.setSize(200, 30);
-	cbAuswahl3.setLocation(311, 290);
+	cbAuswahl3.setBounds(170, 430, 200, 30);
 	cbAuswahl3.addActionListener(this);                //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl3);
 	
 	cbAuswahl4.setSelectedIndex(0);
-	cbAuswahl4.setSize(200, 30);
-	cbAuswahl4.setLocation(311, 330);
+	cbAuswahl4.setBounds(170, 470, 200, 30);
 	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl4);	
-	getContentPane().add(display);
+//	1.Roboter IP-Auswahl
+	lbIp1Beschriftung.setBounds(440, 350, 140, 20);
+	lbIp1Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbIp1Beschriftung);
 	
-	lbip1Punkt1.setBounds(10, 10, 10, 10);
+	lbip1Punkt1.setBounds(610, 350, 10, 20);
+	lbip1Punkt1.setFont(new Font("Arial", Font.BOLD, 17));
 	display.add(lbip1Punkt1);	
 	
-    lbip1Punkt2.setBounds(10, 10, 10, 10);
+    lbip1Punkt2.setBounds(660, 350, 10, 20);
+    lbip1Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
     display.add(lbip1Punkt2);	
     
-	lbip2Beschriftung.setBounds(10, 10, 10, 10);
-	display.add(lbip2Beschriftung);	
-	
-	lbip2Punkt1.setBounds(10, 10, 10, 10);
-	display.add(lbip2Punkt1);	
-	
-	lbip2Punkt2.setBounds(10, 10, 10, 10);
-	display.add(lbip2Punkt2);	
-	
-	lbip3Beschriftung.setBounds(10, 10, 10, 10);
-	display.add(lbip3Beschriftung);	
-	
-	lbip3Punkt1.setBounds(10, 10, 10, 10);
-	display.add(lbip3Punkt1);	
-	
-	lbip3Punkt2.setBounds(10, 10, 10, 10);
-	display.add(lbip3Punkt2);	
-	
-	lbip4Beschriftung.setBounds(10, 10, 10, 10);
-	display.add(lbip4Beschriftung);	
-	
-	lbip4Punkt1.setBounds(10, 10, 10, 10);
-	display.add(lbip4Punkt1);	
-	
-	lbip4Punkt2.setBounds(10, 10, 10, 10);
-	display.add(lbip4Punkt2);	
-	
-	tfIp1Feld1.setBounds(10, 10, 10, 10);
+	tfIp1Feld1.setBounds(570, 350, 40, 20);
 	display.add(tfIp1Feld1);	
 	
-	tfIp1Feld2.setBounds(10, 10, 10, 10);
+	tfIp1Feld2.setBounds(620, 350, 40, 20);
 	display.add(tfIp1Feld2);	
 	
-	tfIp1Feld3.setBounds(10, 10, 10, 10);
-	display.add(tfIp1Feld3);	
+	tfIp1Feld3.setBounds(670, 350, 40, 20);
+	display.add(tfIp1Feld3);
+    
+//    2. Roboter Ip Auswahl
+	lbip2Beschriftung.setBounds(440, 390, 140, 20);
+	lbip2Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip2Beschriftung);	
 	
-	tfIp2Feld1.setBounds(10, 10, 10, 10);
+	lbip2Punkt1.setBounds(610, 390, 10, 20);
+	lbip2Punkt1.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip2Punkt1);	
+	
+	lbip2Punkt2.setBounds(660, 390, 10, 20);
+	lbip2Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip2Punkt2);	
+	
+	tfIp2Feld1.setBounds(570, 390, 40, 20);
 	display.add(tfIp2Feld1);	
 	
-    tfIp2Feld2.setBounds(10, 10, 10, 10);
+    tfIp2Feld2.setBounds(620, 390, 40, 20);
     display.add(tfIp2Feld2);	
     
-	tfIp2Feld3.setBounds(10, 10, 10, 10);
-	display.add(tfIp2Feld3);	
+	tfIp2Feld3.setBounds(670, 390, 40, 20);
+	display.add(tfIp2Feld3);
 	
-	tfIp3Feld1.setBounds(10, 10, 10, 10);
+	
+	
+//	   3.Roboter IP Auswahl
+	
+	lbip3Beschriftung.setBounds(440, 430, 140, 20);
+	lbip3Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip3Beschriftung);	
+	
+	lbip3Punkt1.setBounds(610, 430, 10, 20);
+	lbip3Punkt1.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip3Punkt1);	
+	
+	lbip3Punkt2.setBounds(660, 430, 10, 20);
+	lbip3Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip3Punkt2);	
+	
+	tfIp3Feld1.setBounds(570, 430, 40, 20);
 	display.add(tfIp3Feld1);	
 	
-	tfIp3Feld2.setBounds(10, 10, 10, 10);
+	tfIp3Feld2.setBounds(620, 430, 40, 20);
 	display.add(tfIp3Feld2);	
 	
-	tfIp3Feld3.setBounds(10, 10, 10, 10);
-	display.add(tfIp3Feld3);	
+	tfIp3Feld3.setBounds(670, 430, 40, 20);
+	display.add(tfIp3Feld3);
 	
-	tfIp4Feld1.setBounds(10, 10, 10, 10);
+//	4. Roboter IP Auswahl
+	
+	lbip4Beschriftung.setBounds(440, 470, 140, 20);
+	lbip4Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip4Beschriftung);	
+	
+	lbip4Punkt1.setBounds(610, 470, 10, 20);
+	lbip4Punkt1.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip4Punkt1);	
+	
+	lbip4Punkt2.setBounds(660, 470, 10, 20);
+	lbip4Punkt2.setFont(new Font("Arial", Font.BOLD, 17));
+	display.add(lbip4Punkt2);	
+	
+	tfIp4Feld1.setBounds(570, 470, 40, 20);
 	display.add(tfIp4Feld1);	
 	
-	tfIp4Feld2.setBounds(10, 10, 10, 10);
+	tfIp4Feld2.setBounds(620, 470, 40, 20);
 	display.add(tfIp4Feld2);	
 	
-	tfIp4Feld3.setBounds(10, 10, 10, 10);
-	display.add(tfIp4Feld3);	
+	tfIp4Feld3.setBounds(670, 470, 40, 20);
+	display.add(tfIp4Feld3);
+	getContentPane().add(display);
 }
 
 // Methode zum erstellen des Spielvorbereitungsdisplay
