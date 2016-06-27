@@ -11,6 +11,19 @@ import Anzeige.IMenu;
 public class Kollision implements IKollision, IMenu {
 	
 	public static boolean kollidiert  = false;
+	
+	public static void setkollision(){
+		if(kollidiert == false ){
+			kollidiert = true;
+		}
+		else {
+			kollidiert =false;
+		}
+	}
+	
+	
+	
+	
 	public void kollision(){
 		
 		if(PowerUps.PowerUp.isPowerUpAktiv()){
