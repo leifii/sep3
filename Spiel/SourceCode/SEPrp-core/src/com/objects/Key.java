@@ -19,8 +19,9 @@ public class Key {
 	boolean blackaufgehoben;
 	boolean whiteaufgehoben;
 	boolean goldaufgehoben;
+	KeyUI ui;
 	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold){
-
+		ui=new KeyUI();
 		positionBlack=new Vector3(xBlack, yBlack, 0);
 		positionWhite=new Vector3(xWhite, yWhite, 0);
 		positionGold=new Vector3(xGold, yGold, 0);
@@ -54,6 +55,7 @@ public class Key {
 				goldaufgehoben=true;
 			}
 		}
+		ui.Render(sb, goldaufgehoben, blackaufgehoben, whiteaufgehoben);
 	}
 	
 	public void dispose(){
