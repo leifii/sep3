@@ -106,8 +106,8 @@ public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1020,720);
 	setTitle("SEPman");
-//	addKeyListener(this);
-	setzeStartbildschirm();            
+	setzeAuswahldisplay ();
+//	setzeStartbildschirm();            
 	validate();
 
 }
@@ -141,12 +141,12 @@ public void setzeAuswahldisplay (){
 	display.setVisible(true);
 	display.setLayout(null);
 	display.setBackground(Color.WHITE);
-	display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	display.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20));
 	
 	lbUeberschrift.setVerticalAlignment(SwingConstants.TOP);
 	lbUeberschrift.setHorizontalAlignment(SwingConstants.CENTER);
-	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 50));
-	lbUeberschrift.setBounds(80, 6, 580	, 50);
+	lbUeberschrift.setFont(new Font("Arial", Font.BOLD, 100));
+	lbUeberschrift.setBounds(140,20 , 700, 100);
 	display.add(lbUeberschrift);
 	
 	btnStart.addActionListener(this);
@@ -203,6 +203,75 @@ public void setzeAuswahldisplay (){
 	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl4);	
 	getContentPane().add(display);
+	
+	lbip1Punkt1.setBounds(10, 10, 10, 10);
+	display.add(lbip1Punkt1);	
+	
+    lbip1Punkt2.setBounds(10, 10, 10, 10);
+    display.add(lbip1Punkt2);	
+    
+	lbip2Beschriftung.setBounds(10, 10, 10, 10);
+	display.add(lbip2Beschriftung);	
+	
+	lbip2Punkt1.setBounds(10, 10, 10, 10);
+	display.add(lbip2Punkt1);	
+	
+	lbip2Punkt2.setBounds(10, 10, 10, 10);
+	display.add(lbip2Punkt2);	
+	
+	lbip3Beschriftung.setBounds(10, 10, 10, 10);
+	display.add(lbip3Beschriftung);	
+	
+	lbip3Punkt1.setBounds(10, 10, 10, 10);
+	display.add(lbip3Punkt1);	
+	
+	lbip3Punkt2.setBounds(10, 10, 10, 10);
+	display.add(lbip3Punkt2);	
+	
+	lbip4Beschriftung.setBounds(10, 10, 10, 10);
+	display.add(lbip4Beschriftung);	
+	
+	lbip4Punkt1.setBounds(10, 10, 10, 10);
+	display.add(lbip4Punkt1);	
+	
+	lbip4Punkt2.setBounds(10, 10, 10, 10);
+	display.add(lbip4Punkt2);	
+	
+	tfIp1Feld1.setBounds(10, 10, 10, 10);
+	display.add(tfIp1Feld1);	
+	
+	tfIp1Feld2.setBounds(10, 10, 10, 10);
+	display.add(tfIp1Feld2);	
+	
+	tfIp1Feld3.setBounds(10, 10, 10, 10);
+	display.add(tfIp1Feld3);	
+	
+	tfIp2Feld1.setBounds(10, 10, 10, 10);
+	display.add(tfIp2Feld1);	
+	
+    tfIp2Feld2.setBounds(10, 10, 10, 10);
+    display.add(tfIp2Feld2);	
+    
+	tfIp2Feld3.setBounds(10, 10, 10, 10);
+	display.add(tfIp2Feld3);	
+	
+	tfIp3Feld1.setBounds(10, 10, 10, 10);
+	display.add(tfIp3Feld1);	
+	
+	tfIp3Feld2.setBounds(10, 10, 10, 10);
+	display.add(tfIp3Feld2);	
+	
+	tfIp3Feld3.setBounds(10, 10, 10, 10);
+	display.add(tfIp3Feld3);	
+	
+	tfIp4Feld1.setBounds(10, 10, 10, 10);
+	display.add(tfIp4Feld1);	
+	
+	tfIp4Feld2.setBounds(10, 10, 10, 10);
+	display.add(tfIp4Feld2);	
+	
+	tfIp4Feld3.setBounds(10, 10, 10, 10);
+	display.add(tfIp4Feld3);	
 }
 
 // Methode zum erstellen des Spielvorbereitungsdisplay
