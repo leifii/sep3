@@ -50,7 +50,7 @@ public class GameScoreManagement {
 	}
 
 	// Lade Spielstand
-	public static boolean loadGameScore(GameStateManager gsm/*, com.character.Character currentCharacter*/) {
+	public static boolean loadGameScore(GameStateManager gsm, String toLoadGameScore) {
 
 		boolean gameLoaded = false;
 
