@@ -1,15 +1,11 @@
 package RoboterModi;
 
-/**
- * @author ${user}
- *
- * 
- */
 
 
 import java.net.Socket;
 import java.util.List;
 
+import Kollisionen.Kollision;
 import KommunikationPC.Kommunikation;
 import Positionen.Knoten;
 
@@ -19,10 +15,12 @@ public class SepmanModus extends Kommunikation {
 	private boolean powerUp;
 	private List<Knoten> knotenListe_nochAbzufahren;
 	private Knoten ausgangsKnoten, zielKnoten;
+	Kollision kolli = new Kollision();
 	
 	public SepmanModus(Socket soc) {
-		super(soc, Rolle.SEPman);
+		super(soc);
 		knotenListe_nochAbzufahren = Knoten.generateKnotenList();
+		
 	}
 
 	
@@ -48,7 +46,7 @@ public class SepmanModus extends Kommunikation {
 			}
 			else if(i==2){
 				if(nachricht[i]==1){
-					Kollisionen.Kollision.kollision();    // Wird aufgerufen, wenn der Drucksensor aktiviert ist, es also zu einer Kollision kam.
+					kolli.kollision(); //Kollisionen.Kollision.kollision();    // Wird aufgerufen, wenn der Drucksensor aktiviert ist, es also zu einer Kollision kam.
 				}
 			}
 			else if(i==3){								//Aktivierungsstatus des Roboters. 0 = Inaktiv; 1 = Aktiv
@@ -91,7 +89,7 @@ public class SepmanModus extends Kommunikation {
 		return zielKnoten;
 	}
 
-	@Override
+	
 	public Rolle getModus() {
 		return Rolle.SEPman;
 	}
