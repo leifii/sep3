@@ -502,6 +502,7 @@ public class PlayState extends State{
 	}
 	
 	public void changeMap(int i){
+		c.setMapIndex(i); // --Dom--
 		if(i == 2)
 			map.setMap(new TmxMapLoader().load("grafiken/bereich2.tmx"));
 		else if(i == 3)
