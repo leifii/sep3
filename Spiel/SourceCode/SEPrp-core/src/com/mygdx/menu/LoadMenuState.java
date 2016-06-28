@@ -29,7 +29,7 @@ public class LoadMenuState extends MenuState {
 	private BitmapFont white;
 	private MainMenuButton loadbutton;
 	private MainMenuButton newgamebutton;
-	private TextButton Load1;
+	private TextButton loadButton1, loadButton2, loadButton3;
 	
 	private LoadMenuWindow loadmenuwindow;
 	
@@ -64,17 +64,17 @@ public class LoadMenuState extends MenuState {
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
 		
-		Load1= new TextButton("Spielstand 1",textButtonStyle);
-		Load1.pad(30);
-		TextButton Load2= new TextButton("Spielstand 2",textButtonStyle);
-		Load2.pad(30);
-		TextButton Load3= new TextButton("Spielstand 3",textButtonStyle);
-		Load3.pad(30);
+		loadButton1= new TextButton("Spielsta 1",textButtonStyle);
+		loadButton1.pad(30);
+		loadButton2= new TextButton("Spielstand 2",textButtonStyle);
+		loadButton2.pad(30);
+		loadButton3= new TextButton("Spielstand 3",textButtonStyle);
+		loadButton3.pad(30);
 		
 		table.add(label).pad(50).row();
-		table.add(Load1).row();
-		table.add(Load2).align(Align.center).row();
-		table.add(Load3).row();
+		table.add(loadButton1).row();
+		table.add(loadButton2).align(Align.center).row();
+		table.add(loadButton3).row();
 		table.pack();
 		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
 		stage.addActor(table);
@@ -94,10 +94,17 @@ public class LoadMenuState extends MenuState {
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new NewMenuState1(gsm));
 		}
-		if (Load1.isChecked()) {
+		if (loadButton1.isChecked()) {
 			//gsm.push();
-			Load1.getName();
-			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, (String) Load1.getText());
+			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, (String) loadButton1.getText());
+		}
+		if (loadButton2.isChecked()) {
+			//gsm.push();
+			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, (String) loadButton2.getText());
+		}
+		if (loadButton3.isChecked()) {
+			//gsm.push();
+			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, (String) loadButton3.getText());
 		}
 	}
 
