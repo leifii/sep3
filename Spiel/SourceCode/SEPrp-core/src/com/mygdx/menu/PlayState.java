@@ -501,7 +501,7 @@ public class PlayState extends State {
 
 		sb.end();
 
-		b2dr.render(world, cam.combined);
+//		b2dr.render(world, cam.combined);
 
 	}
 
