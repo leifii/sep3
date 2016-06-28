@@ -23,8 +23,9 @@ public class Sepman extends IModus{
 	private void neuAusrichten() {
 		int diff = aktuelleRichtung.getDifferenz(getSepmanRichtung());
 		switch (diff)
-		aktuelleRichtung=getSepmanRichtung();
 		{
+		
+		aktuelleRichtung=getSepmanRichtung();
 		case 90: lvfg.drehenRechts(); break;
 		case 180: lvfg.drehenLinks(); lvfg.drehenLinks(); break;
 		case 270: lvfg.drehenLinks(); break;
