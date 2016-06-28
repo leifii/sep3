@@ -342,16 +342,16 @@ public class Skill implements Serializable {
 				if (button == 0 ||  button == 1 || button == 4){
 					System.out.println(button);
 					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND){
-						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 					if (richtung == AnimationDirection.SOUTH_WALK || richtung == AnimationDirection.SOUTH_STAND){
-						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)0, (float)bild.getHeight()/2, (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 					if (richtung == AnimationDirection.EAST_WALK || richtung == AnimationDirection.EAST_STAND){
-						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)0, (float)bild.getHeight()/2, (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 					if (richtung == AnimationDirection.WEST_WALK || richtung == AnimationDirection.WEST_STAND){
-						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)0, (float)bild.getHeight()/2, (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 				}
 				else s.draw(bild, x, y);
@@ -367,17 +367,25 @@ public class Skill implements Serializable {
 				
 				}
 			else if (c instanceof Krieger && button == 0){
-				if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
-					s.draw(a[0][0], getX(), getY());
+				if (button == 0){
+					if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
+						s.draw(a[0][0], getX(), getY());
 				}
-				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND){
-					s.draw(a[1][1], getX(), getY());
+					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND){
+						s.draw(a[1][1], getX(), getY());
 				}
-				if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND){
-					s.draw(a[0][1], getX(), getY());
+					if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND){
+						s.draw(a[0][1], getX(), getY());
 				}
-				if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND){
-					s.draw(a[1][0], getX(), getY());
+					if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND){
+						s.draw(a[1][0], getX(), getY());
+				}
+				}
+				if (button == 3){
+					for (int i = 0; i <= 360; i++){
+						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						
+					}
 				}
 			}
 			else s.draw(hallo, getX(), getY());
