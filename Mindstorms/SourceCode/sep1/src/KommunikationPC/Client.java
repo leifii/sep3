@@ -67,8 +67,11 @@ public class Client implements Runnable {                  //Klasse Client imple
 																	  //Roboter, ihren Zielpositionen und den Spielinformationen und
 				                                                      //empfängt das "Antwort"-ByteArray.
 				
-				kom.senden(Kommunikation.erzeugeByteArray());
-				kom.empfangen();
+//				kom.senden(Kommunikation.erzeugeByteArray());
+				
+				while(client.getInputStream().available() > 0){
+					kom.empfangen();
+				}
 				try{
 					Thread.sleep(10);
 				}catch(InterruptedException e){
