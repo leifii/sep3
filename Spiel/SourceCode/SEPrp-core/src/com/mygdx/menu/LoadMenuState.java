@@ -64,11 +64,11 @@ public class LoadMenuState extends MenuState {
 		textButtonStyle.pressedOffsetY=-1;
 		textButtonStyle.font=white;
 		
-		loadButton1= new TextButton("Spielsta 1",textButtonStyle);
+		loadButton1= new TextButton("Spielstand-1",textButtonStyle);
 		loadButton1.pad(30);
-		loadButton2= new TextButton("Spielstand 2",textButtonStyle);
+		loadButton2= new TextButton("Spielstand-2",textButtonStyle);
 		loadButton2.pad(30);
-		loadButton3= new TextButton("Spielstand 3",textButtonStyle);
+		loadButton3= new TextButton("Spielstand-3",textButtonStyle);
 		loadButton3.pad(30);
 		
 		table.add(label).pad(50).row();
