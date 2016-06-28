@@ -56,4 +56,10 @@ public class NPC {
 			this.dispose();
 		
 		}
+
+
+		public Body getBody() {
+			// TODO Auto-generated method stub
+			return body;
+		}
 }
