@@ -21,7 +21,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.grafiken.IObjekte;
 import com.grafiken.Objekte;
 import com.mygdx.menu.PlayState;
+import com.objects.AbstractStringItem;
 import com.objects.Equipment;
+import com.objects.Experience;
 import com.objects.Item;
 import com.objects.ItemType;
 
@@ -61,7 +63,7 @@ public class Character implements IDrawable, Serializable {
 	boolean blackKeyRecieved;
 	boolean goldKeyRecieved;
 	boolean whiteKeyRecieved;
-	int currentMoney; // muss noch irgendwo implementiert werden!! --Dom--
+//	int currentMoney;  ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
 
 	// public Character (int x,int y,String sprite,float speed){
@@ -69,10 +71,12 @@ public class Character implements IDrawable, Serializable {
 	// position=new Vector3(x,y,0);
 	// character1=new Texture(sprite);
 	// }
+	
+	private final Rolle rolle;
 
 	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
-			Attributes attributes, Body body) {
-
+			Attributes attributes, Body body, Rolle rolle) {
+		this.rolle = rolle;
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
@@ -141,13 +145,17 @@ public class Character implements IDrawable, Serializable {
 	}
 
 	public Character(int x, int y, TextureRegion[][] animation, ArrayList<Skill> skills,
-			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
-		this(x, y, animation, collisionLayer, attributes, body);
+			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body, Rolle rolle) {
+		this(x, y, animation, collisionLayer, attributes, body, rolle);
 		this.setSkills(skills);
 	}
 
 	public void setCharacter(int exp) {
 		this.exp = exp;
+	}
+	
+	public Rolle getRolle() {
+		return rolle;
 	}
 
 	public Animation getAnimation() {
@@ -156,7 +164,8 @@ public class Character implements IDrawable, Serializable {
 
 	public void expSammeln(int Monsterexp) {
 		// if monsterkilled
-		// exp+=Monsterexp;
+		exp += Monsterexp;
+		PlayState.getInstance().addTempDrawable(new Experience(exp));
 		if (exp >= neededexp) {
 			levelup();
 			neededexp += neededexp * (1.5f);
@@ -195,7 +204,7 @@ public class Character implements IDrawable, Serializable {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
 		// /BIJAN
-		System.out.println("Charakterposition " + "X= " + this.getPosition().x + " Y= " + this.getPosition().y);
+		//System.out.println("Charakterposition " + "X= " + this.getPosition().x + " Y= " + this.getPosition().y);
 		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
 		// /BIJAN
 		// cd = skills.get(0).gethitcd();
@@ -586,6 +595,13 @@ public class Character implements IDrawable, Serializable {
 
 	public void setCurrentHP(int currentHP) {
 		this.currentHP = currentHP;
+	}
+	
+	public void getDamage(int damage) {
+		//TODO damage um Rüstungswerten etc. verringern 
+		currentHP -= damage;
+		
+		PlayState.getInstance().addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
 	}
 
 	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer) {

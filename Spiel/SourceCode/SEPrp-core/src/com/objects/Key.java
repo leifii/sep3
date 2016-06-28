@@ -11,9 +11,9 @@ import com.character.Character;
 import com.mygdx.menu.PlayState;
 
 public class Key {
-	Texture texturKeyBlack=new Texture("grafiken/KeyBlack.png");
-	Texture texturKeyWhite=new Texture("grafiken/KeyWhite.png");
-	Texture texturKeyGold=new Texture("grafiken/KeyGold.png");
+	Texture texturKeyBlack=new Texture("grafiken/keyBlack.png");
+	Texture texturKeyWhite=new Texture("grafiken/keyWhite.png");
+	Texture texturKeyGold=new Texture("grafiken/keyGold.png");
 	Vector3 positionBlack;
 	Vector3 positionWhite;
 	Vector3 positionGold;

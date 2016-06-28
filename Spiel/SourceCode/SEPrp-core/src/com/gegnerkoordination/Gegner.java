@@ -1,16 +1,23 @@
 package com.gegnerkoordination;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
+import com.character.Rolle;
+import com.character.Skill;
 import com.mygdx.menu.PlayState;
 import com.objects.Equipment;
 import com.objects.EquipmentType;
@@ -24,11 +31,14 @@ public class Gegner extends Character {
 	private int exp;
 	private TextureRegion currentFrame;
 	private float time;
-	
+	private Rectangle sight;
 	
 	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
-		super(x,y,animation,collisionLayer, attributes, body);
+		super(x,y,animation,collisionLayer, attributes, body, Rolle.Gegner);
 		exp = 20; //TMP
+		
+		setSkills(new ArrayList<Skill>());
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
 	}
 	
 	public void update(float dt) {
@@ -36,15 +46,53 @@ public class Gegner extends Character {
 		time += dt;
 		currentFrame = getAnimation().getKeyFrame(time);
 		
+		for (int i = 0; i < getSkills().size(); i++) {
+			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
+
+			getSkills().get(i).direction(this);
+			// getSkills().get(i).buffed(this);
+		}
+		
 	}
 	
+//	ShapeRenderer sr = new ShapeRenderer();
 	public void draw(SpriteBatch sb){
-			sb.draw(currentFrame, getPosition().x, getPosition().y);
+		sb.draw(currentFrame, getPosition().x, getPosition().y);
+		
+//		sb.end();
+//		sr.setAutoShapeType(true);
+		
+		int dicke = 60;
+		int weite = 500;
+		
+		float x = getPosition().x - getBounds().width / 2;
+		float y = getPosition().y - getBounds().height / 2;
+		float w = 20;
+		float h = 20;
+
+		switch(getRichtung().getOrientation()) {
+		case 'n': y += getBounds().height; w = dicke; h = weite; break;
+		case 'e': x += getBounds().width; w = weite; h = dicke * 2; break;
+		case 's': y -= weite - getBounds().height; w = dicke; h = weite; break;
+		case 'w': x -= weite - getBounds().width; w = weite; h = dicke * 2; break;	
+		}
+		
+		sight = new Rectangle(x, y, w, h);
+		
+//		sr.setProjectionMatrix(sb.getProjectionMatrix());
+//		sr.begin();
+//		sr.rect(x, y, w, h);
+//		sr.end();
+//		
+//		sb.begin();
+		
 	}
 	
 	public void follow(Character c) {
 		goToPosition(c.getPosition(), !getBounds().overlaps(c.getBounds()));
-		attack();
+		
+		if(inSight(c))
+			attack();
 	}
 
 	public void goToPosition(Vector3 destination, boolean move) {
@@ -99,31 +147,36 @@ public class Gegner extends Character {
 	}
 	
 	public void attack() {
-		
+		for(Skill s : getSkills()) {
+			s.activateProjectile(getPosition().x, getPosition().y);
+		}
+	}
+	
+	public boolean inSight(Character c) {
+		if(sight == null)
+			return false;
+		return sight.overlaps(c.getBounds());
 	}
 	
 	public void killed() {
 		List<Item> items = new LinkedList<Item>();
 		for(EquipmentType e : equips)
 			items.add(new Equipment(e));
-		items.add(new Experience(getExp()));
+		
 		Truhe t = new Truhe(getPosition().x, getPosition().y, false, PlayState.getInstance().createTruhenBody(getPosition().x,getPosition().y), items.toArray(new Item[0]));
-		
+
 		PlayState.getInstance().addTruhe(t);
-		
+		PlayState.getInstance().getPlayer().expSammeln(exp);
 		PlayState.getInstance().addDrawable(t);
 		markToDispose();
 	}
 	
 	private List<EquipmentType> equips = new LinkedList<EquipmentType>();
-	public void addLoot(int exp, EquipmentType...equipments) {
-		this.exp = exp;
-		for(EquipmentType e : equipments)
-			equips.add(e);
-	}
+
 	
 	public void addLoot(EquipmentType...equipments) {
-		addLoot(0, equipments);
+		for(EquipmentType e : equipments)
+			equips.add(e);
 	}
 	
 	

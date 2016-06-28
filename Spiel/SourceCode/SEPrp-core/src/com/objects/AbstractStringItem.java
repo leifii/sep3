@@ -5,16 +5,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.IDrawable;
 import com.mygdx.menu.PlayState;
+import com.character.Character;
 
-abstract class AbstractStringItem extends Item implements IDrawable{
+public class AbstractStringItem extends Item implements IDrawable{
 
 	boolean visible;
 	BitmapFont font;
 	String string;
+	Character c;
+	
 	public AbstractStringItem(ItemType type, int value, String string) {
+		this(type, value, string, null);
+	}
+	
+	public AbstractStringItem(ItemType type, int value, String string, Character c) {
 		super(type.name(), type, 0, 0);
 		visible = true;
-		
+		this.c = c;
 		font = new BitmapFont();
 		this.string = string;
 		
@@ -22,6 +29,7 @@ abstract class AbstractStringItem extends Item implements IDrawable{
 		switch(type) {
 		case Gold: 			r = 1; g = 1; b = 0; break;
 		case Experience: 	r = 0; g = 1; b = 0; break;
+		case Schaden:		r = 1; g = 0; b = 0; break;
 		default:
 			break;
 		}
@@ -37,7 +45,7 @@ abstract class AbstractStringItem extends Item implements IDrawable{
 	@Override
 	public void draw(SpriteBatch sb) {
 		if(visible) {
-			Vector3 pos = PlayState.getInstance().getPlayer().getPosition();
+			Vector3 pos = c == null ? PlayState.getInstance().getPlayer().getPosition() : c.getPosition();
 			font.draw(sb, string, pos.x, pos.y+60);
 			font.getColor().a -= 0.02;
 			font.getRegion();

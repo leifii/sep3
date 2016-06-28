@@ -56,23 +56,25 @@ public class MyContactListener implements ContactListener {
 			fb.getBody().setUserData(b);
 		}
 		//1 für String, 0 für Objekt (in der FixtureList)
-		if(fa.getUserData()!=null && fa.getUserData().equals("skill") && fb.getBody().getFixtureList().size>1 &&
-				!fb.getBody().getFixtureList().get(1).getUserData().equals("charakter")){
+		
+		checkSkillCollision(fa, fb);
+		checkSkillCollision(fb, fa);
+		
+	}
+	
+	private void checkSkillCollision(Fixture fa, Fixture fb) {
+		if(fa.getUserData() != null && fa.getUserData().equals("skill") && 
+				fb.getBody().getFixtureList().size>1 && 
+				(fb.getBody().getFixtureList().get(1).getUserData().equals("charakter") || fb.getBody().getFixtureList().get(1).getUserData().equals("gegner"))) {
+			
 			Skill s = ((Skill) fa.getBody().getUserData());
-			s.setAlive(false);
-			if(fb.getBody().getFixtureList().get(1).getUserData().equals("gegner")){
-				Gegner g = ((Gegner) fb.getBody().getFixtureList().get(0).getUserData());
-				g.setCurrentHP(g.getCurrentHP()-s.getDmg());
+			Character g = ((Character) fb.getBody().getFixtureList().get(0).getUserData());
+			
+			if(s.getCasterRolle() != g.getRolle()) {
+				s.setAlive(false);
+				g.getDamage(s.getDmg());
 			}
-		}
-		if(fb.getUserData()!=null && fb.getUserData().equals("skill") && fa.getBody().getFixtureList().size>1 &&
-				!fa.getBody().getFixtureList().get(1).getUserData().equals("charakter")){
-			Skill s = ((Skill) fb.getBody().getUserData());
-			s.setAlive(false);
-			if(fa.getBody().getFixtureList().get(1).getUserData().equals("gegner")){
-				Gegner g = ((Gegner) fa.getBody().getFixtureList().get(0).getUserData());
-				g.setCurrentHP(g.getCurrentHP()-s.getDmg());
-			}
+			
 		}
 	}
 
