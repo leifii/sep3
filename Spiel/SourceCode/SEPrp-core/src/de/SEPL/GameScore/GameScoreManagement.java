@@ -154,7 +154,9 @@ public class GameScoreManagement {
 		gsm.push(playState);
 		playState.setCharacterCharacteristicsAfterReload(loadedCharacter.getPosition(), loadedCharacter.getLevel(),
 				loadedCharacter.getAttributes(), loadedCharacter.getExp(), loadedCharacter.getMaxHP(),
-				loadedCharacter.getCurrentHP(), loadedCharacter.getNeededexp(), loadedCharacter.getDEX(), loadedCharacter.getMapIndex());
+				loadedCharacter.getCurrentHP(), loadedCharacter.getNeededexp(), loadedCharacter.getDEX(),
+				loadedCharacter.getMapIndex(), loadedCharacter.getBlackKeyStatus(), loadedCharacter.getGoldKeyStatus(),
+				loadedCharacter.getWhiteKeyStatus());
 
 	}
 
