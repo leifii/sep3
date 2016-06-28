@@ -36,4 +36,8 @@ public class Map {
 	public void setMap(TiledMap map) {
 		this.map = map;
 	}
+	
+	public void setRenderer(){
+		renderer = new OrthogonalTiledMapRenderer(getMap());
+	}
 }
