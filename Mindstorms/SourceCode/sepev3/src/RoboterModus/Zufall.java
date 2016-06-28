@@ -18,17 +18,17 @@ import Spielfeld.Planeinit;
 public class Zufall extends IModus{
 
 	Random r;
+	private int letzterKnoten;
+	private int zielposition;
 	
 	public Zufall(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
-		this.planeinit = plane;
-		this.lvfg = lvfg;
-		this.sensor = drucksensor;
+		super(plane, lvfg, drucksensor);
 		aktuelleposition = start;
 		letzterKnoten = aktuelleposition +1;
 	}
 	
 	public void run(){
-		if(pause==false && aktivierung==true){
+		if(pause==false && isAktiviert()){
 		
 		int zufallszahl;
 		Plane knoten;
@@ -164,19 +164,6 @@ public class Zufall extends IModus{
 			lvfg.stop();
 	}
 
-	@Override
-	public void nachrichtenverarbeitung() {
-		
-		if(nachricht[8]==1 || nachricht[8]==3) pause=false;
-		if(nachricht[8]==127 || nachricht[8]==2) pause = true;
-		if(nachricht[8]==13) aktivierung=false;
-		if(nachricht[8]==23) aktivierung=true;
-	
-		
-	}
-	
-
-	
 
 
 	
