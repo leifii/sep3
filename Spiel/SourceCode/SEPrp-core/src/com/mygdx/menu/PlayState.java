@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -55,7 +56,7 @@ public class PlayState extends State implements Serializable {
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 	private Texture Kobolddorflabel;
-	transient NPC[] Npc;
+	transient List<NPC> Npc;
 	public Key keys;
 	private transient List<Gegner> gegnerList;
 	private transient List<IDrawable> drawableList;
@@ -96,23 +97,14 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
 		keys = new Key(200, 200, 250, 200, 300, 200, this);
-		Npc = new NPC[] {
-				new NPC(120, 300, "grafiken/Kobold.png",
-						"[TutorialNPC]  "
-								+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
-						createDynamicBody(120, 300, "npc")),
-				new NPC(2339, 459, "grafiken/KoboldKönig.png",
-						"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
-						createDynamicBody(2339, 459, "npc")),
-				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
-						createDynamicBody(1032, 1318, "npc")),
-				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
-						"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, "npc"), gsm,
-						this),
-				new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
-						createDynamicBody(1563, 381, "npc")),
-				new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
-						createDynamicBody(2235, 317, "npc")), };
+		Npc = new LinkedList<NPC>();
+		Npc.add(new NPC(120, 300, "grafiken/Kobold.png","[TutorialNPC]  "+"Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")));
+		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png","[Koboldkönig]  "+"Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!", createDynamicBody(2339,459,"npc")));
+		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  "+"Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc")));
+		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"),gsm,this));		
+		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(1563,381,"npc")));
+		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(2235,317,"npc")));
+
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
@@ -252,6 +244,11 @@ public class PlayState extends State implements Serializable {
 					}
 				}
 			}
+			if(c.position.x >= 4500 && c.position.y >= 3500){
+				if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+					changeMap(2);
+				}
+			}
 		}
 	}
 
@@ -331,9 +328,8 @@ public class PlayState extends State implements Serializable {
 		}
 		// KOBOLDORFLABEL //
 		// NPCs //
-		for (int i = 0; i < Npc.length; i++) {
-
-			Npc[i].render(this, sb, c.getBounds(), c);
+		for (NPC n : Npc) {
+			n.render(this, sb, c.getBounds(), c);
 		}
 		// NPCs //
 
@@ -498,6 +494,32 @@ public class PlayState extends State implements Serializable {
 		this.dispose();
 
 	}
+	
+	public void changeMap(int i){
+		if(i == 2)
+			map.setMap(new TmxMapLoader().load("grafiken/bereich2.tmx"));
+		else if(i == 3)
+			map.setMap(new TmxMapLoader().load("grafiken/map3.tmx"));
+		map.setRenderer();
+		c.position=new Vector3(0,0,0);
+		collisionLayer = new TiledMapTileLayer[2];
+		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
+		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+		c.setCollisionLayer(collisionLayer);
+		for(Gegner g : gegnerList){
+			world.destroyBody(g.getBody());
+		}
+		gegnerList = new LinkedList<Gegner>();
+		for(NPC n : Npc){
+			world.destroyBody(n.getBody());
+		}
+		Npc = new LinkedList<NPC>();
+		for(Truhe t : truhenListe){
+			world.destroyBody(t.getBody());
+		}
+		truhenListe = new LinkedList<Truhe>();
+	}
+
 
 	public Body createDynamicBody(int x, int y, String a) { // String a =
 															// "gegner",
