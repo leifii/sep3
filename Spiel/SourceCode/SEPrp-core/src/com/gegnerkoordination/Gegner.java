@@ -39,7 +39,7 @@ public class Gegner extends Character {
 	}
 	
 	public void draw(SpriteBatch sb){
-		sb.draw(currentFrame, getPosition().x, getPosition().y);
+			sb.draw(currentFrame, getPosition().x, getPosition().y);
 	}
 	
 	public void follow(Character c) {
