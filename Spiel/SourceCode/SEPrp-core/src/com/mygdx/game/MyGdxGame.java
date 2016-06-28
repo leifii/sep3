@@ -16,8 +16,10 @@ import com.mygdx.menu.NewMenuState1;
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 
+
 	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	public static final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+
 	public static final String TITLE = "sepRP-Gruppe-L";
 
 	private GameStateManager gsm;

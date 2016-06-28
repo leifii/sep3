@@ -488,7 +488,9 @@ public class PlayState extends State implements Serializable {
 
 		sb.end();
 
+
 		b2dr.render(world, cam.combined);
+
 
 	}
 
