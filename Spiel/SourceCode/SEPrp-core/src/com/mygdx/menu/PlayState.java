@@ -46,6 +46,7 @@ import com.objects.Key;
 
 public class PlayState extends State{
 
+	
 	boolean besucht;
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
@@ -119,6 +120,9 @@ public class PlayState extends State{
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
 
 		}
+		
+		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
+		c.setMapIndex(1);
 
 		// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 		// map.getMap().getLayers().get("Objekte"), attributes);
@@ -138,7 +142,7 @@ public class PlayState extends State{
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
 	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel, Attributes loadedAttributes,
-			int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp, int loadedDex) {
+			int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp, int loadedDex, int loadedMapIndex) {
 		
 		c.setPosition(loadedPosition);
 		c.setLevel(loadedLevel);
@@ -148,6 +152,7 @@ public class PlayState extends State{
 		c.setMaxHP(loadedMaxHP);
 		c.setCurrentHP(loadedCurrentHP);
 		c.setDEX(loadedDex);
+		changeMap(loadedMapIndex);
 		
 	}
 
@@ -624,6 +629,10 @@ public class PlayState extends State{
 
 	public List<IDrawable> getTempDrawable() {
 		return tempDrawableList;
+	}
+	
+	public void setMapAfterReload(int mapIndex){
+		
 	}
 
 }
