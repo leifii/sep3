@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -66,6 +68,7 @@ public class PlayState extends State {
 
 	public transient World world;
 	private Box2DDebugRenderer b2dr;
+	private ShapeRenderer sr;
 
 	List<Portal> PortalListe;
 
@@ -83,6 +86,8 @@ public class PlayState extends State {
 		b2dr = new Box2DDebugRenderer();
 		MyContactListener cl = new MyContactListener();
 		world.setContactListener(cl);
+		sr = new ShapeRenderer();
+		sr.setAutoShapeType(true);
 
 		s = new com.grafiken.Character();
 		map = new Map(cam);
@@ -512,8 +517,28 @@ public class PlayState extends State {
 
 		sb.end();
 
-//		b2dr.render(world, cam.combined);
+		//DRAW HP
+		sr.setProjectionMatrix(sb.getProjectionMatrix());
+		sr.begin();
 
+		drawHP(c);
+		for(Gegner g : gegnerList)
+			drawHP(g);
+		
+		sr.end();
+		
+		//DRAW HP
+		
+		b2dr.render(world, cam.combined);
+
+	}
+	
+	private void drawHP(Character c) {
+		Vector3[] currentHPVector = c.getHPVectors();
+		sr.setColor(Color.GREEN);
+		sr.line(currentHPVector[0], currentHPVector[1]);
+		sr.setColor(Color.RED);
+		sr.line(currentHPVector[1], currentHPVector[2]);
 	}
 
 	@Override
