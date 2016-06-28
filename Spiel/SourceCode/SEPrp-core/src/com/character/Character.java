@@ -603,6 +603,18 @@ public class Character implements IDrawable, Serializable {
 		
 		PlayState.getInstance().addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
 	}
+	
+	public Vector3[] getHPVectors() {
+		float x = getPosition().x;
+		float y = getPosition().y;
+		float offset = Math.max(getBounds().width * getCurrentHP()/getMaxHP(), 0);
+		
+		Vector3 start = new Vector3(x, y, 0);
+		Vector3 mid = new Vector3(x + offset, y, 0);
+		Vector3 end = new Vector3(x + getBounds().width, y, 0);
+		
+		return new Vector3[]{start, mid, end};
+	}
 
 	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer) {
 		this.collisionLayer = collisionLayer;

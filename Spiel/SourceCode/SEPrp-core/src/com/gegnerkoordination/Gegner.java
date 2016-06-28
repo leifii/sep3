@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -35,8 +36,11 @@ public class Gegner extends Character {
 	
 	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
 		super(x,y,animation,collisionLayer, attributes, body, Rolle.Gegner);
-		exp = 20; //TMP
 		
+		//================TMP===============
+		exp = 20;
+		setMaxHP(100);
+		setCurrentHP(getMaxHP());
 		setSkills(new ArrayList<Skill>());
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
 	}
@@ -45,22 +49,6 @@ public class Gegner extends Character {
 		getBounds().setPosition(this.getPosition().x,this.getPosition().y);
 		time += dt;
 		currentFrame = getAnimation().getKeyFrame(time);
-		
-		for (int i = 0; i < getSkills().size(); i++) {
-			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
-
-			getSkills().get(i).direction(this);
-			// getSkills().get(i).buffed(this);
-		}
-		
-	}
-	
-//	ShapeRenderer sr = new ShapeRenderer();
-	public void draw(SpriteBatch sb){
-		sb.draw(currentFrame, getPosition().x, getPosition().y);
-		
-//		sb.end();
-//		sr.setAutoShapeType(true);
 		
 		int dicke = 60;
 		int weite = 500;
@@ -79,12 +67,17 @@ public class Gegner extends Character {
 		
 		sight = new Rectangle(x, y, w, h);
 		
-//		sr.setProjectionMatrix(sb.getProjectionMatrix());
-//		sr.begin();
-//		sr.rect(x, y, w, h);
-//		sr.end();
-//		
-//		sb.begin();
+		for (int i = 0; i < getSkills().size(); i++) {
+			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
+
+			getSkills().get(i).direction(this);
+			// getSkills().get(i).buffed(this);
+		}
+		
+	}
+	
+	public void draw(SpriteBatch sb){
+		sb.draw(currentFrame, getPosition().x, getPosition().y);
 		
 	}
 	
@@ -159,6 +152,9 @@ public class Gegner extends Character {
 	}
 	
 	public void killed() {
+		for(Skill s : getSkills())
+			s.setAlive(false);
+		
 		List<Item> items = new LinkedList<Item>();
 		for(EquipmentType e : equips)
 			items.add(new Equipment(e));
