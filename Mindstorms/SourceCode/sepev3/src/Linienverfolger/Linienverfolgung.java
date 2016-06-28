@@ -18,7 +18,7 @@ public class Linienverfolgung implements ILinienverfolgung {
     float[] sample = new float[light.sampleSize()];
     float light_aktuell;
     float weiss_wert=0.34F;					//Lichtwerte Weiss (außerhalb Linie). AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
-    
+    										//0.5
   
     
     public void geradeaus(){
@@ -46,7 +46,7 @@ public class Linienverfolgung implements ILinienverfolgung {
 	
 	public boolean aufKnoten(){
 		if (light_aktuell>0.13 && light_aktuell<0.21){ // Lichtwerte eines Knotens. AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
-			LCD.drawString("<- or ->", 1, 3);
+			LCD.drawString("<- or ->", 1, 3);			//Wert könnte funktionieren (nachprüfen)
 			MotorR.stop();
 			MotorL.stop();
 			return true;
