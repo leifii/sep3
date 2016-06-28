@@ -366,9 +366,6 @@ public class Skill implements Serializable {
 
 				
 				}
-				
-
-			}
 			else if (c instanceof Krieger && button == 0){
 				if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
 					s.draw(a[0][0], getX(), getY());
@@ -384,6 +381,10 @@ public class Skill implements Serializable {
 				}
 			}
 			else s.draw(hallo, getX(), getY());
+
+			}
+			
+			
 		}
 	
 
