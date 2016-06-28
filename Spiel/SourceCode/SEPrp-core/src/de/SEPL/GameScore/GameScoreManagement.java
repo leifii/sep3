@@ -63,7 +63,7 @@ public class GameScoreManagement {
 		ObjectOutputStream oos = null;
 		FileOutputStream fos = null;
 		int tempRunningNr = getRunningNr();
-		String fileName = "gameScore" + tempRunningNr + ".ser";
+		String fileName = "Spielstand-" + tempRunningNr + ".ser";
 
 		try {
 			// File anlegen und Objekt speichern
@@ -103,7 +103,7 @@ public class GameScoreManagement {
 		FileInputStream fis = null;
 		try {
 			// File auslesen und Inhalt an neues Objekt übergeben
-			fis = new FileInputStream("score.ser");
+			fis = new FileInputStream(toLoadGameScore + ".ser");
 			ois = new ObjectInputStream(fis);
 			Object obj = ois.readObject();
 			if (obj instanceof com.character.Character) {
@@ -111,10 +111,12 @@ public class GameScoreManagement {
 				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter, gsm);
 			}
 			gameLoaded = true;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.out.println("Kein gespeichertes Spiel vorhanden.");
+		} catch (IOException f) {
+			f.printStackTrace();
+		} catch (ClassNotFoundException g) {
+			g.printStackTrace();
 		} finally {
 			if (ois != null)
 				try {
