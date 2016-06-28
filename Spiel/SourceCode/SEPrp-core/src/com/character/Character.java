@@ -584,4 +584,8 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 	public void setCurrentHP(int currentHP) {
 		this.currentHP = currentHP;
 	}
+	
+	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer){
+		this.collisionLayer=collisionLayer;
+	}
 }
