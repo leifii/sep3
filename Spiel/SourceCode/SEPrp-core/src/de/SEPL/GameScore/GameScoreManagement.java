@@ -10,45 +10,50 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.PlayState;
 
 /* --Dom-- */
 
 public class GameScoreManagement {
-	
-	public static void setRunningNr(int runningNr){
+
+	public static void setRunningNr(int runningNr) {
+		PrintWriter printWriter = null;
 		try {
-			FileWriter writer = new FileWriter("runningNr.txt");
+			FileWriter writer = new FileWriter("runningNr.txt", false);
 			BufferedWriter bufferedWriter = new BufferedWriter(writer);
-			bufferedWriter.write(runningNr);
+			printWriter = new PrintWriter(bufferedWriter);
+			printWriter.print(runningNr);
+			printWriter.close();
 			bufferedWriter.close();
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException f) {
 			f.printStackTrace();
-		} 
+		} finally {
+			if (printWriter != null) {
+				printWriter.close();
+			}
+		}
 
 	}
-	
-	
-	public static int getRunningNr(){
+
+	public static int getRunningNr() {
 		int runningNr = 1;
-		FileReader fileReader;
 		try {
-			fileReader = new FileReader("runningNr.txt");
+			FileReader fileReader = new FileReader("runningNr.txt");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			runningNr = Integer.parseInt(bufferedReader.readLine());			
+			runningNr = Integer.parseInt(bufferedReader.readLine());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(runningNr);
 		return runningNr;
 	}
-	
 
 	// Speichere aktuellen Spielstand
 	public static boolean saveGameScore(com.character.Character character) {
@@ -57,8 +62,8 @@ public class GameScoreManagement {
 		// Streams zum speichern öffnen
 		ObjectOutputStream oos = null;
 		FileOutputStream fos = null;
-//		int tempRunningNr = getRunningNr();
-		String fileName = "gameScore" + ".ser";
+		int tempRunningNr = getRunningNr();
+		String fileName = "gameScore" + tempRunningNr + ".ser";
 
 		try {
 			// File anlegen und Objekt speichern
@@ -66,10 +71,8 @@ public class GameScoreManagement {
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(character);
 			gameSaved = true;
-//			tempRunningNr = tempRunningNr + 1;
-//			setRunningNr(tempRunningNr);
-//			System.out.println(getRunningNr());
-
+			tempRunningNr++;
+			setRunningNr(tempRunningNr);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -105,9 +108,7 @@ public class GameScoreManagement {
 			Object obj = ois.readObject();
 			if (obj instanceof com.character.Character) {
 				com.character.Character loadedCharacter = (com.character.Character) obj;
-				// TODO Character neu instanziieren
 				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter, gsm);
-
 			}
 			gameLoaded = true;
 		} catch (IOException e) {
@@ -130,7 +131,8 @@ public class GameScoreManagement {
 		return gameLoaded;
 	}
 
-	// Spielmit altem Spielstand laden und Werte des gespeicherten Characters an den neuen Character übergeben
+	// Spiel mit altem Spielstand laden und Werte des gespeicherten Characters
+	// an den neuen Character übergeben
 	public static void setCharacter(com.character.Character loadedCharacter, GameStateManager gsm) {
 		PlayState playState;
 		if (loadedCharacter instanceof com.character.Krieger) {
