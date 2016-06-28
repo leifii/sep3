@@ -57,6 +57,10 @@ public class Character implements IDrawable, Serializable {
 	public static int exp;
 	public static int neededexp;
 	public static int level;
+	public int mapIndex;
+	boolean blackKeyRecieved;
+	boolean goldKeyRecieved;
+	boolean whiteKeyRecieved;
 	// int STR, INT, STA, ATK, DEF, AS; float MS
 
 	
@@ -588,4 +592,34 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer){
 		this.collisionLayer=collisionLayer;
 	}
+	
+	// Zur Speicherung der gerade bespielten Welt --Dom--
+	public void setMapIndex(int mapIndex){
+		this.mapIndex = mapIndex;
+	}
+	public int getMapIndex() {
+		return this.mapIndex;
+	}
+	//-------
+	
+	// Zur Speicherung der bereits aufgehobenen Schlüssel --Dom--
+	public void setBlackKeyStatus(boolean blackKeyRecieved) {
+		this.blackKeyRecieved = blackKeyRecieved;
+	}
+	public void setGoldKeyStatus(boolean goldKeyRecieved) {
+		this.goldKeyRecieved = goldKeyRecieved;
+	}
+	public void setWhiteKeyStatus(boolean whiteKeyRecieved) {
+		this.whiteKeyRecieved = whiteKeyRecieved;
+	}
+	public boolean getBlackKeyStatus() {
+		return blackKeyRecieved;
+	}
+	public boolean getGoldKeyStatus() {
+		return goldKeyRecieved;
+	}
+	public boolean getWhiteKeyStatus() {
+		return whiteKeyRecieved;
+	}
+	//-------
 }
