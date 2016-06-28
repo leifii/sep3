@@ -32,6 +32,7 @@ public class Skill implements Serializable {
 	int cdfaktor;
 
 	public AnimationDirection direction;
+	protected AnimationDirection richtung;
 
 	
 	Sprite hallo;
@@ -168,6 +169,7 @@ public class Skill implements Serializable {
 					this.setY(y);
 					setCdnow(cd);
 					lifeTimer = 0;
+					richtung = direction;
 					setAlive(true);
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
 						dx = 0 * speed;
@@ -185,11 +187,12 @@ public class Skill implements Serializable {
 				}
 			}
 			if (button == 1){
-			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {	
+			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
 				this.setX(x);
 				this.setY(y);
 				setCdnow(cd);
 				lifeTimer = 0;
+				richtung = direction;
 				setAlive(true);
 				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
 					dx = 0 * speed;
@@ -214,6 +217,7 @@ public class Skill implements Serializable {
 					this.setY(y);
 					setCdnow(cd);
 					lifeTimer = 0;
+					richtung = direction;
 					setAlive(true);
 					if(c instanceof Krieger || c instanceof Magier){		//instant heal, bei mage schild
 						c.heal(getDmg());
@@ -228,6 +232,7 @@ public class Skill implements Serializable {
 					this.setY(y);
 					setCdnow(cd);
 					lifeTimer = 0;
+					richtung = direction;
 					setAlive(true);
 					if (c instanceof Schuetze ){
 						aktiviert = true;
@@ -253,6 +258,7 @@ public class Skill implements Serializable {
 					this.setY(y);
 					setCdnow(cd);
 					lifeTimer = 0;
+					richtung = direction;
 					setAlive(true);
 					if(c instanceof Krieger){		//heal + höherer dmgFaktor
 						c.heal(getDmg());
@@ -331,21 +337,39 @@ public class Skill implements Serializable {
 			//s.draw(bild, x, y);
 
 		if (isAlive() == true) {
+
 			if (c instanceof Schuetze){
-				if (button == 4){
-				//hallo.setScale(1000, 1000);
-				//hallo.setSize(1000, 1000);
-				
-				}
-				if (button == 0){
-					if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
-						hallo.setRotation(90);
-						s.draw(hallo, x, y);
-						System.out.println("skill 0 schuetze");
+				if (button == 0 ||  button == 1 || button == 4){
+					System.out.println(button);
+					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND){
+						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.SOUTH_WALK || richtung == AnimationDirection.SOUTH_STAND){
+						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.EAST_WALK || richtung == AnimationDirection.EAST_STAND){
+						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.WEST_WALK || richtung == AnimationDirection.WEST_STAND){
+						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 				}
+				else s.draw(bild, x, y);
+
+			
+
+				//hallo.setScale(1000, 1000);
+				//hallo.setRotation(200);
+				//s.draw(bild, x, y, (float)0, (float)0, (float)hallo.getWidth(), (float)hallo.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+				//s.draw(hallo, getX(), getY());
+				//hallo.setSize(1000, 1000);
+
+				
+				}
+				
+
 			}
-			if (c instanceof Krieger && button == 0){
+			else if (c instanceof Krieger && button == 0){
 				if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
 					s.draw(a[0][0], getX(), getY());
 				}
@@ -361,7 +385,7 @@ public class Skill implements Serializable {
 			}
 			else s.draw(hallo, getX(), getY());
 		}
-	}
+	
 
 	public void upgrade() {
 		lvl += 1;
