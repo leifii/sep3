@@ -47,7 +47,7 @@ public class Character implements IDrawable, Serializable {
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 	
-	// Variablen, die gespeichert werden (müssen)
+	// Variablen, die gespeichert werden
 	public int design;
 	public Vector3 position;
 	public Attributes attributes;
