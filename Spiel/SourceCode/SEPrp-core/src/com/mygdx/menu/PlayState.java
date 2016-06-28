@@ -225,7 +225,7 @@ public class PlayState extends State {
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[1]) {
-						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+						g.getDamage(c.getSkills().get(0).getDmg());
 					}
 				}
 			}
@@ -236,7 +236,7 @@ public class PlayState extends State {
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[0]) {
-						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+						g.getDamage(c.getSkills().get(0).getDmg());
 					}
 				}
 			}
@@ -247,7 +247,7 @@ public class PlayState extends State {
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[3]) {
-						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+						g.getDamage(c.getSkills().get(0).getDmg());
 					}
 				}
 			}
@@ -258,7 +258,7 @@ public class PlayState extends State {
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[2]) {
-						g.setCurrentHP(g.getCurrentHP() - c.getSkills().get(0).getDmg());
+						g.getDamage(c.getSkills().get(0).getDmg());
 					}
 				}
 			}
@@ -290,6 +290,16 @@ public class PlayState extends State {
 				g.follow(c);
 				if (g.getCurrentHP() <= 0)
 					killGegner(g);
+				
+				for (Skill s : g.getSkills()) {
+					if (s.isAlive() && s.getBody() == null)
+						s.setBody(createSkillBody(s));
+					if (!s.isAlive() && s.getBody() != null) {
+						world.destroyBody(s.getBody());
+						s.setBody(null);
+					}
+				}
+				
 			}
 
 		currentFrameTime += dt;
@@ -330,9 +340,10 @@ public class PlayState extends State {
 		// TODO Auto-generated method stub
 
 		map.render(sb);
+		
 		sb.begin();
 
-		c.draw(sb);
+//		c.draw(sb);
 		// KOBOLD DORF LABEL//
 		if (c.getPosition().x > 1595 && c.getPosition().x < 1796 && c.getPosition().y > 0 && c.getPosition().y < 1000
 				&& !besucht) {

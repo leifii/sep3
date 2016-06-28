@@ -21,7 +21,7 @@ public class Schuetze extends Character{
 
 	
 	public Schuetze(float x,float y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
-		super(x, y, sprite,  collisionLayer, attributes, body);
+		super(x, y, sprite,  collisionLayer, attributes, body, Rolle.Spieler);
 
 
 		position=new Vector3(x,y,0);

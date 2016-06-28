@@ -11,11 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.mygdx.menu.PlayState;
 
 
 public class Skill implements Serializable {
@@ -159,6 +154,31 @@ public class Skill implements Serializable {
 			alive=false;
 	}
 
+	public void activateProjectile(float x, float y) {
+		if (getCdnow() < 0.1) {
+			this.setX(x);
+			this.setY(y);
+			setCdnow(cd);
+			lifeTimer = 0;
+			richtung = direction;
+			setAlive(true);
+			if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
+				dx = 0 * speed;
+				dy = -300 * speed;
+			} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
+				dx = -300 * speed;
+				dy = 0 * speed;
+			} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
+				dx = 300 * speed;
+				dy = 0 * speed;
+			} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
+				dx = 0 * speed;
+				dy = 300 * speed;
+
+			} 
+		}
+
+	}
 	
 
 	public void handleInput(float x, float y) {
@@ -187,28 +207,10 @@ public class Skill implements Serializable {
 				}
 			}
 			if (button == 1){
-			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
-				this.setX(x);
-				this.setY(y);
-				setCdnow(cd);
-				lifeTimer = 0;
-				richtung = direction;
-				setAlive(true);
-				if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
-					dx = 0 * speed;
-					dy = -300 * speed;
-				} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
-					dx = -300 * speed;
-					dy = 0 * speed;
-				} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
-					dx = 300 * speed;
-					dy = 0 * speed;
-				} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
-					dx = 0 * speed;
-					dy = 300 * speed;
-
-				} }
+				if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
+					activateProjectile(x, y);
 				}
+			}
 
 			
 			if (button == 2){						//auf taste 2 sind alle buffs
@@ -228,28 +230,7 @@ public class Skill implements Serializable {
 			}
 			if (button == 3){
 				if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
-					this.setX(x);
-					this.setY(y);
-					setCdnow(cd);
-					lifeTimer = 0;
-					richtung = direction;
-					setAlive(true);
-					if (c instanceof Schuetze ){
-						aktiviert = true;
-					}
-					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {   //richtung anpassen
-						dx = 0 * speed;
-						dy = -300 * speed;
-					} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
-						dx = -300 * speed;
-						dy = 0 * speed;
-					} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
-						dx = 300 * speed;
-						dy = 0 * speed;
-					} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
-						dx = 0 * speed;
-						dy = 300 * speed;
-					} 
+					activateProjectile(x, y);
 				}
 			}
 			if (button == 4){
@@ -484,5 +465,9 @@ public class Skill implements Serializable {
 
 	public void setCdnow(float cdnow) {
 		this.cdnow = cdnow;
+	}
+	
+	public Rolle getCasterRolle() {
+		return c.getRolle();
 	}
 }
