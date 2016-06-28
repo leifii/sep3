@@ -145,6 +145,16 @@ public class PlayState extends State implements Serializable {
 		instance = this;
 	}
 
+	public void setCharacterCharacteristics(Vector3 loadedPosition, int loadedLevel, Attributes loadedAttributes,
+			int loadedExp, int loadedMaxHP, int loadedCurrentHP) {
+		c.setPosition(loadedPosition);
+		c.setLevel(loadedLevel);
+		c.setAttributes(loadedAttributes);
+		c.setCharacter(loadedExp);
+		c.setMaxHP(loadedMaxHP);
+		c.setCurrentHP(loadedCurrentHP);
+	}
+
 	public Character getC() {
 		return c;
 	}
@@ -189,11 +199,12 @@ public class PlayState extends State implements Serializable {
 				System.out.println("Speichern erfolgreich.");
 			}
 		}
-//		if (Gdx.input.isKeyJustPressed(Keys.L)) {
-//			if (de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, c) == true) {
-//				System.out.println("Laden erflogreich.");
-//			}
-//		}
+		// if (Gdx.input.isKeyJustPressed(Keys.L)) {
+		// if (de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, c) ==
+		// true) {
+		// System.out.println("Laden erflogreich.");
+		// }
+		// }
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 			if (((boolean[]) c.getBody().getUserData())[0]
 					&& (c.getRichtung() == AnimationDirection.NORTH_ATTACK
