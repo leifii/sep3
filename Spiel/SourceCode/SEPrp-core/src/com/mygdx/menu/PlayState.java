@@ -48,28 +48,28 @@ public class PlayState extends State{
 
 	boolean besucht;
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
-	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
+	List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
 	private Texture Kobolddorflabel;
-	transient List<NPC> Npc;
+	List<NPC> Npc;
 	public Key keys;
-	private transient List<Gegner> gegnerList;
-	private transient List<IDrawable> drawableList;
+	private List<Gegner> gegnerList;
+	private List<IDrawable> drawableList;
 
 	public Character c;
-	private transient Map map;
-	private transient ICharacter s;
-	private transient float currentFrameTime;
-	transient TextureRegion currentFrame;
-	transient int mapPixelWidth;
-	transient int mapPixelHeight;
-	transient private TiledMapTileLayer[] collisionLayer;
+	private Map map;
+	private ICharacter s;
+	private float currentFrameTime;
+	TextureRegion currentFrame;
+	int mapPixelWidth;
+	int mapPixelHeight;
+	private TiledMapTileLayer[] collisionLayer;
 
 	public transient World world;
-	transient private Box2DDebugRenderer b2dr;
+	private Box2DDebugRenderer b2dr;
 	
-	transient List<Portal> PortalListe;
+	List<Portal> PortalListe;
 
-	private static transient PlayState instance;
+	private static PlayState instance;
 
 	public static PlayState getInstance() {
 		return instance;
