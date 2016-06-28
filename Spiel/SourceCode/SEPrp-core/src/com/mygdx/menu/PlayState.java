@@ -74,7 +74,6 @@ public class PlayState extends State implements Serializable {
 	transient private Box2DDebugRenderer b2dr;
 	
 	transient List<Portal> PortalListe;
-//	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 2934, 312), new Portal(2934, 312, 50, 50) };
 
 	private static transient PlayState instance;
 
@@ -93,9 +92,11 @@ public class PlayState extends State implements Serializable {
 
 		s = new com.grafiken.Character();
 		map = new Map(cam);
-		collisionLayer = new TiledMapTileLayer[2];
+		collisionLayer = new TiledMapTileLayer[4];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
+		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 
 		keys = new Key(200, 200, 250, 200, 300, 200, this);
 		Npc = new LinkedList<NPC>();
@@ -487,7 +488,7 @@ public class PlayState extends State implements Serializable {
 
 		sb.end();
 
-		// b2dr.render(world, cam.combined);
+		b2dr.render(world, cam.combined);
 
 	}
 
@@ -506,9 +507,10 @@ public class PlayState extends State implements Serializable {
 			map.setMap(new TmxMapLoader().load("grafiken/map3.tmx"));
 		map.setRenderer();
 		c.position=new Vector3(0,0,0);
-		collisionLayer = new TiledMapTileLayer[2];
+		collisionLayer = new TiledMapTileLayer[3];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
 		c.setCollisionLayer(collisionLayer);
 		for(Gegner g : gegnerList){
 			world.destroyBody(g.getBody());
