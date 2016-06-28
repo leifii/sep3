@@ -94,13 +94,13 @@ public class LoadMenuState extends MenuState {
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(new NewMenuState1(gsm));
 		}
-		if (loadButton1.isChecked()) {
+		if (loadButton1.isPressed()) {
 			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, loadButton1.getText().toString());
 		}
-		if (loadButton2.isChecked()) {
+		if (loadButton2.isPressed()) {
 			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, loadButton2.getText().toString());
 		}
-		if (loadButton3.isChecked()) {
+		if (loadButton3.isPressed()) {
 			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, loadButton3.getText().toString());
 		}
 	}
