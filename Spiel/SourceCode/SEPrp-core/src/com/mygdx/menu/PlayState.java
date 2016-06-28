@@ -145,7 +145,7 @@ public class PlayState extends State implements Serializable {
 		instance = this;
 	}
 
-	// Characterwerte nach laden eines alten Spielstandes setzen
+	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
 	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel, Attributes loadedAttributes,
 			int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp, int loadedDex) {
 		
