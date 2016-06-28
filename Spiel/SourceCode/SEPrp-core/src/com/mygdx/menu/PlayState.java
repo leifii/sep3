@@ -145,14 +145,19 @@ public class PlayState extends State implements Serializable {
 		instance = this;
 	}
 
-	public void setCharacterCharacteristics(Vector3 loadedPosition, int loadedLevel, Attributes loadedAttributes,
-			int loadedExp, int loadedMaxHP, int loadedCurrentHP) {
+	// Characterwerte nach laden eines alten Spielstandes setzen
+	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel, Attributes loadedAttributes,
+			int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp, int loadedDex) {
+		
 		c.setPosition(loadedPosition);
 		c.setLevel(loadedLevel);
 		c.setAttributes(loadedAttributes);
 		c.setCharacter(loadedExp);
+		c.setNeededexp(loadedNeededExp);
 		c.setMaxHP(loadedMaxHP);
 		c.setCurrentHP(loadedCurrentHP);
+		c.setDEX(loadedDex);
+		
 	}
 
 	public Character getC() {
@@ -194,17 +199,14 @@ public class PlayState extends State implements Serializable {
 		// if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
 		// for (Gegner g : gegnerList)
 		// killGegner(g);
+		
+		// Speichern des aktuellen Spielgeschehens --Dom--
 		if (Gdx.input.isKeyJustPressed(Keys.K)) {
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
 			}
 		}
-		// if (Gdx.input.isKeyJustPressed(Keys.L)) {
-		// if (de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, c) ==
-		// true) {
-		// System.out.println("Laden erflogreich.");
-		// }
-		// }
+
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 			if (((boolean[]) c.getBody().getUserData())[0]
 					&& (c.getRichtung() == AnimationDirection.NORTH_ATTACK
