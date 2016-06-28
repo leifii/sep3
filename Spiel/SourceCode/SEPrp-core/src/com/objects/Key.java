@@ -17,9 +17,9 @@ public class Key {
 	Vector3 positionBlack;
 	Vector3 positionWhite;
 	Vector3 positionGold;
-	public boolean blackaufgehoben;
-	public boolean whiteaufgehoben;
-	public boolean goldaufgehoben;
+	boolean blackaufgehoben;
+	boolean whiteaufgehoben;
+	boolean goldaufgehoben;
 	KeyUI ui;
 	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold,PlayState ps){
 		ui=new KeyUI(ps);
@@ -32,8 +32,6 @@ public class Key {
 	}
 	
 	
-	
-	
 	public void update(float dt){
 	
 	}
@@ -42,21 +40,21 @@ public class Key {
 			sb.draw(texturKeyBlack, positionBlack.x, positionBlack.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE) && c.getPosition().x>positionBlack.x-40 && c.getPosition().x<positionBlack.x+40 && c.getPosition().y>positionBlack.y-40 && c.getPosition().y<positionBlack.y+40) {
 				blackaufgehoben=true;
-				c.setBlackKeyStatus(true);
+				c.setBlackKeyStatus(true); // Zur Speicherung der Keystati --Dom--
 			}
 		}
 		if (!whiteaufgehoben ) {
 			sb.draw(texturKeyWhite, positionWhite.x, positionWhite.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)&& c.getPosition().x>positionWhite.x-40 && c.getPosition().x<positionWhite.x+40 && c.getPosition().y>positionWhite.y-40 && c.getPosition().y<positionWhite.y+40) {
 				whiteaufgehoben=true;
-				c.setWhiteKeyStatus(true);
+				c.setWhiteKeyStatus(true); // Zur Speicherung der Keystati --Dom--
 			}
 		}
 		if (!goldaufgehoben ) {
 			sb.draw(texturKeyGold, positionGold.x, positionGold.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)&& c.getPosition().x>positionGold.x-40 && c.getPosition().x<positionGold.x+40 && c.getPosition().y>positionGold.y-40 && c.getPosition().y<positionGold.y+40) {
 				goldaufgehoben=true;
-				c.setGoldKeyStatus(true);
+				c.setGoldKeyStatus(true); // Zur Speicherung der Keystati --Dom--
 			}
 		}
 		ui.Render(sb, goldaufgehoben, blackaufgehoben, whiteaufgehoben);
@@ -66,7 +64,7 @@ public class Key {
 		this.dispose();
 	}
 	
-	// Zur Speicherung der Spielstati --Dom--
+	// Zur Speicherung der Keystati --Dom--
 	public void setBlackKeyStatus(boolean blackKeyRecieved){
 		this.blackaufgehoben = blackKeyRecieved;
 	}
