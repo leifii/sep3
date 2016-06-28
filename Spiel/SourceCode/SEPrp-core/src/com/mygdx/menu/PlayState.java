@@ -44,9 +44,8 @@ import com.objects.Portal;
 import com.objects.Truhe;
 import com.objects.Key;
 
-public class PlayState extends State{
+public class PlayState extends State {
 
-	
 	boolean besucht;
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
@@ -67,7 +66,7 @@ public class PlayState extends State{
 
 	public transient World world;
 	private Box2DDebugRenderer b2dr;
-	
+
 	List<Portal> PortalListe;
 
 	private static PlayState instance;
@@ -95,13 +94,21 @@ public class PlayState extends State{
 
 		keys = new Key(200, 200, 250, 200, 300, 200, this);
 		Npc = new LinkedList<NPC>();
-		Npc.add(new NPC(120, 300, "grafiken/Kobold.png","[TutorialNPC]  "+"Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")));
-		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png","[Koboldkönig]  "+"Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!", createDynamicBody(2339,459,"npc")));
-		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  "+"Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc")));
-		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"),gsm,this));		
-		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(1563,381,"npc")));
-		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(2235,317,"npc")));
-
+		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
+				"[TutorialNPC]  "
+						+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
+				createDynamicBody(120, 300, "npc")));
+		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png",
+				"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
+				createDynamicBody(2339, 459, "npc")));
+		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
+				createDynamicBody(1032, 1318, "npc")));
+		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
+				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, "npc"), gsm, this));
+		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+				createDynamicBody(1563, 381, "npc")));
+		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+				createDynamicBody(2235, 317, "npc")));
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
@@ -120,7 +127,7 @@ public class PlayState extends State{
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
 
 		}
-		
+
 		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
 		c.setMapIndex(1);
 
@@ -141,9 +148,11 @@ public class PlayState extends State{
 	}
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
-	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel, Attributes loadedAttributes,
-			int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp, int loadedDex, int loadedMapIndex) {
-		
+	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel,
+			Attributes loadedAttributes, int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp,
+			int loadedDex, int loadedMapIndex, boolean blackKeyRecieved, boolean goldKeyRecieved,
+			boolean whiteKeyRecieved) {
+
 		c.setPosition(loadedPosition);
 		c.setLevel(loadedLevel);
 		c.setAttributes(loadedAttributes);
@@ -153,7 +162,12 @@ public class PlayState extends State{
 		c.setCurrentHP(loadedCurrentHP);
 		c.setDEX(loadedDex);
 		changeMap(loadedMapIndex);
-		
+		c.setBlackKeyStatus(blackKeyRecieved);
+		c.setGoldKeyStatus(goldKeyRecieved);
+		c.setWhiteKeyStatus(whiteKeyRecieved);
+		keys.setBlackKeyStatus(blackKeyRecieved);
+		keys.setGoldKeyStatus(goldKeyRecieved);
+		keys.setWhiteKeyStatus(whiteKeyRecieved);
 	}
 
 	public Character getC() {
@@ -195,7 +209,7 @@ public class PlayState extends State{
 		// if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
 		// for (Gegner g : gegnerList)
 		// killGegner(g);
-		
+
 		// Speichern des aktuellen Spielgeschehens --Dom--
 		if (Gdx.input.isKeyJustPressed(Keys.K)) {
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
@@ -248,8 +262,8 @@ public class PlayState extends State{
 					}
 				}
 			}
-			if(c.position.x >= 4500 && c.position.y >= 3500){
-				if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+			if (c.position.x >= 4500 && c.position.y >= 3500) {
+				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 					changeMap(2);
 				}
 			}
@@ -487,9 +501,7 @@ public class PlayState extends State{
 
 		sb.end();
 
-
 		b2dr.render(world, cam.combined);
-
 
 	}
 
@@ -500,35 +512,34 @@ public class PlayState extends State{
 		this.dispose();
 
 	}
-	
-	public void changeMap(int i){
+
+	public void changeMap(int i) {
 		c.setMapIndex(i); // --Dom--
-		if(i == 2)
+		if (i == 2)
 			map.setMap(new TmxMapLoader().load("grafiken/bereich2.tmx"));
-		else if(i == 3)
+		else if (i == 3)
 			map.setMap(new TmxMapLoader().load("grafiken/map3.tmx"));
 		map.setRenderer();
-		c.position=new Vector3(0,0,0);
+		c.position = new Vector3(0, 0, 0);
 		collisionLayer = new TiledMapTileLayer[3];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
 		c.setCollisionLayer(collisionLayer);
-		for(Gegner g : gegnerList){
+		for (Gegner g : gegnerList) {
 			world.destroyBody(g.getBody());
 		}
 		gegnerList = new LinkedList<Gegner>();
-		for(NPC n : Npc){
+		for (NPC n : Npc) {
 			world.destroyBody(n.getBody());
 		}
 		Npc = new LinkedList<NPC>();
-		for(Truhe t : truhenListe){
+		for (Truhe t : truhenListe) {
 			world.destroyBody(t.getBody());
 		}
 		truhenListe = new LinkedList<Truhe>();
 		PortalListe = new LinkedList<Portal>();
 	}
-
 
 	public Body createDynamicBody(int x, int y, String a) { // String a =
 															// "gegner",
@@ -631,9 +642,9 @@ public class PlayState extends State{
 	public List<IDrawable> getTempDrawable() {
 		return tempDrawableList;
 	}
-	
-	public void setMapAfterReload(int mapIndex){
-		
+
+	public void setMapAfterReload(int mapIndex) {
+
 	}
 
 }
