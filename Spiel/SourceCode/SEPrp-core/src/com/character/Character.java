@@ -37,7 +37,7 @@ public class Character implements IDrawable, Serializable {
 	transient private Inventory inventory;
 	transient protected TiledMapTileLayer[] collisionLayer;
 	private transient Body body;
-	//private float cd;
+	// private float cd;
 	transient private Rectangle bounds;
 	transient private boolean disposable = false;
 	transient private boolean visible = true;
@@ -46,7 +46,7 @@ public class Character implements IDrawable, Serializable {
 			keyframes7;
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
-	
+
 	// Variablen, die gespeichert werden
 	public int design;
 	public Vector3 position;
@@ -61,10 +61,9 @@ public class Character implements IDrawable, Serializable {
 	boolean blackKeyRecieved;
 	boolean goldKeyRecieved;
 	boolean whiteKeyRecieved;
+	int currentMoney; // muss noch irgendwo implementiert werden!! --Dom--
 	// int STR, INT, STA, ATK, DEF, AS; float MS
 
-	
-	
 	// public Character (int x,int y,String sprite,float speed){
 	// laufspeed=speed;
 	// position=new Vector3(x,y,0);
@@ -73,7 +72,7 @@ public class Character implements IDrawable, Serializable {
 
 	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body) {
-		
+
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
@@ -94,10 +93,11 @@ public class Character implements IDrawable, Serializable {
 		keyframes7 = new TextureRegion[] { animation[1][0] };
 
 		this.attributes = attributes;
-		
-		///////////////////Wie wird MaxHP ausgerechnet?/////////////////////////
-		MaxHP=100;
-		
+
+		/////////////////// Wie wird MaxHP
+		/////////////////// ausgerechnet?/////////////////////////
+		MaxHP = 100;
+
 		setCurrentHP(MaxHP);
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
@@ -145,8 +145,8 @@ public class Character implements IDrawable, Serializable {
 		this(x, y, animation, collisionLayer, attributes, body);
 		this.setSkills(skills);
 	}
-	
-	public void setCharacter(int exp){
+
+	public void setCharacter(int exp) {
 		this.exp = exp;
 	}
 
@@ -193,22 +193,20 @@ public class Character implements IDrawable, Serializable {
 
 	public void update(float dt) {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
-// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS /BIJAN
-System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.getPosition().y);
-// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS /BIJAN
-		//cd = skills.get(0).gethitcd();
+		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
+		// /BIJAN
+		System.out.println("Charakterposition " + "X= " + this.getPosition().x + " Y= " + this.getPosition().y);
+		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
+		// /BIJAN
+		// cd = skills.get(0).gethitcd();
 
 		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
 
 			getSkills().get(i).direction(this);
-			//getSkills().get(i).buffed(this);
+			// getSkills().get(i).buffed(this);
 		}
-		//cd = skills.get(0).gethitcd();
-		
-		
-		
-		
+		// cd = skills.get(0).gethitcd();
 
 		bounds.setPosition(this.getPosition().x, this.getPosition().y);
 
@@ -223,10 +221,10 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 			collisionY = isCellBlocked(position.x, position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2 / 2,
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2 / 2,
 						position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 						position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionY && getBody().getUserData() != null)
 				collisionY = ((boolean[]) getBody().getUserData())[0];
@@ -242,8 +240,9 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 				if (!collisionX)
 					collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x, position.y //+ collisionLayer[0].getTileHeight()
-							);
+					collisionX = isCellBlocked(position.x, position.y // +
+																		// collisionLayer[0].getTileHeight()
+					);
 				if (!collisionX && getBody().getUserData() != null)
 					collisionX = ((boolean[]) getBody().getUserData())[3];
 
@@ -257,15 +256,15 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 				collisionX = false;
 
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 						position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 							position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
-							position.y //+ collisionLayer[0].getTileHeight()
-							);
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2, position.y // +
+																												// collisionLayer[0].getTileHeight()
+					);
 				if (!collisionX && getBody().getUserData() != null)
 					collisionX = ((boolean[]) getBody().getUserData())[2];
 
@@ -285,9 +284,9 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 			collisionY = isCellBlocked(position.x, position.y);
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2 / 2, position.y);
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2 / 2, position.y);
 			if (!collisionY)
-				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2, position.y);
+				collisionY = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2, position.y);
 			if (!collisionY && getBody().getUserData() != null)
 				collisionY = ((boolean[]) getBody().getUserData())[1];
 
@@ -316,13 +315,13 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 				collisionX = false;
 
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 						position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 							position.y + collisionLayer[0].getTileHeight() / 2);
 				if (!collisionX)
-					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+					collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 							position.y + collisionLayer[0].getTileHeight());
 				if (!collisionX && getBody().getUserData() != null)
 					collisionX = ((boolean[]) getBody().getUserData())[2];
@@ -344,8 +343,9 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 			if (!collisionX)
 				collisionX = isCellBlocked(position.x, position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
-				collisionX = isCellBlocked(position.x, position.y //+ collisionLayer[0].getTileHeight()
-						);
+				collisionX = isCellBlocked(position.x, position.y // +
+																	// collisionLayer[0].getTileHeight()
+				);
 			if (!collisionX && getBody().getUserData() != null)
 				collisionX = ((boolean[]) getBody().getUserData())[3];
 
@@ -357,15 +357,15 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 			collisionX = false;
 
-			collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+			collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 					position.y - 20 + collisionLayer[0].getTileHeight());
 			if (!collisionX)
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2,
 						position.y + collisionLayer[0].getTileHeight() / 2);
 			if (!collisionX)
-				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth()-2,
-						position.y //+ collisionLayer[0].getTileHeight()
-						);
+				collisionX = isCellBlocked(position.x + collisionLayer[0].getTileWidth() - 2, position.y // +
+																											// collisionLayer[0].getTileHeight()
+				);
 			if (!collisionX && getBody().getUserData() != null)
 				collisionX = ((boolean[]) getBody().getUserData())[2];
 
@@ -446,8 +446,8 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 
 	public void angriff() {
 
-//		if (cd == 0)
-//			return;
+		// if (cd == 0)
+		// return;
 
 	}
 
@@ -456,7 +456,7 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 	}
 
 	public void draw(SpriteBatch sb) {
-		for (int i = 0; i < getSkills().size(); i++){
+		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).draw(sb);
 		}
 	}
@@ -567,9 +567,8 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 	public void setBody(Body body) {
 		this.body = body;
 	}
-	
 
-	public void heal(int hp){
+	public void heal(int hp) {
 		currentHP += hp;
 	}
 
@@ -588,38 +587,44 @@ System.out.println("Charakterposition "+"X= "+this.getPosition().x+" Y= "+this.g
 	public void setCurrentHP(int currentHP) {
 		this.currentHP = currentHP;
 	}
-	
-	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer){
-		this.collisionLayer=collisionLayer;
+
+	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer) {
+		this.collisionLayer = collisionLayer;
 	}
-	
+
 	// Zur Speicherung der gerade bespielten Welt --Dom--
-	public void setMapIndex(int mapIndex){
+	public void setMapIndex(int mapIndex) {
 		this.mapIndex = mapIndex;
 	}
+
 	public int getMapIndex() {
 		return this.mapIndex;
 	}
-	//-------
-	
+	// -------
+
 	// Zur Speicherung der bereits aufgehobenen Schlüssel --Dom--
 	public void setBlackKeyStatus(boolean blackKeyRecieved) {
 		this.blackKeyRecieved = blackKeyRecieved;
 	}
+
 	public void setGoldKeyStatus(boolean goldKeyRecieved) {
 		this.goldKeyRecieved = goldKeyRecieved;
 	}
+
 	public void setWhiteKeyStatus(boolean whiteKeyRecieved) {
 		this.whiteKeyRecieved = whiteKeyRecieved;
 	}
+
 	public boolean getBlackKeyStatus() {
 		return blackKeyRecieved;
 	}
+
 	public boolean getGoldKeyStatus() {
 		return goldKeyRecieved;
 	}
+
 	public boolean getWhiteKeyStatus() {
 		return whiteKeyRecieved;
 	}
-	//-------
+	// -------
 }
