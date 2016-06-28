@@ -17,6 +17,7 @@ public class GameStateManager {
 	}
 	public void push(State state){
 		states.push(state);
+		state.update(0);
 	}
 	public void pop(){
 		states.pop();
