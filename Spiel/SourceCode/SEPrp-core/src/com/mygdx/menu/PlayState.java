@@ -71,7 +71,6 @@ public class PlayState extends State implements Serializable {
 
 	public transient World world;
 	transient private Box2DDebugRenderer b2dr;
-	
 
 	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 2934, 312), new Portal(2934, 312, 50, 50) };
 
@@ -96,17 +95,24 @@ public class PlayState extends State implements Serializable {
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 
-
-		keys=new Key(200, 200, 250, 200, 300, 200,this);
-		Npc = new NPC[]{new NPC(120, 300, "grafiken/Kobold.png","[TutorialNPC]  "+"Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar", createDynamicBody(120,300,"npc")),
-				new NPC(2339, 459, "grafiken/KoboldKönig.png","[Koboldkönig]  "+"Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!", createDynamicBody(2339,459,"npc")),
-				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  "+"Sei vorsichtig hier ist es gefährlich!!", createDynamicBody(1032,1318,"npc")),
-				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png", "Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815,359,"npc"),gsm,this),		
-				new NPC(1563, 381, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(1563,381,"npc")),
-				new NPC(2235, 317, "grafiken/Kobold.png","[Koboldkönig-Fan]  "+"Lang lebe der König!", createDynamicBody(2235,317,"npc")),
-		};
-
-
+		keys = new Key(200, 200, 250, 200, 300, 200, this);
+		Npc = new NPC[] {
+				new NPC(120, 300, "grafiken/Kobold.png",
+						"[TutorialNPC]  "
+								+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
+						createDynamicBody(120, 300, "npc")),
+				new NPC(2339, 459, "grafiken/KoboldKönig.png",
+						"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
+						createDynamicBody(2339, 459, "npc")),
+				new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
+						createDynamicBody(1032, 1318, "npc")),
+				new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
+						"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, "npc"), gsm,
+						this),
+				new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+						createDynamicBody(1563, 381, "npc")),
+				new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+						createDynamicBody(2235, 317, "npc")), };
 
 		Body body = createDynamicBody(100, 100, "charakter");
 
@@ -149,50 +155,6 @@ public class PlayState extends State implements Serializable {
 
 	public void setCharacterType(int animationType, Attributes attributes, Body body) {
 		c = new Krieger(100, 100, s.getAnimation(animationType), collisionLayer, attributes, body);
-	}
-
-	// Konstruktor für das Laden gespeicherter Spiele --Dom--
-	public PlayState(GameStateManager gsm, int characterauswahl, Vector3 position) {
-		// TODO weitere Attribute dem Kontruktor übergeben!!
-		super(gsm);
-
-		world = new World(new Vector2(0, 0), false);
-		b2dr = new Box2DDebugRenderer();
-		MyContactListener cl = new MyContactListener();
-		world.setContactListener(cl);
-
-		s = new com.grafiken.Character();
-		map = new Map(cam);
-		collisionLayer = new TiledMapTileLayer[2];
-		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
-		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
-
-		Body body = createDynamicBody(100, 100, "charakter");
-
-		// CHARAKTERAUSWAHL
-		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
-		if (characterauswahl == 1) {
-			System.out.println("Krieger");
-			c = new Krieger(position.x, position.y, s.getAnimation(0), collisionLayer, attributes, body);
-		} else if (characterauswahl == 2) {
-			System.out.println("Magier");
-			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
-		} else if (characterauswahl == 3) {
-			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
-		} else if (characterauswahl == 4) {
-			System.out.println("SchÜtze");
-			c = new Schuetze(100, 100, s.getAnimation(3), collisionLayer, attributes, body);
-			// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
-			// map.getMap().getLayers().get("Objekte"), attributes);
-			System.out.println("SchÜtze");
-		}
-		// --------------
-
-		initGegner();
-		drawableList = new LinkedList<IDrawable>();
-		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
-
-		instance = this;
 	}
 
 	private void initGegner() {
@@ -391,7 +353,7 @@ public class PlayState extends State implements Serializable {
 
 		// KEYS//
 		keys.render(sb, c);
-		
+
 		// KEYS//
 		// ITEMS //
 		if (drawableList != null) {
