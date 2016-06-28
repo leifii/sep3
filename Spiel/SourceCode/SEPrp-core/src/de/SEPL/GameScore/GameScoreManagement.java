@@ -1,14 +1,51 @@
 package de.SEPL.GameScore;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.PlayState;
 
+/* --Dom-- */
+
 public class GameScoreManagement {
+	
+	public static void setRunningNr(int runningNr){
+		try {
+			FileWriter writer = new FileWriter("runningNr.txt");
+			writer.write(runningNr);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException f) {
+			f.printStackTrace();
+		} 
+
+	}
+	
+	
+	public static int getRunningNr(){
+		int runningNr = 1;
+		FileReader fileReader;
+		try {
+			fileReader = new FileReader("runningNr.txt");
+			runningNr = fileReader.read();			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return runningNr;
+	}
+	
 
 	// Speichere aktuellen Spielstand
 	public static boolean saveGameScore(com.character.Character character) {
@@ -85,6 +122,7 @@ public class GameScoreManagement {
 		return gameLoaded;
 	}
 
+	// Spielmit altem Spielstand laden und Werte des gespeicherten Characters an den neuen Character übergeben
 	public static void setCharacter(com.character.Character loadedCharacter, int characterType, GameStateManager gsm) {
 		PlayState playState;
 		if (loadedCharacter instanceof com.character.Krieger) {
