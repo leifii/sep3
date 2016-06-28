@@ -1,5 +1,7 @@
 package de.SEPL.GameScore;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,7 +20,9 @@ public class GameScoreManagement {
 	public static void setRunningNr(int runningNr){
 		try {
 			FileWriter writer = new FileWriter("runningNr.txt");
-			writer.write(runningNr);
+			BufferedWriter bufferedWriter = new BufferedWriter(writer);
+			bufferedWriter.write(runningNr);
+			bufferedWriter.close();
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -34,15 +38,14 @@ public class GameScoreManagement {
 		FileReader fileReader;
 		try {
 			fileReader = new FileReader("runningNr.txt");
-			runningNr = fileReader.read();			
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			runningNr = Integer.parseInt(bufferedReader.readLine());			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println(runningNr);
 		return runningNr;
 	}
 	
@@ -54,13 +57,18 @@ public class GameScoreManagement {
 		// Streams zum speichern öffnen
 		ObjectOutputStream oos = null;
 		FileOutputStream fos = null;
+//		int tempRunningNr = getRunningNr();
+		String fileName = "gameScore" + ".ser";
 
 		try {
 			// File anlegen und Objekt speichern
-			fos = new FileOutputStream("score.ser");
+			fos = new FileOutputStream(fileName);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(character);
 			gameSaved = true;
+//			tempRunningNr = tempRunningNr + 1;
+//			setRunningNr(tempRunningNr);
+//			System.out.println(getRunningNr());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -98,7 +106,7 @@ public class GameScoreManagement {
 			if (obj instanceof com.character.Character) {
 				com.character.Character loadedCharacter = (com.character.Character) obj;
 				// TODO Character neu instanziieren
-				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter, 1, gsm);
+				de.SEPL.GameScore.GameScoreManagement.setCharacter(loadedCharacter, gsm);
 
 			}
 			gameLoaded = true;
@@ -123,7 +131,7 @@ public class GameScoreManagement {
 	}
 
 	// Spielmit altem Spielstand laden und Werte des gespeicherten Characters an den neuen Character übergeben
-	public static void setCharacter(com.character.Character loadedCharacter, int characterType, GameStateManager gsm) {
+	public static void setCharacter(com.character.Character loadedCharacter, GameStateManager gsm) {
 		PlayState playState;
 		if (loadedCharacter instanceof com.character.Krieger) {
 			playState = new PlayState(gsm, 1, loadedCharacter.design);
