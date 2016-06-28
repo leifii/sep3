@@ -44,7 +44,7 @@ public class Kommunikation implements IKommunikation{
 	}
 	
 	
-	
+/*	
 	public static byte[] erzeugeByteArray(){            //Methode erzeugt das vom PC an die Roboter zu sendende ByteArray
 			byte[] msg    = new byte[9];
 			int[] aktPos  = {1,2,3,4};     	 //new int[3];
@@ -69,7 +69,7 @@ public class Kommunikation implements IKommunikation{
 					
 			return msg;
 	}
-	
+*/	
 	
 	
 	public  void nachrichtVerarbeiten(byte[] whatever){            //Methode wertet das vom Roboter empfangene ByteArray aus
@@ -115,10 +115,10 @@ public class Kommunikation implements IKommunikation{
 		
 	}
 
-	@Override
-	public byte[] getNachricht() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public byte[] getNachricht() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }
