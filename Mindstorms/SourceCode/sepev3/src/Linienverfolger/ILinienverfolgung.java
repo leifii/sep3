@@ -14,8 +14,4 @@ public interface ILinienverfolgung {
 	    RegulatedMotor MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
 	
 	    public boolean aufKnoten();		//True oder False muss an dem PC durch "IKommunikation" übertragen werden.
-	    public void geradeaus();
-	    public void drehenLinks();
-	    public void drehenRechts();
-	    public void stop();
 }
