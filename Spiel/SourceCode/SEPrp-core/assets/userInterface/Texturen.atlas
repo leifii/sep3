@@ -1,0 +1,40 @@
+
+Texturen.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blank-2
+  rotate: false
+  xy: 1, 83
+  size: 137, 37
+  orig: 137, 37
+  offset: 0, 0
+  index: -1
+blank-3
+  rotate: false
+  xy: 1, 44
+  size: 137, 37
+  orig: 137, 37
+  offset: 0, 0
+  index: -1
+blank-4
+  rotate: false
+  xy: 140, 83
+  size: 137, 37
+  orig: 137, 37
+  offset: 0, 0
+  index: -1
+Menupfeil
+  rotate: false
+  xy: 140, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+Oben
+  rotate: false
+  xy: 222, 1
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1

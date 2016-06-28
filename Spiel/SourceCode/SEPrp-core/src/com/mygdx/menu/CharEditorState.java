@@ -138,6 +138,9 @@ public class CharEditorState extends State {
 
 		buttonL = new TextButton(">", textButtonStyle);
 		buttonL.pad(5);
+		
+		Skin as= new Skin(Gdx.files.internal("uiskin.json"));
+		TextField a= new TextField("",as);
 
 		LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
@@ -160,15 +163,11 @@ public class CharEditorState extends State {
 		Label haarfarbe = new Label("Haarfarbe   ", labelStyle);
 		table.add(haarfarbe);
 		table.add(buttonK);
-		table.add(buttonL);
+		table.add(buttonL).padBottom(30);
 		table.row();
 		Label Name = new Label("Name:   ", labelStyle);
 		table.add(Name);
-
-		TextFieldStyle abc = new TextFieldStyle();
-		abc.font = white;
-		TextField name = new TextField("", abc);
-		table.add(name);
+		table.add(a).padRight(30);
 
 		table.add(buttonM);
 
