@@ -1,10 +1,8 @@
 package com.mygdx.menu;
 
-import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -46,12 +44,8 @@ import com.objects.Portal;
 import com.objects.Truhe;
 import com.objects.Key;
 
-public class PlayState extends State implements Serializable {
+public class PlayState extends State{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	boolean besucht;
 	List<Truhe> truhenListe = new LinkedList<Truhe>();
 	transient List<IDrawable> tempDrawableList = new LinkedList<IDrawable>();
