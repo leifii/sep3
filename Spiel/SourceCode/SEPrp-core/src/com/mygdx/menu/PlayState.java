@@ -72,8 +72,9 @@ public class PlayState extends State implements Serializable {
 
 	public transient World world;
 	transient private Box2DDebugRenderer b2dr;
-
-	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 2934, 312), new Portal(2934, 312, 50, 50) };
+	
+	transient List<Portal> PortalListe;
+//	transient Portal Portal[] = new Portal[] { new Portal(50, 50, 2934, 312), new Portal(2934, 312, 50, 50) };
 
 	private static transient PlayState instance;
 
@@ -134,6 +135,9 @@ public class PlayState extends State implements Serializable {
 		initGegner();
 		drawableList = new LinkedList<IDrawable>();
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
+		PortalListe = new LinkedList<Portal>();
+		PortalListe.add(new Portal(50, 50, 2934, 312));
+		PortalListe.add(new Portal(2934, 312, 50, 50));
 		instance = this;
 	}
 
@@ -340,8 +344,8 @@ public class PlayState extends State implements Serializable {
 		// TRUHEN //
 
 		// PORTALE //
-		for (int i = 0; i < Portal.length; i++) {
-			Portal[i].render(sb, c);
+		for (Portal p : PortalListe) {
+			p.render(sb, c);
 		}
 		// PORTALE //
 
@@ -518,6 +522,7 @@ public class PlayState extends State implements Serializable {
 			world.destroyBody(t.getBody());
 		}
 		truhenListe = new LinkedList<Truhe>();
+		PortalListe = new LinkedList<Portal>();
 	}
 
 
