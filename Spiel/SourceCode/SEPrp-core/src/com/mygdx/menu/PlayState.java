@@ -643,8 +643,5 @@ public class PlayState extends State {
 		return tempDrawableList;
 	}
 
-	public void setMapAfterReload(int mapIndex) {
-
-	}
 
 }
