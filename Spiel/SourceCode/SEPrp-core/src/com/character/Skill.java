@@ -30,7 +30,7 @@ public class Skill implements Serializable {
 	protected AnimationDirection richtung;
 
 	
-	Sprite hallo;
+	//Sprite hallo;
 
 	
 	private Body body;
@@ -52,6 +52,7 @@ public class Skill implements Serializable {
 	
 	protected float speed;
 	
+	protected float zaehler;
 	protected int button;			//auf welcher taste der skill liegt
 	private int position;
 	protected int width;
@@ -89,11 +90,12 @@ public class Skill implements Serializable {
 		this.c = c;
 		remove = false;
 		setCdnow(0);
-		hallo = new Sprite(bild);
+		//hallo = new Sprite(bild);
 		aktiviert = false;
 		this.setRadius(radius);
 		this.collisionLayer=collisionLayer;
 		a = ic.getGegnerAnimation(0);
+		zaehler = 0;
 	}
 
 	public float gethitcd() {
@@ -105,6 +107,9 @@ public class Skill implements Serializable {
 	}
 
 	public void update(float dt, float xx, float yy) {
+		if (zaehler == 360)
+			zaehler = 0;
+		zaehler++;
 		handleInput(xx, yy);
 		setCdnow(getCdnow() - dt);					//cd nach Benutzung reduzieren
 		
@@ -326,13 +331,13 @@ public class Skill implements Serializable {
 						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 					if (richtung == AnimationDirection.SOUTH_WALK || richtung == AnimationDirection.SOUTH_STAND){
-						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)0, (float)bild.getHeight()/2, (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 					if (richtung == AnimationDirection.EAST_WALK || richtung == AnimationDirection.EAST_STAND){
-						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)0, (float)bild.getHeight()/2, (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 					if (richtung == AnimationDirection.WEST_WALK || richtung == AnimationDirection.WEST_STAND){
-						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)0, (float)bild.getHeight()/2, (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
 					}
 				}
 				else s.draw(bild, x, y);
@@ -347,7 +352,7 @@ public class Skill implements Serializable {
 
 				
 				}
-			else if (c instanceof Krieger && button == 0){
+			else if (c instanceof Krieger){
 				if (button == 0){
 					if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND){
 						s.draw(a[0][0], getX(), getY());
@@ -362,14 +367,11 @@ public class Skill implements Serializable {
 						s.draw(a[1][0], getX(), getY());
 				}
 				}
-				if (button == 3){
-					for (int i = 0; i <= 360; i++){
-						s.draw(bild, x, y, (float)0, (float)0, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
-						
-					}
+				if (button == 1 || button == 3){
+					s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)zaehler, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);	
 				}
 			}
-			else s.draw(hallo, getX(), getY());
+			else s.draw(bild, getX(), getY());
 
 			}
 			

@@ -466,6 +466,7 @@ public class Character implements IDrawable, Serializable {
 
 	public void draw(SpriteBatch sb) {
 		for (int i = 0; i < getSkills().size(); i++) {
+			System.out.println("skills durchsuchen");
 			getSkills().get(i).draw(sb);
 		}
 	}
