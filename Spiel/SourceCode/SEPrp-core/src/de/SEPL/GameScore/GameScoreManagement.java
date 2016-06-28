@@ -86,15 +86,6 @@ public class GameScoreManagement {
 	}
 
 	public static void setCharacter(com.character.Character loadedCharacter, int characterType, GameStateManager gsm) {
-
-		// currentCharacter.setPosition(loadedCharacter.getPosition());
-		// currentCharacter.setLevel(loadedCharacter.getLevel());
-		// currentCharacter.setAttributes(loadedCharacter.getAttributes());
-		// currentCharacter.setCharacter(loadedCharacter.getExp());
-		// currentCharacter.setDesign(loadedCharacter.getDesign());
-		// currentCharacter.setMaxHP(loadedCharacter.getMaxHP());
-		// currentCharacter.setCurrentHP(loadedCharacter.getCurrentHP());
-
 		PlayState playState;
 		if (loadedCharacter instanceof com.character.Krieger) {
 			playState = new PlayState(gsm, 1, loadedCharacter.design);
@@ -111,10 +102,9 @@ public class GameScoreManagement {
 			playState = new PlayState(gsm, 1, loadedCharacter.design);
 		}
 		gsm.push(playState);
-		
-		playState.setCharacterCharacteristics(loadedCharacter.getPosition(), loadedCharacter.getLevel(),
+		playState.setCharacterCharacteristicsAfterReload(loadedCharacter.getPosition(), loadedCharacter.getLevel(),
 				loadedCharacter.getAttributes(), loadedCharacter.getExp(), loadedCharacter.getMaxHP(),
-				loadedCharacter.getCurrentHP());
+				loadedCharacter.getCurrentHP(), loadedCharacter.getNeededexp(), loadedCharacter.getDEX());
 
 	}
 
