@@ -36,6 +36,7 @@ import com.character.Skill;
 import com.gegnerkoordination.Gegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
+import com.mygdx.game.Author;
 import com.npc.AuktionsHausNPC;
 import com.npc.NPC;
 import com.objects.Equipment;
@@ -45,6 +46,8 @@ import com.objects.Gold;
 import com.objects.Portal;
 import com.objects.Truhe;
 import com.objects.Key;
+
+@Author(name = "???")
 
 public class PlayState extends State {
 
