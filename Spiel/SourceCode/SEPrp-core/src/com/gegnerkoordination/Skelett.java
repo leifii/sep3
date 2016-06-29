@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.character.Attributes;
+import com.mygdx.game.Author;
+
+@Author(name = "?Dilara Güler?")
 
 public class Skelett extends Gegner {
 

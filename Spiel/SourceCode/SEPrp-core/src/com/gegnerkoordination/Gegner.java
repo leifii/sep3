@@ -19,12 +19,16 @@ import com.character.Attributes;
 import com.character.Character;
 import com.character.Rolle;
 import com.character.Skill;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 import com.objects.Equipment;
 import com.objects.EquipmentType;
 import com.objects.Experience;
 import com.objects.Item;
 import com.objects.Truhe;
+
+@Author(name = "?Dilara Güler?")
+
 
 //TODO abstract class
 public class Gegner extends Character {
