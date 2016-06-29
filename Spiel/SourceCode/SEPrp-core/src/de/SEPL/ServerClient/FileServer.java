@@ -13,6 +13,11 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.mygdx.game.Author;
+
+@Author(name = "Dominikus Häckel")
+
+
 /* Dies ist der Server für das Auktionhaus. Er muss serperat gestartet werden,
  * und das bevor das Spiel gestartet wird.
  * Wird der Server im späteren Verlauf des Projekts auf einen zweiten PC ausgelagert,

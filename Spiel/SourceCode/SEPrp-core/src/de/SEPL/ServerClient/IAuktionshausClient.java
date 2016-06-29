@@ -1,5 +1,9 @@
 package de.SEPL.ServerClient;
 
+import com.mygdx.game.Author;
+
+@Author(name = "Dominikus Häckel")
+
 public interface IAuktionshausClient {
 
 	// shutDown nur für Testzwecke, wird im normalen Spielbetrieb nicht
