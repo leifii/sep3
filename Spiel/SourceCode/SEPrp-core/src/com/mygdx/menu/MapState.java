@@ -4,7 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
+
+@Author(name = "???")
 
 public class MapState extends PlayState {
 

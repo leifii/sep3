@@ -24,11 +24,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.menu.LoadMenuState;
 import com.mygdx.menu.NewMenuState;
-
-
+import com.mygdx.game.Author;
 import com.mygdx.menu.GameStateManager;
 
-
+@Author(name = "???")
 
 public class NewMenuState1 extends State {
 	private Stage stage;	

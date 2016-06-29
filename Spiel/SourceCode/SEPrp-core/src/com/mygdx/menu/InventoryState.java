@@ -5,6 +5,10 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.character.Character;
+import com.mygdx.game.Author;
+
+@Author(name = "?Dilara Güler?")
+
 
 public class InventoryState extends State {
 

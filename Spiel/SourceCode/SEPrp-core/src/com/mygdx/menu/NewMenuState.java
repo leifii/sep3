@@ -16,7 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
+
+@Author(name = "???")
 
 public class NewMenuState extends MenuState {
 
