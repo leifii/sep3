@@ -8,6 +8,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
+import com.mygdx.game.Author;
+
+@Author(name = "Bijan Nejad")
+
 
 public class Portal {
 
