@@ -372,6 +372,33 @@ public class Skill implements Serializable {
 				else s.draw(bild, getX(), getY());
 
 			}
+			else if (c instanceof Schurke){
+				if (button == 0 || button == 1 || button == 3){
+					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND){
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.SOUTH_WALK || richtung == AnimationDirection.SOUTH_STAND){
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.EAST_WALK || richtung == AnimationDirection.EAST_STAND){
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.WEST_WALK || richtung == AnimationDirection.WEST_STAND){
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					}
+				}
+				else if (button == 4){
+					if (helpNr == 1)
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)180, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					if (helpNr == 2)
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)90, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					if (helpNr == 3)
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)270, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+					if (helpNr == 4)
+						s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)0, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);
+				}
+				else s.draw(bild, getX(), getY());
+			}
 			else s.draw(bild, getX(), getY());
 
 			}
