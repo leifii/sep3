@@ -4,8 +4,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.IDrawable;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 import com.character.Character;
+
+@Author(name = "???")
 
 public class AbstractStringItem extends Item implements IDrawable{
 

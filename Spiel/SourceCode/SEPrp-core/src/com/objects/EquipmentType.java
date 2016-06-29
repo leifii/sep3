@@ -3,6 +3,10 @@ package com.objects;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.character.Attributes;
 import com.grafiken.Objekte;
+import com.mygdx.game.Author;
+
+@Author(name = "???")
+
 
 public enum EquipmentType {
 //											  STR,INT,DEX,STA,ATK,DEF,AS,MS

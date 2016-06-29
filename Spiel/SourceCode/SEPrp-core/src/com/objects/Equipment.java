@@ -3,7 +3,10 @@ package com.objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.IDrawable;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
+
+@Author(name = "???")
 
 public class Equipment extends Item implements IDrawable {
 	
