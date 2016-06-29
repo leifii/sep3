@@ -38,7 +38,7 @@ public class CharEditorState extends State {
 	Texture[] haare;
 	Image charbild[][];
 
-	private Skin skin;
+	private Skin skin,skin1;
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
@@ -101,6 +101,8 @@ public class CharEditorState extends State {
 
 		atlas = new TextureAtlas("testb/Texturen.pack");
 		skin = new Skin(atlas);
+		skin1= new Skin(Gdx.files.internal("uiskin.json"));
+		TextField a=new TextField("", skin1);
 
 		table = new Table(skin);
 
@@ -166,6 +168,7 @@ public class CharEditorState extends State {
 		table.row();
 		Label Name = new Label("Name:   ", labelStyle);
 		table.add(Name);
+		table.add(a);
 
 
 		table.add(buttonM);
