@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Author;
 
 
-@Author(name = "Bijan Nejad" "Bardia Asemi-Soloot")
+@Author(name = "Bijan Nejad, Bardia Asemi-Soloot")
 
 
 public class Schurke extends Character{

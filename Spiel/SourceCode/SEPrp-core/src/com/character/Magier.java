@@ -11,7 +11,7 @@ import com.mygdx.game.Author;
 
 
 
-@Author(name = "Bijan Nejad" "Bardia Asemi-Soloot")
+@Author(name = "Bijan Nejad , Bardia Asemi-Soloot")
 
 
 public class Magier extends Character{

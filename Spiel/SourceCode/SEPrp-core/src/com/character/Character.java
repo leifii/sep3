@@ -28,7 +28,7 @@ import com.objects.Experience;
 import com.objects.Item;
 import com.objects.ItemType;
 
-@Author(name = "Bijan Shahbaz Nejad","Angelo Soltner", "Bardia Asemi","Tobias Van den Boom","Dominikus Häckel", "???????")
+@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel, ???????")
 
 public class Character implements IDrawable, Serializable {
 
