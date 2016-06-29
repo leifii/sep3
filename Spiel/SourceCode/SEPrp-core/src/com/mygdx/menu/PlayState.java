@@ -350,6 +350,7 @@ public class PlayState extends State {
 		sb.begin();
 		c.draw(sb);
 
+
 		// KOBOLD DORF LABEL//
 		if (c.getPosition().x > 1595 && c.getPosition().x < 1796 && c.getPosition().y > 0 && c.getPosition().y < 1000
 				&& !besucht) {
