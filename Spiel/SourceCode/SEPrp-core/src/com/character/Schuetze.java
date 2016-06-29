@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
+
 @Author(name = "Bijan Nejad" "Bardia Asemi-Soloot")
 
 public class Schuetze extends Character{

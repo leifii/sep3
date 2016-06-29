@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 
 
 public class KeyUI {

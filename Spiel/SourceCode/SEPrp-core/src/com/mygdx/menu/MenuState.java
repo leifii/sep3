@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
-@Author(name = "???")
+@Author(name = "Bijan Shahbaz Nejad")
 
 
 public class MenuState extends State{

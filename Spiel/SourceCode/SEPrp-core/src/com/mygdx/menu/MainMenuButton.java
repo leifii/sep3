@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.mygdx.game.Author;
 
-@Author(name = "???")
+@Author(name = "Bijan Shahbaz Nejad")
 
 
 public class MainMenuButton {

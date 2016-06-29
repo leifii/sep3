@@ -47,7 +47,7 @@ import com.objects.Portal;
 import com.objects.Truhe;
 import com.objects.Key;
 
-@Author(name = "???")
+@Author(name = "Bijan Shahbaz Nejad","Angelo Soltner","Bardia Asemi","Tobias Van den Boom","Dominikus Häckel", "Dilara??","Sabiha?" )
 
 public class PlayState extends State {
 

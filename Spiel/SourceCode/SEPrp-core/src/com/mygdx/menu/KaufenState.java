@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 
-@Author(name = "???")
+@Author(name = "Bijan Shahbaz Nejad")
 
 public class KaufenState extends State{
 	private Skin skin;

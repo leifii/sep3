@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.mygdx.game.Author;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "?????")
 
 public class Attributes implements Serializable {
 	

@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
-@Author(name = "???")
+@Author(name = "Angelo Soltner","Bijan Shahbaz Nejad")
 
 public class NewMenuState extends MenuState {
 

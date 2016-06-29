@@ -28,7 +28,7 @@ import com.mygdx.game.Author;
 
 import de.SEPL.GameScore.GameScoreManagement;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 
 public class CharEditorState extends State {
 
