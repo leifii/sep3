@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
-@Author(name = "???")
+@Author(name = "Bijan Shahbaz Nejad")
 
 
 public class AuktionshausState extends State{

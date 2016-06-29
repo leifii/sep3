@@ -31,7 +31,7 @@ import com.mygdx.game.MyGdxGame;
 
 import de.SEPL.GameScore.GameScoreManagement;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "Bijan Shahbaz Nejad","Angelo Soltner")
 
 public class NewGameCharacterState extends NewMenuState {
 	PlayState playstate;

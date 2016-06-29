@@ -30,7 +30,7 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
-@Author(name = "Angelo Soltner")
+@Author(name = "Angelo Soltner","Bijan Shahbaz Nejad")
 
 
 public class LoadMenuState extends MenuState {

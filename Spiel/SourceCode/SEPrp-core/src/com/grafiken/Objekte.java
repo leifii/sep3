@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.Author;
 
-@Author(name = "???")
+@Author(name = "Angelo Soltner")
 
 public class Objekte implements IObjekte{
 

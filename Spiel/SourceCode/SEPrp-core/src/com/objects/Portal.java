@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
 import com.mygdx.game.Author;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 
 
 public class Portal {

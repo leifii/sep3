@@ -11,7 +11,7 @@ import com.mygdx.menu.AuktionshausState;
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.PlayState;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 
 public class AuktionsHausNPC extends NPC{
 	

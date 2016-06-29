@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Author;
 
-@Author(name = "???")
+@Author(name = "Bijan Shahbaz Nejad")
 
 public abstract class State {
 protected OrthographicCamera cam;

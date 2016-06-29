@@ -2,7 +2,7 @@ package com.character;
 
 import com.mygdx.game.Author;
 
-@Author(name = "Bardia Asemi-Soloot")
+@Author(name = "?????????")
 
 public enum AnimationDirection {
 	SOUTH_WALK('s'), WEST_WALK('w'), EAST_WALK('e'), NORTH_WALK('n'), 

@@ -15,7 +15,7 @@ import com.character.Character;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
-@Author(name = "Bijan Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 
 public class Dialog  {
 	
