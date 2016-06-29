@@ -370,6 +370,9 @@ public class Skill implements Serializable {
 				if (button == 1 || button == 3){
 					s.draw(bild, x, y, (float)bild.getWidth()/2, (float)bild.getHeight()/2, (float)bild.getWidth(), (float)bild.getHeight(), (float)1, (float)1, (float)zaehler, 1, 1, (int)bild.getWidth(), (int)bild.getHeight(), false, false);	
 				}
+				if(button == 2 | button == 4){
+					s.draw(bild, getX(), getY());
+				}
 			}
 			else s.draw(bild, getX(), getY());
 
