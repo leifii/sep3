@@ -155,6 +155,7 @@ public class CharEditorState extends State {
 
 		// table.debug();
 		table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight() / 2 - 50);
+
 		table.row();
 		Label augenfarbe = new Label(" Augenfarbe   ", labelStyle);
 		table.add(augenfarbe);
