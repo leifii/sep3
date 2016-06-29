@@ -8,7 +8,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
+
+@Author(name = "Dominikus Häckel")
+
 
 public class Key {
 	Texture texturKeyBlack=new Texture("grafiken/keyBlack.png");
