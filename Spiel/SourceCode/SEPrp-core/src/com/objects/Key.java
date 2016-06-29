@@ -11,7 +11,7 @@ import com.character.Character;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
-@Author(name = "Dominikus Häckel")
+@Author(name = "Bijan Nejad")
 
 
 public class Key {
