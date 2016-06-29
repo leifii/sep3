@@ -162,7 +162,7 @@ public class CharEditorState extends State {
 		Label haarfarbe = new Label("Haarfarbe   ", labelStyle);
 		table.add(haarfarbe);
 		table.add(buttonK);
-		table.add(buttonL).padBottom(30);
+		table.add(buttonL);
 		table.row();
 		Label Name = new Label("Name:   ", labelStyle);
 		table.add(Name);
