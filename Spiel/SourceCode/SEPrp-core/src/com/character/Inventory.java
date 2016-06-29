@@ -3,7 +3,10 @@ package com.character;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.mygdx.game.Author;
 import com.objects.Item;
+
+@Author(name = "?Dilara Güler?")
 
 public class Inventory {
 

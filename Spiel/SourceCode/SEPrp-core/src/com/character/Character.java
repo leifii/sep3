@@ -20,12 +20,15 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.grafiken.IObjekte;
 import com.grafiken.Objekte;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 import com.objects.AbstractStringItem;
 import com.objects.Equipment;
 import com.objects.Experience;
 import com.objects.Item;
 import com.objects.ItemType;
+
+@Author(name = "Bijan Nejad")
 
 public class Character implements IDrawable, Serializable {
 

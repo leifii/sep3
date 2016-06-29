@@ -2,6 +2,10 @@ package com.character;
 
 import java.io.Serializable;
 
+import com.mygdx.game.Author;
+
+@Author(name = "Bijan Nejad")
+
 public class Attributes implements Serializable {
 	
 	/**
