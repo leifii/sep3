@@ -8,7 +8,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.character.Character;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
+
+@Author(name = "Bijan Nejad")
 
 public class NPC {
 	
