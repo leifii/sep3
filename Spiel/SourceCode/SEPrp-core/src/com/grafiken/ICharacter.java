@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.Author;
+
+@Author(name = "???")
 
 public interface ICharacter {
 	public void render(SpriteBatch sb); //zeichnet den Charakter auf die Mitte des Bildes
