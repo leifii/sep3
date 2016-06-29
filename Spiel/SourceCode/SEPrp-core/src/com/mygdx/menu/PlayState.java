@@ -564,6 +564,9 @@ public class PlayState extends State {
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
 		c.setCollisionLayer(collisionLayer);
+		for (Skill s : c.getSkills()){
+			s.setCollisionLayer(collisionLayer);
+		}
 		for (Gegner g : gegnerList) {
 			world.destroyBody(g.getBody());
 		}
