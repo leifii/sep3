@@ -106,6 +106,7 @@ PlayState playstate;
 			gsm.push(playstate);
 		}
 		if (buttonN.isChecked()) {
+			gsm.push(new KaufenState(gsm,playstate));
 		}
 		if (buttonJ.isChecked()) {
 		}
