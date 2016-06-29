@@ -1,6 +1,10 @@
 package com.objects;
 
 import com.character.IDrawable;
+import com.mygdx.game.Author;
+
+@Author(name = "Sabiha Can")
+
 
 public abstract class Item implements IDrawable {
 
