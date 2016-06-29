@@ -83,7 +83,17 @@ public class Verfolger extends IModus{
 		//setzen der neuen zielposition Position
 		
 	
-		if( nachricht[7] > aktuelleposition ){
+		if( nachricht[6] > aktuelleposition ){
+			
+			if(Math.abs(nachricht[6]-aktuelleposition)> 6 ){
+			 
+			}
+			else if((aktuelleposition-nachricht[6])> 6){
+				
+			}
+		
+		
+		
 		}
 		
 	
