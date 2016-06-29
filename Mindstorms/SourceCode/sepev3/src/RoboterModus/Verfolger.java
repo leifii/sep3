@@ -83,58 +83,98 @@ public class Verfolger extends IModus{
 		//setzen der neuen zielposition Position
 		
 	
-		if( nachricht[6] > aktuelleposition ){
-			
-			if(Math.abs(nachricht[6]-aktuelleposition)> 6 ){
-			 
-			}
-			else if((aktuelleposition-nachricht[6])> 6){
-				
-			}
 		
+		int next =-1 ;						
 		
-		
-		}
+		// 0:Oben , 1: Links , 2: Unten, 3: Rechts
 		
 	
+		// Tiefer/Rechts
+		if( nachricht[6] > aktuelleposition ){
+			
+			
+			// Gleiche Reihe Rechts
+			
+				if((nachricht[6]-aktuelleposition) < 6 ){ 
+				
+					if(richtungen[3]){
+					next = 3 ;
+						}
+					else if(richtungen[2]){
+					next = 2;
+					}
+					else {}
+				
+				}
+			
+				// Tiefer
+			
+				else if((nachricht[6] - aktuelleposition) > 6){
+				
+					if(richtungen[2]){
+					next = 2;
+						}
+					else {
+					next = 3 ;
+					}
+				}
+		
+		
+		
+			}
+		
+			//Höher/Links
+		
+		else
+			
+			// Gleiche Reihe Links
+			
+			if((aktuelleposition - nachricht[6]) < 6) {
+				
+				
+	
+		
+			}
+		
+		
 		
 		
 		 
 		
 		//fahren des Roboters zu der nächsten Postion
 		
-		if(zufallszahl == blickrichtung){
+		if(next == blickrichtung){
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung + 1 == zufallszahl){
+		else if(blickrichtung + 1 == next){
 			lvfg.drehenLinks();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung + 2 == zufallszahl){
+		else if(blickrichtung + 2 == next){
 			lvfg.drehenLinks();
 			lvfg.drehenLinks();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung + 3 == zufallszahl){
+		else if(blickrichtung + 3 == next){
 			lvfg.drehenRechts();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung - 1 == zufallszahl){
+		else if(blickrichtung - 1 == next){
 			lvfg.drehenRechts();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung - 2 == zufallszahl){
+		else if(blickrichtung - 2 == next){
 			lvfg.drehenRechts();
 			lvfg.drehenRechts();
 			lvfg.geradeaus();
 		}
 		
-		else if(blickrichtung - 3 == zufallszahl){
+		else if(blickrichtung - 3 == next){
 			lvfg.drehenLinks();
 			lvfg.geradeaus();
 		}
@@ -156,4 +196,4 @@ public class Verfolger extends IModus{
 
 }
 
-}
+
