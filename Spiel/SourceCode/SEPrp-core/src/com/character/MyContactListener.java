@@ -76,6 +76,10 @@ public class MyContactListener implements ContactListener {
 			}
 			
 		}
+		if(fa.getUserData() != null && fa.getUserData().equals("skill") && fb.getBody().getFixtureList().size>1 &&
+				(fb.getBody().getFixtureList().get(1).getUserData().equals("truhe") || fb.getBody().getFixtureList().get(1).getUserData().equals("npc"))){
+			((Skill) fa.getBody().getUserData()).setAlive(false);
+		}
 	}
 
 	@Override

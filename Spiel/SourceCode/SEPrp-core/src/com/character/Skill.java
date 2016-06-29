@@ -93,7 +93,7 @@ public class Skill implements Serializable {
 		//hallo = new Sprite(bild);
 		aktiviert = false;
 		this.setRadius(radius);
-		this.collisionLayer=collisionLayer;
+		this.setCollisionLayer(collisionLayer);
 		a = ic.getGegnerAnimation(0);
 		zaehler = 0;
 	}
@@ -155,7 +155,7 @@ public class Skill implements Serializable {
 			body.setTransform(getX()+16, getY()+16, 0);
 
 			
-		if(isCellBlocked(x,y))
+		if(isCellBlocked(x+16,y+16))
 			alive=false;
 	}
 
@@ -432,9 +432,9 @@ public class Skill implements Serializable {
 	private boolean isCellBlocked(float x, float y) {
 		Cell cell;
 		boolean blocked = false;
-		for (int i = 0; i < collisionLayer.length; i++) {
-			cell = collisionLayer[i].getCell((int) (x / collisionLayer[i].getTileWidth()),
-					(int) (y / collisionLayer[i].getTileHeight()));
+		for (int i = 0; i < getCollisionLayer().length; i++) {
+			cell = getCollisionLayer()[i].getCell((int) (x / getCollisionLayer()[i].getTileWidth()),
+					(int) (y / getCollisionLayer()[i].getTileHeight()));
 			blocked = blocked || (cell != null && cell.getTile() != null
 					&& cell.getTile().getProperties().containsKey("blocked"));
 		}
@@ -499,5 +499,13 @@ public class Skill implements Serializable {
 	
 	public Rolle getCasterRolle() {
 		return c.getRolle();
+	}
+
+	public TiledMapTileLayer[] getCollisionLayer() {
+		return collisionLayer;
+	}
+
+	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer) {
+		this.collisionLayer = collisionLayer;
 	}
 }
