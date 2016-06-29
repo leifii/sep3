@@ -139,13 +139,7 @@ public class CharEditorState extends State {
 		buttonL = new TextButton(">", textButtonStyle);
 		buttonL.pad(5);
 		
-<<<<<<< .mine
-//		Skin as= new Skin(Gdx.files.internal("uiskin.json"));
-//		TextField a= new TextField("",as);
-=======
-		//Skin as= new Skin(Gdx.files.internal("uiskin.json"));
-		//TextField a= new TextField("",as);
->>>>>>> .r903
+
 
 		LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
