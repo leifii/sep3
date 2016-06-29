@@ -1,6 +1,9 @@
 package com.grafiken;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.Author;
+
+@Author(name = "???")
 
 public interface IObjekte {
 	
