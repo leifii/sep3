@@ -36,19 +36,19 @@ public class Verfolger extends IModus{
 		
 		knoten = planeinit.getInfo(aktuelleposition);
 		
-		if(knoten.getNord() && (aktuelleposition - 10) != letzterKnoten && (aktuelleposition - 10) != nachricht[1] && (aktuelleposition - 10) != nachricht[3] ){
+		if(knoten.getNord() && (aktuelleposition - 10) != letzterKnoten && (aktuelleposition - 10) != nachricht[3] && (aktuelleposition - 10) != nachricht[5] ){
 			richtungen[0] = true;
 		}
 		
-		if(knoten.getSued() && (aktuelleposition + 10) != letzterKnoten&& (aktuelleposition + 10) != nachricht[1] && (aktuelleposition + 10) != nachricht[3] ){
+		if(knoten.getSued() && (aktuelleposition + 10) != letzterKnoten&& (aktuelleposition + 10) != nachricht[3] && (aktuelleposition + 10) != nachricht[5] ){
 			richtungen[2] = true;
 		}
 		
-		if(knoten.getOst() && (aktuelleposition + 1) != letzterKnoten && (aktuelleposition + 1) != nachricht[1] && (aktuelleposition + 1) != nachricht[3] ){
+		if(knoten.getOst() && (aktuelleposition + 1) != letzterKnoten && (aktuelleposition + 1) != nachricht[3] && (aktuelleposition + 1) != nachricht[5] ){
 			richtungen[3] = true;
 		}
 		
-		if(knoten.getWest() && (aktuelleposition - 1) != letzterKnoten&& (aktuelleposition - 1) != nachricht[1] && (aktuelleposition - 1) != nachricht[3] ){
+		if(knoten.getWest() && (aktuelleposition - 1) != letzterKnoten&& (aktuelleposition - 1) != nachricht[3] && (aktuelleposition - 1) != nachricht[5] ){
 			richtungen[1] = true;
 		}
 		
@@ -82,24 +82,15 @@ public class Verfolger extends IModus{
 		
 		//setzen der neuen zielposition Position
 		
-	/*	if(zufallszahl == 0){
-			zielposition -= 10;
+	
+		if( Sepman.getpos > aktuelleposition ){
 		}
 		
-		else if(zufallszahl == 1){
-			zielposition -= 1;
-		}
+		int zdistanz = ( Sepman.getpos - aktuelleposition );
+		int distanz = Math.abs(zdistanz);
 		
-		else if(zufallszahl == 2){
-			zielposition += 10;
-		}
 		
-		else if(zufallszahl == 3){
-			zielposition +=1;
-		}
-		
-		*/
-		
+		 
 		
 		//fahren des Roboters zu der nächsten Postion
 		
