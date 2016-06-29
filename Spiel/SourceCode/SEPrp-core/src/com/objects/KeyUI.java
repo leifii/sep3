@@ -5,7 +5,10 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
+
+@Author(name = "Bijan Nejad")
 
 
 public class KeyUI {
