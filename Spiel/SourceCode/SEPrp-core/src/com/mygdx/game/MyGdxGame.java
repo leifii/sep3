@@ -13,6 +13,8 @@ import com.mygdx.menu.MenuState;
 import com.mygdx.menu.NewMenuState;
 import com.mygdx.menu.NewMenuState1;
 
+@Author(name = "???")
+
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 
