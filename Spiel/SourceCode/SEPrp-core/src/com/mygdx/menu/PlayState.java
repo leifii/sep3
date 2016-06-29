@@ -531,7 +531,7 @@ public class PlayState extends State {
 		
 		//DRAW HP
 		
-		b2dr.render(world, cam.combined);
+		//b2dr.render(world, cam.combined);
 
 	}
 	
