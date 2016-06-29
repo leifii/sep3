@@ -83,11 +83,10 @@ public class Verfolger extends IModus{
 		//setzen der neuen zielposition Position
 		
 	
-		if( Sepman.getpos > aktuelleposition ){
+		if( nachricht[7] > aktuelleposition ){
 		}
 		
-		int zdistanz = ( Sepman.getpos - aktuelleposition );
-		int distanz = Math.abs(zdistanz);
+	
 		
 		
 		 
