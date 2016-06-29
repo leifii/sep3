@@ -12,13 +12,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
+import com.mygdx.game.Author;
 import com.mygdx.menu.GameStateManager;
 import com.mygdx.menu.PlayState;
 
-/* --Dom-- */
+@Author(name = "Dominikus Häckel")
 
 public class GameScoreManagement {
-
+	
 	public static void setRunningNr(int runningNr) {
 		if (runningNr > 3) { runningNr = 1;}
 		PrintWriter printWriter = null;
