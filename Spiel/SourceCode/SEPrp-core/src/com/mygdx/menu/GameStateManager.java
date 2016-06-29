@@ -7,7 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Author;
 
-@Author(name = "Bijan Shahbaz Nejad","Angelo Soltner")
+@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner")
 
 public class GameStateManager {
 	private Stack<State> states;

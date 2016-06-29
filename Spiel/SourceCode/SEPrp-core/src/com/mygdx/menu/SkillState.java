@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
-@Author(name = ,"Bijan Shahbaz Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 
 public class SkillState extends State {
 

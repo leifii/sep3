@@ -11,7 +11,7 @@ import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
 
-@Author(name = "Bijan Nejad" "Bardia Asemi-Soloot")
+@Author(name = "Bijan Nejad , Bardia Asemi-Soloot")
 
 public class Schuetze extends Character{
 	

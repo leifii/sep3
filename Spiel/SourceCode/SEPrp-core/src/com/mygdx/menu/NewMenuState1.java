@@ -27,7 +27,10 @@ import com.mygdx.menu.NewMenuState;
 import com.mygdx.game.Author;
 import com.mygdx.menu.GameStateManager;
 
+
+
 @Author(name = "Angelo Solter")
+
 
 public class NewMenuState1 extends State {
 	private Stage stage;	

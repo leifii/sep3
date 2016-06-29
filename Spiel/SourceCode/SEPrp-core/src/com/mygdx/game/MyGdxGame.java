@@ -13,7 +13,7 @@ import com.mygdx.menu.MenuState;
 import com.mygdx.menu.NewMenuState;
 import com.mygdx.menu.NewMenuState1;
 
-@Author(name = "Bijan Shahbaz Nejad","Angelo Soltner")
+@Author(name = "Bijan Shahbaz Nejad , Angelo Soltner")
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
