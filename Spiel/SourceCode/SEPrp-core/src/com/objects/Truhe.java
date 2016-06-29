@@ -14,9 +14,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.character.IDrawable;
 import com.mygdx.menu.PlayState;
 
-public class Truhe implements Serializable, IDrawable {
+public class Truhe implements IDrawable {
 
-	private static final long serialVersionUID = 1L;
 	Vector3 position;
 	Rectangle bounds;
 	private Body body;
