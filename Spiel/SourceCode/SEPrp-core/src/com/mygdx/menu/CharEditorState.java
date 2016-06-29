@@ -24,8 +24,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.game.Author;
 
 import de.SEPL.GameScore.GameScoreManagement;
+
+@Author(name = "Bijan Nejad")
 
 public class CharEditorState extends State {
 
