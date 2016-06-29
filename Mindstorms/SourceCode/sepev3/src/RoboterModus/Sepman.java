@@ -25,11 +25,12 @@ public class Sepman extends IModus{
 		switch (diff)
 		{
 		
-		aktuelleRichtung=getSepmanRichtung();
+		
 		case 90: lvfg.drehenRechts(); break;
 		case 180: lvfg.drehenLinks(); lvfg.drehenLinks(); break;
 		case 270: lvfg.drehenLinks(); break;
 		}
+		aktuelleRichtung=getSepmanRichtung();
 	}
 
 
