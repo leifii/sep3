@@ -3,6 +3,9 @@ package com.mygdx.menu;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.Author;
+
+@Author(name = "???")
 
 public abstract class State {
 protected OrthographicCamera cam;
