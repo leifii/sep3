@@ -11,9 +11,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.mygdx.game.Author;
 
-//@Author( 
-//		name = Bardia)
+@Author(name = "Bardia Asemi-Soloot")
+
+
 
 public class Skill implements Serializable {
 
