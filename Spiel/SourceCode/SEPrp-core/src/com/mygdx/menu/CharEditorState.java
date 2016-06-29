@@ -39,7 +39,7 @@ public class CharEditorState extends State {
 	Image charbild[][];
 
 	private Skin skin,skin1;
-	private TextureAtlas atlas;
+	private TextureAtlas atlas, atlas1;
 	private Stage stage;
 	private Table table;
 	private TextButton buttonJ, buttonN, buttonM, buttonK, buttonL;
@@ -100,6 +100,7 @@ public class CharEditorState extends State {
 		Gdx.input.setInputProcessor(stage);
 
 		atlas = new TextureAtlas("testb/Texturen.pack");
+		atlas1 = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
 		skin = new Skin(atlas);
 		skin1= new Skin(Gdx.files.internal("uiskin.json"));
 		TextField a=new TextField("", skin1);
