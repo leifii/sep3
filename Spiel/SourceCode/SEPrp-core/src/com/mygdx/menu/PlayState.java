@@ -3,6 +3,7 @@ package com.mygdx.menu;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -34,6 +35,7 @@ import com.character.Schuetze;
 import com.character.Schurke;
 import com.character.Skill;
 import com.gegnerkoordination.Gegner;
+import com.gegnerkoordination.GruenerSchleim;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.mygdx.game.Author;
@@ -198,6 +200,10 @@ public class PlayState extends State {
 					createDynamicBody(200, 200, "gegner"));
 			testGegner.addLoot(EquipmentType.Lederrüstung);
 			gegnerList.add(testGegner);
+			GruenerSchleim Schleim1 = new GruenerSchleim(400, 200, s.getGegnerAnimation(1), collisionLayer, a1,
+					createDynamicBody(400, 200, "gegner"));
+			Schleim1.addLoot(EquipmentType.Lederrüstung);
+			gegnerList.add(Schleim1);
 		}
 	}
 

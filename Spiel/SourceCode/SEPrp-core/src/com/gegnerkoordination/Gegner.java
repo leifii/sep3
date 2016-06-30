@@ -49,6 +49,17 @@ public class Gegner extends Character {
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
 	}
 	
+	//Konstruktor ohne Animation für Schleim
+	public Gegner (int x,int y, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
+		super(x,y,collisionLayer, attributes, body, Rolle.Gegner);
+		
+		//================TMP===============
+		exp = 20;
+		setMaxHP(100);
+		setCurrentHP(getMaxHP());
+		setSkills(new ArrayList<Skill>());
+	}
+	
 	public void update(float dt) {
 		getBounds().setPosition(this.getPosition().x,this.getPosition().y);
 		time += dt;
