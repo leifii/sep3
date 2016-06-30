@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import KommunikationPC.Client;
+import KommunikationPC.Clientinit;
 
 //import Spieldatenverarbeitung.ISpieldaten;
 
@@ -677,15 +678,25 @@ public void actionPerformed(ActionEvent e) {
 			return richtung;
 		}
 		
-public void setClients(){
+public void setClients() throws IOException{
+     Clientinit client1 = new  Clientinit();
+     client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
+     Clientinit client2 = new  Clientinit();
+     client2.clientInit(this.roboterIPs[1], this.roboterBelegung[1], 18415,2);
+     Clientinit client3 = new  Clientinit();
+     client3.clientInit(this.roboterIPs[2], this.roboterBelegung[2], 18415,2);
+     Clientinit client4 = new  Clientinit();
+     client4.clientInit(this.roboterIPs[3], this.roboterBelegung[3], 18415,4);
 	
-	 Thread client1 = new Thread(new Client(this.roboterIPs[0], this.roboterBelegung[0], 18415));
-	 client1.start();
-	 Thread client2 = new Thread(new Client(this.roboterIPs[1], this.roboterBelegung[1], 18415));
-	 client2.start();
-	 Thread client3 = new Thread(new Client(this.roboterIPs[2], this.roboterBelegung[2], 18415));
-	 client3.start();
-	 Thread client4 = new Thread(new Client(this.roboterIPs[3], this.roboterBelegung[3], 18415));
-	 client4.start();
+	
+	
+//	 Thread client1 = new Thread(new clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1));
+//	 client1.start();
+//	 Thread client2 = new Thread(new Clientinit(this.roboterIPs[1], this.roboterBelegung[1], 18415,));
+//	 client2.start();
+//	 Thread client3 = new Thread(new Clientinit(this.roboterIPs[2], this.roboterBelegung[2], 18415, ));
+//	 client3.start();
+//	 Thread client4 = new Thread(new Clientinit(this.roboterIPs[3], this.roboterBelegung[3], 18415,));
+//	 client4.start();
 }
 }
