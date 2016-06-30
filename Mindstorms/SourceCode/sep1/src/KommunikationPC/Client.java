@@ -15,13 +15,17 @@ public class Client implements Runnable {                  //Klasse Client imple
 	String ip;
 	String modus;
 	int port;
+	int clientNr;
+	QueueHandler queue;
 	
 	
-	public Client (String ip, String modus, int port){     //Konstruktor - neues Objekt vom Typ Client. 
+	public Client (String ip, String modus, int port, int clientNr, QueueHandler q){     //Konstruktor - neues Objekt vom Typ Client. 
 		
 		this.ip    = ip;
 		this.modus = modus;
 		this.port  = port;
+		this.clientNr = clientNr;
+		this.queue = q;
 		
 	}
 
@@ -31,7 +35,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 		
 		try{
 			Socket client = new Socket(ip, port);           		 //Initialisierung eines Objekts des Typs Socket
-			Kommunikation kom = new Kommunikation(client);  		 //Initialisierung eines Objekts des Typs Kommunikation
+			Kommunikation kom = new Kommunikation(client, clientNr, queue);  		 //Initialisierung eines Objekts des Typs Kommunikation
 			
 			if(modus == "Tracer"){                                   //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
@@ -67,7 +71,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 																	  //Roboter, ihren Zielpositionen und den Spielinformationen und
 				                                                      //empfängt das "Antwort"-ByteArray.
 				
-//				kom.senden(Kommunikation.erzeugeByteArray());
+				kom.senden(kom.erzeugeByteArray());
 				
 				while(client.getInputStream().available() > 0){
 					kom.empfangen();
