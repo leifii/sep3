@@ -1,3 +1,6 @@
+/** @author ${Tristan}
+ * 
+ */
 package KommunikationPC;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -24,7 +27,7 @@ public class QueueHandler  {
 	
 	
 	
-	public QueueHandler(ConcurrentLinkedQueue<Byte> q1) {
+	public QueueHandler(ConcurrentLinkedQueue<Byte> q1) {                              //Konstruktor des neuen
 		
 			this.queue1 = q1;
 		    this.anzahlClients=1;
@@ -55,7 +58,7 @@ public class QueueHandler  {
 		}
 	
 	
-	public void addToQueue(Byte b){
+	public void addToQueue(Byte b){                               //Fügt der Queue ein neues Byte hinzu, dass an den Roboter geschickt werden soll
 		
 		if(anzahlClients == 1){
 			queue1.add(b);
@@ -77,23 +80,23 @@ public class QueueHandler  {
 		}
 	}
 	
-	public byte getNextQueued(int i){
-		
+	public byte getNextQueued(int clientNr){                       //Entnimmt der Queue ein Element nach FIFO-Prinzip
+		                                                           
 		Byte b = null;
-		if(i==1){
+		if(clientNr==1){
 			b = queue1.poll();
 		}
-		else if(i==2){
+		else if(clientNr==2){
 			b = queue2.poll();
 		}
-		else if(i==3){
+		else if(clientNr==3){
 			b = queue3.poll();
 		}
-		else if(i==4){
+		else if(clientNr==4){
 		    b = queue4.poll();
 		}
 		
-		System.out.println("Something has been pulled: "+b);
+//		System.out.println("Something has been pulled: "+b);        //just for testing >_>
 		if(b!=null){
 		return b;
 		}
@@ -111,13 +114,13 @@ public class QueueHandler  {
 	}
 	
 	
-	public Byte firstByte(ConcurrentLinkedQueue<Byte> q){
+	public Byte firstByte(ConcurrentLinkedQueue<Byte> q){             //just for testing purposes - peeks first byte of queue
 		
 		return q.peek();
 		
 	}
 	
-	public void add1(){
+	public void add1(){                                               //just for testing purposes >_<
 		Byte b = 1;
 		if(anzahlClients == 1){
 			queue1.add(b);
