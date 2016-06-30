@@ -109,10 +109,10 @@ PlayState playstate;
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			gsm.push(playstate);
 		}
-		if (buttonN.isChecked()) {
+		if (buttonJ.isChecked()) {
 			gsm.push(new KaufenState(gsm,playstate));
 		}
-		if (buttonJ.isChecked()) {
+		if (buttonN.isChecked()) {
 		}
 	}
 
