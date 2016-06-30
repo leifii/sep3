@@ -1,5 +1,5 @@
 /**
- * @author ${Katharina Böse}
+ * @author ${Katharina Böse, Gizem}
  *
  * 
  */
