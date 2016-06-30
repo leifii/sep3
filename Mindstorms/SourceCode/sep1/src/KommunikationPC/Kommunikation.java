@@ -8,17 +8,24 @@ package KommunikationPC;
 import java.io.IOException;
 import java.net.Socket;
 
+import Positionen.Position;
+
 public class Kommunikation implements IKommunikation{	
 	
 	Socket socket;
 	int clientNr;
-	byte[] nachricht= new byte[9];	
+	String modus;
+	static byte[] nachricht= new byte[9];	
 	QueueHandler queue;
+	Position pos;
+	byte[] msg    = new byte[9];
 	
-	public Kommunikation(Socket soc, int clientNr, QueueHandler q){	
-		this.socket = soc;	
+	public Kommunikation(Socket soc, int clientNr, QueueHandler q, Position p, String mod){	
+		this.socket   = soc;	
 		this.clientNr = clientNr;
-		this.queue =q;
+		this.queue    = q;
+		this.pos      = p;
+		this.modus    = mod;
 	}
 
 	
@@ -50,26 +57,16 @@ public class Kommunikation implements IKommunikation{
 	
 	
 	public  byte[] erzeugeByteArray(){            //Methode erzeugt das vom PC an die Roboter zu sendende ByteArray
-			byte[] msg    = new byte[9];
-//			int[] aktPos  = {1,2,3,4};     	 //new int[3];
-//			int[] zkftPos =	{5,6,7,8};		 //new int[3];
-//			aktPos = Positionen.Position.getAktuellePos();       ToDo: getter für aktuelle Position
-//			zkftPos= Positionen.Position.getZielPos();           ToDo: getter für Zielposition
 			
-//			msg[0] = (byte) aktPos[2];     //Position "Tracker"
-//			msg[1] = (byte) zkftPos[2];
-			
-//			msg[2] = (byte) aktPos[3];     //Position "Defender"
-//			msg[3] = (byte) zkftPos[3];
-			
-//			msg[4] = (byte) aktPos[1];     //Position "Random"
-//			msg[5] = (byte) zkftPos[1];
-			
-//			msg[6] = (byte) aktPos[0];     //Position "Sepman"
-//			msg[7] = (byte) zkftPos[0];
-			
-			
-			msg[8] = queue.getNextQueued(clientNr);                    //////ToDo: restliche Nachrichten ergänzen!
+			msg[0] = (byte) pos.getPosTracer();
+			msg[1] = (byte) pos.getDestTracer();
+			msg[2] = (byte) pos.getPosDefender();
+			msg[3] = (byte) pos.getDestDefender();
+			msg[4] = (byte) pos.getPosRandom();
+			msg[5] = (byte) pos.getDestRandom();
+			msg[6] = (byte) pos.getPosSepman();
+			msg[7] = (byte) pos.getDestSepman();
+			msg[8] = queue.getNextQueued(clientNr);
 					
 			return msg;
 	}
@@ -78,40 +75,162 @@ public class Kommunikation implements IKommunikation{
 	
 	public  void nachrichtVerarbeiten(byte[] whatever){            //Methode wertet das vom Roboter empfangene ByteArray aus
 		
-		for(int i=0; i<whatever.length; i++){
-			if(i==0){
-//				setAusgangsKnoten(whatever[i]);           Ausgangsknoten des Roboters. Die Nummer des Knotens, von dem der Roboter kommt.
-			}
-			else if(i==1){
-//				setZielKnoten(whatever[i]);               Zielknoten des Roboters. Die Nummers des Knotens, zu dem der Roboter geht.
-			}
-			else if(i==2){
-				if(whatever[i]==1){
-					Kollisionen.Kollision.setkollision();    // Wird aufgerufen, wenn der Drucksensor aktiviert ist, es also zu einer Kollision kam.
+		if(modus=="Sepaman"){
+			for(int i=0;i<msg.length;i++){
+				if(i==0){
+					pos.setPosSepman(msg[0]);
+				}
+				if(i==1){
+					pos.setDestSepman(msg[0]);
+				}
+				if(i==2){
+					if(msg[2]==1){
+						//kollidiert!
+					}
+				}
+				if(i==3){
+					if(msg[3]==0){
+						//roboter inaktiv!
+					}
+					else{
+						//roboter aktiv!
+					}
+				}
+				if(i==4){
+					if(msg[4]==0){
+						//powerup inaktiv!
+					}
+					else{
+						//powerup aktiv!
+					}
+				}
+				if(i==5){
+					if(msg[5]==0){
+						//Spiel nicht pausiert
+					}
+					else{
+						//Spiel pausiert
+					}
 				}
 			}
-			else if(i==3){								//Aktivierungsstatus des Roboters. 0 = Inaktiv; 1 = Aktiv
-				if(whatever[i]==0){
-//					doSmthWhileInactive();                Verarbeitung der Mitteilung, dass Roboter inaktiv ist.                 
+			
+		}
+		if(modus=="Tracer"){
+			for(int i=0;i<msg.length;i++){
+				if(i==0){
+					pos.setPosTracer(msg[0]);
 				}
-				else{
-//					doSmthWhileActive();                  Verarbeitung der Mitteilung, dass Roboter aktiv ist.
+				if(i==1){
+					pos.setDestTracer(msg[0]);
+				}
+				if(i==2){
+					if(msg[2]==1){
+						//kollidiert!
+					}
+				}
+				if(i==3){
+					if(msg[3]==0){
+						//roboter inaktiv!
+					}
+					else{
+						//roboter aktiv!
+					}
+				}
+				if(i==4){
+					if(msg[4]==0){
+						//powerup inaktiv!
+					}
+					else{
+						//powerup aktiv!
+					}
+				}
+				if(i==5){
+					if(msg[5]==0){
+						//Spiel nicht pausiert
+					}
+					else{
+						//Spiel pausiert
+					}
 				}
 			}
-			else if(i==4){								//PowerUp-Status des Sepman. 0 = Inaktiv; 1 = Aktiv
-				if(whatever[i]==0){
-//					powerUpInaktiv();                     Verarbeitung der Mitteilung, dass PowerUp-Status inaktiv ist.
+			
+		}
+		if(modus=="Defender"){
+			for(int i=0;i<msg.length;i++){
+				if(i==0){
+					pos.setPosDefender(msg[0]);
 				}
-				else{
-//					powerUpAktiv();                       Verarbeitung der Mitteilung, dass PowerUp-Status aktiv iss.
+				if(i==1){
+					pos.setDestDefender(msg[0]);
+				}
+				if(i==2){
+					if(msg[2]==1){
+						//kollidiert!
+					}
+				}
+				if(i==3){
+					if(msg[3]==0){
+						//roboter inaktiv!
+					}
+					else{
+						//roboter aktiv!
+					}
+				}
+				if(i==4){
+					if(msg[4]==0){
+						//powerup inaktiv!
+					}
+					else{
+						//powerup aktiv!
+					}
+				}
+				if(i==5){
+					if(msg[5]==0){
+						//Spiel nicht pausiert
+					}
+					else{
+						//Spiel pausiert
+					}
 				}
 			}
-			else if(i==5){                              //Pausenstatus des Spiels. 0 = nicht pausiert; 1 = pausiert            
-				if(whatever[i]==0){
-//					spielNichtPausiert();
+			
+		}
+		if(modus=="Random"){
+			for(int i=0;i<msg.length;i++){
+				if(i==0){
+					pos.setPosRandom(msg[0]);
 				}
-				else{
-//					spielPausiert();
+				if(i==1){
+					pos.setDestRandom(msg[0]);
+				}
+				if(i==2){
+					if(msg[2]==1){
+						//kollidiert!
+					}
+				}
+				if(i==3){
+					if(msg[3]==0){
+						//roboter inaktiv!
+					}
+					else{
+						//roboter aktiv!
+					}
+				}
+				if(i==4){
+					if(msg[4]==0){
+						//powerup inaktiv!
+					}
+					else{
+						//powerup aktiv!
+					}
+				}
+				if(i==5){
+					if(msg[5]==0){
+						//Spiel nicht pausiert
+					}
+					else{
+						//Spiel pausiert
+					}
 				}
 			}
 			
