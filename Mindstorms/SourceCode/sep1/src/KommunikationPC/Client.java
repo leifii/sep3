@@ -1,5 +1,5 @@
 /**
- * @author ${Tristan}
+ * @author ${Tristan, Katharina Böse}
  *
  * 
  */
