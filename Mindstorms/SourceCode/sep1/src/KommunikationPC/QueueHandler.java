@@ -10,6 +10,16 @@ public class QueueHandler  {
 	ConcurrentLinkedQueue<Byte> queue2;
 	ConcurrentLinkedQueue<Byte> queue3;
 	ConcurrentLinkedQueue<Byte> queue4;
+	QueueHandler queueHandler;
+	
+	public void setQueueHandler(QueueHandler q){
+		this.queueHandler = q;
+	}
+	
+	public QueueHandler getQueueHandler(){
+		return queueHandler;
+		
+	}
 	
 	
 	
