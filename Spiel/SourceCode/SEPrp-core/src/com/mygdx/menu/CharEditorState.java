@@ -172,7 +172,7 @@ public class CharEditorState extends State {
 		table.row();
 		Label Name = new Label("Name:   ", labelStyle);
 		table.add(Name);
-		table.debug();
+	
 		table.add(a).spaceRight(100).spaceLeft(100).center();
 
 

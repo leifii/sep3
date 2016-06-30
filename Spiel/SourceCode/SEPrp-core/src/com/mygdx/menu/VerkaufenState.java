@@ -20,7 +20,7 @@ import com.mygdx.game.Author;
 
 @Author(name = "Bijan Shahbaz Nejad")
 
-public class KaufenState extends State{
+public class VerkaufenState extends State{
 	private Skin skin;
 	private TextureAtlas atlas;
 	private Stage stage;
@@ -31,7 +31,7 @@ public class KaufenState extends State{
 	public PlayState PS;
 	
 //PlayState playstate;	
-	public KaufenState(GameStateManager gsm,PlayState ps) {
+	public VerkaufenState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
 		
 	PS=ps;
@@ -74,13 +74,13 @@ public class KaufenState extends State{
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-	label = new Label("Kaufen", labelStyle);
+	label = new Label("Verkaufen", labelStyle);
 	label.setFontScale(2.0f);
 	Image Rahmen = new Image(new Texture("userInterface/Inventar.png"));
 	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
 	Rahmen.setWidth(Gdx.graphics.getWidth() * 1.0f);
 	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
-
+	
 	table.add(buttonJ).padRight(450).padTop(50);
 	table.add(label).padRight(250).padTop(50);
 
@@ -94,7 +94,6 @@ public class KaufenState extends State{
 	stage.addActor(img);
 	stage.addActor(Rahmen);
 	stage.addActor(table);
-
 	}
 
 	@Override
@@ -112,7 +111,6 @@ public class KaufenState extends State{
 	public void update(float dt) {
 		// TODO Auto-generated method stub
 		handleInput();
-		System.out.println("X:"+Gdx.input.getX()+" Y: "+Gdx.input.getY());
 	}
 	public void render(SpriteBatch sb) {
 		stage.act();

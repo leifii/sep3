@@ -80,24 +80,21 @@ PlayState playstate;
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-	label = new Label("Drücke ESC zum beenden.", labelStyle);
-	label.setFontScale(1.2f);
+	label = new Label("Auktionshaus", labelStyle);
+	label.setFontScale(2.2f);
 	Image Rahmen = new Image(new Texture("userInterface/border2.png"));
 	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
 	Rahmen.setWidth(Gdx.graphics.getWidth() * 0.95f);
 	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
 	
-	table.debug();
-	table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight() / 2 - 50);
+	
+	table.add(label).width(100).padBottom(200).padTop(Gdx.graphics.getHeight() / 2 - 50);
 
 	table.row();
 
 	table.add(buttonJ);
 	table.add(buttonN);
-	table.row();
-	table.row();
-
-	table.add(buttonX);
+	table.add(buttonX).padLeft(200);
 	
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
@@ -120,6 +117,7 @@ PlayState playstate;
 			gsm.push(new KaufenState(gsm,playstate));
 		}
 		if (buttonN.isChecked()) {
+			gsm.push(new VerkaufenState(gsm,playstate));
 		}
 	}
 
