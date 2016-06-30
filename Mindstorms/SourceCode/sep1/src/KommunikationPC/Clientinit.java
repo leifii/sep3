@@ -1,5 +1,5 @@
 /**
- * @author ${user}
+ * @author ${Tristan}
  *
  * 
  */
@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import Positionen.Position;
 
-public class Clientinit {
+public class Clientinit {          
 	
 	String ip1, ip2, ip3, ip4;
 	String modus1, modus2, modus3, modus4;
@@ -36,8 +36,8 @@ public class Clientinit {
 		
 	}
 	
-	public void clientInit(String ip1, String modus1, int port1, int clientNr1){
-		
+	public void clientInit(String ip1, String modus1, int port1, int clientNr1){           //Konstruktor
+		 
 		pos = new Position();
 		
 		queue1 = new ConcurrentLinkedQueue<Byte>();
