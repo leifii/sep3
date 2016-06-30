@@ -39,7 +39,7 @@ public class AuktionshausItem {
 		Item=new Sprite(item);
 		Index=index;
 		Preis="200";
-		Item.setScale(80.94f, 100.0f);
+		Item.setScale(8.94f, 10.0f);
 		Item.setPosition(position.x, position.y);
 		
 		///////////////////
