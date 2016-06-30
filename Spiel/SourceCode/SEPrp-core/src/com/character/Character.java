@@ -405,10 +405,12 @@ public class Character implements IDrawable, Serializable {
 		Cell cell;
 		boolean blocked = false;
 		for (int i = 0; i < collisionLayer.length; i++) {
-			cell = collisionLayer[i].getCell((int) (x / collisionLayer[i].getTileWidth()),
-					(int) (y / collisionLayer[i].getTileHeight()));
-			blocked = blocked || (cell != null && cell.getTile() != null
-					&& cell.getTile().getProperties().containsKey("blocked"));
+			if(collisionLayer[i] != null){
+				cell = collisionLayer[i].getCell((int) (x / collisionLayer[i].getTileWidth()),
+						(int) (y / collisionLayer[i].getTileHeight()));
+				blocked = blocked || (cell != null && cell.getTile() != null
+						&& cell.getTile().getProperties().containsKey("blocked"));
+			}
 		}
 		return blocked;
 	}
