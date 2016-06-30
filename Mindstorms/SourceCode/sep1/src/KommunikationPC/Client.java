@@ -8,6 +8,8 @@ package KommunikationPC;
 import java.io.IOException;
 import java.net.Socket;
 
+import Positionen.Position;
+
 
 
 public class Client implements Runnable {                  //Klasse Client implementiert Runnable, um mehrer Instanzen simultan laufen zu lassen
@@ -17,15 +19,17 @@ public class Client implements Runnable {                  //Klasse Client imple
 	int port;
 	int clientNr;
 	QueueHandler queue;
+	Position pos;
 	
 	
-	public Client (String ip, String modus, int port, int clientNr, QueueHandler q){     //Konstruktor - neues Objekt vom Typ Client. 
+	public Client (String ip, String modus, int port, int clientNr, QueueHandler q, Position p){     //Konstruktor - neues Objekt vom Typ Client. 
 		
-		this.ip    = ip;
-		this.modus = modus;
-		this.port  = port;
+		this.ip   	  = ip;
+		this.modus 	  = modus;
+		this.port 	  = port;
 		this.clientNr = clientNr;
-		this.queue = q;
+		this.queue    = q;
+		this.pos      = p;
 		
 	}
 
@@ -34,17 +38,17 @@ public class Client implements Runnable {                  //Klasse Client imple
 		// TODO Auto-generated method stub
 		
 		try{
-			Socket client = new Socket(ip, port);           		 //Initialisierung eines Objekts des Typs Socket
-			Kommunikation kom = new Kommunikation(client, clientNr, queue);  		 //Initialisierung eines Objekts des Typs Kommunikation
+			Socket client = new Socket(ip, port);           									 //Initialisierung eines Objekts des Typs Socket
+			Kommunikation kom = new Kommunikation(client, clientNr, queue, pos, modus);  		 //Initialisierung eines Objekts des Typs Kommunikation
 			
-			if(modus == "Tracer"){                                   //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
+			if(modus == "Tracer"){                                  							 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] tracer = {0, 0, 0, 0, 0, 0, 0, 0, 101};
 				kom.senden(tracer);
 				Thread.sleep(10);
 			}
 			
-			if(modus == "Defender"){								 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
+			if(modus == "Defender"){															 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] defender = {0, 0, 0, 0, 0, 0, 0, 0, 102};
 				kom.senden(defender);
@@ -52,7 +56,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 			}
 			
-			if(modus == "Random"){									 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
+			if(modus == "Random"){																 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] random = {0, 0, 0, 0, 0, 0, 0, 0, 103};
 				kom.senden(random);
@@ -60,7 +64,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 			}
 			
-			if(modus == "Sepman"){									 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
+			if(modus == "Sepman"){																 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] sepman = {0, 0, 0, 0, 0, 0, 0, 0, 104};
 				kom.senden(sepman);
