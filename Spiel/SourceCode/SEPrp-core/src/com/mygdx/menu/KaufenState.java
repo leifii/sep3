@@ -30,11 +30,13 @@ public class KaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	
-	public AuktionshausItem testitem;
+	public AuktionshausItem testitem[];
 //PlayState playstate;	
 	public KaufenState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
-		testitem=new AuktionshausItem(0);
+		testitem=new AuktionshausItem[]{
+				new AuktionshausItem(0, 120),new AuktionshausItem(1, 330)
+		};
 	PS=ps;
 	
 	
@@ -119,7 +121,12 @@ public class KaufenState extends State{
 	
 		stage.act();
 		
-		testitem.add(stage);
+
+for (int i = 0; i < testitem.length; i++) {
+	
+			
+		testitem[i].add(stage);
+		}
 		
 		stage.draw();
 		
