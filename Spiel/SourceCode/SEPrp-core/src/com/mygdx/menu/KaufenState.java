@@ -74,20 +74,16 @@ public class KaufenState extends State{
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-	label = new Label("Drücke ESC zum beenden.", labelStyle);
+	label = new Label("Hier kannst du einkaufen.", labelStyle);
 	label.setFontScale(1.2f);
 	Image Rahmen = new Image(new Texture("userInterface/Inventar.png"));
 	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
-	Rahmen.setWidth(Gdx.graphics.getWidth() * 0.5f);
+	Rahmen.setWidth(Gdx.graphics.getWidth() * 1.0f);
 	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
-	
-	table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight() / 2 - 50);
+	table.debug();
+	table.add(buttonJ).padRight(400).padTop(50);
+	table.add(label).padLeft(400).padTop(50);
 
-	table.row();
-
-	table.add(buttonJ);
-//	table.add(buttonN);
-	table.row();
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 

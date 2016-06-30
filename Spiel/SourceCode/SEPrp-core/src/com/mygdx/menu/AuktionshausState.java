@@ -87,14 +87,18 @@ PlayState playstate;
 	Rahmen.setWidth(Gdx.graphics.getWidth() * 0.95f);
 	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
 	
+	table.debug();
 	table.add(label).width(100).padBottom(100).padTop(Gdx.graphics.getHeight() / 2 - 50);
 
 	table.row();
 
 	table.add(buttonJ);
 	table.add(buttonN);
-	table.add(buttonX).padRight(250);
 	table.row();
+	table.row();
+
+	table.add(buttonX);
+	
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
