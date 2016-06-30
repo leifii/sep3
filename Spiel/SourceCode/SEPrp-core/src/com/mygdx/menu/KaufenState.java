@@ -116,14 +116,16 @@ public class KaufenState extends State{
 		System.out.println("X:"+Gdx.input.getX()+" Y: "+Gdx.input.getY());
 	}
 	public void render(SpriteBatch sb) {
-		sb.begin();
-		stage.act();
 	
+		stage.act();
+		
+		testitem.add(stage);
+		
 		stage.draw();
 		
-testitem.render(sb);
+		
 	
-sb.end();
+
 }
 
 	public void dispose() {
