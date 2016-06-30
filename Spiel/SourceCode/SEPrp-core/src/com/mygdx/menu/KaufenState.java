@@ -35,8 +35,9 @@ public class KaufenState extends State{
 	public KaufenState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
 		testitem=new AuktionshausItem[]{
-				new AuktionshausItem(0, 120),new AuktionshausItem(1, 330)
+				new AuktionshausItem(0, 120),new AuktionshausItem(1, 330),new AuktionshausItem(2, 55)
 		};
+		
 	PS=ps;
 	
 	
