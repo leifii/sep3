@@ -63,18 +63,18 @@ public class Server{
 			mode = nachricht[8];
 			
 			switch (mode){
-			case 101: robomode = new Verfolger();
+			case 101: robomode = new Verfolger(mode, planes, lvfg, drucksensor);
 			break;
-			case 102: robomode = new Verteidiger();
+			case 102: robomode = new Verteidiger(mode, planes, lvfg, drucksensor);
 			break;
 			case 103: robomode = new Zufall(26, planes, lvfg, drucksensor);
 			break;
-			case 104: robomode = new Sepman();
+			case 104: robomode = new Sepman(planes, lvfg, drucksensor);
 			break;
 			default: robomode = new Zufall(26, planes, lvfg, drucksensor);
 			break;
 			}
-			com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
+			com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 			
 			while(true){
 			nachricht = com1.empfangen();
@@ -83,24 +83,24 @@ public class Server{
 			
 			if(mode == 104){
 				// TODO Sepman
-				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 			}
 			
 			else if(mode == 103){
 				// TODO Zufall
 				robomode.setNachricht(nachricht);
 				robomode.run();
-				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 			}
 			
 			else if(mode == 102){
 				// TODO Verteidigung
-				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 			}
 			
 			else if(mode == 101){
 				// TODO Verfolgung
-				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getDest(), robomode.getDrucksensor(), robomode.getAktivierung(), robomode.getPowerup(), robomode.getPause()));
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 			}
 			
 			

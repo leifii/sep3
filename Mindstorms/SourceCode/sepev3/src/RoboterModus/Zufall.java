@@ -163,10 +163,4 @@ public class Zufall extends IModus{
 		else
 			lvfg.stop();
 	}
-
-
-
-	
-	
-
 }
