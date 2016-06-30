@@ -11,10 +11,14 @@ import java.net.Socket;
 public class Kommunikation implements IKommunikation{	
 	
 	Socket socket;
+	int clientNr;
 	byte[] nachricht= new byte[9];	
+	QueueHandler queue;
 	
-	public Kommunikation(Socket soc){	
+	public Kommunikation(Socket soc, int clientNr, QueueHandler q){	
 		this.socket = soc;	
+		this.clientNr = clientNr;
+		this.queue =q;
 	}
 
 	
@@ -44,32 +48,32 @@ public class Kommunikation implements IKommunikation{
 	}
 	
 	
-/*	
-	public static byte[] erzeugeByteArray(){            //Methode erzeugt das vom PC an die Roboter zu sendende ByteArray
+	
+	public  byte[] erzeugeByteArray(){            //Methode erzeugt das vom PC an die Roboter zu sendende ByteArray
 			byte[] msg    = new byte[9];
-			int[] aktPos  = {1,2,3,4};     	 //new int[3];
-			int[] zkftPos =	{5,6,7,8};		 //new int[3];
+//			int[] aktPos  = {1,2,3,4};     	 //new int[3];
+//			int[] zkftPos =	{5,6,7,8};		 //new int[3];
 //			aktPos = Positionen.Position.getAktuellePos();       ToDo: getter für aktuelle Position
 //			zkftPos= Positionen.Position.getZielPos();           ToDo: getter für Zielposition
 			
-			msg[0] = (byte) aktPos[2];     //Position "Tracker"
-			msg[1] = (byte) zkftPos[2];
+//			msg[0] = (byte) aktPos[2];     //Position "Tracker"
+//			msg[1] = (byte) zkftPos[2];
 			
-			msg[2] = (byte) aktPos[3];     //Position "Defender"
-			msg[3] = (byte) zkftPos[3];
+//			msg[2] = (byte) aktPos[3];     //Position "Defender"
+//			msg[3] = (byte) zkftPos[3];
 			
-			msg[4] = (byte) aktPos[1];     //Position "Random"
-			msg[5] = (byte) zkftPos[1];
+//			msg[4] = (byte) aktPos[1];     //Position "Random"
+//			msg[5] = (byte) zkftPos[1];
 			
-			msg[6] = (byte) aktPos[0];     //Position "Sepman"
-			msg[7] = (byte) zkftPos[0];
+//			msg[6] = (byte) aktPos[0];     //Position "Sepman"
+//			msg[7] = (byte) zkftPos[0];
 			
 			
-			msg[8] = (byte) Anzeige.Menu.richtung;                    //////ToDo: restliche Nachrichten ergänzen!
+			msg[8] = queue.getNextQueued(clientNr);                    //////ToDo: restliche Nachrichten ergänzen!
 					
 			return msg;
 	}
-*/	
+	
 	
 	
 	public  void nachrichtVerarbeiten(byte[] whatever){            //Methode wertet das vom Roboter empfangene ByteArray aus
