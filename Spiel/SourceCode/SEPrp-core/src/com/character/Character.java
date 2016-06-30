@@ -59,6 +59,7 @@ public class Character implements IDrawable, Serializable {
 	public int DEX;
 	public int MaxHP;
 	public int currentHP;
+	public int dmgFaktor;
 	public static int exp;
 	public static int neededexp;
 	public static int level;
@@ -106,6 +107,8 @@ public class Character implements IDrawable, Serializable {
 		MaxHP = 100;
 
 		setCurrentHP(MaxHP);
+		dmgFaktor = 1;
+		
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
 			keyframes[i] = animation[0][i];
@@ -659,6 +662,14 @@ public class Character implements IDrawable, Serializable {
 
 	public boolean getWhiteKeyStatus() {
 		return whiteKeyRecieved;
+	}
+	
+	public int getdmgFaktor(){
+		return dmgFaktor;
+	}
+	
+	public void setdmgFaktor(int x){
+		dmgFaktor = x;
 	}
 	// -------
 }

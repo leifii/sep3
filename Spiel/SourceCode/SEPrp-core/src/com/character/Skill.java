@@ -23,7 +23,7 @@ public class Skill implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int lvl;
 	private int dmg;
-	int dmgfaktor;
+	//int dmgfaktor;
 	private float cdnow;
 	float cd;
 	int cdfaktor;
@@ -77,7 +77,7 @@ public class Skill implements Serializable {
 		this.setY(y);
 		this.lvl = lvl;
 		this.setDmg(dmg);
-		this.dmgfaktor = dmgfaktor;
+		//this.dmgfaktor = dmgfaktor;
 		this.cd = cd;
 		this.cdfaktor = cdfaktor;
 		this.speed = speed;
@@ -106,6 +106,8 @@ public class Skill implements Serializable {
 	}
 
 	public void update(float dt, float xx, float yy) {
+		//dmgfaktor = c.getdmgFaktor();
+		
 		if (zaehler == 360) // bei kompletter drehung der axt auf 0 wieder
 							// setzen
 			zaehler = 0;
@@ -146,7 +148,7 @@ public class Skill implements Serializable {
 																		// wieder
 																		// runtersetzen
 																		// (4.skill)
-			setDmgFaktor(1);
+			c.setdmgFaktor(1);
 		}
 		if (c instanceof Magier && button == 2 && alive == false && aktiviert == true) { // hp
 																							// vom
@@ -201,8 +203,7 @@ public class Skill implements Serializable {
 					lifeTimer = 0;
 					richtung = direction;
 					setAlive(true);
-					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) { // richtung
-																														// anpassen
+					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) { // richtung anpassen
 						dx = 0 * speed;
 						dy = -300 * speed;
 					} else if (direction == AnimationDirection.WEST_WALK
@@ -260,7 +261,7 @@ public class Skill implements Serializable {
 					setAlive(true);
 					if (c instanceof Krieger) { // heal + höherer dmgFaktor
 						c.heal(getDmg());
-						setDmgFaktor(2);
+						c.setdmgFaktor(2);
 					}
 					if (c instanceof Schurke) {
 						if (helpNr == 1) { // south
@@ -465,9 +466,9 @@ public class Skill implements Serializable {
 	// }
 	// }
 
-	public void setDmgFaktor(int dmgfaktor) {
-		this.dmgfaktor = dmgfaktor;
-	}
+//	public void setDmgFaktor(int dmgfaktor) {
+//		this.dmgfaktor = dmgfaktor;
+//	}
 
 	private boolean isCellBlocked(float x, float y) {
 		Cell cell;
