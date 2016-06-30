@@ -16,10 +16,19 @@ public class Position  implements IPosition {
 	int destTracer  =03;
 	int destRandom  =26;
 	int destDefender=31;
+	Position pos;
 		
 	
 	public Position(){
 		
+	}
+	
+	public void setPositionen(Position p){
+		this.pos = p;
+	}
+	
+	public Position getPositionen(){
+		return pos;
 	}
 	
 	
