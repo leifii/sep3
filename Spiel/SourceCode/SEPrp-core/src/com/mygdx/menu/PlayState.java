@@ -146,7 +146,7 @@ public class PlayState extends State {
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 
-		initGegner();
+		initGegner(1);
 		drawableList = new LinkedList<IDrawable>();
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
 		PortalListe = new LinkedList<Portal>();
@@ -190,15 +190,15 @@ public class PlayState extends State {
 		c = new Krieger(100, 100, s.getAnimation(animationType), collisionLayer, attributes, body);
 	}
 
-	private void initGegner() {
+	private void initGegner(int mapIndex) {
 		gegnerList = new LinkedList<Gegner>();
-
-		Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-		Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1,
-				createDynamicBody(200, 200, "gegner"));
-		testGegner.addLoot(EquipmentType.Lederrüstung);
-		gegnerList.add(testGegner);
-
+		if (mapIndex == 1){
+			Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
+			Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1,
+					createDynamicBody(200, 200, "gegner"));
+			testGegner.addLoot(EquipmentType.Lederrüstung);
+			gegnerList.add(testGegner);
+		}
 	}
 
 	@Override
@@ -270,9 +270,14 @@ public class PlayState extends State {
 					}
 				}
 			}
-			if (c.position.x >= 4500 && c.position.y >= 3500) {
+			if (c.position.x >= 4400 && c.position.y >= 3400 && c.getMapIndex() == 1) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 					changeMap(2);
+				}
+			}
+			if (c.position.x >= 5600 && c.position.y >= 4300 && c.getMapIndex() == 2) {
+				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+					changeMap(3);
 				}
 			}
 		}
@@ -534,7 +539,7 @@ public class PlayState extends State {
 		
 		//DRAW HP
 		
-		//b2dr.render(world, cam.combined);
+		b2dr.render(world, cam.combined);
 
 	}
 	
@@ -562,10 +567,11 @@ public class PlayState extends State {
 			map.setMap(new TmxMapLoader().load("grafiken/map3.tmx"));
 		map.setRenderer();
 		c.position = new Vector3(0, 0, 0);
-		collisionLayer = new TiledMapTileLayer[3];
+		collisionLayer = new TiledMapTileLayer[4];
 		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
+		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 		c.setCollisionLayer(collisionLayer);
 		for (Skill s : c.getSkills()){
 			s.setCollisionLayer(collisionLayer);
@@ -573,7 +579,7 @@ public class PlayState extends State {
 		for (Gegner g : gegnerList) {
 			world.destroyBody(g.getBody());
 		}
-		gegnerList = new LinkedList<Gegner>();
+		initGegner(i);
 		for (NPC n : Npc) {
 			world.destroyBody(n.getBody());
 		}
