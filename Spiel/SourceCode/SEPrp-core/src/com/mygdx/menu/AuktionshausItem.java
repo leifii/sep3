@@ -33,18 +33,22 @@ public class AuktionshausItem {
 	private Label label;
 	String Preis;
 	Stage stageitem;
+	int abstand;
 	
-	public AuktionshausItem(int index){
-		if (index==0) {
-			position=new Vector3(188, 720, 0);
-		}
+	public AuktionshausItem(int index,int preis){
+		Index=index;
+		abstand=index*172;
+	
+		position=new Vector3(188+abstand, 720, 0);
+	
+		
 		stageitem = new Stage();
 		Gdx.input.setInputProcessor(stageitem);
 		
 		item=new Texture("userInterface/auktionshausitem.png");
 		Item=new Image(item);
-		Index=index;
-		Preis="200";
+		
+		Preis=Integer.toString(preis);
 		Item.setScale(9.0f, 10.0f);
 		Item.setPosition(position.x, position.y);
 		
