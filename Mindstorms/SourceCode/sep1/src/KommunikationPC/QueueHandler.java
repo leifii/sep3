@@ -25,7 +25,6 @@ public class QueueHandler  {
 			this.queue1 = q1;
 			this.queue2 = q2;
 			this.anzahlClients = 2;
-			System.out.println("2 Queues erstellt");
 		}
 	
 	public QueueHandler(ConcurrentLinkedQueue<Byte> q1, ConcurrentLinkedQueue<Byte>q2, ConcurrentLinkedQueue<Byte>q3){
@@ -34,7 +33,6 @@ public class QueueHandler  {
 			this.queue2 = q2;
 			this.queue3 = q3;
 			this.anzahlClients = 3;
-			
 		}
 
 	public QueueHandler(ConcurrentLinkedQueue<Byte> q1, ConcurrentLinkedQueue<Byte>q2, ConcurrentLinkedQueue<Byte>q3, ConcurrentLinkedQueue<Byte>q4){
@@ -69,10 +67,8 @@ public class QueueHandler  {
 		}
 	}
 	
-	
-	
-	
 	public byte getNextQueued(int i){
+		
 		Byte b = null;
 		if(i==1){
 			b = queue1.poll();
@@ -94,24 +90,20 @@ public class QueueHandler  {
 		else{
 			return b = 0;
 			}
-		
 	}
 	
-	
-	public boolean queueIsEmpty(){
+	public boolean isQueueEmpty(){
 		
 		if(queue1.isEmpty()){
 			return true;
 		}
 		return false;
-		
 	}
 	
 	
 	public Byte firstByte(ConcurrentLinkedQueue<Byte> q){
-		Byte b;
-		b=q.peek();
-		return b;
+		
+		return q.peek();
 		
 	}
 	
@@ -136,7 +128,4 @@ public class QueueHandler  {
 			queue4.add(b);
 		}
 	}
-	
-	
-
 }
