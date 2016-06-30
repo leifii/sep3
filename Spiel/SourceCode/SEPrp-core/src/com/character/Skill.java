@@ -473,10 +473,17 @@ public class Skill implements Serializable {
 		Cell cell;
 		boolean blocked = false;
 		for (int i = 0; i < getCollisionLayer().length; i++) {
-			cell = getCollisionLayer()[i].getCell((int) (x / getCollisionLayer()[i].getTileWidth()),
-					(int) (y / getCollisionLayer()[i].getTileHeight()));
-			blocked = blocked || (cell != null && cell.getTile() != null
-					&& cell.getTile().getProperties().containsKey("blocked"));
+			if(getCollisionLayer()[i]!=null){
+				if (x < getCollisionLayer()[i].getWidth() * getCollisionLayer()[i].getTileWidth() &&
+						y < getCollisionLayer()[i].getHeight() * getCollisionLayer()[i].getTileHeight() &&
+						x >= 0 && y >= 0){
+					cell = getCollisionLayer()[i].getCell((int) (x / getCollisionLayer()[i].getTileWidth()),
+							(int) (y / getCollisionLayer()[i].getTileHeight()));
+					blocked = blocked || (cell != null && cell.getTile() != null
+							&& cell.getTile().getProperties().containsKey("blocked"));
+				}
+				else blocked = true;
+			}
 		}
 		return blocked;
 	}
