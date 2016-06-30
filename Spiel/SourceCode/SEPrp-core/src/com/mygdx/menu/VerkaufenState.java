@@ -68,8 +68,6 @@ public class VerkaufenState extends State{
 	buttonJ = new TextButton("Zurück", textButtonStyle);
 	buttonJ.pad(10);
 
-//	buttonN = new TextButton("xyz", textButtonStyle);
-//	buttonN.pad(10);
 
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
