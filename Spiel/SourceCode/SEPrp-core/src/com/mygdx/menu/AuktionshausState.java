@@ -30,7 +30,7 @@ public class AuktionshausState extends State{
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
-	private TextButton buttonJ, buttonN ,buttonK;
+	private TextButton buttonJ, buttonN ,buttonX;
 	private BitmapFont white;
 	private Label label;	
 	
@@ -70,11 +70,13 @@ PlayState playstate;
 	ConfirmButtonStyle.font = white;
 
 	buttonJ = new TextButton("Kaufen", textButtonStyle);
-	buttonJ.pad(10);
+	buttonJ.pad(15);
 
 	buttonN = new TextButton("Verkaufen", textButtonStyle);
-	buttonN.pad(10);
+	buttonN.pad(15);
 
+	buttonX = new TextButton("Verlassen", textButtonStyle);
+	buttonX.pad(20);
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
@@ -91,6 +93,7 @@ PlayState playstate;
 
 	table.add(buttonJ);
 	table.add(buttonN);
+	table.add(buttonX).padRight(250);
 	table.row();
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
@@ -106,7 +109,7 @@ PlayState playstate;
 
 	@Override
 	public void handleInput() {
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+		if (buttonX.isChecked()) {
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {

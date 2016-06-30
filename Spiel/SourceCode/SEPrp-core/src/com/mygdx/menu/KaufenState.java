@@ -65,11 +65,11 @@ public class KaufenState extends State{
 	ConfirmButtonStyle.pressedOffsetY = -1;
 	ConfirmButtonStyle.font = white;
 
-	buttonJ = new TextButton("abc", textButtonStyle);
-	buttonJ.pad(10);
+	buttonJ = new TextButton("Zurück", textButtonStyle);
+	buttonJ.pad(15);
 
-	buttonN = new TextButton("xyz", textButtonStyle);
-	buttonN.pad(10);
+//	buttonN = new TextButton("xyz", textButtonStyle);
+//	buttonN.pad(10);
 
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
@@ -86,7 +86,7 @@ public class KaufenState extends State{
 	table.row();
 
 	table.add(buttonJ);
-	table.add(buttonN);
+//	table.add(buttonN);
 	table.row();
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
@@ -102,12 +102,13 @@ public class KaufenState extends State{
 
 	@Override
 	public void handleInput() {
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			gsm.push(new AuktionshausState(gsm, PS));
-		}
-		if (buttonN.isChecked()) {
-		}
+//		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+//			gsm.push(new AuktionshausState(gsm, PS));
+//		}
+//		if (buttonN.isChecked()) {
+//		}
 		if (buttonJ.isChecked()) {
+			gsm.push(new AuktionshausState(gsm, PS));
 		}
 	}
 
