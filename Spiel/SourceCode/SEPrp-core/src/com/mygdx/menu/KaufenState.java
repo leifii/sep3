@@ -25,7 +25,7 @@ public class KaufenState extends State{
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
-	private TextButton buttonJ, buttonN ,buttonK;
+	private TextButton buttonJ;
 	private BitmapFont white;
 	private Label label;	
 	public PlayState PS;
@@ -101,13 +101,14 @@ public class KaufenState extends State{
 
 	}
 
+	
+	
+	
+	
+	
 	@Override
+	
 	public void handleInput() {
-//		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-//			gsm.push(new AuktionshausState(gsm, PS));
-//		}
-//		if (buttonN.isChecked()) {
-//		}
 		if (buttonJ.isChecked()) {
 			gsm.push(new AuktionshausState(gsm, PS));
 		}
@@ -118,12 +119,36 @@ public class KaufenState extends State{
 		handleInput();
 		System.out.println("X:"+Gdx.input.getX()+" Y: "+Gdx.input.getY());
 	}
+
 	public void render(SpriteBatch sb) {
 	
 		stage.act();
 		
 
 for (int i = 0; i < testitem.length; i++) {
+//	if (Gdx.input.getX()>testitem[i].position.x && testitem[i].position.x<(Gdx.input.getX()+172)/* && Gdx.input.getY()>testitem[i].position.y && testitem[i].position.y<(Gdx.input.getY()-190)*/) {
+//		if (Gdx.input.isTouched()) {
+//
+//AuktionshausItem []neu=new AuktionshausItem[testitem.length];
+//testitem[i]=null;		
+//			for (int j = 0; j < testitem.length; j++) {
+//			
+//				if (testitem[j]!=null) {
+//					neu[j]=testitem[j];
+//					x--;
+//				}
+//				
+//			}
+//			
+//			testitem=neu;
+//		
+			
+//			testitem[i].remove( this,i);
+//		}
+//	}
+//	
+//	
+	
 	
 			
 		testitem[i].add(stage);
@@ -137,7 +162,7 @@ for (int i = 0; i < testitem.length; i++) {
 }
 
 	public void dispose() {
-		// TODO Auto-generated method stub
+	
 		this.dispose();
 	}
 

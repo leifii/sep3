@@ -25,6 +25,7 @@ public class AuktionshausItem {
 	Texture item;
 	Image Item;
 	int Index;
+	
 	/////////////
 	private Skin skin;
 	private TextureAtlas atlas;
@@ -36,6 +37,7 @@ public class AuktionshausItem {
 	int abstand;
 	
 	public AuktionshausItem(int index,int preis){
+		
 		Index=index;
 		abstand=index*172;
 	
@@ -62,6 +64,23 @@ public class AuktionshausItem {
 		label.setColor(Color.YELLOW);
 	}
 	
+	public void verkaufen(){
+		
+	}
+	
+//		if (Gdx.input.getX()>position.x && position.x<(Gdx.input.getX()+172) && Gdx.input.getY()>position.y && position.y<(Gdx.input.getY()+19)) {
+//			if (Gdx.input.isTouched()) {
+//	
+//				
+//				
+//			}
+//		}
+				
+//	public void remove(KaufenState ks,int i){
+//		ks.testitem[i].Item.remove();
+//	
+//	}
+//	
 	public void add(Stage stage){
 		
 		stage.addActor(Item);
