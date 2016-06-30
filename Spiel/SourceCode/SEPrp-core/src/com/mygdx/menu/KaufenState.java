@@ -30,10 +30,11 @@ public class KaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	
+	public AuktionshausItem testitem;
 //PlayState playstate;	
 	public KaufenState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
-		
+		testitem=new AuktionshausItem(0);
 	PS=ps;
 	
 	
@@ -115,10 +116,15 @@ public class KaufenState extends State{
 		System.out.println("X:"+Gdx.input.getX()+" Y: "+Gdx.input.getY());
 	}
 	public void render(SpriteBatch sb) {
+		sb.begin();
 		stage.act();
 	
 		stage.draw();
-	}
+		
+testitem.render(sb);
+	
+sb.end();
+}
 
 	public void dispose() {
 		// TODO Auto-generated method stub
