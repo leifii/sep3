@@ -86,13 +86,13 @@ public class Verfolger extends IModus{
 		
 		int next =-1 ;						
 		
-		// 0:Oben , 1: Links , 2: Unten, 3: Rechts
+		// 0:Oben , 1: Links , 2: Unten, 3: Rechts, -1: Unbeweglich
 		
 	
 		// Tiefer/Rechts
 		if( nachricht[6] > aktuelleposition ){
 			
-			
+		
 			// Gleiche Reihe Rechts
 			
 				if((nachricht[6]-aktuelleposition) < 6 ){ 
@@ -100,12 +100,20 @@ public class Verfolger extends IModus{
 					if(richtungen[3]){
 					next = 3 ;
 						}
-					else if(richtungen[2]){
-					next = 2;
+						else if(richtungen[2]){
+							next = 2;
+						}
+						else if(richtungen[0]) {
+							next = 0 ;
+						}
+						else if (richtungen[1]){
+							next = 1;	
+						}
+						else{
+							next = -1 ;
+						}
+					
 					}
-					else {}
-				
-				}
 			
 				// Tiefer
 			
@@ -114,14 +122,23 @@ public class Verfolger extends IModus{
 					if(richtungen[2]){
 					next = 2;
 						}
-					else {
-					next = 3 ;
-					}
+						else if ((nachricht[6] % 10) < (aktuelleposition % 10) && richtungen[1] ) {
+						next = 1 ;
+						}
+						else if (richtungen[3]){
+						next = 3 ;
+						}
+						else if (richtungen[0]){
+						next = 0;
+						}
+						else {
+						next = -1 ;
+						}
 				}
 		
 		
 		
-			}
+			
 		
 			//Höher/Links
 		
@@ -131,10 +148,46 @@ public class Verfolger extends IModus{
 			
 			if((aktuelleposition - nachricht[6]) < 6) {
 				
+				if(richtungen[1]){
+					
+					next = 1 ;
 				
-	
-		
+				}
+					else if(richtungen[2]){
+						next = 2 ;
+					}
+					else if(richtungen[0]){
+						next = 0 ;
+					}
+					else if(richtungen[3]){
+						next = 3 ;
+					}
+					else{
+						next = -1 ;
+					}
+				
 			}
+				
+			// Höher
+				
+			else if (richtungen[0]){
+				next = 0;
+			}
+				else if	((nachricht[6] % 10) < (aktuelleposition % 10) && richtungen[1]){
+					next = 1 ;
+				}
+				else if(richtungen[3]){
+					next = 3;
+				}
+				else if (richtungen[2]){
+					next = 2;
+				}
+				else {
+					next = -1;
+				}
+					
+	
+				}
 		
 		
 		
@@ -143,7 +196,12 @@ public class Verfolger extends IModus{
 		
 		//fahren des Roboters zu der nächsten Postion
 		
-		if(next == blickrichtung){
+		
+		if(next == -1){
+			
+		}
+		
+		else if(next == blickrichtung){
 			lvfg.geradeaus();
 		}
 		
