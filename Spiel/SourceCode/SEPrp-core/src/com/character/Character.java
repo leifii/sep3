@@ -36,14 +36,14 @@ public class Character implements IDrawable, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	transient private ArrayList<Skill> skills;
+	transient protected ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
 	transient private Inventory inventory;
 	transient protected TiledMapTileLayer[] collisionLayer;
 	private transient Body body;
 	// private float cd;
-	transient private Rectangle bounds;
+	transient protected Rectangle bounds;
 	transient private boolean disposable = false;
 	transient private boolean visible = true;
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
@@ -136,6 +136,35 @@ public class Character implements IDrawable, Serializable {
 			a.getValue().setPlayMode(PlayMode.LOOP);
 
 		/////////////////// MOVEMENT//ENDE//////////////////////////////////
+		level = 1;
+		exp = 0;
+		neededexp = 100;
+		inventory = new Inventory();
+	}
+	
+	//Konstruktor ohne Animation für Schleim
+	public Character(float x, float y, TiledMapTileLayer[] collisionLayer,
+			Attributes attributes, Body body, Rolle rolle){
+		this.rolle = rolle;
+		g = new Objekte();
+
+		this.collisionLayer = collisionLayer;
+		this.setBody(body);
+		body.getFixtureList().get(0).setUserData(this);
+
+		bounds = new Rectangle(x, y, 32, 48);
+		
+		this.attributes = attributes;
+
+		/////////////////// Wie wird MaxHP
+		/////////////////// ausgerechnet?/////////////////////////
+		MaxHP = 100;
+
+		setCurrentHP(MaxHP);
+		dmgFaktor = 1;
+
+		position = new Vector3(x, y, 0);
+		
 		level = 1;
 		exp = 0;
 		neededexp = 100;
