@@ -76,7 +76,7 @@ public class Character implements IDrawable, Serializable {
 	// character1=new Texture(sprite);
 	// }
 	
-	private final Rolle rolle;
+	protected final Rolle rolle;
 
 	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body, Rolle rolle) {
