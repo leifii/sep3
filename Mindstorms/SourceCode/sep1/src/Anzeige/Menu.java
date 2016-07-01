@@ -10,7 +10,7 @@ package Anzeige;
 // Jedes Menü wird über ein eigenes JPanel realisiert
 // Methoden zum erstellen der Menüs heißen "erzeuge"+ das passende Menü. Diese Methoden stehen auch alle im Interface IMenu
 // Das Spielfeld Panel (thorbensPanel) wird von der Klasse AnzeigeSpielfeld gestaltet 
-
+//
 
 import java.awt.EventQueue;
 import java.awt.Font;
