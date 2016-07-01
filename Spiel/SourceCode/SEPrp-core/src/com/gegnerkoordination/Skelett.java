@@ -24,7 +24,7 @@ public class Skelett extends Gegner {
 	public Skelett(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body) {
 		
-		super(x, y, collisionLayer, attributes, body);
+		super(x, y, 64, 64, collisionLayer, attributes, body);
 		animationMap = new HashMap<AnimationDirection, Animation>();
 		
 		TextureRegion [] keyframes=new TextureRegion[9];
