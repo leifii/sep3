@@ -572,6 +572,7 @@ public void actionPerformed(ActionEvent e) {
 	}
 	else if(e.getSource() ==btnStartfinal){
 		try {
+			this.setClients();
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
 			thorbensPanel.addKeyListener(new KeyListener(){
@@ -679,16 +680,18 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 public void setClients() throws IOException{
+	
      Clientinit client1 = new  Clientinit();
      client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
-     Clientinit client2 = new  Clientinit();
-     client2.clientInit(this.roboterIPs[1], this.roboterBelegung[1], 18415,2);
-     Clientinit client3 = new  Clientinit();
-     client3.clientInit(this.roboterIPs[2], this.roboterBelegung[2], 18415,3);
-     Clientinit client4 = new  Clientinit();
-     client4.clientInit(this.roboterIPs[3], this.roboterBelegung[3], 18415,4);
-	
-	
+//     client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
+//     Clientinit client2 = new  Clientinit();
+//     client2.clientInit(this.roboterIPs[1], this.roboterBelegung[1], 18415,2);
+//     Clientinit client3 = new  Clientinit();
+//     client3.clientInit(this.roboterIPs[2], this.roboterBelegung[2], 18415,3);
+//     Clientinit client4 = new  Clientinit();
+//     client4.clientInit(this.roboterIPs[3], this.roboterBelegung[3], 18415,4);
+//	
+//	
 	
 //	 Thread client1 = new Thread(new clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1));
 //	 client1.start();
