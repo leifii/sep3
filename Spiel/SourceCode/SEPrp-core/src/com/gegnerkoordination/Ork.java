@@ -11,9 +11,9 @@ import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.character.AnimationDirection;
-import com.character.Attributes;
-import com.character.Skill;
+import com.character.Character;
+import com.character.*;
+import com.mygdx.menu.PlayState;
 
 public class Ork extends Gegner {
 	transient Map<AnimationDirection, Animation> animationMap;
@@ -88,18 +88,42 @@ public class Ork extends Gegner {
 		return animationMap.get(richtung);
 	}
 	
+	public AnimationDirection getRichtung() {
+		return richtung;
+	}
+
+	public void setRichtung(AnimationDirection direction) {
+		richtung = direction;
+	}
+	
 	public void attack(){
 		if(((boolean[]) getBody().getUserData())[0] && getSkills().get(0).getCdnow() <= 0){
 			setRichtung(AnimationDirection.NORTH_ATTACK);
+			Character cha = PlayState.getInstance().c;
+			if(bounds.overlaps(cha.getBounds())){
+				cha.getDamage(10);
+			}
 		}
 		if(((boolean[]) getBody().getUserData())[1] && getSkills().get(0).getCdnow() <= 0){
 			setRichtung(AnimationDirection.SOUTH_ATTACK);
+			Character cha = PlayState.getInstance().c;
+			if(bounds.overlaps(cha.getBounds())){
+				cha.getDamage(10);
+			}
 		}
 		if(((boolean[]) getBody().getUserData())[2] && getSkills().get(0).getCdnow() <= 0){
 			setRichtung(AnimationDirection.EAST_ATTACK);
+			Character cha = PlayState.getInstance().c;
+			if(bounds.overlaps(cha.getBounds())){
+				cha.getDamage(10);
+			}
 		}
 		if(((boolean[]) getBody().getUserData())[3] && getSkills().get(0).getCdnow() <= 0){
 			setRichtung(AnimationDirection.WEST_ATTACK);
+			Character cha = PlayState.getInstance().c;
+			if(bounds.overlaps(cha.getBounds())){
+				cha.getDamage(10);
+			}
 		}
 	}
 }
