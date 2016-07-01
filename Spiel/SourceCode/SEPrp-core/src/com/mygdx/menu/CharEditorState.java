@@ -56,13 +56,14 @@ public class CharEditorState extends State {
 		charauswahl = ch;
 
 		if (charauswahl == 1) { // Krieger
-			augen = new Texture[] { new Texture("grafiken/Archer.png"), new Texture("grafiken/Archer-Eyes1.png"),
-					new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png") };
-			haare = new Texture[] { new Texture("grafiken/ArcherBlue.png"), new Texture("grafiken/Schütze_blauE.png"),
-					new Texture("grafiken/Schütze_grünE.png"), new Texture("grafiken/Schütze_rotE.png") };
+			augen = new Texture[] { new Texture("grafiken/krieger/squire_m_rot-solo.png"), new Texture("grafiken/krieger/squire_m_rot-greenE-solo.png"),
+					new Texture("grafiken/krieger/squire_m_rot-lightblueE-solo.png"), new Texture("grafiken/krieger/squire_m_rot-redE-solo.png")
+					, new Texture("grafiken/krieger/squire_m_rot-yellowE-solo.png") };
+			haare = new Texture[] { new Texture("grafiken/krieger/squire_m-solo.png"), new Texture("grafiken/krieger/squire_m-greenE-solo.png"),
+					new Texture("grafiken/krieger/squire_m-lightblueE-solo.png"), new Texture("grafiken/krieger/squire_m-redE-solo.png"), new Texture("grafiken/krieger/squire_m-yellowE-solo.png") };
 			charbild = new Image[][] { { new Image(augen[0]), new Image(haare[0]) },
 					{ new Image(augen[1]), new Image(haare[1]) }, { new Image(augen[2]), new Image(haare[2]) },
-					{ new Image(augen[3]), new Image(haare[3]) } };
+					{ new Image(augen[3]), new Image(haare[3]) }, {new Image(augen[4]), new Image(haare[4]) }};
 		} else if (charauswahl == 2) { // Magier
 			augen = new Texture[] { new Texture("grafiken/Archer.png"), new Texture("grafiken/Archer-Eyes1.png"),
 					new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png") };
@@ -74,15 +75,6 @@ public class CharEditorState extends State {
 		}
 
 		else if (charauswahl == 3) { // Schurke
-			// augen=new Texture[]{new Texture("grafiken/Schurke.png"),new
-			// Texture("grafiken/SchurkeEye1.png"),new
-			// Texture("grafiken/SchurkeEye2.png")};
-			// haare=new Texture[]{new Texture("grafiken/SchurkeRed.png"),new
-			// Texture("grafiken/SchurkeRedEye1.png"),new
-			// Texture("grafiken/SchurkeRedEye2.png")};
-			// charbild= new Image[][]{{new Image(augen[0]),new
-			// Image(haare[0])},{new Image(augen[1]),new Image(haare[1])},{new
-			// Image(augen[2]),new Image(haare[2])}};
 			augen = new Texture[] { new Texture("grafiken/Archer.png"), new Texture("grafiken/Archer-Eyes1.png"),
 					new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png") };
 			haare = new Texture[] { new Texture("grafiken/ArcherBlue.png"), new Texture("grafiken/Schütze_blauE.png"),
