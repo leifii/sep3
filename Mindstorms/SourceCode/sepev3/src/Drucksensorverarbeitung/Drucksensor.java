@@ -7,9 +7,20 @@
 package Drucksensorverarbeitung;
 
 
+import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3TouchSensor;
+
 
 public class Drucksensor implements IDrucksensor{
+	SensorModes druckSensor;
+	SensorModes druckSensor2;
+	
+	public Drucksensor(){
+		druckSensor= new EV3TouchSensor(SensorPort.S1);
+		druckSensor2= new EV3TouchSensor(SensorPort.S2);
+	}
 		
 	public boolean druckSensor(){
 		

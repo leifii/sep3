@@ -9,16 +9,30 @@ import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.SensorModes;
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.port.MotorPort;
+import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 
 public class Linienverfolgung implements ILinienverfolgung {
-	SensorModes lightSensor= new EV3ColorSensor(SensorPort.S3);
-	SampleProvider light= lightSensor.getMode("Red");
+	RegulatedMotor MotorL;
+	RegulatedMotor MotorR;
+	SensorModes lightSensor;
+	SampleProvider light;
+	
 
-    float[] sample = new float[light.sampleSize()];
+    float[] sample;
     float light_aktuell;
     float weiss_wert=0.34F;					//Lichtwerte Weiss (außerhalb Linie). AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
     										//0.5
+    
+    public Linienverfolgung(){
+    	MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
+    	MotorR= new EV3LargeRegulatedMotor(MotorPort.D);
+    	lightSensor= new EV3ColorSensor(SensorPort.S3);
+    	light= lightSensor.getMode("Red");
+    	sample = new float[light.sampleSize()];
+    }
   
     
     public void geradeaus(){

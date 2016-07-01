@@ -32,8 +32,6 @@ public class KommunikationEV3 implements IKommunikation{
 	
 	public KommunikationEV3(Socket soc, Drucksensor druck){
 		socket = soc;
-		lvfg=new Linienverfolgung();
-		druck=new Drucksensor();
 	}
 	
 	public void senden(byte[] message){
@@ -107,94 +105,7 @@ public class KommunikationEV3 implements IKommunikation{
 		return mes;
 	}
 	
-	public void nachrichtverarbeiten(){
-		
-		
-		int wert = nachrichtempfangen[8];
-		
-		
 
-		if(wert==001){
-//			spielstart();
-		}
-		
-		else if(wert==2){
-//			pause();
-			lvfg.stop();
-		}
-		
-		else if(wert==003){
-//			endPause();
-		}
-		
-		
-		else if (wert==4 || wert==5 || wert==7){
-				
-				lvfg.geradeaus(); //EV3 fährt nach dem ersten geradeaus Befehl automatisch nachdem es Knoten verlässt geradeaus.
-				
-				if (lvfg.aufKnoten()==true){
-					if(wert==5){ 
-						lvfg.drehenLinks();		//Taste Links dreht nach Links
-					}
-					if(wert==7){
-						lvfg.drehenRechts();		//Taste Rechts dreht nach Rechts
-					}
-				}
-		}
-
-		else if(wert==6){
-	
-		}
-		
-		else if(wert==011 || wert==012 || wert==013){
-			if(wert==011){
-//				deaktiviereGeist1();
-			}
-			else if(wert==012){
-//				deaktiviereGeist2();
-			}
-			else if(wert==013){
-//				deaktiviereGeist3();
-			}
-		}
-		
-		else if(wert==021 || wert==022 || wert==023){
-			if(wert==021){
-//				aktiviereGeist1();
-			}
-			else if(wert==022){
-//				aktiviereGeist2();
-			}
-			else if(wert==023){
-//				aktiviereGeist3();
-			}
-		}
-		
-		else if(wert==100){
-//			powerUpEnd();
-		}
-		
-		else if(wert==101){
-//			geistVerfolgung();
-		}
-		
-		else if(wert==102){
-//			geistVerteidigung();
-		}
-		
-		else if(wert==103){
-//			geistZufall();
-		}
-		
-		else if(wert==104){
-//			sepman();
-		}
-		
-		else if(wert==127){
-//			spielende();
-		}
-	
-	}
 
 	public boolean druckSensor() {
 		return druck.druckSensor(); //Boolean Wert der für später benutzt werden kann.

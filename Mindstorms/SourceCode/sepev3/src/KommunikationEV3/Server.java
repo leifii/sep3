@@ -27,6 +27,14 @@ public class Server{
 	
 			byte[] nachricht = new byte[9];
 			int mode;
+			int[] knoten = {15,16,25,26};
+			boolean[] norden = {false, false, true, true};
+			boolean[] sueden =  {true, true, false, false};
+			boolean[] westen = {false, true, false, true};
+			boolean[] osten = {true, false, true, false};
+			boolean[] powerup = {false, false, false, false};
+			
+			
 			ServerSocket sSocket = new ServerSocket(18415);
 			LCD.drawString("Ich akzeptiere", 0, 2);              //Displayausgabe bei Test am EV3
 			LCD.drawString("gerade!", 0, 3);                     //
@@ -45,22 +53,36 @@ public class Server{
 		
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
-			Spielfeld spielfeld = new Spielfeld();
-			spielfeld.create("Spielfeld.txt");
-			Planeinit planes = spielfeld.getSpiel();	     
+			
+			
+
+			
+//			Spielfeld spielfeld = new Spielfeld();
+//			spielfeld.create("Spielfeld.txt");
+			
+			
+//			Planeinit planes = spielfeld.getSpiel();
+			Planeinit planes = new Planeinit(knoten, norden, sueden, osten, westen, powerup);
+			
+			
 			Linienverfolgung lvfg=new Linienverfolgung();
 			IModus robomode;
 			
+			
+			LCD.drawString("Vor dem empfangen", 0, 2);
+			Delay.msDelay(1000);
 			nachricht = com1.empfangen();
+			LCD.drawString("empfangen nachricht 1", 0, 2);
+			Delay.msDelay(1000);
 			
 			
 			mode = nachricht[8];
 			
 			switch (mode){
-			case 101: robomode = new Verfolger(mode, planes, lvfg, drucksensor);
+			case 101: robomode = new Verfolger(3, planes, lvfg, drucksensor);
 			LCD.drawString("Verfolger", 0, 2);                  //Displayausgabe EV3
 			break;
-			case 102: robomode = new Verteidiger(mode, planes, lvfg, drucksensor);
+			case 102: robomode = new Verteidiger(31, planes, lvfg, drucksensor);
 			LCD.drawString("Verteidiger", 0, 2);                  //Displayausgabe EV3
 			break;
 			case 103: robomode = new Zufall(26, planes, lvfg, drucksensor);
@@ -89,7 +111,7 @@ public class Server{
 				// TODO Zufall
 				robomode.setNachricht(nachricht);
 				robomode.run();
-				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
+				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), /*robomode.isAktiviert()*/ true, robomode.isPowerup(), robomode.isPause()));
 			}
 			
 			else if(mode == 102){
