@@ -184,8 +184,7 @@ public class Verfolger extends IModus{
 				}
 				else {
 					next = -1;
-				}
-					
+				}	
 	
 				}
 		
