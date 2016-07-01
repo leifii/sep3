@@ -577,10 +577,10 @@ public class Character implements IDrawable, Serializable {
 				PlayState.getInstance().addTempDrawable(i);
 
 			} else if (i.getType() == ItemType.Gold) {
-				inventory.addGold(i.getValue());
+				inventory.modifyMoney(i.getValue());
 				PlayState.getInstance().addTempDrawable(i);
 			} else {
-				inventory.getItemList().add(i);
+				inventory.place(i.getNAME());
 				if (i instanceof Equipment) {
 					Equipment e = (Equipment) i;
 					e.setAsIcon();
