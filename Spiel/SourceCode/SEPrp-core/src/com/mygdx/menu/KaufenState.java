@@ -219,7 +219,7 @@ public class KaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	public VerkaufenState vs;
-	public AuktionshausItem testitem;
+	public AuktionshausItem testitem[];
 	
 //PlayState playstate;	
 	public KaufenState(GameStateManager gsm,PlayState ps) {
@@ -257,6 +257,11 @@ public class KaufenState extends State{
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 	
+	testitem=new AuktionshausItem[]{new AuktionshausItem(textButtonStyle, labelStyle),
+			new AuktionshausItem(textButtonStyle, labelStyle),
+			new AuktionshausItem(textButtonStyle, labelStyle),
+			new AuktionshausItem(textButtonStyle, labelStyle)};
+
 	buttonJ = new TextButton("Zurück", textButtonStyle);
 	buttonJ.pad(20);	
 	
@@ -273,7 +278,6 @@ table.debug();
 	Image img = new Image(new Texture("userInterface/dark background.png"));
 	img.setFillParent(true);
 	
-	testitem=new AuktionshausItem(textButtonStyle, labelStyle);
 	
 	
 	stage.addActor(img);
@@ -300,8 +304,11 @@ table.debug();
 	}
 	public void render(SpriteBatch sb) {
 		stage.act();
-	
 		stage.draw();
+		for (int i = 0; i < testitem.length; i++) {
+			testitem[i].add(table);
+		}
+		
 	}
 
 	public void dispose() {
