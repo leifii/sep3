@@ -81,8 +81,8 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
 	public JTextField tfIp1Feld1 = new JTextField("198");
 	public JTextField tfIp1Feld2 = new JTextField("162");
-	public JTextField tfIp1Feld3 = new JTextField("1");
-	public JTextField tfIp1Feld4 = new JTextField("1");
+	public JTextField tfIp1Feld3 = new JTextField("2");
+	public JTextField tfIp1Feld4 = new JTextField("107");
 	public JTextField tfIp2Feld1 = new JTextField("198");
 	public JTextField tfIp2Feld2 = new JTextField("162");
 	public JTextField tfIp2Feld3 = new JTextField("2");
@@ -413,7 +413,10 @@ public void setzeSiegbildschirm(){
 	btnNeuesSpiel.addActionListener(this);
 }
 
-//Methode zum erstellen des Niederlagedisplays
+/*
+ * Methode zum erstellen des Niederlagedisplays(non-Javadoc)
+ * 
+ */
 public void setzeNiederlageBildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
@@ -437,7 +440,10 @@ public void setzeNiederlageBildschirm(){
     getContentPane().add(niederlageDisplay);
 
 }
-//Methode zum erstellen des Pausendisplays
+/*
+ * Methode zum erstellen des Pausendisplays
+ *
+ */
 public void setzePausenBildschrim(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
@@ -460,7 +466,9 @@ public void setzePausenBildschrim(){
     getContentPane().add(niederlageDisplay);
 	
 }
-// Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
+/*
+ *  Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
+ */
 public boolean eingabeKorrekt() {
 	boolean check = true;
 	int k = 0;
@@ -478,7 +486,9 @@ public boolean eingabeKorrekt() {
 	}
 	return  check;
 }
-
+/*
+*IP`S Aus den Textfeldern in das Array "roboterip" schreiben
+*/
 public void ipsSchreiben(){
 	roboterIPs[0] =tfIp1Feld1.getText() + "." + tfIp1Feld2.getText() +"." +  tfIp1Feld3.getText()+ "."+ tfIp1Feld4.getText();
 	roboterIPs[1] =tfIp2Feld1.getText() + "." + tfIp2Feld2.getText() +"." +  tfIp2Feld3.getText()+ "."+ tfIp2Feld4.getText();
@@ -486,7 +496,10 @@ public void ipsSchreiben(){
 	roboterIPs[3] =tfIp4Feld1.getText() + "." + tfIp4Feld2.getText() +"." +  tfIp4Feld3.getText()+ "."+ tfIp4Feld4.getText();
 			
 }
-
+/*
+ *  Action Listener
+ * 
+ */
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
@@ -560,6 +573,14 @@ public void actionPerformed(ActionEvent e) {
 	else if( e.getSource()	== btnStart){
 		if(eingabeKorrekt()){
 		setzeSpielvorbereitungsdisplay();
+		ipsSchreiben();                                                                   
+		System.out.println(this.roboterIPs[0]);
+		try {
+			setClients();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		}
 		else{
 			lbUeberschrift.setText("FEHLERHAFTE EINGABE");
@@ -572,9 +593,6 @@ public void actionPerformed(ActionEvent e) {
 	}
 	else if(e.getSource() ==btnStartfinal){
 		try {
-			ipsSchreiben();
-			System.out.println(this.roboterIPs[0]);
-			this.setClients();
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
 			thorbensPanel.addKeyListener(new KeyListener(){
