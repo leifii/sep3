@@ -73,7 +73,7 @@ public class Server{
 			LCD.drawString("Zufall", 0, 2);                  //Displayausgabe EV3
 			break;
 			}
-			com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
+			//com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 			
 			while(true){
 			nachricht = com1.empfangen();

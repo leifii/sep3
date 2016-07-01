@@ -55,7 +55,7 @@ public class KommunikationEV3 implements IKommunikation{
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
 								//Lï¿½nge der Nachricht lesen
-			if(in.readInt()>0){
+			//if(in.readInt()>0){
 			
 				in.readFully(nachrichtempfangen, 0, nachrichtempfangen.length);	//Speicherort der Nachricht, Anfang, Ende
 				
@@ -71,7 +71,7 @@ public class KommunikationEV3 implements IKommunikation{
 
 				
 				//nachrichtverarbeiten();
-			}
+		//	}
 			
 			
 			
