@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.mygdx.game.Author;
 
 //package com.mygdx.menu;
 //
@@ -27,7 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 //import com.badlogic.gdx.utils.Align;
 //import com.mygdx.game.Author;
 //
-//@Author(name = "Bijan Shahbaz Nejad")
+@Author(name = "Bijan Shahbaz Nejad")
 //
 //public class AuktionshausItem {
 //
@@ -136,27 +137,30 @@ class AuktionshausItem{
 	String Name,Preis;
 	
 	
+	boolean gekauft;
 	
-	public AuktionshausItem(TextButtonStyle textbuttonstyle,LabelStyle labelstyle){
+	public AuktionshausItem(TextButtonStyle textButtonStyle,LabelStyle labelStyle){
 		Name="[NAME]";
 		Preis="[PREIS]";
-		itemkauf=new TextButton("Kaufen ->", textbuttonstyle);
-		iteminfo=new Label(Name+" "+Preis, labelstyle);
+		itemkauf=new TextButton("Kaufen ->", textButtonStyle);
+		itemkauf.pad(20);
+		iteminfo=new Label(Name+" "+Preis, labelStyle);
+		gekauft=false;
 	}
 	
 	
-	public void kaufItem(Table table){
+	public void add(Table table){
+		if (!gekauft) {	
 		table.add(itemkauf);
 		table.add(iteminfo);
+		table.row();
+		}
+		if (itemkauf.isPressed()) {
+			itemkauf.remove();
+			iteminfo.remove();
+			gekauft=true;
+		}
+		
 	}
-	
-	public void verkaufItem(Table table){
-		table.add(itemkauf);
-		table.add(iteminfo);
-	}
-	
-	
-	
-	
 	
 }
