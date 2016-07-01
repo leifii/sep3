@@ -88,7 +88,7 @@ public class Character implements IDrawable, Serializable {
 		this.setBody(body);
 		body.getFixtureList().get(0).setUserData(this);
 
-		bounds = new Rectangle(x, y, width, height);
+		bounds = new Rectangle(x-2, y-2, width+4, height+4);
 
 		/////////////////// MOVEMENT//ANGFANG//////////////////////////////////
 
@@ -156,7 +156,7 @@ public class Character implements IDrawable, Serializable {
 		this.height = height;
 		this.width = width;
 		
-		bounds = new Rectangle(x, y, width, height);
+		bounds = new Rectangle(x-2, y-2, width+4, height+4);
 		
 		this.attributes = attributes;
 
