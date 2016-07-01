@@ -15,6 +15,7 @@ import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import RoboterModus.*;
 import Spielfeld.Planeinit;
+import Spielfeld.Spielfeld;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
@@ -27,33 +28,26 @@ public class Server{
 			byte[] nachricht = new byte[9];
 			int mode;
 			ServerSocket sSocket = new ServerSocket(18415);
-//		    System.out.println("Ich akzeptiere gerade!");        //Konsolenausgabe bei Test am PC
 			LCD.drawString("Ich akzeptiere", 0, 2);              //Displayausgabe bei Test am EV3
 			LCD.drawString("gerade!", 0, 3);                     //
 			
 			try{
 			
 			Socket roboter1 = sSocket.accept();
-//			System.out.println("Robter1 verbunden!");           //Konsolenausgabe bei Test am PC
-			LCD.clear();                                        //
-			LCD.drawString("Roboter 1", 0, 2);                  //Displayausgabe bei Test am EV3
-			LCD.drawString("verbunden!", 0, 3);                 //
+			LCD.clear();                                        
+			LCD.drawString("Verbunden!", 0, 3);                 
 			Delay.msDelay(3000);
 			LCD.clear();
-//			Socket roboter2 = sSocket.accept();
-//			System.out.println("Robter2 verbunden!");           //Konsolenausgabe bei Test am PC
-//			Socket roboter3 = sSocket.accept();
-//			System.out.println("Robter3 verbunden!");           //Konsolenausgabe bei Test am PC
-//			Socket roboter4 = sSocket.accept();
-//			System.out.println("Robter4 verbunden!");           //Konsolenausgabe bei Test am PC
+
 			sSocket.close();
 			
 			// Stream 
 		
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
-	
-			Planeinit planes = new Planeinit(null,null,null,null,null,null);       //TODO muss noch initialisiert werden
+			Spielfeld spielfeld = new Spielfeld();
+			spielfeld.create("Spielfeld.txt");
+			Planeinit planes = spielfeld.getSpiel();	     
 			Linienverfolgung lvfg=new Linienverfolgung();
 			IModus robomode;
 			
@@ -64,14 +58,19 @@ public class Server{
 			
 			switch (mode){
 			case 101: robomode = new Verfolger(mode, planes, lvfg, drucksensor);
+			LCD.drawString("Verfolger", 0, 2);                  //Displayausgabe EV3
 			break;
 			case 102: robomode = new Verteidiger(mode, planes, lvfg, drucksensor);
+			LCD.drawString("Verteidiger", 0, 2);                  //Displayausgabe EV3
 			break;
 			case 103: robomode = new Zufall(26, planes, lvfg, drucksensor);
+			LCD.drawString("Zufall", 0, 2);                  //Displayausgabe EV3
 			break;
 			case 104: robomode = new Sepman(planes, lvfg, drucksensor);
+			LCD.drawString("Sepman", 0, 2);                  //Displayausgabe EV3
 			break;
 			default: robomode = new Zufall(26, planes, lvfg, drucksensor);
+			LCD.drawString("Zufall", 0, 2);                  //Displayausgabe EV3
 			break;
 			}
 			com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));

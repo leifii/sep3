@@ -36,4 +36,9 @@ public class Planeinit implements IPlaneinit{
 	{
 		return plane[knoten];
 	}
+	
+	public Plane[] getSpiel()
+	{
+		return plane;
+	}
 }
