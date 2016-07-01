@@ -81,7 +81,6 @@ public class PlayState extends State {
 	List<Portal> PortalListe;
 
 	private static PlayState instance;
-	IAuktionshausClient fileClient;
 
 	public static PlayState getInstance() {
 		return instance;
@@ -159,9 +158,7 @@ public class PlayState extends State {
 		PortalListe.add(new Portal(50, 50, 2934, 312));
 		PortalListe.add(new Portal(2934, 312, 50, 50));
 		instance = this;
-		
-		// --Dom--
-		fileClient = new de.SEPL.ServerClient.FileClient();
+
 	}
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
@@ -233,10 +230,9 @@ public class PlayState extends State {
 
 		// Speichern des aktuellen Spielgeschehens --Dom--
 		if (Gdx.input.isKeyJustPressed(Keys.K)) {
-//			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
-//				System.out.println("Speichern erfolgreich.");
-//			}
-			fileClient.pasteItem("Schwert", "Furiengesang", 0.3, 20, 0, 0, 10, 500);
+			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
+				System.out.println("Speichern erfolgreich.");
+			}
 		}
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
