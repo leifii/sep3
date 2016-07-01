@@ -44,6 +44,7 @@ public class Character implements IDrawable, Serializable {
 	private transient Body body;
 	// private float cd;
 	transient protected Rectangle bounds;
+	protected int height = 48, width = 32;
 	transient private boolean disposable = false;
 	transient private boolean visible = true;
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
@@ -87,7 +88,7 @@ public class Character implements IDrawable, Serializable {
 		this.setBody(body);
 		body.getFixtureList().get(0).setUserData(this);
 
-		bounds = new Rectangle(x, y, 32, 48);
+		bounds = new Rectangle(x, y, width, height);
 
 		/////////////////// MOVEMENT//ANGFANG//////////////////////////////////
 
@@ -143,7 +144,7 @@ public class Character implements IDrawable, Serializable {
 	}
 	
 	//Konstruktor ohne Animation für Schleim
-	public Character(float x, float y, TiledMapTileLayer[] collisionLayer,
+	public Character(float x, float y, int width, int height, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body, Rolle rolle){
 		this.rolle = rolle;
 		g = new Objekte();
@@ -151,8 +152,11 @@ public class Character implements IDrawable, Serializable {
 		this.collisionLayer = collisionLayer;
 		this.setBody(body);
 		body.getFixtureList().get(0).setUserData(this);
-
-		bounds = new Rectangle(x, y, 32, 48);
+		
+		this.height = height;
+		this.width = width;
+		
+		bounds = new Rectangle(x, y, width, height);
 		
 		this.attributes = attributes;
 
@@ -429,7 +433,7 @@ public class Character implements IDrawable, Serializable {
 			position.y = oldY;
 		}
 
-		getBody().setTransform(position.x + 16, position.y + 24, 0);
+		getBody().setTransform(position.x + width/2, position.y + height/2, 0);
 
 	}
 
@@ -467,7 +471,7 @@ public class Character implements IDrawable, Serializable {
 			position.x += dx;
 			position.y += dy;
 		}
-		getBody().setTransform(position.x + 16, position.y + 24, 0);
+		getBody().setTransform(position.x + width/2, position.y + height/2, 0);
 	}
 
 	public void setX(float x) {
