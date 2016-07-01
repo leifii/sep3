@@ -3,6 +3,7 @@ package com.gegnerkoordination;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -13,6 +14,7 @@ import com.character.Attributes;
 import com.character.Rolle;
 import com.character.Skill;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 
 public class GruenerSchleim extends Gegner {
 	transient Map<AnimationDirection, Animation> animationMap;
@@ -38,6 +40,9 @@ public class GruenerSchleim extends Gegner {
 		animationMap.put(AnimationDirection.NORTH_STAND, new Animation(0.25f, keyframes));
 		animationMap.put(AnimationDirection.EAST_STAND, new Animation(0.25f, keyframes));
 		animationMap.put(AnimationDirection.WEST_STAND, new Animation(0.25f, keyframes));
+		
+		for (Entry<AnimationDirection, Animation> a : animationMap.entrySet())
+			a.getValue().setPlayMode(PlayMode.LOOP);
 	}
 	
 	public Animation getAnimation() {
