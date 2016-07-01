@@ -229,6 +229,7 @@ public class PlayState extends State {
 			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
 				System.out.println("Speichern erfolgreich.");
 			}
+			//de.SEPL.ServerClient.IAuktionshausClient.pasteItem("Schwert", "Furiengesang", 0.3, 20, 0, 0, 10, 500);
 		}
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
