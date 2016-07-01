@@ -15,7 +15,7 @@ public class GameStateManager {
 	
 	public GameStateManager(){
 		states= new Stack<State>();
-		a=Gdx.audio.newMusic(Gdx.files.internal(("RiseOfSpirit.mp3")));
+		a=Gdx.audio.newMusic(Gdx.files.internal("RiseOfSpirit.mp3"));
 		b=Gdx.audio.newMusic(Gdx.files.internal("TownTheme.mp3"));
 	}
 	public void push(State state){
