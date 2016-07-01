@@ -23,7 +23,7 @@ public class GruenerSchleim extends Gegner {
 	
 	public GruenerSchleim(int x, int y, TextureRegion[][] animation,
 			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
-		super(x, y, collisionLayer, attributes, body);
+		super(x, y, 32, 32, collisionLayer, attributes, body);
 		animationMap = new HashMap<AnimationDirection, Animation>();
 		setSkills(new ArrayList<Skill>());
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,3,g.getSkill(0), false, 1, 0, this, 10, collisionLayer));
