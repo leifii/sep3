@@ -49,7 +49,7 @@ public class Gegner extends Character {
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
 	}
 	
-	//Konstruktor ohne Animation für Schleim
+	//Konstruktor ohne Animation für Schleim und andere Gegner
 	public Gegner (int x,int y, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
 		super(x,y,collisionLayer, attributes, body, Rolle.Gegner);
 		
