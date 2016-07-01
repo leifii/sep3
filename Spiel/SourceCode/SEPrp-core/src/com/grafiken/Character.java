@@ -41,8 +41,9 @@ public class Character implements ICharacter{
 //		Gegner= new TextureRegion[][][]{angriffKrieger};
 		
 		gegnerList.add(angriffKrieger);
-		gegnerList.add(TextureRegion.split(new Texture("grafiken/Slime.png"),35,32));
-		gegnerList.add(TextureRegion.split(new Texture("grafiken/Ork.png"), 64, 64));
+		gegnerList.add(TextureRegion.split(new Texture("grafiken/Slime.png"),35,32));  //Slime mit 2 Frames
+		gegnerList.add(TextureRegion.split(new Texture("grafiken/Ork.png"), 64, 64)); //Ork Laufanimation 4 Richtungen: 8 Frames, Angriff(5-8.Reihe):9 Frames
+		gegnerList.add(TextureRegion.split(new Texture("grafiken/Skelett.png"), 64, 64)); //Skelett Laufanimation 9 Frames/Angriff 13 Frames
 		
 //		char1=new TextureRegion[]{new TextureRegion(new Texture("grafiken/squire_m.png"),0,0,32,48 ), new TextureRegion(texture),new TextureRegion(new Texture("grafiken/Thief Spreadsheet.png"),0,0,32,48), new TextureRegion(texture1)};
 		Animation=new TextureRegion [][][]{character1,character3, character2, character4};
@@ -112,7 +113,7 @@ public class Character implements ICharacter{
 		
 	}
 	@Override
-	public TextureRegion[][] getGegnerAnimation(int index) {
+	public TextureRegion[][] getGegnerAnimation(int index) { //3Gegner+Kriegerangriff?
 		return gegnerList.get(index);
 	}
 	
