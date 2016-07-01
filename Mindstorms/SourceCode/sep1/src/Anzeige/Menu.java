@@ -497,11 +497,11 @@ public void actionPerformed(ActionEvent e) {
 		switch(msg){
 		case "SepMAN" : roboterBelegung[0] = "Sepman";
 		break;
-		case "Verfolger" : roboterBelegung[0] = "2";
+		case "Verfolger" : roboterBelegung[0] = "Tracer";
 		break;
-		case "Modus 3" : roboterBelegung[0] = "3";
+		case "Verteidiger" : roboterBelegung[0] = "Defender";
 		break;
-		case "Modus 4" : roboterBelegung[0] = "4";
+		case "Verpeilter" : roboterBelegung[0] = "Random";
 		break;
 		}
 	}
