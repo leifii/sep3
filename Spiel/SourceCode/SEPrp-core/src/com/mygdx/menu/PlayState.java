@@ -158,7 +158,7 @@ public class PlayState extends State {
 		PortalListe.add(new Portal(50, 50, 2934, 312));
 		PortalListe.add(new Portal(2934, 312, 50, 50));
 		instance = this;
-
+		
 	}
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
@@ -571,17 +571,23 @@ public class PlayState extends State {
 
 	public void changeMap(int i) {
 		c.setMapIndex(i); // --Dom--
-		if (i == 2)
+		if (i == 2){
 			map.setMap(new TmxMapLoader().load("grafiken/bereich2.tmx"));
-		else if (i == 3)
-			map.setMap(new TmxMapLoader().load("grafiken/map3.tmx"));
+			collisionLayer = new TiledMapTileLayer[4];
+			collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
+			collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+			collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
+			collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
+		}
+		else if (i == 3){
+			map.setMap(new TmxMapLoader().load("grafiken/map3.1.tmx"));
+			collisionLayer = new TiledMapTileLayer[3];
+			collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
+			collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
+			collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
+		}
 		map.setRenderer();
 		c.position = new Vector3(0, 0, 0);
-		collisionLayer = new TiledMapTileLayer[4];
-		collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
-		collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
-		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
-		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 		c.setCollisionLayer(collisionLayer);
 		for (Skill s : c.getSkills()){
 			s.setCollisionLayer(collisionLayer);
