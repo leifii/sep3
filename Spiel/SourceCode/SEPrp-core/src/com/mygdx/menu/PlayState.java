@@ -218,8 +218,8 @@ public class PlayState extends State {
 	protected void handleInput() {
 
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			Gdx.app.exit();
-			// gsm.push(new CharEditorState(gsm, 4));
+			
+			 gsm.push(new PauseState(gsm,this));
 		}
 
 		if (Gdx.input.isKeyJustPressed(Keys.I))
