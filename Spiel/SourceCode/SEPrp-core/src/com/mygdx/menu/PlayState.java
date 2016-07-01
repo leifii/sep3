@@ -130,7 +130,7 @@ public class PlayState extends State {
 		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
 
 		if (characterauswahl == 1) {
-			c = new Krieger(100, 100, s.getAnimation(0), collisionLayer, attributes, body);
+			c = new Krieger(100, 100, s.getKrieger(design), collisionLayer, attributes, body);
 			// setCharacterType(0, attributes, body);
 		} else if (characterauswahl == 2) {
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);

@@ -56,10 +56,10 @@ public class CharEditorState extends State {
 		charauswahl = ch;
 
 		if (charauswahl == 1) { // Krieger
-			augen = new Texture[] { new Texture("grafiken/krieger/squire_m_rot-solo.png"), new Texture("grafiken/krieger/squire_m_rot-greenE-solo.png"),
+			haare = new Texture[] { new Texture("grafiken/krieger/squire_m_rot-solo.png"), new Texture("grafiken/krieger/squire_m_rot-greenE-solo.png"),
 					new Texture("grafiken/krieger/squire_m_rot-lightblueE-solo.png"), new Texture("grafiken/krieger/squire_m_rot-redE-solo.png")
 					, new Texture("grafiken/krieger/squire_m_rot-yellowE-solo.png") };
-			haare = new Texture[] { new Texture("grafiken/krieger/squire_m-solo.png"), new Texture("grafiken/krieger/squire_m-greenE-solo.png"),
+			augen = new Texture[] { new Texture("grafiken/krieger/squire_m-solo.png"), new Texture("grafiken/krieger/squire_m-greenE-solo.png"),
 					new Texture("grafiken/krieger/squire_m-lightblueE-solo.png"), new Texture("grafiken/krieger/squire_m-redE-solo.png"), new Texture("grafiken/krieger/squire_m-yellowE-solo.png") };
 			charbild = new Image[][] { { new Image(augen[0]), new Image(haare[0]) },
 					{ new Image(augen[1]), new Image(haare[1]) }, { new Image(augen[2]), new Image(haare[2]) },
@@ -302,7 +302,26 @@ public class CharEditorState extends State {
 			design = 2;
 		} else if (haarindex == 0 && augenindex == 3) {
 			design = 3;
-		} else if (haarindex == 1 && augenindex == 0) {
+		} else if (charauswahl==1 && haarindex ==0 && augenindex == 4) {
+			design = 4;
+		}
+		else if(charauswahl==1){
+			if (haarindex == 1 && augenindex == 0) {
+				design = 5;
+			} else if (haarindex == 1 && augenindex == 1) {
+				design = 6;
+			} else if (haarindex == 1 && augenindex == 2) {
+				design = 7;
+			} else if (haarindex == 1 && augenindex == 3) {
+				design = 8;
+			}
+			else if (haarindex == 1 && augenindex ==4){
+				design = 9;
+			}
+			
+		}
+		
+		else if (haarindex == 1 && augenindex == 0) {
 			design = 4;
 		} else if (haarindex == 1 && augenindex == 1) {
 			design = 5;
