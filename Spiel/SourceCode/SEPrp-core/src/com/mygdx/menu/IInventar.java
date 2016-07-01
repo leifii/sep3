@@ -51,7 +51,7 @@ public interface IInventar {
 	 * 
 	 * @return Die Sümme über die Geschickwerte aller Items, die im Inventar ausgerüstet sind.
 	 */
-	int getDexterity();
+	int getDexterityBoost();
 	
 	/**
 	 * Gibt zurück wie viele Lebenspunkte durch die Benuztung von Items geheilt wurden seit dem letzten Aufruf dieser Methode.
