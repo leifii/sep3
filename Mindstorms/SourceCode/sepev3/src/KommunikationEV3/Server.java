@@ -52,7 +52,7 @@ public class Server{
 		
 			Drucksensor drucksensor = new Drucksensor();
 			KommunikationEV3 com1 = new KommunikationEV3(roboter1, drucksensor);
-			Spieldatenverarbeitung sdv = new Spieldatenverarbeitung();
+	
 			Planeinit planes = new Planeinit(null,null,null,null,null,null);       //TODO muss noch initialisiert werden
 			Linienverfolgung lvfg=new Linienverfolgung();
 			IModus robomode;
