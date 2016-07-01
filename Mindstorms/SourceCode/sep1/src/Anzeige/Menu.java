@@ -572,6 +572,8 @@ public void actionPerformed(ActionEvent e) {
 	}
 	else if(e.getSource() ==btnStartfinal){
 		try {
+			ipsSchreiben();
+			System.out.println(this.roboterIPs[0]);
 			this.setClients();
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
