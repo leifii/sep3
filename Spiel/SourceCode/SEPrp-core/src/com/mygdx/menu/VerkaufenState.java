@@ -31,7 +31,7 @@ public class VerkaufenState extends State{
 	private BitmapFont white;
 	private Label label;	
 	public PlayState PS;
-	
+	AuktionshausItemVerkauf testvk;
 	KaufenState ks;
 //PlayState playstate;	
 	public VerkaufenState(GameStateManager gsm,PlayState ps) {
@@ -69,7 +69,7 @@ public class VerkaufenState extends State{
 	ConfirmButtonStyle.font = white;
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
-	
+	testvk=new AuktionshausItemVerkauf(textButtonStyle, labelStyle);
 	buttonJ = new TextButton("Zurück", textButtonStyle);
 	buttonJ.pad(20);	
 	
@@ -81,8 +81,7 @@ table.debug();
 	table.add(buttonJ).padRight(450).padTop(50);
 	table.add(überschrift);
 	table.row();
-	table.add(new TextButton("Kaufen",textButtonStyle));
-	table.add(new Label("[ITEM-NAME]"+" "+"[Preis]", labelStyle));
+	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
 	Image img = new Image(new Texture("userInterface/dark background.png"));
@@ -114,6 +113,7 @@ table.debug();
 		stage.act();
 	
 		stage.draw();
+	testvk.add(table);
 	}
 
 	public void dispose() {

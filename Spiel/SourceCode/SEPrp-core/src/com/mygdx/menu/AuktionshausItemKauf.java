@@ -129,7 +129,7 @@ import com.mygdx.game.Author;
 //}
 
 
-class AuktionshausItem{
+class AuktionshausItemKauf{
 	
 	TextButton itemkauf;
 	
@@ -139,7 +139,7 @@ class AuktionshausItem{
 	
 	boolean gekauft;
 	
-	public AuktionshausItem(TextButtonStyle textButtonStyle,LabelStyle labelStyle){
+	public AuktionshausItemKauf(TextButtonStyle textButtonStyle,LabelStyle labelStyle){
 		Name="[NAME]";
 		Preis="[PREIS]";
 		itemkauf=new TextButton("Kaufen ->", textButtonStyle);

@@ -219,7 +219,7 @@ public class KaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	public VerkaufenState vs;
-	public AuktionshausItem testitem[];
+	public AuktionshausItemKauf testitem[];
 	
 //PlayState playstate;	
 	public KaufenState(GameStateManager gsm,PlayState ps) {
@@ -257,10 +257,10 @@ public class KaufenState extends State{
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 	
-	testitem=new AuktionshausItem[]{new AuktionshausItem(textButtonStyle, labelStyle),
-			new AuktionshausItem(textButtonStyle, labelStyle),
-			new AuktionshausItem(textButtonStyle, labelStyle),
-			new AuktionshausItem(textButtonStyle, labelStyle)};
+	testitem=new AuktionshausItemKauf[]{new AuktionshausItemKauf(textButtonStyle, labelStyle),
+			new AuktionshausItemKauf(textButtonStyle, labelStyle),
+			new AuktionshausItemKauf(textButtonStyle, labelStyle),
+			new AuktionshausItemKauf(textButtonStyle, labelStyle)};
 
 	buttonJ = new TextButton("Zurück", textButtonStyle);
 	buttonJ.pad(20);	
