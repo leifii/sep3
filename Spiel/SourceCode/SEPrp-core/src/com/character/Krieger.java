@@ -24,6 +24,9 @@ public class Krieger extends Character{
 	private TextureRegion character;
 
 	private Texture character1;
+	
+	private boolean[] untouchable; //north,south,east,west
+	private float untouchableTime;
 
 	public Krieger(float x,float y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
 		super(x, y, sprite, collisionLayer, attributes, body, Rolle.Spieler);
@@ -42,12 +45,23 @@ public class Krieger extends Character{
 		
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,1,30,1,1,15,g.getSkill(7), true, 4, 0, this, 1, collisionLayer));	//berserker
 		
+		setUntouchable(new boolean[4]);
+		for(int i = 0; i < getUntouchable().length; i++)
+			getUntouchable()[i] = false;
+		setUntouchableTime(0);
 	}
 	
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
 		super.update(dt);
+		untouchableTime -= dt;
+		for(int i = 0; i < getUntouchable().length; i++){
+			if(untouchable[i]){
+				if(untouchableTime <= 0)
+					untouchable[i] = false;
+			}
+		}
 	}
 
 	@Override
@@ -74,6 +88,22 @@ public class Krieger extends Character{
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
+	}
+
+	public boolean[] getUntouchable() {
+		return untouchable;
+	}
+
+	public void setUntouchable(boolean[] untouchable) {
+		this.untouchable = untouchable;
+	}
+
+	public float getUntouchableTime() {
+		return untouchableTime;
+	}
+
+	public void setUntouchableTime(float untouchableTime) {
+		this.untouchableTime = untouchableTime;
 	}
 
 	
