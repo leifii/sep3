@@ -36,6 +36,7 @@ import com.character.Schurke;
 import com.character.Skill;
 import com.gegnerkoordination.Gegner;
 import com.gegnerkoordination.GruenerSchleim;
+import com.gegnerkoordination.Ork;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.mygdx.game.Author;
@@ -110,20 +111,20 @@ public class PlayState extends State {
 		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
 				"[TutorialNPC]  "
 						+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
-				createDynamicBody(120, 300, "npc")));
+				createDynamicBody(120, 300, 32, 48, "npc")));
 		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png",
 				"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
-				createDynamicBody(2339, 459, "npc")));
+				createDynamicBody(2339, 459, 32, 48, "npc")));
 		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
-				createDynamicBody(1032, 1318, "npc")));
+				createDynamicBody(1032, 1318, 32, 48, "npc")));
 		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
-				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, "npc"), gsm, this));
+				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this));
 		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
-				createDynamicBody(1563, 381, "npc")));
+				createDynamicBody(1563, 381, 32, 48, "npc")));
 		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
-				createDynamicBody(2235, 317, "npc")));
+				createDynamicBody(2235, 317, 32, 48, "npc")));
 
-		Body body = createDynamicBody(100, 100, "charakter");
+		Body body = createDynamicBody(100, 100, 32, 48, "charakter");
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
@@ -200,14 +201,17 @@ public class PlayState extends State {
 		gegnerList = new LinkedList<Gegner>();
 		if (mapIndex == 1){
 			Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-			Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1,
-					createDynamicBody(200, 200, "gegner"));
-			testGegner.addLoot(EquipmentType.Lederrüstung);
-			gegnerList.add(testGegner);
+//			Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1,
+//					createDynamicBody(200, 200, 32, 48, "gegner"));
+//			testGegner.addLoot(EquipmentType.Lederrüstung);
+//			gegnerList.add(testGegner);
 			GruenerSchleim Schleim1 = new GruenerSchleim(400, 200, s.getGegnerAnimation(1), collisionLayer, a1,
-					createDynamicBody(400, 200, "gegner"));
+					createDynamicBody(400, 200, 35, 32, "gegner"));
 			Schleim1.addLoot(EquipmentType.Lederrüstung);
 			gegnerList.add(Schleim1);
+//			Ork Ork1 = new Ork(300, 300, s.getGegnerAnimation(2), collisionLayer, a1, createDynamicBody(300, 300, 64, 64, "gegner"));
+//			Ork1.addLoot(EquipmentType.Lederschuh);
+//			gegnerList.add(Ork1);
 		}
 	}
 
@@ -241,6 +245,8 @@ public class PlayState extends State {
 							|| c.getRichtung() == AnimationDirection.NORTH_STAND
 							|| c.getRichtung() == AnimationDirection.NORTH_WALK)
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				((Krieger) c).getUntouchable()[0] = true;
+				((Krieger) c).setUntouchableTime(0.5f);
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[1]) {
 						g.getDamage(c.getSkills().get(0).getDmg());
@@ -252,6 +258,8 @@ public class PlayState extends State {
 							|| c.getRichtung() == AnimationDirection.SOUTH_STAND
 							|| c.getRichtung() == AnimationDirection.SOUTH_WALK)
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				((Krieger) c).getUntouchable()[1] = true;
+				((Krieger) c).setUntouchableTime(0.5f);
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[0]) {
 						g.getDamage(c.getSkills().get(0).getDmg());
@@ -263,6 +271,8 @@ public class PlayState extends State {
 							|| c.getRichtung() == AnimationDirection.EAST_STAND
 							|| c.getRichtung() == AnimationDirection.EAST_WALK)
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				((Krieger) c).getUntouchable()[2] = true;
+				((Krieger) c).setUntouchableTime(0.5f);
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[3]) {
 						g.getDamage(c.getSkills().get(0).getDmg());
@@ -274,6 +284,8 @@ public class PlayState extends State {
 							|| c.getRichtung() == AnimationDirection.WEST_STAND
 							|| c.getRichtung() == AnimationDirection.WEST_WALK)
 					&& c.getSkills().get(0).getCdnow() < 0.1 && c instanceof Krieger) {
+				((Krieger) c).getUntouchable()[3] = true;
+				((Krieger) c).setUntouchableTime(0.5f);
 				for (Gegner g : gegnerList) {
 					if (((boolean[]) g.getBody().getUserData())[2]) {
 						g.getDamage(c.getSkills().get(0).getDmg());
@@ -607,14 +619,14 @@ public class PlayState extends State {
 		PortalListe = new LinkedList<Portal>();
 	}
 
-	public Body createDynamicBody(int x, int y, String a) { // String a =
+	public Body createDynamicBody(int x, int y, int w, int h, String a) { // String a =
 															// "gegner",
 															// "charakter"
 															// oder"npc"
 		BodyDef bdef = new BodyDef();
 		FixtureDef fdef = new FixtureDef();
 		PolygonShape shape = new PolygonShape();
-		bdef.position.set(x + 16, y + 24);
+		bdef.position.set(x + w/2, y + h/2);
 		bdef.type = BodyType.DynamicBody;
 		Body body = world.createBody(bdef);
 		// 0 für north, 1 für south, 2 für east, 3 für west
@@ -628,19 +640,19 @@ public class PlayState extends State {
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData(a);
-		shape.setAsBox(13, 6, new Vector2(0, -22), 0);
+		shape.setAsBox(w/2-3, 6, new Vector2(0, -h/2+2), 0);
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("south");
-		shape.setAsBox(13, 6, new Vector2(0, 22), 0);
+		shape.setAsBox(w/2-3, 6, new Vector2(0, h/2-2), 0);
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("north");
-		shape.setAsBox(6, 21, new Vector2(14, 0), 0);
+		shape.setAsBox(6, h/2-3, new Vector2(w/2-2, 0), 0);
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("east");
-		shape.setAsBox(6, 21, new Vector2(-14, 0), 0);
+		shape.setAsBox(6, h/2-3, new Vector2(-w/2+2, 0), 0);
 		fdef.shape = shape;
 		fdef.isSensor = true;
 		body.createFixture(fdef).setUserData("west");
