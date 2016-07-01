@@ -30,6 +30,7 @@ public class KaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	
+	boolean bool[];
 	public AuktionshausItem testitem[];
 //PlayState playstate;	
 	public KaufenState(GameStateManager gsm,PlayState ps) {
@@ -37,8 +38,13 @@ public class KaufenState extends State{
 		testitem=new AuktionshausItem[]{
 				new AuktionshausItem(0, 120),new AuktionshausItem(1, 330),new AuktionshausItem(2, 55)
 		};
+		bool=new boolean[testitem.length];
 		
-	PS=ps;
+		for (int i = 0; i < testitem.length; i++) {
+			bool[i]=true;
+		}
+	
+		PS=ps;
 	
 	
 	stage = new Stage();
@@ -150,10 +156,10 @@ for (int i = 0; i < testitem.length; i++) {
 //	
 	
 	
-			
+					
 		testitem[i].add(stage);
-		}
-		
+	
+}		
 		stage.draw();
 		
 		
@@ -161,6 +167,7 @@ for (int i = 0; i < testitem.length; i++) {
 
 }
 
+	
 	public void dispose() {
 	
 		this.dispose();
