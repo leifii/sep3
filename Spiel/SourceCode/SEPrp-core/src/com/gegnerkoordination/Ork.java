@@ -19,15 +19,15 @@ public class Ork extends Gegner {
 	transient Map<AnimationDirection, Animation> animationMap;
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 	Animation animation;
+	private float cd;
+	private float cdnow;
 
 	public Ork(int x, int y, TextureRegion[][] animation,
 			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
 		super(x, y, 64, 64, collisionLayer, attributes, body);
+		cd = 2;
+		cdnow = 0;
 		animationMap = new HashMap<AnimationDirection, Animation>();
-
-		setSkills(new ArrayList<Skill>());
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,3,g.getSkill(7), true, 1, 0, this, 1, collisionLayer));
-		
 		
 		TextureRegion[] keyframes = new TextureRegion[9];
 		TextureRegion[] keyframes1 = new TextureRegion[9];
@@ -41,7 +41,6 @@ public class Ork extends Gegner {
 		TextureRegion[] keyframes9 = new TextureRegion[8];
 		TextureRegion[] keyframes10 = new TextureRegion[8];
 		TextureRegion[] keyframes11 = new TextureRegion[8];
-
 		
 		for (int i = 0; i < 9; i++) {
 			keyframes[i] = animation[4][i];
@@ -67,7 +66,6 @@ public class Ork extends Gegner {
 		for (int i = 0; i < 8; i++) {
 			keyframes11[i] = animation[3][i];
 		}
-		this.animation=new Animation(0.25f, keyframes);
 
 		animationMap.put(AnimationDirection.NORTH_WALK, new Animation(0.25f, keyframes));
 		animationMap.put(AnimationDirection.WEST_WALK, new Animation(0.25f, keyframes1));
@@ -87,20 +85,6 @@ public class Ork extends Gegner {
 		
 	}
 
-	public Map<AnimationDirection, Animation> getAnimationMap() {
-		return animationMap;
-	}
-
-	public void setAnimationMap(Map<AnimationDirection, Animation> animationMap) {
-		this.animationMap = animationMap;
-	}
-
-	
-
-	public void setAnimation(Animation animation) {
-		this.animation = animation;
-	}
-
 	public Animation getAnimation() {
 		return animationMap.get(richtung);
 	}
@@ -114,33 +98,50 @@ public class Ork extends Gegner {
 	}
 	
 	public void attack(){
-		if(((boolean[]) getBody().getUserData())[0] && getSkills().get(0).getCdnow() <= 0){
+		if(((boolean[]) getBody().getUserData())[0]){
 			setRichtung(AnimationDirection.NORTH_ATTACK);
-			Character cha = PlayState.getInstance().c;
-			if(bounds.overlaps(cha.getBounds())){
-				cha.getDamage(10);
+			if(cdnow <= 0){
+				Character cha = PlayState.getInstance().c;
+				if(bounds.overlaps(cha.getBounds())){
+					cha.getDamage(10);
+					cdnow = cd;
+				}
 			}
 		}
-		if(((boolean[]) getBody().getUserData())[1] && getSkills().get(0).getCdnow() <= 0){
+		if(((boolean[]) getBody().getUserData())[1]){
 			setRichtung(AnimationDirection.SOUTH_ATTACK);
-			Character cha = PlayState.getInstance().c;
-			if(bounds.overlaps(cha.getBounds())){
-				cha.getDamage(10);
+			if(cdnow <= 0){
+				Character cha = PlayState.getInstance().c;
+				if(bounds.overlaps(cha.getBounds())){
+					cha.getDamage(10);
+					cdnow = cd;
+				}
 			}
 		}
-		if(((boolean[]) getBody().getUserData())[2] && getSkills().get(0).getCdnow() <= 0){
+		if(((boolean[]) getBody().getUserData())[2]){
 			setRichtung(AnimationDirection.EAST_ATTACK);
-			Character cha = PlayState.getInstance().c;
-			if(bounds.overlaps(cha.getBounds())){
-				cha.getDamage(10);
+			if(cdnow <= 0){
+				Character cha = PlayState.getInstance().c;
+				if(bounds.overlaps(cha.getBounds())){
+					cha.getDamage(10);
+					cdnow = cd;
+				}
 			}
 		}
-		if(((boolean[]) getBody().getUserData())[3] && getSkills().get(0).getCdnow() <= 0){
+		if(((boolean[]) getBody().getUserData())[3]){
 			setRichtung(AnimationDirection.WEST_ATTACK);
-			Character cha = PlayState.getInstance().c;
-			if(bounds.overlaps(cha.getBounds())){
-				cha.getDamage(10);
+			if(cdnow <= 0){
+				Character cha = PlayState.getInstance().c;
+				if(bounds.overlaps(cha.getBounds())){
+					cha.getDamage(10);
+					cdnow = cd;
+				}
 			}
 		}
+	}
+	
+	public void update(float dt){
+		super.update(dt);
+		cdnow -= dt;
 	}
 }
