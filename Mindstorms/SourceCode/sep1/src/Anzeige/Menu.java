@@ -25,14 +25,18 @@ import KommunikationPC.Clientinit;
 
 
 
-import javax.swing.JLabel;
+import KommunikationPC.QueueHandler;
 
+import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -78,20 +82,20 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JLabel lbip4Punkt2= new JLabel(".");
 	public JLabel lbip4Punkt3= new JLabel(".");
 	public JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
-	public JTextField tfIp1Feld1 = new JTextField("198");
-	public JTextField tfIp1Feld2 = new JTextField("162");
+	public JTextField tfIp1Feld1 = new JTextField("192");
+	public JTextField tfIp1Feld2 = new JTextField("168");
 	public JTextField tfIp1Feld3 = new JTextField("2");
 	public JTextField tfIp1Feld4 = new JTextField("107");
-	public JTextField tfIp2Feld1 = new JTextField("198");
-	public JTextField tfIp2Feld2 = new JTextField("162");
+	public JTextField tfIp2Feld1 = new JTextField("192");
+	public JTextField tfIp2Feld2 = new JTextField("168");
 	public JTextField tfIp2Feld3 = new JTextField("2");
 	public JTextField tfIp2Feld4 = new JTextField("1");
-	public JTextField tfIp3Feld1 = new JTextField("198");
-	public JTextField tfIp3Feld2 = new JTextField("162");
+	public JTextField tfIp3Feld1 = new JTextField("192");
+	public JTextField tfIp3Feld2 = new JTextField("168");
 	public JTextField tfIp3Feld3 = new JTextField("3");
 	public JTextField tfIp3Feld4 = new JTextField("1");
-	public JTextField tfIp4Feld1 = new JTextField("198");
-	public JTextField tfIp4Feld2 = new JTextField("162");
+	public JTextField tfIp4Feld1 = new JTextField("192");
+	public JTextField tfIp4Feld2 = new JTextField("168");
 	public JTextField tfIp4Feld3 = new JTextField("4");
 	public JTextField tfIp4Feld4 = new JTextField("1");
 	public JButton btnAuswahlfenster = new JButton();
@@ -106,6 +110,9 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
+	
+	
+	
 
 	/*
 	 *  Konstruktor	
