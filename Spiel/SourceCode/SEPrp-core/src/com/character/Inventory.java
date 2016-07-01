@@ -4,11 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.mygdx.game.Author;
+import com.mygdx.menu.IInventar;
 import com.objects.Item;
 
 @Author(name = "?Dilara Güler?")
 
-public class Inventory {
+public class Inventory implements IInventar {
 
 	private List<Item> itemList;
 	private int gold;
