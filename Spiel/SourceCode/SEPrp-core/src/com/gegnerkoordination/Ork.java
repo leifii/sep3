@@ -22,7 +22,7 @@ public class Ork extends Gegner {
 
 	public Ork(int x, int y, TextureRegion[][] animation,
 			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
-		super(x, y, collisionLayer, attributes, body);
+		super(x, y, 64, 64, collisionLayer, attributes, body);
 		animationMap = new HashMap<AnimationDirection, Animation>();
 
 		setSkills(new ArrayList<Skill>());
@@ -82,7 +82,6 @@ public class Ork extends Gegner {
 		for (Entry<AnimationDirection, Animation> a : animationMap.entrySet())
 			a.getValue().setPlayMode(PlayMode.LOOP);
 		
-		bounds=new Rectangle(x, y, 64, 64);
 	}
 
 	public Animation getAnimation() {
