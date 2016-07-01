@@ -67,22 +67,22 @@ PlayState playstate;
 	ConfirmButtonStyle.font = white;
 
 	buttonJ = new TextButton("Ja", textButtonStyle);
-	buttonJ.pad(15);
+	buttonJ.pad(20);
 
 	buttonN = new TextButton("Nein", textButtonStyle);
-	buttonN.pad(15);
+	buttonN.pad(20);
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
 	label = new Label("Möchtest du das Spiel verlassen?", labelStyle);
-	label.setFontScale(1f);
+	label.setFontScale(1.5f);
 	Image Rahmen = new Image(new Texture("userInterface/border2.png"));
 	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
 	Rahmen.setWidth(Gdx.graphics.getWidth() * 0.95f);
 	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
 	
 	
-	table.add(label).width(100).padBottom(200).padTop(Gdx.graphics.getHeight() / 2 - 50).padRight(200);
+	table.add(label).width(100).padBottom(200).padTop(Gdx.graphics.getHeight() / 2 - 50).padRight(600);
 
 	table.row();
 
