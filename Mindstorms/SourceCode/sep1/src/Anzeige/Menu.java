@@ -125,9 +125,7 @@ public void initComponents() {
 //	setzeAuswahldisplay ();
 	setzeStartbildschirm();            
 	validate();
-
 }
-
 /*
  *  Diese Methoden erstell den Startbildschirm 
  * 
@@ -597,14 +595,6 @@ public void actionPerformed(ActionEvent e) {
 	else if( e.getSource()	== btnStart){
 		if(eingabeKorrekt()){
 		setzeSpielvorbereitungsdisplay();
-		ipsSchreiben();                                                                   
-		System.out.println(this.roboterIPs[0]);
-		try {
-			setClients();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		}
 		else{
 			lbUeberschrift.setText("FEHLERHAFTE EINGABE");
@@ -617,6 +607,9 @@ public void actionPerformed(ActionEvent e) {
 	}
 	else if(e.getSource() ==btnStartfinal){
 		try {
+			ipsSchreiben();                                                                   
+			System.out.println(this.roboterIPs[0]);
+			setClients();
 			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
 			thorbensPanel.addKeyListener(new KeyListener(){
