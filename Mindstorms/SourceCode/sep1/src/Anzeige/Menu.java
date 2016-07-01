@@ -4,13 +4,13 @@
  * 
  */
 package Anzeige;
-// Die Klasse Menü visualisiet die Komplette Menüführung 
-// Zusätzlich initialisiert sie die Clients mit den passenden Ip-Adressen und Roboter Modi
-//  Sowohl der KeyListener als der ActionListener(für die Buttons) befinden sich in dieser Klasse 
-// Jedes Menü wird über ein eigenes JPanel realisiert
-// Methoden zum erstellen der Menüs heißen "erzeuge"+ das passende Menü. Diese Methoden stehen auch alle im Interface IMenu
-// Das Spielfeld Panel (thorbensPanel) wird von der Klasse AnzeigeSpielfeld gestaltet 
-//
+/* Die Klasse Menü visualisiet die Komplette Menüführung 
+ * Zusätzlich initialisiert sie die Clients mit den passenden Ip-Adressen und Roboter Modi
+ * Sowohl der KeyListener als der ActionListener(für die Buttons) befinden sich in dieser Klasse 
+ * Jedes Menü wird über ein eigenes JPanel realisiert
+ * Methoden zum erstellen der Menüs heißen "erzeuge"+ das passende Menü. Diese Methoden stehen auch alle im Interface IMenu
+ * Das Spielfeld Panel (thorbensPanel) wird von der Klasse AnzeigeSpielfeld gestaltet 
+ */
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import KommunikationPC.Client;
 import KommunikationPC.Clientinit;
 
-//import Spieldatenverarbeitung.ISpieldaten;
+
 
 import javax.swing.JLabel;
 
@@ -49,7 +49,6 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public String[] roboterBelegung = new String[4];
 	public String[] roboterIPs = new String[4];
 	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
-//    ImageIcon pcm = new ImageIcon();
 	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	public JPanel startDisplay = new JPanel();
 	public JPanel siegDisplay = new JPanel();
@@ -108,12 +107,17 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
 
-	// Konstruktor	
+	/*
+	 *  Konstruktor	
+	 */
 	public Menu() {
 		super();
 		initComponents();
 	}
-// Initialisierung des Fenster + Aufrufen des Startbildschirms
+/*
+ *  Initialisierung des Fenster + Aufrufen des Startbildschirms*
+ *  
+ */
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1020,720);
@@ -124,7 +128,10 @@ public void initComponents() {
 
 }
 
-// Diese Methoden erstell den Startbildschirm 
+/*
+ *  Diese Methoden erstell den Startbildschirm 
+ * 
+ */
 public void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
@@ -146,7 +153,10 @@ public void setzeStartbildschirm(){
     getContentPane().add(startDisplay);
 }
 
-// Methode zum erstellen des Auswahldisplays
+/*
+ *  Methode zum erstellen des Auswahldisplays
+ * 
+ */
 public void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
     spielvorbereitungsDisplay.setVisible(false);
@@ -213,7 +223,9 @@ public void setzeAuswahldisplay (){
 	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
 	display.add(cbAuswahl4);
 	
-//	1.Roboter IP-Auswahl
+/*
+ * 	1.Roboter IP-Auswahl
+ */
 	lbIp1Beschriftung.setBounds(440, 350, 140, 20);
 	lbIp1Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
 	display.add(lbIp1Beschriftung);
@@ -246,7 +258,9 @@ public void setzeAuswahldisplay (){
 	tfIp1Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp1Feld4);
     
-//    2. Roboter Ip Auswahl
+/*
+ *     2. Roboter Ip Auswahl
+ */
 	lbip2Beschriftung.setBounds(440, 390, 140, 20);
 	lbip2Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
 	display.add(lbip2Beschriftung);	
@@ -281,7 +295,9 @@ public void setzeAuswahldisplay (){
 	
 	
 	
-//	   3.Roboter IP Auswahl
+/*
+ * 	   3.Roboter IP Auswahl
+ */
 	
 	lbip3Beschriftung.setBounds(440, 430, 140, 20);
 	lbip3Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
@@ -315,7 +331,9 @@ public void setzeAuswahldisplay (){
 	tfIp3Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp3Feld4);
 	
-//	4. Roboter IP Auswahl
+/*
+ * 	4. Roboter IP Auswahl
+ */
 	
 	lbip4Beschriftung.setBounds(440, 470, 140, 20);
 	lbip4Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
@@ -351,7 +369,10 @@ public void setzeAuswahldisplay (){
 	getContentPane().add(display);
 }
 
-// Methode zum erstellen des Spielvorbereitungsdisplay
+/*
+ * 
+ *  Methode zum erstellen des Spielvorbereitungsdisplay
+ */
 public void setzeSpielvorbereitungsdisplay(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
@@ -389,7 +410,10 @@ public void setzeSpielvorbereitungsdisplay(){
 }
 
 
-//Methode zum erstellen des Siegdisplay
+/*
+ * Methode zum erstellen des Siegdisplay
+ * 
+ */
 public void setzeSiegbildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
@@ -648,6 +672,12 @@ public void actionPerformed(ActionEvent e) {
 		setzeAuswahldisplay();
 	}
 }
+
+
+public void spielfeld(){
+	
+}
+
 //Main Mehtoden 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
