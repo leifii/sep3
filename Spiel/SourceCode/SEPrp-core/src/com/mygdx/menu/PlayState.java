@@ -209,9 +209,9 @@ public class PlayState extends State {
 					createDynamicBody(400, 200, 35, 32, "gegner"));
 			Schleim1.addLoot(EquipmentType.Lederrüstung);
 			gegnerList.add(Schleim1);
-//			Ork Ork1 = new Ork(300, 300, s.getGegnerAnimation(2), collisionLayer, a1, createDynamicBody(300, 300, 64, 64, "gegner"));
-//			Ork1.addLoot(EquipmentType.Lederschuh);
-//			gegnerList.add(Ork1);
+			Ork Ork1 = new Ork(300, 300, s.getGegnerAnimation(2), collisionLayer, a1, createDynamicBody(300, 300, 64, 64, "gegner"));
+			Ork1.addLoot(EquipmentType.Lederschuh);
+			gegnerList.add(Ork1);
 		}
 	}
 
