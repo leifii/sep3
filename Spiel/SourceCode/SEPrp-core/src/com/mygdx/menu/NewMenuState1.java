@@ -143,6 +143,9 @@ public class NewMenuState1 extends State {
 
 	@Override
 	public void handleInput() {
+// DEVELOPMENT- ZWECKE --BIJAN
+
+// DEVELOPMENT- ZWECKE --BIJAN
 		click=Gdx.audio.newSound(Gdx.files.internal("dragstone.mp3"));
 		if (Gdx.input.isKeyJustPressed(Keys.L) || LoadGame.isPressed()) {
 			if(cl)
