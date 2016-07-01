@@ -1,3 +1,4 @@
+
 package com.mygdx.menu;
 
 import com.badlogic.gdx.Gdx;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -30,10 +32,11 @@ public class VerkaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	
+	KaufenState ks;
 //PlayState playstate;	
 	public VerkaufenState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
-		
+	
 	PS=ps;
 	
 	
@@ -64,34 +67,31 @@ public class VerkaufenState extends State{
 	ConfirmButtonStyle.pressedOffsetX = 1;
 	ConfirmButtonStyle.pressedOffsetY = -1;
 	ConfirmButtonStyle.font = white;
-
-	buttonJ = new TextButton("Zurück", textButtonStyle);
-	buttonJ.pad(10);
-
-
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
-
-	label = new Label("Verkaufen", labelStyle);
-	label.setFontScale(2.0f);
-	Image Rahmen = new Image(new Texture("userInterface/Inventar.png"));
-	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
-	Rahmen.setWidth(Gdx.graphics.getWidth() * 1.0f);
-	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
+	
+	buttonJ = new TextButton("Zurück", textButtonStyle);
+	buttonJ.pad(20);	
+	
+table.debug();
+	Label überschrift=new Label("Items Kaufen: ", labelStyle);
+	überschrift.setFontScale(2.0f);
+	
 	
 	table.add(buttonJ).padRight(450).padTop(50);
-	table.add(label).padRight(250).padTop(50);
-
-	
+	table.add(überschrift);
+	table.row();
+	table.add(new TextButton("Kaufen",textButtonStyle));
+	table.add(new Label("[ITEM-NAME]"+" "+"[Preis]", labelStyle));
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
 	Image img = new Image(new Texture("userInterface/dark background.png"));
 	img.setFillParent(true);
-	Rahmen.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
-
+	
+	
 	stage.addActor(img);
-	stage.addActor(Rahmen);
 	stage.addActor(table);
+	
 	}
 
 	@Override
@@ -122,3 +122,4 @@ public class VerkaufenState extends State{
 	}
 
 }
+
