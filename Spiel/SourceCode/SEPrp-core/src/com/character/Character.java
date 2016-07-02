@@ -227,6 +227,9 @@ public class Character implements IDrawable, Serializable {
 	public void levelup() {
 		level++;
 		skillup = true;
+		for (int i = 0; i < getSkills().size(); i++) {
+			getSkills().get(i).setskillup(true);
+		}
 	}
 
 	public boolean collision(Rectangle object) {
@@ -524,7 +527,9 @@ public class Character implements IDrawable, Serializable {
 			if (Gdx.input.isKeyPressed(Keys.NUM_4)){
 				getSkills().get(4).lvlup();
 			}
-			
+			for (int i = 0; i < getSkills().size(); i++) {
+				getSkills().get(i).setskillup(false);
+			}
 		}
 	}
 
