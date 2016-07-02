@@ -737,9 +737,8 @@ public  int getTaste() {
 		return richtung;
 	}
 
-
 	/*
-	 * Starten der KOmmunikation	
+	 * Starten der Kommunikation	
 	 */
 public void setClients() throws IOException{
 	
@@ -763,16 +762,50 @@ public void kollisionserkennung(){
 		else if(kollidiertRandom = true)
 		    kollision(4);
 	}
-	
 }
 
+/*
+ * Kollision
+ * 
+ */
 public void kollision (int i) {
-	if(leben >0){
+	if(leben >1){
 		setzePausenBildschrim();
+		leben -=1;
 	}
 	else{
 		setzeNiederlageBildschirm();
 	}
+	
+}
+/*
+ * Position des Sepmans auf dem angezeigten Spielfeld ändern 
+ */
+public void setzeSepmanAnzeige() {
+	
+}
+/*
+ * Position des Verfolger auf dem angezeigten Spielfeld ändern 
+ */
+public void setzeTracerAnzeige(){
+	
+}
+/*
+ * Position des Verteidiger auf dem angezeigten Spielfeld ändern 
+ */
+public void setzeDefenderAnzeige(){
+	
+}
+/*
+ * Position des Verpeilten auf dem angezeigten Spielfeld ändern 
+ */
+public void setzeRandomAnzeige(){
+	
+}
+/*
+ * Abgefahrene Kanten markieren
+ */
+public void makiereKanten(){
 	
 }
 
