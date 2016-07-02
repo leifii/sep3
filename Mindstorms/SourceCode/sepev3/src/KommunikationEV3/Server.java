@@ -27,12 +27,12 @@ public class Server{
 	
 			byte[] nachricht = new byte[9];
 			int mode;
-			int[] knoten = {15,16,25,26};
-			boolean[] norden = {false, false, true, true};
-			boolean[] sueden =  {true, true, false, false};
-			boolean[] westen = {false, true, false, true};
-			boolean[] osten = {true, false, true, false};
-			boolean[] powerup = {false, false, false, false};
+			int[] knoten ={1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 35, 36, 41, 42, 43, 44, 45, 46, 51, 52, 53, 54, 55, 56};
+			boolean[] norden ={false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+			boolean[] sueden ={true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false};
+			boolean[] westen ={false, true, true, true, false, true, false, true, false, false, true, false, false, false, true, true, true, true, false, true, true, true, true, false, false, false, true, false, false, true, false, false, true, true, true, true};
+			boolean[] osten = {true, true, true, false, true, false, true, false, false, true, false, false, false, true, true, true, true, false, true, true, true, true, false, false, false, true, false, false, true, false, true, true, false, true, true, false};
+			boolean[] powerup={false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false};
 			
 			
 			ServerSocket sSocket = new ServerSocket(18415);
