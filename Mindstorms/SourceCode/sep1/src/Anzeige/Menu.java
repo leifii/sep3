@@ -51,10 +51,6 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	
 	public int leben =10;
 	public boolean pause = true ;
-	public static boolean kollidiertSepman  = false;
-	public static boolean kollidiertTracer  = false;
-	public static boolean kollidiertDefender  = false;
-	public static boolean kollidiertRandom  = false;
 	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
@@ -127,7 +123,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	public Menu() {
 		super();
 		initComponents();
-		kollisionserkennung();
+
 	}
 /*
  * TEIL 1 
@@ -659,10 +655,7 @@ public void spielfeld() throws IOException{
     thorbensPanel.setFocusable(true);
     add(thorbensPanel);
 	this.spielvorbereitungsDisplay.setVisible(false);
-	kollidiertDefender = false;
-	kollidiertTracer = false;
-	kollidiertRandom = false;
-	kollidiertSepman = false;
+
 	
 }
 
@@ -774,22 +767,7 @@ public void setClients() throws IOException{
 /*
  * Permanente abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
  */
-public void kollisionserkennung(){
 
-	if(pause= false){
-		if ( kollidiertSepman ==true ){
-			kollision();
-		}
-		else if( kollidiertTracer ==true){
-			kollision();
-		}
-		else if (kollidiertDefender == true){
-			kollision();
-		}
-		else if(kollidiertRandom = true)
-			kollision();
-	}
-}
 
 /*
  * Kollision
