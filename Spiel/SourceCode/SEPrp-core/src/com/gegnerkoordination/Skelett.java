@@ -31,7 +31,7 @@ public class Skelett extends Gegner {
 		
 //		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button, helpNr, character, radius, collision
 		setSkills(new ArrayList<Skill>());
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,2,1,1,3,g.getSkill(12), false, 1, 0, this, 10, collisionLayer));
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,2,1,1,3,g.getSkill(12), false, 1, 0, this, 10, collisionLayer));
 		
 		TextureRegion [] keyframes=new TextureRegion[9];
 		TextureRegion [] keyframes1=new TextureRegion[9];

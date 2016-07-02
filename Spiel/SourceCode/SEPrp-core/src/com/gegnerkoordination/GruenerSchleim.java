@@ -26,7 +26,7 @@ public class GruenerSchleim extends Gegner {
 		super(x, y, 32, 32, collisionLayer, exp, attributes, body);
 		animationMap = new HashMap<AnimationDirection, Animation>();
 		setSkills(new ArrayList<Skill>());
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,3,g.getSkill(0), false, 1, 0, this, 10, collisionLayer));
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,3,1,1,3,g.getSkill(0), false, 1, 0, this, 10, collisionLayer));
 		TextureRegion [] keyframes=new TextureRegion[2];
 		for(int i=0;i<2;i++){
 			keyframes[i]=animation[0][i];
