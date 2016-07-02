@@ -207,6 +207,7 @@ public class Kommunikation implements IKommunikation{
 				if(i==2){
 					if(msg[2]==1){
 						Menu.kollidiertRandom = true;
+					
 					}
 				}
 				if(i==3){
