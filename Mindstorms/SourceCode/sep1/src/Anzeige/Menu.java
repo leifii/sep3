@@ -59,7 +59,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
 	public String[] roboterIPs = new String[4];
-	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Zufall"};
+	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
 	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	public JPanel startDisplay = new JPanel();
 	public JPanel siegDisplay = new JPanel();
