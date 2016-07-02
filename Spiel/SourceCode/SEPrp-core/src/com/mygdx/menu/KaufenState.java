@@ -39,13 +39,13 @@ public class KaufenState extends State {
 
 
 	// PlayState playstate;
-	public KaufenState(GameStateManager gsm, PlayState ps, de.SEPL.ServerClient.FileClient auktionshausClient) {
+	public KaufenState(GameStateManager gsm, PlayState ps, IAuktionshausClient auktionshausClient) {
 		super(gsm);
 		PS = ps;
 		
 		this.auktionshausClient = auktionshausClient;
 		
-		auktionshausContent = auktionshausClient.getContent();
+		auktionshausContent = this.auktionshausClient.getContent();
 
 		testitem = new AuktionshausItem[auktionshausContent.length];
 
