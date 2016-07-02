@@ -70,7 +70,7 @@ public class Character implements IDrawable, Serializable {
 	boolean whiteKeyRecieved;
 //	int currentMoney;  ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
-
+	public boolean skillup;
 	// public Character (int x,int y,String sprite,float speed){
 	// laufspeed=speed;
 	// position=new Vector3(x,y,0);
@@ -108,8 +108,12 @@ public class Character implements IDrawable, Serializable {
 		MaxHP = 100;
 
 		setCurrentHP(MaxHP);
+
+		skillup = false;
+
 		dmgFaktor = 1;
 		
+
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
 			keyframes[i] = animation[0][i];
@@ -222,6 +226,7 @@ public class Character implements IDrawable, Serializable {
 
 	public void levelup() {
 		level++;
+		skillup = true;
 	}
 
 	public boolean collision(Rectangle object) {
@@ -247,7 +252,9 @@ public class Character implements IDrawable, Serializable {
 		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
 		// /BIJAN
 		// cd = skills.get(0).gethitcd();
-
+		
+		this.handleInput();
+		
 		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
 
@@ -502,7 +509,23 @@ public class Character implements IDrawable, Serializable {
 	}
 
 	public void handleInput() {
-
+		if (skillup == true){
+			if (Gdx.input.isKeyPressed(Keys.NUM_1)){
+				getSkills().get(1).lvlup();
+				skillup = false;
+			}
+			if (Gdx.input.isKeyPressed(Keys.NUM_2)){
+				getSkills().get(2).lvlup();
+				skillup = false;
+			}
+			if (Gdx.input.isKeyPressed(Keys.NUM_3)){
+				getSkills().get(3).lvlup();
+			}
+			if (Gdx.input.isKeyPressed(Keys.NUM_4)){
+				getSkills().get(4).lvlup();
+			}
+			
+		}
 	}
 
 	public void draw(SpriteBatch sb) {
