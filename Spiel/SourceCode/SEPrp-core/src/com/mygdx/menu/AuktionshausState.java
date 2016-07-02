@@ -3,6 +3,7 @@ package com.mygdx.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,7 +24,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
-
+import java.util.ArrayList;
+import java.util.List;
 import de.SEPL.ServerClient.IAuktionshausClient;
 
 @Author(name = "Bijan Shahbaz Nejad")
@@ -154,12 +156,14 @@ public class AuktionshausState extends State implements IInventar {
 	@Override
 	public List<String> getAllItems() {
 		// TODO Auto-generated method stub
+
 		List<String> itemList = new ArrayList<String>();
 		itemList.add( "Flugzeug" );
 		itemList.add( "Hubschrauber" );
 		itemList.add( "Rennrad" );
 		
 		return itemList;
+
 	}
 
 	@Override

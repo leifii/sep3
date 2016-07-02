@@ -2,6 +2,7 @@ package com.character;
 
 import java.io.Serializable;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,7 +12,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.OrkEndgegner;
+
 import com.mygdx.game.Author;
 
 @Author(name = "Bardia Asemi-Soloot")
@@ -51,9 +54,11 @@ public class Skill implements Serializable {
 	protected float dy;
 
 	protected float speed;
+				//stufe die der skill hat, startet bei 0	
+	protected int button;			//auf welcher taste der skill liegt
 
 	protected float zaehler;
-	protected int button; // auf welcher taste der skill liegt
+	
 	private int position;
 	protected int width;
 	protected int height;
@@ -67,13 +72,17 @@ public class Skill implements Serializable {
 	private boolean remove;
 	private boolean alive;
 
-	// protected boolean locked;
+
+	protected boolean locked;
+
 	protected boolean buff;
+	protected boolean skillup;
 	protected int helpNr;
 
-	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime,
-			Texture bild, boolean buff, int button, int helpNr, Character c, int radius,
-			TiledMapTileLayer[] collisionLayer /* boolean locked */) {
+
+	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime, 
+			Texture bild, boolean buff, int button, int helpNr, Character c, int radius, TiledMapTileLayer[] collisionLayer) {
+
 		this.setX(x);
 		this.setY(y);
 		this.lvl = lvl;
@@ -95,7 +104,14 @@ public class Skill implements Serializable {
 		this.setRadius(radius);
 		this.setCollisionLayer(collisionLayer);
 		a = ic.getGegnerAnimation(0);
+
+		skillup = false;
+//		if (button == 0)
+//			locked = false;
+//		else locked = true;
+		
 		zaehler = 0;
+
 	}
 
 	public float gethitcd() {
@@ -109,12 +125,13 @@ public class Skill implements Serializable {
 	public void update(float dt, float xx, float yy) {
 		//dmgfaktor = c.getdmgFaktor();
 		
-		if (zaehler == 360) // bei kompletter drehung der axt auf 0 wieder
-							// setzen
+
+		if (zaehler == 360) // bei kompletter drehung der axt auf 0 wieder  setzen
 			zaehler = 0;
 		zaehler++; // axt drehen
 		handleInput(xx, yy);
 		setCdnow(getCdnow() - dt); // cd nach Benutzung reduzieren
+
 
 		lifeTimer += dt;
 		if (lifeTimer > lifeTime) {
@@ -215,9 +232,11 @@ public class Skill implements Serializable {
 	}
 
 	public void handleInput(float x, float y) {
-		if (getCdnow() < 0.1) { // falls skill benutzbar
-			if (button == 0) {
-				if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+
+		if (getCdnow() < 0.1 && lvl >= 1 && skillup == false) {				//falls skill benutzbar
+			if (button == 0){
+				if (Gdx.input.isKeyPressed(Keys.SPACE)){
+
 					this.setX(x);
 					this.setY(y);
 					setCdnow(getCd());
@@ -360,7 +379,7 @@ public class Skill implements Serializable {
 
 		if (isAlive() == true) {
 
-			if (c instanceof Schuetze) {
+			if (c instanceof Schuetze || c instanceof Skelett) {
 				if (button == 0 || button == 1 || button == 4) {
 					System.out.println(button);
 					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND) {
@@ -486,12 +505,13 @@ public class Skill implements Serializable {
 
 	}
 
-	public void upgrade() {
+	public void lvlup() {
 		lvl += 1;
 		setDmg(getDmg() + (getDmg() / 4)); // * dmgfaktor; würde beim krieger in
 											// berserker zu stärkerem skill up
 											// führen
 		setCd(getCd() - (getCd() / 8) * cdfaktor);
+		skillup = true;
 	}
 
 	public AnimationDirection direction(Character c) {
