@@ -153,10 +153,10 @@ public void initComponents() {
 	setSize(1000,720);
 	setTitle("SEPman");
 //	setzeAuswahldisplay ();
-	setzeStartbildschirm(); 
+//	setzeStartbildschirm(); 
 //	setzeNiederlageBildschirm();
 //	setzeSiegbildschirm();
-//	setzePausenBildschrim();
+	setzePausenBildschrim();
 	validate();
 }
 
@@ -174,7 +174,7 @@ public void setzeStartbildschirm(){
 	btnAuswahlfenster.setText("START");
 	btnAuswahlfenster.setFont(new Font("Arial", Font.BOLD, 50));
 	btnAuswahlfenster.setBounds(240, 200, 500, 75);
-	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));      // 
+	btnAuswahlfenster.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));      
 	btnAuswahlfenster.addActionListener(this);
 	startDisplay.add(btnAuswahlfenster);
 	
@@ -507,7 +507,7 @@ public void setzePausenBildschrim(){
 	thorbensPanel.setVisible(false);
 	pausenDisplay.setLayout(null);
 	pausenDisplay.setVisible(true);
-	pausenDisplay.setBackground(Color.GRAY);
+	pausenDisplay.setBackground(Color.LIGHT_GRAY);
 	pausenDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
 	pausenDisplay.add(lbHinweis1);
@@ -516,9 +516,11 @@ public void setzePausenBildschrim(){
 	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
 	pausenDisplay.add(btnSpielfortsetzen );
-	btnSpielfortsetzen.setBounds(200, 340, 240, 200);
-	btnSpielfortsetzen.setText("Roboter positioniert ,Spiel fortsetzen !!");
-	btnSpielfortsetzen.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnSpielfortsetzen.setBounds(200, 340, 600, 200);
+	btnSpielfortsetzen.setText("Spiel fortsetzen !!");
+	btnSpielfortsetzen.setFont(new Font("Arial", Font.BOLD, 55));
+	btnSpielfortsetzen.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnSpielfortsetzen.setForeground(Color.GREEN);
 	btnSpielfortsetzen.addActionListener(this); 
 	
     getContentPane().add(pausenDisplay);
@@ -619,7 +621,14 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 	else if(e.getSource() ==btnSpielfortsetzen ){
-		// Spiel fortsetzen 
+		try {
+			spielfeld();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		pause=false;
+		
 	}
 	else if (e.getSource()== btnNeuesSpiel){
 		setzeSpielvorbereitungsdisplay();
@@ -658,6 +667,8 @@ public void ipsSchreiben(){
  */
 
 public void spielfeld() throws IOException{
+	this.spielvorbereitungsDisplay.setVisible(false);
+	this.pausenDisplay.setVisible(false);
 	AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
 	thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
 	thorbensPanel.setBackground(Color.white);
@@ -666,7 +677,6 @@ public void spielfeld() throws IOException{
 	thorbensPanel.addKeyListener(this);
     thorbensPanel.setFocusable(true);
     add(thorbensPanel);
-	this.spielvorbereitungsDisplay.setVisible(false);
 	//kollisionserkennung();
 
 	
