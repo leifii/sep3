@@ -35,7 +35,7 @@ public class Schurke extends Character{
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,3,1,0.9f,1.5f,g.getSkill(14), false, 1, 0, this, 10, collisionLayer)); 
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,3,1,0.8f,2,g.getSkill(14), false, 1, 0, this, 10, collisionLayer));
 		
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,2,1,1,10,g.getSkill(10), true, 2, 0, this, 1, collisionLayer));	//unsichtbar 
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,1,2,1,1,10,g.getSkill(10), true, 2, 0, this, 1, collisionLayer));	//tempo+
 		
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,3,1,1,3,g.getSkill(15), false, 3, 0, this, 10, collisionLayer));	//giftdolchwurf
 		

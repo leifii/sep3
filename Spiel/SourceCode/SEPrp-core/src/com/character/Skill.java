@@ -180,20 +180,15 @@ public class Skill implements Serializable {
 			}
 		}
 
-		if (c instanceof Krieger && button == 4 && alive == false) { // dmgfaktor
-																		// nach
-																		// cd
-																		// wieder
-																		// runtersetzen
-																		// (4.skill)
+		if (c instanceof Krieger && button == 4 && alive == false) { // dmgfakto nach cd wieder runtersetzen (4.skill)
 			c.setdmgFaktor(1);
 		}
-		if (c instanceof Magier && button == 2 && alive == false && aktiviert == true) { // hp
-																							// vom
-																							// schild
-																							// wieder
-																							// entfernen
+		if (c instanceof Magier && button == 2 && alive == false && aktiviert == true) { // hp vom schild wieder entfernen
 			c.currentHP -= getDmg();
+			aktiviert = false;
+		}
+		if (c instanceof Schurke && button == 2 && alive == false && aktiviert == true){	//tempo vom schurken runtersetzen
+			c.attributes.setMS(2.5f);
 			aktiviert = false;
 		}
 
@@ -277,6 +272,10 @@ public class Skill implements Serializable {
 					setAlive(true);
 					if (c instanceof Krieger || c instanceof Magier) { // instant heal bei mage schild											
 						c.heal(getDmg());
+						aktiviert = true;
+					}
+					if (c instanceof Schurke){
+						c.attributes.setMS(3);
 						aktiviert = true;
 					}
 
