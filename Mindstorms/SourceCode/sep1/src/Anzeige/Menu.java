@@ -45,12 +45,12 @@ import java.awt.event.ActionEvent;
 
 
 
-public class Menu extends JFrame implements IMenu , ActionListener{
+public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
 	
-	public int leben ;
-	public boolean pause = false ;
+	public int leben =10;
+	public boolean pause = true ;
 	public static boolean kollidiertSepman  = false;
 	public static boolean kollidiertTracer  = false;
 	public static boolean kollidiertDefender  = false;
@@ -495,23 +495,24 @@ public void setzeNiederlageBildschirm(){
 public void setzePausenBildschrim(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
-	siegDisplay.setLayout(null);
-	siegDisplay.setVisible(true);
-	siegDisplay.setBackground(Color.GRAY);
-	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	thorbensPanel.setVisible(false);
+	pausenDisplay.setLayout(null);
+	pausenDisplay.setVisible(true);
+	pausenDisplay.setBackground(Color.GRAY);
+	pausenDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-	spielvorbereitungsDisplay.add(lbHinweis1);
+	pausenDisplay.add(lbHinweis1);
 	lbHinweis1.setBounds(100, 100, 300, 100);
 	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 15));
 	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-	spielvorbereitungsDisplay.add(btnSpielfortsetzen );
+	pausenDisplay.add(btnSpielfortsetzen );
 	btnSpielfortsetzen.setBounds(200, 340, 240, 50);
 	btnSpielfortsetzen.setText("Roboter positioniert ,Spiel fortsetzen !!");
 	btnSpielfortsetzen.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	btnSpielfortsetzen.addActionListener(this); 
 	
-    getContentPane().add(niederlageDisplay);
+    getContentPane().add(pausenDisplay);
 	
 }
 /*
@@ -652,48 +653,72 @@ public void spielfeld() throws IOException{
 	thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
 	thorbensPanel.setBackground(Color.white);
 	setSize(1000, 1000);
-	thorbensPanel.addKeyListener(new KeyListener(){
-		public void keyPressed(KeyEvent l) {
-			// TODO Auto-generated method stub
-			if(l.getKeyCode() == KeyEvent.VK_UP){
-			     richtung(4);
-			     System.out.println(richtung);
-				}
-				else if(l.getKeyCode() == KeyEvent.VK_LEFT){
-					richtung(5);
-					System.out.println(richtung);
-				}
-				
-				else if(l.getKeyCode() == KeyEvent.VK_DOWN){
-					richtung(6);
-					System.out.println(richtung);
-				}
-				
-				else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
-					richtung(7);
-					System.out.println(richtung);
-				}
-
-				else if(l.getKeyCode() == KeyEvent.VK_SPACE){
-					richtung(2);
-					System.out.println(richtung); 
-				}	
-		}
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			// wird nicht genutzt
-		}
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			// wird nicht genutzt
-		}
-	});
+	pause = false;
+	thorbensPanel.addKeyListener(this);
     thorbensPanel.setFocusable(true);
     add(thorbensPanel);
 	this.spielvorbereitungsDisplay.setVisible(false);
+	kollidiertDefender = false;
+	kollidiertTracer = false;
+	kollidiertRandom = false;
+	kollidiertSepman = false;
+	
 }
+
+public void keyPressed(KeyEvent l) {
+	// TODO Auto-generated method stub
+	if(l.getKeyCode() == KeyEvent.VK_UP){
+	     richtung(4);
+	     System.out.println(richtung);
+		}
+		else if(l.getKeyCode() == KeyEvent.VK_LEFT){
+			richtung(5);
+			System.out.println(richtung);
+ 
+		}
+		
+		else if(l.getKeyCode() == KeyEvent.VK_DOWN){
+			richtung(6);
+			System.out.println(richtung);
+ 
+		}
+		
+		else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
+			richtung(7);
+			System.out.println(richtung);
+
+		}
+
+		else if(l.getKeyCode() == KeyEvent.VK_SPACE){
+			richtung(2);
+			System.out.println(richtung); 
+	
+		}	
+//		else if (l.getKeyCode()== KeyEvent.VK_X){
+//			System.out.println("x"); 
+//			this.kollidiertSepman= true;
+//			System.out.println("xx"); 
+//		}
+}
+/*
+ * 
+ * wird nicht gentutz
+ */
+@Override
+public void keyTyped(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+/*
+ * Wird nicht genutzt
+ * 
+ */
+@Override
+public void keyReleased(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
 
 /*
  * Main Mehtoden 
@@ -749,18 +774,19 @@ public void setClients() throws IOException{
  * Permanente abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
  */
 public void kollisionserkennung(){
-	while (pause= false){
+
+	if(pause= false){
 		if ( kollidiertSepman ==true ){
-			kollision(1);
+			kollision();
 		}
 		else if( kollidiertTracer ==true){
-			kollision(2);
+			kollision();
 		}
 		else if (kollidiertDefender == true){
-			kollision(3);
+			kollision();
 		}
 		else if(kollidiertRandom = true)
-		    kollision(4);
+			kollision();
 	}
 }
 
@@ -768,7 +794,7 @@ public void kollisionserkennung(){
  * Kollision
  * 
  */
-public void kollision (int i) {
+public void kollision () {
 	if(leben >1){
 		setzePausenBildschrim();
 		leben -=1;
@@ -808,5 +834,6 @@ public void setzeRandomAnzeige(){
 public void makiereKanten(){
 	
 }
+
 
 }
