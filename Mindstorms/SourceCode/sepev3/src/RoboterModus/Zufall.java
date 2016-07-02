@@ -28,7 +28,7 @@ public class Zufall extends IModus{
 	}
 	
 	public void run(){
-		if(pause==false && isAktiviert()){
+		if(pause==false && /*isAktiviert()*/ true){
 		
 		int zufallszahl;
 		Plane knoten;
@@ -40,7 +40,7 @@ public class Zufall extends IModus{
 		
 		int blickrichtung = -1;									// nord = 0, west = 1, sued = 2, ost = 3;
 		
-		knoten = planeinit.getInfo(aktuelleposition);
+		knoten = planeinit.getKnoten(aktuelleposition);
 		
 		if(knoten.getNord() && (aktuelleposition - 10) != letzterKnoten && (aktuelleposition - 10) != nachricht[1] && (aktuelleposition - 10) != nachricht[3] ){
 			richtungen[0] = true;
