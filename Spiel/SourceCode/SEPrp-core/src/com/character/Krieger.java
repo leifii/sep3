@@ -40,7 +40,7 @@ public class Krieger extends Character{
 //		x-Position, y-Position, lvl, dmg, dmgfaktor, cd, cdfaktor, speed, lifeTime, bild, buff, button, helpNr, character, radius, collision
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,1,1,1,1,g.getSkill(7), true, 0, 0, this, 1, collisionLayer));		//auto-attack
 		
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(11), false, 1, 0, this, 10, collisionLayer));	//steinwurf
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,3,1,1,3,g.getSkill(11), false, 1, 0, this, 12, collisionLayer));	//steinwurf
 		
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,10,1,1,1.5f,g.getSkill(8), true, 2, 0, this, 1, collisionLayer));	//heal
 		
