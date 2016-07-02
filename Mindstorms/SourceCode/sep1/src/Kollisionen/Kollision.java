@@ -26,7 +26,7 @@ public class Kollision implements IKollision, IMenu {
 	
 	public void kollisionserkennung(){
 
-		if(pause= false){
+		while(pause= false){
 			if ( kollidiertSepman ==true ){
 				if (leben>1){
 				setzePausenBildschrim();
@@ -72,6 +72,10 @@ public class Kollision implements IKollision, IMenu {
 		else{
 			pause = true;
 		}
+	}
+	
+	public void setLeben( int i){
+		leben = i;
 	}
 
 	@Override
