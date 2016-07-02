@@ -37,6 +37,7 @@ import com.character.Skill;
 import com.gegnerkoordination.Gegner;
 import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
+import com.gegnerkoordination.OrkEndgegner;
 import com.gegnerkoordination.Skelett;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
@@ -218,6 +219,10 @@ public class PlayState extends State {
 			Ork Ork1 = new Ork(300, 400, s.getGegnerAnimation(2), collisionLayer, 60, ork, createDynamicBody(300, 300, 64, 64, "gegner"));
 			Ork1.addLoot(EquipmentType.Lederschuh);
 			gegnerList.add(Ork1);
+			OrkEndgegner Boss = new OrkEndgegner(4352, 608, s.getGegnerAnimation(2), collisionLayer, 200, ork, createDynamicBody(4352, 608, 64, 64, "gegner"));
+			Boss.addLoot(EquipmentType.Lederrüstung);
+			gegnerList.add(Boss);
+			//136,93
 		}
 	}
 
