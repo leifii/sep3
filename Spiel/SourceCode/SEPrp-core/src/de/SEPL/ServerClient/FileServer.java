@@ -17,11 +17,12 @@ import com.mygdx.game.Author;
 
 @Author(name = "Dominikus Häckel")
 
-
-/* Dies ist der Server für das Auktionhaus. Er muss serperat gestartet werden,
- * und das bevor das Spiel gestartet wird.
- * Wird der Server im späteren Verlauf des Projekts auf einen zweiten PC ausgelagert,
- * muss die IP-Adresse entsprechend im Clienten angepasst werden.*/
+/*
+ * Dies ist der Server für das Auktionhaus. Er muss serperat gestartet werden,
+ * und das bevor das Spiel gestartet wird. Wird der Server im späteren Verlauf
+ * des Projekts auf einen zweiten PC ausgelagert, muss die IP-Adresse
+ * entsprechend im Clienten angepasst werden.
+ */
 
 public class FileServer {
 
@@ -75,7 +76,7 @@ public class FileServer {
 
 		try (OutputStream out = client.getOutputStream();) {
 
-			FileReader fileReader = new FileReader("test.txt");
+			FileReader fileReader = new FileReader("auktionshausContent.txt");
 			BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
 
 			PrintWriter writer = new PrintWriter(out);
@@ -99,12 +100,13 @@ public class FileServer {
 	public static void deleteItemFromHouse(BufferedReader inputStreamBuffer) {
 
 		File tempFile = new File("tempFile.txt");
-		File houseFile = new File("test.txt");
+		File houseFile = new File("auktionshausContent.txt");
+		boolean firstOneFound = false;
 
 		try {
 			tempFile.createNewFile();
 			FileWriter tempFileWriter = new FileWriter(tempFile, true);
-			FileReader fileReader = new FileReader("test.txt");
+			FileReader fileReader = new FileReader("auktionshausContent.txt");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String searchFor = inputStreamBuffer.readLine();
@@ -112,8 +114,15 @@ public class FileServer {
 			String oneLine = bufferedReader.readLine();
 
 			while (oneLine != null) {
-				if (testOfContain(searchFor, oneLine) == false) {
-					tempFileWriter.append(oneLine + "\n");
+				if (firstOneFound == false) {
+					if (testOfContain(searchFor, oneLine) == true) {
+						firstOneFound = true;
+					}
+					if (testOfContain(searchFor, oneLine) == false) {
+						tempFileWriter.append(oneLine + "\n");
+					}
+				} else {
+						tempFileWriter.append(oneLine + "\n");
 				}
 				oneLine = bufferedReader.readLine();
 			}
@@ -134,7 +143,7 @@ public class FileServer {
 	public static void pasteItemInHouse(BufferedReader inputStreamBuffer) {
 
 		try {
-			FileWriter writer = new FileWriter("test.txt", true);
+			FileWriter writer = new FileWriter("auktionshausContent.txt", true);
 			writer.append("\n" + inputStreamBuffer.readLine());
 			writer.close();
 
