@@ -15,6 +15,7 @@ import Spielfeld.Planeinit;
 public abstract class IModus {                  //eine abstract class kann Variablen beinhalten und man kann Methoden direkt implementieren.
     Planeinit planeinit;                        //bei einem Interface kann man nur Prototypen von Methoden machen
     int aktuelleposition=0;
+	int zielposition;
  
     Drucksensor sensor;
     Linienverfolgung lvfg;
@@ -57,10 +58,18 @@ public abstract class IModus {                  //eine abstract class kann Varia
 //      return aktuelleposition;
         return getAusgangsKnoten();
     }
+    
+    public int getPos2(){			//ersatzmethode
+    	return aktuelleposition;
+    }
    
     public int getZielKnoten(){
         return mapZielKnoten.get(rolle);
     }
+    
+	public int getZiel(){
+		return zielposition;
+	}
    
     public int getAusgangsKnoten() {
         return mapAusgangsKnoten.get(rolle);
