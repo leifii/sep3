@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.gegnerkoordination.OrkEndgegner;
 import com.mygdx.game.Author;
 
 @Author(name = "Bardia Asemi-Soloot")
@@ -25,7 +26,7 @@ public class Skill implements Serializable {
 	private int dmg;
 	//int dmgfaktor;
 	private float cdnow;
-	float cd;
+	private float cd;
 	int cdfaktor;
 
 	public AnimationDirection direction;
@@ -78,7 +79,7 @@ public class Skill implements Serializable {
 		this.lvl = lvl;
 		this.setDmg(dmg);
 		//this.dmgfaktor = dmgfaktor;
-		this.cd = cd;
+		this.setCd(cd);
 		this.cdfaktor = cdfaktor;
 		this.speed = speed;
 		this.lifeTime = lifeTime;
@@ -121,7 +122,27 @@ public class Skill implements Serializable {
 			setAlive(false);
 
 		}
-
+		
+		// für OrkEndgegner
+		if (c instanceof OrkEndgegner && button == 1) {
+			if (helpNr == 1) { // south
+				dx = 0 * speed;
+				dy = -300 * speed;
+			}
+			if (helpNr == 2) { // west
+				dx = -300 * speed;
+				dy = 0 * speed;
+			}
+			if (helpNr == 3) { // east
+				dx = 300 * speed;
+				dy = 0 * speed;
+			}
+			if (helpNr == 4) { // north
+				dx = 0 * speed;
+				dy = 300 * speed;
+			}
+		}
+		
 		if (isAlive() == true && buff == false) { // falls kein Buff, dann
 													// bewegen
 			setX(getX() + dx * dt * speed);
@@ -170,7 +191,7 @@ public class Skill implements Serializable {
 		if (getCdnow() < 0.1) {
 			this.setX(x);
 			this.setY(y);
-			setCdnow(cd);
+			setCdnow(getCd());
 			lifeTimer = 0;
 			richtung = direction;
 			setAlive(true);
@@ -199,7 +220,7 @@ public class Skill implements Serializable {
 				if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 					this.setX(x);
 					this.setY(y);
-					setCdnow(cd);
+					setCdnow(getCd());
 					lifeTimer = 0;
 					richtung = direction;
 					setAlive(true);
@@ -231,7 +252,7 @@ public class Skill implements Serializable {
 				if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
 					this.setX(x);
 					this.setY(y);
-					setCdnow(cd);
+					setCdnow(getCd());
 					lifeTimer = 0;
 					richtung = direction;
 					setAlive(true);
@@ -255,7 +276,7 @@ public class Skill implements Serializable {
 				if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
 					this.setX(x);
 					this.setY(y);
-					setCdnow(cd);
+					setCdnow(getCd());
 					lifeTimer = 0;
 					richtung = direction;
 					setAlive(true);
@@ -439,6 +460,25 @@ public class Skill implements Serializable {
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 				} else
 					s.draw(bild, getX(), getY());
+				
+			} else if(c instanceof OrkEndgegner){
+				if(button==1)
+					if (helpNr == 1)
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					if (helpNr == 2)
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					if (helpNr == 3)
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 270, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					if (helpNr == 4)
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 0, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 			} else
 				s.draw(bild, getX(), getY());
 
@@ -451,7 +491,7 @@ public class Skill implements Serializable {
 		setDmg(getDmg() + (getDmg() / 4)); // * dmgfaktor; würde beim krieger in
 											// berserker zu stärkerem skill up
 											// führen
-		cd -= (cd / 8) * cdfaktor;
+		setCd(getCd() - (getCd() / 8) * cdfaktor);
 	}
 
 	public AnimationDirection direction(Character c) {
@@ -555,5 +595,13 @@ public class Skill implements Serializable {
 
 	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer) {
 		this.collisionLayer = collisionLayer;
+	}
+
+	public float getCd() {
+		return cd;
+	}
+
+	public void setCd(float cd) {
+		this.cd = cd;
 	}
 }
