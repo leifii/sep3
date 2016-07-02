@@ -54,6 +54,7 @@ public class FileClient implements IAuktionshausClient {
 		String tempString = null;
 		try {
 
+			tempString = reader.readLine();
 			while ((tempString = reader.readLine()) != null) {
 				items = items + "-" + tempString;
 			}
