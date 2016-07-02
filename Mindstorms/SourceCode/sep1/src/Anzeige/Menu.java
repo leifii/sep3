@@ -615,51 +615,8 @@ public void actionPerformed(ActionEvent e) {
 	else if(e.getSource() ==btnStartfinal){
 		try {
 			ipsSchreiben();                                                                   
-			System.out.println(this.roboterIPs[0]);
 			setClients();
-			AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
-			thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
-			thorbensPanel.addKeyListener(new KeyListener(){
-				public void keyPressed(KeyEvent l) {
-					// TODO Auto-generated method stub
-					if(l.getKeyCode() == KeyEvent.VK_UP){
-					     oben();
-//					     System.out.println(richtung);
-						}
-						else if(l.getKeyCode() == KeyEvent.VK_LEFT){
-							links();
-//							System.out.println(richtung);
-						}
-						
-						else if(l.getKeyCode() == KeyEvent.VK_DOWN){
-							unten();
-//							System.out.println(richtung);
-						}
-						
-						else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
-							rechts();
-//							System.out.println(richtung);
-						}
-		
-						else if(l.getKeyCode() == KeyEvent.VK_SPACE){
-							pause();
-//							System.out.println(richtung); 
-						}	
-				}
-				@Override
-				public void keyTyped(KeyEvent e) {
-					// TODO Auto-generated method stub
-					// wird nicht genutzt
-				}
-				@Override
-				public void keyReleased(KeyEvent e) {
-					// TODO Auto-generated method stub
-					// wird nicht genutzt
-				}
-			});
-            thorbensPanel.setFocusable(true);
-             add(thorbensPanel);
-			this.spielvorbereitungsDisplay.setVisible(false);
+			spielfeld();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -673,12 +630,64 @@ public void actionPerformed(ActionEvent e) {
 	}
 }
 
+/*
+ * Anzeige des Spielfelds
+ * KeyListener für das Spielfed
+ * 
+ * 
+ */
 
-public void spielfeld(){
-	
+public void spielfeld() throws IOException{
+	AnzeigeSpielfeldinit rr= new AnzeigeSpielfeldinit();
+	thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
+	thorbensPanel.setBackground(Color.white);
+	setSize(1000, 1000);
+	thorbensPanel.addKeyListener(new KeyListener(){
+		public void keyPressed(KeyEvent l) {
+			// TODO Auto-generated method stub
+			if(l.getKeyCode() == KeyEvent.VK_UP){
+			     oben();
+			     System.out.println(richtung);
+				}
+				else if(l.getKeyCode() == KeyEvent.VK_LEFT){
+					links();
+					System.out.println(richtung);
+				}
+				
+				else if(l.getKeyCode() == KeyEvent.VK_DOWN){
+					unten();
+					System.out.println(richtung);
+				}
+				
+				else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
+					rechts();
+					System.out.println(richtung);
+				}
+
+				else if(l.getKeyCode() == KeyEvent.VK_SPACE){
+					pause();
+					System.out.println(richtung); 
+				}	
+		}
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			// wird nicht genutzt
+		}
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			// wird nicht genutzt
+		}
+	});
+    thorbensPanel.setFocusable(true);
+    add(thorbensPanel);
+	this.spielvorbereitungsDisplay.setVisible(false);
 }
 
-//Main Mehtoden 
+/*
+ * Main Mehtoden 
+ */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -733,23 +742,5 @@ public void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
      client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
-//     client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
-//     Clientinit client2 = new  Clientinit();
-//     client2.clientInit(this.roboterIPs[1], this.roboterBelegung[1], 18415,2);
-//     Clientinit client3 = new  Clientinit();
-//     client3.clientInit(this.roboterIPs[2], this.roboterBelegung[2], 18415,3);
-//     Clientinit client4 = new  Clientinit();
-//     client4.clientInit(this.roboterIPs[3], this.roboterBelegung[3], 18415,4);
-//	
-//	
-	
-//	 Thread client1 = new Thread(new clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1));
-//	 client1.start();
-//	 Thread client2 = new Thread(new Clientinit(this.roboterIPs[1], this.roboterBelegung[1], 18415,));
-//	 client2.start();
-//	 Thread client3 = new Thread(new Clientinit(this.roboterIPs[2], this.roboterBelegung[2], 18415, ));
-//	 client3.start();
-//	 Thread client4 = new Thread(new Clientinit(this.roboterIPs[3], this.roboterBelegung[3], 18415,));
-//	 client4.start();
 }
 }
