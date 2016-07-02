@@ -46,7 +46,7 @@ public class Gegner extends Character {
 		setMaxHP(100);
 		setCurrentHP(getMaxHP());
 		setSkills(new ArrayList<Skill>());
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,1,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
 	}
 	
 	//Konstruktor ohne Animation für Schleim und andere Gegner
