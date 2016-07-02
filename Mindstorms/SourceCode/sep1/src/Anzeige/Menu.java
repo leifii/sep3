@@ -214,26 +214,26 @@ public void setzeAuswahldisplay (){
 	
 	cbAuswahl1.setSelectedIndex(0);
     cbAuswahl1.setBounds(170, 350, 200, 30);
-	cbAuswahl1.addActionListener(this);               //ActionPerformed ab Zeile 250
+	cbAuswahl1.addActionListener(this);               
 	display.add(cbAuswahl1);
 	
 	cbAuswahl2.setSelectedIndex(0);
 	cbAuswahl2.setBounds(170, 390, 200, 30);
-	cbAuswahl2.addActionListener(this);               //ActionPerformed ab Zeile 250
+	cbAuswahl2.addActionListener(this);               
 	display.add(cbAuswahl2);
 	
 	cbAuswahl3.setSelectedIndex(0);
 	cbAuswahl3.setBounds(170, 430, 200, 30);
-	cbAuswahl3.addActionListener(this);                //ActionPerformed ab Zeile 250
+	cbAuswahl3.addActionListener(this);                
 	display.add(cbAuswahl3);
 	
 	cbAuswahl4.setSelectedIndex(0);
 	cbAuswahl4.setBounds(170, 470, 200, 30);
-	cbAuswahl4.addActionListener(this);               //ActionPerformed ab Zeile 250
+	cbAuswahl4.addActionListener(this);               
 	display.add(cbAuswahl4);
 	
 /*
- * 	1.Roboter IP-Auswahl
+ * 	1.Roboter IP-Auswahl Darstellung
  */
 	lbIp1Beschriftung.setBounds(440, 350, 140, 20);
 	lbIp1Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
@@ -268,7 +268,7 @@ public void setzeAuswahldisplay (){
 	display.add(tfIp1Feld4);
     
 /*
- *     2. Roboter Ip Auswahl
+ *     2. Roboter Ip Auswahl Darstellung
  */
 	lbip2Beschriftung.setBounds(440, 390, 140, 20);
 	lbip2Beschriftung.setFont(new Font("Arial", Font.BOLD, 17));
@@ -302,10 +302,8 @@ public void setzeAuswahldisplay (){
 	tfIp2Feld4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	display.add(tfIp2Feld4);
 	
-	
-	
 /*
- * 	   3.Roboter IP Auswahl
+ * 	   3.Roboter IP Auswahl Darstellung
  */
 	
 	lbip3Beschriftung.setBounds(440, 430, 140, 20);
@@ -341,7 +339,7 @@ public void setzeAuswahldisplay (){
 	display.add(tfIp3Feld4);
 	
 /*
- * 	4. Roboter IP Auswahl
+ * 	4. Roboter IP Auswahl Darstellung
  */
 	
 	lbip4Beschriftung.setBounds(440, 470, 140, 20);
@@ -400,7 +398,6 @@ public void setzeSpielvorbereitungsdisplay(){
 	btnZurueck.setText("Zurück");
 	btnZurueck.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
-	
 	spielvorbereitungsDisplay.add(btnStartfinal);
 	btnStartfinal.setBounds(200, 340, 500, 75);
 	btnStartfinal.setFont(new Font("Arial", Font.BOLD, 50));
@@ -408,13 +405,11 @@ public void setzeSpielvorbereitungsdisplay(){
 	btnStartfinal.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	btnStartfinal.addActionListener(this);
 	
-	
 	spielvorbereitungsDisplay.add(lbHinweis1);
 	lbHinweis1.setBounds(40, 100, 400, 100);
 	lbHinweis1.setFont(new Font("Arial", Font.BOLD, 20));
 	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
-	
 	getContentPane().add(spielvorbereitungsDisplay);
 }
 
