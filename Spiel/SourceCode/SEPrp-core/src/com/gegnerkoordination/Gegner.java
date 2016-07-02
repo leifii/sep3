@@ -50,11 +50,11 @@ public class Gegner extends Character {
 	}
 	
 	//Konstruktor ohne Animation für Schleim und andere Gegner
-	public Gegner (int x,int y, int width, int height, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
+	public Gegner (int x,int y, int width, int height, TiledMapTileLayer[] collisionLayer, int exp, Attributes attributes, Body body){
 		super(x,y,width,height,collisionLayer, attributes, body, Rolle.Gegner);
 		
 		//================TMP===============
-		exp = 20;
+		this.exp = exp;
 		setMaxHP(100);
 		setCurrentHP(getMaxHP());
 		setSkills(new ArrayList<Skill>());
