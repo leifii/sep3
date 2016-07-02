@@ -7,33 +7,72 @@
 package Kollisionen;
 
 import Anzeige.IMenu;
+import Anzeige.Menu;
 
 public class Kollision implements IKollision, IMenu {
-	
+	public static boolean kollidiertSepman  = false;
+	public static boolean kollidiertTracer  = false;
+	public static boolean kollidiertDefender  = false;
+	public static boolean kollidiertRandom  = false;
 	public static boolean kollidiert  = false;
+	public boolean pause = true;
+	public int leben ;
 	
-	public static void setkollision(){
-		if(kollidiert == false ){
-			kollidiert = true;
-		}
-		else {
-			kollidiert =false;
+	public Kollision(){
+		super();
+	}
+
+	
+	
+	public void kollisionserkennung(){
+
+		if(pause= false){
+			if ( kollidiertSepman ==true ){
+				if (leben>1){
+				setzePausenBildschrim();
+				leben -=1;
+				}
+				else{
+					setzeNiederlageBildschirm();
+				}
+			}
+			else if( kollidiertTracer ==true){
+				if (leben>1){
+					setzePausenBildschrim();
+					leben -=1;
+					}
+					else{
+						setzeNiederlageBildschirm();
+					}
+			}
+			else if (kollidiertDefender == true){
+				if (leben>1){
+					setzePausenBildschrim();
+					leben -=1;
+					}
+					else{
+						setzeNiederlageBildschirm();
+					}
+			}
+			else if(kollidiertRandom = true)
+				if (leben>1){
+					setzePausenBildschrim();
+					leben -=1;
+					}
+					else{
+						setzeNiederlageBildschirm();
+					}
 		}
 	}
-	
-	
-	
-	
-	public void kollision(){
 		
-		if(PowerUps.PowerUp.isPowerUpAktiv()){
-			setzePausenBildschrim();
+	public void setPause(){
+		if (pause){
+			pause = false;
 		}
 		else{
-		   setzePausenBildschrim();
-		   // Reduziere leben um 1
+			pause = true;
 		}
-}
+	}
 
 	@Override
 	public void initComponents() {
@@ -72,8 +111,9 @@ public class Kollision implements IKollision, IMenu {
 
 	@Override
 	public void setzeNiederlageBildschirm() {
+		
 		// TODO Auto-generated method stub
-		// Wird nicht verwendet
+	 
 		
 	}
 
@@ -83,10 +123,6 @@ public class Kollision implements IKollision, IMenu {
 		// Wird nicht verwendet
 		
 	}
-
-
-
-
 	@Override
 	public int getTaste() {
 		// TODO Auto-generated method stub
