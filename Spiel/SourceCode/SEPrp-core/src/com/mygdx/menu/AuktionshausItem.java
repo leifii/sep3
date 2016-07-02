@@ -20,6 +20,7 @@ class AuktionshausItem implements IInventar {
 	Label iteminfo;
 	String Name, Preis;
 	boolean gekauft;
+	boolean pressedOnce = true; // zur Sicherstellung, dass trotz isPressed Button nur einmal ausgeführt wird --Dom--
 
 	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name) {
 		Name = name;
@@ -37,18 +38,24 @@ class AuktionshausItem implements IInventar {
 			table.row();
 		}
 		if (itemkauf.isPressed()) {
-			itemkauf.remove();
-			iteminfo.remove();
-			gekauft = true;
+			if (pressedOnce == true) {
+				itemkauf.remove();
+				iteminfo.remove();
+				gekauft = true;
 
-			if (state instanceof KaufenState) {
-				auktionshausClient.deleteItem(Name); // Item aus Auktionshaus entfernen --Dom--
-				place(Name); // INVENTAR
+				if (state instanceof KaufenState) {
+					auktionshausClient.deleteItem(Name); // Item aus
+															// Auktionshaus
+															// entfernen --Dom--
+					place(Name); // INVENTAR
+				}
+				if (state instanceof VerkaufenState) {
+					remove(Name); // INVENTAR
+					auktionshausClient.pasteItem(Name); // Item in Auktionshaus
+														// platzieren --Dom--
+				}
 			}
-			if (state instanceof VerkaufenState) {
-				remove(Name); // INVENTAR
-				auktionshausClient.pasteItem(Name); // Item in Auktionshaus platzieren --Dom--
-			}
+			pressedOnce = false;
 		}
 	}
 
