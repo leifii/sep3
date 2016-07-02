@@ -8,6 +8,8 @@ package RoboterModus;
 
 import java.util.Random;
 
+import lejos.hardware.lcd.LCD;
+import lejos.utility.Delay;
 import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Plane;
@@ -19,16 +21,17 @@ public class Zufall extends IModus{
 
 	Random r;
 	private int letzterKnoten;
-	private int zielposition;
+
 	
 	public Zufall(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
 		super(plane, lvfg, drucksensor);
 		aktuelleposition = start;
 		letzterKnoten = aktuelleposition +1;
+		r = new Random();
 	}
 	
 	public void run(){
-		if(pause==false && /*isAktiviert()*/ true){
+		if((pause==false && /*isAktiviert()*/ true)){	//TODO das muss noch geändert werden
 		
 		int zufallszahl;
 		Plane knoten;
@@ -40,7 +43,10 @@ public class Zufall extends IModus{
 		
 		int blickrichtung = -1;									// nord = 0, west = 1, sued = 2, ost = 3;
 		
+		
+		
 		knoten = planeinit.getKnoten(aktuelleposition);
+		
 		
 		if(knoten.getNord() && (aktuelleposition - 10) != letzterKnoten && (aktuelleposition - 10) != nachricht[1] && (aktuelleposition - 10) != nachricht[3] ){
 			richtungen[0] = true;
@@ -57,7 +63,6 @@ public class Zufall extends IModus{
 		if(knoten.getWest() && (aktuelleposition - 1) != letzterKnoten&& (aktuelleposition - 1) != nachricht[1] && (aktuelleposition - 1) != nachricht[3] ){
 			richtungen[1] = true;
 		}
-		
 		//Mögliche Richtungen gesetzt  
 		
 		
@@ -65,7 +70,8 @@ public class Zufall extends IModus{
 		
 		while(true){
 			zufallszahl  =r.nextInt(4);					// nord = 0, west = 1, sued = 2, ost = 3;
-			
+			LCD.drawString("zufall  "+zufallszahl, 0, 3);
+			Delay.msDelay(2000);
 			if(richtungen[zufallszahl] == true){
 				break;
 			}
@@ -163,4 +169,6 @@ public class Zufall extends IModus{
 		else
 			lvfg.stop();
 	}
+	
+
 }

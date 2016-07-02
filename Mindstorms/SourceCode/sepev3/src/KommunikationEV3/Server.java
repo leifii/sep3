@@ -68,12 +68,7 @@ public class Server{
 			Linienverfolgung lvfg=new Linienverfolgung();
 			IModus robomode;
 			
-			
-			LCD.drawString("Vor dem empfangen", 0, 2);
-			Delay.msDelay(1000);
 			nachricht = com1.empfangen();
-			LCD.drawString("empfangen nachricht 1", 0, 2);
-			Delay.msDelay(1000);
 			
 			
 			mode = nachricht[8];
@@ -87,6 +82,7 @@ public class Server{
 			break;
 			case 103: robomode = new Zufall(26, planes, lvfg, drucksensor);
 			LCD.drawString("Zufall", 0, 2);                  //Displayausgabe EV3
+			Delay.msDelay(1000);
 			break;
 			case 104: robomode = new Sepman(planes, lvfg, drucksensor);
 			LCD.drawString("Sepman", 0, 2);                  //Displayausgabe EV3
@@ -111,7 +107,7 @@ public class Server{
 				// TODO Zufall
 				robomode.setNachricht(nachricht);
 				robomode.run();
-				com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), /*robomode.isAktiviert()*/ true, robomode.isPowerup(), robomode.isPause()));
+				com1.senden(com1.erzeugeByteArray(robomode.getPos2(), robomode.getZiel(), robomode.getDrucksensor(), /*robomode.isAktiviert()*/ true, robomode.isPowerup(), robomode.isPause()));
 			}
 			
 			else if(mode == 102){
