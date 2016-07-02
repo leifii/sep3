@@ -20,7 +20,6 @@ class AuktionshausItem implements IInventar {
 	Label iteminfo;
 	String Name, Preis;
 	boolean gekauft;
-	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
 
 	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name) {
 		Name = name;
@@ -31,7 +30,7 @@ class AuktionshausItem implements IInventar {
 		gekauft = false;
 	}
 
-	public void add(Table table, State state) {
+	public void add(Table table, State state, IAuktionshausClient auktionshausClient) {
 		if (!gekauft) {
 			table.add(itemkauf);
 			table.add(iteminfo);
