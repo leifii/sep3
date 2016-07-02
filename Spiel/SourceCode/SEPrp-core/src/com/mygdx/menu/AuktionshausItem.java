@@ -1,5 +1,7 @@
 package com.mygdx.menu;
 
+import java.util.List;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -129,7 +131,7 @@ import com.mygdx.game.Author;
 //}
 
 
-class AuktionshausItem{
+class AuktionshausItem implements IInventar{
 	
 	TextButton itemkauf;
 	
@@ -149,7 +151,7 @@ class AuktionshausItem{
 	}
 	
 	
-	public void add(Table table){
+	public void add(Table table,State state){
 		if (!gekauft) {	
 		table.add(itemkauf);
 		table.add(iteminfo);
@@ -159,11 +161,88 @@ class AuktionshausItem{
 			itemkauf.remove();
 			iteminfo.remove();
 			gekauft=true;
-			
-		/////     DOM HIER !!!!!                     auktionshausClient.deleteItem(Name);
-			
-		}
 		
+			if (state instanceof KaufenState) {
+		/////     DOM HIER !!!!!                     auktionshausClient.deleteItem(Name);
+				
+				place(Name); // INVENTAR
+			}
+			if(state instanceof VerkaufenState){
+					remove(Name); // INVENTAR
+					
+					///// DOM HIER !!!!!!			auktionshausClient.pasteItem(Name);
+			}
+		}
+	}
+
+
+	@Override
+	public void place(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public List<String> getAllItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void remove(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public int getStrenghtBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getIntelligenceBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getStaminaBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getDexterityBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getHealing() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getMoney() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public boolean modifyMoney(int delta) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
