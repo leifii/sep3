@@ -53,6 +53,10 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	public boolean pause = true ;
 	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
+	public static boolean kollidiertSepman  = false;
+	public static boolean kollidiertTracer  = false;
+	public static boolean kollidiertDefender=false;
+	public static boolean kollidiertRandom  = false;
 	public String[] roboterBelegung = new String[4];
 	public String[] roboterIPs = new String[4];
 	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
@@ -650,11 +654,12 @@ public void spielfeld() throws IOException{
 	thorbensPanel =rr.Spielfeldinit("Spielfeld.txt", thorbensPanel);
 	thorbensPanel.setBackground(Color.white);
 	setSize(1000, 1000);
-	pause = false;
+	pause = false; 
 	thorbensPanel.addKeyListener(this);
     thorbensPanel.setFocusable(true);
     add(thorbensPanel);
 	this.spielvorbereitungsDisplay.setVisible(false);
+	kollisionserkennung();
 
 	
 }
@@ -767,7 +772,46 @@ public void setClients() throws IOException{
 /*
  * Permanente abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
  */
+public void kollisionserkennung(){
 
+	while(pause == false){
+		if ( kollidiertSepman ==true ){
+			if (leben>1){
+			setzePausenBildschrim();
+			leben -=1;
+			}
+			else{
+				setzeNiederlageBildschirm();
+			}
+		}
+		else if( kollidiertTracer ==true){
+			if (leben>1){
+				setzePausenBildschrim();
+				leben -=1;
+				}
+				else{
+					setzeNiederlageBildschirm();
+				}
+		}
+		else if (kollidiertDefender == true){
+			if (leben>1){
+				setzePausenBildschrim();
+				leben -=1;
+				}
+				else{
+					setzeNiederlageBildschirm();
+				}
+		}
+		else if(kollidiertRandom ==true)
+			if (leben>1){
+				setzePausenBildschrim();
+				leben -=1;
+				}
+				else{
+					setzeNiederlageBildschirm();
+				}
+	}
+}
 
 /*
  * Kollision
