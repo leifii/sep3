@@ -11,12 +11,15 @@ import com.mygdx.game.Author;
 
 @Author(name = "Dominikus Häckel")
 
-
 public class FileClient implements IAuktionshausClient {
 
 	static BufferedReader reader;
 	static Socket client;
 	static PrintWriter writer;
+
+	public FileClient() {
+
+	}
 
 	public void sendIt(String wrapped) {
 		try {
@@ -43,8 +46,7 @@ public class FileClient implements IAuktionshausClient {
 	}
 
 	public String[] getContent() {
-		String[] items = new String[256];
-		int i = 0;
+		String items = "";
 
 		sendIt("getContent\n");
 
@@ -53,32 +55,25 @@ public class FileClient implements IAuktionshausClient {
 		try {
 
 			while ((tempString = reader.readLine()) != null) {
-				items[i] = tempString;
-				tempString = reader.readLine();
-				i++;
+				items = items + "-" + tempString;
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return items;
+		String[] itemAr = items.split("-");
+
+		return itemAr;
 	}
 
-	public void deleteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
-			int geschicklichkeit, int wert) {
-		String wrapped = "deleteItem\n" + art + "," + name + "," + seltenheit + "," + staerke + "," + intelligenz + ","
-				+ stamina + "," + geschicklichkeit + "," + wert;
-
+	public void deleteItem(String name) {
+		String wrapped = "deleteItem\n" + name;
 		sendIt(wrapped);
 	}
 
-	public void pasteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
-			int geschicklichkeit, int wert) {
-
-		String wrapped = "pasteItem\n" + art + "," + name + "," + seltenheit + "," + staerke + "," + intelligenz + ","
-				+ stamina + "," + geschicklichkeit + "," + wert;
-
+	public void pasteItem(String name) {
+		String wrapped = "pasteItem\n" + name;
 		sendIt(wrapped);
 	}
 
