@@ -166,6 +166,7 @@ public class Kommunikation implements IKommunikation{
 				if(i==2){
 					if(msg[2]==1){
 						Menu.kollidiertDefender = true;
+						
 					}
 				}
 				if(i==3){
