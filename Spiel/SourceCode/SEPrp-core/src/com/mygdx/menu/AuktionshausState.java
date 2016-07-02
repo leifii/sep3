@@ -1,5 +1,6 @@
 package com.mygdx.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -153,7 +154,12 @@ public class AuktionshausState extends State implements IInventar {
 	@Override
 	public List<String> getAllItems() {
 		// TODO Auto-generated method stub
-		return null;
+		List<String> itemList = new ArrayList<String>();
+		itemList.add( "kleines Schwert" );
+		itemList.add( "Hut" );
+		itemList.add( "Schlange" );
+		
+		return itemList;
 	}
 
 	@Override
