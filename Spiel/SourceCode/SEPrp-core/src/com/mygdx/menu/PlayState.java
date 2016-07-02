@@ -83,7 +83,10 @@ public class PlayState extends State {
 	List<Portal> PortalListe;
 
 	private static PlayState instance;
-
+	
+	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
+	
+	
 	public static PlayState getInstance() {
 		return instance;
 	}
