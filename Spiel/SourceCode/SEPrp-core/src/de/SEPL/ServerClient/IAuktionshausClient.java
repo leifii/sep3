@@ -12,10 +12,8 @@ public interface IAuktionshausClient {
 
 	String[] getContent();
 
-	void deleteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
-			int geschicklichkeit, int wert);
+	void deleteItem(String name);
 
-	void pasteItem(String art, String name, double seltenheit, int staerke, int intelligenz, int stamina,
-			int geschicklichkeit, int wert);
+	void pasteItem(String name);
 
 }
