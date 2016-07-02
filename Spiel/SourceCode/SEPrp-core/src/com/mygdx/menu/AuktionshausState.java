@@ -121,6 +121,7 @@ public class AuktionshausState extends State implements IInventar {
 	@Override
 	public void handleInput() {
 		if (buttonX.isChecked()) {
+			auktionshausClient.shutDown();
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
