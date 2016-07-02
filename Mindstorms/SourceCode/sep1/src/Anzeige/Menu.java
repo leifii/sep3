@@ -686,32 +686,19 @@ public void spielfeld() throws IOException{
 		});
 	}
 	
-/*
-*  gibt ein Array mit der Modi-Belgung der Roboter wieder 
-* wir wahrscheinlich nicht mehr benätigt :D
- */
-	@Override
-	public String[] getRoboterbelegung() {
-		// TODO Auto-generated method stub
-		return roboterBelegung;
-	}
 /* Methoden für Belgung der Richtungsvariable
  * 
 */
 	public void richtung(int i){
 		switch(i){
 		case 4 : richtung =4;
-		break;
-		
+		break;	
 		case 6 :richtung =6;
-		break;
-		
+		break;		
 		case 5 :richtung =5;
-		break;
-		
+		break;		
 		case 7 :richtung =7;
-		break;
-		
+		break;		
 		case 2 :richtung =2;
 		break;
 		}
