@@ -114,10 +114,10 @@ PlayState playstate;
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
-			gsm.push(new KaufenState(gsm,playstate));
+			gsm.push(new KaufenState(gsm,playstate,new String[]{"ABC"}/*HIER MUSS DAS STRING-ARRAY REIN*/)); // MAN MUSS HIER DIE LISTE AUS DEM AUKTIONSHAUS ÜBERGEBEN
 		}
 		if (buttonN.isChecked()) {
-			gsm.push(new VerkaufenState(gsm,playstate));
+			gsm.push(new VerkaufenState(gsm,playstate)); // MAN MUSS HIER DIE LISTE AUF DEM INVENTAR ÜBERGEBEN
 		}
 	}
 
