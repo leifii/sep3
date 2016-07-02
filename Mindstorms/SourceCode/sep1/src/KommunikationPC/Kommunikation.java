@@ -7,7 +7,7 @@ package KommunikationPC;
 
 import java.io.IOException;
 import java.net.Socket;
-
+import Anzeige.Menu;
 import Positionen.Position;
 
 public class Kommunikation implements IKommunikation{	
@@ -85,7 +85,7 @@ public class Kommunikation implements IKommunikation{
 				}
 				if(i==2){
 					if(msg[2]==1){
-						//kollidiert!
+						Menu.kollidiertSepman = true;
 					}
 				}
 				if(i==3){
@@ -125,7 +125,7 @@ public class Kommunikation implements IKommunikation{
 				}
 				if(i==2){
 					if(msg[2]==1){
-						//kollidiert!
+						Menu.kollidiertTracer = true;
 					}
 				}
 				if(i==3){
@@ -165,7 +165,7 @@ public class Kommunikation implements IKommunikation{
 				}
 				if(i==2){
 					if(msg[2]==1){
-						//kollidiert!
+						Menu.kollidiertDefender = true;
 					}
 				}
 				if(i==3){
@@ -205,7 +205,7 @@ public class Kommunikation implements IKommunikation{
 				}
 				if(i==2){
 					if(msg[2]==1){
-						//kollidiert!
+						Menu.kollidiertRandom = true;
 					}
 				}
 				if(i==3){
