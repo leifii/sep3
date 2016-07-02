@@ -25,7 +25,7 @@ public class Skill implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int lvl;
+	int lvl;		//stufe die der skill hat, startet bei 0, ab 1 freigeschaltet
 	private int dmg;
 	//int dmgfaktor;
 	private float cdnow;
@@ -54,7 +54,7 @@ public class Skill implements Serializable {
 	protected float dy;
 
 	protected float speed;
-				//stufe die der skill hat, startet bei 0	
+					
 	protected int button;			//auf welcher taste der skill liegt
 
 	protected float zaehler;
@@ -80,7 +80,7 @@ public class Skill implements Serializable {
 	protected int helpNr;
 
 
-	public Skill(float x, float y, int lvl, int dmg, int dmgfaktor, int cd, int cdfaktor, float speed, float lifeTime, 
+	public Skill(float x, float y, int lvl, int dmg, int cd, int cdfaktor, float speed, float lifeTime, 
 			Texture bild, boolean buff, int button, int helpNr, Character c, int radius, TiledMapTileLayer[] collisionLayer) {
 
 		this.setX(x);
@@ -110,7 +110,7 @@ public class Skill implements Serializable {
 //			locked = false;
 //		else locked = true;
 		
-		zaehler = 0;
+		zaehler = 0;			//drehung der axt
 
 	}
 
@@ -275,11 +275,7 @@ public class Skill implements Serializable {
 					lifeTimer = 0;
 					richtung = direction;
 					setAlive(true);
-					if (c instanceof Krieger || c instanceof Magier) { // instant
-																		// heal,
-																		// bei
-																		// mage
-																		// schild
+					if (c instanceof Krieger || c instanceof Magier) { // instant heal bei mage schild											
 						c.heal(getDmg());
 						aktiviert = true;
 					}
@@ -511,7 +507,7 @@ public class Skill implements Serializable {
 											// berserker zu stärkerem skill up
 											// führen
 		setCd(getCd() - (getCd() / 8) * cdfaktor);
-		skillup = true;
+		
 	}
 
 	public AnimationDirection direction(Character c) {
@@ -623,5 +619,13 @@ public class Skill implements Serializable {
 
 	public void setCd(float cd) {
 		this.cd = cd;
+	}
+	
+	public void setskillup(boolean su){
+		skillup = su;
+	}
+	
+	public boolean getskillup(){
+		return skillup;
 	}
 }
