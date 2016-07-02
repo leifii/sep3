@@ -219,13 +219,14 @@ public class KaufenState extends State{
 	private Label label;	
 	public PlayState PS;
 	public VerkaufenState vs;
-	public AuktionshausItemKauf testitem[];
+	public AuktionshausItem testitem[];
 	
 //PlayState playstate;	
-	public KaufenState(GameStateManager gsm,PlayState ps) {
+	public KaufenState(GameStateManager gsm,PlayState ps,String [] itemlist) {
 		super(gsm);
 	PS=ps;
 	
+	testitem=new AuktionshausItem[itemlist.length];
 	
 	stage = new Stage();
 	Gdx.input.setInputProcessor(stage);
@@ -247,7 +248,7 @@ public class KaufenState extends State{
 	textButtonStyle.pressedOffsetX = 1;
 	textButtonStyle.pressedOffsetY = -1;
 	textButtonStyle.font = white;
-
+	
 	TextButtonStyle ConfirmButtonStyle = new TextButtonStyle();
 	ConfirmButtonStyle.up = skin.getDrawable("blank-2");
 	ConfirmButtonStyle.down = skin.getDrawable("blank-3");
@@ -257,11 +258,11 @@ public class KaufenState extends State{
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 	
-	testitem=new AuktionshausItemKauf[]{new AuktionshausItemKauf(textButtonStyle, labelStyle),
-			new AuktionshausItemKauf(textButtonStyle, labelStyle),
-			new AuktionshausItemKauf(textButtonStyle, labelStyle),
-			new AuktionshausItemKauf(textButtonStyle, labelStyle)};
-
+	for (int j = 0; j < testitem.length; j++) {
+	
+		testitem[j]=new AuktionshausItem(textButtonStyle, labelStyle,itemlist[j]);
+	
+}
 	buttonJ = new TextButton("Zurück", textButtonStyle);
 	buttonJ.pad(20);	
 	
@@ -305,6 +306,7 @@ table.debug();
 	public void render(SpriteBatch sb) {
 		stage.act();
 		stage.draw();
+		
 		for (int i = 0; i < testitem.length; i++) {
 			testitem[i].add(table);
 		}

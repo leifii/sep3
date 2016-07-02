@@ -129,7 +129,7 @@ import com.mygdx.game.Author;
 //}
 
 
-class AuktionshausItemKauf{
+class AuktionshausItem{
 	
 	TextButton itemkauf;
 	
@@ -139,8 +139,8 @@ class AuktionshausItemKauf{
 	
 	boolean gekauft;
 	
-	public AuktionshausItemKauf(TextButtonStyle textButtonStyle,LabelStyle labelStyle){
-		Name="[NAME]";
+	public AuktionshausItem(TextButtonStyle textButtonStyle,LabelStyle labelStyle,String name){
+		Name=name;
 		Preis="[PREIS]";
 		itemkauf=new TextButton("Kaufen ->", textButtonStyle);
 		itemkauf.pad(20);
@@ -159,6 +159,9 @@ class AuktionshausItemKauf{
 			itemkauf.remove();
 			iteminfo.remove();
 			gekauft=true;
+			
+		/////     DOM HIER !!!!!                     auktionshausClient.deleteItem(Name);
+			
 		}
 		
 	}
