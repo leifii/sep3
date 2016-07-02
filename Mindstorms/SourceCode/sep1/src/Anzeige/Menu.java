@@ -48,6 +48,9 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
+	
+	public int leben ;
+	public boolean pause = false ;
 	public static boolean kollidiertSepman  = false;
 	public static boolean kollidiertTracer  = false;
 	public static boolean kollidiertDefender  = false;
@@ -125,7 +128,20 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 		super();
 		initComponents();
 	}
-	
+/*
+ * TEIL 1 
+ * Hier werden die einzelnen JPanels für das Menü erstellt. 
+ * 
+ * 
+ * 
+ * 
+ * In Teil 2 laufen die Spielaktionen ab
+ * 
+ * 
+ * 
+ * 
+ * 	
+ */
 	
 /*
  *  Initialisierung des Fenster + Aufrufen des Startbildschirms*
@@ -499,6 +515,16 @@ public void setzePausenBildschrim(){
 	
 }
 /*
+ * TEIL 2 
+ * Hier laufen alle "Aktionen ab" 
+ *   - Key/Action Listener
+ *   - Schreiben in die Modi/IP Arrays
+ *   - Eingabe Überprüfung
+ *   - Spielfeld Steuerung
+ *   - Main Methode
+ *   - Initialisierung der Clients
+ */
+/*
  *  Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
  */
 public boolean eingabeKorrekt() {
@@ -702,16 +728,52 @@ public void spielfeld() throws IOException{
 		break;
 		}
 	}
-
+/*
+ *  
+ */
 @Override
 public  int getTaste() {
 	// TODO Auto-generated method stub
 		return richtung;
 	}
-		
+
+
+	/*
+	 * Starten der KOmmunikation	
+	 */
 public void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
      client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
 }
+/*
+ * Permanente abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
+ */
+public void kollisionserkennung(){
+	while (pause= false){
+		if ( kollidiertSepman ==true ){
+			kollision(1);
+		}
+		else if( kollidiertTracer ==true){
+			kollision(2);
+		}
+		else if (kollidiertDefender == true){
+			kollision(3);
+		}
+		else if(kollidiertRandom = true)
+		    kollision(4);
+	}
+	
+}
+
+public void kollision (int i) {
+	if(leben >0){
+		setzePausenBildschrim();
+	}
+	else{
+		setzeNiederlageBildschirm();
+	}
+	
+}
+
 }
