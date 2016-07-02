@@ -170,7 +170,7 @@ class AuktionshausItem implements IInventar{
 			if(state instanceof VerkaufenState){
 					remove(Name); // INVENTAR
 					
-					///// DOM HIER !!!!!!			auktionshausClient.pasteItem(Name);
+				///// DOM HIER !!!!!!			auktionshausClient.pasteItem(Name);
 			}
 		}
 	}
