@@ -20,6 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 
+import de.SEPL.ServerClient.IAuktionshausClient;
+
 @Author(name = "Bijan Shahbaz Nejad")
 
 public class VerkaufenState extends State{
@@ -33,9 +35,11 @@ public class VerkaufenState extends State{
 	public PlayState PS;
 	AuktionshausItem testitem[];
 	KaufenState ks;
+	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
 	
-	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem) {
+	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem, de.SEPL.ServerClient.FileClient auktionshausClient) {
 		super(gsm);
+		this.auktionshausClient = auktionshausClient;
 	
 		testitem=new AuktionshausItem[inventaritem.length];
 		
@@ -121,7 +125,7 @@ table.debug();
 		stage.draw();
 	
 		for (int j = 0; j < testitem.length; j++) {	
-			testitem[j].add(table,this);
+			testitem[j].add(table,this, auktionshausClient);
 	}
 	}
 
