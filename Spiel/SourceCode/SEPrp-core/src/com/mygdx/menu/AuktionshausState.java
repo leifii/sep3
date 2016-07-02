@@ -23,95 +23,96 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
+import de.SEPL.ServerClient.IAuktionshausClient;
+
 @Author(name = "Bijan Shahbaz Nejad")
 
-
-public class AuktionshausState extends State implements IInventar{
+public class AuktionshausState extends State implements IInventar {
 
 	private Skin skin;
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
-	private TextButton buttonJ, buttonN ,buttonX;
+	private TextButton buttonJ, buttonN, buttonX;
 	private BitmapFont white;
-	private Label label;	
-	
-	public String [] INVENTARITEMS;
-	
-PlayState playstate;	
-	public AuktionshausState(GameStateManager gsm,PlayState ps) {
+	private Label label;
+	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
+
+	public String[] INVENTARITEMS;
+
+	PlayState playstate;
+
+	public AuktionshausState(GameStateManager gsm, PlayState ps) {
 		super(gsm);
-	playstate=ps;
-	
-	INVENTARITEMS= new String [getAllItems().size()];
-	for(int i = 0; i < getAllItems().size(); i++){ 
-		INVENTARITEMS[i] = getAllItems().get(i);
-	}
-	stage = new Stage();
-	Gdx.input.setInputProcessor(stage);
+		playstate = ps;
 
-	atlas = new TextureAtlas("testb/Texturen.pack");
-	skin = new Skin(atlas);
+		INVENTARITEMS = new String[getAllItems().size()];
+		for (int i = 0; i < getAllItems().size(); i++) {
+			INVENTARITEMS[i] = getAllItems().get(i);
+		}
+		stage = new Stage();
+		Gdx.input.setInputProcessor(stage);
 
-	table = new Table(skin);
+		atlas = new TextureAtlas("testb/Texturen.pack");
+		skin = new Skin(atlas);
 
-	table.setWidth(Gdx.graphics.getWidth() * 0.9f);
-	table.align(Align.center | Align.top);
-	table.setPosition(0, Gdx.graphics.getHeight());
+		table = new Table(skin);
 
-	white = new BitmapFont(Gdx.files.internal("white.fnt"));
+		table.setWidth(Gdx.graphics.getWidth() * 0.9f);
+		table.align(Align.center | Align.top);
+		table.setPosition(0, Gdx.graphics.getHeight());
 
-	TextButtonStyle textButtonStyle = new TextButtonStyle();
-	textButtonStyle.up = skin.getDrawable("blank-2");
-	// textButtonStyle.down=skin.getDrawable("blank-3");
-	textButtonStyle.pressedOffsetX = 1;
-	textButtonStyle.pressedOffsetY = -1;
-	textButtonStyle.font = white;
+		white = new BitmapFont(Gdx.files.internal("white.fnt"));
 
-	TextButtonStyle ConfirmButtonStyle = new TextButtonStyle();
-	ConfirmButtonStyle.up = skin.getDrawable("blank-2");
-	ConfirmButtonStyle.down = skin.getDrawable("blank-3");
-	ConfirmButtonStyle.pressedOffsetX = 1;
-	ConfirmButtonStyle.pressedOffsetY = -1;
-	ConfirmButtonStyle.font = white;
+		TextButtonStyle textButtonStyle = new TextButtonStyle();
+		textButtonStyle.up = skin.getDrawable("blank-2");
+		// textButtonStyle.down=skin.getDrawable("blank-3");
+		textButtonStyle.pressedOffsetX = 1;
+		textButtonStyle.pressedOffsetY = -1;
+		textButtonStyle.font = white;
 
-	buttonJ = new TextButton("Kaufen", textButtonStyle);
-	buttonJ.pad(15);
+		TextButtonStyle ConfirmButtonStyle = new TextButtonStyle();
+		ConfirmButtonStyle.up = skin.getDrawable("blank-2");
+		ConfirmButtonStyle.down = skin.getDrawable("blank-3");
+		ConfirmButtonStyle.pressedOffsetX = 1;
+		ConfirmButtonStyle.pressedOffsetY = -1;
+		ConfirmButtonStyle.font = white;
 
-	buttonN = new TextButton("Verkaufen", textButtonStyle);
-	buttonN.pad(15);
+		buttonJ = new TextButton("Kaufen", textButtonStyle);
+		buttonJ.pad(15);
 
-	buttonX = new TextButton("Verlassen", textButtonStyle);
-	buttonX.pad(20);
-	
-	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
+		buttonN = new TextButton("Verkaufen", textButtonStyle);
+		buttonN.pad(15);
 
-	label = new Label("Auktionshaus", labelStyle);
-	label.setFontScale(2.2f);
-	Image Rahmen = new Image(new Texture("userInterface/border2.png"));
-	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
-	Rahmen.setWidth(Gdx.graphics.getWidth() * 0.95f);
-	Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
-	
-	
-	table.add(label).width(100).padBottom(200).padTop(Gdx.graphics.getHeight() / 2 - 50);
+		buttonX = new TextButton("Verlassen", textButtonStyle);
+		buttonX.pad(20);
 
-	table.row();
+		LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-	table.add(buttonJ);
-	table.add(buttonN);
-	table.add(buttonX).padLeft(200);
-	
-	
-	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
+		label = new Label("Auktionshaus", labelStyle);
+		label.setFontScale(2.2f);
+		Image Rahmen = new Image(new Texture("userInterface/border2.png"));
+		Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
+		Rahmen.setWidth(Gdx.graphics.getWidth() * 0.95f);
+		Rahmen.setHeight(Gdx.graphics.getHeight() * 1.0f);
 
-	Image img = new Image(new Texture("userInterface/dark background.png"));
-	img.setFillParent(true);
-	Rahmen.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
+		table.add(label).width(100).padBottom(200).padTop(Gdx.graphics.getHeight() / 2 - 50);
 
-	stage.addActor(img);
-	stage.addActor(Rahmen);
-	stage.addActor(table);
+		table.row();
+
+		table.add(buttonJ);
+		table.add(buttonN);
+		table.add(buttonX).padLeft(200);
+
+		table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
+
+		Image img = new Image(new Texture("userInterface/dark background.png"));
+		img.setFillParent(true);
+		Rahmen.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
+
+		stage.addActor(img);
+		stage.addActor(Rahmen);
+		stage.addActor(table);
 	}
 
 	@Override
@@ -120,9 +121,7 @@ PlayState playstate;
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
-			// MAN MUSS HIER DIE LISTE AUS DEM AUKTIONSHAUS ÜBERGEBEN
-			gsm.push(new KaufenState(gsm,playstate,new String[]{"ABC","DEF"}/*HIER MUSS DAS STRING-ARRAY REIN AUKTIONSHAUSE*/)); 
-			// MAN MUSS HIER DIE LISTE AUS DEM AUKTIONSHAUS ÜBERGEBEN
+			gsm.push(new KaufenState(gsm,playstate, auktionshausClient.getContent())); 
 		}
 		if (buttonN.isChecked()) {
 			gsm.push(new VerkaufenState(gsm,playstate,INVENTARITEMS)); 
@@ -133,9 +132,10 @@ PlayState playstate;
 		// TODO Auto-generated method stub
 		handleInput();
 	}
+
 	public void render(SpriteBatch sb) {
 		stage.act();
-	
+
 		stage.draw();
 	}
 
@@ -147,7 +147,7 @@ PlayState playstate;
 	@Override
 	public void place(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -159,7 +159,7 @@ PlayState playstate;
 	@Override
 	public void remove(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
