@@ -153,10 +153,10 @@ public void initComponents() {
 	setSize(1000,720);
 	setTitle("SEPman");
 //	setzeAuswahldisplay ();
-//	setzeStartbildschirm(); 
+	setzeStartbildschirm(); 
 //	setzeNiederlageBildschirm();
 //	setzeSiegbildschirm();
-	setzePausenBildschrim();
+//	setzePausenBildschrim();
 	validate();
 }
 
@@ -667,7 +667,7 @@ public void spielfeld() throws IOException{
     thorbensPanel.setFocusable(true);
     add(thorbensPanel);
 	this.spielvorbereitungsDisplay.setVisible(false);
-	kollisionserkennung();
+	//kollisionserkennung();
 
 	
 }
