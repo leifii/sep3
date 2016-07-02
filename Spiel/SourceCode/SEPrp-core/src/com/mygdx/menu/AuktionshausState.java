@@ -155,9 +155,9 @@ public class AuktionshausState extends State implements IInventar {
 	public List<String> getAllItems() {
 		// TODO Auto-generated method stub
 		List<String> itemList = new ArrayList<String>();
-		itemList.add( "kleines Schwert" );
-		itemList.add( "Hut" );
-		itemList.add( "Schlange" );
+		itemList.add( "Flugzeug" );
+		itemList.add( "Hubschrauber" );
+		itemList.add( "Rennrad" );
 		
 		return itemList;
 	}
