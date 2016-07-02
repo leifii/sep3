@@ -34,8 +34,8 @@ import com.objects.Truhe;
 public class Gegner extends Character {
 
 	private int exp;
-	private TextureRegion currentFrame;
-	private float time;
+	protected TextureRegion currentFrame;
+	protected float time;
 	private Rectangle sight;
 	
 	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){

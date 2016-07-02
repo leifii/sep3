@@ -85,6 +85,14 @@ public class Ork extends Gegner {
 		
 	}
 
+	public Map<AnimationDirection,Animation> getAnimationMap(){
+		return animationMap;
+	}
+	
+	public void setAnimationMap(Map<AnimationDirection,Animation> animationMap){
+		this.animationMap = animationMap;
+	}
+	
 	public Animation getAnimation() {
 		return animationMap.get(richtung);
 	}
