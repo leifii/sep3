@@ -308,7 +308,7 @@ table.debug();
 		stage.draw();
 		
 		for (int i = 0; i < testitem.length; i++) {
-			testitem[i].add(table);
+			testitem[i].add(table,this);
 		}
 		
 	}

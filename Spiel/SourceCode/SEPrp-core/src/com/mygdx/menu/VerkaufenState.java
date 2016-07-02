@@ -33,7 +33,7 @@ public class VerkaufenState extends State{
 	public PlayState PS;
 	AuktionshausItem testitem[];
 	KaufenState ks;
-//PlayState playstate;	
+	
 	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem) {
 		super(gsm);
 	
@@ -121,7 +121,7 @@ table.debug();
 		stage.draw();
 	
 		for (int j = 0; j < testitem.length; j++) {	
-			testitem[j].add(table);
+			testitem[j].add(table,this);
 	}
 	}
 

@@ -1,5 +1,7 @@
 package com.mygdx.menu;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,7 +26,7 @@ import com.mygdx.game.MyGdxGame;
 @Author(name = "Bijan Shahbaz Nejad")
 
 
-public class AuktionshausState extends State{
+public class AuktionshausState extends State implements IInventar{
 
 	private Skin skin;
 	private TextureAtlas atlas;
@@ -34,13 +36,17 @@ public class AuktionshausState extends State{
 	private BitmapFont white;
 	private Label label;	
 	
+	public String [] INVENTARITEMS;
 	
 PlayState playstate;	
 	public AuktionshausState(GameStateManager gsm,PlayState ps) {
 		super(gsm);
 	playstate=ps;
 	
-	
+	INVENTARITEMS= new String [getAllItems().size()];
+	for(int i = 0; i < getAllItems().size(); i++){ 
+		INVENTARITEMS[i] = getAllItems().get(i);
+	}
 	stage = new Stage();
 	Gdx.input.setInputProcessor(stage);
 
@@ -114,10 +120,12 @@ PlayState playstate;
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
-			gsm.push(new KaufenState(gsm,playstate,new String[]{"ABC","DEF"}/*HIER MUSS DAS STRING-ARRAY REIN*/)); // MAN MUSS HIER DIE LISTE AUS DEM AUKTIONSHAUS ÜBERGEBEN
+			// MAN MUSS HIER DIE LISTE AUS DEM AUKTIONSHAUS ÜBERGEBEN
+			gsm.push(new KaufenState(gsm,playstate,new String[]{"ABC","DEF"}/*HIER MUSS DAS STRING-ARRAY REIN AUKTIONSHAUSE*/)); 
+			// MAN MUSS HIER DIE LISTE AUS DEM AUKTIONSHAUS ÜBERGEBEN
 		}
 		if (buttonN.isChecked()) {
-			gsm.push(new VerkaufenState(gsm,playstate,new String[]{"123","456"})); // MAN MUSS HIER DIE LISTE AUF DEM INVENTAR ÜBERGEBEN
+			gsm.push(new VerkaufenState(gsm,playstate,INVENTARITEMS)); 
 		}
 	}
 
@@ -134,6 +142,66 @@ PlayState playstate;
 	public void dispose() {
 		// TODO Auto-generated method stub
 		this.dispose();
+	}
+
+	@Override
+	public void place(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<String> getAllItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void remove(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getStrenghtBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getIntelligenceBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getStaminaBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getDexterityBoost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getHealing() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMoney() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean modifyMoney(int delta) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
