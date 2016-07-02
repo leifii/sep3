@@ -37,6 +37,7 @@ import com.character.Skill;
 import com.gegnerkoordination.Gegner;
 import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
+import com.gegnerkoordination.Skelett;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.mygdx.game.Author;
@@ -200,16 +201,18 @@ public class PlayState extends State {
 	private void initGegner(int mapIndex) {
 		gegnerList = new LinkedList<Gegner>();
 		if (mapIndex == 1){
-			Attributes a1 = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-//			Gegner testGegner = new Gegner(200, 200, s.getAnimation(0), collisionLayer, a1,
-//					createDynamicBody(200, 200, 32, 48, "gegner"));
-//			testGegner.addLoot(EquipmentType.Lederrüstung);
-//			gegnerList.add(testGegner);
-			GruenerSchleim Schleim1 = new GruenerSchleim(400, 200, s.getGegnerAnimation(1), collisionLayer, a1,
+			Attributes ork = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
+			Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
+			Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
+			Skelett Skelett1 = new Skelett(200, 200, s.getGegnerAnimation(3), collisionLayer, 60, ske,
+					createDynamicBody(200, 200, 32, 48, "gegner"));
+			Skelett1.addLoot(EquipmentType.Lederrüstung);
+			gegnerList.add(Skelett1);
+			GruenerSchleim Schleim1 = new GruenerSchleim(400, 200, s.getGegnerAnimation(1), collisionLayer, 30, sch,
 					createDynamicBody(400, 200, 35, 32, "gegner"));
 			Schleim1.addLoot(EquipmentType.Lederrüstung);
 			gegnerList.add(Schleim1);
-			Ork Ork1 = new Ork(300, 300, s.getGegnerAnimation(2), collisionLayer, a1, createDynamicBody(300, 300, 64, 64, "gegner"));
+			Ork Ork1 = new Ork(300, 400, s.getGegnerAnimation(2), collisionLayer, 60, ork, createDynamicBody(300, 300, 64, 64, "gegner"));
 			Ork1.addLoot(EquipmentType.Lederschuh);
 			gegnerList.add(Ork1);
 		}

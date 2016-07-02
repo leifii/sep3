@@ -23,14 +23,14 @@ public class Skelett extends Gegner {
 
 	private static final long serialVersionUID = -3846155411884336598L;
 
-	public Skelett(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
+	public Skelett(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, int exp,
 			Attributes attributes, Body body) {
 		
-		super(x, y, 64, 64, collisionLayer, attributes, body);
+		super(x, y, 64, 64, collisionLayer, exp, attributes, body);
 		animationMap = new HashMap<AnimationDirection, Animation>();
 		
 		setSkills(new ArrayList<Skill>());
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,3,g.getSkill(12), true, 1, 0, this, 1, collisionLayer));
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,3,1,1,3,g.getSkill(12), false, 1, 0, this, 10, collisionLayer));
 		
 		TextureRegion [] keyframes=new TextureRegion[9];
 		TextureRegion [] keyframes1=new TextureRegion[9];
@@ -45,19 +45,19 @@ public class Skelett extends Gegner {
 		TextureRegion [] keyframesAngriff2= new TextureRegion[13];
 		TextureRegion [] keyframesAngriff3= new TextureRegion[13];
 		
-			for(int j=0;j<10;j++){
+			for(int j=0;j<9;j++){
 			keyframes[j]=animation[0][j];
 			keyframes1[j]=animation[1][j];
 			keyframes2[j]=animation[2][j];
 			keyframes3[j]=animation[3][j];
 			}
-			for(int j=0;j<10;j++){
+			for(int j=0;j<9;j++){
 				keyframes4[j]=animation[0][0];
 				keyframes5[j]=animation[1][0];
 				keyframes6[j]=animation[2][0];
 				keyframes7[j]=animation[3][0];
 			}
-			for(int i=0;i<14;i++){
+			for(int i=0;i<13;i++){
 				keyframesAngriff[i]=animation[4][i];			
 				keyframesAngriff1[i]=animation[5][i];
 				keyframesAngriff2[i]=animation[6][i];

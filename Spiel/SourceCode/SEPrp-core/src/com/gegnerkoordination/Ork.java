@@ -23,8 +23,8 @@ public class Ork extends Gegner {
 	private float cdnow;
 
 	public Ork(int x, int y, TextureRegion[][] animation,
-			TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body) {
-		super(x, y, 64, 64, collisionLayer, attributes, body);
+			TiledMapTileLayer[] collisionLayer, int exp, Attributes attributes, Body body) {
+		super(x, y, 64, 64, collisionLayer, exp, attributes, body);
 		cd = 2;
 		cdnow = 0;
 		animationMap = new HashMap<AnimationDirection, Animation>();
