@@ -50,7 +50,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	
 	
 	public int leben =10;
-	public boolean pause = true ;
+	public static boolean pause = true ;
 	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public static boolean kollidiertSepman  = false;
@@ -150,10 +150,13 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
  */
 public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setSize(1020,720);
+	setSize(1000,720);
 	setTitle("SEPman");
 //	setzeAuswahldisplay ();
-	setzeStartbildschirm();            
+//	setzeStartbildschirm(); 
+//	setzeNiederlageBildschirm();
+//	setzeSiegbildschirm();
+	setzePausenBildschrim();
 	validate();
 }
 
@@ -190,6 +193,7 @@ public void setzeStartbildschirm(){
 public void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
     spielvorbereitungsDisplay.setVisible(false);
+    siegDisplay.setVisible(false);
 	display.setVisible(true);
 	display.setLayout(null);
 	display.setBackground(Color.WHITE);
@@ -445,21 +449,25 @@ public void setzeSiegbildschirm(){
 	siegDisplay.setLayout(null);
 	siegDisplay.setVisible(true);
 	siegDisplay.setBackground(Color.GREEN);
-	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20));
 	
     getContentPane().add(siegDisplay);
     
 	spielvorbereitungsDisplay.add(	btnEnde2 );
-	btnEnde2.setBounds(200, 340, 240, 50);
+	btnEnde2.setBounds(120, 370, 330, 100);
 	btnEnde2.setText("Spiel Beenden");
-	btnEnde2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnEnde2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnEnde2.setBackground(Color.WHITE);
 	btnEnde2.addActionListener(this); 
+	siegDisplay.add(btnEnde2);
 	
 	spielvorbereitungsDisplay.add(	btnNeuesSpiel );
-	btnNeuesSpiel.setBounds(200, 340, 240, 50);
-	btnNeuesSpiel.setText("Spiel Beenden");
-	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnNeuesSpiel.setBounds(550, 370, 330, 100);
+	btnNeuesSpiel.setText("Neues Spiel");
+	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	btnNeuesSpiel.setBackground(Color.WHITE);
 	btnNeuesSpiel.addActionListener(this);
+	siegDisplay.add(btnNeuesSpiel);
 }
 
 /*
@@ -469,21 +477,21 @@ public void setzeSiegbildschirm(){
 public void setzeNiederlageBildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
-	siegDisplay.setLayout(null);
-	siegDisplay.setVisible(true);
-	siegDisplay.setBackground(Color.RED);
-	siegDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+	niederlageDisplay.setLayout(null);
+	niederlageDisplay.setVisible(true);
+	niederlageDisplay.setBackground(Color.RED);
+	niederlageDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20));
 	
-	spielvorbereitungsDisplay.add(	btnEnde2 );
-	btnEnde2.setBounds(200, 340, 240, 50);
+	niederlageDisplay.add(	btnEnde2 );
+	btnEnde2.setBounds(120, 370, 330, 100);
 	btnEnde2.setText("Spiel Beenden");
-	btnEnde2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	btnEnde2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	btnEnde2.addActionListener(this); 
 	
-	spielvorbereitungsDisplay.add(	btnNeuesSpiel );
-	btnNeuesSpiel.setBounds(200, 340, 240, 50);
-	btnNeuesSpiel.setText("Spiel Beenden");
-	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	niederlageDisplay.add(	btnNeuesSpiel );
+	btnNeuesSpiel.setBounds(0, 370, 330, 100);
+	btnNeuesSpiel.setText("Neues Spiel");
+	btnNeuesSpiel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	btnNeuesSpiel.addActionListener(this);
 
     getContentPane().add(niederlageDisplay);
@@ -508,7 +516,7 @@ public void setzePausenBildschrim(){
 	lbHinweis1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	
 	pausenDisplay.add(btnSpielfortsetzen );
-	btnSpielfortsetzen.setBounds(200, 340, 240, 50);
+	btnSpielfortsetzen.setBounds(200, 340, 240, 200);
 	btnSpielfortsetzen.setText("Roboter positioniert ,Spiel fortsetzen !!");
 	btnSpielfortsetzen.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	btnSpielfortsetzen.addActionListener(this); 
@@ -614,7 +622,7 @@ public void actionPerformed(ActionEvent e) {
 		// Spiel fortsetzen 
 	}
 	else if (e.getSource()== btnNeuesSpiel){
-		setzeAuswahldisplay();
+		setzeSpielvorbereitungsdisplay();
 	}
 }
 
