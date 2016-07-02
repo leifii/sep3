@@ -84,12 +84,8 @@ public class Kollision implements IKollision, IMenu {
 		
 	}
 
-	@Override
-	public String[] getRoboterbelegung() {
-		// TODO Auto-generated method stub
-		// Wird nicht verwendet
-		return null;
-	}
+
+
 
 	@Override
 	public int getTaste() {
