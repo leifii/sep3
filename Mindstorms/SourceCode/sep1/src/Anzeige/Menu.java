@@ -121,6 +121,8 @@ public class Menu extends JFrame implements IMenu , ActionListener{
 		super();
 		initComponents();
 	}
+	
+	
 /*
  *  Initialisierung des Fenster + Aufrufen des Startbildschirms*
  *  
@@ -133,6 +135,8 @@ public void initComponents() {
 	setzeStartbildschirm();            
 	validate();
 }
+
+
 /*
  *  Diese Methoden erstell den Startbildschirm 
  * 
@@ -515,16 +519,7 @@ public boolean eingabeKorrekt() {
 	}
 	return  check;
 }
-/*
-*IP`S Aus den Textfeldern in das Array "roboterip" schreiben
-*/
-public void ipsSchreiben(){
-	roboterIPs[0] =tfIp1Feld1.getText() + "." + tfIp1Feld2.getText() +"." +  tfIp1Feld3.getText()+ "."+ tfIp1Feld4.getText();
-	roboterIPs[1] =tfIp2Feld1.getText() + "." + tfIp2Feld2.getText() +"." +  tfIp2Feld3.getText()+ "."+ tfIp2Feld4.getText();
-	roboterIPs[2] =tfIp3Feld1.getText() + "." + tfIp3Feld2.getText() +"." +  tfIp3Feld3.getText()+ "."+ tfIp3Feld4.getText();
-	roboterIPs[3] =tfIp4Feld1.getText() + "." + tfIp4Feld2.getText() +"." +  tfIp4Feld3.getText()+ "."+ tfIp4Feld4.getText();
-			
-}
+
 /*
  *  Action Listener
  * 
@@ -535,61 +530,27 @@ public void actionPerformed(ActionEvent e) {
 	if (e.getSource()== cbAuswahl1){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-//		System.out.println(msg);		
-		switch(msg){
-		case "SepMAN" : roboterBelegung[0] = "Sepman";
-		break;
-		case "Verfolger" : roboterBelegung[0] = "Tracer";
-		break;
-		case "Verteidiger" : roboterBelegung[0] = "Defender";
-		break;
-		case "Verpeilter" : roboterBelegung[0] = "Random";
-		break;
-		}
+		modiSchreiben(0,msg);
 	}
+	
 	else if (e.getSource()== cbAuswahl2){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-		switch(msg){
-		case "SepMAN" : roboterBelegung[1] = "Sepman";
-		break;
-		case "Verfolger" : roboterBelegung[1] = "Tracer";
-		break;
-		case "Verteidiger" : roboterBelegung[1] = "Defender";
-		break;
-		case "Verpeilter" : roboterBelegung[1] = "Random";
-		break;
-		}	
-
+		modiSchreiben(1,msg);	
 	}
+	
 	else if (e.getSource()== cbAuswahl3){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-		switch(msg){
-		case "SepMAN" : roboterBelegung[2] = "Sepman";
-		break;
-		case "Verfolger" : roboterBelegung[2] = "Tracer";
-		break;
-		case "Verteidiger" : roboterBelegung[2] = "Defender";
-		break;
-		case "Verpeilter" : roboterBelegung[2] = "Random";
-		break;
-		}	
+		modiSchreiben(2,msg);
 	}
+	
 	else if (e.getSource()== cbAuswahl4){
 		JComboBox cb =(JComboBox)e.getSource();
 		String msg= (String)cb.getSelectedItem();
-		switch(msg){
-		case "SepMAN" : roboterBelegung[3] = "Sepman";
-		break;
-		case "Verfolger" : roboterBelegung[3] = "Tracer";
-		break;
-		case "Verteidiger" : roboterBelegung[3] = "Defender";
-		break;
-		case "Verpeilter" : roboterBelegung[3] = "Random";
-		break;
-		}				
-	}	
+        modiSchreiben(3,msg);
+
+		}					
 	else if (e.getSource()== btnEnde ){
 		dispose();
 	}
@@ -630,6 +591,30 @@ public void actionPerformed(ActionEvent e) {
 	}
 }
 
+public void modiSchreiben (int i ,String auswahl){
+	switch(auswahl){
+	case "SepMAN" : roboterBelegung[i] = "Sepman";
+	break;
+	case "Verfolger" : roboterBelegung[i] = "Tracer";
+	break;
+	case "Verteidiger" : roboterBelegung[i] = "Defender";
+	break;
+	case "Verpeilter" : roboterBelegung[i] = "Random";
+	break;
+	}
+}
+
+/*
+*IP`S Aus den Textfeldern in das Array "roboterip" schreiben
+*/
+public void ipsSchreiben(){
+	roboterIPs[0] =tfIp1Feld1.getText() + "." + tfIp1Feld2.getText() +"." +  tfIp1Feld3.getText()+ "."+ tfIp1Feld4.getText();
+	roboterIPs[1] =tfIp2Feld1.getText() + "." + tfIp2Feld2.getText() +"." +  tfIp2Feld3.getText()+ "."+ tfIp2Feld4.getText();
+	roboterIPs[2] =tfIp3Feld1.getText() + "." + tfIp3Feld2.getText() +"." +  tfIp3Feld3.getText()+ "."+ tfIp3Feld4.getText();
+	roboterIPs[3] =tfIp4Feld1.getText() + "." + tfIp4Feld2.getText() +"." +  tfIp4Feld3.getText()+ "."+ tfIp4Feld4.getText();
+			
+}
+
 /*
  * Anzeige des Spielfelds
  * KeyListener für das Spielfed
@@ -646,26 +631,26 @@ public void spielfeld() throws IOException{
 		public void keyPressed(KeyEvent l) {
 			// TODO Auto-generated method stub
 			if(l.getKeyCode() == KeyEvent.VK_UP){
-			     oben();
+			     richtung(4);
 			     System.out.println(richtung);
 				}
 				else if(l.getKeyCode() == KeyEvent.VK_LEFT){
-					links();
+					richtung(5);
 					System.out.println(richtung);
 				}
 				
 				else if(l.getKeyCode() == KeyEvent.VK_DOWN){
-					unten();
+					richtung(6);
 					System.out.println(richtung);
 				}
 				
 				else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
-					rechts();
+					richtung(7);
 					System.out.println(richtung);
 				}
 
 				else if(l.getKeyCode() == KeyEvent.VK_SPACE){
-					pause();
+					richtung(2);
 					System.out.println(richtung); 
 				}	
 		}
@@ -700,38 +685,38 @@ public void spielfeld() throws IOException{
 			}
 		});
 	}
-	// Set-Methode um das Array welches die Roboterbelegung speichert zu manipulieren. Bedarf für diese Methode muss noch geklärt werden
-	public void setRoboterBelegung(String[] roboterBelegung) {
-		this.roboterBelegung = roboterBelegung;
-	}
 	
-	// gibt ein Array mit der Modi-Belgung der Roboter wieder 
+/*
+*  gibt ein Array mit der Modi-Belgung der Roboter wieder 
+* wir wahrscheinlich nicht mehr benätigt :D
+ */
 	@Override
 	public String[] getRoboterbelegung() {
 		// TODO Auto-generated method stub
 		return roboterBelegung;
 	}
-	// Methoden für Belgung der Richtungsvariable
-	
-		public void oben(){
-			richtung = 4;
-		}
+/* Methoden für Belgung der Richtungsvariable
+ * 
+*/
+	public void richtung(int i){
+		switch(i){
+		case 4 : richtung =4;
+		break;
 		
-		public void unten(){
-			richtung = 6;
-		}
+		case 6 :richtung =6;
+		break;
 		
-		public void links(){
-			richtung = 5;
-		}
+		case 5 :richtung =5;
+		break;
 		
-		public void rechts(){
-			richtung = 7;
-		}
+		case 7 :richtung =7;
+		break;
 		
-		public void pause(){
-			richtung = 2;	 
+		case 2 :richtung =2;
+		break;
 		}
+	}
+
 		@Override
 		public  int getTaste() {
 			// TODO Auto-generated method stub
