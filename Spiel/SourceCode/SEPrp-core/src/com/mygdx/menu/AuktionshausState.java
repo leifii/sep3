@@ -121,10 +121,10 @@ public class AuktionshausState extends State implements IInventar {
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
-			gsm.push(new KaufenState(gsm,playstate, auktionshausClient.getContent())); 
+			gsm.push(new KaufenState(gsm,playstate, auktionshausClient)); 
 		}
 		if (buttonN.isChecked()) {
-			gsm.push(new VerkaufenState(gsm,playstate,INVENTARITEMS)); 
+			gsm.push(new VerkaufenState(gsm,playstate,INVENTARITEMS, auktionshausClient)); 
 		}
 	}
 
