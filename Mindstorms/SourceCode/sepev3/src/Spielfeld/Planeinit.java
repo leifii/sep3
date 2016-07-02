@@ -37,6 +37,16 @@ public class Planeinit implements IPlaneinit{
 		return plane[knoten];
 	}
 	
+	public Plane getKnoten(int knotenid){
+		for(int i = 0; i<plane.length ; i++){
+			if(plane[i].knoten == knotenid){
+				return plane[i];
+			}
+		}
+		
+		return plane[0];
+	}
+	
 	public Plane[] getSpiel()
 	{
 		return plane;
