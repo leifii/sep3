@@ -108,7 +108,7 @@ public class Ork extends Gegner {
 				}
 			}
 		}
-		if(((boolean[]) getBody().getUserData())[1]){
+		else if(((boolean[]) getBody().getUserData())[1]){
 			setRichtung(AnimationDirection.SOUTH_ATTACK);
 			if(cdnow <= 0){
 				Character cha = PlayState.getInstance().c;
@@ -118,7 +118,7 @@ public class Ork extends Gegner {
 				}
 			}
 		}
-		if(((boolean[]) getBody().getUserData())[2]){
+		else if(((boolean[]) getBody().getUserData())[2]){
 			setRichtung(AnimationDirection.EAST_ATTACK);
 			if(cdnow <= 0){
 				Character cha = PlayState.getInstance().c;
@@ -128,7 +128,7 @@ public class Ork extends Gegner {
 				}
 			}
 		}
-		if(((boolean[]) getBody().getUserData())[3]){
+		else if(((boolean[]) getBody().getUserData())[3]){
 			setRichtung(AnimationDirection.WEST_ATTACK);
 			if(cdnow <= 0){
 				Character cha = PlayState.getInstance().c;
