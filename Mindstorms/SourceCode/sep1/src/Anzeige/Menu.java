@@ -127,6 +127,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	public Menu() {
 		super();
 		initComponents();
+		kollisionserkennung();
 	}
 /*
  * TEIL 1 
