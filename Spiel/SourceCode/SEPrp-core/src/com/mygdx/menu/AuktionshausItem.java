@@ -37,7 +37,7 @@ class AuktionshausItem implements IInventar {
 			table.add(iteminfo);
 			table.row();
 		}
-		if (itemkauf.isPressed()) {
+		if (itemkauf.isPressed()) { //If-Abfrage, zur Sicherstellung, dass trotz isPressed Button nur einmal ausgeführt wird --Dom--
 			if (pressedOnce == true) {
 				itemkauf.remove();
 				iteminfo.remove();
