@@ -48,6 +48,10 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame implements IMenu , ActionListener{
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
 	
+	public static boolean kollidiertSepman  = false;
+	public static boolean kollidiertTracer  = false;
+	public static boolean kollidiertDefender  = false;
+	public static boolean kollidiertRandom  = false;
 	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public String[] roboterBelegung = new String[4];
@@ -699,11 +703,11 @@ public void spielfeld() throws IOException{
 		}
 	}
 
-		@Override
-		public  int getTaste() {
-			// TODO Auto-generated method stub
-			return richtung;
-		}
+@Override
+public  int getTaste() {
+	// TODO Auto-generated method stub
+		return richtung;
+	}
 		
 public void setClients() throws IOException{
 	
