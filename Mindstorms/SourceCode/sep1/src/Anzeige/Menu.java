@@ -92,7 +92,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	public JTextField tfIp1Feld1 = new JTextField("192");
 	public JTextField tfIp1Feld2 = new JTextField("168");
 	public JTextField tfIp1Feld3 = new JTextField("2");
-	public JTextField tfIp1Feld4 = new JTextField("107");
+	public JTextField tfIp1Feld4 = new JTextField("106");
 	public JTextField tfIp2Feld1 = new JTextField("192");
 	public JTextField tfIp2Feld2 = new JTextField("168");
 	public JTextField tfIp2Feld3 = new JTextField("2");
