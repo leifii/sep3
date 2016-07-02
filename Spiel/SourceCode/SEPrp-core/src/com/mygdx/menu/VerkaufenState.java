@@ -37,7 +37,7 @@ public class VerkaufenState extends State{
 	KaufenState ks;
 	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
 	
-	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem, de.SEPL.ServerClient.FileClient auktionshausClient) {
+	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem, IAuktionshausClient auktionshausClient) {
 		super(gsm);
 		this.auktionshausClient = auktionshausClient;
 	
