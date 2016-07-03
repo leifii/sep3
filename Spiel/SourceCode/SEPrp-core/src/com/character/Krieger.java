@@ -14,54 +14,57 @@ import com.mygdx.menu.PlayState;
 import com.objects.AbstractStringItem;
 import com.objects.ItemType;
 
-
-
 @Author(name = "Bijan Nejad, Bardia Asemi-Soloot")
 
+public class Krieger extends Character {
 
-
-public class Krieger extends Character{
-	
 	private Vector3 position;
-	
+
 	private TextureRegion character;
 
 	private Texture character1;
-	
-	private boolean[] untouchable; //north,south,east,west
+
+	private boolean[] untouchable; // north,south,east,west
 	private float untouchableTime;
 
-	public Krieger(float x,float y,TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
+	public Krieger(float x, float y, TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer,
+			Attributes attributes, Body body) {
 		super(x, y, sprite, collisionLayer, attributes, body, Rolle.Spieler);
 		System.out.println(sprite);
-		position=new Vector3(x,y,0);
+		position = new Vector3(x, y, 0);
 
-		setSkills(new ArrayList<Skill>());										
-//		x-Position, y-Position, lvl, dmg, cd, cdfaktor, speed, lifeTime, bild, buff, button, helpNr, character, radius, collision
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,1,1,1,1,g.getSkill(7), true, 0, 0, this, 1, collisionLayer));		//auto-attack
-		
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,3,1,1,3,g.getSkill(11), false, 1, 0, this, 12, collisionLayer));	//steinwurf
-		
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,10,1,1,1.5f,g.getSkill(8), true, 2, 0, this, 1, collisionLayer));	//heal
-		
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,30,2,1,1,3,g.getSkill(18), false, 3, 0, this, 10, collisionLayer));	//axtwurf
-		
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,50,30,1,1,15,g.getSkill(7), true, 4, 0, this, 1, collisionLayer));	//berserker
-		
+		setSkills(new ArrayList<Skill>());
+		// x-Position, y-Position, lvl, dmg, cd, cdfaktor, speed, lifeTime,
+		// bild, buff, button, helpNr, character, radius, collision
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 10, 1, 1, 1, 1, g.getSkill(7), true, 0,
+				0, this, 1, collisionLayer)); // auto-attack
+
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 30, 3, 1, 1, 3, g.getSkill(11), false,
+				1, 0, this, 12, collisionLayer)); // steinwurf
+
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 30, 10, 1, 1, 1.5f, g.getSkill(8),
+				true, 2, 0, this, 1, collisionLayer)); // heal
+
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 30, 2, 1, 1, 3, g.getSkill(18), false,
+				3, 0, this, 10, collisionLayer)); // axtwurf
+
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 50, 30, 1, 1, 15, g.getSkill(7), true,
+				4, 0, this, 1, collisionLayer)); // berserker
+
 		setUntouchable(new boolean[4]);
-		for(int i = 0; i < getUntouchable().length; i++)
+		for (int i = 0; i < getUntouchable().length; i++)
 			getUntouchable()[i] = false;
 		setUntouchableTime(0);
 	}
-	
+
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
 		super.update(dt);
 		untouchableTime -= dt;
-		for(int i = 0; i < getUntouchable().length; i++){
-			if(untouchable[i]){
-				if(untouchableTime <= 0)
+		for (int i = 0; i < getUntouchable().length; i++) {
+			if (untouchable[i]) {
+				if (untouchableTime <= 0)
 					untouchable[i] = false;
 			}
 		}
@@ -72,22 +75,23 @@ public class Krieger extends Character{
 		// TODO Auto-generated method stub
 		return super.getPosition();
 	}
-	
-//	public void handleInput(){
-//		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
-//			if(((boolean[]) body.getUserData())[0] && (richtung == AnimationDirection.NORTH_ATTACK)){
-//				if(bounds)
-//			}
-//		}
-//	}
 
-//	@Override
-//	public Texture getTexture() {
-//		// TODO Auto-generated method stub
-//		return super.getTexture();
-//	}
+	// public void handleInput(){
+	// if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+	// if(((boolean[]) body.getUserData())[0] && (richtung ==
+	// AnimationDirection.NORTH_ATTACK)){
+	// if(bounds)
+	// }
+	// }
+	// }
 
-//	@Override
+	// @Override
+	// public Texture getTexture() {
+	// // TODO Auto-generated method stub
+	// return super.getTexture();
+	// }
+
+	// @Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
@@ -109,6 +113,30 @@ public class Krieger extends Character{
 		this.untouchableTime = untouchableTime;
 	}
 
-	
+	// --Dom--
+	public void resetSkillCharacteristics(int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill5) {
+
+		int counter = 0;
+		while (counter < levelSkill1) {
+			getSkills().get(0).lvlup();
+		}
+		counter = 0;
+		while (counter < levelSkill2) {
+			getSkills().get(1).lvlup();
+		}
+		counter = 0;
+		while (counter < levelSkill3) {
+			getSkills().get(2).lvlup();
+		}
+		counter = 0;
+		while (counter < levelSkill4) {
+			getSkills().get(3).lvlup();
+		}
+		counter = 0;
+		while (counter < levelSkill5) {
+			getSkills().get(4).lvlup();
+		}
+
+	}
 
 }
