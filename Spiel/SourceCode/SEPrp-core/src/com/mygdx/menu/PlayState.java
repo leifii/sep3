@@ -40,6 +40,7 @@ import com.gegnerkoordination.Gegner;
 import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
 import com.gegnerkoordination.OrkEndgegner;
+import com.gegnerkoordination.SchleimEndgegner;
 import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.SkelettEndgegner;
 import com.grafiken.ICharacter;
@@ -233,6 +234,14 @@ public class PlayState extends State {
 			gegnerList.add(Boss2);
 			//81,123
 		}
+		else if(mapIndex == 3){
+			Attributes boss = new Attributes(1,1,1,1,1,1,1,2);
+			SchleimEndgegner Boss3 = new SchleimEndgegner(5440, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5440, 5600, 35, 32, "gegner"));
+			Boss3.addLoot(EquipmentType.Lederschuh);
+			gegnerList.add(Boss3);
+			//170,10
+		}
+
 	}
 
 	@Override
@@ -620,7 +629,7 @@ public class PlayState extends State {
 			collisionLayer = new TiledMapTileLayer[3];
 			collisionLayer[0] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte");
 			collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
-			collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
+			collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 		}
 		map.setRenderer();
 		c.position = new Vector3(0, 0, 0);
