@@ -43,5 +43,6 @@ public class GameStateManager {
 		if(states.peek() instanceof PlayState){
 			b.play();
 		}
+		else b.stop();
 	}
 }

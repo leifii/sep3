@@ -262,7 +262,7 @@ public class PlayState extends State {
 		}
 		if(mapIndex==2){
 			Npc.add(new NPC(339, 224,"grafiken/Kobold.png","[Viktorius]" +"Hallo Reisender, es befinden sich viele gefährliche Kreaturen in der Nähe des Dorfes.Pass auf dich auf",
-					createDynamicBody(120, 300, 32, 48, "npc")));
+					createDynamicBody(339, 224, 32, 48, "npc")));
 			Npc.add(new NPC(2209,2050 ,"grafiken/Kobold.png", "[Arkanus] Wilkommen im Dorf",
 					createDynamicBody(2209, 2050, 32, 48, "npc")));
 			Npc.add(new NPC(2341, 1376,"grafiken/Kobold.png" ,"[Sinus] Im Dorf ist es sicher"+ '\n' + "Das haben wir unserer Steinbarrikade zu verdanken, die wir aufgestellt haben, um die Monster draußen zu halten"+
