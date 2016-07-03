@@ -408,13 +408,13 @@ public class Skill implements Serializable {
 						s.draw(a[0][0], getX(), getY());
 					}
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) {
-						s.draw(a[1][1], getX(), getY());
+						s.draw(a[3][0], getX()-7, getY()-20);
 					}
 					if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
-						s.draw(a[0][1], getX(), getY());
+						s.draw(a[2][0], getX(), getY()-10);
 					}
 					if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
-						s.draw(a[1][0], getX(), getY());
+						s.draw(a[1][0], getX()-10, getY()-15);
 					}
 				}
 				if (getButton() == 1 || getButton() == 3) {
