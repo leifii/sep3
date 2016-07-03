@@ -732,5 +732,12 @@ public class Character implements IDrawable, Serializable {
 	public void setdmgFaktor(int x){
 		dmgFaktor = x;
 	}
+	public void setAnimationMap(Map<AnimationDirection, Animation> animationMap){
+		this.animationMap=animationMap;
+	}
 	// -------
+
+	public Map<AnimationDirection, Animation> getAnimationMap() {
+		return animationMap;
+	}
 }
