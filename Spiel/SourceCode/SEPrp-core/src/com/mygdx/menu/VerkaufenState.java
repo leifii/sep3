@@ -36,10 +36,12 @@ public class VerkaufenState extends State{
 	AuktionshausItem testitem[];
 	KaufenState ks;
 	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
+	IInventar inventar = new com.mygdx.menu.testInventar();
 	
-	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem, IAuktionshausClient auktionshausClient) {
+	public VerkaufenState(GameStateManager gsm,PlayState ps,String [] inventaritem, IAuktionshausClient auktionshausClient, IInventar inventar) {
 		super(gsm);
 		this.auktionshausClient = auktionshausClient;
+		this.inventar = inventar;
 	
 		testitem=new AuktionshausItem[inventaritem.length];
 		
@@ -111,7 +113,7 @@ table.debug();
 //		if (buttonN.isChecked()) {
 //		}
 		if (buttonJ.isChecked()) {
-			gsm.push(new AuktionshausState(gsm, PS));
+			gsm.push(new AuktionshausState(gsm, PS, inventar));
 		}
 	}
 
