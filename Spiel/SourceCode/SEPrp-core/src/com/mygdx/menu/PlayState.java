@@ -262,10 +262,10 @@ public class PlayState extends State {
 				//170,10
 			}
 			if(!bosseBesiegt[3]){
-				Endboss Boss4= new Endboss(200, 200, s.getAnimation(1), collisionLayer, 200, boss, createDynamicBody(200, 200, 32, 48, "gegner"), c);
+				Endboss Boss4= new Endboss(256, 5632, s.getAnimation(1), collisionLayer, 200, boss, createDynamicBody(256, 5632, 32, 48, "gegner"), c);
 				Boss4.addLoot(EquipmentType.Lederhelm);
 				gegnerList.add(Boss4);
-				//132,14
+				//8,9 = 256,5632
 			}
 		}
 
