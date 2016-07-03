@@ -36,8 +36,6 @@ public class SkelettEndgegner extends Skelett {
 			}
 			else{
 				s.activateProjectile(getPosition().x, getPosition().y);
-				if(s.getCd() > 5)
-					s.setCd(s.getCd()-1);
 			}
 		}
 	}
