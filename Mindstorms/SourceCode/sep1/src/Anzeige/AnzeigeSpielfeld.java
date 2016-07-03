@@ -273,24 +273,24 @@ public class AnzeigeSpielfeld extends JFrame {
 		//haha.setVisible(true);
 		
 
-		ImageIcon iiSepman=new ImageIcon("sepman.png");
+		ImageIcon iiSepman=new ImageIcon("Sepman.png");
 		JLabel jSepman = new JLabel(iiSepman);
-		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 55, 55);
+		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 65, 65);
 		contentPane.add(jSepman);
 		
 		ImageIcon iiRandom=new ImageIcon("zufall.png");
 		JLabel jRandom = new JLabel(iiRandom);
-		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 55, 55);
+		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 60, 55);
 		contentPane.add(jRandom);
 		
 		ImageIcon iiGuard=new ImageIcon("Verteidiger.png");
 		JLabel jGuard = new JLabel(iiGuard);
-		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 55, 55);
+		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 60, 55);
 		contentPane.add(jGuard);
 		
 		ImageIcon iiTracker=new ImageIcon("Verfolger.png");
 		JLabel jTracker = new JLabel(iiTracker);
-		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 55, 55);
+		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 60, 55);
 		contentPane.add(jTracker);
 		ImageIcon Herz=new ImageIcon("herz.gif");
 		JLabel Leben1=new JLabel(Herz);
