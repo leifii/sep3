@@ -22,7 +22,7 @@ public class Verteidiger extends IModus{
 	public boolean alive = true;
 
 	public Verteidiger(int start ,Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
-		super(plane, lvfg, drucksensor);
+		super(plane, lvfg, drucksensor, Rolle.Geist_Verteidigung);
 		aktuelleposition = start;
 		letzterKnoten = aktuelleposition ;
 		// TODO Auto-generated constructor stub
