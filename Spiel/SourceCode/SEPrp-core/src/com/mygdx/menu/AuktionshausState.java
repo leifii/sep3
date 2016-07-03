@@ -44,13 +44,13 @@ public class AuktionshausState extends State implements IInventar {
 
 	PlayState playstate;
 
-	public AuktionshausState(GameStateManager gsm, PlayState ps) {
+	public AuktionshausState(GameStateManager gsm, PlayState ps, IInventar inventar) {
 		super(gsm);
 		playstate = ps;
 
-		INVENTARITEMS = new String[getAllItems().size()];
-		for (int i = 0; i < getAllItems().size(); i++) {
-			INVENTARITEMS[i] = getAllItems().get(i);
+		INVENTARITEMS = new String[inventar.getAllItems().size()];
+		for (int i = 0; i < inventar.getAllItems().size(); i++) {
+			INVENTARITEMS[i] = inventar.getAllItems().get(i);
 		}
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
