@@ -34,7 +34,7 @@ public class SkelettEndgegner extends Skelett {
 	public void spamSkills(){
 		for(int i=0;i<getSkills().size();i++){
 			Skill s = getSkills().get(i);
-			if(s.getButton() == 2 && verzoegerung > 0){
+			if(s.getButton() == 3 && verzoegerung > 0){
 			}
 			else{
 				s.activateProjectile(getPosition().x, getPosition().y);
