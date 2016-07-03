@@ -1,7 +1,5 @@
 kleines Schwert
+großes Schwert
 Hut
+Schraubenschlüssel
 Schlange
-Zaubertrank
-Rennrad
-Hubschrauber
-Flugzeug
