@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 import Anzeige.Menu;
 import Positionen.Position;
+import PowerUps.PowerUp;
 
 public class Kommunikation implements IKommunikation{	
 	
@@ -19,6 +20,8 @@ public class Kommunikation implements IKommunikation{
 	QueueHandler queue;
 	Position pos;
 	byte[] msg    = new byte[9];
+	static PowerUp powerUp;
+	private boolean powerUp06=true, powerUp25 = true, powerUp32 = true, powerUp51 = true;    //Zum ueberpruefen, ob Knoten mit PowerUp zum ersten mal überfahern wurde
 	
 	public Kommunikation(Socket soc, int clientNr, QueueHandler q, Position p, String mod){	
 		this.socket   = soc;	
@@ -75,10 +78,32 @@ public class Kommunikation implements IKommunikation{
 	
 	public  void nachrichtVerarbeiten(byte[] whatever){            //Methode wertet das vom Roboter empfangene ByteArray aus
 		
+		powerUp = Anzeige.Menu.powerUp.getPowerUp();
 		if(modus=="Sepaman"){
 			for(int i=0;i<msg.length;i++){
 				if(i==0){
 					pos.setPosSepman(msg[0]);
+					
+					if(msg[0]==06&&powerUp06){                 
+						powerUp.aktivierePowerUp();                //aktiviert PowerUp
+						queue.addToQueue((byte) -06);              //meldet den Robotern, welches PowerUp aktiviert wurde
+						powerUp06=false;                           //verhindert, dass PowerUp erneut aktiviert werden kann
+					}
+					if(msg[0]==25&&powerUp25){
+						powerUp.aktivierePowerUp();
+						queue.addToQueue((byte) -25);
+						powerUp25=false;
+					}
+					if(msg[0]==32&&powerUp32){
+						powerUp.aktivierePowerUp();
+						queue.addToQueue((byte) -32);
+						powerUp32=false;
+					}
+					if(msg[0]==51&&powerUp51){
+						powerUp.aktivierePowerUp();
+						queue.addToQueue((byte) -51);
+						powerUp51=false;
+					}
 				}
 				if(i==1){
 					pos.setDestSepman(msg[0]);
