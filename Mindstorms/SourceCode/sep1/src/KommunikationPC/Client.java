@@ -7,8 +7,10 @@
 package KommunikationPC;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Date;
 
 import Positionen.Position;
+import PowerUps.PowerUp;
 
 
 
@@ -20,6 +22,11 @@ public class Client implements Runnable {                  //Klasse Client imple
 	int clientNr;
 	QueueHandler queue;
 	Position pos;
+	
+	PowerUp powerUp;
+	int pUpActivated = 0;
+	long startTime;
+	long elapsedTime;
 	
 	
 	public Client (String ip, String modus, int port, int clientNr, QueueHandler q, Position p){     //Konstruktor - neues Objekt vom Typ Client. 
@@ -40,6 +47,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 		try{
 			Socket client = new Socket(ip, port);           									 //Initialisierung eines Objekts des Typs Socket
 			Kommunikation kom = new Kommunikation(client, clientNr, queue, pos, modus);  		 //Initialisierung eines Objekts des Typs Kommunikation
+			powerUp = Anzeige.Menu.powerUp.getPowerUp();										 //Initialisierung eines Objekts des Typs PowerUp				
 			
 			if(modus == "Tracer"){                                  							 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
@@ -80,6 +88,21 @@ public class Client implements Runnable {                  //Klasse Client imple
 				while(client.getInputStream().available() > 0){
 					kom.empfangen();
 				}
+				
+				if(powerUp.isPowerUpAktiv()){
+					if(pUpActivated == 0){
+						startTime = System.currentTimeMillis();
+						pUpActivated = 1;
+					}
+					elapsedTime = (new Date()).getTime() - startTime;
+					if(elapsedTime >=60*1000){
+						powerUp.deaktivierePowerUp();
+						pUpActivated = 0;
+						queue.addToQueue((byte) 100);
+					}
+				}
+				
+				
 				try{
 					Thread.sleep(10);
 				}catch(InterruptedException e){
