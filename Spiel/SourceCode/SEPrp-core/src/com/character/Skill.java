@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.gegnerkoordination.SchleimEndgegner;
 import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.OrkEndgegner;
 import com.gegnerkoordination.SkelettEndgegner;
@@ -142,7 +144,7 @@ public class Skill implements Serializable {
 		}
 		
 		// für Endgegner
-		if ((c instanceof SkelettEndgegner || c instanceof OrkEndgegner) && getButton() == 1) {
+		if ((c instanceof SchleimEndgegner || c instanceof SkelettEndgegner || c instanceof OrkEndgegner) && getButton() == 1) {
 			if (helpNr == 1) { // south
 				dx = 0 * speed;
 				dy = -300 * speed;
