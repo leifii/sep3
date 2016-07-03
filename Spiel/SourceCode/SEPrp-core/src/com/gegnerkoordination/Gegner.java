@@ -33,7 +33,7 @@ import com.objects.Truhe;
 //TODO abstract class
 public class Gegner extends Character {
 
-	private int exp;
+	protected int exp;
 	protected TextureRegion currentFrame;
 	protected float time;
 	private Rectangle sight;
