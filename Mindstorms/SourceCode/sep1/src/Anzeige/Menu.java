@@ -26,6 +26,7 @@ import KommunikationPC.Clientinit;
 
 
 import KommunikationPC.QueueHandler;
+import PowerUps.PowerUp;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -118,6 +119,8 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener{
 	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
 	
+	static QueueHandler queue;	//Ergänzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
+	public static PowerUp powerUp;     //Ergänzt durch Tristan! Objekt vom Typ "PowerUp". Initialisierung in setClients()
 	
 	
 
@@ -687,22 +690,30 @@ public void keyPressed(KeyEvent l) {
 	if(l.getKeyCode() == KeyEvent.VK_UP){
 	     richtung(4);
 	     System.out.println(richtung);
+	     
+	     queue.addToQueue((byte) 4);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
 		else if(l.getKeyCode() == KeyEvent.VK_LEFT){
 			richtung(5);
 			System.out.println(richtung);
+			
+			queue.addToQueue((byte) 5);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
  
 		}
 		
 		else if(l.getKeyCode() == KeyEvent.VK_DOWN){
 			richtung(6);
 			System.out.println(richtung);
+			
+			queue.addToQueue((byte) 6);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
  
 		}
 		
 		else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
 			richtung(7);
 			System.out.println(richtung);
+			
+			queue.addToQueue((byte) 7);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 
 		}
 
@@ -746,6 +757,7 @@ public void keyReleased(KeyEvent e) {
 				try {
 					Menu menu1 = new Menu();
 					menu1.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -786,6 +798,9 @@ public void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
      client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
+     queue = client1.queueHandler.getQueueHandler(); ////Ergänzt durch Tristan! Fügt Referenz zum QueueHandler hinzu.
+     powerUp = new PowerUp();                        ////Ergänzt durch Tristan! Erzeugt ein neues Objekt des Typs PowerUp
+     powerUp.setPowerUp(powerUp);                    ////Ergänzt durch Trustan! Ermöglicht Zugriff auf Menu.powerUp aus anderen Klassen!
 }
 /*
  * Permanente abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
