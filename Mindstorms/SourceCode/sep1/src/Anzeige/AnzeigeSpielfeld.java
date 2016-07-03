@@ -272,23 +272,24 @@ public class AnzeigeSpielfeld extends JFrame {
 	});*/
 		//haha.setVisible(true);
 		
-		JLabel jSepman = new JLabel("SEPMAN");
-		ImageIcon iiGuard=new ImageIcon("Sepman.png");
+
+		ImageIcon iiSepman=new ImageIcon("sepman.png");
+		JLabel jSepman = new JLabel(iiSepman);
 		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 55, 55);
 		contentPane.add(jSepman);
 		
-		JLabel jRandom = new JLabel("Random");
 		ImageIcon iiRandom=new ImageIcon("zufall.png");
+		JLabel jRandom = new JLabel(iiRandom);
 		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 55, 55);
 		contentPane.add(jRandom);
 		
-		ImageIcon iiGuard=new ImageIcon("Verteidigerr.png");
+		ImageIcon iiGuard=new ImageIcon("Verteidiger.png");
 		JLabel jGuard = new JLabel(iiGuard);
 		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 55, 55);
 		contentPane.add(jGuard);
 		
-		JLabel jTracker = new JLabel("Tracker");
 		ImageIcon iiTracker=new ImageIcon("Verfolger.png");
+		JLabel jTracker = new JLabel(iiTracker);
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 55, 55);
 		contentPane.add(jTracker);
 		ImageIcon Herz=new ImageIcon("herz.gif");
