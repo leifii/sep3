@@ -12,9 +12,8 @@ import Anzeige.Menu;
 public class Kollision implements IKollision, IMenu {
 	public static boolean kollidiertSepman  = false;
 	public static boolean kollidiertTracer  = false;
-	public static boolean kollidiertDefender  = false;
+	public static boolean kollidiertDefender=false;
 	public static boolean kollidiertRandom  = false;
-	public static boolean kollidiert  = false;
 	public boolean pause = true;
 	public int leben ;
 	
@@ -54,7 +53,7 @@ public class Kollision implements IKollision, IMenu {
 						setzeNiederlageBildschirm();
 					}
 			}
-			else if(kollidiertRandom = true)
+			else if(kollidiertRandom ==true)
 				if (leben>1){
 					setzePausenBildschrim();
 					leben -=1;
