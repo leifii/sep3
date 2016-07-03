@@ -178,14 +178,14 @@ public class PlayState extends State {
 		
 		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
 		c.setMapIndex(1);
-		// Erstellung eines Inventarobjektes --Dom--
+		
 	}
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
 	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel,
 			Attributes loadedAttributes, int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp,
 			int loadedDex, int loadedMapIndex, boolean blackKeyRecieved, boolean goldKeyRecieved,
-			boolean whiteKeyRecieved, int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill0) {
+			boolean whiteKeyRecieved, int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill0, String[] allItems) {
 
 		c.setPosition(loadedPosition);
 		c.setLevel(loadedLevel);
@@ -203,6 +203,9 @@ public class PlayState extends State {
 		keys.setBlackKeyStatus(blackKeyRecieved);
 		keys.setGoldKeyStatus(goldKeyRecieved);
 		keys.setWhiteKeyStatus(whiteKeyRecieved);
+		for (int i = 0; i < allItems.length; i++){
+			testInventar.place(allItems[i]);
+		}
 	}
 
 	public Character getC() {
@@ -273,6 +276,7 @@ public class PlayState extends State {
 		
 		// Update der SkillLevel in Character --Dom--
 		c.updateSkillLevel();
+		c.setAllItems(testInventar);
 
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			
