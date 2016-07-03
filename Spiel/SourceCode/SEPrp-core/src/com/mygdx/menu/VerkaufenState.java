@@ -85,7 +85,7 @@ public class VerkaufenState extends State{
 		buttonJ = new TextButton("Zurück", textButtonStyle);
 	buttonJ.pad(20);	
 	
-table.debug();
+//table.debug();
 	Label überschrift=new Label("Items Kaufen: ", labelStyle);
 	überschrift.setFontScale(2.0f);
 	
