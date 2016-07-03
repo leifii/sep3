@@ -22,10 +22,16 @@ class AuktionshausItem implements IInventar {
 	boolean gekauft;
 	boolean pressedOnce = true; // zur Sicherstellung, dass trotz isPressed Button nur einmal ausgeführt wird --Dom--
 
-	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name) {
+	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name,State state) {
 		Name = name;
 		Preis = "[PREIS]";
-		itemkauf = new TextButton("Kaufen ->", textButtonStyle);
+		
+		if (state instanceof KaufenState) {
+			itemkauf = new TextButton("Kaufen ->", textButtonStyle);
+		}
+		if (state instanceof VerkaufenState) {
+			itemkauf = new TextButton("Verkaufen ->", textButtonStyle);
+		}
 		itemkauf.pad(20);
 		iteminfo = new Label(Name + " " + Preis, labelStyle);
 		gekauft = false;
