@@ -84,7 +84,7 @@ public class KaufenState extends State {
 
 		for (int j = 0; j < testitem.length; j++) {
 
-			testitem[j] = new AuktionshausItem(textButtonStyle, labelStyle, auktionshausContent[j],this);
+			testitem[j] = new AuktionshausItem(textButtonStyle, labelStyle, auktionshausContent[j],this, this.inventar);
 
 		}
 		buttonJ = new TextButton("Zurück", textButtonStyle);
