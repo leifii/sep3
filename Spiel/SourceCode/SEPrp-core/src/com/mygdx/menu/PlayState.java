@@ -266,6 +266,9 @@ public class PlayState extends State {
 
 	@Override
 	protected void handleInput() {
+		
+		// Update der SkillLevel in Character --Dom--
+		c.updateSkillLevel();
 
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			
