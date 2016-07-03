@@ -273,23 +273,23 @@ public class AnzeigeSpielfeld extends JFrame {
 		//haha.setVisible(true);
 		
 
-		ImageIcon iiSepman=new ImageIcon("Sepman.png");
-		JLabel jSepman = new JLabel(iiSepman);
+		ImageIcon iiSepman=new ImageIcon("Sepman.png");                     // Hinzugefügt von Mark
+		JLabel jSepman = new JLabel(iiSepman);                              // Hinzugefügt von Mark
 		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 65, 65);
 		contentPane.add(jSepman);
 		
-		ImageIcon iiRandom=new ImageIcon("zufall.png");
-		JLabel jRandom = new JLabel(iiRandom);
+		ImageIcon iiRandom=new ImageIcon("zufall.png");                      // Hinzugefügt von Mark
+		JLabel jRandom = new JLabel(iiRandom);                              // Hinzugefügt von Mark
 		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 60, 55);
 		contentPane.add(jRandom);
 		
-		ImageIcon iiGuard=new ImageIcon("Verteidiger.png");
-		JLabel jGuard = new JLabel(iiGuard);
+		ImageIcon iiGuard=new ImageIcon("Verteidiger.png");                  // Hinzugefügt von Mark 
+		JLabel jGuard = new JLabel(iiGuard);                                // Hinzugefügt von Mark
 		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 60, 55);
 		contentPane.add(jGuard);
 		
-		ImageIcon iiTracker=new ImageIcon("Verfolger.png");
-		JLabel jTracker = new JLabel(iiTracker);
+		ImageIcon iiTracker=new ImageIcon("Verfolger.png");                  // Hinzugefügt von Mark
+		JLabel jTracker = new JLabel(iiTracker);                            // Hinzugefügt von Mark
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 60, 55);
 		contentPane.add(jTracker);
 		ImageIcon Herz=new ImageIcon("herz.gif");
