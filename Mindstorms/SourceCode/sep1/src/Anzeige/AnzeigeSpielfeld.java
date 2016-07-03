@@ -218,6 +218,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		int zahl=1;
 		int i=0;
 		int k=0;
+		ImageIcon iiKnoten = new ImageIcon("Knoten.png"); // Hinzugefügt von Mark 
 		JLabel[] ele=new JLabel[Größe];
 		for(JLabel j:ele)
 		{
@@ -226,9 +227,10 @@ public class AnzeigeSpielfeld extends JFrame {
 					k=0;
 					i++;
 				}
-					j=new JLabel(String.valueOf(zahl));
+					j=new JLabel(iiKnoten); // Hinzugefügt von Mark 
 					j.setBackground(Color.BLACK);
-					j.setBounds(100+k*150,100+i*150,20,20);
+					j.setBounds(100+k*150,100+i*150,55,55);
+//					j.setIcon(iiKnoten);
 					contentPane.add(j);
 				zahl++;
 				ele[zahl-2]=j;
@@ -271,7 +273,9 @@ public class AnzeigeSpielfeld extends JFrame {
 		}
 	});*/
 		//haha.setVisible(true);
-		
+		/*
+		 * Hinzufügen des Sepmanns und der Geister
+		 */
 
 		ImageIcon iiSepman=new ImageIcon("Sepman.png");                     // Hinzugefügt von Mark
 		JLabel jSepman = new JLabel(iiSepman);                              // Hinzugefügt von Mark
@@ -293,24 +297,26 @@ public class AnzeigeSpielfeld extends JFrame {
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 60, 55);
 		contentPane.add(jTracker); 
 		
-		
+		/*
+		 * Hinzufügen der PowerUps
+		 */
 		
 		ImageIcon iiPowerup = new ImageIcon("Powerup.png");   // Hinzugefügt von Mark
 		
 		JLabel lbPowerUp1 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-		lbPowerUp1.setBounds(ele[5].getX()-5, ele[5].getY(), 55, 55);  // Hinzugefügt von Mark
+		lbPowerUp1.setBounds(ele[5].getX(), ele[5].getY(), 55, 55);  // Hinzugefügt von Mark
  		contentPane.add(lbPowerUp1);                // Hinzugefügt von Mark
  		
 		JLabel lbPowerUp2 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-		lbPowerUp2.setBounds(ele[16].getX()-5, ele[16].getY(), 55, 55);  // Hinzugefügt von Mark
+		lbPowerUp2.setBounds(ele[16].getX(), ele[16].getY(), 55, 55);  // Hinzugefügt von Mark
  		contentPane.add(lbPowerUp2);                // Hinzugefügt von Mark
  		
 		JLabel lbPowerUp3 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-		lbPowerUp3.setBounds(ele[19].getX()-5, ele[19].getY(), 55, 55);  // Hinzugefügt von Mark
+		lbPowerUp3.setBounds(ele[19].getX(), ele[19].getY(), 55, 55);  // Hinzugefügt von Mark
  		contentPane.add(lbPowerUp3);                // Hinzugefügt von Mark
  		
 		JLabel lbPowerUp4 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-		lbPowerUp4.setBounds(ele[30].getX()-5, ele[30].getY(), 55, 55);  // Hinzugefügt von Mark
+		lbPowerUp4.setBounds(ele[30].getX(), ele[30].getY(), 55, 55);  // Hinzugefügt von Mark
  		contentPane.add(lbPowerUp4);                // Hinzugefügt von Mark
 		
 		
@@ -322,7 +328,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		Leben1.setLocation(10, 10);
 		contentPane.add(Leben1);
 		
-		JLabel Leben2=new JLabel(Herz);
+		JLabel Leben2=new JLabel(Herz);       
 		Leben2.setSize(50, 50);
 		Leben2.setLocation(60, 10);
 		contentPane.add(Leben2);
@@ -343,14 +349,14 @@ public class AnzeigeSpielfeld extends JFrame {
 			if(Spielbrett[z].getNord()==true)
 			{
 				line2=new JLabel(linie2);
-				line2.setLocation(ele[z].getX(), ele[z].getY()-100);
+				line2.setLocation(ele[z].getX()+5, ele[z].getY()-100); // Überarbeitet von Mark
 				line2.setSize(50, 100);
 				contentPane.add(line2);				
 			}
 			if(Spielbrett[z].getOst()==true)
 			{
 				line1=new JLabel(linie1);
-				line1.setLocation(ele[z].getX()+50, ele[z].getY());
+				line1.setLocation(ele[z].getX()+55, ele[z].getY()); // Überarbeitet von Mark
 				line1.setSize(100, 50);
 				contentPane.add(line1);
 			}
