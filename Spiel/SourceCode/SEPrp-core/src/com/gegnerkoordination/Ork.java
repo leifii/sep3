@@ -85,6 +85,27 @@ public class Ork extends Gegner {
 		
 	}
 
+	public void update(float dt){
+		if(aggro){
+			super.update(dt);
+			cdnow -= dt;
+		} else{
+			getBounds().setPosition(this.getPosition().x,this.getPosition().y);
+			time += dt;
+			currentFrame = getAnimation().getKeyFrame(time);
+		}
+	}
+	public void follow(Character c){
+		if(Math.sqrt(Math.pow((c.getPosition().x-getPosition().x),2)+Math.pow((c.getPosition().y-getPosition().y),2)) <= 500){
+			aggro = true;
+		}
+		if(aggro)
+			super.follow(c);
+		if(Math.sqrt(Math.pow((c.getPosition().x-getPosition().x),2)+Math.pow((c.getPosition().y-getPosition().y),2)) >= 1500){
+			aggro = false;
+		}
+	}
+	
 	public Map<AnimationDirection,Animation> getAnimationMap(){
 		return animationMap;
 	}
@@ -146,10 +167,5 @@ public class Ork extends Gegner {
 				}
 			}
 		}
-	}
-	
-	public void update(float dt){
-		super.update(dt);
-		cdnow -= dt;
 	}
 }

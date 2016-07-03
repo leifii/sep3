@@ -32,7 +32,7 @@ import com.objects.Truhe;
 
 //TODO abstract class
 public class Gegner extends Character {
-
+	protected boolean aggro;
 	protected int exp;
 	protected TextureRegion currentFrame;
 	protected float time;
@@ -40,7 +40,7 @@ public class Gegner extends Character {
 	
 	public Gegner (int x,int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
 		super(x,y,animation,collisionLayer, attributes, body, Rolle.Gegner);
-		
+		aggro = false;
 		//================TMP===============
 		exp = 20;
 		setMaxHP(100);
@@ -52,7 +52,7 @@ public class Gegner extends Character {
 	//Konstruktor ohne Animation für Schleim und andere Gegner
 	public Gegner (int x,int y, int width, int height, TiledMapTileLayer[] collisionLayer, int exp, Attributes attributes, Body body){
 		super(x,y,width,height,collisionLayer, attributes, body, Rolle.Gegner);
-		
+		aggro = false;
 		//================TMP===============
 		this.exp = exp;
 		setMaxHP(100);

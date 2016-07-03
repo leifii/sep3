@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.character.AnimationDirection;
 import com.character.Attributes;
+import com.character.Character;
 import com.character.Rolle;
 import com.character.Skill;
 import com.mygdx.game.Author;
@@ -47,7 +48,25 @@ public class GruenerSchleim extends Gegner {
 		for (Entry<AnimationDirection, Animation> a : animationMap.entrySet())
 			a.getValue().setPlayMode(PlayMode.LOOP);
 	}
-	
+	public void update(float dt){
+		if(aggro){
+			super.update(dt);
+		} else{
+			getBounds().setPosition(this.getPosition().x,this.getPosition().y);
+			time += dt;
+			currentFrame = getAnimation().getKeyFrame(time);
+		}
+	}
+	public void follow(Character c){
+		if(Math.sqrt(Math.pow((c.getPosition().x-getPosition().x),2)+Math.pow((c.getPosition().y-getPosition().y),2)) <= 500){
+			aggro = true;
+		}
+		if(aggro)
+			super.follow(c);
+		if(Math.sqrt(Math.pow((c.getPosition().x-getPosition().x),2)+Math.pow((c.getPosition().y-getPosition().y),2)) >= 1500){
+			aggro = false;
+		}
+	}
 	public Animation getAnimation() {
 		return animationMap.get(richtung);
 	}

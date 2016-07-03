@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.character.AnimationDirection;
 import com.character.Attributes;
+import com.character.Character;
 import com.character.Skill;
 import com.mygdx.game.Author;
 
@@ -23,7 +24,7 @@ public class Skelett extends Gegner {
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 	Animation animation;
 
-//	private static final long serialVersionUID = -3846155411884336598L;
+	private static final long serialVersionUID = -3846155411884336598L;
 
 	public Skelett(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, int exp,
 			Attributes attributes, Body body) {
@@ -85,7 +86,25 @@ public class Skelett extends Gegner {
 				a.getValue().setPlayMode(PlayMode.LOOP);	
 			
 	}
-	
+	public void update(float dt){
+		if(aggro){
+			super.update(dt);
+		} else{
+			getBounds().setPosition(this.getPosition().x,this.getPosition().y);
+			time += dt;
+			currentFrame = getAnimation().getKeyFrame(time);
+		}
+	}
+	public void follow(Character c){
+		if(Math.sqrt(Math.pow((c.getPosition().x-getPosition().x),2)+Math.pow((c.getPosition().y-getPosition().y),2)) <= 500){
+			aggro = true;
+		}
+		if(aggro)
+			super.follow(c);
+		if(Math.sqrt(Math.pow((c.getPosition().x-getPosition().x),2)+Math.pow((c.getPosition().y-getPosition().y),2)) >= 1500){
+			aggro = false;
+		}
+	}
 	public Animation getAnimation() {
 		return animationMap.get(richtung);
 	}

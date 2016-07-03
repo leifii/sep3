@@ -13,7 +13,6 @@ import com.mygdx.game.Author;
 @Author(name = "Tobias van den Boom")
 
 public class OrkEndgegner extends Ork {
-	private boolean aggro;
 	public OrkEndgegner(int x, int y, TextureRegion[][] animation,
 			TiledMapTileLayer[] collisionLayer, int exp, Attributes attributes,
 			Body body) {
