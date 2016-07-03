@@ -54,7 +54,6 @@ public class FileClient implements IAuktionshausClient {
 		String tempString = null;
 		try {
 
-			tempString = reader.readLine();
 			while ((tempString = reader.readLine()) != null) {
 				items = items + "-" + tempString;
 			}
@@ -63,7 +62,11 @@ public class FileClient implements IAuktionshausClient {
 			e.printStackTrace();
 		}
 
-		String[] itemAr = items.split("-");
+		String[] tempAr = items.split("-");
+		String[] itemAr = new String[tempAr.length-1];
+		for (int i = 0; i < itemAr.length; i++){
+			itemAr[i] = tempAr[i+1];
+		}
 
 		return itemAr;
 	}
