@@ -13,8 +13,11 @@ import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Rolle;
 import com.character.Skill;
+import com.mygdx.game.Author;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+
+@Author(name = "Tobias van den Boom")
 
 public class GruenerSchleim extends Gegner {
 	transient Map<AnimationDirection, Animation> animationMap;

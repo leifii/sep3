@@ -8,6 +8,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.character.Attributes;
 import com.character.Skill;
 import com.character.Character;
+import com.mygdx.game.Author;
+
+@Author(name = "Tobias van den Boom")
 
 public class OrkEndgegner extends Ork {
 	private boolean aggro;

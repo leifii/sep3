@@ -182,6 +182,7 @@ public class Gegner extends Character {
 		PlayState.getInstance().getPlayer().expSammeln(exp);
 		PlayState.getInstance().addDrawable(t);
 		markToDispose();
+		setBody(null);
 	}
 	
 	private List<EquipmentType> equips = new LinkedList<EquipmentType>();
