@@ -870,6 +870,14 @@ public class PlayState extends State {
 	}
 
 	public void killGegner(Gegner g) {
+		if(g instanceof OrkEndgegner)
+			c.getBosseBesiegt()[0]=true;
+		if(g instanceof SkelettEndgegner)
+			c.getBosseBesiegt()[1]=true;
+		if(g instanceof SchleimEndgegner)
+			c.getBosseBesiegt()[2]=true;
+		if(g instanceof Endboss)
+			c.getBosseBesiegt()[3]=true;
 		world.destroyBody(g.getBody());
 		g.killed();
 	}
