@@ -91,8 +91,29 @@ public class Skill implements Serializable {
 		this.setX(x);
 		this.setY(y);
 		this.lvl = lvl;
-		this.setDmg(dmg);
-		//this.dmgfaktor = dmgfaktor;
+		
+		if(c instanceof Krieger){
+			float d;
+			d = dmg * (c.attributes.getSTR()/10);
+			this.setDmg((int)d);
+		}		
+		if(c instanceof Schurke){
+			float d;
+		d = dmg * (c.attributes.getDEX()/10);
+		this.setDmg((int)d);
+		}
+		if(c instanceof Schuetze){
+			float d;
+		d = dmg * (c.attributes.getDEX()/10);
+		this.setDmg((int)d);
+		}
+		if(c instanceof Magier){
+			float d;
+		d = dmg * (c.attributes.getINT()/10);
+		this.setDmg((int)d);
+		}
+		
+		
 		this.setCd(cd);
 		this.cdfaktor = cdfaktor;
 		this.speed = speed;
