@@ -45,6 +45,7 @@ public class NewMenuState1 extends State {
 	
 	public NewMenuState1(GameStateManager gsm) {
 		super(gsm);
+		gsm.setTimer(System.currentTimeMillis());
 		cl=true;
 		
 		// TODO Auto-generated constructor stub
@@ -197,7 +198,7 @@ public class NewMenuState1 extends State {
 			
 			
 		}
-		if ( EndGame.isPressed()) {
+		if ( EndGame.isPressed() && System.currentTimeMillis()-500>gsm.timer) {
 			if(cl)
 			click.play();
 			cl=false;
