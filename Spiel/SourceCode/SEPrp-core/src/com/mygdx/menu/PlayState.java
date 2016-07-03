@@ -24,6 +24,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
@@ -39,6 +40,7 @@ import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
 import com.gegnerkoordination.OrkEndgegner;
 import com.gegnerkoordination.Skelett;
+import com.gegnerkoordination.SkelettEndgegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.mygdx.game.Author;
@@ -204,10 +206,10 @@ public class PlayState extends State {
 
 	private void initGegner(int mapIndex) {
 		gegnerList = new LinkedList<Gegner>();
+		Attributes ork = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
+		Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
+		Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
 		if (mapIndex == 1){
-			Attributes ork = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
-			Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
-			Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
 			Skelett Skelett1 = new Skelett(200, 200, s.getGegnerAnimation(3), collisionLayer, 60, ske,
 					createDynamicBody(200, 200, 32, 48, "gegner"));
 			Skelett1.addLoot(EquipmentType.Lederrüstung);
@@ -223,6 +225,12 @@ public class PlayState extends State {
 			Boss.addLoot(EquipmentType.Lederrüstung);
 			gegnerList.add(Boss);
 			//136,93
+		}
+		else if(mapIndex == 2){
+			SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
+			Boss2.addLoot(EquipmentType.Holzschwert);
+			gegnerList.add(Boss2);
+			//81,123
 		}
 	}
 
@@ -616,15 +624,18 @@ public class PlayState extends State {
 			s.setCollisionLayer(collisionLayer);
 		}
 		for (Gegner g : gegnerList) {
-			world.destroyBody(g.getBody());
+			if(g.getBody() != null)
+				world.destroyBody(g.getBody());
 		}
 		initGegner(i);
 		for (NPC n : Npc) {
-			world.destroyBody(n.getBody());
+			if(n.getBody() != null)
+				world.destroyBody(n.getBody());
 		}
 		Npc = new LinkedList<NPC>();
 		for (Truhe t : truhenListe) {
-			world.destroyBody(t.getBody());
+			if(t.getBody() != null)
+				world.destroyBody(t.getBody());
 		}
 		truhenListe = new LinkedList<Truhe>();
 		PortalListe = new LinkedList<Portal>();
@@ -705,11 +716,12 @@ public class PlayState extends State {
 
 	public void removeTruhe(Truhe t) {
 		world.destroyBody(t.getBody());
+		t.setBody(null);
 	}
 
 	public void killGegner(Gegner g) {
-		g.killed();
 		world.destroyBody(g.getBody());
+		g.killed();
 	}
 
 	public void addTruhe(Truhe t) {
