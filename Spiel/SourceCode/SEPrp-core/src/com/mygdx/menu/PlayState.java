@@ -57,6 +57,7 @@ import com.objects.Portal;
 import com.objects.Truhe;
 
 import de.SEPL.ServerClient.IAuktionshausClient;
+import com.mygdx.menu.IInventar;
 
 import com.objects.Key;
 
@@ -91,7 +92,9 @@ public class PlayState extends State {
 
 	private static PlayState instance;
 	
+	// --Dom--
 	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
+	IInventar testInventar = new com.mygdx.menu.testInventar();
 	
 	
 	public static PlayState getInstance() {
@@ -157,8 +160,6 @@ public class PlayState extends State {
 
 		}
 
-		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
-		c.setMapIndex(1);
 
 		// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 		// map.getMap().getLayers().get("Objekte"), attributes);
@@ -175,6 +176,9 @@ public class PlayState extends State {
 		PortalListe.add(new Portal(2934, 312, 50, 50));
 		instance = this;
 		
+		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
+		c.setMapIndex(1);
+		// Erstellung eines Inventarobjektes --Dom--
 	}
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
