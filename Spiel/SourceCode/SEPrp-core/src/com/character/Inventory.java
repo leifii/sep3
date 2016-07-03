@@ -1,28 +1,76 @@
 package com.character;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.mygdx.game.Author;
 import com.mygdx.menu.IInventar;
+import com.objects.Equipment;
 import com.objects.Item;
+import com.objects.ItemType;
+import com.objects.Trank;
 
 @Author(name = "?Dilara Güler?")
 
 public class Inventory implements IInventar {
 
 	private List<Item> itemList;
+	private Map<ItemType, Equipment> equipment;
+	
+	private Attributes attributeBoost;
 	private int gold;
+	private final Character owner;
+	private final int maxITEMS = 21;
 	
-	public Inventory(Item...items) {
-		itemList = new LinkedList<Item>();
+	public Inventory(Character owner, Item...items) {
+		this.owner= owner;
+		itemList = new LinkedList<>();
 		for(Item i : items)
-			itemList.add(i);
+			add(i);
+		
+		equipment = new HashMap<>();
+		equipment.put(ItemType.Helm, null);
+		equipment.put(ItemType.Waffe, null);
+		equipment.put(ItemType.Schild, null);
+		equipment.put(ItemType.Brustpanzer, null);
+		equipment.put(ItemType.Schuhe, null);
+		
+		updateAttributeBoost();
 	}
 	
-	public int getGold() {
-		return gold;
+	public void useItem(Item i) {
+		if(i.getType().isEquipable()) {
+			if(equipment.containsKey(i.getType())) {
+				Equipment e = equipment.get(i.getType()) == i ? null : (Equipment) i;
+				equipment.put(i.getType(), e);	
+				updateAttributeBoost();
+			}
+		} else if(i.getType() == ItemType.Trank) {
+			owner.heal(((Trank) i).getHeal());
+			itemList.remove(i);
+		}
+		
+		for(int x = 0; x < itemList.size(); x++)
+			System.out.println(x + " " + itemList.get(x).getNAME());
+		
+		for(Equipment s : equipment.values()) {
+			if(s != null)
+				System.out.println(s.getNAME());
+		}
+		System.out.println("============");
 	}
+	
+	public boolean isItemEquipped(Object o) {
+		if(o == null || !(o instanceof Equipment))
+			return false;
+		Equipment e = (Equipment) o;
+		return equipment.containsKey(e.getType()) && equipment.containsValue(e);
+	}
+
 	
 	public boolean decGold(int sum) {
 		if(gold - sum > 0) {
@@ -32,8 +80,9 @@ public class Inventory implements IInventar {
 		return false;
 	}
 	
-	public void addGold(int sum) {
+	public boolean addGold(int sum) {
 		gold += sum;
+		return true;
 	}
 	
 	public List<Item> getItemList() {
@@ -41,63 +90,87 @@ public class Inventory implements IInventar {
 	}
 
 	@Override
-	public void place(String name) {
-		// TODO Auto-generated method stub
-		
+	public void add(Item i) {
+		if(itemList.size() < maxITEMS)
+			itemList.add(i);
+		else 
+			System.out.println("Inventory full");
 	}
 
 	@Override
 	public List<String> getAllItems() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> itemStringList = new LinkedList<>();
+		for(Item i: itemList)
+			itemStringList.add(i.getNAME());
+		return itemStringList;
 	}
 
 	@Override
 	public void remove(String name) {
-		// TODO Auto-generated method stub
-		
+		Iterator<Item> i = itemList.iterator();
+		while(i.hasNext()) {
+			if(i.next().getNAME().compareTo(name) == 0)
+				i.remove();
+		}	
+	}
+	
+	public Attributes updateAttributeBoost() {
+		 Attributes boost = new Attributes(0,0,0,0,0,0,0,0);
+		 for(Entry<ItemType, Equipment> e : equipment.entrySet()) {
+			 if(e.getValue() != null)
+				 boost.addAttributeValues(e.getValue().getEquipmentType().getAttributes());
+		 }
+		 return attributeBoost = boost;
+	}
+	
+	public Attributes getAttributeBoost() {
+		return attributeBoost;
 	}
 
 	@Override
 	public int getStrenghtBoost() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getAttributeBoost().getSTR();
 	}
 
 	@Override
 	public int getIntelligenceBoost() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getAttributeBoost().getINT();
 	}
 
 	@Override
 	public int getStaminaBoost() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getAttributeBoost().getSTA();
 	}
 
 	@Override
 	public int getDexterityBoost() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getAttributeBoost().getDEX();
 	}
 
-	@Override
-	public int getHealing() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int getMoney() {
-		// TODO Auto-generated method stub
-		return 0;
+		return gold;
 	}
 
 	@Override
 	public boolean modifyMoney(int delta) {
-		// TODO Auto-generated method stub
-		return false;
+		if(delta < 0)
+			return decGold(delta);
+		return addGold(delta);
+	}
+	
+	public Map<ItemType, Equipment> getEquipmentMap() {
+		return equipment;
+	}
+
+	@Override
+	public int getValueToName(String nameOfItem) {
+		for(Item i : itemList)
+			if(i.getNAME().compareTo(nameOfItem) == 0)
+				return i.getValue();
+		System.out.println(nameOfItem + " nicht im Inventar gefunden");
+		return -1;
 	}
 	
 }

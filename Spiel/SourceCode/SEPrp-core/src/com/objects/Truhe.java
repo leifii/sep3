@@ -72,7 +72,6 @@ public class Truhe implements IDrawable {
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 				if(!isOpen()) {
 					//addToInventory
-					//TODO popups gained Items, evtl Menu
 					PlayState.getInstance().getPlayer().gainItems(itemList);
 				}
 				setOpen(true);

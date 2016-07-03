@@ -22,7 +22,7 @@ public class AbstractStringItem extends Item implements IDrawable{
 	}
 	
 	public AbstractStringItem(ItemType type, int value, String string, Character c) {
-		super(type.name(), type, 0, 0);
+		super(type.name(), type, value, 0, null);
 		visible = true;
 		this.c = c;
 		font = new BitmapFont();
@@ -31,10 +31,10 @@ public class AbstractStringItem extends Item implements IDrawable{
 		int r = 1, g = 1, b = 1;
 		switch(type) {
 		case Gold: 			r = 1; g = 1; b = 0; break;
-		case Experience: 	r = 0; g = 1; b = 0; break;
+		case Experience: 	r = 0; g = 0; b = 1; break;
 		case Schaden:		r = 1; g = 0; b = 0; break;
-		default:
-			break;
+		case Heal:			r = 0; g = 1; b = 0; break;
+		default: break;
 		}
 		
 		font.setColor(r, g, b, 1);

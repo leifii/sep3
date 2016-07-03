@@ -25,6 +25,7 @@ import com.mygdx.menu.PlayState;
 import com.objects.AbstractStringItem;
 import com.objects.Equipment;
 import com.objects.Experience;
+import com.objects.Heal;
 import com.objects.Item;
 import com.objects.ItemType;
 
@@ -147,12 +148,18 @@ public class Character implements IDrawable {
 		level = 1;
 		exp = 0;
 		neededexp = 100;
-		inventory = new Inventory();
+		inventory = new Inventory(this);
 	}
+	
+	public TextureRegion getDefaultTexture() {
+		return animationMap.get(AnimationDirection.SOUTH_STAND).getKeyFrame(0);
+	}
+
 
 	// Konstruktor ohne Animation für Schleim
 	public Character(float x, float y, int width, int height, TiledMapTileLayer[] collisionLayer, Attributes attributes,
 			Body body, Rolle rolle) {
+
 		this.rolle = rolle;
 		g = new Objekte();
 
@@ -179,7 +186,7 @@ public class Character implements IDrawable {
 		level = 1;
 		exp = 0;
 		neededexp = 100;
-		inventory = new Inventory();
+		inventory = new Inventory(this);
 	}
 
 	public int getDesign() {
@@ -209,7 +216,6 @@ public class Character implements IDrawable {
 	}
 
 	public void expSammeln(int Monsterexp) {
-		// if monsterkilled
 		exp += Monsterexp;
 		PlayState.getInstance().addTempDrawable(new Experience(exp));
 		if (exp >= neededexp) {
@@ -619,6 +625,12 @@ public class Character implements IDrawable {
 	public Attributes getAttributes() {
 		return attributes;
 	}
+	
+	public Attributes getEnhancedAttributes() {
+		Attributes a = new Attributes(attributes);
+		a.addAttributeValues(getInventory().getAttributeBoost());
+		return a;
+	}
 
 	public void gainItems(List<Item> items) {
 		gainItems(items.toArray(new Item[0]));
@@ -626,23 +638,17 @@ public class Character implements IDrawable {
 
 	public void gainItems(Item... items) {
 		for (Item i : items) {
-			System.out.println("gained " + i.getNAME());
+			System.out.println("gained " + i.getNAME() + " " + i.getValue());
 			if (i.getType() == ItemType.Experience) {
 				expSammeln(i.getValue());
-				PlayState.getInstance().addTempDrawable(i);
-
 			} else if (i.getType() == ItemType.Gold) {
 				inventory.modifyMoney(i.getValue());
 				PlayState.getInstance().addTempDrawable(i);
 			} else {
-				inventory.place(i.getNAME());
-				if (i instanceof Equipment) {
-					Equipment e = (Equipment) i;
-					e.setAsIcon();
-					PlayState.getInstance().addTempDrawable(e);
-				}
+				inventory.add(i);
+				if (i instanceof Equipment)
+					PlayState.getInstance().addTempDrawable(i);
 			}
-
 		}
 	}
 
@@ -671,7 +677,9 @@ public class Character implements IDrawable {
 	}
 
 	public void heal(int hp) {
-		currentHP += hp;
+		int healAmount = currentHP + hp > MaxHP ? MaxHP - currentHP : hp;
+		PlayState.getInstance().addTempDrawable(new Heal(healAmount));
+		currentHP = Math.min(currentHP + hp, MaxHP);
 	}
 
 	public ArrayList<Skill> getSkills() {
@@ -697,6 +705,10 @@ public class Character implements IDrawable {
 				.addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
 	}
 
+	public Inventory getInventory() {
+		return inventory;
+	}
+	
 	public Vector3[] getHPVectors() {
 		float x = getPosition().x;
 		float y = getPosition().y;
