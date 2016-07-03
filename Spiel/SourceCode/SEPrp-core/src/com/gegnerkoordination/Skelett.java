@@ -16,12 +16,14 @@ import com.character.Skill;
 import com.mygdx.game.Author;
 
 
+@Author(name = "Tobias van den Boom")
+
 public class Skelett extends Gegner {
 	transient Map<AnimationDirection, Animation> animationMap;
 	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 	Animation animation;
 
-	private static final long serialVersionUID = -3846155411884336598L;
+//	private static final long serialVersionUID = -3846155411884336598L;
 
 	public Skelett(int x, int y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer, int exp,
 			Attributes attributes, Body body) {
