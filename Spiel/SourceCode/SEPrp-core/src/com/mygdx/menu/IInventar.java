@@ -26,7 +26,7 @@ public interface IInventar {
 	void remove(String name);
 	
 	/**
-	 * Gibt die adierten Verstärkung des Stärkewertes aller im Inventar ausgerüsteten Items zurück.
+	 * Gibt die addierten Verstärkung des Stärkewertes aller im Inventar ausgerüsteten Items zurück.
 	 * 
 	 * @return Die Sümme über die Stärkewerte aller Items, die im Inventar ausgerüstet sind.
 	 */
@@ -47,7 +47,7 @@ public interface IInventar {
 	int getStaminaBoost();
 	
 	/**
-	 * Gibt die adierten Verstärkung des Geschickwertes aller im Inventar ausgerüsteten Items zurück.
+	 * Gibt die addierten Verstärkung des Geschickwertes aller im Inventar ausgerüsteten Items zurück.
 	 * 
 	 * @return Die Sümme über die Geschickwerte aller Items, die im Inventar ausgerüstet sind.
 	 */
@@ -74,4 +74,13 @@ public interface IInventar {
 	 * @return true, wenn das Vermögen verändert wurde. false, sonst.
 	 */
 	boolean modifyMoney(int delta);
+	
+	/**
+	 * Gibt zu einem gegebenen Itemnamen den zugehörigen Wert des Items an.
+	 * 
+	 * @param nameOfItem: Name des Items, dessen Wert zurückgegeben werden soll.
+	 * @return Wert des Items als Integer.
+	 */
+	int getValueToName(String nameOfItem);
+	
 }
