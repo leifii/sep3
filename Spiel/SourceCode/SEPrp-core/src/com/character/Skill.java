@@ -333,38 +333,19 @@ public class Skill implements Serializable {
 							dy = 300 * speed;
 						}
 					} else {
-						if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) { // richtung
-																															// anpassen
-							// if (c instanceof Schuetze){
-							// System.out.println("skill 4 wird benutzt
-							// runter");
-							// hallo.setRotation(90);
-							// }
+						if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) { // richtung anpassen
 							dx = 0 * speed;
 							dy = -300 * speed;
 						} else if (direction == AnimationDirection.WEST_WALK
 								|| direction == AnimationDirection.WEST_STAND) {
-							// if (c instanceof Schuetze){
-							// hallo.setRotation(90);
-							// System.out.println("skill 4 wird benutzt links");
-							// }
 							dx = -300 * speed;
 							dy = 0 * speed;
 						} else if (direction == AnimationDirection.EAST_WALK
 								|| direction == AnimationDirection.EAST_STAND) {
-							// if (c instanceof Schuetze){
-							// hallo.setRotation(90);
-							// System.out.println("skill 4 wird benutzt
-							// rechts");
-							// }
 							dx = 300 * speed;
 							dy = 0 * speed;
 						} else if (direction == AnimationDirection.NORTH_WALK
 								|| direction == AnimationDirection.NORTH_STAND) {
-							// if (c instanceof Schuetze){
-							// hallo.setRotation(90);
-							// System.out.println("skill 4 wird benutzt hoch");
-							// }
 							dx = 0 * speed;
 							dy = 300 * speed;
 						}
@@ -391,7 +372,7 @@ public class Skill implements Serializable {
 
 		if (isAlive() == true) {
 
-			if (c instanceof Schuetze || c instanceof Skelett) {
+			if ((c instanceof Schuetze || c instanceof Skelett) && !(c instanceof SkelettEndgegner)) {
 				if (getButton() == 0 || getButton() == 1 || getButton() == 4) {
 					System.out.println(getButton());
 					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND) {
@@ -486,19 +467,19 @@ public class Skill implements Serializable {
 				if(getButton()==1){
 					if (helpNr == 1)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
-								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 270, 1,
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 					if (helpNr == 2)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
-								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 					if (helpNr == 3)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
-								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 270, 1,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 0, 1,
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 					if (helpNr == 4)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
-								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 0, 1,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 				}
 				if(getButton()==0 || getButton()==3){
@@ -538,6 +519,10 @@ public class Skill implements Serializable {
 		setCd(getCd() - (getCd() / 8) * cdfaktor);
 		
 	}
+	
+	
+	
+	
 
 	public AnimationDirection direction(Character c) {
 		return direction = c.getRichtung();
@@ -664,5 +649,13 @@ public class Skill implements Serializable {
 
 	public void setButton(int button) {
 		this.button = button;
+	}
+	
+	public int getlvl() {
+		return lvl;
+	}
+	
+	public void setlvl(int lvl) {
+		this.lvl = lvl;
 	}
 }
