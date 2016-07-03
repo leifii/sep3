@@ -1,6 +1,5 @@
 package com.character;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,12 +29,9 @@ import com.objects.ItemType;
 
 @Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel, ???????")
 
-public class Character implements IDrawable, Serializable {
+public class Character implements IDrawable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	transient protected ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
