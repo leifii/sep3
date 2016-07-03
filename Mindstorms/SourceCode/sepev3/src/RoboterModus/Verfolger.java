@@ -16,7 +16,7 @@ public class Verfolger extends IModus{
 	private int zielposition;
 	
 	public Verfolger (int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
-		super(plane, lvfg, drucksensor);
+		super(plane, lvfg, drucksensor, Rolle.Geist_Verfolgung);
 		aktuelleposition = start;
 		letzterKnoten = aktuelleposition -10;
 	}
