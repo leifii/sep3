@@ -33,14 +33,14 @@ public interface IInventar {
 	int getStrenghtBoost();
 	
 	/**
-	 * Gibt die adierten Verstärkung des Intelligentswertes aller im Inventar ausgerüsteten Items zurück.
+	 * Gibt die addierten Verstärkung des Intelligentswertes aller im Inventar ausgerüsteten Items zurück.
 	 * 
 	 * @return Die Sümme über die Intelligentswerte aller Items, die im Inventar ausgerüstet sind.
 	 */
 	int getIntelligenceBoost();
 	
 	/**
-	 * Gibt die adierten Verstärkung des Ausdauerwertes aller im Inventar ausgerüsteten Items zurück.
+	 * Gibt die addierten Verstärkung des Ausdauerwertes aller im Inventar ausgerüsteten Items zurück.
 	 * 
 	 * @return Die Sümme über die Ausdauerwerte aller Items, die im Inventar ausgerüstet sind.
 	 */
