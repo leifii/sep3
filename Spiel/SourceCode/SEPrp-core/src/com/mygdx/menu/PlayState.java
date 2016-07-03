@@ -67,6 +67,7 @@ public class PlayState extends State {
 	public Key keys;
 	private List<Gegner> gegnerList;
 	private List<IDrawable> drawableList;
+	public String name;
 
 	
 	
@@ -99,9 +100,10 @@ public class PlayState extends State {
 		return instance;
 	}
 
-	public PlayState(GameStateManager gsm, int characterauswahl, int design) {
+	public PlayState(GameStateManager gsm, int characterauswahl, int design, String name) {
 		super(gsm);
-		
+
+
 		besucht = false;
 		Kobolddorflabel = new Texture("grafiken/KoboldDorfLabel.png");
 		world = new World(new Vector2(0, 0), false);
@@ -120,6 +122,7 @@ public class PlayState extends State {
 		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 
 		keys = new Key(200, 200, 250, 200, 300, 200, this);
+
 		Npc = new LinkedList<NPC>();
 		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
 				"[TutorialNPC]  "
@@ -140,6 +143,7 @@ public class PlayState extends State {
 		
 		
 		
+
 		Body body = createDynamicBody(100, 100, 32, 48, "charakter");
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
@@ -176,6 +180,7 @@ public class PlayState extends State {
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
 
 		initGegner(1);
+		initnpcs(1);
 		drawableList = new LinkedList<IDrawable>();
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Trank(10), new Gold(30)));
 		PortalListe = new LinkedList<Portal>();
@@ -236,6 +241,42 @@ public class PlayState extends State {
 		c = new Krieger(100, 100, s.getAnimation(animationType), collisionLayer, attributes, body);
 	}
 
+	private void initnpcs(int mapIndex){
+		Npc = new LinkedList<NPC>();
+		if(mapIndex==1){
+		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
+				"[TutorialNPC]  "
+						+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
+				createDynamicBody(120, 300, 32, 48, "npc")));
+		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png",
+				"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
+				createDynamicBody(2339, 459, 32, 48, "npc")));
+		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
+				createDynamicBody(1032, 1318, 32, 48, "npc")));
+		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
+				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this, testInventar));
+		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+				createDynamicBody(1563, 381, 32, 48, "npc")));
+		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+				createDynamicBody(2235, 317, 32, 48, "npc")));
+		}
+		if(mapIndex==2){
+			Npc.add(new NPC(339, 224,"grafiken/Kobold.png","[Viktorius]" +"Hallo Reisender, es befinden sich viele gefährliche Kreaturen in der Nähe des Dorfes.Pass auf dich auf",
+					createDynamicBody(120, 300, 32, 48, "npc")));
+			Npc.add(new NPC(2209,2050 ,"grafiken/Kobold.png", "[Arkanus] Wilkommen im Dorf",
+					createDynamicBody(2209, 2050, 32, 48, "npc")));
+			Npc.add(new NPC(2341, 1376,"grafiken/Kobold.png" ,"[Sinus] Im Dorf ist es sicher"+ '\n' + "Das haben wir unserer Steinbarrikade zu verdanken, die wir aufgestellt haben, um die Monster draußen zu halten"+
+											"\n jedoch können wir uns nicht sehr weit vom Dorf entfernen ohne von den Kreaturen angegriffen zu werden",
+					createDynamicBody(2341, 1376, 32, 48, "npc")));
+			Npc.add(new NPC(3414, 1802,"grafiken/Kobold.png" ,"[Siegfried] Ich wünschte wir könnten hier in Frieden leben. \nJedoch terrorisieren uns die wilden Kreaturen, die eines Tages plötzlich aufgetaucht sind " ,
+					createDynamicBody(3414, 1802, 32, 48, "npc")));
+			Npc.add(new NPC(5393, 4149,"grafiken/Kobold.png", "[Gabrius] Guten Tag" +name+ "\n Ich hoffe du kannst uns bei dem Skelett im Süden helfen. \n Es bereitet uns schon seit einer ganzen Weile große Schwierigkeiten" ,
+					createDynamicBody(5393, 4149, 32, 48, "npc")));
+			
+			
+		}
+
+	}
 	private void initGegner(int mapIndex) {
 		gegnerList = new LinkedList<Gegner>();
 		Attributes ork = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
@@ -399,12 +440,12 @@ public class PlayState extends State {
 					}
 				}
 			}
-			if (c.position.x >= 4400 && c.position.y >= 3400 && c.getMapIndex() == 1) {
+			if (c.position.x >= 4400 && c.position.y >= 3400 && c.getMapIndex() == 1 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 					changeMap(2);
 				}
 			}
-			if (c.position.x >= 5600 && c.position.y >= 4300 && c.getMapIndex() == 2) {
+			if (c.position.x >= 1282 && c.position.x>=2659 && c.position.y <= 1107 && c.getMapIndex() == 2 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 					changeMap(3);
 				}
@@ -741,7 +782,7 @@ public class PlayState extends State {
 			if(n.getBody() != null)
 				world.destroyBody(n.getBody());
 		}
-		Npc = new LinkedList<NPC>();
+		initnpcs(i);
 		for (Truhe t : truhenListe) {
 			if(t.getBody() != null)
 				world.destroyBody(t.getBody());

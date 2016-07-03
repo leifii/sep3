@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
+import com.npc.NPC;
 
 import de.SEPL.GameScore.GameScoreManagement;
 
@@ -46,6 +47,7 @@ public class CharEditorState extends State {
 	private Stage stage;
 	private Table table;
 	private TextButton buttonJ, buttonN, buttonM, buttonK, buttonL;
+	TextField a;
 	private BitmapFont white;
 	private Label label;
 
@@ -98,7 +100,7 @@ public class CharEditorState extends State {
 		atlas1 = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
 		skin = new Skin(atlas);
 		skin1= new Skin(Gdx.files.internal("uiskin.json"));
-		TextField a=new TextField("", skin1);
+		a=new TextField("", skin1);
 
 		table = new Table(skin);
 
@@ -164,9 +166,8 @@ public class CharEditorState extends State {
 		table.row();
 		Label Name = new Label("Name:   ", labelStyle);
 		table.add(Name);
-	
+		
 		table.add(a).spaceRight(100).spaceLeft(100).center();
-
 
 		table.add(buttonM);
 
@@ -334,7 +335,8 @@ public class CharEditorState extends State {
 		// DESIGN
 
 		if (buttonM.isChecked() || Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-			playstate = new PlayState(gsm, charauswahl, design);
+			playstate = new PlayState(gsm, charauswahl, design, a.getText());
+			
 			gsm.push(playstate);
 		}
 
