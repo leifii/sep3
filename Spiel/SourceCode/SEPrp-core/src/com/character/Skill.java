@@ -157,7 +157,7 @@ public class Skill implements Serializable {
 		zaehler += 10; // axt drehen
 		handleInput(xx, yy);
 		setCdnow(getCdnow() - dt); // cd nach Benutzung reduzieren
-
+		dmg = getDmg() * c.getdmgFaktor();
 
 		lifeTimer += dt;
 		if (lifeTimer > lifeTime) {
