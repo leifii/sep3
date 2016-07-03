@@ -20,6 +20,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.grafiken.IObjekte;
 import com.grafiken.Objekte;
 import com.mygdx.game.Author;
+import com.mygdx.menu.IInventar;
 import com.mygdx.menu.PlayState;
 import com.objects.AbstractStringItem;
 import com.objects.Equipment;
@@ -68,6 +69,7 @@ public class Character implements IDrawable {
 	public int levelSkill3;
 	public int levelSkill4;
 	public int levelSkill0;
+	public String[] allItems;
 
 	// int currentMoney; ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
@@ -739,6 +741,14 @@ public class Character implements IDrawable {
 	
 	public boolean getWhiteKeyStatus() {
 		return whiteKeyRecieved;
+	}
+	
+	public void setAllItems(IInventar testInventar){
+		this.allItems = testInventar.getAllItems().toArray(new String[testInventar.getAllItems().size()]);
+	}
+	
+	public String[] getAllItems(){
+		return this.allItems;
 	}
 	
 	public void updateSkillLevel(){
