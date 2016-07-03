@@ -9,6 +9,7 @@ import com.character.Character;
 import com.mygdx.game.Author;
 import com.mygdx.menu.AuktionshausState;
 import com.mygdx.menu.GameStateManager;
+import com.mygdx.menu.IInventar;
 import com.mygdx.menu.PlayState;
 
 @Author(name = "Bijan Shahbaz Nejad")
@@ -19,10 +20,10 @@ public class AuktionsHausNPC extends NPC {
 	AuktionshausState auktionshaus;
 
 	public AuktionsHausNPC(int x, int y, String source, String TEXT, Body body, GameStateManager gsmm,
-			PlayState playstate) {
+			PlayState playstate, IInventar inventar) {
 		super(x, y, source, TEXT, body);
 		gsm = gsmm;
-		auktionshaus = new AuktionshausState(gsm, playstate);
+		auktionshaus = new AuktionshausState(gsm, playstate, inventar);
 	}
 
 	boolean angesprochen2 = false;
