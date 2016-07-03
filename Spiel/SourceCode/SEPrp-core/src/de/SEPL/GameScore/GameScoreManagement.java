@@ -19,9 +19,11 @@ import com.mygdx.menu.PlayState;
 @Author(name = "Dominikus Häckel")
 
 public class GameScoreManagement {
-	
+
 	public static void setRunningNr(int runningNr) {
-		if (runningNr > 3) { runningNr = 1;}
+		if (runningNr > 3) {
+			runningNr = 1;
+		}
 		PrintWriter printWriter = null;
 		try {
 			FileWriter writer = new FileWriter("runningNr.txt", false);
@@ -157,7 +159,8 @@ public class GameScoreManagement {
 				loadedCharacter.getAttributes(), loadedCharacter.getExp(), loadedCharacter.getMaxHP(),
 				loadedCharacter.getCurrentHP(), loadedCharacter.getNeededexp(), loadedCharacter.getDEX(),
 				loadedCharacter.getMapIndex(), loadedCharacter.getBlackKeyStatus(), loadedCharacter.getGoldKeyStatus(),
-				loadedCharacter.getWhiteKeyStatus());
+				loadedCharacter.getWhiteKeyStatus(), loadedCharacter.getLevelSkill0(), loadedCharacter.getLevelSkill1(),
+				loadedCharacter.getLevelSkill2(), loadedCharacter.getLevelSkill3(), loadedCharacter.getLevelSkill4());
 		gsm.push(playState);
 
 	}
