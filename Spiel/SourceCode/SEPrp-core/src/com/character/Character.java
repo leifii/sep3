@@ -701,30 +701,6 @@ public class Character implements IDrawable {
 	}
 	// -------
 
-	// Zur Speicherung der bereits aufgehobenen Schlüssel --Dom--
-	public void setBlackKeyStatus(boolean blackKeyRecieved) {
-		this.blackKeyRecieved = blackKeyRecieved;
-	}
-
-	public void setGoldKeyStatus(boolean goldKeyRecieved) {
-		this.goldKeyRecieved = goldKeyRecieved;
-	}
-
-	public void setWhiteKeyStatus(boolean whiteKeyRecieved) {
-		this.whiteKeyRecieved = whiteKeyRecieved;
-	}
-
-	public boolean getBlackKeyStatus() {
-		return blackKeyRecieved;
-	}
-
-	public boolean getGoldKeyStatus() {
-		return goldKeyRecieved;
-	}
-
-	public boolean getWhiteKeyStatus() {
-		return whiteKeyRecieved;
-	}
 
 	public int getdmgFaktor() {
 		return dmgFaktor;
@@ -745,6 +721,30 @@ public class Character implements IDrawable {
 	
 	
 	// --Dom--
+	public void setBlackKeyStatus(boolean blackKeyRecieved) {
+		this.blackKeyRecieved = blackKeyRecieved;
+	}
+	
+	public void setGoldKeyStatus(boolean goldKeyRecieved) {
+		this.goldKeyRecieved = goldKeyRecieved;
+	}
+	
+	public void setWhiteKeyStatus(boolean whiteKeyRecieved) {
+		this.whiteKeyRecieved = whiteKeyRecieved;
+	}
+	
+	public boolean getBlackKeyStatus() {
+		return blackKeyRecieved;
+	}
+	
+	public boolean getGoldKeyStatus() {
+		return goldKeyRecieved;
+	}
+	
+	public boolean getWhiteKeyStatus() {
+		return whiteKeyRecieved;
+	}
+
 	public int getLevelSkill0(){
 		return getSkills().get(0).getlvl();
 	}
