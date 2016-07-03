@@ -244,16 +244,13 @@ public class Skill implements Serializable {
 					if (direction == AnimationDirection.SOUTH_WALK || direction == AnimationDirection.SOUTH_STAND) { // richtung anpassen
 						dx = 0 * speed;
 						dy = -300 * speed;
-					} else if (direction == AnimationDirection.WEST_WALK
-							|| direction == AnimationDirection.WEST_STAND) {
+					} else if (direction == AnimationDirection.WEST_WALK || direction == AnimationDirection.WEST_STAND) {
 						dx = -300 * speed;
 						dy = 0 * speed;
-					} else if (direction == AnimationDirection.EAST_WALK
-							|| direction == AnimationDirection.EAST_STAND) {
+					} else if (direction == AnimationDirection.EAST_WALK || direction == AnimationDirection.EAST_STAND) {
 						dx = 300 * speed;
 						dy = 0 * speed;
-					} else if (direction == AnimationDirection.NORTH_WALK
-							|| direction == AnimationDirection.NORTH_STAND) {
+					} else if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
 						dx = 0 * speed;
 						dy = 300 * speed;
 					}
@@ -261,7 +258,24 @@ public class Skill implements Serializable {
 			}
 			if (getButton() == 1) {
 				if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
-					activateProjectile(x, y);
+					if (c instanceof SkelettEndgegner) {			//pfeile fliegen in alle richtungen
+						if (helpNr == 1) { // south
+							dx = 0 * speed;
+							dy = -300 * speed;
+						}
+						if (helpNr == 2) { // west
+							dx = -300 * speed;
+							dy = 0 * speed;
+						}
+						if (helpNr == 3) { // east
+							dx = 300 * speed;
+							dy = 0 * speed;
+						}
+						if (helpNr == 4) { // north
+							dx = 0 * speed;
+							dy = 300 * speed;
+						} }
+						else activateProjectile(x, y);
 				}
 			}
 
@@ -402,16 +416,6 @@ public class Skill implements Serializable {
 					}
 				} else
 					s.draw(bild, x, y);
-
-				// hallo.setScale(1000, 1000);
-				// hallo.setRotation(200);
-				// s.draw(bild, x, y, (float)0, (float)0,
-				// (float)hallo.getWidth(), (float)hallo.getHeight(), (float)1,
-				// (float)1, (float)90, 1, 1, (int)bild.getWidth(),
-				// (int)bild.getHeight(), false, false);
-				// s.draw(hallo, getX(), getY());
-				// hallo.setSize(1000, 1000);
-
 			} else if (c instanceof Krieger) {
 				if (getButton() == 0) {
 					if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
@@ -479,7 +483,7 @@ public class Skill implements Serializable {
 					s.draw(bild, getX(), getY());
 				
 			} else if(c instanceof OrkEndgegner || c instanceof SkelettEndgegner){
-				if(getButton()==1)
+				if(getButton()==1){
 					if (helpNr == 1)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
@@ -496,7 +500,30 @@ public class Skill implements Serializable {
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 0, 1,
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
-			} else
+				}
+				if(getButton()==0 || getButton()==3){
+					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND) {
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.SOUTH_WALK || richtung == AnimationDirection.SOUTH_STAND) {
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 270, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.EAST_WALK || richtung == AnimationDirection.EAST_STAND) {
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 0, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					}
+					if (richtung == AnimationDirection.WEST_WALK || richtung == AnimationDirection.WEST_STAND) {
+						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
+								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
+								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
+					}
+				}
+				} else
 				s.draw(bild, getX(), getY());
 
 		}
