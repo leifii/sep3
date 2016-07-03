@@ -181,7 +181,7 @@ public class PlayState extends State {
 	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel,
 			Attributes loadedAttributes, int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp,
 			int loadedDex, int loadedMapIndex, boolean blackKeyRecieved, boolean goldKeyRecieved,
-			boolean whiteKeyRecieved) {
+			boolean whiteKeyRecieved, int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill0) {
 
 		c.setPosition(loadedPosition);
 		c.setLevel(loadedLevel);
@@ -191,6 +191,7 @@ public class PlayState extends State {
 		c.setMaxHP(loadedMaxHP);
 		c.setCurrentHP(loadedCurrentHP);
 		c.setDEX(loadedDex);
+		c.resetSkillCharacteristics(levelSkill0, levelSkill1, levelSkill2, levelSkill3, levelSkill4);
 		changeMap(loadedMapIndex);
 		c.setBlackKeyStatus(blackKeyRecieved);
 		c.setGoldKeyStatus(goldKeyRecieved);
