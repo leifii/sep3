@@ -67,7 +67,7 @@ public class Character implements IDrawable {
 	public int levelSkill2;
 	public int levelSkill3;
 	public int levelSkill4;
-	public int levelSkill5;
+	public int levelSkill0;
 
 	// int currentMoney; ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
@@ -740,21 +740,29 @@ public class Character implements IDrawable {
 	public boolean getWhiteKeyStatus() {
 		return whiteKeyRecieved;
 	}
-
-	public int getLevelSkill0(){
-		return getSkills().get(0).getlvl();
+	
+	public void updateSkillLevel(){
+		this.levelSkill0 = getSkills().get(0).getlvl();
+		this.levelSkill1 = getSkills().get(1).getlvl();
+		this.levelSkill2 = getSkills().get(2).getlvl();
+		this.levelSkill3 = getSkills().get(3).getlvl();
+		this.levelSkill4 = getSkills().get(4).getlvl();
 	}
+
 	public int getLevelSkill1(){
-		return getSkills().get(0).getlvl();
+		return this.levelSkill1;
+	}
+	public int getLevelSkill0(){
+		return this.levelSkill0;
 	}
 	public int getLevelSkill2(){
-		return getSkills().get(0).getlvl();
+		return this.levelSkill2;
 	}
 	public int getLevelSkill3(){
-		return getSkills().get(0).getlvl();
+		return this.levelSkill3;
 	}
 	public int getLevelSkill4(){
-		return getSkills().get(0).getlvl();
+		return this.levelSkill4;
 	}
 	
 	public void resetSkillCharacteristics(int levelSkill0, int levelSkill1, int levelSkill2, int levelSkill3,
