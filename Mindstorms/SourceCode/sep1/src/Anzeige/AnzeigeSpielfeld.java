@@ -291,31 +291,50 @@ public class AnzeigeSpielfeld extends JFrame {
 		ImageIcon iiTracker=new ImageIcon("Verfolger.png");                  // Hinzugefügt von Mark
 		JLabel jTracker = new JLabel(iiTracker);                            // Hinzugefügt von Mark
 		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 60, 55);
-		contentPane.add(jTracker);
+		contentPane.add(jTracker); 
+		
+		
+		
+		ImageIcon iiPowerup = new ImageIcon("Powerup.png");   // Hinzugefügt von Mark
+		
+		JLabel lbPowerUp1 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
+		lbPowerUp1.setBounds(ele[5].getX()-5, ele[5].getY(), 55, 55);  // Hinzugefügt von Mark
+ 		contentPane.add(lbPowerUp1);                // Hinzugefügt von Mark
+ 		
+		JLabel lbPowerUp2 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
+		lbPowerUp2.setBounds(ele[16].getX()-5, ele[16].getY(), 55, 55);  // Hinzugefügt von Mark
+ 		contentPane.add(lbPowerUp2);                // Hinzugefügt von Mark
+ 		
+		JLabel lbPowerUp3 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
+		lbPowerUp3.setBounds(ele[19].getX()-5, ele[19].getY(), 55, 55);  // Hinzugefügt von Mark
+ 		contentPane.add(lbPowerUp3);                // Hinzugefügt von Mark
+ 		
+		JLabel lbPowerUp4 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
+		lbPowerUp4.setBounds(ele[30].getX()-5, ele[30].getY(), 55, 55);  // Hinzugefügt von Mark
+ 		contentPane.add(lbPowerUp4);                // Hinzugefügt von Mark
+		
+		
+		
 		ImageIcon Herz=new ImageIcon("herz.gif");
+		
 		JLabel Leben1=new JLabel(Herz);
-		//Leben1.setVisible(true);
 		Leben1.setSize(50, 50);
-		
-		//Leben.setForeground(Color.RED);
-		//Leben.setBackground(Color.black);
-		
 		Leben1.setLocation(10, 10);
 		contentPane.add(Leben1);
+		
 		JLabel Leben2=new JLabel(Herz);
-		JLabel Leben3=new JLabel(Herz);
 		Leben2.setSize(50, 50);
-		Leben3.setSize(50, 50);
 		Leben2.setLocation(60, 10);
 		contentPane.add(Leben2);
+		
+		JLabel Leben3=new JLabel(Herz);
+		Leben3.setSize(50, 50);
 		Leben3.setLocation(110, 10);
 		contentPane.add(Leben3);
+		
 		ImageIcon linie1=new ImageIcon("Linie.png");
 		JLabel line1=new JLabel(linie1);
-		//JLabel[] low=new JLabel[1];
-		//line.setSize(150, 150);
-		//line.setLocation(ele[0].getX()+75, ele[0].getY());
-		//contentPane.add(line);
+		
 		ImageIcon linie2=new ImageIcon("Linie2.png");
 		JLabel line2=new JLabel(linie2);
 		
