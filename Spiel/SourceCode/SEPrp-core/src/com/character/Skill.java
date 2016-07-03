@@ -3,6 +3,7 @@ package com.character;
 import java.io.Serializable;
 
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,7 +15,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.OrkEndgegner;
-
+import com.gegnerkoordination.SkelettEndgegner;
 import com.mygdx.game.Author;
 
 @Author(name = "Bardia Asemi-Soloot")
@@ -55,7 +56,7 @@ public class Skill implements Serializable {
 
 	protected float speed;
 					
-	protected int button;			//auf welcher taste der skill liegt
+	private int button;			//auf welcher taste der skill liegt
 
 	protected float zaehler;
 	
@@ -94,7 +95,7 @@ public class Skill implements Serializable {
 		this.lifeTime = lifeTime;
 		this.bild = bild;
 		this.buff = buff;
-		this.button = button;
+		this.setButton(button);
 		this.helpNr = helpNr;
 		this.c = c;
 		remove = false;
@@ -140,8 +141,8 @@ public class Skill implements Serializable {
 
 		}
 		
-		// für OrkEndgegner
-		if (c instanceof OrkEndgegner && button == 1) {
+		// für Endgegner
+		if ((c instanceof SkelettEndgegner || c instanceof OrkEndgegner) && getButton() == 1) {
 			if (helpNr == 1) { // south
 				dx = 0 * speed;
 				dy = -300 * speed;
@@ -167,7 +168,7 @@ public class Skill implements Serializable {
 		} else if (isAlive() == true && buff == true) { // falls Buff, dann auf
 														// Spielerposition
 														// halten
-			if (c instanceof Schuetze && button == 3) { // schuetzen falle soll
+			if (c instanceof Schuetze && getButton() == 3) { // schuetzen falle soll
 														// liegen bleiben
 				if (aktiviert == true) {
 					setX(c.getPosition().x);
@@ -180,14 +181,14 @@ public class Skill implements Serializable {
 			}
 		}
 
-		if (c instanceof Krieger && button == 4 && alive == false) { // dmgfakto nach cd wieder runtersetzen (4.skill)
+		if (c instanceof Krieger && getButton() == 4 && alive == false) { // dmgfakto nach cd wieder runtersetzen (4.skill)
 			c.setdmgFaktor(1);
 		}
-		if (c instanceof Magier && button == 2 && alive == false && aktiviert == true) { // hp vom schild wieder entfernen
+		if (c instanceof Magier && getButton() == 2 && alive == false && aktiviert == true) { // hp vom schild wieder entfernen
 			c.currentHP -= getDmg();
 			aktiviert = false;
 		}
-		if (c instanceof Schurke && button == 2 && alive == false && aktiviert == true){	//tempo vom schurken runtersetzen
+		if (c instanceof Schurke && getButton() == 2 && alive == false && aktiviert == true){	//tempo vom schurken runtersetzen
 			c.attributes.setMS(2.5f);
 			aktiviert = false;
 		}
@@ -229,7 +230,7 @@ public class Skill implements Serializable {
 	public void handleInput(float x, float y) {
 
 		if (getCdnow() < 0.1 && lvl >= 1 && skillup == false) {				//falls skill benutzbar
-			if (button == 0){
+			if (getButton() == 0){
 				if (Gdx.input.isKeyPressed(Keys.SPACE)){
 
 					this.setX(x);
@@ -256,13 +257,13 @@ public class Skill implements Serializable {
 					}
 				}
 			}
-			if (button == 1) {
+			if (getButton() == 1) {
 				if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
 					activateProjectile(x, y);
 				}
 			}
 
-			if (button == 2) { // auf taste 2 sind alle buffs
+			if (getButton() == 2) { // auf taste 2 sind alle buffs
 				if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
 					this.setX(x);
 					this.setY(y);
@@ -281,12 +282,12 @@ public class Skill implements Serializable {
 
 				}
 			}
-			if (button == 3) {
+			if (getButton() == 3) {
 				if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
 					activateProjectile(x, y);
 				}
 			}
-			if (button == 4) {
+			if (getButton() == 4) {
 				if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
 					this.setX(x);
 					this.setY(y);
@@ -375,8 +376,8 @@ public class Skill implements Serializable {
 		if (isAlive() == true) {
 
 			if (c instanceof Schuetze || c instanceof Skelett) {
-				if (button == 0 || button == 1 || button == 4) {
-					System.out.println(button);
+				if (getButton() == 0 || getButton() == 1 || getButton() == 4) {
+					System.out.println(getButton());
 					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND) {
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,
@@ -410,7 +411,7 @@ public class Skill implements Serializable {
 				// hallo.setSize(1000, 1000);
 
 			} else if (c instanceof Krieger) {
-				if (button == 0) {
+				if (getButton() == 0) {
 					if (direction == AnimationDirection.NORTH_WALK || direction == AnimationDirection.NORTH_STAND) {
 						s.draw(a[0][0], getX(), getY());
 					}
@@ -424,7 +425,7 @@ public class Skill implements Serializable {
 						s.draw(a[1][0], getX(), getY());
 					}
 				}
-				if (button == 1 || button == 3) {
+				if (getButton() == 1 || getButton() == 3) {
 					s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 							(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) zaehler, 1,
 							1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
@@ -434,7 +435,7 @@ public class Skill implements Serializable {
 					s.draw(bild, getX(), getY());
 
 			} else if (c instanceof Schurke) {
-				if (button == 0 || button == 1 || button == 3) {
+				if (getButton() == 0 || getButton() == 1 || getButton() == 3) {
 					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND) {
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 0, 1,
@@ -455,7 +456,7 @@ public class Skill implements Serializable {
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,
 								1, (int) bild.getWidth(), (int) bild.getHeight(), false, false);
 					}
-				} else if (button == 4) {
+				} else if (getButton() == 4) {
 					if (helpNr == 1)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
@@ -475,8 +476,8 @@ public class Skill implements Serializable {
 				} else
 					s.draw(bild, getX(), getY());
 				
-			} else if(c instanceof OrkEndgegner){
-				if(button==1)
+			} else if(c instanceof OrkEndgegner || c instanceof SkelettEndgegner){
+				if(getButton()==1)
 					if (helpNr == 1)
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 180, 1,
@@ -626,5 +627,13 @@ public class Skill implements Serializable {
 	
 	public boolean getskillup(){
 		return skillup;
+	}
+
+	public int getButton() {
+		return button;
+	}
+
+	public void setButton(int button) {
+		this.button = button;
 	}
 }
