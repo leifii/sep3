@@ -30,7 +30,7 @@ public class Zufall extends IModus{
 		r = new Random();
 	}
 	
-	public void run(){
+	public void run(){									// Es wird zuerst überprüft, ob eine Pause vorliegt oder der Roboter deaktiviert wurde
 		if((pause==false && /*isAktiviert()*/ true)){	//TODO das muss noch geändert werden
 		
 		int zufallszahl;
@@ -70,10 +70,10 @@ public class Zufall extends IModus{
 		
 		while(true){
 			zufallszahl  =r.nextInt(4);					// nord = 0, west = 1, sued = 2, ost = 3;
-			LCD.drawString("zufall  "+zufallszahl, 0, 3);
-			Delay.msDelay(2000);
+			
 			if(richtungen[zufallszahl] == true){
 				break;
+				
 			}
 		}
 		
@@ -166,8 +166,13 @@ public class Zufall extends IModus{
 		
 		}
 		
-		else
+		else{									//Wenn eine Pause vorliegt oder der Roboter deaktiviert wurde, soll der Roboter stoppen
 			lvfg.stop();
+			
+			if(isAktiviert()==false) {			//Wurde der Roboter deaktiviert, wird er auf seinen ursprüngliche Startposition gestellt 
+			aktuelleposition = 26;
+			letzterKnoten = aktuelleposition +1;}
+		}
 	}
 	
 
