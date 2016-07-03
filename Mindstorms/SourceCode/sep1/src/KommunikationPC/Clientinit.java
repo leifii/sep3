@@ -29,7 +29,7 @@ public class Clientinit {
 	
 	Position pos;
 	
-	QueueHandler queueHandler;
+    public QueueHandler queueHandler;
 	
 	
 	public Clientinit()throws IOException{
@@ -42,6 +42,7 @@ public class Clientinit {
 		
 		queue1 = new ConcurrentLinkedQueue<Byte>();
 		queueHandler = new QueueHandler(queue1);
+		queueHandler.setQueueHandler(queueHandler);
 		
 		
 		Thread client1 = new Thread(new Client(ip1, modus1, port1, clientNr1, queueHandler, pos));
@@ -59,7 +60,7 @@ public class Clientinit {
 		queue1 = new ConcurrentLinkedQueue<Byte>();
 		queue2 = new ConcurrentLinkedQueue<Byte>();
 		queueHandler = new QueueHandler(queue1, queue2);
-		
+		queueHandler.setQueueHandler(queueHandler);
 		
 		Thread client1 = new Thread(new Client(ip1, modus1, port1, clientNr1, queueHandler, pos));
 		Thread client2 = new Thread(new Client(ip2, modus2, port2, clientNr2, queueHandler, pos));
@@ -81,7 +82,7 @@ public class Clientinit {
 		queue2 = new ConcurrentLinkedQueue<Byte>();
 		queue3 = new ConcurrentLinkedQueue<Byte>();
 		queueHandler = new QueueHandler(queue1, queue2, queue3);
-		
+		queueHandler.setQueueHandler(queueHandler);
 		
 		Thread client1 = new Thread(new Client(ip1, modus1, port1, clientNr1, queueHandler, pos));
 		Thread client2 = new Thread(new Client(ip2, modus2, port2, clientNr2, queueHandler, pos));
@@ -103,7 +104,7 @@ public class Clientinit {
 		queue3 = new ConcurrentLinkedQueue<Byte>();
 		queue4 = new ConcurrentLinkedQueue<Byte>();
 		queueHandler = new QueueHandler(queue1, queue2, queue3, queue4);
-		
+		queueHandler.setQueueHandler(queueHandler);
 
 		Thread client1 = new Thread(new Client(ip1, modus1, port1, clientNr1, queueHandler, pos));
 		Thread client2 = new Thread(new Client(ip2, modus2, port2, clientNr2, queueHandler, pos));
