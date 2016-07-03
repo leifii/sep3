@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -25,7 +24,6 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
@@ -38,11 +36,9 @@ import com.character.Schurke;
 import com.character.Skill;
 import com.gegnerkoordination.Endboss;
 import com.gegnerkoordination.Gegner;
-import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
 import com.gegnerkoordination.OrkEndgegner;
 import com.gegnerkoordination.SchleimEndgegner;
-import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.SkelettEndgegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
@@ -50,19 +46,16 @@ import com.mygdx.game.Author;
 import com.npc.AuktionsHausNPC;
 import com.npc.NPC;
 import com.npc.Speicherstein;
-import com.objects.Equipment;
 import com.objects.EquipmentType;
-import com.objects.Experience;
 import com.objects.Gold;
+import com.objects.Key;
 import com.objects.Portal;
+import com.objects.Trank;
 import com.objects.Truhe;
 
 import de.SEPL.ServerClient.IAuktionshausClient;
-import com.mygdx.menu.IInventar;
 
-import com.objects.Key;
-
-@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel ,  Dilara?? , Sabiha?" )
+@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel ,  Dilara , Sabiha" )
 
 public class PlayState extends State {
 
@@ -93,6 +86,8 @@ public class PlayState extends State {
 
 	List<Portal> PortalListe;
 
+	private InventoryState inventoryState;
+	private boolean pauseToInventory;
 	private static PlayState instance;
 	
 	// --Dom--
@@ -182,10 +177,16 @@ public class PlayState extends State {
 
 		initGegner(1);
 		drawableList = new LinkedList<IDrawable>();
-		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Experience(100), new Gold(30)));
+		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Trank(10), new Gold(30)));
 		PortalListe = new LinkedList<Portal>();
 		PortalListe.add(new Portal(50, 50, 2934, 312));
 		PortalListe.add(new Portal(2934, 312, 50, 50));
+		
+//		zum testen
+//		for(EquipmentType t : EquipmentType.values())
+//			c.getInventory().add(new Equipment(t));
+		
+
 		instance = this;
 		
 		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
@@ -217,9 +218,10 @@ public class PlayState extends State {
 		keys.setBlackKeyStatus(blackKeyRecieved);
 		keys.setGoldKeyStatus(goldKeyRecieved);
 		keys.setWhiteKeyStatus(whiteKeyRecieved);
-		for (int i = 0; i < allItems.length; i++){
-			testInventar.place(allItems[i]);
-		}
+//		Items werden als Item Objekt über die Inventory.add(Item i) Methode zum Inventar hinzugefügt
+//		for (int i = 0; i < allItems.length; i++){
+//			testInventar.place(allItems[i]);
+//		}
 	}
 
 	public Character getC() {
@@ -284,7 +286,7 @@ public class PlayState extends State {
 		else if(mapIndex == 2){
 			if(!c.getBosseBesiegt()[1]){
 				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
-				Boss2.addLoot(EquipmentType.Holzschwert);
+				Boss2.addLoot(EquipmentType.Schwert);
 				gegnerList.add(Boss2);
 				//81,123
 			}
@@ -293,13 +295,13 @@ public class PlayState extends State {
 			boss = new Attributes(1,1,1,1,1,1,1,2);
 			if(!c.getBosseBesiegt()[2]){
 				SchleimEndgegner Boss3 = new SchleimEndgegner(5440, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5440, 5600, 35, 32, "gegner"));
-				Boss3.addLoot(EquipmentType.Lederschuh);
+				Boss3.addLoot(EquipmentType.Stoffschuh);
 				gegnerList.add(Boss3);
 				//170,10
 			}
 			if(!c.getBosseBesiegt()[3]){
 				Endboss Boss4= new Endboss(256, 5632, s.getAnimation(1), collisionLayer, 200, boss, createDynamicBody(256, 5632, 32, 48, "gegner"), c);
-				Boss4.addLoot(EquipmentType.Lederhelm);
+				Boss4.addLoot(EquipmentType.Eisenhelm);
 				gegnerList.add(Boss4);
 				//8,9 = 256,5632
 			}
@@ -312,18 +314,27 @@ public class PlayState extends State {
 		
 		// Update der SkillLevel in Character --Dom--
 		c.updateSkillLevel();
-		c.setAllItems(testInventar);
+//		c.setAllItems(testInventar);
 
+		//toogle inventoryState
+		if (Gdx.input.isKeyJustPressed(Keys.I) || (pauseToInventory && Gdx.input.isKeyJustPressed(Keys.ESCAPE))) {
+			if(inventoryState == null)
+				inventoryState = new InventoryState(gsm, this);
+			pauseToInventory = !pauseToInventory;
+			inventoryState.updateImages();
+		}
+		
+		//input halted
+		if(pauseToInventory) {
+			return;
+		}
+		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			
-			 gsm.push(new PauseState(gsm,this));
+			inventoryState = null;
+			gsm.push(new PauseState(gsm,this));
 		}
 
-		if (Gdx.input.isKeyJustPressed(Keys.I))
-			gsm.push(new InventoryState(gsm, this, c));
 
-		if (Gdx.input.isKeyJustPressed(Keys.O))
-			drawableList.add(Equipment.spawnRandomItem(c.getPosition()));
 		// if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
 		// for (Gegner g : gegnerList)
 		// killGegner(g);
@@ -404,6 +415,13 @@ public class PlayState extends State {
 	@Override
 	public void update(float dt) {
 		handleInput();
+		
+		if(pauseToInventory) {
+			inventoryState.update(dt);
+			return;
+		}
+		
+		
 		c.update(dt);
 
 		for (Skill s : c.getSkills()) {
@@ -558,99 +576,109 @@ public class PlayState extends State {
 			}
 		}
 
-		/**
-		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
-		 */
-		MapProperties prop = map.getMap().getProperties();
-		int mapWidth = prop.get("width", Integer.class);
-		int mapHeight = prop.get("height", Integer.class);
-		int tilePixelWidth = prop.get("tilewidth", Integer.class);
-		int tilePixelHeight = prop.get("tileheight", Integer.class);
+		if(!pauseToInventory) {
+			/**
+			 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
+			 */
+			MapProperties prop = map.getMap().getProperties();
+			int mapWidth = prop.get("width", Integer.class);
+			int mapHeight = prop.get("height", Integer.class);
+			int tilePixelWidth = prop.get("tilewidth", Integer.class);
+			int tilePixelHeight = prop.get("tileheight", Integer.class);
 
-		mapPixelWidth = mapWidth * tilePixelWidth;
-		mapPixelHeight = mapHeight * tilePixelHeight;
+			mapPixelWidth = mapWidth * tilePixelWidth;
+			mapPixelHeight = mapHeight * tilePixelHeight;
 
-		// links unten
-		if (c.getPosition().y >= 0 - 32 && c.getPosition().y < Gdx.graphics.getHeight() / 2 - 32
-				&& c.getPosition().x >= 0 - 32 && c.getPosition().x < Gdx.graphics.getWidth() / 2 - 32) {
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(Gdx.graphics.getWidth() / 2 - 32, Gdx.graphics.getHeight() / 2 - 32, 0);
-			cam.update();
+			// links unten
+			if (c.getPosition().y >= 0 - 32 && c.getPosition().y < Gdx.graphics.getHeight() / 2 - 32
+					&& c.getPosition().x >= 0 - 32 && c.getPosition().x < Gdx.graphics.getWidth() / 2 - 32) {
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(Gdx.graphics.getWidth() / 2 - 32, Gdx.graphics.getHeight() / 2 - 32, 0);
+				cam.update();
 
-		}
-		// links oben
-		else if (c.getPosition().x >= 0 - 32 && c.getPosition().x < Gdx.graphics.getWidth() / 2 - 32
-				&& c.getPosition().y > mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32
-				&& c.getPosition().y <= mapPixelHeight + 32) {
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(Gdx.graphics.getWidth() / 2 - 32, mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32, 0);
-			cam.update();
-		}
-		// rechts oben
-		else if (c.getPosition().x > mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32
-				&& c.getPosition().x <= mapPixelWidth + 32
-				&& c.getPosition().y > mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32
-				&& c.getPosition().y <= mapPixelHeight + 32) {
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32,
-					mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32, 0);
-			cam.update();
-		}
-		// rechts unten
-		else if (c.getPosition().x > mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32
-				&& c.getPosition().x <= mapPixelWidth + 32 && c.getPosition().y >= 0 - 32
-				&& c.getPosition().y < Gdx.graphics.getHeight() / 2 - 32) {
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32, Gdx.graphics.getHeight() / 2 - 32, 0);
-		}
+			}
+			// links oben
+			else if (c.getPosition().x >= 0 - 32 && c.getPosition().x < Gdx.graphics.getWidth() / 2 - 32
+					&& c.getPosition().y > mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32
+					&& c.getPosition().y <= mapPixelHeight + 32) {
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(Gdx.graphics.getWidth() / 2 - 32, mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32, 0);
+				cam.update();
+			}
+			// rechts oben
+			else if (c.getPosition().x > mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32
+					&& c.getPosition().x <= mapPixelWidth + 32
+					&& c.getPosition().y > mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32
+					&& c.getPosition().y <= mapPixelHeight + 32) {
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32,
+						mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32, 0);
+				cam.update();
+			}
+			// rechts unten
+			else if (c.getPosition().x > mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32
+					&& c.getPosition().x <= mapPixelWidth + 32 && c.getPosition().y >= 0 - 32
+					&& c.getPosition().y < Gdx.graphics.getHeight() / 2 - 32) {
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32, Gdx.graphics.getHeight() / 2 - 32, 0);
+			}
 
-		else if (c.getPosition().x >= 0 - 32 && c.getPosition().x < Gdx.graphics.getWidth() / 2 - 32) { // Mitte
-																										// links
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(Gdx.graphics.getWidth() / 2 - 32, c.getPosition().y, 0);
-			cam.update();
+			else if (c.getPosition().x >= 0 - 32 && c.getPosition().x < Gdx.graphics.getWidth() / 2 - 32) { // Mitte
+																											// links
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(Gdx.graphics.getWidth() / 2 - 32, c.getPosition().y, 0);
+				cam.update();
 
-		} else if (c.getPosition().y >= 0 - 32 && c.getPosition().y < Gdx.graphics.getHeight() / 2 - 32) { // Mitte
-																											// unten
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(c.getPosition().x, Gdx.graphics.getHeight() / 2 - 32, 0);
-			cam.update();
-		} else if (c.getPosition().y > mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32
-				&& c.getPosition().y <= mapPixelHeight + 32) { // Mitte oben
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(c.getPosition().x, mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32, 0);
-		} else if (c.getPosition().x > mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32
-				&& c.getPosition().x <= mapPixelWidth + 32) { // Mitte rechts
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32, c.getPosition().y, 0);
-		} else {
-			sb.setProjectionMatrix(cam.combined);
-			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
-			cam.position.set(c.getPosition().x, c.getPosition().y, 0);
-			cam.update();
-		}
+			} else if (c.getPosition().y >= 0 - 32 && c.getPosition().y < Gdx.graphics.getHeight() / 2 - 32) { // Mitte
+																												// unten
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(c.getPosition().x, Gdx.graphics.getHeight() / 2 - 32, 0);
+				cam.update();
+			} else if (c.getPosition().y > mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32
+					&& c.getPosition().y <= mapPixelHeight + 32) { // Mitte oben
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(c.getPosition().x, mapPixelHeight - Gdx.graphics.getHeight() / 2 + 32, 0);
+			} else if (c.getPosition().x > mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32
+					&& c.getPosition().x <= mapPixelWidth + 32) { // Mitte rechts
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(mapPixelWidth - Gdx.graphics.getWidth() / 2 + 32, c.getPosition().y, 0);
+			} else {
+				sb.setProjectionMatrix(cam.combined);
+				sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
+				cam.position.set(c.getPosition().x, c.getPosition().y, 0);
+				cam.update();
+			}
 
-		if (Gdx.input.isKeyPressed(Keys.UP) && cam.zoom > 0.3) {
-			cam.zoom -= 0.01f;
-		} else if (Gdx.input.isKeyPressed(Keys.DOWN) && cam.zoom < 1) {
-			cam.zoom += 0.01f;
-		}
-		/**
-		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
-		 */
+			if (Gdx.input.isKeyPressed(Keys.UP) && cam.zoom > 0.3) {
+				cam.zoom -= 0.01f;
+			} else if (Gdx.input.isKeyPressed(Keys.DOWN) && cam.zoom < 1) {
+				cam.zoom += 0.01f;
+			}
+	
+			if (Gdx.input.isKeyPressed(Keys.UP) && cam.zoom > 0.3) {
+				cam.zoom -= 0.01f;
+			} else if (Gdx.input.isKeyPressed(Keys.DOWN) && cam.zoom < 1) {
+				cam.zoom += 0.01f;
+			}
+			
+		} else
+			sb.draw(currentFrame, c.getPosition().x, c.getPosition().y);
 		
+		/**
+		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
+		 */
 		
 		sb.end();
 
-		//DRAW HP
+		//HP
 		sr.setProjectionMatrix(sb.getProjectionMatrix());
 		sr.begin();
 
@@ -659,11 +687,10 @@ public class PlayState extends State {
 			drawHP(g);
 		
 		sr.end();
+//		b2dr.render(world, cam.combined);
 		
-		//DRAW HP
-		
-		b2dr.render(world, cam.combined);
-
+		if(pauseToInventory)
+			inventoryState.render(sb);
 	}
 	
 	private void drawHP(Character c) {
@@ -679,7 +706,7 @@ public class PlayState extends State {
 		// TODO Auto-generated method stub
 		c.dispose();
 		this.dispose();
-
+		inventoryState.dispose();
 	}
 
 	public void changeMap(int i) {

@@ -10,11 +10,25 @@ import com.mygdx.game.Author;
 
 public enum EquipmentType {
 //											  STR,INT,DEX,STA,ATK,DEF,AS,MS
-	Holzschwert(ItemType.Waffe, 10, 2, 			2, 	0, 	0,	0, 	2, 0, 0, 0,		0, 0),
-	Lederhelm(ItemType.Helm, 5, 2, 				0, 	3, 	0,	0, 	0, 0, 0, 0,		1, 1),
+	Dolch(ItemType.Waffe, 10, 2, 				2, 	0, 	0,	0, 	2, 0, 0, 0,		8,15),
+	Schwert(ItemType.Waffe, 15, 5, 				4, 	0, 	0,	0, 	2, 0, 0, 0,		2, 0),
+	Stahlschwert(ItemType.Waffe, 25, 9, 		6, 	0, 	0,	0, 	2, 0, 0, 0,		5,15),
+	
+	Kupferhelm(ItemType.Helm, 5, 2, 			0, 	3, 	0,	0, 	0, 1, 0, 0,		5, 1),
+	Eisenhelm(ItemType.Helm, 12, 4,				0, 	4, 	0,	0, 	0, 2, 0, 0,		3, 1),
+	Stahlhelm(ItemType.Helm, 18, 5,				0, 	5, 	0,	0, 	0, 4, 0, 0,		1, 1),
+	
 	Holzschild(ItemType.Schild, 5, 2, 			0, 	0, 	0,	0, 	0, 0, 3, 0,		0, 2),
-	Lederschuh(ItemType.Schuhe, 5, 2, 			0, 	0, 	0,	0, 	0, 0, 0, 0.5f,	0,15),
-	Lederrüstung(ItemType.Brustpanzer, 5, 2,	0, 	0, 	0,	0, 	0, 3, 0, 0,		0, 5);
+	Eisenschild(ItemType.Schild, 10, 4,			0, 	0, 	0,	0, 	0, 0, 5, 0,		2, 2),
+	Stahlschild(ItemType.Schild, 15, 6,			0, 	0, 	0,	0, 	0, 0, 8, 0,		3, 14),
+	
+	Stoffschuh(ItemType.Schuhe, 3, 1, 			0, 	0, 	0,	1, 	0, 0, 0, 0.5f,	3,13),
+	Lederschuh(ItemType.Schuhe, 6, 3, 			0, 	0, 	0,	1, 	0, 0, 1, 0.6f,	4,13),
+	Lederstiefel(ItemType.Schuhe, 10, 5,		0, 	0, 	2,	3, 	0, 0, 1, 0.7f,	0,15),
+	
+	Lederrüstung(ItemType.Brustpanzer, 8, 3,	1, 	0, 	0,	0, 	0, 3, 0, -0.3f,	0, 5),
+	Kettenhemd(ItemType.Brustpanzer, 15, 6,		0, 	0, 	0,	0, 	0, 5, 0, -0.1f,	1, 6),
+	Stahlrüstung(ItemType.Brustpanzer, 20, 9,	3, 	0, 	0,	0, 	0, 8, 0, -0.5f,	5, 0);
 	
 	/*
 	Holzschwert, Lederhelm,	Holzschild,	Lederschuh,	Lederrüstung

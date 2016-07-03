@@ -58,16 +58,16 @@ public class Character implements ICharacter{
 				TextureRegion.split(new Texture("grafiken/Archer_Spreadsheet-bluehair-Eyes3.png"), 32, 48)
 		};
 		
-		warrior= new TextureRegion[][][]{TextureRegion.split(new Texture("grafiken/Krieger/squire_m.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m-greenE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m-lightblueE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m-redE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m-yellowE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m_rot.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m_rot-greenE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m_rot-lightblueE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m_rot-redE.png"), 32, 48),
-			TextureRegion.split(new Texture("grafiken/Krieger/squire_m_rot-yellowE.png"), 32, 48)
+		warrior= new TextureRegion[][][]{TextureRegion.split(new Texture("grafiken/krieger/squire_m.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m-greenE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m-lightblueE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m-redE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m-yellowE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-greenE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-lightblueE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-redE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-yellowE.png"), 32, 48)
 		};
 	}	
 

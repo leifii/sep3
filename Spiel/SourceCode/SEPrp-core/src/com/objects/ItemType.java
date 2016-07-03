@@ -7,6 +7,23 @@ import com.mygdx.game.Author;
 
 public enum ItemType {
 
-	Helm, Waffe, Schild, Brustpanzer, Schuhe, Trank, Experience, Gold, Schaden;
+	Helm(true), Waffe(true), Schild(true), Brustpanzer(true), Schuhe(true), Trank, 
+	
+	//Helper für AbstractString
+	Heal, Experience, Gold, Schaden;
+
+	private boolean equipable;
+	
+	ItemType(boolean e) {
+		this.equipable = e;
+	}
+	
+	ItemType() {
+		this(false);
+	}
+	
+	public boolean isEquipable() {
+		return equipable;
+	}
 	
 }

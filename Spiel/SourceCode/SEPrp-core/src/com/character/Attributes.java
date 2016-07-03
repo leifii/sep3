@@ -23,6 +23,25 @@ public class Attributes implements Serializable {
 		this.setAS(AS); //Attackspeed
 		this.setMS(MS); //Movementspeed
 	}
+	
+	public Attributes(Attributes copy) {
+		this(copy.STR, copy.INT, copy.DEX, copy.STA, copy.ATK, copy.DEF, copy.AS, copy.MS);
+	}
+	
+	public void addAttributeValues(Attributes a) {
+		if(a == null)
+			return;
+		
+		STR += a.STR;
+		INT += a.INT;
+		DEX += a.DEX;
+		STA += a.STA;
+		ATK += a.ATK;
+		DEF += a.DEF;
+		AS += a.AS;
+		MS += a.MS;
+	}
+	
 	public int getSTR() {
 		return STR;
 	}
@@ -72,4 +91,28 @@ public class Attributes implements Serializable {
 		DEX = dEX;
 	}
 
+	public String getValueAsString(String key) {
+		switch(key) {
+		case "STR": return Integer.toString(STR);
+		case "INT": return Integer.toString(INT);
+		case "DEX": return Integer.toString(DEX);
+		case "STA": return Integer.toString(STA);
+		case "ATK": return Integer.toString(ATK);
+		case "DEF": return Integer.toString(DEF);
+		case "AS":  return Integer.toString(AS);
+		case "MS":  return Float.toString(MS);
+		}
+		return null;
+	}
+	
+	public String toString() {
+		return "STR "+ STR + 
+				"\nDEF " + DEF +
+				"\nINT " + INT + 
+				"\nDEX "+ DEF + 
+				"\nSTA "+ STA +
+				"\nATK " + ATK + 
+				"\nAS " + AS + 
+				"\nMS " + MS;
+	}
 }

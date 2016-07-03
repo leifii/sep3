@@ -2,6 +2,8 @@ package com.mygdx.menu;
 
 import java.util.List;
 
+import com.objects.Item;
+
 public interface IInventar {
 
 	/**
@@ -9,7 +11,7 @@ public interface IInventar {
 	 * 
 	 * @param name: Name des Items, das in dem Invatar plaziert werden soll.
 	 */
-	void place(String name);
+	void add(Item item);
 	
 	/**
 	 * Gibt den Namen aller Items im Inventar zurück. Wenn ein Typ Item zwei mal vorliegt, wird dieses zweimal zurückgegeben.
@@ -53,12 +55,14 @@ public interface IInventar {
 	 */
 	int getDexterityBoost();
 	
+	/* Methode gehört nicht an diese Stelle.
 	/**
 	 * Gibt zurück wie viele Lebenspunkte durch die Benuztung von Items geheilt wurden seit dem letzten Aufruf dieser Methode.
 	 * 
 	 * @return Die geheilten Lebenspunkte.
-	 */
+	 *
 	int getHealing();
+	*/
 	
 	/**
 	 * Gibt das aktuelle Geldvermögen des Charakters zurück. Das Vermögen des Charakter kann niemals negativ sein.
