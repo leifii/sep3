@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -398,8 +399,12 @@ public class PlayState extends State {
 		
 		sb.begin();
 		c.draw(sb);
-
-
+		
+		if(c.getCurrentHP()==0){
+			System.out.println("Verloren");
+			gsm.push(new VerlorenState(gsm));
+		}
+		
 		// KOBOLD DORF LABEL//
 		if (c.getPosition().x > 1595 && c.getPosition().x < 1796 && c.getPosition().y > 0 && c.getPosition().y < 1000
 				&& !besucht) {
