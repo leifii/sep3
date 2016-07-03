@@ -230,14 +230,10 @@ public class AnzeigeSpielfeld extends JFrame {
 					j=new JLabel(iiKnoten); // Hinzugefügt von Mark 
 					j.setBackground(Color.BLACK);
 					j.setBounds(100+k*150,100+i*150,55,55);
-//					j.setIcon(iiKnoten);
 					contentPane.add(j);
 				zahl++;
 				ele[zahl-2]=j;
-				k++;
-					
-			
-			
+				k++;	
 		}
 		return ele;
 	}
@@ -281,6 +277,7 @@ public class AnzeigeSpielfeld extends JFrame {
 		JLabel jSepman = new JLabel(iiSepman);                              // Hinzugefügt von Mark
 		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 65, 65);
 		contentPane.add(jSepman);
+
 		
 		ImageIcon iiRandom=new ImageIcon("zufall.png");                      // Hinzugefügt von Mark
 		JLabel jRandom = new JLabel(iiRandom);                              // Hinzugefügt von Mark
