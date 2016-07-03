@@ -63,6 +63,12 @@ public class Character implements IDrawable {
 	boolean blackKeyRecieved;
 	boolean goldKeyRecieved;
 	boolean whiteKeyRecieved;
+	public int levelSkill1;
+	public int levelSkill2;
+	public int levelSkill3;
+	public int levelSkill4;
+	public int levelSkill5;
+
 	// int currentMoney; ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
 	public boolean skillup;
@@ -736,10 +742,27 @@ public class Character implements IDrawable {
 	public Map<AnimationDirection, Animation> getAnimationMap() {
 		return animationMap;
 	}
-
+	
+	
 	// --Dom--
-	public void resetSkillCharacteristics(int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4,
-			int levelSkill5) {
+	public int getLevelSkill0(){
+		return getSkills().get(0).getlvl();
+	}
+	public int getLevelSkill1(){
+		return getSkills().get(0).getlvl();
+	}
+	public int getLevelSkill2(){
+		return getSkills().get(0).getlvl();
+	}
+	public int getLevelSkill3(){
+		return getSkills().get(0).getlvl();
+	}
+	public int getLevelSkill4(){
+		return getSkills().get(0).getlvl();
+	}
+	
+	public void resetSkillCharacteristics(int levelSkill0, int levelSkill1, int levelSkill2, int levelSkill3,
+			int levelSkill4) {
 
 		int counter = 0;
 		while (counter < levelSkill1) {
@@ -758,10 +781,11 @@ public class Character implements IDrawable {
 			getSkills().get(3).lvlup();
 		}
 		counter = 0;
-		while (counter < levelSkill5) {
+		while (counter < levelSkill0) {
 			getSkills().get(4).lvlup();
 		}
 
 	}
+	// ------
 
 }
