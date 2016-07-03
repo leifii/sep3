@@ -63,7 +63,7 @@ public class FileClient implements IAuktionshausClient {
 		}
 
 		String[] tempAr = items.split("-");
-		String[] itemAr = new String[tempAr.length-1];
+		String[] itemAr = new String[tempAr.length - 1];
 		for (int i = 0; i < itemAr.length; i++){
 			itemAr[i] = tempAr[i+1];
 		}
