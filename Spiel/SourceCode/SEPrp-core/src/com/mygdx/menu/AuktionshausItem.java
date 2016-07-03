@@ -21,8 +21,10 @@ class AuktionshausItem implements IInventar {
 	String Name, Preis;
 	boolean gekauft;
 	boolean pressedOnce = true; // zur Sicherstellung, dass trotz isPressed Button nur einmal ausgeführt wird --Dom--
+	IInventar inventar = new com.mygdx.menu.testInventar();
 
-	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name,State state) {
+
+	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name,State state, IInventar inventar) {
 		Name = name;
 		Preis = "[PREIS]";
 		
@@ -50,20 +52,19 @@ class AuktionshausItem implements IInventar {
 				gekauft = true;
 
 				if (state instanceof KaufenState) {
-				if(modifyMoney(-Integer.parseInt(Preis))){
+				if(inventar.modifyMoney(-Integer.parseInt(Preis))){
 					auktionshausClient.deleteItem(Name);
 					itemkauf.remove();
-					iteminfo.remove();										
-											
-					place(Name); // INVENTAR
+					iteminfo.remove();																			
+					inventar.place(Name); // INVENTAR
 					}
 				}
 				if (state instanceof VerkaufenState ) {
-					remove(Name); // INVENTAR
+					inventar.remove(Name); // INVENTAR
 					auktionshausClient.pasteItem(Name); 
 					itemkauf.remove();
 					iteminfo.remove();		
-					modifyMoney(Integer.parseInt(Preis));						
+					inventar.modifyMoney(Integer.parseInt(Preis));						
 				}
 			}
 			pressedOnce = false;
