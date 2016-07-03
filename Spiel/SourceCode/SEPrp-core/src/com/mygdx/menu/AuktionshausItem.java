@@ -130,6 +130,12 @@ class AuktionshausItem implements IInventar {
 		return false;
 	}
 
+	@Override
+	public int getValueToName(String nameOfItem) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
 
 // package com.mygdx.menu;
