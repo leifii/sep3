@@ -691,17 +691,6 @@ public class Character implements IDrawable {
 		this.collisionLayer = collisionLayer;
 	}
 
-	// Zur Speicherung der gerade bespielten Welt --Dom--
-	public void setMapIndex(int mapIndex) {
-		this.mapIndex = mapIndex;
-	}
-
-	public int getMapIndex() {
-		return this.mapIndex;
-	}
-	// -------
-
-
 	public int getdmgFaktor() {
 		return dmgFaktor;
 	}
@@ -713,7 +702,6 @@ public class Character implements IDrawable {
 	public void setAnimationMap(Map<AnimationDirection, Animation> animationMap) {
 		this.animationMap = animationMap;
 	}
-	// -------
 
 	public Map<AnimationDirection, Animation> getAnimationMap() {
 		return animationMap;
@@ -721,6 +709,14 @@ public class Character implements IDrawable {
 	
 	
 	// --Dom--
+	public void setMapIndex(int mapIndex) {
+		this.mapIndex = mapIndex;
+	}
+
+	public int getMapIndex() {
+		return this.mapIndex;
+	}
+	
 	public void setBlackKeyStatus(boolean blackKeyRecieved) {
 		this.blackKeyRecieved = blackKeyRecieved;
 	}
