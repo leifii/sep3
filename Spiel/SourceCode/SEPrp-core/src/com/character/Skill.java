@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.gegnerkoordination.Endboss;
 import com.gegnerkoordination.SchleimEndgegner;
 import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.OrkEndgegner;
@@ -161,6 +163,10 @@ public class Skill implements Serializable {
 				dx = 0 * speed;
 				dy = 300 * speed;
 			}
+		}
+		// für letzten Endboss
+		if(c instanceof Endboss){
+			
 		}
 		
 		if (isAlive() == true && buff == false) { // falls kein Buff, dann
