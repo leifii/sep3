@@ -113,30 +113,5 @@ public class Krieger extends Character {
 		this.untouchableTime = untouchableTime;
 	}
 
-	// --Dom--
-	public void resetSkillCharacteristics(int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill5) {
-
-		int counter = 0;
-		while (counter < levelSkill1) {
-			getSkills().get(0).lvlup();
-		}
-		counter = 0;
-		while (counter < levelSkill2) {
-			getSkills().get(1).lvlup();
-		}
-		counter = 0;
-		while (counter < levelSkill3) {
-			getSkills().get(2).lvlup();
-		}
-		counter = 0;
-		while (counter < levelSkill4) {
-			getSkills().get(3).lvlup();
-		}
-		counter = 0;
-		while (counter < levelSkill5) {
-			getSkills().get(4).lvlup();
-		}
-
-	}
 
 }
