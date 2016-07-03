@@ -39,6 +39,7 @@ public class AuktionshausState extends State implements IInventar {
 	private BitmapFont white;
 	private Label label;
 	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
+	IInventar inventar = new com.mygdx.menu.testInventar();
 
 	public String[] INVENTARITEMS;
 
@@ -47,10 +48,12 @@ public class AuktionshausState extends State implements IInventar {
 	public AuktionshausState(GameStateManager gsm, PlayState ps, IInventar inventar) {
 		super(gsm);
 		playstate = ps;
+		
+		this.inventar = inventar;
 
-		INVENTARITEMS = new String[inventar.getAllItems().size()];
-		for (int i = 0; i < inventar.getAllItems().size(); i++) {
-			INVENTARITEMS[i] = inventar.getAllItems().get(i);
+		INVENTARITEMS = new String[this.inventar.getAllItems().size()];
+		for (int i = 0; i < this.inventar.getAllItems().size(); i++) {
+			INVENTARITEMS[i] = this.inventar.getAllItems().get(i);
 		}
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -124,7 +127,7 @@ public class AuktionshausState extends State implements IInventar {
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
-			gsm.push(new KaufenState(gsm, playstate, auktionshausClient));
+			gsm.push(new KaufenState(gsm, playstate, auktionshausClient, inventar));
 		}
 		if (buttonN.isChecked()) {
 			gsm.push(new VerkaufenState(gsm, playstate, INVENTARITEMS, auktionshausClient));
