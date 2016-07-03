@@ -23,7 +23,7 @@ public class NPC {
 		
 		Texture NPCtexture;
 		boolean angesprochen=false;
-		private String text;
+		public String text;
 		private Body body;
 		
 		
