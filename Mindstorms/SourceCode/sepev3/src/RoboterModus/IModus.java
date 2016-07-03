@@ -22,31 +22,40 @@ public abstract class IModus {                  //eine abstract class kann Varia
    
     byte[] nachricht = new byte[9];
     //Maps evtl. static, da für alle Roboter gleich
-    private Map<Roboter, Byte> mapAusgangsKnoten = new HashMap<>();
-    private Map<Roboter, Byte> mapZielKnoten = new HashMap<>();
-    @SuppressWarnings("serial")
-    private HashMap<Roboter, Boolean> mapAktiviert = new HashMap<Roboter, Boolean>() {{
-        mapAktiviert = new HashMap<>();
-        boolean initalValue = true;
-       
-        mapAktiviert.put(Roboter.Geist1, initalValue);
-        mapAktiviert.put(Roboter.Geist2, initalValue);
-        mapAktiviert.put(Roboter.Geist3, initalValue);
-        mapAktiviert.put(Roboter.Sepman, initalValue);
-    }};
-   
+    private Map<Roboter, Byte> mapAusgangsKnoten;
+    private Map<Roboter, Byte> mapZielKnoten;
+    private HashMap<Roboter, Boolean> mapAktiviert;
    
     private Richtung sepmanRichtung;
     boolean powerup;
     boolean pause;
+    boolean spielLaeuft;
+    
+    private final Rolle rolle;
    
-   
-    private Rolle rolle;
-   
-    protected IModus(Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
+    protected IModus(Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor, Rolle rolle) {
         this.planeinit = plane;
         this.lvfg = lvfg;
         this.sensor = drucksensor;
+        this.rolle = rolle;
+        
+        //initiale Werte
+        spielLaeuft = false;
+        sepmanRichtung = Richtung.Norden;
+        powerup = false;
+        pause = false;
+        boolean initalAktiviert = true;
+        
+        //Initialisierung der Maps
+        mapAusgangsKnoten = new HashMap<>();
+        mapZielKnoten = new HashMap<>();
+        mapAktiviert = new HashMap<>();
+       
+        mapAktiviert.put(Roboter.Geist1, initalAktiviert);
+        mapAktiviert.put(Roboter.Geist2, initalAktiviert);
+        mapAktiviert.put(Roboter.Geist3, initalAktiviert);
+        mapAktiviert.put(Roboter.Sepman, initalAktiviert);
+        
     }
    
     public abstract void run();
@@ -100,6 +109,7 @@ public abstract class IModus {                  //eine abstract class kann Varia
        
         switch(nachricht[8]) {     
         case 1: //Spielstart
+        	spielLaeuft = true;
             break;
            
         //Pause
@@ -123,12 +133,13 @@ public abstract class IModus {                  //eine abstract class kann Varia
         case 100: powerup = false; break;
  
         //Rolle
-        case 101: rolle = Rolle.Geist_Verfolgung; break;
-        case 102: rolle = Rolle.Geist_Verteidigung; break;
-        case 103: rolle = Rolle.Geist_Zufall; break;
-        case 104: rolle = Rolle.SEPman; break;
+//        case 101: rolle = Rolle.Geist_Verfolgung; break;
+//        case 102: rolle = Rolle.Geist_Verteidigung; break;
+//        case 103: rolle = Rolle.Geist_Zufall; break;
+//        case 104: rolle = Rolle.SEPman; break;
        
         case 127: //Spielende
+        	spielLaeuft = false;
             break;
         }
     }
@@ -156,6 +167,10 @@ public abstract class IModus {                  //eine abstract class kann Varia
     public Richtung getSepmanRichtung() {
         return sepmanRichtung;
     }
+    
+    public boolean isSpielLaeuft() {
+    	return spielLaeuft;
+    }
    
     //ENUMS
     public enum Roboter {
@@ -182,6 +197,10 @@ public abstract class IModus {                  //eine abstract class kann Varia
          * @return gradZahl, um Drehung auszuwerten. 90° nach rechts, 180° wenden (zB zwei mal links), 270° links
          */
         public int getDifferenz(Richtung neueRichtung) {
+        	if(neueRichtung == null) {
+        		System.out.println("neueRichtung == null");
+        		return 0;
+        	}
             return (neueRichtung.grad - grad) % 360;
         }
     }
