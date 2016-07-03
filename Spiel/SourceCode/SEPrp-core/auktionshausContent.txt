@@ -2,3 +2,6 @@ kleines Schwert
 Hut
 Schlange
 Zaubertrank
+Rennrad
+Hubschrauber
+Flugzeug

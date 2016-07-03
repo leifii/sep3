@@ -11,12 +11,12 @@ import com.mygdx.game.Author;
 
 import de.SEPL.ServerClient.IAuktionshausClient;
 
-@Author(name = "Bijan Shahbaz Nejad")
+@Author(name = "Bijan Shahbaz Nejad, Dominikus Häckel")
 
 class AuktionshausItem implements IInventar {
 
+	
 	TextButton itemkauf;
-
 	Label iteminfo;
 	String Name, Preis;
 	boolean gekauft;
@@ -38,6 +38,7 @@ class AuktionshausItem implements IInventar {
 	}
 
 	public void add(Table table, State state, IAuktionshausClient auktionshausClient) {
+	
 		if (!gekauft) {
 			table.add(itemkauf);
 			table.add(iteminfo);
@@ -45,20 +46,24 @@ class AuktionshausItem implements IInventar {
 		}
 		if (itemkauf.isPressed()) { //If-Abfrage, zur Sicherstellung, dass trotz isPressed Button nur einmal ausgeführt wird --Dom--
 			if (pressedOnce == true) {
-				itemkauf.remove();
-				iteminfo.remove();
+				
 				gekauft = true;
 
 				if (state instanceof KaufenState) {
+				if(modifyMoney(-Integer.parseInt(Preis))){
 					auktionshausClient.deleteItem(Name); // Item aus
-															// Auktionshaus
-															// entfernen --Dom--
+					itemkauf.remove();
+					iteminfo.remove();											// Auktionshaus
+													// entfernen --Dom--
 					place(Name); // INVENTAR
+					}
 				}
-				if (state instanceof VerkaufenState) {
+				if (state instanceof VerkaufenState ) {
 					remove(Name); // INVENTAR
 					auktionshausClient.pasteItem(Name); // Item in Auktionshaus
-														// platzieren --Dom--
+					itemkauf.remove();
+					iteminfo.remove();		// platzieren --Dom--
+					modifyMoney(Integer.parseInt(Preis));						
 				}
 			}
 			pressedOnce = false;
