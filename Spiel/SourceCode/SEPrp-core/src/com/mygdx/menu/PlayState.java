@@ -318,7 +318,7 @@ public class PlayState extends State {
 			for(int i = 0; i < Ork.length; i++)
 				gegnerList.add(Ork[i]);
 			if(!c.getBosseBesiegt()[0]){
-				OrkEndgegner Boss = new OrkEndgegner(4352, 608, s.getGegnerAnimation(2), collisionLayer, 200, ork, createDynamicBody(4352, 608, 64, 64, "gegner"));
+				OrkEndgegner Boss = new OrkEndgegner(4185, 3072, s.getGegnerAnimation(2), collisionLayer, 200, ork, createDynamicBody(4352, 608, 64, 64, "gegner"));
 				Boss.addLoot(EquipmentType.Lederrüstung);
 				gegnerList.add(Boss);
 				//136,93
