@@ -109,7 +109,7 @@ public class Character implements IDrawable {
 
 		/////////////////// Wie wird MaxHP
 		/////////////////// ausgerechnet?/////////////////////////
-		MaxHP = 100;
+		MaxHP = 10 * attributes.getSTA();
 
 		setCurrentHP(MaxHP);
 
@@ -229,6 +229,26 @@ public class Character implements IDrawable {
 
 	public void levelup() {
 		level++;
+		if(this instanceof Krieger){
+			attributes.setSTR(attributes.getSTR()+1);
+			attributes.setSTA(attributes.getSTA()+2);
+			attributes.setDEF(attributes.getDEF()+2);
+		}
+		if(this instanceof Schurke){
+			attributes.setDEX(attributes.getDEX()+2);
+			attributes.setSTA(attributes.getSTA()+1);
+			attributes.setDEF(attributes.getDEF()+1);
+		}
+		if(this instanceof Schuetze){
+			attributes.setDEX(attributes.getDEX()+2);
+			attributes.setSTA(attributes.getSTA()+1);
+			attributes.setDEF(attributes.getDEF()+1);
+		}
+		if(this instanceof Magier){
+			attributes.setINT(attributes.getINT()+2);
+			attributes.setSTA(attributes.getSTA()+1);
+			attributes.setDEF(attributes.getDEF()+1);
+		}
 		skillup = true;
 		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).setskillup(true);
@@ -671,9 +691,8 @@ public class Character implements IDrawable {
 	}
 
 	public void getDamage(int damage) {
-		// TODO damage um Rüstungswerten etc. verringern
-		currentHP -= damage;
-
+		float dmg = (damage - (5 *(attributes.getDEF()/2.5f)));
+		currentHP -= (int)dmg;
 		PlayState.getInstance()
 				.addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
 	}

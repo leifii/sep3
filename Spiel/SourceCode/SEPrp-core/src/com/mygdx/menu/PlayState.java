@@ -149,18 +149,23 @@ public class PlayState extends State {
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
-		Attributes attributes = new Attributes(1, 1, 1, 1, 1, 1, 1, 2.5f);
-
+		
+		
+		//int STR, int INT, int DEX, int STA, int ATK, int DEF, int AS, float MS
+		
 		if (characterauswahl == 1) {
+			Attributes attributes = new Attributes(10, 1, 1, 15, 1, 5, 1, 2.5f);
 			c = new Krieger(100, 100, s.getKrieger(design), collisionLayer, attributes, body);
 			// setCharacterType(0, attributes, body);
 		} else if (characterauswahl == 2) {
+			Attributes attributes = new Attributes(1, 15, 1, 10, 1, 5, 1, 2.5f);
 			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
+			Attributes attributes = new Attributes(1, 1, 15, 10, 1, 5, 1, 2.5f);
 			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
 		} else if (characterauswahl == 4) {
+			Attributes attributes = new Attributes(1, 1, 15, 10, 1, 5, 1, 2.5f);
 			c = new Schuetze(100, 100, s.getSchütze(design), collisionLayer, attributes, body);
-
 		}
 		c.setBosseBesiegt(new boolean[4]);
 		for(int i = 0; i < c.getBosseBesiegt().length; i++){
