@@ -280,7 +280,7 @@ public class Character implements IDrawable {
 		// public void update(float dt,LinkedList<Gegner> gegnerList,NPC Npc){
 		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
 		// /BIJAN
-//		System.out.println("Charakterposition " + "X= " + this.getPosition().x + " Y= " + this.getPosition().y);
+		System.out.println("Charakterposition " + "X= " + this.getPosition().x + " Y= " + this.getPosition().y);
 		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
 		// /BIJAN
 		// cd = skills.get(0).gethitcd();
