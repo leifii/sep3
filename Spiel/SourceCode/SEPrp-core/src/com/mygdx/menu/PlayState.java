@@ -279,7 +279,7 @@ public class PlayState extends State {
 	}
 	private void initGegner(int mapIndex) {
 		gegnerList = new LinkedList<Gegner>();
-		Attributes ork = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
+		Attributes ork = new Attributes(5, 5, 5, 5, 5, 5, 5, 0.5f);
 		Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
 		Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
 		Attributes boss = new Attributes(1,1,1,1,1,1,1,1);
