@@ -23,7 +23,7 @@ public class SkelettEndgegner extends Skelett {
 		verzoegerung = 1;
 		setSkills(new ArrayList<Skill>());
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,2,1,1,3,g.getSkill(12), false, 0, 0, this, 10, collisionLayer));
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,2,1,1,3,g.getSkill(12), false, 2, 0, this, 10, collisionLayer));
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,2,1,1,3,g.getSkill(12), false, 3, 0, this, 10, collisionLayer));
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,5,1,1,3,g.getSkill(12), false, 1, 1, this, 10, collisionLayer));//in alle richtungen
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,5,1,1,3,g.getSkill(12), false, 1, 2, this, 10, collisionLayer));
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,10,5,1,1,3,g.getSkill(12), false, 1, 3, this, 10, collisionLayer));
