@@ -15,7 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.game.Author;
 
+@Author (name="Bijan Shahbaz Nejad")
 public class VerlorenState extends State{
 
 	

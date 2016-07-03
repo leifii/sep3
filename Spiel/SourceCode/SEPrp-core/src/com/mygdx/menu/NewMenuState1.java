@@ -75,8 +75,8 @@ public class NewMenuState1 extends State {
 		
 		Label Titel =new Label("SEP RP Gruppe L", labelstyle);
 		Titel.setFontScale(1.5f);
-		Label Schrift= new Label("Drücke N, um ein neues Spiel zu starten und Esc um es zu beenden", labelstyle);
-		Schrift.setFontScale(0.5f);
+//		Label Schrift= new Label("Drücke N, um ein neues Spiel zu starten und Esc um es zu beenden", labelstyle);
+//		Schrift.setFontScale(0.5f);
 		
 		TextButtonStyle textButtonStyle=new TextButtonStyle();
 		textButtonStyle.up= skin.getDrawable("Button");
@@ -100,7 +100,7 @@ public class NewMenuState1 extends State {
 		
 		table.add(LoadGame).padBottom(20).row();
 		table.add(EndGame).row();
-		table.add(Schrift).align(Align.bottom|Align.right).expandY().padBottom(5f);
+//		table.add(Schrift).align(Align.bottom|Align.right).expandY().padBottom(5f);
 		table.pack();
 //		table.setDebug(true);
 		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(5)));
@@ -173,7 +173,7 @@ public class NewMenuState1 extends State {
 			
 			
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.N)|| NewGame.isPressed()) {
+		if ( NewGame.isPressed()) {
 			if(cl)
 			click.play();
 			cl=false;
@@ -197,7 +197,7 @@ public class NewMenuState1 extends State {
 			
 			
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) || EndGame.isPressed()) {
+		if ( EndGame.isPressed()) {
 			if(cl)
 			click.play();
 			cl=false;

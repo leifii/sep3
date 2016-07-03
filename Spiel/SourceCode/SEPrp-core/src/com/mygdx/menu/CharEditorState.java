@@ -215,7 +215,7 @@ public class CharEditorState extends State {
 		x++;
 		if (x <= 180) {
 
-			charbild[augenindex][haarindex].scaleBy(0.1f);
+			charbild[augenindex][haarindex].scaleBy(0.085f);
 			charbild[augenindex][haarindex].setRotation(-x * 2);
 			XX = charbild[augenindex][haarindex].getScaleX();
 			YY = charbild[augenindex][haarindex].getScaleY();
