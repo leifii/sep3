@@ -31,7 +31,8 @@ import com.objects.ItemType;
 @Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel, ???????")
 
 public class Character implements IDrawable {
-
+	
+	private boolean[] bosseBesiegt;
 	transient protected ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
@@ -801,5 +802,13 @@ public class Character implements IDrawable {
 
 	}
 	// ------
+
+	public boolean[] getBosseBesiegt() {
+		return bosseBesiegt;
+	}
+
+	public void setBosseBesiegt(boolean[] bosseBesiegt) {
+		this.bosseBesiegt = bosseBesiegt;
+	}
 
 }
