@@ -79,7 +79,7 @@ public class VerkaufenState extends State{
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 	for (int j = 0; j < testitem.length; j++) {
 		
-		testitem[j]=new AuktionshausItem(textButtonStyle,labelStyle,inventaritem[j],this);
+		testitem[j]=new AuktionshausItem(textButtonStyle,labelStyle,inventaritem[j],this, this.inventar);
 	
 	}
 		buttonJ = new TextButton("Zurück", textButtonStyle);
