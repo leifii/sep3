@@ -26,7 +26,7 @@ class AuktionshausItem implements IInventar {
 
 	public AuktionshausItem(TextButtonStyle textButtonStyle, LabelStyle labelStyle, String name,State state, IInventar inventar) {
 		Name = name;
-		Preis = "[PREIS]";
+		Preis = "30";
 		
 		if (state instanceof KaufenState) {
 			itemkauf = new TextButton("Kaufen ->", textButtonStyle);
