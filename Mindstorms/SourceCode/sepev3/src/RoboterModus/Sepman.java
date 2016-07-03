@@ -9,7 +9,7 @@ public class Sepman extends IModus{
 	private Richtung aktuelleRichtung;
 	
 	public Sepman(Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
-		super(plane, lvfg, drucksensor);
+		super(plane, lvfg, drucksensor, Rolle.SEPman);
 	}
 
 	@Override
@@ -21,17 +21,20 @@ public class Sepman extends IModus{
 	}
 	
 	private void neuAusrichten() {
+		if(aktuelleRichtung == null) {
+			System.out.println("aktuelleRichtung == null, wird gesetzt auf " + getSepmanRichtung());
+			aktuelleRichtung = getSepmanRichtung();
+		}
 		int diff = aktuelleRichtung.getDifferenz(getSepmanRichtung());
-		switch (diff)
-		{
-		
-		
+		switch (diff) {
 		case 90: lvfg.drehenRechts(); break;
 		case 180: lvfg.drehenLinks(); lvfg.drehenLinks(); break;
 		case 270: lvfg.drehenLinks(); break;
 		}
-		aktuelleRichtung=getSepmanRichtung();
+		
+		aktuelleRichtung = getSepmanRichtung();
 	}
 
 
 }
+
