@@ -24,7 +24,7 @@ public class Zufall extends IModus{
 
 	
 	public Zufall(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
-		super(plane, lvfg, drucksensor);
+		super(plane, lvfg, drucksensor,Rolle.Geist_Zufall);
 		aktuelleposition = start;
 		letzterKnoten = aktuelleposition +1;
 		r = new Random();
