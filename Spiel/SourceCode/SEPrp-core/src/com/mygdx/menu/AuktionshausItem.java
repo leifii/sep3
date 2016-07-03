@@ -51,18 +51,18 @@ class AuktionshausItem implements IInventar {
 
 				if (state instanceof KaufenState) {
 				if(modifyMoney(-Integer.parseInt(Preis))){
-					auktionshausClient.deleteItem(Name); // Item aus
+					auktionshausClient.deleteItem(Name);
 					itemkauf.remove();
-					iteminfo.remove();											// Auktionshaus
-													// entfernen --Dom--
+					iteminfo.remove();										
+											
 					place(Name); // INVENTAR
 					}
 				}
 				if (state instanceof VerkaufenState ) {
 					remove(Name); // INVENTAR
-					auktionshausClient.pasteItem(Name); // Item in Auktionshaus
+					auktionshausClient.pasteItem(Name); 
 					itemkauf.remove();
-					iteminfo.remove();		// platzieren --Dom--
+					iteminfo.remove();		
 					modifyMoney(Integer.parseInt(Preis));						
 				}
 			}
