@@ -221,13 +221,13 @@ public class NewMenuState1 extends State {
 		}
 
 		if(Gdx.input.isKeyJustPressed(Keys.NUM_1))
-			gsm.push(new PlayState(gsm, 1, 0));
+			gsm.push(new PlayState(gsm, 1, 0, ""));
 		else if(Gdx.input.isKeyJustPressed(Keys.NUM_2))
-			gsm.push(new PlayState(gsm, 2, 0));
+			gsm.push(new PlayState(gsm, 2, 0, ""));
 		else if(Gdx.input.isKeyJustPressed(Keys.NUM_3))
-			gsm.push(new PlayState(gsm, 3, 0));
+			gsm.push(new PlayState(gsm, 3, 0, ""));
 		else if(Gdx.input.isKeyJustPressed(Keys.NUM_4))
-			gsm.push(new PlayState(gsm, 4, 0));
+			gsm.push(new PlayState(gsm, 4, 0, ""));
 		
 	}
 	
