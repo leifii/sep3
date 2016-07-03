@@ -17,13 +17,15 @@ import com.mygdx.menu.PlayState;
 public class AuktionsHausNPC extends NPC {
 
 	GameStateManager gsm;
-	AuktionshausState auktionshaus;
+//	AuktionshausState auktionshaus;
+	IInventar inventarr;
 
 	public AuktionsHausNPC(int x, int y, String source, String TEXT, Body body, GameStateManager gsmm,
 			PlayState playstate, IInventar inventar) {
 		super(x, y, source, TEXT, body);
 		gsm = gsmm;
-		auktionshaus = new AuktionshausState(gsm, playstate, inventar);
+//		auktionshaus = new AuktionshausState(gsm, playstate, inventar);
+		inventarr=inventar;
 	}
 
 	boolean angesprochen2 = false;
@@ -37,10 +39,9 @@ public class AuktionsHausNPC extends NPC {
 			angesprochen2 = true;
 			if (angesprochen2 && Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 				angesprochen2 = false;
-				gsm.push(auktionshaus);
+				gsm.push(new AuktionshausState(gsm, ps, inventarr));
 
 			}
-
 		}
 
 		if (c.getPosition().x < position.x + 200 && c.getPosition().x > position.x - 200
