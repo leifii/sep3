@@ -273,28 +273,23 @@ public class AnzeigeSpielfeld extends JFrame {
 		//haha.setVisible(true);
 		
 		JLabel jSepman = new JLabel("SEPMAN");
-		jSepman.setForeground(Color.GREEN);
-		jSepman.setBackground(Color.GREEN);
-		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 100, 50);
+		ImageIcon iiGuard=new ImageIcon("Sepman.png");
+		jSepman.setBounds(ele[Sepman].getX() , ele[Sepman].getY(), 55, 55);
 		contentPane.add(jSepman);
 		
 		JLabel jRandom = new JLabel("Random");
-		jRandom.setForeground(Color.ORANGE);
-		jRandom.setBackground(Color.RED);
-		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 100, 50);
+		ImageIcon iiRandom=new ImageIcon("zufall.png");
+		jRandom.setBounds(ele[Random].getX() , ele[Random].getY(), 55, 55);
 		contentPane.add(jRandom);
 		
-		JLabel jGuard = new JLabel("Guard");
-		jGuard.setForeground(Color.RED);
-		jGuard.setBackground(Color.RED);
-		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 50, 50);
+		ImageIcon iiGuard=new ImageIcon("Verteidigerr.png");
+		JLabel jGuard = new JLabel(iiGuard);
+		jGuard.setBounds(ele[Defender].getX() , ele[Defender].getY(), 55, 55);
 		contentPane.add(jGuard);
 		
 		JLabel jTracker = new JLabel("Tracker");
-		
-		jTracker.setForeground(Color.BLUE);
-		jTracker.setBackground(Color.RED);
-		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 50, 50);
+		ImageIcon iiTracker=new ImageIcon("Verfolger.png");
+		jTracker.setBounds(ele[Tracer].getX() , ele[Tracer].getY(), 55, 55);
 		contentPane.add(jTracker);
 		ImageIcon Herz=new ImageIcon("herz.gif");
 		JLabel Leben1=new JLabel(Herz);

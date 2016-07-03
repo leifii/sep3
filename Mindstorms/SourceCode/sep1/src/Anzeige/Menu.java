@@ -155,11 +155,11 @@ public void initComponents() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1000,720);
 	setTitle("SEPman");
-//	setzeAuswahldisplay ();
+	setzeAuswahldisplay ();
 //	setzeStartbildschirm(); 
 //	setzeNiederlageBildschirm();
 //	setzeSiegbildschirm();
-	setzePausenBildschrim();
+//	setzePausenBildschrim();
 	validate();
 }
 
@@ -629,9 +629,7 @@ public void actionPerformed(ActionEvent e) {
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		pause=false;
-		
+		}	
 	}
 	else if (e.getSource()== btnNeuesSpiel){
 		setzeSpielvorbereitungsdisplay();
