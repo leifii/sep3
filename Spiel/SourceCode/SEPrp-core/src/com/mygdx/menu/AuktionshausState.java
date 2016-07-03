@@ -215,4 +215,10 @@ public class AuktionshausState extends State implements IInventar {
 		return false;
 	}
 
+	@Override
+	public int getValueToName(String nameOfItem) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
