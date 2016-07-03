@@ -3,7 +3,6 @@ package com.mygdx.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -125,10 +124,10 @@ public class AuktionshausState extends State implements IInventar {
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
-			gsm.push(new KaufenState(gsm,playstate, auktionshausClient)); 
+			gsm.push(new KaufenState(gsm, playstate, auktionshausClient));
 		}
 		if (buttonN.isChecked()) {
-			gsm.push(new VerkaufenState(gsm,playstate,INVENTARITEMS, auktionshausClient)); 
+			gsm.push(new VerkaufenState(gsm, playstate, INVENTARITEMS, auktionshausClient));
 		}
 	}
 
@@ -157,13 +156,7 @@ public class AuktionshausState extends State implements IInventar {
 	@Override
 	public List<String> getAllItems() {
 		// TODO Auto-generated method stub
-
-		List<String> itemList = new ArrayList<String>();
-		itemList.add( "Flugzeug" );
-		itemList.add( "Hubschrauber" );
-		itemList.add( "Rennrad" );
-		
-		return itemList;
+		return null;
 
 	}
 
