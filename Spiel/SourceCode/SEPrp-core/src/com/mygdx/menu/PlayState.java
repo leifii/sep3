@@ -36,6 +36,7 @@ import com.character.MyContactListener;
 import com.character.Schuetze;
 import com.character.Schurke;
 import com.character.Skill;
+import com.gegnerkoordination.Endboss;
 import com.gegnerkoordination.Gegner;
 import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
@@ -72,6 +73,7 @@ public class PlayState extends State {
 	private List<Gegner> gegnerList;
 	private List<IDrawable> drawableList;
 
+	boolean[] bosseBesiegt;
 	public Character c;
 	private Map map;
 	private ICharacter s;
@@ -98,6 +100,10 @@ public class PlayState extends State {
 
 	public PlayState(GameStateManager gsm, int characterauswahl, int design) {
 		super(gsm);
+		bosseBesiegt = new boolean[4];
+		for(int i = 0; i < bosseBesiegt.length; i++){
+			bosseBesiegt[i] = false;
+		}
 		besucht = false;
 		Kobolddorflabel = new Texture("grafiken/KoboldDorfLabel.png");
 		world = new World(new Vector2(0, 0), false);
@@ -211,6 +217,7 @@ public class PlayState extends State {
 		Attributes ork = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.5f);
 		Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
 		Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
+		Attributes boss = new Attributes(1,1,1,1,1,1,1,1);
 		if (mapIndex == 1){
 			Skelett Skelett1 = new Skelett(200, 200, s.getGegnerAnimation(3), collisionLayer, 60, ske,
 					createDynamicBody(200, 200, 32, 48, "gegner"));
@@ -223,23 +230,35 @@ public class PlayState extends State {
 			Ork Ork1 = new Ork(300, 400, s.getGegnerAnimation(2), collisionLayer, 60, ork, createDynamicBody(300, 300, 64, 64, "gegner"));
 			Ork1.addLoot(EquipmentType.Lederschuh);
 			gegnerList.add(Ork1);
-			OrkEndgegner Boss = new OrkEndgegner(4352, 608, s.getGegnerAnimation(2), collisionLayer, 200, ork, createDynamicBody(4352, 608, 64, 64, "gegner"));
-			Boss.addLoot(EquipmentType.Lederrüstung);
-			gegnerList.add(Boss);
-			//136,93
+			if(!bosseBesiegt[0]){
+				OrkEndgegner Boss = new OrkEndgegner(4352, 608, s.getGegnerAnimation(2), collisionLayer, 200, ork, createDynamicBody(4352, 608, 64, 64, "gegner"));
+				Boss.addLoot(EquipmentType.Lederrüstung);
+				gegnerList.add(Boss);
+				//136,93
+			}
 		}
 		else if(mapIndex == 2){
-			SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
-			Boss2.addLoot(EquipmentType.Holzschwert);
-			gegnerList.add(Boss2);
-			//81,123
+			if(!bosseBesiegt[1]){
+				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
+				Boss2.addLoot(EquipmentType.Holzschwert);
+				gegnerList.add(Boss2);
+				//81,123
+			}
 		}
 		else if(mapIndex == 3){
-			Attributes boss = new Attributes(1,1,1,1,1,1,1,2);
-			SchleimEndgegner Boss3 = new SchleimEndgegner(5440, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5440, 5600, 35, 32, "gegner"));
-			Boss3.addLoot(EquipmentType.Lederschuh);
-			gegnerList.add(Boss3);
-			//170,10
+			boss = new Attributes(1,1,1,1,1,1,1,2);
+			if(!bosseBesiegt[2]){
+				SchleimEndgegner Boss3 = new SchleimEndgegner(5440, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5440, 5600, 35, 32, "gegner"));
+				Boss3.addLoot(EquipmentType.Lederschuh);
+				gegnerList.add(Boss3);
+				//170,10
+			}
+			if(!bosseBesiegt[3]){
+				Endboss Boss4= new Endboss(200, 200, s.getAnimation(1), collisionLayer, 200, boss, createDynamicBody(200, 200, 32, 48, "gegner"), c);
+				Boss4.addLoot(EquipmentType.Lederhelm);
+				gegnerList.add(Boss4);
+				//132,14
+			}
 		}
 
 	}
