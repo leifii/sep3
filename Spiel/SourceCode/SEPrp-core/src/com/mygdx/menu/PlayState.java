@@ -136,7 +136,7 @@ public class PlayState extends State {
 		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
 				createDynamicBody(1032, 1318, 32, 48, "npc")));
 		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
-				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this));
+				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this, testInventar));
 		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
 				createDynamicBody(1563, 381, 32, 48, "npc")));
 		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
