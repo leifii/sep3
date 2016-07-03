@@ -49,6 +49,7 @@ import com.grafiken.Map;
 import com.mygdx.game.Author;
 import com.npc.AuktionsHausNPC;
 import com.npc.NPC;
+import com.npc.Speicherstein;
 import com.objects.Equipment;
 import com.objects.EquipmentType;
 import com.objects.Experience;
@@ -74,6 +75,9 @@ public class PlayState extends State {
 	private List<Gegner> gegnerList;
 	private List<IDrawable> drawableList;
 
+	
+	
+	
 	boolean[] bosseBesiegt;
 	public Character c;
 	private Map map;
@@ -107,6 +111,7 @@ public class PlayState extends State {
 		for(int i = 0; i < bosseBesiegt.length; i++){
 			bosseBesiegt[i] = false;
 		}
+		
 		besucht = false;
 		Kobolddorflabel = new Texture("grafiken/KoboldDorfLabel.png");
 		world = new World(new Vector2(0, 0), false);
@@ -141,7 +146,10 @@ public class PlayState extends State {
 				createDynamicBody(1563, 381, 32, 48, "npc")));
 		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
 				createDynamicBody(2235, 317, 32, 48, "npc")));
-
+		Npc.add(new Speicherstein(333, 333, "savepoint.png", "Drücke K zum speichern.",createDynamicBody(333, 333, 32, 48, "npc")));
+		
+		
+		
 		Body body = createDynamicBody(100, 100, 32, 48, "charakter");
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
@@ -178,6 +186,8 @@ public class PlayState extends State {
 		
 		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
 		c.setMapIndex(1);
+		
+		
 		
 	}
 
@@ -293,11 +303,11 @@ public class PlayState extends State {
 		// killGegner(g);
 
 		// Speichern des aktuellen Spielgeschehens --Dom--
-		if (Gdx.input.isKeyJustPressed(Keys.K)) {
-			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
-				System.out.println("Speichern erfolgreich.");
-			}
-		}
+//		if (Gdx.input.isKeyJustPressed(Keys.K)) {
+//			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
+//				System.out.println("Speichern erfolgreich.");
+//			}
+//		}
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 			if (((boolean[]) c.getBody().getUserData())[0]
@@ -610,7 +620,8 @@ public class PlayState extends State {
 		/**
 		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
 		 */
-
+		
+		
 		sb.end();
 
 		//DRAW HP
