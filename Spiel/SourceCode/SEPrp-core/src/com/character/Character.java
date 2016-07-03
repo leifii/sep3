@@ -31,7 +31,6 @@ import com.objects.ItemType;
 
 public class Character implements IDrawable {
 
-
 	transient protected ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
@@ -64,7 +63,7 @@ public class Character implements IDrawable {
 	boolean blackKeyRecieved;
 	boolean goldKeyRecieved;
 	boolean whiteKeyRecieved;
-//	int currentMoney;  ist schon im Inventory implementiert
+	// int currentMoney; ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
 	public boolean skillup;
 	// public Character (int x,int y,String sprite,float speed){
@@ -72,7 +71,7 @@ public class Character implements IDrawable {
 	// position=new Vector3(x,y,0);
 	// character1=new Texture(sprite);
 	// }
-	
+
 	protected final Rolle rolle;
 
 	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
@@ -84,7 +83,7 @@ public class Character implements IDrawable {
 		this.setBody(body);
 		body.getFixtureList().get(0).setUserData(this);
 
-		bounds = new Rectangle(x-4, y-4, width+8, height+8);
+		bounds = new Rectangle(x - 4, y - 4, width + 8, height + 8);
 
 		/////////////////// MOVEMENT//ANGFANG//////////////////////////////////
 
@@ -108,7 +107,6 @@ public class Character implements IDrawable {
 		skillup = false;
 
 		dmgFaktor = 1;
-		
 
 		position = new Vector3(x, y, 0);
 		for (int i = 0; i < 4; i++) {
@@ -142,22 +140,22 @@ public class Character implements IDrawable {
 		neededexp = 100;
 		inventory = new Inventory();
 	}
-	
-	//Konstruktor ohne Animation für Schleim
-	public Character(float x, float y, int width, int height, TiledMapTileLayer[] collisionLayer,
-			Attributes attributes, Body body, Rolle rolle){
+
+	// Konstruktor ohne Animation für Schleim
+	public Character(float x, float y, int width, int height, TiledMapTileLayer[] collisionLayer, Attributes attributes,
+			Body body, Rolle rolle) {
 		this.rolle = rolle;
 		g = new Objekte();
 
 		this.collisionLayer = collisionLayer;
 		this.setBody(body);
 		body.getFixtureList().get(0).setUserData(this);
-		
+
 		this.height = height;
 		this.width = width;
-		
-		bounds = new Rectangle(x-2, y-2, width+4, height+4);
-		
+
+		bounds = new Rectangle(x - 2, y - 2, width + 4, height + 4);
+
 		this.attributes = attributes;
 
 		/////////////////// Wie wird MaxHP
@@ -168,7 +166,7 @@ public class Character implements IDrawable {
 		dmgFaktor = 1;
 
 		position = new Vector3(x, y, 0);
-		
+
 		level = 1;
 		exp = 0;
 		neededexp = 100;
@@ -192,7 +190,7 @@ public class Character implements IDrawable {
 	public void setCharacter(int exp) {
 		this.exp = exp;
 	}
-	
+
 	public Rolle getRolle() {
 		return rolle;
 	}
@@ -251,9 +249,9 @@ public class Character implements IDrawable {
 		// WER AUCH IMMER DAS WEGGEMACHT HAT SOLL ES LASSEN ICH BRAUCHE DAS
 		// /BIJAN
 		// cd = skills.get(0).gethitcd();
-		
+
 		this.handleInput();
-		
+
 		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
 
@@ -439,7 +437,7 @@ public class Character implements IDrawable {
 			position.y = oldY;
 		}
 
-		getBody().setTransform(position.x + width/2, position.y + height/2, 0);
+		getBody().setTransform(position.x + width / 2, position.y + height / 2, 0);
 
 	}
 
@@ -447,7 +445,7 @@ public class Character implements IDrawable {
 		Cell cell;
 		boolean blocked = false;
 		for (int i = 0; i < collisionLayer.length; i++) {
-			if(collisionLayer[i] != null){
+			if (collisionLayer[i] != null) {
 				cell = collisionLayer[i].getCell((int) (x / collisionLayer[i].getTileWidth()),
 						(int) (y / collisionLayer[i].getTileHeight()));
 				blocked = blocked || (cell != null && cell.getTile() != null
@@ -477,7 +475,7 @@ public class Character implements IDrawable {
 			position.x += dx;
 			position.y += dy;
 		}
-		getBody().setTransform(position.x + width/2, position.y + height/2, 0);
+		getBody().setTransform(position.x + width / 2, position.y + height / 2, 0);
 	}
 
 	public void setX(float x) {
@@ -508,19 +506,19 @@ public class Character implements IDrawable {
 	}
 
 	public void handleInput() {
-		if (skillup == true){
-			if (Gdx.input.isKeyPressed(Keys.NUM_1)){
+		if (skillup == true) {
+			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
 				getSkills().get(1).lvlup();
 				skillup = false;
 			}
-			if (Gdx.input.isKeyPressed(Keys.NUM_2)){
+			if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
 				getSkills().get(2).lvlup();
 				skillup = false;
 			}
-			if (Gdx.input.isKeyPressed(Keys.NUM_3)){
+			if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
 				getSkills().get(3).lvlup();
 			}
-			if (Gdx.input.isKeyPressed(Keys.NUM_4)){
+			if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
 				getSkills().get(4).lvlup();
 			}
 			for (int i = 0; i < getSkills().size(); i++) {
@@ -662,24 +660,25 @@ public class Character implements IDrawable {
 	public void setCurrentHP(int currentHP) {
 		this.currentHP = currentHP;
 	}
-	
+
 	public void getDamage(int damage) {
-		//TODO damage um Rüstungswerten etc. verringern 
+		// TODO damage um Rüstungswerten etc. verringern
 		currentHP -= damage;
-		
-		PlayState.getInstance().addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
+
+		PlayState.getInstance()
+				.addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
 	}
-	
+
 	public Vector3[] getHPVectors() {
 		float x = getPosition().x;
 		float y = getPosition().y;
-		float offset = Math.max(getBounds().width * getCurrentHP()/getMaxHP(), 0);
-		
+		float offset = Math.max(getBounds().width * getCurrentHP() / getMaxHP(), 0);
+
 		Vector3 start = new Vector3(x, y, 0);
 		Vector3 mid = new Vector3(x + offset, y, 0);
 		Vector3 end = new Vector3(x + getBounds().width, y, 0);
-		
-		return new Vector3[]{start, mid, end};
+
+		return new Vector3[] { start, mid, end };
 	}
 
 	public void setCollisionLayer(TiledMapTileLayer[] collisionLayer) {
@@ -720,20 +719,22 @@ public class Character implements IDrawable {
 	public boolean getWhiteKeyStatus() {
 		return whiteKeyRecieved;
 	}
-	
-	public int getdmgFaktor(){
+
+	public int getdmgFaktor() {
 		return dmgFaktor;
 	}
-	
-	public void setdmgFaktor(int x){
+
+	public void setdmgFaktor(int x) {
 		dmgFaktor = x;
 	}
-	public void setAnimationMap(Map<AnimationDirection, Animation> animationMap){
-		this.animationMap=animationMap;
+
+	public void setAnimationMap(Map<AnimationDirection, Animation> animationMap) {
+		this.animationMap = animationMap;
 	}
 	// -------
 
 	public Map<AnimationDirection, Animation> getAnimationMap() {
 		return animationMap;
 	}
+
 }
