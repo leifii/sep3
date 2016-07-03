@@ -49,6 +49,7 @@ public class NewGameCharacterState extends NewMenuState {
 
 	public NewGameCharacterState(GameStateManager gsm) {
 		super(gsm);
+		gsm.setTimer(System.currentTimeMillis());
 		// TODO Auto-generated constructor stub
 		back = new Texture("back.jpg");
 		loadbutton = new MainMenuButton(1728 / 2 - 77, 1080 / 2 - 66, "loadbutton.jpg");
@@ -138,7 +139,7 @@ public class NewGameCharacterState extends NewMenuState {
 	protected void handleInput() {
 		
 		// TODO Auto-generated method stub
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState(gsm));
 		
 		}
@@ -156,10 +157,6 @@ public class NewGameCharacterState extends NewMenuState {
 		// TODO Auto-generated method stub
 		click=Gdx.audio.newSound(Gdx.files.internal("dragstone.mp3"));
 		sb.begin();
-		sb.draw(back, 0, 0, MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-		sb.draw(loadbutton.getTexture(), loadbutton.getPosition().x, loadbutton.getPosition().y);
-		sb.draw(newgamebutton.getTexture(), newgamebutton.getPosition().x, newgamebutton.getPosition().y);
-		sb.draw(beendenbutton.getTexture(), beendenbutton.getPosition().x, beendenbutton.getPosition().y);
 
 		/////////////////////////// CHARACTEREDITOR////////////////////////////////////////////////////////
 		stage.act();

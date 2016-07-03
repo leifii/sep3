@@ -54,6 +54,7 @@ public class LoadMenuState extends MenuState {
 	
 	public LoadMenuState(GameStateManager gsm) {
 		super(gsm);
+		gsm.setTimer(System.currentTimeMillis());
 		stage=new Stage();
 		background=new Image(new Texture("userInterface/dark background.png"));
 		stage.addActor(background);
@@ -208,7 +209,7 @@ public class LoadMenuState extends MenuState {
 		if (Gdx.input.isKeyJustPressed(Keys.L)) {
 			gsm.push(new NewMenuState1(gsm));
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
 		}
 		for(TextButton b:buttonList){

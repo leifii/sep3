@@ -108,7 +108,7 @@ PlayState playstate;
 		if (buttonN.isChecked()) {
 			gsm.push(playstate);
 		}
-		if (buttonJ.isChecked()) {
+		if (buttonJ.isChecked() && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
 		}
 	}

@@ -12,6 +12,7 @@ import com.mygdx.game.Author;
 public class GameStateManager {
 	private Stack<State> states;
 	Music a,b;
+	long timer=System.currentTimeMillis();
 	
 	public GameStateManager(){
 		states= new Stack<State>();
@@ -44,5 +45,11 @@ public class GameStateManager {
 			b.play();
 		}
 		else b.stop();
+	}
+	public long getTimer() {
+		return timer;
+	}
+	public void setTimer(long timer) {
+		this.timer = timer;
 	}
 }

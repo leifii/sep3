@@ -38,6 +38,7 @@ public class NewMenuState extends MenuState {
 
 	public NewMenuState(GameStateManager gsm) {
 		super(gsm);
+		gsm.setTimer(System.currentTimeMillis());
 		// TODO Auto-generated constructor stub
 		back = new Texture("back.jpg");
 		newgamewindow = new LoadMenuWindow(1728 / 2 - 160, 1080 / 2 - 200, "newgamewindow.jpg");
@@ -105,11 +106,11 @@ public class NewMenuState extends MenuState {
 	protected void handleInput() {
 		click=Gdx.audio.newSound(Gdx.files.internal("dragstone.mp3"));
 		
-		if (Gdx.input.isKeyJustPressed(Keys.N) || buttonN.isChecked()) {
+		if (Gdx.input.isKeyJustPressed(Keys.N) || buttonN.isChecked() && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
 			click.play();
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.J) || buttonJ.isChecked()) {
