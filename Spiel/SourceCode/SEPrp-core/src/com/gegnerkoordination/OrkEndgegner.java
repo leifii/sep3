@@ -50,5 +50,5 @@ public class OrkEndgegner extends Ork {
 		if(aggro)
 			super.follow(c);
 	}
-
+	
 }
