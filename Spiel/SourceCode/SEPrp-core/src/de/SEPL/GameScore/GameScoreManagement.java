@@ -160,7 +160,7 @@ public class GameScoreManagement {
 				loadedCharacter.getCurrentHP(), loadedCharacter.getNeededexp(), loadedCharacter.getDEX(),
 				loadedCharacter.getMapIndex(), loadedCharacter.getBlackKeyStatus(), loadedCharacter.getGoldKeyStatus(),
 				loadedCharacter.getWhiteKeyStatus(), loadedCharacter.getLevelSkill0(), loadedCharacter.getLevelSkill1(),
-				loadedCharacter.getLevelSkill2(), loadedCharacter.getLevelSkill3(), loadedCharacter.getLevelSkill4());
+				loadedCharacter.getLevelSkill2(), loadedCharacter.getLevelSkill3(), loadedCharacter.getLevelSkill4(), loadedCharacter.getAllItems());
 		gsm.push(playState);
 
 	}
