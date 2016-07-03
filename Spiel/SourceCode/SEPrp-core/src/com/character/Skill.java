@@ -133,7 +133,7 @@ public class Skill implements Serializable {
 
 		if (zaehler == 360) // bei kompletter drehung der axt auf 0 wieder  setzen
 			zaehler = 0;
-		zaehler++; // axt drehen
+		zaehler += 10; // axt drehen
 		handleInput(xx, yy);
 		setCdnow(getCdnow() - dt); // cd nach Benutzung reduzieren
 
@@ -240,7 +240,6 @@ public class Skill implements Serializable {
 		if (getCdnow() < 0.1 && lvl >= 1 && skillup == false) {				//falls skill benutzbar
 			if (getButton() == 0){
 				if (Gdx.input.isKeyPressed(Keys.SPACE)){
-
 					this.setX(x);
 					this.setY(y);
 					setCdnow(getCd());
@@ -564,6 +563,8 @@ public class Skill implements Serializable {
 		}
 		return blocked;
 	}
+	
+	
 
 	public float getX() {
 		return x;
