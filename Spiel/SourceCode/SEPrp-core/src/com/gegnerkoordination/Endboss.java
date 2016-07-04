@@ -75,6 +75,7 @@ public class Endboss extends Gegner {
 			getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,30,1,1,3,g.getSkill(2), false, 4, 0, this, 10, collisionLayer));//großer pfeil
 		}
 		setAttributes(c.getAttributes());
+		getAttributes().setMS(getAttributes().getMS()-0.5f);
 		setMaxHP(c.getMaxHP()*2);
 		setCurrentHP(getMaxHP());
 		setAnimationMap(c.getAnimationMap());
