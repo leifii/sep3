@@ -17,15 +17,14 @@ import Spielfeld.Planeinit;
 
 
 
-public class Zufall extends IModus{
+public class Zufall extends IModus2{
 
 	Random r;
 	private int letzterKnoten;
 
 	
 	public Zufall(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
-		super(plane, lvfg, drucksensor,Rolle.Geist_Zufall);
-		aktuelleposition = start;
+		super(start, plane, lvfg, drucksensor);
 		letzterKnoten = aktuelleposition +1;
 		r = new Random();
 	}
@@ -173,6 +172,12 @@ public class Zufall extends IModus{
 			aktuelleposition = 26;
 			letzterKnoten = aktuelleposition +1;}
 		}
+	}
+
+	@Override
+	public void nachrichtenverarbeitung() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

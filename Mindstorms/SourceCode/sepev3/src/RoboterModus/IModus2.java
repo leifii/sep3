@@ -17,7 +17,7 @@ public abstract class IModus2 {
     
     byte[] nachricht = new byte[9];
     
-    private int richtung;
+    protected int richtung;
     boolean powerup;
     boolean pause;
     boolean spielLaeuft;
@@ -36,7 +36,7 @@ public abstract class IModus2 {
     	return aktuelleposition;
     }
     
-    public int getZiel(){
+    public int getZielKnoten(){
 		return zielposition;
 	}
     
@@ -49,42 +49,44 @@ public abstract class IModus2 {
         }
     }
     
-    public int getRichtung(){
-    	int blickrichtung = -1;
+    public void getRichtung(){
+    	
+    	// nord = 0, west = 1, sued = 2, ost = 3;
+    	
     	if(aktuelleposition -1 == letzterKnoten){
-			blickrichtung = 3;
+    		richtung = 3;
 		}
 		
 		else if(aktuelleposition +1 == letzterKnoten){
-			blickrichtung =  1;
+			richtung =  1;
 		}
 		
 		else if(aktuelleposition -10 == letzterKnoten){
-			blickrichtung = 2;
+			richtung = 2;
 		}
 		
 		else if(aktuelleposition +10 == letzterKnoten){
-			blickrichtung = 0;
+			richtung = 0;
 		}
-    	
-    	return blickrichtung;
     }
     
-    public abstract void nachrichtenverarbeitung();
+    public void nachrichtenverarbeitung(){
+    	
+    }
 	
 	public boolean getDrucksensor(){
 		return sensor.druckSensor();
 	}
 	
-	public boolean getAktivierung(){
+	public boolean isAktiviert(){
 		return aktiviert;
 	}
 	
-	public boolean getPause(){
+	public boolean isPause(){
 		return pause;
 	}
 	
-	public boolean getPowerup(){
+	public boolean isPowerup(){
 		return powerup;
 	}
 
