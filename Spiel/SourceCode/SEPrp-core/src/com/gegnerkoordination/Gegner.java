@@ -143,7 +143,7 @@ public class Gegner extends Character {
 		
 
 		//normalize movement
-		if (y < getPosition().y && y > getPosition().y + dy || y > getPosition().x && y < getPosition().y + dy) {
+		if (y < getPosition().y && y > getPosition().y + dy || y > getPosition().y && y < getPosition().y + dy) {
 			 dy = 0;
 			 setY(y);
 		}
