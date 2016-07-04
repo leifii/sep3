@@ -1,11 +1,15 @@
+/**
+ * @author ${Katharina Böse}
+ *
+ * 
+ */
 package RoboterModus;
 
 import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
-import RoboterModus.IModus.Richtung;
 import Spielfeld.Planeinit;
 
-public abstract class IModus2 {
+public abstract class IModus {
 	
 	Planeinit planeinit;                        //bei einem Interface kann man nur Prototypen von Methoden machen
     int aktuelleposition=0;
@@ -23,7 +27,7 @@ public abstract class IModus2 {
     boolean spielLaeuft;
     boolean aktiviert;
     
-    public IModus2(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
+    public IModus(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
     	this.planeinit = plane;
         this.lvfg = lvfg;
         this.sensor = drucksensor;

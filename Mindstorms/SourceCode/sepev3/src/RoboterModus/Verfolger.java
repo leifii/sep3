@@ -10,7 +10,7 @@ import Linienverfolger.Linienverfolgung;
 import Spielfeld.Plane;
 import Spielfeld.Planeinit;
 
-public class Verfolger extends IModus2{
+public class Verfolger extends IModus{
 
 	private int letzterKnoten;
 	private int zielposition;
@@ -21,7 +21,7 @@ public class Verfolger extends IModus2{
 	}
 	
 	public void run(){
-		if(!isPause() && isAktiviert() && isStarted()){
+		if(!isPause() && isAktiviert() /*&& isStarted()*/){
 		
 	
 		Plane knoten;

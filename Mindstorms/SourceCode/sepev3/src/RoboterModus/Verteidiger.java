@@ -15,7 +15,7 @@ import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Planeinit;
 
-public class Verteidiger extends IModus2{
+public class Verteidiger extends IModus{
 	
 	private int letzterKnoten;
 	private int zielposition;
@@ -29,7 +29,7 @@ public class Verteidiger extends IModus2{
 
 	@Override
 	public void run() {
-		if(!isPause() && isAktiviert() && isStarted()){
+		if(!isPause() && isAktiviert() /*&& isStarted()*/){
 			Bewegung();
 		}
 		else lvfg.stop();
