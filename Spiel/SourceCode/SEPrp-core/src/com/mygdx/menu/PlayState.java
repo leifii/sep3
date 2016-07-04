@@ -300,6 +300,7 @@ public class PlayState extends State {
 			
 			for(int i = 0; i < Ork.length; i++)
 				gegnerList.add(Ork[i]);
+			
 			if(!c.getBosseBesiegt()[0]){
 				OrkEndgegner Boss = new OrkEndgegner(4185, 3072, s.getGegnerAnimation(2), collisionLayer, 200, boss, createDynamicBody(4352, 608, 64, 64, "gegner"));
 				Boss.addLoot(EquipmentType.Lederrüstung);
@@ -431,6 +432,11 @@ public class PlayState extends State {
 			GruenerSchleim[16].addLoot(EquipmentType.Lederschuh);
 			GruenerSchleim[17] = new GruenerSchleim(2432, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2432, 5600, 35, 32, "gegner"));
 			GruenerSchleim[17].addLoot(EquipmentType.Stahlschwert);
+			
+			for(int i = 0; i < Ork.length; i++)
+				gegnerList.add(Ork[i]);
+			for(int i = 0; i < GruenerSchleim.length; i++)
+				gegnerList.add(GruenerSchleim[i]);
 			
 			if(!c.getBosseBesiegt()[2]){
 				SchleimEndgegner Boss3 = new SchleimEndgegner(5440, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5440, 5600, 35, 32, "gegner"));
