@@ -566,15 +566,15 @@ public class PlayState extends State {
 					}
 				}
 			}
-			if (c.position.x >= 4438 && c.position.x >=4500 && c.position.y >= 2478 && c.position.y >= 2572 && c.getMapIndex() == 1 ) {
+			if (c.position.x <= 4500 && c.position.x >=4330 && c.position.y >= 2378 && c.position.y <= 2572 && c.getMapIndex() == 1 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-					if (c.getBosseBesiegt()[0]) {
+//					if (c.getBosseBesiegt()[0]) {
 						changeMap(2);
-					}
+//					}
 					
 				}
 			}
-			if (c.position.x >= 1252 && c.position.x>=1352 && c.position.y <= 1087&&c.position.y <= 1171 && c.getMapIndex() == 2 ) {
+			if (c.position.x >= 1252 && c.position.x<=1352 && c.position.y >= 1087&&c.position.y <= 1171 && c.getMapIndex() == 2 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 					if (c.getBosseBesiegt()[1]) {
 						changeMap(3);
