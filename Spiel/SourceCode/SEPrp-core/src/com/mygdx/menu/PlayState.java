@@ -120,7 +120,7 @@ public class PlayState extends State {
 		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
 		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 
-		keys = new Key(200, 200, 250, 200, 300, 200, this,1,2,3);
+		keys = new Key(2336, 4352, 32, 1824, 5120, 3072, this,2,1,3);
 
 		Body body = createDynamicBody(100, 100, 32, 48, "charakter");
 
@@ -316,6 +316,15 @@ public class PlayState extends State {
 		}
 		else if(mapIndex == 2){
 			Ork[] Ork = new Ork[6];
+			Ork[0] = new Ork(832, 1216, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1216, 64, 64, "gegner"));
+			Ork[0].addLoot(EquipmentType.Stoffschuh);
+			Ork[1] = new Ork(1088, 1792, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1088, 1792, 64, 64, "gegner"));
+			Ork[1].addLoot(EquipmentType.Dolch);
+			Ork[2] = new Ork(4160, 192, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4160, 192, 64, 64, "gegner"));
+			Ork[2].addLoot(EquipmentType.Kupferhelm);
+			Ork[3] = new Ork(448, 2624, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(448, 2624, 64, 64, "gegner"));
+			Ork[4] = new Ork(1600, 2976, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1600, 2976, 64, 64, "gegner"));
+			Ork[4].addLoot(EquipmentType.Holzschild);
 			Skelett[] Skelett = new Skelett[10];
 			if(!c.getBosseBesiegt()[1]){
 				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
