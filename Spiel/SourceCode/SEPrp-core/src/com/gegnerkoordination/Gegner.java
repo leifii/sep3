@@ -92,6 +92,7 @@ public class Gegner extends Character {
 	}
 	
 	public void draw(SpriteBatch sb){
+		
 		sb.draw(currentFrame, getPosition().x, getPosition().y);
 		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).draw(sb);

@@ -113,7 +113,7 @@ class AuktionshausItem implements IInventar {
 		return 0;
 	}
 
-	@Override
+		@Override
 	public int getHealing() {
 		// TODO Auto-generated method stub
 		return 0;
