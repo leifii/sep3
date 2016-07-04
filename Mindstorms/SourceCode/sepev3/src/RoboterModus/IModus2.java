@@ -16,7 +16,7 @@ public abstract class IModus2 {
     Linienverfolgung lvfg;
     
     byte[] nachricht = new byte[9];
-    
+    int initpos;
     protected int richtung;
     boolean powerup;
     boolean pause;
@@ -28,6 +28,11 @@ public abstract class IModus2 {
         this.lvfg = lvfg;
         this.sensor = drucksensor;
         this.aktuelleposition = start;
+        this.initpos = start;
+        this.powerup = false;
+        this.pause = false;
+        this.aktiviert = true;
+        this.spielLaeuft = false;
     }
     
     public abstract void run();
@@ -47,6 +52,20 @@ public abstract class IModus2 {
             powerup = true;
             //TODO Wert vom Knoten auswerten?
         }
+        
+        switch(nachricht[8]){
+        case -6: powerup = true; break;
+        case -25: powerup = true; break;
+        case -32: powerup = true; break;
+        case -51: powerup = true; break;
+        
+        case 1: spielLaeuft = true;
+        case 2: pause = true;
+        case 3: pause = false;
+        case 100: powerup = false;
+        case 127: reset();        
+        }
+        
     }
     
     public void getRichtung(){
@@ -69,10 +88,7 @@ public abstract class IModus2 {
 			richtung = 0;
 		}
     }
-    
-    public void nachrichtenverarbeitung(){
-    	
-    }
+
 	
 	public boolean getDrucksensor(){
 		return sensor.druckSensor();
@@ -89,5 +105,9 @@ public abstract class IModus2 {
 	public boolean isPowerup(){
 		return powerup;
 	}
+	
+	public abstract void nachrichtenverarbeitung();
+	
+	public abstract void reset();
 
 }

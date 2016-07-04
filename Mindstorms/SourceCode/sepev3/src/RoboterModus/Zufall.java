@@ -176,9 +176,26 @@ public class Zufall extends IModus2{
 
 	@Override
 	public void nachrichtenverarbeitung() {
-		// TODO Auto-generated method stub
+		switch(nachricht[8]){
+		case 13: aktiviert = false; break; 
+		case 23: aktiviert = true; break;
+		}
 		
 	}
+
+	@Override
+	public void reset() {
+
+		this.powerup = false;
+        this.pause = false;
+        this.aktiviert = true;
+        this.spielLaeuft = false;
+        aktuelleposition = initpos;
+        letzterKnoten = aktuelleposition + 1;
+		
+	}
+
+
 	
 
 }
