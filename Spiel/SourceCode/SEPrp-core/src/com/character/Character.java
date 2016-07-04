@@ -1,5 +1,6 @@
 package com.character;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,15 +24,14 @@ import com.mygdx.game.Author;
 import com.mygdx.menu.IInventar;
 import com.mygdx.menu.PlayState;
 import com.objects.AbstractStringItem;
-import com.objects.Equipment;
 import com.objects.Experience;
 import com.objects.Heal;
 import com.objects.Item;
 import com.objects.ItemType;
-import java.io.Serializable;
 
 
-@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel, ???????")
+@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel, Dilara Güler, Sabiha Can")
+
 
 public class Character implements Serializable, IDrawable {
 
@@ -652,8 +652,8 @@ public class Character implements Serializable, IDrawable {
 				PlayState.getInstance().addTempDrawable(i);
 			} else {
 				inventory.add(i);
-				if (i instanceof Equipment)
-					PlayState.getInstance().addTempDrawable(i);
+//				if (i instanceof Equipment)
+				PlayState.getInstance().addTempDrawable(i);
 			}
 		}
 	}
@@ -706,6 +706,7 @@ public class Character implements Serializable, IDrawable {
 
 	public void getDamage(int damage) {
 		float dmg = (damage - (5 *(attributes.getDEF()/2.5f)));
+		dmg = Math.max(dmg, 0); //kein negativer dmg
 		currentHP -= (int)dmg;
 		PlayState.getInstance()
 				.addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));

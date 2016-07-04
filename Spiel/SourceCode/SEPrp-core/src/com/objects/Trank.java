@@ -1,5 +1,6 @@
 package com.objects;
 
+import com.android.build.gradle.tasks.GenerateResValues;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.grafiken.Objekte;
 import com.mygdx.menu.PlayState;
@@ -44,6 +45,26 @@ public class Trank extends Item {
 	@Override
 	public void setVisible(boolean visible) {
 		alpha = visible ? 1 : 0;
+	}
+	
+	public enum TrankType {
+		kleinerHeiltrank("Kleiner Heiltrank", 20), mittlererHeiltrank("Mittlerer Heiltrank", 50), großerHeilTrank("Großer Heiltrank",100);
+		
+		private String name;
+		private int heal;
+		TrankType(String name, int heal) {
+			this.name = name;
+			this.heal = heal;
+		}
+		
+		public static Trank getTrank(String name) {
+			for(TrankType t : TrankType.values())
+				if(t.name.compareTo(name) == 0)
+					return new Trank(t.heal);
+			
+			System.out.println("Kein Trank mit dem Namen " + name);
+			return null;
+		}
 	}
 
 }

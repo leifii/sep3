@@ -15,7 +15,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -29,23 +28,25 @@ import com.objects.Equipment;
 import com.objects.Item;
 import com.objects.ItemType;
 
-@Author(name = "Sabiha Can")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 
 public class InventoryState extends State {
 
+	private List<Image> items;
+	private Map<ItemType, Image> equipment;
+	private Item hoverItem;
+	
 	private Stage stage;
 	private PlayState playstate;
 	private SpriteBatch hudBatch;
 	private ShapeRenderer sr;
 	
-	private List<Image> items;
-	private Map<ItemType, Image> equipment;
 	private List<String> attributes;
 	private BitmapFont font;
 	private Image playerIcon;
 	
-	private Item hoverItem;
+	
 	
 	private int xRow = 7, yRow = 3, size = 64;
 	private float offsetX = Gdx.graphics.getWidth() * 0.6f, offsetY = Gdx.graphics.getWidth() * 0.2f;
@@ -96,7 +97,7 @@ public class InventoryState extends State {
 		
 		Image schildImage = new Image();
 		schildImage.setBounds(centerX + equipOffset, centerY, size, size);
-		equipment.put(ItemType.Schild, schildImage);
+		equipment.put(ItemType.Handschuh, schildImage);
 		
 		Image armorImage = new Image();
 		armorImage.setBounds(centerX, centerY, size, size);
@@ -106,8 +107,10 @@ public class InventoryState extends State {
 		schuhImage.setBounds(centerX, centerY - equipOffset/2, size, size);
 		equipment.put(ItemType.Schuhe, schuhImage);
 
-		for(Entry<ItemType, Image> e : equipment.entrySet())
+		for(Entry<ItemType, Image> e : equipment.entrySet()) {
 			e.getValue().addListener(new ImageClick(this));
+			stage.addActor(e.getValue());
+		}
 		
 		for(int y = 0; y < yRow; y++) {
 			for(int x = 0; x < xRow; x++) {
@@ -194,8 +197,6 @@ public class InventoryState extends State {
 		Gdx.gl.glDisable(GL11.GL_BLEND);
 		
 		render();
-		
-		
 	}
 	
 	public void render() {
@@ -268,7 +269,7 @@ public class InventoryState extends State {
 		
 		public void clicked(InputEvent event, float x, float y) {
 			Item i = (Item) event.getTarget().getUserObject();
-			if(event.getTarget().getUserObject() != null)
+			if(i != null)
 				PlayState.getInstance().getPlayer().getInventory().useItem(i);
 			state.updateImages();
 		}

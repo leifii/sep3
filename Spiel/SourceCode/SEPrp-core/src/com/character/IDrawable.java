@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.Author;
 
-@Author(name = "???")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 public interface IDrawable {
 

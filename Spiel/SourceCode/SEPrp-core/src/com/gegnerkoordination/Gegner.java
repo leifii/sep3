@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -23,11 +19,10 @@ import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 import com.objects.Equipment;
 import com.objects.EquipmentType;
-import com.objects.Experience;
 import com.objects.Item;
 import com.objects.Truhe;
 
-@Author(name = "?Dilara Güler?")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 
 //TODO abstract class

@@ -20,6 +20,8 @@ public class GameStateManager {
 		b=Gdx.audio.newMusic(Gdx.files.internal("TownTheme.mp3"));
 	}
 	public void push(State state){
+		if(state instanceof PlayState)
+			((PlayState) state).resetInventoryState();
 		states.push(state);
 		state.update(0);
 	}
