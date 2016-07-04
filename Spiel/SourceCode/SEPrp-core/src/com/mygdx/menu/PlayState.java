@@ -39,6 +39,7 @@ import com.gegnerkoordination.Gegner;
 import com.gegnerkoordination.Ork;
 import com.gegnerkoordination.OrkEndgegner;
 import com.gegnerkoordination.SchleimEndgegner;
+import com.gegnerkoordination.Skelett;
 import com.gegnerkoordination.SkelettEndgegner;
 import com.grafiken.ICharacter;
 import com.grafiken.Map;
@@ -268,7 +269,7 @@ public class PlayState extends State {
 		Attributes ork = new Attributes(5, 5, 5, 5, 5, 5, 5, 0.5f);
 		Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
 		Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
-		Attributes boss = new Attributes(1,1,1,1,1,1,1,1);
+		Attributes boss = new Attributes(10,10,10,10,10,10,10,1);
 		if (mapIndex == 1){
 //			Skelett Skelett1 = new Skelett(200, 200, s.getGegnerAnimation(3), collisionLayer, 60, ske,
 //					createDynamicBody(200, 200, 32, 48, "gegner"));
@@ -278,7 +279,7 @@ public class PlayState extends State {
 //					createDynamicBody(400, 200, 35, 32, "gegner"));
 //			Schleim1.addLoot(EquipmentType.Lederrüstung);
 //			gegnerList.add(Schleim1);
-			Ork[] Ork = new Ork[12];
+			Ork[] Ork = new Ork[14];
 			Ork[0] = new Ork(832, 1216, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1216, 64, 64, "gegner"));
 			Ork[0].addLoot(EquipmentType.Stoffschuh);
 			Ork[1] = new Ork(1088, 1792, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1088, 1792, 64, 64, "gegner"));
@@ -301,18 +302,21 @@ public class PlayState extends State {
 			Ork[10] = new Ork(3488, 2848, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3488, 2848, 64, 64, "gegner"));
 			Ork[10].addLoot(EquipmentType.Lederrüstung);
 			Ork[11] = new Ork(3040, 3456, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3040, 3456, 64, 64, "gegner"));
-			Ork[11] = new Ork(4320, 2144, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4320, 2144, 64, 64, "gegner"));
+			Ork[12] = new Ork(4320, 2144, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4320, 2144, 64, 64, "gegner"));
+			Ork[13] = new Ork(2880, 2976, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(2880, 2976, 64, 64, "gegner"));
 			
 			for(int i = 0; i < Ork.length; i++)
 				gegnerList.add(Ork[i]);
 			if(!c.getBosseBesiegt()[0]){
-				OrkEndgegner Boss = new OrkEndgegner(4185, 3072, s.getGegnerAnimation(2), collisionLayer, 200, ork, createDynamicBody(4352, 608, 64, 64, "gegner"));
+				OrkEndgegner Boss = new OrkEndgegner(4185, 3072, s.getGegnerAnimation(2), collisionLayer, 200, boss, createDynamicBody(4352, 608, 64, 64, "gegner"));
 				Boss.addLoot(EquipmentType.Lederrüstung);
 				gegnerList.add(Boss);
 				//136,93
 			}
 		}
 		else if(mapIndex == 2){
+			Ork[] Ork = new Ork[6];
+			Skelett[] Skelett = new Skelett[10];
 			if(!c.getBosseBesiegt()[1]){
 				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
 				Boss2.addLoot(EquipmentType.Schwert);
