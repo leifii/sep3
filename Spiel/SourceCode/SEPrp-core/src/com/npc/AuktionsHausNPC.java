@@ -2,6 +2,7 @@ package com.npc;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -26,6 +27,8 @@ public class AuktionsHausNPC extends NPC {
 		gsm = gsmm;
 //		auktionshaus = new AuktionshausState(gsm, playstate, inventar);
 		inventarr=inventar;
+		
+		NPCtexture=new Texture("grafiken/Kobold_Shop.png");
 	}
 
 	boolean angesprochen2 = false;
