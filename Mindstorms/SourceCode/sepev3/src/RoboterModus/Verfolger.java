@@ -245,7 +245,23 @@ public class Verfolger extends IModus2{
 			lvfg.stop();
 	}
 
+	public void reset(){
+		this.powerup = false;
+        this.pause = false;
+        this.aktiviert = true;
+        this.spielLaeuft = false;
+        aktuelleposition = initpos;
+        letzterKnoten = aktuelleposition -10;
+	}
 
+	@Override
+	public void nachrichtenverarbeitung() {
+		switch(nachricht[8]){
+		case 11: aktiviert = false; break;
+		case 21: aktiviert = true; break;
+		}
+		
+	}
 
 
 

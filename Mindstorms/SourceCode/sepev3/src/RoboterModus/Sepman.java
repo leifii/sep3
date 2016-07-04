@@ -15,9 +15,12 @@ public class Sepman extends IModus2{
 
 	@Override
 	public void run() {
-
+		if(isAktiviert() && isPause()){
 		getRichtung();
 		bewegen();
+		}
+		
+		else lvfg.stop();
 	}
 
 	private void bewegen() {
@@ -150,7 +153,21 @@ public class Sepman extends IModus2{
 
 	}
 
+	public void reset(){
+		this.powerup = false;
+        this.pause = false;
+        this.aktiviert = true;
+        this.spielLaeuft = false;
+        aktuelleposition = initpos;
+        letzterKnoten = aktuelleposition + 10;
+	}
 
+	@Override
+	public void nachrichtenverarbeitung() {
+		
+		return;
+		
+	}
 
 }
 

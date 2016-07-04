@@ -24,15 +24,15 @@ public class Verteidiger extends IModus2{
 	public Verteidiger(int start ,Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
 		super(start, plane, lvfg, drucksensor);
 		letzterKnoten = aktuelleposition -1;
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public void run() {
-		while(pause==false && isAktiviert()){
+		if(isPause() && isAktiviert()){
 			Bewegung();
 		}
-		// TODO Auto-generated method stub
+		else lvfg.stop();
 		
 	}
 	
@@ -164,7 +164,23 @@ public class Verteidiger extends IModus2{
 			break;
 	   }
    }
+   public void reset(){
+		this.powerup = false;
+       this.pause = false;
+       this.aktiviert = true;
+       this.spielLaeuft = false;
+       aktuelleposition = initpos;
+       letzterKnoten = aktuelleposition -1;
+	}
 
+@Override
+public void nachrichtenverarbeitung() {
+	switch(nachricht[8]){
+	case 12: aktiviert = false; break;
+	case 22: aktiviert = true; break;
+	}
+	
+}
 
    }
 
