@@ -31,7 +31,7 @@ public class Skill implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	int lvl;		//stufe die der skill hat, startet bei 0, ab 1 freigeschaltet
-	private int dmg;
+	public int dmg;
 	//int dmgfaktor;
 	private float cdnow;
 	private float cd;
@@ -157,14 +157,23 @@ public class Skill implements Serializable {
 		zaehler += 10; // axt drehen
 		handleInput(xx, yy);
 		setCdnow(getCdnow() - dt); // cd nach Benutzung reduzieren
-		dmg = getDmg() * c.getdmgFaktor();
-
+		//dmg = getDmg() * c.getdmgFaktor();
+		
+		if(alive == true)
+		System.out.println(c.attributes.getDEX());
+			//System.out.println(dmg);
+		
 		lifeTimer += dt;
-		if (lifeTimer > lifeTime) {
+		if (lifeTimer > lifeTime && button != 5) {
 			remove = true;
 			setAlive(false);
 
 		}
+		
+		if (button == 5 && skillup == false)		//testweise skillup false um lvlup zu testen
+			setAlive(true);
+		
+		
 		
 		// für Endgegner
 		if ((c instanceof SchleimEndgegner || c instanceof SkelettEndgegner || c instanceof OrkEndgegner) && getButton() == 1) {
@@ -395,12 +404,15 @@ public class Skill implements Serializable {
 		// else
 		// s.draw(hallo, x, y);
 		// s.draw(bild, x, y);
-
-		if (isAlive() == true) {
+		
+		if (isAlive() == true && button == 5)
+			s.draw(bild, x, y);
+		
+		if (isAlive() == true && button != 5) {
 
 			if ((c instanceof Schuetze || c instanceof Skelett) && !(c instanceof SkelettEndgegner)) {
 				if (getButton() == 0 || getButton() == 1 || getButton() == 4) {
-					System.out.println(getButton());
+					//System.out.println(getButton());
 					if (richtung == AnimationDirection.NORTH_WALK || richtung == AnimationDirection.NORTH_STAND) {
 						s.draw(bild, x, y, (float) bild.getWidth() / 2, (float) bild.getHeight() / 2,
 								(float) bild.getWidth(), (float) bild.getHeight(), (float) 1, (float) 1, (float) 90, 1,

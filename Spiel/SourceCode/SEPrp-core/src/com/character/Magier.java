@@ -46,6 +46,7 @@ public class Magier extends Character{
 		
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,30,1,1,3,g.getSkill(17), false, 4, 0, this, 15, collisionLayer));	//geist
 		
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 1, 0, 1, 1, 2, g.getSkill(19), true, 5, 1, this, 1, collisionLayer)); 	//lvlup
 
 	}
 	

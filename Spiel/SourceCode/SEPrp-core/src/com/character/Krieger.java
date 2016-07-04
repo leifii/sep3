@@ -55,7 +55,9 @@ public class Krieger extends Character {
 
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 50, 30, 1, 1, 15, g.getSkill(7), true,
 				4, 0, this, 1, collisionLayer)); // berserker
-
+		
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 1, 0, 1, 1, 2, g.getSkill(19), true, 5, 1, this, 1, collisionLayer)); 	//lvlup
+		
 		setUntouchable(new boolean[4]);
 		for (int i = 0; i < getUntouchable().length; i++)
 			getUntouchable()[i] = false;

@@ -57,6 +57,8 @@ public class Schurke extends Character {
 				4, 3, this, 10, collisionLayer));
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 50, 15, 1, 1, 3, g.getSkill(14), false,
 				4, 4, this, 10, collisionLayer));
+	
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 1, 0, 1, 1, 2, g.getSkill(19), true, 5, 1, this, 1, collisionLayer)); 	//lvlup
 	}
 
 	@Override
