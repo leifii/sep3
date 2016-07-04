@@ -18,6 +18,11 @@ import com.objects.ItemType;
 
 public class Krieger extends Character {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	transient private Vector3 position;
 
 	transient private TextureRegion character;
