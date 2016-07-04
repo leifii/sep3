@@ -380,8 +380,10 @@ public class PlayState extends State {
 			for(int i = 0; i < Skelett.length; i++)
 				gegnerList.add(Skelett[i]);
 
+			boss = new Attributes(40,40,40,30,30,30,30,1);
+			
 			if(!c.getBosseBesiegt()[1]){
-				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
+				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, boss, createDynamicBody(2592, 544, 32, 48, "gegner"));
 				Boss2.addLoot(EquipmentType.Schwert);
 				gegnerList.add(Boss2);
 				//81,123
