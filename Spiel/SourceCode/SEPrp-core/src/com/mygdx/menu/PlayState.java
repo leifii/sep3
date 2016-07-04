@@ -253,8 +253,12 @@ public class PlayState extends State {
 				createDynamicBody(2235, 317, 32, 48, "npc")));
 		Npc.add(new NPC(1981, 505, "grafiken/Kobold.png", new String[]{"[Koboldkönig-Diener] Nicht nur haben sie uns unseren Schatz gestohlen,\nein paar Tage später tauchten nochmal ein paar Soldaten des Königs auf\num uns sogar die Schlüssel zu stehlen.","Ein paar Dorfbewohner berichteten mir,\ndass sie einige der Truppen,\ndie die Schlüssel gestohlen hatten in der Nähe gesichtet haben.\nWenn du aufmerksam reist, könntest du vielleicht ein paar dieser wertvollen Schlüssel finden.","Der Schatz befindet sich jedoch in eiserner Hand des dunklen Königs...."}, createDynamicBody(1981,505,32, 48, "npc")));
 		Npc.add(new Speicherstein(333, 333, "savepoint.png", new String[]{"Drücke K zum speichern."},createDynamicBody(333, 333, 32, 48, "npc")));
+		Npc.add(new Speicherstein(139*32,105*32 , "savepoint.png", new String[]{"Drücke K zum speichern."},createDynamicBody(139*32, 105*32, 32, 48, "npc")));
+		
 		}
 		if(mapIndex==2){
+			Npc.add(new AuktionsHausNPC(2815, 1616, "grafiken/Kobold.png",
+					"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 1616, 32, 48, "npc"), gsm, this, testInventar));
 			Npc.add(new NPC(339, 224,"grafiken/Kobold.png",new String[]{"[Viktorius]" +"Hallo Reisender, \nes befinden sich viele gefährliche Kreaturen in der Nähe des Dorfes.\nPass auf dich auf!"},
 					createDynamicBody(339, 224, 32, 48, "npc")));
 			Npc.add(new NPC(2209,2050 ,"grafiken/Kobold.png", new String[]{"[Arkanus] Wilkommen im Dorf"},
@@ -266,10 +270,15 @@ public class PlayState extends State {
 					createDynamicBody(3414, 1802, 32, 48, "npc")));
 			Npc.add(new NPC(5393, 4149,"grafiken/Kobold.png", new String[]{"[Gabrius] Guten Tag " +name+ "!!\n","Ich hoffe du kannst uns bei dem Skelett im Süden helfen.",  "Es bereitet uns schon seit einer ganzen Weile große Schwierigkeiten."} ,
 					createDynamicBody(5393, 4149, 32, 48, "npc")));
-			
+			Npc.add(new Speicherstein(114*32, 27*32, "savepoint.png", new String[]{"Drücke K zum speichern."},createDynamicBody(114*32, 27*32, 32, 48, "npc")));
+		
 			
 		}
 		if(mapIndex==3){
+			Npc.add(new Speicherstein( 34*32,181*32 , "savepoint.png", new String[]{"Drücke K zum speichern."},createDynamicBody(34*32, 32*181, 32, 48, "npc")));
+		
+			Npc.add(new AuktionsHausNPC(1959, 769, "grafiken/Kobold.png",
+					"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(1959, 769, 32, 48, "npc"), gsm, this, testInventar));
 			Npc.add(new NPC(2036, 775, "grafiken/Kobold.png", new String[]{"[Tsurio]  " + "Du willst es mit dem dunklen König aufnehmen!?\nEinen so mutigen Abenteurer hab ich schon lange nicht mehr gesehen.\nWie ist dein Name?","Nun"+name+"\nIch kann dir nur von deinem Vorhaben abraten.\nJedoch scheinen sich die meisten Monster weit im Norden aufzuhalten...."},createDynamicBody(2036, 775, 32, 48, "npc")));
 			Npc.add(new NPC(1604, 2274, "grafiken/Kobold.png", new String[]{"[Yasunda]  " + "Bei all dem Chaos tut es doch auch mal gut sich etwas zu entspannen."},
 							createDynamicBody(1604, 2274, 32, 48, "npc")));				
