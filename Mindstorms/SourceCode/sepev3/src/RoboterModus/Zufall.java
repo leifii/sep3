@@ -31,8 +31,8 @@ public class Zufall extends IModus{
 	}
 	
 	public void run(){									// Es wird zuerst überprüft, ob eine Pause vorliegt oder der Roboter deaktiviert wurde
-		if((pause==false && /*isAktiviert()*/ true)){	//TODO das muss noch geändert werden
-		
+		if((pause==false && isAktiviert())){	
+			
 		int zufallszahl;
 		Plane knoten;
 
@@ -73,7 +73,7 @@ public class Zufall extends IModus{
 			
 			if(richtungen[zufallszahl] == true){
 				break;
-				
+				 
 			}
 		}
 		
