@@ -268,17 +268,9 @@ public class PlayState extends State {
 		gegnerList = new LinkedList<Gegner>();
 		Attributes ork = new Attributes(5, 5, 5, 5, 5, 5, 5, 0.5f);
 		Attributes sch = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.9f);
-		Attributes ske = new Attributes(1, 1, 1, 1, 1, 1, 1, 0.4f);
-		Attributes boss = new Attributes(10,10,10,10,10,10,10,1);
+		Attributes ske = new Attributes(10, 10, 10, 10, 10, 5, 10, 0.4f);
+		Attributes boss = new Attributes(10, 10, 10, 20, 10, 20, 10, 1);
 		if (mapIndex == 1){
-//			Skelett Skelett1 = new Skelett(200, 200, s.getGegnerAnimation(3), collisionLayer, 60, ske,
-//					createDynamicBody(200, 200, 32, 48, "gegner"));
-//			Skelett1.addLoot(EquipmentType.Lederrüstung);
-//			gegnerList.add(Skelett1);
-//			GruenerSchleim Schleim1 = new GruenerSchleim(400, 200, s.getGegnerAnimation(1), collisionLayer, 30, sch,
-//					createDynamicBody(400, 200, 35, 32, "gegner"));
-//			Schleim1.addLoot(EquipmentType.Lederrüstung);
-//			gegnerList.add(Schleim1);
 			Ork[] Ork = new Ork[14];
 			Ork[0] = new Ork(832, 1216, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1216, 64, 64, "gegner"));
 			Ork[0].addLoot(EquipmentType.Stoffschuh);
@@ -315,17 +307,79 @@ public class PlayState extends State {
 			}
 		}
 		else if(mapIndex == 2){
-			Ork[] Ork = new Ork[6];
-			Ork[0] = new Ork(832, 1216, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1216, 64, 64, "gegner"));
+			Ork[] Ork = new Ork[7];
+			Ork[0] = new Ork(768, 512, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(768, 512, 64, 64, "gegner"));
 			Ork[0].addLoot(EquipmentType.Stoffschuh);
-			Ork[1] = new Ork(1088, 1792, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1088, 1792, 64, 64, "gegner"));
+			Ork[1] = new Ork(736, 1088, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(736, 1088, 64, 64, "gegner"));
 			Ork[1].addLoot(EquipmentType.Dolch);
-			Ork[2] = new Ork(4160, 192, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4160, 192, 64, 64, "gegner"));
+			Ork[2] = new Ork(832, 1696, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1696, 64, 64, "gegner"));
 			Ork[2].addLoot(EquipmentType.Kupferhelm);
-			Ork[3] = new Ork(448, 2624, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(448, 2624, 64, 64, "gegner"));
-			Ork[4] = new Ork(1600, 2976, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1600, 2976, 64, 64, "gegner"));
+			Ork[3] = new Ork(224, 2560, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(224, 2560, 64, 64, "gegner"));
+			Ork[4] = new Ork(3648, 2944, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3648, 2944, 64, 64, "gegner"));
 			Ork[4].addLoot(EquipmentType.Holzschild);
-			Skelett[] Skelett = new Skelett[10];
+			Ork[5] = new Ork(4864, 1760, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4864, 1760, 64, 64, "gegner"));
+			Ork[6] = new Ork(4992, 1760, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4992, 1760, 64, 64, "gegner"));
+			Ork[6].addLoot(EquipmentType.Kupferhelm);
+			
+			Skelett[] Skelett = new Skelett[33];
+			Skelett[0] = new Skelett(352, 800, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(352, 800, 64, 64, "gegner"));
+			Skelett[0].addLoot(EquipmentType.Lederschuh);
+			Skelett[1] = new Skelett(896, 1184, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(896, 1184, 64, 64, "gegner"));
+			Skelett[2] = new Skelett(416, 1344, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(416, 1344, 64, 64, "gegner"));
+			Skelett[2].addLoot(EquipmentType.Kettenhemd);
+			Skelett[3] = new Skelett(608, 1888, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(608, 1888, 64, 64, "gegner"));
+			Skelett[3].addLoot(EquipmentType.Holzschild);
+			Skelett[4] = new Skelett(1056, 1568, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(1056, 1568, 64, 64, "gegner"));
+			Skelett[4].addLoot(EquipmentType.Eisenschild);
+			Skelett[5] = new Skelett(992, 1952, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(992, 1952, 64, 64, "gegner"));
+			Skelett[6] = new Skelett(736, 3488, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(736, 3488, 64, 64, "gegner"));
+			Skelett[6].addLoot(EquipmentType.Eisenhelm);
+			Skelett[7] = new Skelett(160, 1888, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(160, 1888, 64, 64, "gegner"));
+			Skelett[7].addLoot(EquipmentType.Lederschuh);
+			Skelett[8] = new Skelett(32, 2240, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(32, 2240, 64, 64, "gegner"));
+			Skelett[8].addLoot(EquipmentType.Schwert);
+			Skelett[9] = new Skelett(96, 3808, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(96, 3808, 64, 64, "gegner"));
+			Skelett[9].addLoot(EquipmentType.Dolch);
+			Skelett[10] = new Skelett(160, 3776, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(160, 3776, 64, 64, "gegner"));
+			Skelett[10].addLoot(EquipmentType.Lederrüstung);
+			Skelett[11] = new Skelett(256, 3872, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(256, 3872, 64, 64, "gegner"));
+			Skelett[12] = new Skelett(2208, 3936, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(2208, 3936, 64, 64, "gegner"));
+			Skelett[12].addLoot(EquipmentType.Eisenhelm);
+			Skelett[13] = new Skelett(2432, 4032, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(2432, 4032, 64, 64, "gegner"));
+			Skelett[14] = new Skelett(2400, 3488, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(2400, 3488, 64, 64, "gegner"));
+			Skelett[15] = new Skelett(2720, 3200, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(2720, 3200, 64, 64, "gegner"));
+			Skelett[15].addLoot(EquipmentType.Stoffschuh);
+			Skelett[16] = new Skelett(2816, 4224, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(2816, 4224, 64, 64, "gegner"));
+			Skelett[17] = new Skelett(3488, 4032, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(3488, 4032, 64, 64, "gegner"));
+			Skelett[17].addLoot(EquipmentType.Eisenschild);
+			Skelett[18] = new Skelett(3552, 2848, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(3552, 2848, 64, 64, "gegner"));
+			Skelett[19] = new Skelett(3840, 2560, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(3840, 2560, 64, 64, "gegner"));
+			Skelett[20] = new Skelett(4032, 4032, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4032, 4032, 64, 64, "gegner"));
+			Skelett[20].addLoot(EquipmentType.Kettenhemd);
+			Skelett[21] = new Skelett(4288, 4320, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4288, 4320, 64, 64, "gegner"));
+			Skelett[21].addLoot(EquipmentType.Kupferhelm);
+			Skelett[22] = new Skelett(4512, 3264, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4512, 3264, 64, 64, "gegner"));
+			Skelett[23] = new Skelett(5312, 3264, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(5312, 3264, 64, 64, "gegner"));
+			Skelett[23].addLoot(EquipmentType.Schwert);
+			Skelett[24] = new Skelett(5376, 2752, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(5376, 2752, 64, 64, "gegner"));
+			Skelett[25] = new Skelett(4640, 2624, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4640, 2624, 64, 64, "gegner"));
+			Skelett[26] = new Skelett(4832, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 64, 64, "gegner"));
+			Skelett[26].addLoot(EquipmentType.Lederschuh);
+			Skelett[27] = new Skelett(5024, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(5024, 1664, 64, 64, "gegner"));
+			Skelett[28] = new Skelett(4832, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 64, 64, "gegner"));
+			Skelett[28].addLoot(EquipmentType.Eisenschild);
+			Skelett[29] = new Skelett(4832, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 64, 64, "gegner"));
+			Skelett[30] = new Skelett(4832, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 64, 64, "gegner"));
+			Skelett[30].addLoot(EquipmentType.Kettenhemd);
+			Skelett[31] = new Skelett(4832, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 64, 64, "gegner"));
+			Skelett[32] = new Skelett(4832, 1664, s.getGegnerAnimation(2), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 64, 64, "gegner"));
+			Skelett[32].addLoot(EquipmentType.Lederschuh);
+			
+			for(int i = 0; i < Ork.length; i++)
+				gegnerList.add(Ork[i]);
+			for(int i = 0; i < Skelett.length; i++)
+				gegnerList.add(Skelett[i]);
+
 			if(!c.getBosseBesiegt()[1]){
 				SkelettEndgegner Boss2 = new SkelettEndgegner(2592, 544, s.getGegnerAnimation(3), collisionLayer, 200, ske, createDynamicBody(2592, 544, 32, 48, "gegner"));
 				Boss2.addLoot(EquipmentType.Schwert);
