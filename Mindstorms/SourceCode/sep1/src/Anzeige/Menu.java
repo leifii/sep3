@@ -793,13 +793,13 @@ public void ipsSchreiben(){
 public void spielfeld() throws IOException{
 	this.spielvorbereitungsDisplay.setVisible(false);
 	this.pausenDisplay.setVisible(false);
-	queue.addToQueue((byte)002);
+	queue.addToQueue((byte)001);
 	pause = false; 
 	this.spielEnde=false;
-	queue.addToQueue((byte)011); 
-	queue.addToQueue((byte)012);
-	queue.addToQueue((byte)013);
-	queue.addToQueue((byte)014); 
+	queue.addToQueue((byte)021); 
+	queue.addToQueue((byte)022);
+	queue.addToQueue((byte)023);
+	queue.addToQueue((byte)024); 
 	setzeAnzeigeSpielfeld();
 	add(thorbensPanel);
 	thorbensPanel.setVisible(true);
@@ -935,37 +935,45 @@ public void kollisionserkennung(){
 		if ( kollidiertSepman ==true ){
 			if (leben>1){
 			setzePausenBildschrim();
+			queue.addToQueue((byte)002);
 			leben -=1;
 			}
 			else{
 				setzeNiederlageBildschirm();
+				queue.addToQueue((byte)127);
 			}
 		}
 		else if( kollidiertTracer ==true){
 			if (leben>1){
 				setzePausenBildschrim();
+				queue.addToQueue((byte)002);
 				leben -=1;
 				}
 				else{
 					setzeNiederlageBildschirm();
+					queue.addToQueue((byte)127);
 				}
 		}
 		else if (kollidiertDefender == true){
 			if (leben>1){
 				setzePausenBildschrim();
+				queue.addToQueue((byte)002);
 				leben -=1;
 				}
 				else{
 					setzeNiederlageBildschirm();
+					queue.addToQueue((byte)127);
 				}
 		}
 		else if(kollidiertRandom ==true)
 			if (leben>1){
 				setzePausenBildschrim();
+				queue.addToQueue((byte)002);
 				leben -=1;
 				}
 				else{
 					setzeNiederlageBildschirm();
+					queue.addToQueue((byte)127);
 				}
 	}
 }
@@ -977,11 +985,17 @@ public void kollisionserkennung(){
 public void kollision () {
 	if(leben >1){
 		setzePausenBildschrim();
-		queue.addToQueue((byte)001);
+		queue.addToQueue((byte)002);
+		
 		leben -=1;
 	}
 	else{
 		setzeNiederlageBildschirm();
+		queue.addToQueue((byte)011);
+		queue.addToQueue((byte)012);
+		queue.addToQueue((byte)013);
+		queue.addToQueue((byte)014);
+		queue.addToQueue((byte)127);
 		this.spielEnde=true;
 	}
 	
