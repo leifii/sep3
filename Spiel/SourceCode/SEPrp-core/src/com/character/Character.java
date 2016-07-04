@@ -28,11 +28,17 @@ import com.objects.Experience;
 import com.objects.Heal;
 import com.objects.Item;
 import com.objects.ItemType;
+import java.io.Serializable;
+
 
 @Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel, ???????")
 
-public class Character implements IDrawable {
-	
+public class Character implements Serializable, IDrawable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	transient protected ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
@@ -849,5 +855,7 @@ public class Character implements IDrawable {
 	public void setBosseBesiegt(boolean[] bosseBesiegt) {
 		this.bosseBesiegt = bosseBesiegt;
 	}
+
+
 
 }
