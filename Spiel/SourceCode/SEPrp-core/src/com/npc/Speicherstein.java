@@ -34,9 +34,8 @@ public class Speicherstein extends NPC {
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.K) && angesprochen) {
-			if (de.SEPL.GameScore.GameScoreManagement.saveGameScore(c) == true) {
-				System.out.println("Speichern erfolgreich.");
-			}
+				System.out.println("Speichern erfolgreich unter Spielstand " + de.SEPL.GameScore.GameScoreManagement.saveGameScore(c));
+			
 		}
 			Dialog.render(ps, sb, Character, c, angesprochen);
 			
