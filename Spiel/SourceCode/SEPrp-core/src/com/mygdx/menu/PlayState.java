@@ -136,7 +136,7 @@ public class PlayState extends State {
 			// setCharacterType(0, attributes, body);
 		} else if (characterauswahl == 2) {
 			Attributes attributes = new Attributes(1, 15, 1, 10, 1, 5, 1, 2.5f);
-			c = new Magier(100, 100, s.getAnimation(1), collisionLayer, attributes, body);
+			c = new Magier(100, 100, s.getAnimation(design), collisionLayer, attributes, body);
 		} else if (characterauswahl == 3) {
 			Attributes attributes = new Attributes(1, 1, 15, 10, 1, 5, 1, 2.5f);
 			c = new Schurke(100, 100, s.getAnimation(2), collisionLayer, attributes, body);
