@@ -36,6 +36,7 @@ import com.character.Schurke;
 import com.character.Skill;
 import com.gegnerkoordination.Endboss;
 import com.gegnerkoordination.Gegner;
+import com.gegnerkoordination.GruenerSchleim;
 import com.gegnerkoordination.Ork;
 import com.gegnerkoordination.OrkEndgegner;
 import com.gegnerkoordination.SchleimEndgegner;
@@ -390,16 +391,56 @@ public class PlayState extends State {
 			}
 		}
 		else if(mapIndex == 3){
-			boss = new Attributes(1,1,1,1,1,1,1,2);
+			boss = new Attributes(80,80,80,40,40,40,40,2);
+			
+			Ork[] Ork = new Ork[4];
+			Ork[0] = new Ork(4640, 992, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4640, 992, 64, 64, "gegner"));
+			Ork[0].addLoot(EquipmentType.Lederstiefel);
+			Ork[1] = new Ork(544, 3680, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(544, 3680, 64, 64, "gegner"));
+			Ork[2] = new Ork(2528, 4544, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(2528, 4544, 64, 64, "gegner"));
+			Ork[2].addLoot(EquipmentType.Lederschuh);
+			Ork[3] = new Ork(5280, 4480, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(5280, 4480, 64, 64, "gegner"));
+			
+			GruenerSchleim[] GruenerSchleim = new GruenerSchleim[18];
+			GruenerSchleim[0] = new GruenerSchleim(640, 832, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(640, 832, 35, 32, "gegner"));
+			GruenerSchleim[1] = new GruenerSchleim(2656, 512, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2656, 512, 35, 32, "gegner"));
+			GruenerSchleim[1].addLoot(EquipmentType.Stahlschwert);
+			GruenerSchleim[2] = new GruenerSchleim(3712, 736, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(3712, 736, 35, 32, "gegner"));
+			GruenerSchleim[2].addLoot(EquipmentType.Eisenhelm);
+			GruenerSchleim[3] = new GruenerSchleim(4512, 3104, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4512, 3104, 35, 32, "gegner"));
+			GruenerSchleim[4] = new GruenerSchleim(4224, 3008, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4224, 3008, 35, 32, "gegner"));
+			GruenerSchleim[4].addLoot(EquipmentType.Stahlhelm);
+			GruenerSchleim[5] = new GruenerSchleim(3264, 2784, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(3264, 2784, 35, 32, "gegner"));
+			GruenerSchleim[5].addLoot(EquipmentType.Stahlschild);
+			GruenerSchleim[6] = new GruenerSchleim(160, 3328, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(160, 3328, 35, 32, "gegner"));
+			GruenerSchleim[6].addLoot(EquipmentType.Kettenhemd);
+			GruenerSchleim[7] = new GruenerSchleim(1152, 5056, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(1152, 5056, 35, 32, "gegner"));
+			GruenerSchleim[8] = new GruenerSchleim(4672, 4480, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4672, 4480, 35, 32, "gegner"));
+			GruenerSchleim[8].addLoot(EquipmentType.Stahlrüstung);
+			GruenerSchleim[9] = new GruenerSchleim(4416, 4736, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4416, 4736, 35, 32, "gegner"));
+			GruenerSchleim[10] = new GruenerSchleim(4768, 4768, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4768, 4768, 35, 32, "gegner"));
+			GruenerSchleim[10].addLoot(EquipmentType.Lederstiefel);
+			GruenerSchleim[11] = new GruenerSchleim(4640, 4224, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4640, 4224, 35, 32, "gegner"));
+			GruenerSchleim[11].addLoot(EquipmentType.Stahlhelm);
+			GruenerSchleim[12] = new GruenerSchleim(5568, 4256, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5568, 4256, 35, 32, "gegner"));
+			GruenerSchleim[13] = new GruenerSchleim(4096, 5472, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4096, 5472, 35, 32, "gegner"));
+			GruenerSchleim[14] = new GruenerSchleim(4096, 5376, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4096, 5376, 35, 32, "gegner"));
+			GruenerSchleim[14].addLoot(EquipmentType.Stahlschild);
+			GruenerSchleim[15] = new GruenerSchleim(2336, 5824, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2336, 5824, 35, 32, "gegner"));
+			GruenerSchleim[16] = new GruenerSchleim(2208, 5696, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2208, 5696, 35, 32, "gegner"));
+			GruenerSchleim[16].addLoot(EquipmentType.Lederschuh);
+			GruenerSchleim[17] = new GruenerSchleim(2432, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2432, 5600, 35, 32, "gegner"));
+			GruenerSchleim[17].addLoot(EquipmentType.Stahlschwert);
+			
 			if(!c.getBosseBesiegt()[2]){
 				SchleimEndgegner Boss3 = new SchleimEndgegner(5440, 5600, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5440, 5600, 35, 32, "gegner"));
-				Boss3.addLoot(EquipmentType.Stoffschuh);
+				Boss3.addLoot(EquipmentType.Stahlschwert);
 				gegnerList.add(Boss3);
 				//170,10
 			}
 			if(!c.getBosseBesiegt()[3]){
 				Endboss Boss4= new Endboss(256, 5632, s.getAnimation(1), collisionLayer, 200, boss, createDynamicBody(256, 5632, 32, 48, "gegner"), c);
-				Boss4.addLoot(EquipmentType.Eisenhelm);
+				Boss4.addLoot(EquipmentType.Stahlhelm);
 				gegnerList.add(Boss4);
 				//8,9 = 256,5632
 			}

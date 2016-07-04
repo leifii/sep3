@@ -76,6 +76,11 @@ public class Endboss extends Gegner {
 		}
 		setAttributes(c.getAttributes());
 		getAttributes().setMS(getAttributes().getMS()-0.5f);
+		getAttributes().setSTR(getAttributes().getSTR()+40);
+		getAttributes().setINT(getAttributes().getINT()+40);
+		getAttributes().setDEX(getAttributes().getDEX()+40);
+		getAttributes().setSTA(getAttributes().getSTA()+40);
+		getAttributes().setDEF(getAttributes().getDEF()+40);
 		setMaxHP(c.getMaxHP()*2);
 		setCurrentHP(getMaxHP());
 		setAnimationMap(c.getAnimationMap());
