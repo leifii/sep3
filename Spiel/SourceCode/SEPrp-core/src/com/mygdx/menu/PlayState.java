@@ -68,11 +68,6 @@ public class PlayState extends State {
 	public Key keys;
 	private List<Gegner> gegnerList;
 	private List<IDrawable> drawableList;
-	public String name;
-
-	
-	
-	
 	public Character c;
 	private Map map;
 	private ICharacter s;
@@ -81,6 +76,7 @@ public class PlayState extends State {
 	int mapPixelWidth;
 	int mapPixelHeight;
 	private TiledMapTileLayer[] collisionLayer;
+	public String name;
 
 	public transient World world;
 	private Box2DDebugRenderer b2dr;
@@ -105,6 +101,7 @@ public class PlayState extends State {
 		super(gsm);
 		this.name=name;
 
+
 		besucht = false;
 		Kobolddorflabel = new Texture("grafiken/KoboldDorfLabel.png");
 		world = new World(new Vector2(0, 0), false);
@@ -123,10 +120,6 @@ public class PlayState extends State {
 		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 
 		keys = new Key(200, 200, 250, 200, 300, 200, this);
-
-		
-		
-		
 
 		Body body = createDynamicBody(100, 100, 32, 48, "charakter");
 
@@ -158,7 +151,8 @@ public class PlayState extends State {
 
 		// c=new Schuetze(100,100,s.getAnimation(3), (TiledMapTileLayer)
 		// map.getMap().getLayers().get("Objekte"), attributes);
-		c.setDesign(design);
+		
+	
 
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL ----------
 		// CHARAKTERAUSWAHL ---------- CHARAKTERAUSWAHL //
@@ -178,20 +172,21 @@ public class PlayState extends State {
 
 		instance = this;
 		
-		// Zur Speicherung, dass gerade die erste Welt bespielt wird --Dom--
+		// --Dom--
 		c.setMapIndex(1);
-		
+		c.setDesign(design);
+		c.setCharacterName(this.name);
+		// ----
 		
 		
 	}
 
 	// Characterwerte nach laden eines alten Spielstandes setzen --Dom--
-	public void setCharacterCharacteristicsAfterReload(Vector3 loadedPosition, int loadedLevel,
+	public void setCharacterCharacteristicsAfterReload(int loadedLevel,
 			Attributes loadedAttributes, int loadedExp, int loadedMaxHP, int loadedCurrentHP, int loadedNeededExp,
 			int loadedDex, int loadedMapIndex, boolean blackKeyRecieved, boolean goldKeyRecieved,
-			boolean whiteKeyRecieved, int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill0, String[] allItems) {
+			boolean whiteKeyRecieved, int levelSkill1, int levelSkill2, int levelSkill3, int levelSkill4, int levelSkill0, String[] allItems, boolean[] loadedBosseBesiegt) {
 
-		c.setPosition(loadedPosition);
 		c.setLevel(loadedLevel);
 		c.setAttributes(loadedAttributes);
 		c.setCharacter(loadedExp);
@@ -207,6 +202,12 @@ public class PlayState extends State {
 		keys.setBlackKeyStatus(blackKeyRecieved);
 		keys.setGoldKeyStatus(goldKeyRecieved);
 		keys.setWhiteKeyStatus(whiteKeyRecieved);
+		c.setBosseBesiegt(loadedBosseBesiegt);
+		for (int i = 0; i < allItems.length; i++){
+			testInventar.place(allItems[i]);
+		}
+		
+
 //		Items werden als Item Objekt über die Inventory.add(Item i) Methode zum Inventar hinzugefügt
 //		for (int i = 0; i < allItems.length; i++){
 //			testInventar.place(allItems[i]);
@@ -340,7 +341,7 @@ public class PlayState extends State {
 		
 		// Update der SkillLevel in Character --Dom--
 		c.updateSkillLevel();
-//		c.setAllItems(testInventar);
+		c.setAllItems(testInventar);
 
 		if (!pauseToInventory && Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			inventoryState.dispose();
