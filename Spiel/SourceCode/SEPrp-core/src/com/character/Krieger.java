@@ -41,7 +41,7 @@ public class Krieger extends Character {
 		setSkills(new ArrayList<Skill>());
 		// x-Position, y-Position, lvl, dmg, cd, cdfaktor, speed, lifeTime,
 		// bild, buff, button, helpNr, character, radius, collision
-		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 10, 1, 1, 1, 1, g.getSkill(7), true, 0,
+		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 10, 1, 1, 1, 0.3f, g.getSkill(7), true, 0,
 				0, this, 1, collisionLayer)); // auto-attack
 
 		getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1, 30, 3, 1, 1, 3, g.getSkill(11), false,
