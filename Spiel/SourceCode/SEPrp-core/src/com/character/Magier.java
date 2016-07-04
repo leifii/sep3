@@ -16,11 +16,11 @@ import com.mygdx.game.Author;
 
 public class Magier extends Character{
 	
-	private Vector3 position;
+	transient private Vector3 position;
 	
-	private TextureRegion character;
+	transient private TextureRegion character;
 
-	private Texture character1;
+	transient private Texture character1;
 
 	public Magier(float x,float y,TextureRegion[][] sprite,TiledMapTileLayer[] collisionLayer, Attributes attributes, Body body){
 		super(x, y, sprite, collisionLayer, attributes, body, Rolle.Spieler);

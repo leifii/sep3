@@ -14,11 +14,11 @@ import com.mygdx.menu.PlayState;
 
 public class Schuetze extends Character {
 
-	private Vector3 position;
+	transient private Vector3 position;
 
-	private TextureRegion character;
+	transient private TextureRegion character;
 
-	private Texture character1;
+	transient private Texture character1;
 
 	public Schuetze(float x, float y, TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body) {
