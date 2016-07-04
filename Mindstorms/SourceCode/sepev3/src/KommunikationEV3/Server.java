@@ -117,7 +117,7 @@ public class Server{
 
 					robomode.setNachricht(nachricht);
 					robomode.run();
-					com1.senden(com1.erzeugeByteArray(robomode.getPos2(), robomode.getZiel(), robomode.getDrucksensor(), /*robomode.isAktiviert()*/ true, robomode.isPowerup(), robomode.isPause()));
+					com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 
 				}
 
