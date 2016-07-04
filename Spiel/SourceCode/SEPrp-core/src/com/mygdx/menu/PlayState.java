@@ -294,6 +294,9 @@ public class PlayState extends State {
 		Attributes ske = new Attributes(10, 10, 10, 10, 10, 5, 10, 0.4f);
 		Attributes boss = new Attributes(10, 10, 10, 20, 10, 20, 10, 1);
 		if (mapIndex == 1){
+			Attributes tut = new Attributes(0,0,0,10,0,0,0,0);
+			Ork TutorialOrk = new Ork(400, 400, s.getGegnerAnimation(2), collisionLayer, 40, tut, createDynamicBody(400, 400, 64, 64, "gegner"));
+			gegnerList.add(TutorialOrk);
 			Ork[] Ork = new Ork[14];
 			Ork[0] = new Ork(832, 1216, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1216, 64, 64, "gegner"));
 			Ork[0].addLoot(EquipmentType.Stoffschuh);
