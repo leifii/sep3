@@ -793,8 +793,13 @@ public void ipsSchreiben(){
 public void spielfeld() throws IOException{
 	this.spielvorbereitungsDisplay.setVisible(false);
 	this.pausenDisplay.setVisible(false);
+	queue.addToQueue((byte)002);
 	pause = false; 
 	this.spielEnde=false;
+	queue.addToQueue((byte)011); 
+	queue.addToQueue((byte)012);
+	queue.addToQueue((byte)013);
+	queue.addToQueue((byte)014); 
 	setzeAnzeigeSpielfeld();
 	add(thorbensPanel);
 	thorbensPanel.setVisible(true);
@@ -922,7 +927,7 @@ public void setClients() throws IOException{
      powerUp.setPowerUp(powerUp);                    ////Ergänzt durch Trustan! Ermöglicht Zugriff auf Menu.powerUp aus anderen Klassen!
 }
 /*
- * Permanente abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
+ * Abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
  */
 public void kollisionserkennung(){
 
@@ -972,6 +977,7 @@ public void kollisionserkennung(){
 public void kollision () {
 	if(leben >1){
 		setzePausenBildschrim();
+		queue.addToQueue((byte)001);
 		leben -=1;
 	}
 	else{
@@ -981,6 +987,49 @@ public void kollision () {
 	
 }
 
+
+public int convertKnoten(int i){
+	switch(i){
+	case 01 : return 1;
+	case 02 : return 2;
+	case 03 : return 3;
+	case 04 : return 4;
+	case 05 : return 5 ;
+	case 06 : return 6;
+	case 11 : return 7;
+	case 12 : return 8;	
+	case 13 : return 9;	
+	case 14 : return 10;	
+	case 15 : return 11;
+	case 16 : return 12;
+	case 21 : return 13 ;
+	case 22 : return 14 ;
+	case 23 : return 15;
+	case 24 : return 16 ;
+	case 25 : return 17;
+	case 26 : return 18 ;
+	case 31 : return 19;
+	case 32 : return 20 ;
+	case 33 : return 21 ;
+	case 34 : return 22 ;
+	case 35 : return 23 ;
+	case 36 : return 24 ;
+	case 41 : return 25;
+	case 42 : return 26 ;
+	case 43 : return 27;
+	case 44 : return 28;		
+	case 45 : return 29;		
+	case 46 : return 30 ;		
+	case 51 : return 31 ;	
+	case 52 : return 32 ;		
+	case 53 : return 33;	
+	case 54 : return 24;
+	case 55 : return 35 ;
+	case 56 : return 36 ;
+	}
+	return 0;
+	
+}
 
 public void Positionstracking (){
 	this.Sepman   = Position.getPosSepman();
