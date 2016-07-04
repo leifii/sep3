@@ -166,8 +166,8 @@ public class PlayState extends State {
 		drawableList = new LinkedList<IDrawable>();
 		truhenListe.add(new Truhe(100, 200, createTruhenBody(100, 200), new Trank(10), new Gold(30)));
 		PortalListe = new LinkedList<Portal>();
-		PortalListe.add(new Portal(50, 50, 2934, 312));
-		PortalListe.add(new Portal(2934, 312, 50, 50));
+		PortalListe.add(new Portal(50, 50, 2934, 312,2));
+		PortalListe.add(new Portal(2934, 312, 50, 50,3));
 		
 //		Inventat zum testen mit allen Items füllen
 		for(EquipmentType t : EquipmentType.values())
@@ -566,15 +566,20 @@ public class PlayState extends State {
 					}
 				}
 			}
-			if (c.position.x >= 4400 && c.position.y >= 3400 && c.getMapIndex() == 1 ) {
+			if (c.position.x >= 4438 && c.position.x >=4500 && c.position.y >= 2478 && c.position.y >= 2572 && c.getMapIndex() == 1 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-					changeMap(2);
+					if (c.getBosseBesiegt()[0]) {
+						changeMap(2);
+					}
+					
 				}
 			}
-			if (c.position.x >= 1282 && c.position.x>=2659 && c.position.y <= 1107 && c.getMapIndex() == 2 ) {
+			if (c.position.x >= 1252 && c.position.x>=1352 && c.position.y <= 1087&&c.position.y <= 1171 && c.getMapIndex() == 2 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-					changeMap(3);
-				}
+					if (c.getBosseBesiegt()[1]) {
+						changeMap(3);
+					}
+				}	//4448   2508
 			}
 		}
 	}
@@ -660,7 +665,16 @@ public class PlayState extends State {
 		
 		sb.begin();
 		c.draw(sb);
+		if (c.getMapIndex()==1) {
+			
 		
+			sb.draw(new Texture("grafiken/treppe.png"),4448,2508);
+		}
+		else if (c.getMapIndex()==2) {
+			sb.draw(new Texture("grafiken/treppe.png"),1282,1107);
+		} else {
+
+		}
 		if(c.getCurrentHP()==0){
 			System.out.println("Verloren");
 			gsm.push(new VerlorenState(gsm));
@@ -692,7 +706,7 @@ public class PlayState extends State {
 
 		// PORTALE //
 		for (Portal p : PortalListe) {
-			p.render(sb, c);
+			p.render(this,sb, c);
 		}
 		// PORTALE //
 
