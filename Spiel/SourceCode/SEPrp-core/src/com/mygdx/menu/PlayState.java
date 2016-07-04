@@ -582,6 +582,9 @@ public class PlayState extends State {
 				}	//4448   2508
 			}
 		}
+		if (Gdx.input.isKeyJustPressed(Keys.U)) {
+			gsm.push(new NotAllKeysWinState(gsm));
+		}
 	}
 
 	@Override
