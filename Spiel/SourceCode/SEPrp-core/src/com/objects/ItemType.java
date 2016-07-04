@@ -7,7 +7,7 @@ import com.mygdx.game.Author;
 
 public enum ItemType {
 
-	Helm(true), Waffe(true), Schild(true), Brustpanzer(true), Schuhe(true), Trank, 
+	Helm(true), Waffe(true), Handschuh(true), Brustpanzer(true), Schuhe(true), Trank, 
 	
 	//Helper für AbstractString
 	Heal, Experience, Gold, Schaden;

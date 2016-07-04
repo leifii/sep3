@@ -15,7 +15,7 @@ import com.character.IDrawable;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
-@Author(name = "Bijan Shahbaz Nejad , ???????")
+@Author(name = "Bijan Shahbaz Nejad , Dilara Güler, Sabiha Can")
 
 
 public class Truhe implements IDrawable {

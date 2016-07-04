@@ -8,7 +8,7 @@ import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 import com.character.Character;
 
-@Author(name = "???")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 public class AbstractStringItem extends Item implements IDrawable{
 

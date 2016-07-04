@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gegnerkoordination.Gegner;
 import com.mygdx.game.Author;
 
-@Author(name = "Tobias van den Boom")
+@Author(name = "Tobias van den Boom, Dilara Güler, Sabiha Can")
 
 public class MyContactListener implements ContactListener {
 	
@@ -79,6 +79,7 @@ public class MyContactListener implements ContactListener {
 			}
 			
 		}
+		
 		if(fa.getUserData() != null && fa.getUserData().equals("skill") && fb.getBody().getFixtureList().size>1 &&
 				(fb.getBody().getFixtureList().get(1).getUserData().equals("truhe") || fb.getBody().getFixtureList().get(1).getUserData().equals("npc"))){
 			((Skill) fa.getBody().getUserData()).setAlive(false);

@@ -59,7 +59,7 @@ import com.objects.Truhe;
 
 import de.SEPL.ServerClient.IAuktionshausClient;
 
-@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner , Bardia Asemi , Tobias Van den Boom , Dominikus Häckel ,  Dilara , Sabiha" )
+@Author(name = "Bijan Shahbaz Nejad, Angelo Soltner, Bardia Asemi, Tobias Van den Boom, Dominikus Häckel, Dilara Güler, Sabiha Can" )
 
 public class PlayState extends State {
 
@@ -294,7 +294,7 @@ public class PlayState extends State {
 			Ork[2].addLoot(EquipmentType.Kupferhelm);
 			Ork[3] = new Ork(448, 2624, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(448, 2624, 64, 64, "gegner"));
 			Ork[4] = new Ork(1600, 2976, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1600, 2976, 64, 64, "gegner"));
-			Ork[4].addLoot(EquipmentType.Holzschild);
+			Ork[4].addLoot(EquipmentType.Lederhandschuh);
 			Ork[5] = new Ork(1632, 2272, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1632, 2272, 64, 64, "gegner"));
 			Ork[5].addLoot(EquipmentType.Lederrüstung);
 			Ork[6] = new Ork(2816, 1632, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(2816, 1632, 64, 64, "gegner"));
@@ -304,7 +304,7 @@ public class PlayState extends State {
 			Ork[8] = new Ork(4352, 1024, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4352, 1024, 64, 64, "gegner"));
 			Ork[8].addLoot(EquipmentType.Dolch);
 			Ork[9] = new Ork(4788, 1984, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4788, 1984, 64, 64, "gegner"));
-			Ork[9].addLoot(EquipmentType.Holzschild);
+			Ork[9].addLoot(EquipmentType.Lederhandschuh);
 			Ork[10] = new Ork(3488, 2848, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3488, 2848, 64, 64, "gegner"));
 			Ork[10].addLoot(EquipmentType.Lederrüstung);
 			Ork[11] = new Ork(3040, 3456, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3040, 3456, 64, 64, "gegner"));
@@ -331,7 +331,7 @@ public class PlayState extends State {
 			Ork[2].addLoot(EquipmentType.Kupferhelm);
 			Ork[3] = new Ork(224, 2560, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(224, 2560, 64, 64, "gegner"));
 			Ork[4] = new Ork(3648, 2944, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3648, 2944, 64, 64, "gegner"));
-			Ork[4].addLoot(EquipmentType.Holzschild);
+			Ork[4].addLoot(EquipmentType.Lederhandschuh);
 			Ork[5] = new Ork(4864, 1760, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4864, 1760, 64, 64, "gegner"));
 			Ork[6] = new Ork(4992, 1760, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4992, 1760, 64, 64, "gegner"));
 			Ork[6].addLoot(EquipmentType.Kupferhelm);
@@ -343,9 +343,9 @@ public class PlayState extends State {
 			Skelett[2] = new Skelett(416, 1344, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(416, 1344, 32, 48, "gegner"));
 			Skelett[2].addLoot(EquipmentType.Kettenhemd);
 			Skelett[3] = new Skelett(608, 1888, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(608, 1888, 32, 48, "gegner"));
-			Skelett[3].addLoot(EquipmentType.Holzschild);
+			Skelett[3].addLoot(EquipmentType.Lederhandschuh);
 			Skelett[4] = new Skelett(1056, 1568, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(1056, 1568, 32, 48, "gegner"));
-			Skelett[4].addLoot(EquipmentType.Eisenschild);
+			Skelett[4].addLoot(EquipmentType.Eisenhandschuh);
 			Skelett[5] = new Skelett(992, 1952, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(992, 1952, 32, 48, "gegner"));
 			Skelett[6] = new Skelett(736, 3488, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(736, 3488, 32, 48, "gegner"));
 			Skelett[6].addLoot(EquipmentType.Eisenhelm);
@@ -366,7 +366,7 @@ public class PlayState extends State {
 			Skelett[15].addLoot(EquipmentType.Stoffschuh);
 			Skelett[16] = new Skelett(2816, 4224, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(2816, 4224, 32, 48, "gegner"));
 			Skelett[17] = new Skelett(3488, 4032, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(3488, 4032, 32, 48, "gegner"));
-			Skelett[17].addLoot(EquipmentType.Eisenschild);
+			Skelett[17].addLoot(EquipmentType.Eisenhandschuh);
 			Skelett[18] = new Skelett(3552, 2848, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(3552, 2848, 32, 48, "gegner"));
 			Skelett[19] = new Skelett(3840, 2560, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(3840, 2560, 32, 48, "gegner"));
 			Skelett[20] = new Skelett(4032, 4032, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(4032, 4032, 32, 48, "gegner"));
@@ -382,7 +382,7 @@ public class PlayState extends State {
 			Skelett[26].addLoot(EquipmentType.Lederschuh);
 			Skelett[27] = new Skelett(5024, 1664, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(5024, 1664, 32, 48, "gegner"));
 			Skelett[28] = new Skelett(4832, 1664, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 32, 48, "gegner"));
-			Skelett[28].addLoot(EquipmentType.Eisenschild);
+			Skelett[28].addLoot(EquipmentType.Eisenhandschuh);
 			Skelett[29] = new Skelett(4832, 1664, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 32, 48, "gegner"));
 			Skelett[30] = new Skelett(4832, 1664, s.getGegnerAnimation(3), collisionLayer, 80, ske, createDynamicBody(4832, 1664, 32, 48, "gegner"));
 			Skelett[30].addLoot(EquipmentType.Kettenhemd);
@@ -425,7 +425,7 @@ public class PlayState extends State {
 			GruenerSchleim[4] = new GruenerSchleim(4224, 3008, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4224, 3008, 35, 32, "gegner"));
 			GruenerSchleim[4].addLoot(EquipmentType.Stahlhelm);
 			GruenerSchleim[5] = new GruenerSchleim(3264, 2784, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(3264, 2784, 35, 32, "gegner"));
-			GruenerSchleim[5].addLoot(EquipmentType.Stahlschild);
+			GruenerSchleim[5].addLoot(EquipmentType.Stahlhandschuh);
 			GruenerSchleim[6] = new GruenerSchleim(160, 3328, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(160, 3328, 35, 32, "gegner"));
 			GruenerSchleim[6].addLoot(EquipmentType.Kettenhemd);
 			GruenerSchleim[7] = new GruenerSchleim(1152, 5056, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(1152, 5056, 35, 32, "gegner"));
@@ -439,7 +439,7 @@ public class PlayState extends State {
 			GruenerSchleim[12] = new GruenerSchleim(5568, 4256, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(5568, 4256, 35, 32, "gegner"));
 			GruenerSchleim[13] = new GruenerSchleim(4096, 5472, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4096, 5472, 35, 32, "gegner"));
 			GruenerSchleim[14] = new GruenerSchleim(4096, 5376, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(4096, 5376, 35, 32, "gegner"));
-			GruenerSchleim[14].addLoot(EquipmentType.Stahlschild);
+			GruenerSchleim[14].addLoot(EquipmentType.Stahlhandschuh);
 			GruenerSchleim[15] = new GruenerSchleim(2336, 5824, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2336, 5824, 35, 32, "gegner"));
 			GruenerSchleim[16] = new GruenerSchleim(2208, 5696, s.getGegnerAnimation(1), collisionLayer, 200, boss, createDynamicBody(2208, 5696, 35, 32, "gegner"));
 			GruenerSchleim[16].addLoot(EquipmentType.Lederschuh);
@@ -475,8 +475,9 @@ public class PlayState extends State {
 		c.setAllItems(testInventar);
 
 		if (!pauseToInventory && Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-//			inventoryState.dispose();
-//			inventoryState = null;
+			if(inventoryState != null)
+				inventoryState.dispose();
+			inventoryState = null;
 			gsm.push(new PauseState(gsm,this));
 		}
 		
@@ -491,11 +492,7 @@ public class PlayState extends State {
 		//input halted
 		if(pauseToInventory)
 			return;
-	
 
-		// if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
-		// for (Gegner g : gegnerList)
-		// killGegner(g);
 
 		// Speichern des aktuellen Spielgeschehens --Dom--
 //		if (Gdx.input.isKeyJustPressed(Keys.K)) {
@@ -726,6 +723,7 @@ public class PlayState extends State {
 
 				if (d.isDisposable())
 					iter.remove();
+				
 				if (d.isVisible()) {
 					d.draw(sb);
 					break;
@@ -910,6 +908,10 @@ public class PlayState extends State {
 		}
 		truhenListe = new LinkedList<Truhe>();
 		PortalListe = new LinkedList<Portal>();
+		
+		if(inventoryState != null)
+			inventoryState.dispose();
+		inventoryState = null;
 	}
 
 	public Body createDynamicBody(int x, int y, int w, int h, String a) { // String a =
@@ -1023,5 +1025,11 @@ public class PlayState extends State {
 		return tempDrawableList;
 	}
 
+	
+	public void resetInventoryState() {
+		if(inventoryState != null)
+			inventoryState.dispose();
+		inventoryState = null;
+	}
 
 }

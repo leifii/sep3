@@ -10,19 +10,23 @@ import java.util.Map.Entry;
 import com.mygdx.game.Author;
 import com.mygdx.menu.IInventar;
 import com.objects.Equipment;
+import com.objects.EquipmentType;
 import com.objects.Item;
 import com.objects.ItemType;
 import com.objects.Trank;
+import com.objects.Trank.TrankType;
 
-@Author(name = "?Dilara Güler?")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 public class Inventory implements IInventar {
 
+	
 	private List<Item> itemList;
 	private Map<ItemType, Equipment> equipment;
+	private int gold;
+	
 	
 	private Attributes attributeBoost;
-	private int gold;
 	private final Character owner;
 	private final int maxITEMS = 21;
 	
@@ -35,7 +39,7 @@ public class Inventory implements IInventar {
 		equipment = new HashMap<>();
 		equipment.put(ItemType.Helm, null);
 		equipment.put(ItemType.Waffe, null);
-		equipment.put(ItemType.Schild, null);
+		equipment.put(ItemType.Handschuh, null);
 		equipment.put(ItemType.Brustpanzer, null);
 		equipment.put(ItemType.Schuhe, null);
 		
@@ -44,7 +48,7 @@ public class Inventory implements IInventar {
 	
 	public void useItem(Item i) {
 		if(i.getType().isEquipable()) {
-			if(equipment.containsKey(i.getType())) {
+			if(equipment.containsKey(i.getType())) {				
 				Equipment e = equipment.get(i.getType()) == i ? null : (Equipment) i;
 				equipment.put(i.getType(), e);	
 				updateAttributeBoost();
@@ -53,15 +57,6 @@ public class Inventory implements IInventar {
 			owner.heal(((Trank) i).getHeal());
 			itemList.remove(i);
 		}
-		
-//		for(int x = 0; x < itemList.size(); x++)
-//			System.out.println(x + " " + itemList.get(x).getNAME());
-//		
-//		for(Equipment s : equipment.values()) {
-//			if(s != null)
-//				System.out.println(s.getNAME());
-//		}
-//		System.out.println("============");
 	}
 	
 	public boolean isItemEquipped(Object o) {
@@ -91,10 +86,12 @@ public class Inventory implements IInventar {
 
 	@Override
 	public void add(Item i) {
-		if(itemList.size() < maxITEMS)
-			itemList.add(i);
-		else 
-			System.out.println("Inventory full");
+		if(i != null) {
+			if(itemList.size() < maxITEMS)
+				itemList.add(i);
+			else 
+				System.out.println("Inventory full");
+		}
 	}
 
 	@Override
@@ -116,6 +113,7 @@ public class Inventory implements IInventar {
 	
 	public Attributes updateAttributeBoost() {
 		 Attributes boost = new Attributes(0,0,0,0,0,0,0,0);
+		 
 		 for(Entry<ItemType, Equipment> e : equipment.entrySet()) {
 			 if(e.getValue() != null)
 				 boost.addAttributeValues(e.getValue().getEquipmentType().getAttributes());
@@ -171,6 +169,25 @@ public class Inventory implements IInventar {
 				return i.getValue();
 		System.out.println(nameOfItem + " nicht im Inventar gefunden");
 		return -1;
+	}
+	
+	public void doSomething() {
+		boolean buy = true;
+		if(buy) {
+			place("Lederrüstung");							//wieso so
+			add(new Equipment(EquipmentType.Lederrüstung)); //und nicht so? Ist viel sauberer
+			
+		}
+	}
+	
+	public void place(String itemName) {
+		EquipmentType e = EquipmentType.valueOf(itemName);
+		if(e != null)
+			add(new Equipment(e));
+		
+		Trank t = TrankType.getTrank(itemName);
+		if(t != null)
+			add(t);
 	}
 	
 }
