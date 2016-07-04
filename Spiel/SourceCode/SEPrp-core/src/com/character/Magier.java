@@ -16,6 +16,11 @@ import com.mygdx.game.Author;
 
 public class Magier extends Character{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	transient private Vector3 position;
 	
 	transient private TextureRegion character;
