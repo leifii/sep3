@@ -203,9 +203,9 @@ public class PlayState extends State {
 		keys.setGoldKeyStatus(goldKeyRecieved);
 		keys.setWhiteKeyStatus(whiteKeyRecieved);
 		c.setBosseBesiegt(loadedBosseBesiegt);
-		for (int i = 0; i < allItems.length; i++){
-			testInventar.place(allItems[i]);
-		}
+//		for (int i = 0; i < allItems.length; i++){
+//			testInventar.place(allItems[i]);
+//		}
 		
 
 //		Items werden als Item Objekt über die Inventory.add(Item i) Methode zum Inventar hinzugefügt
@@ -339,7 +339,7 @@ public class PlayState extends State {
 	@Override
 	protected void handleInput() {
 		
-		// Update der SkillLevel in Character --Dom--
+		// Update der SkillLevel und des Inventars in Character --Dom--
 		c.updateSkillLevel();
 		c.setAllItems(testInventar);
 
