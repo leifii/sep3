@@ -27,7 +27,7 @@ public class Character implements ICharacter{
 	TextureRegion[][][] Angriff;
 	TextureRegion[][][] archer, warrior,mage;
 	
-
+ 
 	public Character(){
 //		texture=new Texture("grafiken/mage with head+s.png");
 		texture1=new Texture("grafiken/Archer.png");
