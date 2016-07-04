@@ -854,9 +854,7 @@ public void keyPressed(KeyEvent l) {
 	
 		}	
 		else if (l.getKeyCode()== KeyEvent.VK_X){
-			System.out.println("x"); 
-			
-			System.out.println("xx"); 
+			queue.addToQueue((byte) 300);
 		}
 }
 /*
