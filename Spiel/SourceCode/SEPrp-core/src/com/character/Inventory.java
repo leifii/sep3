@@ -54,14 +54,14 @@ public class Inventory implements IInventar {
 			itemList.remove(i);
 		}
 		
-		for(int x = 0; x < itemList.size(); x++)
-			System.out.println(x + " " + itemList.get(x).getNAME());
-		
-		for(Equipment s : equipment.values()) {
-			if(s != null)
-				System.out.println(s.getNAME());
-		}
-		System.out.println("============");
+//		for(int x = 0; x < itemList.size(); x++)
+//			System.out.println(x + " " + itemList.get(x).getNAME());
+//		
+//		for(Equipment s : equipment.values()) {
+//			if(s != null)
+//				System.out.println(s.getNAME());
+//		}
+//		System.out.println("============");
 	}
 	
 	public boolean isItemEquipped(Object o) {

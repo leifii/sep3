@@ -14,6 +14,7 @@ public abstract class Item implements IDrawable {
 	private int value;
 	private int rarity;
 	private TextureRegion texture;
+	private String description;
 	
 	public Item(String name, ItemType type, int value, int rarity, TextureRegion texture){
 		NAME = name;
@@ -43,4 +44,17 @@ public abstract class Item implements IDrawable {
 		return texture;
 	}
 	
+	protected void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		if(description == null)
+			return getNAME() + " vom Typ " + getType();
+		return description;
+	}
+	
+	public String getPriceAsString() {
+		return "(" + value + " G)";
+	}
 }

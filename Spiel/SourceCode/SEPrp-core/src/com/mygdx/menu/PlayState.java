@@ -46,6 +46,7 @@ import com.mygdx.game.Author;
 import com.npc.AuktionsHausNPC;
 import com.npc.NPC;
 import com.npc.Speicherstein;
+import com.objects.Equipment;
 import com.objects.EquipmentType;
 import com.objects.Gold;
 import com.objects.Key;
@@ -170,9 +171,9 @@ public class PlayState extends State {
 		PortalListe.add(new Portal(50, 50, 2934, 312));
 		PortalListe.add(new Portal(2934, 312, 50, 50));
 		
-//		zum testen
-//		for(EquipmentType t : EquipmentType.values())
-//			c.getInventory().add(new Equipment(t));
+//		Inventat zum testen mit allen Items füllen
+		for(EquipmentType t : EquipmentType.values())
+			c.getInventory().add(new Equipment(t));
 		
 
 		instance = this;
@@ -341,6 +342,12 @@ public class PlayState extends State {
 		c.updateSkillLevel();
 //		c.setAllItems(testInventar);
 
+		if (!pauseToInventory && Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			inventoryState.dispose();
+			inventoryState = null;
+			gsm.push(new PauseState(gsm,this));
+		}
+		
 		//toogle inventoryState
 		if (Gdx.input.isKeyJustPressed(Keys.I) || (pauseToInventory && Gdx.input.isKeyJustPressed(Keys.ESCAPE))) {
 			if(inventoryState == null)
@@ -350,15 +357,9 @@ public class PlayState extends State {
 		}
 		
 		//input halted
-		if(pauseToInventory) {
+		if(pauseToInventory)
 			return;
-		}
-		
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			inventoryState = null;
-			gsm.push(new PauseState(gsm,this));
-		}
-
+	
 
 		// if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
 		// for (Gegner g : gegnerList)

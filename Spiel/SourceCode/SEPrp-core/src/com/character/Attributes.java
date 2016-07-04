@@ -107,12 +107,12 @@ public class Attributes implements Serializable {
 	
 	public String toString() {
 		return "STR "+ STR + 
-				"\nDEF " + DEF +
-				"\nINT " + INT + 
-				"\nDEX "+ DEF + 
-				"\nSTA "+ STA +
-				"\nATK " + ATK + 
-				"\nAS " + AS + 
-				"\nMS " + MS;
+				"  DEF " + DEF +
+				"  INT " + INT + 
+				"  DEX "+ DEF + 
+				"  STA "+ STA +
+				"  ATK " + ATK + 
+				"  AS " + AS + 
+				"  MS " + MS;
 	}
 }

@@ -15,6 +15,7 @@ public class Equipment extends Item implements IDrawable {
 	public Equipment(EquipmentType type) {
 		super(type.toString(), type.getType(), type.getValue(), type.getRarity(), type.getTextureRegion());
 		this.type = type;
+		setDescription(type.getAttributes().toString());
 	}
 	
 	//nur als gain icon über Spieler.

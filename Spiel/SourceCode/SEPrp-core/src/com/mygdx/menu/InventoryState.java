@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -44,6 +45,8 @@ public class InventoryState extends State {
 	private BitmapFont font;
 	private Image playerIcon;
 	
+	private Item hoverItem;
+	
 	private int xRow = 7, yRow = 3, size = 64;
 	private float offsetX = Gdx.graphics.getWidth() * 0.6f, offsetY = Gdx.graphics.getWidth() * 0.2f;
 	private float centerX = Gdx.graphics.getWidth() * 0.65f, centerY = Gdx.graphics.getHeight() * 0.55f;
@@ -62,6 +65,7 @@ public class InventoryState extends State {
 	    sr = new ShapeRenderer();
 		hudBatch = new SpriteBatch();
 		font = new BitmapFont();
+		hoverItem = null;
 		
 		attributes = new LinkedList<>();
 		attributes.add("STR");
@@ -179,16 +183,24 @@ public class InventoryState extends State {
 		
 		sr.setColor(0, 0, 0, 0.7f);
 		sr.rect(Gdx.graphics.getWidth() / 2, 0, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight());
+		
+		
+		if(hoverItem != null)
+			sr.rect(0,  0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * 0.2f);
+		
 		sr.setColor(1, 1, 1, 1);
 		
 		sr.end();
 		Gdx.gl.glDisable(GL11.GL_BLEND);
 		
 		render();
+		
+		
 	}
 	
 	public void render() {
 		hudBatch.begin();
+		stage.act();
 		
 //		Player
 		playerIcon.draw(hudBatch, 0.7f);
@@ -227,11 +239,20 @@ public class InventoryState extends State {
 		font.draw(hudBatch, exp + " / "+ neededExp + " EXP", centerX + 3 * equipOffset + 100, centerY + equipOffset - 20);
 		font.draw(hudBatch, PlayState.getInstance().getPlayer().getInventory().getMoney() + " Gold", centerX + 3 * equipOffset + 100, centerY + equipOffset - 70);
 		
-		
 		//HP
 		font.draw(hudBatch, playstate.getPlayer().getCurrentHP() + " / " + playstate.getPlayer().getMaxHP()+ " HP", centerX + 3 * equipOffset + 100, centerY + equipOffset - 40);
+
+		if(hoverItem != null) {
+			hudBatch.draw(hoverItem.getTextureRegion(), Gdx.graphics.getWidth() * 0.05f, Gdx.graphics.getHeight() * 0.1f, size, size);
+			font.draw(hudBatch, hoverItem.getNAME() + " " + hoverItem.getPriceAsString(), Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.15f + 20);
+			font.draw(hudBatch, hoverItem.getType().toString(), Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.15f);
+			font.draw(hudBatch, hoverItem.getDescription(), Gdx.graphics.getWidth() * 0.1f, Gdx.graphics.getHeight() * 0.15f - 30);
+		}
 		
 		hudBatch.end();
+	
+
+		
 	}
 
 	@Override
@@ -251,6 +272,15 @@ public class InventoryState extends State {
 				PlayState.getInstance().getPlayer().getInventory().useItem(i);
 			state.updateImages();
 		}
+		
+		public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+			hoverItem = (Item) event.getTarget().getUserObject();
+		}
+		
+		public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+			hoverItem = null;
+		}
+		
 	}
 
 	

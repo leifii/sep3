@@ -9,8 +9,9 @@ public class Trank extends Item {
 	private int heal;
 	private float alpha = 1;
 	public Trank(int heal) {
-		super(ItemType.Trank.toString(), ItemType.Trank, heal, heal / 10, Objekte.ITEMS2[5][3]);
+		super("Heiltrank", ItemType.Trank, heal, heal / 10, Objekte.ITEMS2[5][3]);
 		this.heal = heal;
+		setDescription("Heilt " + heal + "  HP");
 	}
 
 	public int getHeal() {
