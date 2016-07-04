@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
 import com.mygdx.game.Author;
+import com.mygdx.menu.PlayState;
 
 @Author(name = "Bijan Shahbaz Nejad")
 
@@ -27,12 +28,12 @@ public class Portal {
 	
 	int benutzt=0;
 	
-	
-	public Portal(int posX,int posyY,int teleX,int teleY){
+	int Map;
+	public Portal(int posX,int posyY,int teleX,int teleY,int mapindex){
 		
 		position=new Vector3(posX, posyY, 0);
 		teleOrt=new Vector3(teleX, teleY, 0);
-		
+		Map=mapindex;
 		
 	}
 	
@@ -42,12 +43,13 @@ public class Portal {
 	public void update(float dt){
 	
 	}
-	public void render(SpriteBatch sb,Character c){
+	public void render(PlayState ps,SpriteBatch sb,Character c){
 		if (c.getPosition().x>=position.x-10 && c.getPosition().x<=position.x+40 &&  c.getPosition().y<=position.y+40 && c.getPosition().y>=position.y-10 && benutzt<3) {
 			drehmoment+=3;
 			teleportzähler[0]+=1;
 		portal.setColor(Color.GOLD);
 		if (teleportzähler[0]==200 ) {
+			
 			c.getPosition().x=teleOrt.x;
 		c.getPosition().y=teleOrt.y;
 		benutzt++;
