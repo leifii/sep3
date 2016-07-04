@@ -551,20 +551,30 @@ public class Character implements Serializable, IDrawable {
 			if (Gdx.input.isKeyPressed(Keys.NUM_1)) {
 				getSkills().get(1).lvlup();
 				skillup = false;
+				for (int i = 0; i < getSkills().size(); i++) {
+					getSkills().get(i).setskillup(false);
+				}
 			}
 			if (Gdx.input.isKeyPressed(Keys.NUM_2)) {
 				getSkills().get(2).lvlup();
 				skillup = false;
+				for (int i = 0; i < getSkills().size(); i++) {
+					getSkills().get(i).setskillup(false);
+				}
 			}
 			if (Gdx.input.isKeyPressed(Keys.NUM_3)) {
 				getSkills().get(3).lvlup();
+				for (int i = 0; i < getSkills().size(); i++) {
+					getSkills().get(i).setskillup(false);
+				}
 			}
 			if (Gdx.input.isKeyPressed(Keys.NUM_4)) {
 				getSkills().get(4).lvlup();
+				for (int i = 0; i < getSkills().size(); i++) {
+					getSkills().get(i).setskillup(false);
+				}
 			}
-			for (int i = 0; i < getSkills().size(); i++) {
-				getSkills().get(i).setskillup(false);
-			}
+			
 		}
 	}
 
@@ -710,10 +720,12 @@ public class Character implements Serializable, IDrawable {
 		//currentHP -= (int)dmg;
 		//currentHP -= damage;
 
-		float dmg = (damage - (5 *(attributes.getDEF()/2.5f)));
-		dmg = Math.max(dmg, 0); //kein negativer dmg
-		currentHP -= (int)dmg;
+//		float dmg = (damage - (5 *(attributes.getDEF()/2.5f)));
+//		dmg = Math.max(dmg, 0); //kein negativer dmg
+//		currentHP -= (int)dmg;
 
+		currentHP -= damage;
+		
 		PlayState.getInstance()
 				.addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
 	}

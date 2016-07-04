@@ -92,27 +92,28 @@ public class Skill implements Serializable {
 		this.setY(y);
 		this.lvl = lvl;
 		
-		if(c instanceof Krieger){
-			float d;
-			d = dmg * (c.attributes.getSTR()/10);
-			this.setDmg((int)d);
-		}		
-		if(c instanceof Schurke){
-			float d;
-		d = dmg * (c.attributes.getDEX()/10);
-		this.setDmg((int)d);
-		}
-		if(c instanceof Schuetze){
-			float d;
-		d = dmg * (c.attributes.getDEX()/10);
-		this.setDmg((int)d);
-		}
-		if(c instanceof Magier){
-			float d;
-		d = dmg * (c.attributes.getINT()/10);
-		this.setDmg((int)d);
-		}
+//		if(c instanceof Krieger){
+//			float d;
+//			d = dmg * (c.attributes.getSTR()/10);
+//			this.setDmg((int)d);
+//		}		
+//		if(c instanceof Schurke){
+//			float d;
+//		d = dmg * (c.attributes.getDEX()/10);
+//		this.setDmg((int)d);
+//		}
+//		if(c instanceof Schuetze){
+//			float d;
+//		d = dmg * (c.attributes.getDEX()/10);
+//		this.setDmg((int)d);
+//		}
+//		if(c instanceof Magier){
+//			float d;
+//		d = dmg * (c.attributes.getINT()/10);
+//		this.setDmg((int)d);
+//		}
 		
+		this.dmg = dmg;
 		
 		this.setCd(cd);
 		this.cdfaktor = cdfaktor;
@@ -159,8 +160,8 @@ public class Skill implements Serializable {
 		setCdnow(getCdnow() - dt); // cd nach Benutzung reduzieren
 		//dmg = getDmg() * c.getdmgFaktor();
 		
-		if(alive == true)
-		System.out.println(c.attributes.getDEX());
+		//if(alive == true)
+		//System.out.println(c.attributes.getDEX());
 			//System.out.println(dmg);
 		
 		lifeTimer += dt;
@@ -170,7 +171,7 @@ public class Skill implements Serializable {
 
 		}
 		
-		if (button == 5 && skillup == false)		//testweise skillup false um lvlup zu testen
+		if (button == 5 && skillup == true)		//testweise skillup false um lvlup zu testen
 			setAlive(true);
 		
 		
