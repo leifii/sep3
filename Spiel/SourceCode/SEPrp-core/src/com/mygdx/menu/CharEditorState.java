@@ -67,10 +67,10 @@ public class CharEditorState extends State {
 					{ new Image(augen[1]), new Image(haare[1]) }, { new Image(augen[2]), new Image(haare[2]) },
 					{ new Image(augen[3]), new Image(haare[3]) }, {new Image(augen[4]), new Image(haare[4]) }};
 		} else if (charauswahl == 2) { // Magier
-			augen = new Texture[] { new Texture("grafiken/Archer.png"), new Texture("grafiken/Archer-Eyes1.png"),
-					new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png") };
-			haare = new Texture[] { new Texture("grafiken/ArcherBlue.png"), new Texture("grafiken/Schütze_blauE.png"),
-					new Texture("grafiken/Schütze_grünE.png"), new Texture("grafiken/Schütze_rotE.png") };
+			augen = new Texture[] { new Texture("grafiken/mage/mage.png"), new Texture("grafiken/mage/mage_eye_green.png"),
+					new Texture("grafiken/mage/mage_eye_red.png"), new Texture("grafiken/mage/mage_eye_yellow.png") };
+			haare = new Texture[] { new Texture("grafiken/mage/mage_blue.png"), new Texture("grafiken/mage/mage_blue_eye_green.png"),
+					new Texture("grafiken/mage/mage_blue_eye_red.png"), new Texture("grafiken/mage/mage_blue_eye_yellow.png") };
 			charbild = new Image[][] { { new Image(augen[0]), new Image(haare[0]) },
 					{ new Image(augen[1]), new Image(haare[1]) }, { new Image(augen[2]), new Image(haare[2]) },
 					{ new Image(augen[3]), new Image(haare[3]) } };
@@ -285,15 +285,15 @@ public class CharEditorState extends State {
 				e.printStackTrace();
 			}
 			charbild[augenindex][haarindex].setScale(XX, YY);
-
+			
 		}
-
+		
 		if (x > 50) {
 			stage.addActor(charbild[augenindex][haarindex]);
 		}
 		stage.act();
 		stage.draw();
-
+		
 		// DESIGN
 		if (haarindex == 0 && augenindex == 0) {
 			design = 0;
@@ -306,6 +306,7 @@ public class CharEditorState extends State {
 		} else if (charauswahl==1 && haarindex ==0 && augenindex == 4) {
 			design = 4;
 		}
+		
 		else if(charauswahl==1){
 			if (haarindex == 1 && augenindex == 0) {
 				design = 5;
