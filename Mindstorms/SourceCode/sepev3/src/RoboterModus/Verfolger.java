@@ -10,14 +10,13 @@ import Linienverfolger.Linienverfolgung;
 import Spielfeld.Plane;
 import Spielfeld.Planeinit;
 
-public class Verfolger extends IModus{
+public class Verfolger extends IModus2{
 
 	private int letzterKnoten;
 	private int zielposition;
 	
 	public Verfolger (int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
-		super(plane, lvfg, drucksensor, Rolle.Geist_Verfolgung);
-		aktuelleposition = start;
+		super(start, plane, lvfg, drucksensor);
 		letzterKnoten = aktuelleposition -10;
 	}
 	
@@ -245,6 +244,8 @@ public class Verfolger extends IModus{
 		else
 			lvfg.stop();
 	}
+
+
 
 
 

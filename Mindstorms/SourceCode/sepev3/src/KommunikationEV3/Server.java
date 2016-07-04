@@ -59,7 +59,7 @@ public class Server{
 			Planeinit planes = new Planeinit(knoten, norden, sueden, osten, westen, powerup);
 
 			Linienverfolgung lvfg=new Linienverfolgung();
-			IModus robomode;
+			IModus2 robomode;
 
 			//Ende Initialisierung
 
@@ -85,7 +85,7 @@ public class Server{
 			LCD.drawString("Zufall", 0, 2);                  //Displayausgabe EV3
 			break;
 
-			case 104: robomode = new Sepman(planes, lvfg, drucksensor);
+			case 104: robomode = new Sepman(54, planes, lvfg, drucksensor);
 			LCD.drawString("Sepman", 0, 2);                  //Displayausgabe EV3
 			break;
 

@@ -15,16 +15,15 @@ import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Planeinit;
 
-public class Verteidiger extends IModus{
+public class Verteidiger extends IModus2{
 	
 	private int letzterKnoten;
 	private int zielposition;
 	public boolean alive = true;
 
 	public Verteidiger(int start ,Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
-		super(plane, lvfg, drucksensor, Rolle.Geist_Verteidigung);
-		aktuelleposition = start;
-		letzterKnoten = aktuelleposition ;
+		super(start, plane, lvfg, drucksensor);
+		letzterKnoten = aktuelleposition -1;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -165,6 +164,8 @@ public class Verteidiger extends IModus{
 			break;
 	   }
    }
+
+
    }
 
    

@@ -4,36 +4,152 @@ import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Planeinit;
 
-public class Sepman extends IModus{
+public class Sepman extends IModus2{
 
-	private Richtung aktuelleRichtung;
-	
-	public Sepman(Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
-		super(plane, lvfg, drucksensor, Rolle.SEPman);
+
+
+	public Sepman(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor) {
+		super(start, plane, lvfg, drucksensor);
+		letzterKnoten = aktuelleposition + 10;
 	}
 
 	@Override
 	public void run() {
-		if(aktuelleRichtung != getSepmanRichtung())
-			neuAusrichten();
-		
-//		lvfg.geradeaus(); 
+
+		getRichtung();
+		bewegen();
 	}
-	
-	private void neuAusrichten() {
-		if(aktuelleRichtung == null) {
-			System.out.println("aktuelleRichtung == null, wird gesetzt auf " + getSepmanRichtung());
-			aktuelleRichtung = getSepmanRichtung();
+
+	private void bewegen() {
+
+		//Richtung Norden
+		if(nachricht[8] == 4){
+			
+			zielposition = aktuelleposition - 10;
+			
+			//Blickrichtung Norden
+			if(richtung == 0){
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Westen
+			else if(richtung == 1){
+				lvfg.drehenRechts();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Sueden
+			else if(richtung == 2){
+				lvfg.drehenLinks();
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Osten
+			else if(richtung == 3){
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
 		}
-		int diff = aktuelleRichtung.getDifferenz(getSepmanRichtung());
-		switch (diff) {
-		case 90: lvfg.drehenRechts(); break;
-		case 180: lvfg.drehenLinks(); lvfg.drehenLinks(); break;
-		case 270: lvfg.drehenLinks(); break;
+
+		//Richtung Osten
+		else if(nachricht[8] == 5){
+			
+			zielposition = aktuelleposition + 1;
+
+			//Blickrichtung Norden
+			if(richtung == 0){
+				lvfg.drehenRechts();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Westen
+			else if(richtung == 1){
+				lvfg.drehenLinks();
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Sueden
+			else if(richtung == 2){
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Osten
+			else if(richtung == 3){
+				lvfg.geradeaus();
+			}
+		}
+
+
+
+		//Richtung Sueden
+		else if(nachricht[8] == 6){
+			
+			zielposition = aktuelleposition + 10;
+
+			//Blickrichtung Norden
+			if(richtung == 0){
+				lvfg.drehenLinks();
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Westen
+			else if(richtung == 1){
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Sueden
+			else if(richtung == 2){
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Osten
+			else if(richtung == 3){
+				lvfg.drehenRechts();
+				lvfg.geradeaus();
+			}
+		}
+
+		//Richtung Westen
+		else if(nachricht[8] == 7){
+			
+			zielposition = aktuelleposition - 1;
+
+			//Blickrichtung Norden
+			if(richtung == 0){
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Westen
+			else if(richtung == 1){
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Sueden
+			else if(richtung == 2){
+				lvfg.drehenRechts();
+				lvfg.geradeaus();
+			}
+
+			//Blickrichtung Osten
+			else if(richtung == 3){
+				lvfg.drehenLinks();
+				lvfg.drehenLinks();
+				lvfg.geradeaus();
+			}
 		}
 		
-		aktuelleRichtung = getSepmanRichtung();
+		letzterKnoten = aktuelleposition;
+		aktuelleposition = zielposition;
+
+
 	}
+
 
 
 }
