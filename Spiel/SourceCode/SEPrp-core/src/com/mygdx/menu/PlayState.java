@@ -568,9 +568,9 @@ public class PlayState extends State {
 			}
 			if (c.position.x <= 4500 && c.position.x >=4330 && c.position.y >= 2378 && c.position.y <= 2572 && c.getMapIndex() == 1 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-//					if (c.getBosseBesiegt()[0]) {
+					if (c.getBosseBesiegt()[0]) {
 						changeMap(2);
-//					}
+					}
 					
 				}
 			}
