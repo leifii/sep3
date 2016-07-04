@@ -794,6 +794,7 @@ public void spielfeld() throws IOException{
 	this.spielvorbereitungsDisplay.setVisible(false);
 	this.pausenDisplay.setVisible(false);
 	queue.addToQueue((byte)001);
+	queue.addToQueue((byte)003);
 	pause = false; 
 	this.spielEnde=false;
 	queue.addToQueue((byte)021); 
