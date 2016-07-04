@@ -23,13 +23,13 @@ public class Speicherstein extends NPC {
 
 		if (Character.overlaps(bounds) && Gdx.input.isKeyJustPressed(Keys.SPACE) && angesprochen==false ) {
 		
-			angesprochen=true;
+			angesprochen=true;dia.setGeöffnet(true);dia.setZähler(0);
 		}
 		
 		
 		
 		else if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) || Character.overlaps(bounds)==false) {
-			angesprochen=false;
+			angesprochen=false; dia.setText("Drücke K, um zu Speichern");
 			
 		}
 		
@@ -38,10 +38,14 @@ public class Speicherstein extends NPC {
 				// Die System.out.println kannst du rausnehmen, das war nur zu Testzwecken solange wir noch keine InGameEinblendung hatten.
 				// --Dom--
 				System.out.println("Speichern erfolgreich unter Spielstand " + de.SEPL.GameScore.GameScoreManagement.saveGameScore(c));
+				dia.setText("Speichern erfolgreich unter Spielstand "+de.SEPL.GameScore.GameScoreManagement.saveGameScore(c));
 			
 		}
-			dia.draw(sb, 0.7f);
 			
+	}
+	public void drawDia(SpriteBatch sb){
+		if(angesprochen==true)
+		dia.draw(sb, 0.5f);
 	}
 
 	@Override
