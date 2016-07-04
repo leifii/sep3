@@ -94,7 +94,7 @@ public class GameScoreManagement {
 				}
 		}
 		if (gameSaved){
-		return tempRunningNr;
+		return tempRunningNr-1;
 		} else return 999;
 	}
 
