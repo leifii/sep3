@@ -46,6 +46,7 @@ import com.grafiken.ICharacter;
 import com.grafiken.Map;
 import com.mygdx.game.Author;
 import com.npc.AuktionsHausNPC;
+import com.npc.DialogNeu;
 import com.npc.NPC;
 import com.npc.Speicherstein;
 import com.objects.Equipment;
@@ -94,6 +95,7 @@ public class PlayState extends State {
 	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
 	IInventar testInventar = new com.mygdx.menu.testInventar();
 	
+	DialogNeu dial;
 	
 	public static PlayState getInstance() {
 		return instance;
@@ -232,36 +234,47 @@ public class PlayState extends State {
 		Npc = new LinkedList<NPC>();
 		if(mapIndex==1){
 		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
-				"[TutorialNPC]  "
-						+ "Hallo! "+name+" Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
+						new String[]{ "[TutorialNPC]  " + "Hallo! "+name ,"Ich erkläre dir wie das Spiel funktioniert. \nMit WASD kannst du dich in alle Richtungen bewegen.\nBenutze die Tasten 1234, um Fähigkeiten zu benutzen.\nDabei ist 4 dein stärkster Angriff, den du auch nicht allzu oft benutzen kannst.\nBenutze ihn behutsam.","Falls du einmal in Schwierigkeiten geraten solltest,\nhilft dir meist deine zweite Fähigkeit weiter,\num noch etwas länger durchzuhalten.\nWenn du gerade mal keine Fähigkeiten benutzen kannst,\nversuch es mal mit [Leertaste], um einen Standard-Angriff durchzuführen.\nMit der gleichen Taste kannst du auch mit Dorfbewohnern Interagieren.\nMit I kannst du einen Blick ins Inventar werfen."},
 				createDynamicBody(120, 300, 32, 48, "npc")));
 		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png",
-				"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
+				new String[]{"[Koboldkönig]  " + "Willkommen im Dorf!" +name ,"Vor langer Zeit herrschte Frieden im Koboldreich.\nJedoch griffen uns dann eines Tages die Truppen des dunklen Königs an.","Er nahm uns alles.\nDas Essen, das Geld, unseren Frieden\nund meinen größten Schatz.","Ich habe Gerüchte gehört,\ndass du im Stande sein könntest,\nes mit den dunklen Truppen aufzunehmen." ,"Auch wenn vielleicht nur ein Funken Hoffnung in dir stecken könnte,\nes würde kein größeres Glück in dieser Welt geben\nals wenn ich meinen Schatz zurückerlangen könnte.","Ich bitte dich Reisender,\nbringe mir meinen Schatz zurück","Ich kann dir zwar nicht viel bieten,\naber sowohl ich als auch das ganze Dorf wären dir sehr dankbar!" },
 				createDynamicBody(2339, 459, 32, 48, "npc")));
-		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas] Hallo "+ name + "Sei vorsichtig hier ist es gefährlich!!",
+		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", new String[]{"[Dragolas] Hallo "+ name + "\nSei vorsichtig hier ist es gefährlich!!"},
 				createDynamicBody(1032, 1318, 32, 48, "npc")));
 		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
 				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this, testInventar));
-		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", new String[]{"[Koboldkönig-Fan]  " + "Lang lebe der König!"},
 				createDynamicBody(1563, 381, 32, 48, "npc")));
-		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
+		Npc.add(new NPC(3243, 1596, "grafiken/Kobold.png", new String[]{"[Koboldkönig-Fan]  " + "Eigentlich wollte ich ja nur aus Neugierde\nmich außerhalb des Dorfes aufhalten,\nals ich dann plötzlich von einer Horde Orks überrascht wurde.\nScheinbar sind sie heute aus ihren Verstecken gekommen,\num unschuldige Kobolde anzugreifen.","Du scheinst ein tapferer Geselle zu sein.\nSchau mal, ob du es mit ihrem Anführer im Nordosten aufnehmen kannst.\nIch bin mir sicher, dass ohne ihn \nauch die anderen Orks aufhören würden, das Dorf anzugreifen.\nDarüber hinaus sollte es dir dann möglich sein, den Pfad hinter ihm zu betreten.","Unterschätz ihn aber bloß nicht.\nEs sind schon einige abermutige Reisende verschwunden,\ndie sich mit ihm und seiner Bande angelegt haben."},
+				createDynamicBody(3243, 1596, 32, 48, "npc")));
+		Npc.add(new NPC(705, 3234, "grafiken/Kobold.png", new String[]{"[Dorian]  " + "Früher konnte man hier in Ruhe angeln.\nHeutzutage vergeht keine Sekunde ohne dass man auf die Orks aufpassen musst"},
+				createDynamicBody(705, 3234, 30, 48, "npc")));
+		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", new String[]{"[Koboldkönig-Fan]  " + "Lang lebe der König!"},
 				createDynamicBody(2235, 317, 32, 48, "npc")));
-		Npc.add(new Speicherstein(333, 333, "savepoint.png", "Drücke K zum speichern.",createDynamicBody(333, 333, 32, 48, "npc")));
+		Npc.add(new NPC(1981, 505, "grafiken/Kobold.png", new String[]{"[Koboldkönig-Diener] Nicht nur haben sie uns unseren Schatz gestohlen,\nein paar Tage später tauchten nochmal ein paar Soldaten des Königs auf\num uns sogar die Schlüssel zu stehlen.","Ein paar Dorfbewohner berichteten mir,\ndass sie einige der Truppen,\ndie die Schlüssel gestohlen hatten in der Nähe gesichtet haben.\nWenn du aufmerksam reist, könntest du vielleicht ein paar dieser wertvollen Schlüssel finden.","Der Schatz befindet sich jedoch in eiserner Hand des dunklen Königs...."}, createDynamicBody(1981,505,32, 48, "npc")));
+		Npc.add(new Speicherstein(333, 333, "savepoint.png", new String[]{"Drücke K zum speichern."},createDynamicBody(333, 333, 32, 48, "npc")));
 		}
 		if(mapIndex==2){
-			Npc.add(new NPC(339, 224,"grafiken/Kobold.png","[Viktorius]" +"Hallo Reisender, es befinden sich viele gefährliche Kreaturen in der Nähe des Dorfes.Pass auf dich auf",
+			Npc.add(new NPC(339, 224,"grafiken/Kobold.png",new String[]{"[Viktorius]" +"Hallo Reisender, \nes befinden sich viele gefährliche Kreaturen in der Nähe des Dorfes.\nPass auf dich auf!"},
 					createDynamicBody(339, 224, 32, 48, "npc")));
-			Npc.add(new NPC(2209,2050 ,"grafiken/Kobold.png", "[Arkanus] Wilkommen im Dorf",
+			Npc.add(new NPC(2209,2050 ,"grafiken/Kobold.png", new String[]{"[Arkanus] Wilkommen im Dorf"},
 					createDynamicBody(2209, 2050, 32, 48, "npc")));
-			Npc.add(new NPC(2341, 1376,"grafiken/Kobold.png" ,"[Sinus] Im Dorf ist es sicher"+ '\n' + "Das haben wir unserer Steinbarrikade zu verdanken, die wir aufgestellt haben, um die Monster draußen zu halten"+
-											"\n jedoch können wir uns nicht sehr weit vom Dorf entfernen ohne von den Kreaturen angegriffen zu werden",
+			Npc.add(new NPC(2341, 1376,"grafiken/Kobold.png" ,new String[]{"[Sinus]  Im Dorf ist es zum Glück sicher."+ '\n' + "Das haben wir unserer Steinbarrikade zu verdanken,\ndie wir aufgestellt haben, um die Monster draußen zu halten.",
+											"\n Jedoch können wir uns nicht sehr weit vom Dorf entfernen \nohne von den Kreaturen angegriffen zu werden"},
 					createDynamicBody(2341, 1376, 32, 48, "npc")));
-			Npc.add(new NPC(3414, 1802,"grafiken/Kobold.png" ,"[Siegfried] Ich wünschte wir könnten hier in Frieden leben. \nJedoch terrorisieren uns die wilden Kreaturen, die eines Tages plötzlich aufgetaucht sind " ,
+			Npc.add(new NPC(3414, 1802,"grafiken/Kobold.png" ,new String[]{"[Siegfried] Ich wünschte wir könnten hier in Frieden leben." ,"Jedoch terrorisieren uns die wilden Kreaturen, die eines Tages plötzlich aufgetaucht sind. "},
 					createDynamicBody(3414, 1802, 32, 48, "npc")));
-			Npc.add(new NPC(5393, 4149,"grafiken/Kobold.png", "[Gabrius] Guten Tag " +name+ "\n Ich hoffe du kannst uns bei dem Skelett im Süden helfen. \n Es bereitet uns schon seit einer ganzen Weile große Schwierigkeiten" ,
+			Npc.add(new NPC(5393, 4149,"grafiken/Kobold.png", new String[]{"[Gabrius] Guten Tag " +name+ "!!\n","Ich hoffe du kannst uns bei dem Skelett im Süden helfen.",  "Es bereitet uns schon seit einer ganzen Weile große Schwierigkeiten."} ,
 					createDynamicBody(5393, 4149, 32, 48, "npc")));
 			
 			
+		}
+		if(mapIndex==3){
+			Npc.add(new NPC(2036, 775, "grafiken/Kobold.png", new String[]{"[Tsurio]  " + "Du willst es mit dem dunklen König aufnehmen!?\nEinen so mutigen Abenteurer hab ich schon lange nicht mehr gesehen.\nWie ist dein Name?","Nun"+name+"\nIch kann dir nur von deinem Vorhaben abraten.\nJedoch scheinen sich die meisten Monster weit im Norden aufzuhalten...."},createDynamicBody(2036, 775, 32, 48, "npc")));
+			Npc.add(new NPC(1604, 2274, "grafiken/Kobold.png", new String[]{"[Yasunda]  " + "Bei all dem Chaos tut es doch auch mal gut sich etwas zu entspannen."},
+							createDynamicBody(1604, 2274, 32, 48, "npc")));				
+			Npc.add(new NPC(1042, 3573, "grafiken/Kobold.png", new String[]{"[Mamorio]  " + "Warte, Reisender.\nJenseits dieses Felspfades gibt es nur noch Verderben.\nDies scheint das Werk des dunklen Königs zu sein.","Du sagst, du bist"+name+"?\nVon dir habe ich tatsächlich schon gehört.\nNun, wenn man es dir nicht ausreden kann,\nbin ich machtlos."},
+					createDynamicBody(1042, 3573, 32, 48, "npc")));		
 		}
 
 	}
@@ -820,7 +833,10 @@ public class PlayState extends State {
 		/**
 		 * KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA KAMERA
 		 */
-		
+		for (NPC n : Npc) {
+			if(!(n instanceof AuktionsHausNPC))
+			n.drawDia(sb);
+		}
 		sb.end();
 
 		//HP

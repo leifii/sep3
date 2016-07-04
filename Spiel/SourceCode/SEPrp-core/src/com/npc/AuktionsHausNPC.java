@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.character.Character;
 import com.mygdx.game.Author;
@@ -23,7 +24,14 @@ public class AuktionsHausNPC extends NPC {
 
 	public AuktionsHausNPC(int x, int y, String source, String TEXT, Body body, GameStateManager gsmm,
 			PlayState playstate, IInventar inventar) {
-		super(x, y, source, TEXT, body);
+		super();
+		position=new Vector3(x, y, 0);
+		bounds=new Rectangle(x-2, y-2, 36, 52);
+		NPCtexture=new Texture(source);
+		Dialog=new Dialog(TEXT,x+32,y+48,"dialogfenster.png");
+		this.body=body;
+		text=TEXT;
+		
 		gsm = gsmm;
 //		auktionshaus = new AuktionshausState(gsm, playstate, inventar);
 		inventarr=inventar;
@@ -50,6 +58,7 @@ public class AuktionsHausNPC extends NPC {
 		if (c.getPosition().x < position.x + 200 && c.getPosition().x > position.x - 200
 				&& c.getPosition().y < position.y + 200 && c.getPosition().y > position.y - 200) {
 			angesprochen = true;
+
 			Dialog.render(ps, sb, Character, c, angesprochen);
 		} else {
 			angesprochen = false;
