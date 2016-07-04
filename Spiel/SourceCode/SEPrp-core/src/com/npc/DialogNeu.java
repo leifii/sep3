@@ -11,11 +11,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class DialogNeu extends Actor {
 	private ShapeRenderer renderer;
-	Dialog dialog;
+	
 	SpriteBatch sb;
 	Skin skin;
 	BitmapFont font;
@@ -29,7 +29,7 @@ public class DialogNeu extends Actor {
 		renderer=new ShapeRenderer();
 		skin=new Skin(Gdx.files.internal("uiskin.json"));
 		font=new BitmapFont(Gdx.files.internal("white1.fnt"));
-		dialog=new Dialog("warning", skin, "dialog");
+		
 		sb=new SpriteBatch();
 		zähler=0;
 		this.text=text;
@@ -82,5 +82,20 @@ public class DialogNeu extends Actor {
 	public void setZähler(int zähler) {
 		this.zähler = zähler;
 	}
+
+	public void setText(String text){
+		this.text[0]=text;
+	}
+
+
+	public String[] getText() {
+		return text;
+	}
+
+
+	public void setText(String[] text) {
+		this.text = text;
+	}
+	
 	
 }
