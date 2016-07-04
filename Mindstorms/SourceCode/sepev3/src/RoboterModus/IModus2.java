@@ -106,6 +106,10 @@ public abstract class IModus2 {
 		return powerup;
 	}
 	
+	public boolean isStarted(){
+		return spielLaeuft;
+	}
+	
 	public abstract void nachrichtenverarbeitung();
 	
 	public abstract void reset();

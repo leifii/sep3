@@ -23,7 +23,7 @@ public class Linienverfolgung implements ILinienverfolgung {
 
     float[] sample;
     float light_aktuell;
-    float weiss_wert=0.34F;					//Lichtwerte Weiss (außerhalb Linie). AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
+    float weiss_wert=0.25F;					//Lichtwerte Weiss (außerhalb Linie). AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
     										//0.5
     
     public Linienverfolgung(){

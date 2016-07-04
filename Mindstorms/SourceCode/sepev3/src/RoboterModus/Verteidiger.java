@@ -29,7 +29,7 @@ public class Verteidiger extends IModus2{
 
 	@Override
 	public void run() {
-		if(isPause() && isAktiviert()){
+		if(!isPause() && isAktiviert() && isStarted()){
 			Bewegung();
 		}
 		else lvfg.stop();
