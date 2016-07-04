@@ -23,6 +23,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
+import com.objects.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 import de.SEPL.ServerClient.IAuktionshausClient;
@@ -123,7 +125,7 @@ public class AuktionshausState extends State implements IInventar {
 	@Override
 	public void handleInput() {
 		if (buttonX.isChecked()) {
-			//auktionshausClient.shutDown();
+			auktionshausClient.shutDown();
 			gsm.push(playstate);
 		}
 		if (buttonJ.isChecked()) {
@@ -150,11 +152,6 @@ public class AuktionshausState extends State implements IInventar {
 		this.dispose();
 	}
 
-	@Override
-	public void place(String name) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public List<String> getAllItems() {
@@ -193,11 +190,7 @@ public class AuktionshausState extends State implements IInventar {
 		return 0;
 	}
 
-	@Override
-	public int getHealing() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int getMoney() {
@@ -215,6 +208,12 @@ public class AuktionshausState extends State implements IInventar {
 	public int getValueToName(String nameOfItem) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void add(Item item) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
