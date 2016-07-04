@@ -543,8 +543,8 @@ public class PlayState extends State {
 		
 		// KOBOLD DORF LABEL//
 		if (c.getPosition().x > 1595 && c.getPosition().x < 1796 && c.getPosition().y > 0 && c.getPosition().y < 1000
-				&& !besucht) {
-			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+				&& !besucht && c.getMapIndex()==1) {
+			sb.draw(Kobolddorflabel, Gdx.graphics.getWidth() / 2+300, Gdx.graphics.getHeight() / 2);
 		}
 		if (c.getPosition().x > 1795) {
 			besucht = true;
