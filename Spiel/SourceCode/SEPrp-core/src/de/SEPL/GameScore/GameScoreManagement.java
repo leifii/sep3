@@ -60,7 +60,7 @@ public class GameScoreManagement {
 	}
 
 	// Speichere aktuellen Spielstand
-	public static boolean saveGameScore(com.character.Character character) {
+	public static int saveGameScore(com.character.Character character) {
 
 		boolean gameSaved = false;
 		// Streams zum speichern öffnen
@@ -93,7 +93,7 @@ public class GameScoreManagement {
 				} catch (IOException e) {
 				}
 		}
-		return gameSaved;
+		return tempRunningNr;
 
 	}
 
