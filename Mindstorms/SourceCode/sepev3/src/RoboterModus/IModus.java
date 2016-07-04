@@ -68,17 +68,17 @@ public abstract class IModus {                  //eine abstract class kann Varia
         return getAusgangsKnoten();
     }
     
-    public int getPos2(){			//ersatzmethode
-    	return aktuelleposition;
-    }
+//    public int getPos2(){			//ersatzmethode
+//    	return aktuelleposition;
+//    }
    
     public int getZielKnoten(){
         return mapZielKnoten.get(rolle);
     }
     
-	public int getZiel(){
-		return zielposition;
-	}
+//	public int getZiel(){
+//		return zielposition;
+//	}
    
     public int getAusgangsKnoten() {
         return mapAusgangsKnoten.get(rolle);
