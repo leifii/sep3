@@ -74,13 +74,15 @@ public class Endboss extends Gegner {
 			
 			getSkills().add(new Skill(this.getPosition().x, this.getPosition().y, 1,100,30,1,1,3,g.getSkill(2), false, 4, 0, this, 10, collisionLayer));//großer pfeil
 		}
-		setAttributes(c.getAttributes());
-		getAttributes().setMS(getAttributes().getMS()-0.5f);
-		getAttributes().setSTR(getAttributes().getSTR()+40);
-		getAttributes().setINT(getAttributes().getINT()+40);
-		getAttributes().setDEX(getAttributes().getDEX()+40);
-		getAttributes().setSTA(getAttributes().getSTA()+40);
-		getAttributes().setDEF(getAttributes().getDEF()+40);
+		Attributes a = new Attributes(40,40,40,40,40,40,40,-0.5f);
+		a.addAttributeValues(c.getAttributes());
+		setAttributes(a);
+//		getAttributes().setMS(getAttributes().getMS()-0.5f);
+//		getAttributes().setSTR(getAttributes().getSTR()+40);
+//		getAttributes().setINT(getAttributes().getINT()+40);
+//		getAttributes().setDEX(getAttributes().getDEX()+40);
+//		getAttributes().setSTA(getAttributes().getSTA()+40);
+//		getAttributes().setDEF(getAttributes().getDEF()+40);
 		setMaxHP(c.getMaxHP()*2);
 		setCurrentHP(getMaxHP());
 		setAnimationMap(c.getAnimationMap());
