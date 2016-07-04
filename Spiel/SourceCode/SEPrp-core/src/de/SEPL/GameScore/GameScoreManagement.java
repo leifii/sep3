@@ -142,18 +142,18 @@ public class GameScoreManagement {
 	public static void setCharacter(com.character.Character loadedCharacter, GameStateManager gsm) {
 		PlayState playState;
 		if (loadedCharacter instanceof com.character.Krieger) {
-			playState = new PlayState(gsm, 1, loadedCharacter.design);
+			playState = new PlayState(gsm, 1, loadedCharacter.design, loadedCharacter.getCharacterName());
 		}
 		if (loadedCharacter instanceof com.character.Magier) {
-			playState = new PlayState(gsm, 2, loadedCharacter.design);
+			playState = new PlayState(gsm, 2, loadedCharacter.design, loadedCharacter.getCharacterName());
 		}
 		if (loadedCharacter instanceof com.character.Schurke) {
-			playState = new PlayState(gsm, 3, loadedCharacter.design);
+			playState = new PlayState(gsm, 3, loadedCharacter.design, loadedCharacter.getCharacterName());
 		}
 		if (loadedCharacter instanceof com.character.Schuetze) {
-			playState = new PlayState(gsm, 4, loadedCharacter.design);
+			playState = new PlayState(gsm, 4, loadedCharacter.design, loadedCharacter.getCharacterName());
 		} else {
-			playState = new PlayState(gsm, 1, loadedCharacter.design);
+			playState = new PlayState(gsm, 1, loadedCharacter.design, "Dom");
 		}
 		playState.setCharacterCharacteristicsAfterReload(loadedCharacter.getPosition(), loadedCharacter.getLevel(),
 				loadedCharacter.getAttributes(), loadedCharacter.getExp(), loadedCharacter.getMaxHP(),
