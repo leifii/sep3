@@ -102,7 +102,7 @@ public class PlayState extends State {
 
 	public PlayState(GameStateManager gsm, int characterauswahl, int design, String name) {
 		super(gsm);
-
+		this.name=name;
 
 		besucht = false;
 		Kobolddorflabel = new Texture("grafiken/KoboldDorfLabel.png");
@@ -123,23 +123,6 @@ public class PlayState extends State {
 
 		keys = new Key(200, 200, 250, 200, 300, 200, this);
 
-		Npc = new LinkedList<NPC>();
-		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
-				"[TutorialNPC]  "
-						+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
-				createDynamicBody(120, 300, 32, 48, "npc")));
-		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png",
-				"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
-				createDynamicBody(2339, 459, 32, 48, "npc")));
-		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
-				createDynamicBody(1032, 1318, 32, 48, "npc")));
-		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
-				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this, testInventar));
-		Npc.add(new NPC(1563, 381, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
-				createDynamicBody(1563, 381, 32, 48, "npc")));
-		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
-				createDynamicBody(2235, 317, 32, 48, "npc")));
-		Npc.add(new Speicherstein(333, 333, "savepoint.png", "Drücke K zum speichern.",createDynamicBody(333, 333, 32, 48, "npc")));
 		
 		
 		
@@ -246,12 +229,12 @@ public class PlayState extends State {
 		if(mapIndex==1){
 		Npc.add(new NPC(120, 300, "grafiken/Kobold.png",
 				"[TutorialNPC]  "
-						+ "Hallo! Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
+						+ "Hallo! "+name+" Ich erkläre dir wie das Spiel funktioniert. WASD:Laufen, 1234: Skills, Leertaste: Angreifen/Interagieren, I:Inventar",
 				createDynamicBody(120, 300, 32, 48, "npc")));
 		Npc.add(new NPC(2339, 459, "grafiken/KoboldKönig.png",
 				"[Koboldkönig]  " + "Willkommen im Dorf! Suche die Schlüssel und hol meinen Schatz zurück!",
 				createDynamicBody(2339, 459, 32, 48, "npc")));
-		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas]  " + "Sei vorsichtig hier ist es gefährlich!!",
+		Npc.add(new NPC(1032, 1318, "grafiken/Kobold.png", "[Dragolas] Hallo "+ name + "Sei vorsichtig hier ist es gefährlich!!",
 				createDynamicBody(1032, 1318, 32, 48, "npc")));
 		Npc.add(new AuktionsHausNPC(2815, 359, "grafiken/Kobold.png",
 				"Sprich mich an wenn du ins Auktionshaus möchtest!", createDynamicBody(2815, 359, 32, 48, "npc"), gsm, this, testInventar));
@@ -259,6 +242,7 @@ public class PlayState extends State {
 				createDynamicBody(1563, 381, 32, 48, "npc")));
 		Npc.add(new NPC(2235, 317, "grafiken/Kobold.png", "[Koboldkönig-Fan]  " + "Lang lebe der König!",
 				createDynamicBody(2235, 317, 32, 48, "npc")));
+		Npc.add(new Speicherstein(333, 333, "savepoint.png", "Drücke K zum speichern.",createDynamicBody(333, 333, 32, 48, "npc")));
 		}
 		if(mapIndex==2){
 			Npc.add(new NPC(339, 224,"grafiken/Kobold.png","[Viktorius]" +"Hallo Reisender, es befinden sich viele gefährliche Kreaturen in der Nähe des Dorfes.Pass auf dich auf",
@@ -270,7 +254,7 @@ public class PlayState extends State {
 					createDynamicBody(2341, 1376, 32, 48, "npc")));
 			Npc.add(new NPC(3414, 1802,"grafiken/Kobold.png" ,"[Siegfried] Ich wünschte wir könnten hier in Frieden leben. \nJedoch terrorisieren uns die wilden Kreaturen, die eines Tages plötzlich aufgetaucht sind " ,
 					createDynamicBody(3414, 1802, 32, 48, "npc")));
-			Npc.add(new NPC(5393, 4149,"grafiken/Kobold.png", "[Gabrius] Guten Tag" +name+ "\n Ich hoffe du kannst uns bei dem Skelett im Süden helfen. \n Es bereitet uns schon seit einer ganzen Weile große Schwierigkeiten" ,
+			Npc.add(new NPC(5393, 4149,"grafiken/Kobold.png", "[Gabrius] Guten Tag " +name+ "\n Ich hoffe du kannst uns bei dem Skelett im Süden helfen. \n Es bereitet uns schon seit einer ganzen Weile große Schwierigkeiten" ,
 					createDynamicBody(5393, 4149, 32, 48, "npc")));
 			
 			

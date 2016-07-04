@@ -336,6 +336,7 @@ public class CharEditorState extends State {
 
 		if (buttonM.isChecked() || Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 			playstate = new PlayState(gsm, charauswahl, design, a.getText());
+
 			
 			gsm.push(playstate);
 		}
