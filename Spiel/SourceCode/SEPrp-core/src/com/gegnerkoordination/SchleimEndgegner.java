@@ -39,7 +39,7 @@ public class SchleimEndgegner extends GruenerSchleim {
 	public void spamSkills(){
 		for(int i=0;i<getSkills().size();i++){
 			Skill s = getSkills().get(i);
-			if(s.getButton() == 2 && verzoegerung > 0){
+			if(s.getButton() == 3 && verzoegerung > 0){
 			}
 			else{
 				s.activateProjectile(getPosition().x, getPosition().y);
@@ -62,6 +62,10 @@ public class SchleimEndgegner extends GruenerSchleim {
 			getBounds().setPosition(this.getPosition().x,this.getPosition().y);
 			time += dt;
 			currentFrame = getAnimation().getKeyFrame(time);
+		}
+		for (int i = 0; i < getSkills().size(); i++) {
+			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
+			getSkills().get(i).direction(this);
 		}
 	}
 	public void follow(Character c){
