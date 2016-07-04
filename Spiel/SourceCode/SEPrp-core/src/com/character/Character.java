@@ -41,10 +41,10 @@ public class Character implements IDrawable {
 	private transient Body body;
 	// private float cd;
 	transient protected Rectangle bounds;
-	protected int height = 48, width = 32;
+	transient protected int height = 48, width = 32;
 	transient private boolean disposable = false;
 	transient private boolean visible = true;
-	AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
+	transient AnimationDirection richtung = AnimationDirection.SOUTH_STAND;
 	transient TextureRegion[] keyframes, keyframes1, keyframes2, keyframes3, keyframes4, keyframes5, keyframes6,
 			keyframes7;
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
@@ -75,14 +75,14 @@ public class Character implements IDrawable {
 	public String characterName;
 	// int currentMoney; ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
-	public boolean skillup;
+	transient public boolean skillup;
 	// public Character (int x,int y,String sprite,float speed){
 	// laufspeed=speed;
 	// position=new Vector3(x,y,0);
 	// character1=new Texture(sprite);
 	// }
 
-	protected final Rolle rolle;
+	transient protected final Rolle rolle;
 
 	public Character(float x, float y, TextureRegion[][] animation, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body, Rolle rolle) {
