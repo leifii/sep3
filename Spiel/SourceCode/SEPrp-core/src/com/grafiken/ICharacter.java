@@ -22,4 +22,5 @@ public interface ICharacter {
 	public TextureRegion[][] getAngriff(int index); //Array mit Angriffsbildern , 00=oben 01=rechts, 10=unten, 11=rechts (siehe Assets)
 	public TextureRegion[][] getSchütze(int index); //einzelne Kollorierungen des Schützens
 	public TextureRegion[][] getKrieger(int index); //einzelne Kollorierungen des Kriegers
-}
+	public TextureRegion[][] getMage(int index); //einzelne Kollorierungen des Magiers
+	}

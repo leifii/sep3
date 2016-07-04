@@ -25,7 +25,7 @@ public class Character implements ICharacter{
 	TextureRegion[][][] Animation;
 	List<TextureRegion[][]> gegnerList = new LinkedList<TextureRegion[][]>();
 	TextureRegion[][][] Angriff;
-	TextureRegion[][][] archer, warrior;
+	TextureRegion[][][] archer, warrior,mage;
 	
 
 	public Character(){
@@ -34,7 +34,7 @@ public class Character implements ICharacter{
 //		character=new Sprite[]{(new Sprite(texture))};
 		TextureRegion[][] character1=TextureRegion.split(new Texture("grafiken/squire_m.png"),32,48);
 		TextureRegion[][] character2=TextureRegion.split(new Texture("grafiken/Thief_Spreadsheet.png"), 32, 48);
-		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/Mage_Spreadsheet.png"), 32, 48);
+		TextureRegion[][] character3=TextureRegion.split(new Texture("grafiken/mage/Mage_Spreadsheet.png"), 32, 48);
 		TextureRegion[][] character4=TextureRegion.split(new Texture("grafiken/Archer_Spreadsheet.png"), 32, 48);
 		
 		angriffKrieger = TextureRegion.split(new Texture("grafiken/SchwertAngriff1.png"), 56, 56);
@@ -68,6 +68,16 @@ public class Character implements ICharacter{
 			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-lightblueE.png"), 32, 48),
 			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-redE.png"), 32, 48),
 			TextureRegion.split(new Texture("grafiken/krieger/squire_m_rot-yellowE.png"), 32, 48)
+		};
+		mage=new TextureRegion[][][]{
+			TextureRegion.split(new Texture("grafiken/mage/Mage_Spreadsheet.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/mage/Mage_Spreadsheet_Eye_green.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/mage/Mage_Spreadsheet_Eye_red.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/mage/Mage_Spreadsheet_Eye_yellow.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/mage/Mage_blue_spreadsheet.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/mage/Mage_blue_spreadsheet_eye_green.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/mage/Mage_blue_spreadsheet_eye_red.png"), 32, 48), 
+			TextureRegion.split(new Texture("grafiken/mage/Mage_blue_spreadsheet_eye_yellow.png"), 32, 48),
 		};
 	}	
 
@@ -104,6 +114,9 @@ public class Character implements ICharacter{
 	public TextureRegion[][] getSchütze(int index){
 		return archer[index];
 	}
+	public TextureRegion[][] getMage(int index){
+		return mage[index];
+	}
 	public Texture getGegner(int index ) {
 		
 		gegner1=new Texture("grafiken/Drachenmensch.png");
@@ -117,5 +130,4 @@ public class Character implements ICharacter{
 		return gegnerList.get(index);
 	}
 	
-
 }
