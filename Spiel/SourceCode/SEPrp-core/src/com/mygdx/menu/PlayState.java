@@ -119,7 +119,7 @@ public class PlayState extends State {
 		collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden");
 		collisionLayer[3] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 
-		keys = new Key(200, 200, 250, 200, 300, 200, this);
+		keys = new Key(200, 200, 250, 200, 300, 200, this,1,2,3);
 
 		Body body = createDynamicBody(100, 100, 32, 48, "charakter");
 
@@ -753,6 +753,7 @@ public class PlayState extends State {
 			collisionLayer[1] = (TiledMapTileLayer) map.getMap().getLayers().get("Objekte2");
 			collisionLayer[2] = (TiledMapTileLayer) map.getMap().getLayers().get("Boden2");
 		}
+		
 		map.setRenderer();
 		c.position = new Vector3(0, 0, 0);
 		c.setCollisionLayer(collisionLayer);

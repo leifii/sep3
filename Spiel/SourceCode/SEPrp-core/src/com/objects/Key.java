@@ -25,7 +25,8 @@ public class Key {
 	boolean whiteaufgehoben;
 	boolean goldaufgehoben;
 	KeyUI ui;
-	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold,PlayState ps){
+	int mapb,mapw,mapg;
+	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold,PlayState ps,int mapBlack,int mapWhite,int mapGold){
 		ui=new KeyUI(ps);
 		positionBlack=new Vector3(xBlack, yBlack, 0);
 		positionWhite=new Vector3(xWhite, yWhite, 0);
@@ -33,6 +34,9 @@ public class Key {
 		blackaufgehoben=false;
 		goldaufgehoben=false;
 		whiteaufgehoben=false;
+		mapb=mapBlack;
+		mapw=mapWhite;
+		mapg=mapGold;
 	}
 	
 	
@@ -40,21 +44,21 @@ public class Key {
 	
 	}
 	public void render(SpriteBatch sb,Character c){
-		if (!blackaufgehoben) {
+		if (!blackaufgehoben && c.getMapIndex()==mapb) {
 			sb.draw(texturKeyBlack, positionBlack.x, positionBlack.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE) && c.getPosition().x>positionBlack.x-40 && c.getPosition().x<positionBlack.x+40 && c.getPosition().y>positionBlack.y-40 && c.getPosition().y<positionBlack.y+40) {
 				blackaufgehoben=true;
 				c.setBlackKeyStatus(true); // Zur Speicherung der Keystati --Dom--
 			}
 		}
-		if (!whiteaufgehoben ) {
+		if (!whiteaufgehoben && c.getMapIndex()==mapw ) {
 			sb.draw(texturKeyWhite, positionWhite.x, positionWhite.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)&& c.getPosition().x>positionWhite.x-40 && c.getPosition().x<positionWhite.x+40 && c.getPosition().y>positionWhite.y-40 && c.getPosition().y<positionWhite.y+40) {
 				whiteaufgehoben=true;
 				c.setWhiteKeyStatus(true); // Zur Speicherung der Keystati --Dom--
 			}
 		}
-		if (!goldaufgehoben ) {
+		if (!goldaufgehoben && c.getMapIndex()==mapg ) {
 			sb.draw(texturKeyGold, positionGold.x, positionGold.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)&& c.getPosition().x>positionGold.x-40 && c.getPosition().x<positionGold.x+40 && c.getPosition().y>positionGold.y-40 && c.getPosition().y<positionGold.y+40) {
 				goldaufgehoben=true;
