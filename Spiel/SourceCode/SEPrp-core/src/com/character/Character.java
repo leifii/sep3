@@ -33,7 +33,6 @@ import com.objects.ItemType;
 
 public class Character implements IDrawable {
 	
-	private boolean[] bosseBesiegt;
 	transient protected ArrayList<Skill> skills;
 	transient protected IObjekte g;
 	transient private TextureRegion character;
@@ -51,7 +50,8 @@ public class Character implements IDrawable {
 	transient Animation Animation, Animation1, Animation2, Animation3, Animation4, Animation5, Animation6, Animation7;
 	transient Map<AnimationDirection, Animation> animationMap = new HashMap<AnimationDirection, Animation>();
 
-	// Variablen, die gespeichert werden
+	// Variablen, die gespeichert werden --Dom--
+	private boolean[] bosseBesiegt;
 	public int design;
 	public Vector3 position;
 	public Attributes attributes;
@@ -72,7 +72,7 @@ public class Character implements IDrawable {
 	public int levelSkill4;
 	public int levelSkill0;
 	public String[] allItems;
-
+	public String characterName;
 	// int currentMoney; ist schon im Inventory implementiert
 	// int STR, INT, STA, ATK, DEF, AS; float MS
 	public boolean skillup;
@@ -831,6 +831,14 @@ public class Character implements IDrawable {
 			getSkills().get(4).lvlup();
 		}
 
+	}
+	
+	public void setCharacterName(String characterName){
+		this.characterName = characterName;
+	}
+	
+	public String getCharacterName(){
+		return this.characterName;
 	}
 	// ------
 
