@@ -32,13 +32,11 @@ import com.mygdx.game.MyGdxGame;
 
 @Author(name = "Angelo Soltner, Bijan Shahbaz Nejad")
 
-
 public class LoadMenuState extends MenuState {
-
 
 	private Image background;
 	private Stage stage;
-	private TextureAtlas atlas,atlas1;
+	private TextureAtlas atlas, atlas1;
 	private Skin skin, skin1;
 	private Table table;
 	private BitmapFont white;
@@ -47,66 +45,64 @@ public class LoadMenuState extends MenuState {
 	private TextButton loadButton1, loadButton2, loadButton3;
 	private List<TextButton> buttonList;
 	TextButtonStyle textButtonStyle;
-	ImageButton pfeil,pfeil1;
+	ImageButton pfeil, pfeil1;
 	private int i;
-	
+
 	private LoadMenuWindow loadmenuwindow;
-	
+
 	public LoadMenuState(GameStateManager gsm) {
 		super(gsm);
 		gsm.setTimer(System.currentTimeMillis());
-		stage=new Stage();
-		background=new Image(new Texture("userInterface/dark background.png"));
+		stage = new Stage();
+		background = new Image(new Texture("userInterface/dark background.png"));
 		stage.addActor(background);
 		background.setFillParent(true);
 		Gdx.input.setInputProcessor(stage);
-		
-		
-		atlas=new TextureAtlas("userInterface/border1.txt");
-		atlas1=new TextureAtlas("userInterface/Texturen.atlas");
-		skin=new Skin(atlas);
-		skin1=new Skin(atlas1);
-		
-		table=new Table(skin);
+
+		atlas = new TextureAtlas("userInterface/border1.txt");
+		atlas1 = new TextureAtlas("userInterface/Texturen.atlas");
+		skin = new Skin(atlas);
+		skin1 = new Skin(atlas1);
+
+		table = new Table(skin);
 		table.setBackground(skin.getDrawable("border2.1"));
-		table.getBackground().setMinHeight(Gdx.graphics.getHeight()/2);
-		table.getBackground().setMinWidth(Gdx.graphics.getWidth()/2);
+		table.getBackground().setMinHeight(Gdx.graphics.getHeight() / 2);
+		table.getBackground().setMinWidth(Gdx.graphics.getWidth() / 2);
 		table.setWidth(Gdx.graphics.getWidth());
-		table.setBounds(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/4, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-		
-		white=new BitmapFont(Gdx.files.internal("white.fnt"));
-		
-		LabelStyle labelstyle= new LabelStyle();
-		labelstyle.font=white;
-		Label label=new Label("Spielstände", labelstyle);
+		table.setBounds(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4, Gdx.graphics.getWidth() / 2,
+				Gdx.graphics.getHeight() / 2);
+
+		white = new BitmapFont(Gdx.files.internal("white.fnt"));
+
+		LabelStyle labelstyle = new LabelStyle();
+		labelstyle.font = white;
+		Label label = new Label("Spielstände", labelstyle);
 		label.setFontScale(1.5f);
-		
-		textButtonStyle=new TextButtonStyle();
-		textButtonStyle.up= skin.getDrawable("Rahmen");
-		textButtonStyle.pressedOffsetX=1;
-		textButtonStyle.pressedOffsetY=-1;
-		textButtonStyle.font=white;
-		
-		ImageButtonStyle test=new ImageButtonStyle();
-		ImageButtonStyle test1=new ImageButtonStyle();
-		test.up=skin1.getDrawable("Menupfeil");
-		test1.up=skin1.getDrawable("Oben");
-		
-		pfeil=new ImageButton(test);
-		pfeil1=new ImageButton(test1);
-		
-		loadButton1= new TextButton("Spielstand-1",textButtonStyle);
+
+		textButtonStyle = new TextButtonStyle();
+		textButtonStyle.up = skin.getDrawable("Rahmen");
+		textButtonStyle.pressedOffsetX = 1;
+		textButtonStyle.pressedOffsetY = -1;
+		textButtonStyle.font = white;
+
+		ImageButtonStyle test = new ImageButtonStyle();
+		ImageButtonStyle test1 = new ImageButtonStyle();
+		test.up = skin1.getDrawable("Menupfeil");
+		test1.up = skin1.getDrawable("Oben");
+
+		pfeil = new ImageButton(test);
+		pfeil1 = new ImageButton(test1);
+
+		loadButton1 = new TextButton("Spielstand-1", textButtonStyle);
 		loadButton1.pad(30);
-		loadButton2= new TextButton("Spielstand-2",textButtonStyle);
+		loadButton2 = new TextButton("Spielstand-2", textButtonStyle);
 		loadButton2.pad(30);
-		loadButton3= new TextButton("Spielstand-3",textButtonStyle);
+		loadButton3 = new TextButton("Spielstand-3", textButtonStyle);
 		loadButton3.pad(30);
-		
-		buttonList=new LinkedList<TextButton>(Arrays.asList(loadButton1,loadButton2,loadButton3));
-		i=2;
-		
-		
-		
+
+		buttonList = new LinkedList<TextButton>(Arrays.asList(loadButton1, loadButton2, loadButton3));
+		i = 2;
+
 		table.add(label).expandX();
 		table.add(pfeil1).align(Align.right).row();
 		table.add();
@@ -116,106 +112,102 @@ public class LoadMenuState extends MenuState {
 		table.add(loadButton3).row();
 		table.pack();
 
-		table.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(2)));
+		table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 		stage.addActor(table);
-	
-		loadmenuwindow=new LoadMenuWindow(1728/2-160,1080/2-200,"loadmenuwindow.jpg");
-		loadbutton=new MainMenuButton(1728/2-77,1080/2-66,"loadbutton.jpg");
-		newgamebutton=new MainMenuButton(1728/2-77, 1080/2-172, "newgamebutton.jpg");
-		beendenbutton=new MainMenuButton(1728/2-77,1080/2-280,"beendenbutton.jpg");
+
+		loadmenuwindow = new LoadMenuWindow(1728 / 2 - 160, 1080 / 2 - 200, "loadmenuwindow.jpg");
+		loadbutton = new MainMenuButton(1728 / 2 - 77, 1080 / 2 - 66, "loadbutton.jpg");
+		newgamebutton = new MainMenuButton(1728 / 2 - 77, 1080 / 2 - 172, "newgamebutton.jpg");
+		beendenbutton = new MainMenuButton(1728 / 2 - 77, 1080 / 2 - 280, "beendenbutton.jpg");
 		// TODO Auto-generated constructor stub
-		pfeil.addListener(new ClickListener(){
+		pfeil.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				// TODO Auto-generated method stub
 				TextButton a;
-				if(i==buttonList.size()-1){
-			
-				buttonList.add(a=new TextButton("Spielstand-"+(i+2), textButtonStyle));
-				i++;
-				a.pad(30);
-				table.removeActor(buttonList.get(i-3));
-				table.add(buttonList.get(i)).row();
-				
-				
-			}
-				else
-				{
-					table.removeActor(buttonList.get(i-2));
-					table.add(a=buttonList.get(++i)).row();
+				if (i == buttonList.size() - 1) {
+
+					buttonList.add(a = new TextButton("Spielstand-" + (i + 2), textButtonStyle));
+					i++;
+					a.pad(30);
+					table.removeActor(buttonList.get(i - 3));
+					table.add(buttonList.get(i)).row();
+
+				} else {
+					table.removeActor(buttonList.get(i - 2));
+					table.add(a = buttonList.get(++i)).row();
 				}
-				}					
-			});
-		pfeil1.addListener(new ClickListener(){
+			}
+		});
+		pfeil1.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				// TODO Auto-generated method stub
-				if(i>2){
-						
-//						buttonList.add(a=new TextButton("Spielstand-"+i++, textButtonStyle));
-				
-						table.removeActor(buttonList.get(i-2));
-						table.removeActor(buttonList.get(i-1));
-						table.removeActor(buttonList.get(i));
-						table.add(buttonList.get(i-3)).row();
-						table.add(buttonList.get(i-2)).row();
-						table.add(buttonList.get(i-1)).row();
-						i--;
-						
-					}
+				if (i > 2) {
+
+					// buttonList.add(a=new TextButton("Spielstand-"+i++,
+					// textButtonStyle));
+
+					table.removeActor(buttonList.get(i - 2));
+					table.removeActor(buttonList.get(i - 1));
+					table.removeActor(buttonList.get(i));
+					table.add(buttonList.get(i - 3)).row();
+					table.add(buttonList.get(i - 2)).row();
+					table.add(buttonList.get(i - 1)).row();
+					i--;
+
+				}
 			}
 		});
 	}
+
 	@Override
 	protected void handleInput() {
 		// TODO Auto-generated method stub
-		
-		if(Gdx.input.isKeyJustPressed(Keys.DOWN)){
+
+		if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
 			TextButton a;
-			if(i==buttonList.size()-1){
-		
-			buttonList.add(a=new TextButton("Spielstand-"+(i+2), textButtonStyle));
-			i++;
-			a.pad(30);
-			table.removeActor(buttonList.get(i-3));
-			table.add(buttonList.get(i)).row();
-			
-			
-		}
-			else
-			{
-				table.removeActor(buttonList.get(i-2));
-				table.add(a=buttonList.get(++i)).row();
+			if (i == buttonList.size() - 1) {
+
+				buttonList.add(a = new TextButton("Spielstand-" + (i + 2), textButtonStyle));
+				i++;
+				a.pad(30);
+				table.removeActor(buttonList.get(i - 3));
+				table.add(buttonList.get(i)).row();
+
+			} else {
+				table.removeActor(buttonList.get(i - 2));
+				table.add(a = buttonList.get(++i)).row();
 			}
-			}					
-			
-
-
-		if(i>2){
-		if(Gdx.input.isKeyJustPressed(Keys.UP)){
-			
-//			buttonList.add(a=new TextButton("Spielstand-"+i++, textButtonStyle));
-	
-			table.removeActor(buttonList.get(i-2));
-			table.removeActor(buttonList.get(i-1));
-			table.removeActor(buttonList.get(i));
-			table.add(buttonList.get(i-3)).row();
-			table.add(buttonList.get(i-2)).row();
-			table.add(buttonList.get(i-1)).row();
-			i--;
-			
 		}
+
+		if (i > 2) {
+			if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+
+				// buttonList.add(a=new TextButton("Spielstand-"+i++,
+				// textButtonStyle));
+
+				table.removeActor(buttonList.get(i - 2));
+				table.removeActor(buttonList.get(i - 1));
+				table.removeActor(buttonList.get(i));
+				table.add(buttonList.get(i - 3)).row();
+				table.add(buttonList.get(i - 2)).row();
+				table.add(buttonList.get(i - 1)).row();
+				i--;
+
+			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.L)) {
 			gsm.push(new NewMenuState1(gsm));
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) && System.currentTimeMillis()-500>gsm.timer) {
+		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE) && System.currentTimeMillis() - 500 > gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
 		}
-		for(TextButton b:buttonList){
-		if (b.isPressed()) {
-			de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, b.getText().toString());
-		}}
+		for (TextButton b : buttonList) {
+			if (b.isPressed()) {
+				de.SEPL.GameScore.GameScoreManagement.loadGameScore(gsm, b.getText().toString());
+			}
+		}
 	}
 
 	@Override
