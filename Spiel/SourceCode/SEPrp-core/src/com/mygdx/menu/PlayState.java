@@ -278,29 +278,31 @@ public class PlayState extends State {
 //					createDynamicBody(400, 200, 35, 32, "gegner"));
 //			Schleim1.addLoot(EquipmentType.Lederrüstung);
 //			gegnerList.add(Schleim1);
-			Ork[] Ork = new Ork[11];
+			Ork[] Ork = new Ork[12];
 			Ork[0] = new Ork(832, 1216, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(832, 1216, 64, 64, "gegner"));
-			Ork[0].addLoot(EquipmentType.Lederschuh);
+			Ork[0].addLoot(EquipmentType.Stoffschuh);
 			Ork[1] = new Ork(1088, 1792, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1088, 1792, 64, 64, "gegner"));
-			Ork[1].addLoot(EquipmentType.Lederschuh);
-			Ork[2] = new Ork(640, 1856, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(640, 1856, 64, 64, "gegner"));
-			Ork[2].addLoot(EquipmentType.Lederschuh);
+			Ork[1].addLoot(EquipmentType.Dolch);
+			Ork[2] = new Ork(4160, 192, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4160, 192, 64, 64, "gegner"));
+			Ork[2].addLoot(EquipmentType.Kupferhelm);
 			Ork[3] = new Ork(448, 2624, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(448, 2624, 64, 64, "gegner"));
-			Ork[3].addLoot(EquipmentType.Lederschuh);
 			Ork[4] = new Ork(1600, 2976, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1600, 2976, 64, 64, "gegner"));
-			Ork[4].addLoot(EquipmentType.Lederschuh);
+			Ork[4].addLoot(EquipmentType.Holzschild);
 			Ork[5] = new Ork(1632, 2272, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(1632, 2272, 64, 64, "gegner"));
-			Ork[5].addLoot(EquipmentType.Lederschuh);
+			Ork[5].addLoot(EquipmentType.Lederrüstung);
 			Ork[6] = new Ork(2816, 1632, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(2816, 1632, 64, 64, "gegner"));
-			Ork[6].addLoot(EquipmentType.Lederschuh);
+			Ork[6].addLoot(EquipmentType.Stoffschuh);
 			Ork[7] = new Ork(4384, 128, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4384, 128, 64, 64, "gegner"));
-			Ork[7].addLoot(EquipmentType.Lederschuh);
+			Ork[7].addLoot(EquipmentType.Kupferhelm);
 			Ork[8] = new Ork(4352, 1024, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4352, 1024, 64, 64, "gegner"));
-			Ork[8].addLoot(EquipmentType.Lederschuh);
+			Ork[8].addLoot(EquipmentType.Dolch);
 			Ork[9] = new Ork(4788, 1984, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4788, 1984, 64, 64, "gegner"));
-			Ork[9].addLoot(EquipmentType.Lederschuh);
+			Ork[9].addLoot(EquipmentType.Holzschild);
 			Ork[10] = new Ork(3488, 2848, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3488, 2848, 64, 64, "gegner"));
-			Ork[10].addLoot(EquipmentType.Lederschuh);
+			Ork[10].addLoot(EquipmentType.Lederrüstung);
+			Ork[11] = new Ork(3040, 3456, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(3040, 3456, 64, 64, "gegner"));
+			Ork[11] = new Ork(4320, 2144, s.getGegnerAnimation(2), collisionLayer, 40, ork, createDynamicBody(4320, 2144, 64, 64, "gegner"));
+			
 			for(int i = 0; i < Ork.length; i++)
 				gegnerList.add(Ork[i]);
 			if(!c.getBosseBesiegt()[0]){
@@ -344,8 +346,8 @@ public class PlayState extends State {
 		c.setAllItems(testInventar);
 
 		if (!pauseToInventory && Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			inventoryState.dispose();
-			inventoryState = null;
+//			inventoryState.dispose();
+//			inventoryState = null;
 			gsm.push(new PauseState(gsm,this));
 		}
 		
