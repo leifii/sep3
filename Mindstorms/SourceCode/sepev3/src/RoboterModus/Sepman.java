@@ -15,7 +15,7 @@ public class Sepman extends IModus2{
 
 	@Override
 	public void run() {
-		if(isAktiviert() && isPause()){
+		if(isAktiviert() && !isPause() && isStarted()){
 		getRichtung();
 		bewegen();
 		}

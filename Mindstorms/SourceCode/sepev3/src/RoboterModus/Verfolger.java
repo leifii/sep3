@@ -1,5 +1,5 @@
 /**
- * @author ${user}
+ * @author ${Johannes Grundmann}
  *
  * 
  */
@@ -21,7 +21,7 @@ public class Verfolger extends IModus2{
 	}
 	
 	public void run(){
-		if(pause==false && isAktiviert()){
+		if(!isPause() && isAktiviert() && isStarted()){
 		
 	
 		Plane knoten;

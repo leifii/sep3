@@ -99,6 +99,13 @@ public class Server{
 			//Es werden nun alle Nachrichten empfangen und dem Roboter zugewiesen
 			while(true){
 				nachricht = com1.empfangen();
+				
+				String s = "";
+				for(int i = 0; i<nachricht.length; i++){
+					s = s+nachricht[i]+"";
+				}
+				
+				LCD.drawString(s, 0, 4);
 
 
 				// Sepman
