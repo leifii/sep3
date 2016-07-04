@@ -18,14 +18,14 @@ import com.objects.ItemType;
 
 public class Krieger extends Character {
 
-	private Vector3 position;
+	transient private Vector3 position;
 
-	private TextureRegion character;
+	transient private TextureRegion character;
 
-	private Texture character1;
+	transient private Texture character1;
 
-	private boolean[] untouchable; // north,south,east,west
-	private float untouchableTime;
+	transient private boolean[] untouchable; // north,south,east,west
+	transient private float untouchableTime;
 
 	public Krieger(float x, float y, TextureRegion[][] sprite, TiledMapTileLayer[] collisionLayer,
 			Attributes attributes, Body body) {
