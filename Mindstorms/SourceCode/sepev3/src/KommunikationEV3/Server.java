@@ -59,7 +59,7 @@ public class Server{
 			Planeinit planes = new Planeinit(knoten, norden, sueden, osten, westen, powerup);
 
 			Linienverfolgung lvfg=new Linienverfolgung();
-			IModus2 robomode;
+			IModus robomode;
 
 			//Ende Initialisierung
 

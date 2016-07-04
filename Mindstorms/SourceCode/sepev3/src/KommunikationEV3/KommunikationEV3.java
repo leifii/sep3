@@ -51,29 +51,11 @@ public class KommunikationEV3 implements IKommunikation{
 		
 		try {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
-			
-								//Lï¿½nge der Nachricht lesen
-			//if(in.readInt()>0){
-			
+
+
 				in.readFully(nachrichtempfangen, 0, nachrichtempfangen.length);	//Speicherort der Nachricht, Anfang, Ende
 				
 
-//				LCD.drawString("Nachricht", 0, 1);                                 //Displayausgabe bei Test am EV3
-//				LCD.drawString("empfangen:", 0, 2);                                //
-//				
-//				for(int i = 0; i<nachricht.length; i++){
-//					System.out.print(nachricht[i]);                                //Konsolenausgabe bei Test am PC
-//					LCD.drawInt(nachricht[i], i+1, 4);
-//				}
-//				
-
-				
-				//nachrichtverarbeiten();
-		//	}
-			
-			
-			
-			
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

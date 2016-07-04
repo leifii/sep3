@@ -17,7 +17,7 @@ import Spielfeld.Planeinit;
 
 
 
-public class Zufall extends IModus2{
+public class Zufall extends IModus{
 
 	Random r;
 	private int letzterKnoten;
@@ -30,7 +30,7 @@ public class Zufall extends IModus2{
 	}
 	
 	public void run(){									// Es wird zuerst überprüft, ob eine Pause vorliegt oder der Roboter deaktiviert wurde
-		if(!isPause() && isAktiviert() && isStarted()){	
+		if(!isPause() && isAktiviert() /*&& isStarted()*/){	
 			
 		int zufallszahl;
 		Plane knoten;

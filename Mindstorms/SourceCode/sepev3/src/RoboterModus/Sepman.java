@@ -4,7 +4,7 @@ import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Planeinit;
 
-public class Sepman extends IModus2{
+public class Sepman extends IModus{
 
 
 
@@ -15,7 +15,7 @@ public class Sepman extends IModus2{
 
 	@Override
 	public void run() {
-		if(isAktiviert() && !isPause() && isStarted()){
+		if(isAktiviert() && !isPause() /*&& isStarted()*/){
 		getRichtung();
 		bewegen();
 		}
