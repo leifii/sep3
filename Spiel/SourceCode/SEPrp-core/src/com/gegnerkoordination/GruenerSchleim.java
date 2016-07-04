@@ -67,7 +67,32 @@ public class GruenerSchleim extends Gegner {
 			aggro = false;
 		}
 	}
+	public void attack(){
+		for(Skill s : getSkills()) {
+			s.activateProjectile(getPosition().x, getPosition().y);
+		}
+	}
 	public Animation getAnimation() {
 		return animationMap.get(richtung);
+	}
+
+	public Map<AnimationDirection, Animation> getAnimationMap() {
+		return animationMap;
+	}
+
+	public void setAnimationMap(Map<AnimationDirection, Animation> animationMap) {
+		this.animationMap = animationMap;
+	}
+
+	public AnimationDirection getRichtung() {
+		return richtung;
+	}
+
+	public void setRichtung(AnimationDirection richtung) {
+		this.richtung = richtung;
+	}
+
+	public void setAnimation(Animation animation) {
+		this.animation = animation;
 	}
 }
