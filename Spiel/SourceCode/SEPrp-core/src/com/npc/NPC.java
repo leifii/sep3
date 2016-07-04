@@ -24,35 +24,43 @@ public class NPC {
 		Texture NPCtexture;
 		boolean angesprochen=false;
 		public String text;
-		private Body body;
+		protected Body body;
 		
+		DialogNeu dia;
 		
-		public NPC(int x,int y,String source,String TEXT,Body body){
+		public NPC(){
+			
+		}
+		
+		public NPC(int x,int y,String source,String [] TEXT,Body body){
 			position=new Vector3(x, y, 0);
 			bounds=new Rectangle(x-2, y-2, 36, 52);
 			NPCtexture=new Texture(source);
-			Dialog=new Dialog(TEXT,x+32,y+48,"dialogfenster.png");
+//			Dialog=new Dialog(TEXT,x+32,y+48,"dialogfenster.png");
 			this.body=body;
-			text=TEXT;
+//			text=TEXT;
+			
+			dia=new DialogNeu(TEXT);
 			}
 		
 
 		public void render(PlayState ps,SpriteBatch sb,Rectangle Character,Character c){
 			sb.draw(NPCtexture,position.x,position.y);
-
-			if (Character.overlaps(bounds) && Gdx.input.isKeyJustPressed(Keys.SPACE) && angesprochen==false) {
 			
+			if (Character.overlaps(bounds) && Gdx.input.isKeyJustPressed(Keys.SPACE) && angesprochen==false) {
 				angesprochen=true;
+				dia.setGeöffnet(true);dia.setZähler(0);
 			}
-			else if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) || Character.overlaps(bounds)==false) {
+			else if (angesprochen && Gdx.input.isKeyJustPressed(Keys.SPACE) && !dia.isGeöffnet()|| Character.overlaps(bounds)==false) {
 				angesprochen=false;
 				
 			}
-			
-				Dialog.render(ps, sb, Character, c, angesprochen);
-				
 				
 		
+		}
+		public void drawDia(SpriteBatch sb){
+			if(angesprochen==true)
+			dia.draw(sb, 0.5f);
 		}
 		
 		public void dispose(){

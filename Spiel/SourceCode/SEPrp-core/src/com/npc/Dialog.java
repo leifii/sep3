@@ -38,21 +38,24 @@ public class Dialog  {
 		String neuerText="";
 		int zähler=0;
 		int erlaubt=3;
+		int reihen=0;
 		
 	
 		char TEXT[]=text.toCharArray();
 		for (int i = 0; i < TEXT.length; i++) {
-			if ((i%30>=20) && TEXT[i]==' ' ) {
+			if (zähler>25 && TEXT[i]==' ' ) {
 				
 				neuerText+="\n";
-				zähler++;
+				zähler=0;
+				reihen+=1;
 			}
 			else {
 				neuerText+=TEXT[i];
+				zähler++;
 			}
 			
 		
-			if (zähler>erlaubt) {
+			if (reihen>erlaubt) {
 				geändert-=0.01f;
 				if (geändert<=0.5f) {
 					geändert=0.5f;

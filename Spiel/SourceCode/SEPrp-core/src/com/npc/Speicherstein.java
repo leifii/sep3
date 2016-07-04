@@ -10,7 +10,7 @@ import com.mygdx.menu.PlayState;
 
 public class Speicherstein extends NPC {
 
-	public Speicherstein(int x, int y, String source, String TEXT, Body body) {
+	public Speicherstein(int x, int y, String source, String[] TEXT, Body body) {
 		super(x,y,source,TEXT,body);
 		// TODO Auto-generated constructor stub
 		
@@ -40,8 +40,7 @@ public class Speicherstein extends NPC {
 				System.out.println("Speichern erfolgreich unter Spielstand " + de.SEPL.GameScore.GameScoreManagement.saveGameScore(c));
 			
 		}
-			Dialog.render(ps, sb, Character, c, angesprochen);
-			
+			dia.draw(sb, 0.7f);
 			
 	}
 

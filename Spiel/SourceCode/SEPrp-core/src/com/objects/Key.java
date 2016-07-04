@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.character.Character;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
+import com.npc.DialogNeu;
 
 @Author(name = "Bijan Shahbaz Nejad")
 
@@ -55,6 +56,7 @@ public class Key {
 			sb.draw(texturKeyWhite, positionWhite.x, positionWhite.y);
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)&& c.getPosition().x>positionWhite.x-40 && c.getPosition().x<positionWhite.x+40 && c.getPosition().y>positionWhite.y-40 && c.getPosition().y<positionWhite.y+40) {
 				whiteaufgehoben=true;
+//				new DialogNeu(new String[]{})
 				c.setWhiteKeyStatus(true); // Zur Speicherung der Keystati --Dom--
 			}
 		}
