@@ -34,6 +34,9 @@ public class Speicherstein extends NPC {
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.K) && angesprochen) {
+				// @Bijan: Hier ist die Methode, die speichert und dir die Nummer des Spielstandes zurückgibt.
+				// Die System.out.println kannst du rausnehmen, das war nur zu Testzwecken solange wir noch keine InGameEinblendung hatten.
+				// --Dom--
 				System.out.println("Speichern erfolgreich unter Spielstand " + de.SEPL.GameScore.GameScoreManagement.saveGameScore(c));
 			
 		}
