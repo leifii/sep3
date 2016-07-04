@@ -816,6 +816,12 @@ public void keyPressed(KeyEvent l) {
 	     richtung(4);
 	     System.out.println(richtung);
 	     
+	     
+	     
+	     
+	     
+	     
+	     
 	     queue.addToQueue((byte) 4);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
 		else if(l.getKeyCode() == KeyEvent.VK_LEFT){
