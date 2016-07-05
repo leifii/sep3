@@ -114,7 +114,7 @@ PlayState playstate;
 		}
 		if (buttonJ.isChecked() && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
-			auktionshausClient.shutDown();
+			//auktionshausClient.shutDown();
 		}
 	}
 
