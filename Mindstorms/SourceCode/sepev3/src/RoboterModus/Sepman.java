@@ -17,7 +17,7 @@ public class Sepman extends IModus{
 		if(aktuelleRichtung != getSepmanRichtung())
 			neuAusrichten();
 
-	lvfg.geradeaus(); 
+	lvfg.geradeaus(); //er fährt solange, bis er einen nächsten Knoten erreicht 
 	}
 	
 	private void neuAusrichten() {
