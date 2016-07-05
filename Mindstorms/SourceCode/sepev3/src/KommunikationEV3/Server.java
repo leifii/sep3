@@ -113,7 +113,7 @@ public class Server{
 				if(mode == 104){
 
 					robomode.setNachricht(nachricht);
-					robomode.run();
+					robomode.runRobo();
 					com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 
 				}
@@ -123,7 +123,7 @@ public class Server{
 				else if(mode == 103){
 
 					robomode.setNachricht(nachricht);
-					robomode.run();
+					robomode.runRobo();
 					com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 
 				}
@@ -132,7 +132,7 @@ public class Server{
 				else if(mode == 102){
 
 					robomode.setNachricht(nachricht);
-					robomode.run();
+					robomode.runRobo();
 					com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 
 				}
@@ -141,7 +141,7 @@ public class Server{
 				else if(mode == 101){
 
 					robomode.setNachricht(nachricht);
-					robomode.run();
+					robomode.runRobo();
 					com1.senden(com1.erzeugeByteArray(robomode.getPos(), robomode.getZielKnoten(), robomode.getDrucksensor(), robomode.isAktiviert(), robomode.isPowerup(), robomode.isPause()));
 
 				}

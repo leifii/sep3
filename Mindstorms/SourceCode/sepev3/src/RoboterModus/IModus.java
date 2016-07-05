@@ -58,7 +58,7 @@ public abstract class IModus {                  //eine abstract class kann Varia
         mapAktiviert.put(Rolle.SEPman, initalAktiviert);
     }
    
-    public abstract void run();
+    public abstract void runRobo();
    
     
     
