@@ -582,8 +582,13 @@ public class PlayState extends State {
 				}	//4448   2508
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.U)) {
+		if (c.getBosseBesiegt()[0] &&c.getBosseBesiegt()[1] &&c.getBosseBesiegt()[2]&&c.getBosseBesiegt()[3]
+				&& keys.alle==false) {
 			gsm.push(new NotAllKeysWinState(gsm));
+		}
+		if (c.getBosseBesiegt()[0] &&c.getBosseBesiegt()[1] &&c.getBosseBesiegt()[2]&&c.getBosseBesiegt()[3]
+				&& keys.alle==true ) {
+			gsm.push(new AllKeysWinState(gsm));
 		}
 	}
 

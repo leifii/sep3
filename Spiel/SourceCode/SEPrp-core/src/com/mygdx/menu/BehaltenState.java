@@ -15,22 +15,24 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Align;
+import com.npc.DialogNeu;
 
-public class AllKeysWinState extends State{
-
+public class BehaltenState extends State{
 	private Skin skin;
 	private TextureAtlas atlas;
 	private Stage stage;
 	private Table table;
-	private TextButton buttonJ,buttonK;
+	private TextButton buttonJ;
 	private BitmapFont white;
 	private Label label;	
-	
+	DialogNeu dia;
+	String[]a;
 	
 PlayState playstate;	
-	public AllKeysWinState(GameStateManager gsm) {
+	public BehaltenState(GameStateManager gsm) {
 		super(gsm);
-
+		dia=new DialogNeu(a=new String[]{"Geschichte: alle Schlüssel gefunden","versucht Truhe selbst zu öffnen ohne König zu geben","Gold!!!\nmitnehmen und in Reichtum in ein fernes Land weiterreisen"});
+		dia.setZähler(1);
 	
 	
 	stage = new Stage();
@@ -61,15 +63,14 @@ PlayState playstate;
 	ConfirmButtonStyle.pressedOffsetY = -1;
 	ConfirmButtonStyle.font = white;
 
-	buttonJ = new TextButton("Behalten", textButtonStyle);
-	buttonJ.pad(20);
-	buttonK = new TextButton("Abgeben", textButtonStyle);
-	buttonK.pad(20);
+	buttonJ = new TextButton("Hauptmenü", textButtonStyle);
+	buttonJ.pad(30);
+
 	
 	LabelStyle labelStyle = new LabelStyle(white, com.badlogic.gdx.graphics.Color.WHITE);
 
-	label = new Label("Gibst du die Schlüssel dem König?", labelStyle);
-	label.setFontScale(1.0f);
+	label = new Label("Du wurdest besiegt!", labelStyle);
+	label.setFontScale(2.0f);
 	Image Rahmen = new Image(new Texture("userInterface/border2.png"));
 	Rahmen.setPosition(0, Gdx.graphics.getHeight() * 0.1f + buttonJ.getMinHeight() * 1.5f - 200);
 	Rahmen.setWidth(Gdx.graphics.getWidth() * 0.95f);
@@ -81,20 +82,19 @@ PlayState playstate;
 	table.row();
 
 	table.add(buttonJ);
-	table.add(buttonK);
 	
 	
 	
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
-	Image img = new Image(new Texture("userInterface/dark background.png"));
+	Image img = new Image(new Texture("ENDESCHLÜSSELBEHALTEN.png"));
 	img.setFillParent(true);
 	Rahmen.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
 	stage.addActor(img);
-	stage.addActor(Rahmen);
-	stage.addActor(table);
+//	stage.addActor(Rahmen);
+//	stage.addActor(table);
 	}
 
 	@Override
@@ -102,10 +102,7 @@ PlayState playstate;
 		
 		
 		if (buttonJ.isChecked()) {
-			gsm.push(new BehaltenState(gsm));
-		}
-		if (buttonK.isChecked()) {
-			gsm.push(new KönigGebenState(gsm));
+			gsm.push(new NewMenuState1(gsm));
 		}
 	}
 
@@ -115,8 +112,16 @@ PlayState playstate;
 	}
 	public void render(SpriteBatch sb) {
 		stage.act();
-	
+//	
 		stage.draw();
+		dia.setGeöffnet(true);
+		sb.begin();
+		dia.draw(sb, 0.5f);
+		if(dia.getZähler()>=a.length)
+		{
+			Gdx.app.exit();
+		}
+		sb.end();
 	}
 
 	public void dispose() {
