@@ -243,6 +243,10 @@ public class Verfolger extends IModus{
 		
 		else
 			lvfg.stop();
+		
+		if(isAktiviert()==false) {			//Wurde der Roboter deaktiviert, wird er auf seinen ursprüngliche Startposition gestellt 
+			aktuelleposition = 3;
+			letzterKnoten = aktuelleposition -10;}
 	}
 
 	public void reset(){
