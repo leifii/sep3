@@ -147,9 +147,9 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	 Plane[] Spielbrett;
 	 Planeinit Spiel;
 	
-	static QueueHandler queue;	//Ergänzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
-	public static PowerUp powerUp;     //Ergänzt durch Tristan! Objekt vom Typ "PowerUp". Initialisierung in setClients()
-	
+	static QueueHandler queue;	//Ergaenzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
+	public static PowerUp powerUp;     //Ergaenzt durch Tristan! Objekt vom Typ "PowerUp". Initialisierung in setClients()
+	static Position positions;    //Ergaenzt durch Tristan. Objekt vom  Typ "Position" um Positionen der Roboter abzurufen.
 	
 
 	/*
@@ -926,10 +926,11 @@ public  int getTaste() {
 public void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
-     client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
-     queue = client1.queueHandler.getQueueHandler(); ////Ergänzt durch Tristan! Fügt Referenz zum QueueHandler hinzu.
-     powerUp = new PowerUp();                        ////Ergänzt durch Tristan! Erzeugt ein neues Objekt des Typs PowerUp
-     powerUp.setPowerUp(powerUp);                    ////Ergänzt durch Trustan! Ermöglicht Zugriff auf Menu.powerUp aus anderen Klassen!
+     client1.clientInit("localhost", "Tracer", 13338,1);
+     queue = client1.queueHandler.getQueueHandler(); ////Ergaenzt durch Tristan! Fuegt Referenz zum QueueHandler hinzu.
+     powerUp = new PowerUp();                        ////Ergaenzt durch Tristan! Erzeugt ein neues Objekt des Typs PowerUp
+     powerUp.setPowerUp(powerUp);                    ////Ergaenzt durch Tristan! Ermoeglicht Zugriff auf Menu.powerUp aus anderen Klassen!
+     positions = client1.pos.getPositionen();        ////Ergaenzt durch Tristan! Referenz auf Position in Clientinit
 }
 /*
  * Abfrage der 4 Kollisionsvariabeln solange das Spiel läuft
@@ -1051,10 +1052,14 @@ public int convertKnoten(int i){
 }
 
 public void Positionstracking (){
-	this.Sepman   = Position.getPosSepman();
-	this.Tracer   = Position.getPosTracer();
-	this.Defender = Position.getPosDefender();
-	this.Random   = Position.getPosRandom();	
+	
+	
+	this.Sepman   = positions.getPosSepman();
+	
+	
+	this.Tracer   = positions.getPosTracer();
+	this.Defender = positions.getPosDefender();
+	this.Random   = positions.getPosRandom();	
 
 }
 
