@@ -1,6 +1,6 @@
 
 /**
- * @author ${Katharina Böse, Gizem}
+ * @author ${Gizem}
  *
  *
  */

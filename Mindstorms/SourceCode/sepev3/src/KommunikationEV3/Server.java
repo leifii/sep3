@@ -1,5 +1,5 @@
 /**
- * @author ${Tristan, Katharina Böse}
+ * @author ${Katharina Böse}
  *
  * 
  */
@@ -54,7 +54,7 @@ public class Server{
 			//Initialisierung
 
 			Drucksensor drucksensor = new Drucksensor();
-			KommunikationEV3 com1 = new KommunikationEV3(roboter, drucksensor);
+			KommunikationEV3 com1 = new KommunikationEV3(roboter);
 
 			Planeinit planes = new Planeinit(knoten, norden, sueden, osten, westen, powerup);
 
@@ -147,7 +147,7 @@ public class Server{
 				}
 
 				
-				if(Button.getButtons() != 0){  	//Die Verbindung wird geschlossen+#
+				if(Button.getButtons() != 0){  	//Die Verbindung wird geschlossen
 					
 					roboter.close();			
 				}
