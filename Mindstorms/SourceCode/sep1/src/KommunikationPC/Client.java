@@ -53,14 +53,14 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 				byte[] tracer = {0, 0, 0, 0, 0, 0, 0, 0, 101};
 				kom.senden(tracer);
-				Thread.sleep(10);
+				Thread.sleep(200);
 			}
 			
 			if(modus == "Defender"){															 //Erstes an den Roboter gesendetes ByteArray, setzt entsprechenden Modus
 				
 				byte[] defender = {0, 0, 0, 0, 0, 0, 0, 0, 102};
 				kom.senden(defender);
-				Thread.sleep(10);
+				Thread.sleep(200);
 				
 			}
 			
@@ -68,7 +68,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 				byte[] random = {0, 0, 0, 0, 0, 0, 0, 0, 103};
 				kom.senden(random);
-				Thread.sleep(10);
+				Thread.sleep(200);
 				
 			}
 			
@@ -76,7 +76,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 				byte[] sepman = {0, 0, 0, 0, 0, 0, 0, 0, 104};
 				kom.senden(sepman);
-				Thread.sleep(10);
+				Thread.sleep(200);
 				
 			}
 			while(true){                                              //Sendet alle 10ms ein ByteArray mit den aktuellen Positionen sämtlicher
@@ -104,7 +104,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 				
 				try{
-					Thread.sleep(1*1000);
+					Thread.sleep(200);
 				}catch(InterruptedException e){
 					e.printStackTrace();
 				}
