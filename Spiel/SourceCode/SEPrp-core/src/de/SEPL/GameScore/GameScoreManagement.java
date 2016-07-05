@@ -21,9 +21,6 @@ import com.mygdx.menu.PlayState;
 public class GameScoreManagement {
 
 	public static void setRunningNr(int runningNr) {
-		if (runningNr > 3) {
-			runningNr = 1;
-		}
 		PrintWriter printWriter = null;
 		try {
 			FileWriter writer = new FileWriter("runningNr.txt", false);
