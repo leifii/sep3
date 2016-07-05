@@ -60,6 +60,8 @@ public class FileClient implements IAuktionshausClient {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NullPointerException f) {
+			System.out.println("Auktionshaus zur Zeit geschlossen.");
 		}
 
 		String[] tempAr = items.split("-");
