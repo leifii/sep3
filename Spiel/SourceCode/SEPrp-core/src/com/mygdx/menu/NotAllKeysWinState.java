@@ -26,11 +26,13 @@ public class NotAllKeysWinState extends State{
 	private BitmapFont white;
 	private Label label;	
 	DialogNeu dia;
+	String[]a;
 	
 PlayState playstate;	
 	public NotAllKeysWinState(GameStateManager gsm) {
 		super(gsm);
-dia=new DialogNeu(new String[]{"wasd","123","Abc"});
+		dia=new DialogNeu(a=new String[]{"Geschichte: nicht alle Schlüssel gefunden","versucht Truhe zu öffnen","Oh noooo, Schleim !!!!!!!!!"});
+		dia.setZähler(1);
 	
 	
 	stage = new Stage();
@@ -86,13 +88,13 @@ dia=new DialogNeu(new String[]{"wasd","123","Abc"});
 	
 	table.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
-	Image img = new Image(new Texture("userInterface/dark background.png"));
+	Image img = new Image(new Texture("ENDEKEINSCHLÜSSEL.png"));
 	img.setFillParent(true);
 	Rahmen.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(2)));
 
 	stage.addActor(img);
-	stage.addActor(Rahmen);
-	stage.addActor(table);
+//	stage.addActor(Rahmen);
+//	stage.addActor(table);
 	}
 
 	@Override
@@ -110,12 +112,15 @@ dia=new DialogNeu(new String[]{"wasd","123","Abc"});
 	}
 	public void render(SpriteBatch sb) {
 		stage.act();
-	
+//	
 		stage.draw();
-		dia.setGeöffnet(true);dia.setZähler(0);
+		dia.setGeöffnet(true);
 		sb.begin();
 		dia.draw(sb, 0.5f);
-		
+		if(dia.getZähler()>=a.length)
+		{
+			Gdx.app.exit();
+		}
 		sb.end();
 	}
 
