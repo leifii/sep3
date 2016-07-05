@@ -11,10 +11,10 @@ import Anzeige.Planeinit;
 
 public class Position  implements IPosition {
 	
-	static int posSepman;				 //posX - aktuelle Position RoboterX
-	static int posTracer;
-	static int posRandom;
-	static int posDefender;
+	int posSepman;				 //posX - aktuelle Position RoboterX
+	int posTracer;
+    int posRandom;
+	int posDefender;
 	int destSepman  =54;																 //destX - Zielposition RoboterX
 	int destTracer  =03;
 	int destRandom  =26;
@@ -48,16 +48,16 @@ public class Position  implements IPosition {
 		this.posDefender = i;
 		}
 	
-	public static int getPosSepman(){
+	public int getPosSepman(){
 		return posSepman;
 	}
-	public static int getPosTracer(){
+	public int getPosTracer(){
 		return posTracer;
 	}
-	public static int getPosRandom(){
+	public int getPosRandom(){
 		return posRandom;
 	}
-	public static int getPosDefender(){
+	public int getPosDefender(){
 		return posDefender;
 	}
 	
