@@ -68,7 +68,7 @@ public abstract class IModus {                  //eine abstract class kann Varia
    
  
     public int getPos(){
-     return aktuelleposition;
+     return getAusgangsKnoten(); 
        
     }
     
