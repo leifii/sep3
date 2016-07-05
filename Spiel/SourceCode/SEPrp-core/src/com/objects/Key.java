@@ -25,6 +25,7 @@ public class Key {
 	boolean blackaufgehoben;
 	boolean whiteaufgehoben;
 	boolean goldaufgehoben;
+	public boolean alle;
 	KeyUI ui;
 	int mapb,mapw,mapg;
 	public Key(int xBlack,int yBlack,int xWhite,int yWhite,int xGold,int yGold,PlayState ps,int mapBlack,int mapWhite,int mapGold){
@@ -38,6 +39,7 @@ public class Key {
 		mapb=mapBlack;
 		mapw=mapWhite;
 		mapg=mapGold;
+		alle=false;
 	}
 	
 	
@@ -68,6 +70,9 @@ public class Key {
 			}
 		}
 		ui.Render(sb, goldaufgehoben, blackaufgehoben, whiteaufgehoben);
+		if (blackaufgehoben && whiteaufgehoben &&  goldaufgehoben) {
+			alle=true;
+		}
 	}
 	
 	public void dispose(){
