@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.mygdx.game.Author;
+import com.objects.Item;
 
 import de.SEPL.ServerClient.IAuktionshausClient;
 
@@ -15,7 +16,6 @@ import de.SEPL.ServerClient.IAuktionshausClient;
 
 class AuktionshausItem implements IInventar {
 
-	
 	TextButton itemkauf;
 	Label iteminfo;
 	String Name, Preis;
@@ -113,12 +113,6 @@ class AuktionshausItem implements IInventar {
 		return 0;
 	}
 
-		@Override
-	public int getHealing() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	@Override
 	public int getMoney() {
 		// TODO Auto-generated method stub
@@ -135,6 +129,18 @@ class AuktionshausItem implements IInventar {
 	public int getValueToName(String nameOfItem) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void add(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean remove(Item item) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

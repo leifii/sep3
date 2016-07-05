@@ -20,7 +20,6 @@ import com.objects.Trank.TrankType;
 
 public class Inventory implements IInventar {
 
-	
 	private List<Item> itemList;
 	private Map<ItemType, Equipment> equipment;
 	private int gold;
@@ -28,10 +27,20 @@ public class Inventory implements IInventar {
 	
 	private Attributes attributeBoost;
 	private final Character owner;
-	private final int maxITEMS = 21;
+	private final int maxITEMS;
+	
+	//Konstruktor für das Auktionshaus
+	public Inventory(Item...items) {
+		this(null, Integer.MAX_VALUE, items);
+	}
 	
 	public Inventory(Character owner, Item...items) {
-		this.owner= owner;
+		this(owner, 21, items);
+	}
+	
+	public Inventory(Character owner, int maxItems, Item...items) {
+		this.owner = owner;
+		this.maxITEMS = maxItems;
 		itemList = new LinkedList<>();
 		for(Item i : items)
 			add(i);
@@ -50,10 +59,11 @@ public class Inventory implements IInventar {
 		if(i.getType().isEquipable()) {
 			if(equipment.containsKey(i.getType())) {				
 				Equipment e = equipment.get(i.getType()) == i ? null : (Equipment) i;
-				equipment.put(i.getType(), e);	
+				//if Item I schon equipped, dann e == null, dann unequip
+				equipment.put(i.getType(), e);
 				updateAttributeBoost();
 			}
-		} else if(i.getType() == ItemType.Trank) {
+		} else if(i.getType() == ItemType.Trank && owner != null) {
 			owner.heal(((Trank) i).getHeal());
 			itemList.remove(i);
 		}
@@ -171,23 +181,24 @@ public class Inventory implements IInventar {
 		return -1;
 	}
 	
-	public void doSomething() {
-		boolean buy = true;
-		if(buy) {
-			place("Lederrüstung");							//wieso so
-			add(new Equipment(EquipmentType.Lederrüstung)); //und nicht so? Ist viel sauberer
-			
-		}
-	}
-	
+	@Override
 	public void place(String itemName) {
 		EquipmentType e = EquipmentType.valueOf(itemName);
-		if(e != null)
+		if(e != null) {
+			System.out.println("add "  + e.toString());
 			add(new Equipment(e));
+		}
 		
 		Trank t = TrankType.getTrank(itemName);
-		if(t != null)
+		if(t != null) {
+			System.out.println("add " + t.getNAME());
 			add(t);
+		}
+	}
+
+	@Override
+	public boolean remove(Item item) {
+		return itemList.remove(item);
 	}
 	
 }

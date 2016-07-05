@@ -78,9 +78,8 @@ public class Gegner extends Character {
 		sight = new Rectangle(x, y, w, h);
 		
 		for (int i = 0; i < getSkills().size(); i++) {
-			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
-
 			getSkills().get(i).direction(this);
+			getSkills().get(i).update(dt, this.getPosition().x, this.getPosition().y);
 			// getSkills().get(i).buffed(this);
 		}
 		
@@ -133,6 +132,7 @@ public class Gegner extends Character {
 			dir = move ? AnimationDirection.EAST_WALK : AnimationDirection.EAST_STAND;
 		else if(x < getPosition().x)
 			dir = move ? AnimationDirection.WEST_WALK : AnimationDirection.WEST_STAND;
+		
 		setRichtung(dir);
 		
 		

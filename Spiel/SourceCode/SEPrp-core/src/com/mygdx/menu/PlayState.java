@@ -28,6 +28,7 @@ import com.character.AnimationDirection;
 import com.character.Attributes;
 import com.character.Character;
 import com.character.IDrawable;
+import com.character.Inventory;
 import com.character.Krieger;
 import com.character.Magier;
 import com.character.MyContactListener;
