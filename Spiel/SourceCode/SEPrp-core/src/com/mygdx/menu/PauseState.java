@@ -19,6 +19,8 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
 import com.mygdx.game.MyGdxGame;
 
+import de.SEPL.ServerClient.IAuktionshausClient;
+
 @Author(name = "Bijan Shahbaz Nejad")
 
 public class PauseState extends State {
@@ -30,6 +32,8 @@ public class PauseState extends State {
 	private TextButton buttonJ, buttonN ,buttonX;
 	private BitmapFont white;
 	private Label label;	
+	IAuktionshausClient auktionshausClient = new de.SEPL.ServerClient.FileClient();
+
 	
 	
 PlayState playstate;	
@@ -110,6 +114,7 @@ PlayState playstate;
 		}
 		if (buttonJ.isChecked() && System.currentTimeMillis()-500>gsm.timer) {
 			gsm.push(new NewMenuState1(gsm));
+			auktionshausClient.shutDown();
 		}
 	}
 

@@ -490,7 +490,7 @@ public class PlayState extends State {
 			if(inventoryState != null)
 				inventoryState.dispose();
 			inventoryState = null;
-			gsm.push(new PauseState(gsm,this));
+			gsm.push(new PauseState(gsm,this, auktionshausClient));
 		}
 		
 		//toogle inventoryState
