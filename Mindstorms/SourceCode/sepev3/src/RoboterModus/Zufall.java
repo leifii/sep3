@@ -8,8 +8,6 @@ package RoboterModus;
 
 import java.util.Random;
 
-import lejos.hardware.lcd.LCD;
-import lejos.utility.Delay;
 import Drucksensorverarbeitung.Drucksensor;
 import Linienverfolger.Linienverfolgung;
 import Spielfeld.Plane;
@@ -24,14 +22,15 @@ public class Zufall extends IModus{
 
 	
 	public Zufall(int start, Planeinit plane, Linienverfolgung lvfg, Drucksensor drucksensor){
-		super(start, plane, lvfg, drucksensor);
+		super(plane, lvfg, drucksensor, Rolle.Geist_Zufall);
+		aktuelleposition = start;
 		letzterKnoten = aktuelleposition +1;
 		r = new Random();
 	}
 	
 	public void run(){									// Es wird zuerst überprüft, ob eine Pause vorliegt oder der Roboter deaktiviert wurde
-		if(!isPause() && isAktiviert() /*&& isStarted()*/){	
-			
+		if((pause==false && /*isAktiviert()*/ true)){	//TODO das muss noch geändert werden
+		
 		int zufallszahl;
 		Plane knoten;
 
@@ -72,7 +71,7 @@ public class Zufall extends IModus{
 			
 			if(richtungen[zufallszahl] == true){
 				break;
-				 
+				
 			}
 		}
 		
@@ -173,29 +172,6 @@ public class Zufall extends IModus{
 			letzterKnoten = aktuelleposition +1;}
 		}
 	}
-
-	@Override
-	public void nachrichtenverarbeitung() {
-		switch(nachricht[8]){
-		case 13: aktiviert = false; break; 
-		case 23: aktiviert = true; break;
-		}
-		
-	}
-
-	@Override
-	public void reset() {
-
-		this.powerup = false;
-        this.pause = false;
-        this.aktiviert = true;
-        this.spielLaeuft = false;
-        aktuelleposition = initpos;
-        letzterKnoten = aktuelleposition + 1;
-		
-	}
-
-
 	
 
 }
