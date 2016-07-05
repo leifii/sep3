@@ -37,7 +37,7 @@ public class PauseState extends State {
 	
 	
 PlayState playstate;	
-	public PauseState(GameStateManager gsm,PlayState ps) {
+	public PauseState(GameStateManager gsm,PlayState ps, IAuktionshausClient auktionshausClient) {
 		super(gsm);
 	playstate=ps;
 	
