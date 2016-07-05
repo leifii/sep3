@@ -256,6 +256,7 @@ public class Verfolger extends IModus{
         this.spielLaeuft = false;
         aktuelleposition = initpos;
         letzterKnoten = aktuelleposition -10;
+       
 	}
 
 	@Override
