@@ -13,7 +13,7 @@ public class Sepman extends IModus{
 	}
 
 	@Override
-	public void run() {
+	public void runRobo() {
 		if(aktuelleRichtung != getSepmanRichtung())
 			neuAusrichten();
 

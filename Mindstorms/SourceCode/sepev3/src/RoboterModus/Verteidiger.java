@@ -28,7 +28,7 @@ public class Verteidiger extends IModus{
 	}
 
 	@Override
-	public void run() {
+	public void runRobo() {
 		if(!isPause() && isAktiviert() /*&& isStarted()*/){
 			Bewegung();
 		}

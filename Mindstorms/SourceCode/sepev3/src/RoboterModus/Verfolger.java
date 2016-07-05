@@ -20,7 +20,7 @@ public class Verfolger extends IModus{
 		letzterKnoten = aktuelleposition -10;
 	}
 	
-	public void run(){
+	public void runRobo(){
 		if(!isPause() && isAktiviert() /*&& isStarted()*/){
 		
 	

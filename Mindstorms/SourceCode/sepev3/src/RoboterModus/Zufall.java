@@ -28,7 +28,7 @@ public class Zufall extends IModus{
 		r = new Random();
 	}
 	
-	public void run(){									// Es wird zuerst überprüft, ob eine Pause vorliegt oder der Roboter deaktiviert wurde
+	public void runRobo(){									// Es wird zuerst überprüft, ob eine Pause vorliegt oder der Roboter deaktiviert wurde
 		if((pause==false && /*isAktiviert()*/ true)){	//TODO das muss noch geändert werden
 		
 		int zufallszahl;
