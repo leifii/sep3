@@ -1077,7 +1077,7 @@ public JLabel[] erzeugeSpielfeld()
 				i++;
 			}
 				j=new JLabel(iiKnoten); // Hinzugefügt von Mark 
-				j.setBounds(100+k*150,100+i*150,55,55);
+				j.setBounds(100+k*150,100+i*150,65,65);
 				thorbensPanel.add(j);
 			zahl++;
 			ele[zahl-2]=j;
@@ -1239,4 +1239,37 @@ public void create(String a) throws IOException
 	Spielbrett=Spiel.getSpiel();
     br.close();
 }
+	public void abfahren(int anfang, int ende)
+	{
+		int zähler=0;
+		//färbt gefahrene Knoten um
+		if(anfang==ende)
+		{}
+		else if(anfang+1==ende)
+		{
+			//set rechte kante grün
+			zähler++;
+		}
+		else if(anfang-10==ende)
+		{
+			//set obere Kante grün
+			zähler++;
+		}
+		else if(anfang+10==ende)
+		{
+			//set untere Kante grün
+			zähler++;
+		}
+		else if(anfang-1==ende)
+		{
+			//set linke Kante grün
+			zähler++;
+		}
+		if(zähler==36)
+		{
+			thorbensPanel.setVisible(false);
+			siegDisplay.setVisible(true);
+		}
+	}
+	
 }

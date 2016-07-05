@@ -55,8 +55,8 @@ public class Planeinit implements IPlaneinit{
 
 
 	@Override
-	public int[] setRoboter() {
+	public void setRoboter(int[] erf) {
 		// TODO Auto-generated method stub
-		return null;
+		pos=erf;
 	}
 }
