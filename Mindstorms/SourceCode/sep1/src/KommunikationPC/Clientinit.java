@@ -27,7 +27,7 @@ public class Clientinit {
 	ConcurrentLinkedQueue<Byte> queue3;
 	ConcurrentLinkedQueue<Byte> queue4;
 	
-	Position pos;
+	public Position pos;
 	
     public QueueHandler queueHandler;
 	
