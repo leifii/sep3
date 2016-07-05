@@ -5,7 +5,7 @@ import com.character.Attributes;
 import com.grafiken.Objekte;
 import com.mygdx.game.Author;
 
-@Author(name = "???")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 
 public enum EquipmentType {
@@ -18,9 +18,9 @@ public enum EquipmentType {
 	Eisenhelm(ItemType.Helm, 12, 4,					0, 	4, 	0,	0, 	0, 2, 0, 0,		3, 1),
 	Stahlhelm(ItemType.Helm, 18, 5,					0, 	5, 	0,	0, 	0, 4, 0, 0,		1, 1),
 	
-	Lederhandschuh(ItemType.Handschuh, 5, 2, 		0, 	0, 	0,	0, 	0, 3, 0, 0,		1, 2),
-	Eisenhandschuh(ItemType.Handschuh, 10, 4,		0, 	0, 	0,	0, 	1, 5, -1, 0,	3, 2),
-	Stahlhandschuh(ItemType.Handschuh, 15, 6,		0, 	0, 	0,	0, 	2, 8, -2, 0,	5, 2),
+	Lederhandschuh(ItemType.Handschuh, 5, 2, 		0, 	0, 	3,	0, 	0, 1, 0, 0,		1, 2),
+	Eisenhandschuh(ItemType.Handschuh, 10, 4,		0, 	0, 	5,	0, 	1, 1, -1, 0,	3, 2),
+	Stahlhandschuh(ItemType.Handschuh, 15, 6,		0, 	0, 	8,	0, 	2, 2, -2, 0,	5, 2),
 	
 	Stoffschuh(ItemType.Schuhe, 3, 1, 				0, 	0, 	0,	1, 	0, 0, 0, 0.5f,	3,13),
 	Lederschuh(ItemType.Schuhe, 6, 3, 				0, 	0, 	0,	1, 	0, 0, 1, 1f,	4,13),

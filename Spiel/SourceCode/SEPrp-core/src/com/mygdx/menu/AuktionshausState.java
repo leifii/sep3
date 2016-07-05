@@ -1,10 +1,9 @@
 package com.mygdx.menu;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,18 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Author;
-import com.mygdx.game.MyGdxGame;
-import java.util.ArrayList;
-import java.util.List;
+import com.objects.Item;
+
 import de.SEPL.ServerClient.IAuktionshausClient;
 
 @Author(name = "Bijan Shahbaz Nejad")
@@ -194,12 +190,6 @@ public class AuktionshausState extends State implements IInventar {
 	}
 
 	@Override
-	public int getHealing() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int getMoney() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -215,6 +205,18 @@ public class AuktionshausState extends State implements IInventar {
 	public int getValueToName(String nameOfItem) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void add(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean remove(Item item) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

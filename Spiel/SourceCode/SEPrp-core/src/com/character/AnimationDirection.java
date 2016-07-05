@@ -2,7 +2,7 @@ package com.character;
 
 import com.mygdx.game.Author;
 
-@Author(name = "?????????")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 public enum AnimationDirection {
 	SOUTH_WALK('s'), WEST_WALK('w'), EAST_WALK('e'), NORTH_WALK('n'), 

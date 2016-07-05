@@ -21,6 +21,14 @@ public interface IInventar {
 	List<String> getAllItems();
 	
 	/**
+	 * Löscht das Item aus dem Menü, falls vorhanden.
+	 * @param item Item, das zu löschen ist
+	 * @return true, wenn das Item im Inventar war und gelöscht wurde, ansonsten false
+	 */
+	
+	boolean remove(Item item);
+	
+	/**
 	 * Löschte eine Instanz eines Items aus dem Inventar.
 	 * 
 	 * @param name Der Name des Items, das zu löchen ist.
@@ -55,7 +63,7 @@ public interface IInventar {
 	 */
 	int getDexterityBoost();
 	
-	/* Methode gehört nicht an diese Stelle.
+	/* Methode gehört nicht an diese Stelle
 	/**
 	 * Gibt zurück wie viele Lebenspunkte durch die Benuztung von Items geheilt wurden seit dem letzten Aufruf dieser Methode.
 	 * 
@@ -86,5 +94,11 @@ public interface IInventar {
 	 * @return Wert des Items als Integer.
 	 */
 	int getValueToName(String nameOfItem);
+	
+	/**
+	 * Fügt dem Inventar ein Item hinzu, wenn dieses existiert.
+	 * @param itemName Name des Items, welches ins Inventar gelegt werden soll (spezifische Itemnamen stehen in den Klassen EquipmentType und Trank)
+	 */
+	void place(String itemName);
 	
 }
