@@ -6,7 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
+import java.net.UnknownHostException;
+
 import com.mygdx.game.Author;
 
 @Author(name = "Dominikus Häckel")
@@ -36,8 +39,12 @@ public class FileClient implements IAuktionshausClient {
 			writer.write(wrapped + "\n");
 			writer.flush();
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (ConnectException f) {
+			System.out.println("Auktionshaus zur Zeit out of Order.");
+		} catch (UnknownHostException g) {
+			System.out.println("Adresse des Autkionshauses nicht bekannt.");
+		} catch (IOException h) {
+			System.out.println("Hier ist wohl ein Fehler aufgelaufen.");
 		}
 	}
 
