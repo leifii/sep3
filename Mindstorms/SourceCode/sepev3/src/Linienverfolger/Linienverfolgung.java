@@ -23,8 +23,9 @@ public class Linienverfolgung implements ILinienverfolgung {
 
     float[] sample;
     float light_aktuell;
-    float weiss_wert=0.25F;					//Lichtwerte Weiss (außerhalb Linie). AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
-    										//0.5
+    float weiss_wert=0.55F;
+    										//Lichtwerte Weiss (außerhalb Linie). AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
+    										//0.5 (war 0.25F)  0.55,0.65
     
     public Linienverfolgung(){
     	MotorL= new EV3LargeRegulatedMotor(MotorPort.A);
@@ -59,7 +60,7 @@ public class Linienverfolgung implements ILinienverfolgung {
 	}
 	
 	public boolean aufKnoten(){
-		if (light_aktuell>0.13 && light_aktuell<0.21){ // Lichtwerte eines Knotens. AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
+		if (light_aktuell>0.10 && light_aktuell<0.21){ // Lichtwerte eines Knotens. AN ORIGINAL-SPIELFELD ANPASSEN (Wert durch Lejos Tools am EV3 ablesen)
 			LCD.drawString("<- or ->", 1, 3);			//Wert könnte funktionieren (nachprüfen)
 			MotorR.stop();
 			MotorL.stop();
