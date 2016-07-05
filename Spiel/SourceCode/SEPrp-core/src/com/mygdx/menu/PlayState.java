@@ -667,7 +667,7 @@ public class PlayState extends State {
 	@Override
 	public void render(SpriteBatch sb) {
 		// TODO Auto-generated method stub
-
+		
 		map.render(sb);
 		
 		
