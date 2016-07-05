@@ -673,12 +673,11 @@ public class PlayState extends State {
 		
 		sb.begin();
 		c.draw(sb);
-		if (c.getMapIndex()==1) {
-			
 		
+		if (c.getMapIndex()==1 && c.getBosseBesiegt()[0]) {
 			sb.draw(new Texture("grafiken/treppe.png"),4448,2508);
 		}
-		else if (c.getMapIndex()==2) {
+		else if (c.getMapIndex()==2 &&  c.getBosseBesiegt()[1]) {
 			sb.draw(new Texture("grafiken/treppe.png"),1282,1107);
 		} else {
 
