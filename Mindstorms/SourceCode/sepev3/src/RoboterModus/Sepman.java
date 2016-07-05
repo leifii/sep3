@@ -16,9 +16,8 @@ public class Sepman extends IModus{
 	public void run() {
 		if(aktuelleRichtung != getSepmanRichtung())
 			neuAusrichten();
-//		
-//		TODO fährt nur geradeaus, wenn eine fahrbare Kante vorliegt
-//		lvfg.geradeaus(); 
+
+	lvfg.geradeaus(); 
 	}
 	
 	private void neuAusrichten() {
