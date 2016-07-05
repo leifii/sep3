@@ -1247,26 +1247,79 @@ public void create(String a) throws IOException
 	public void abfahren(int anfang, int ende)
 	{
 		int zähler=0;
+		ImageIcon grüneKante;
+		grüneKante= new ImageIcon("grüneKante.png");
+		JLabel Kante = new JLabel(grüneKante);
+		Kante.setBounds(0, 0, 100, 100);
+		
 		//färbt gefahrene Knoten um
 		if(anfang==ende)
 		{}
 		else if(anfang+1==ende)
 		{
+			if(anfang<6)
+			Kante.setLocation(anfang*150+75, 150);
+			else if(anfang<12)
+			Kante.setLocation(anfang*150+75,300);
+			else if(anfang<18)
+				Kante.setLocation(anfang*150+75, 450);
+			else if(anfang<24)
+				Kante.setLocation(anfang*150+75,600);
+			else if(anfang<30)
+				Kante.setLocation(anfang*150+75, 750);
+			else 
+				Kante.setLocation(anfang*150+75, 900);
 			//set rechte kante grün
 			zähler++;
 		}
-		else if(anfang-10==ende)
+		else if(anfang-6==ende)
 		{
+			if(anfang<6)
+				Kante.setLocation(anfang*150, 150-75);
+				else if(anfang<12)
+				Kante.setLocation(anfang*150,300-75);
+				else if(anfang<18)
+					Kante.setLocation(anfang*150, 450-75);
+				else if(anfang<24)
+					Kante.setLocation(anfang*150,600-75);
+				else if(anfang<30)
+					Kante.setLocation(anfang*150, 750-75);
+				else 
+					Kante.setLocation(anfang*150, 900-75);
 			//set obere Kante grün
 			zähler++;
 		}
-		else if(anfang+10==ende)
+		else if(anfang+6==ende)
 		{
+			if(anfang<6)
+				Kante.setLocation(anfang*150, 150+75);
+				else if(anfang<12)
+				Kante.setLocation(anfang*150,300+75);
+				else if(anfang<18)
+					Kante.setLocation(anfang*150, 450+75);
+				else if(anfang<24)
+					Kante.setLocation(anfang*150,600+75);
+				else if(anfang<30)
+					Kante.setLocation(anfang*150, 750+75);
+				else 
+					Kante.setLocation(anfang*150, 900+75);
 			//set untere Kante grün
 			zähler++;
 		}
 		else if(anfang-1==ende)
 		{
+			if(anfang<6)
+				Kante.setLocation(anfang*150-75, 150);
+				else if(anfang<12)
+				Kante.setLocation(anfang*150-75,300);
+				else if(anfang<18)
+					Kante.setLocation(anfang*150-75, 450);
+				else if(anfang<24)
+					Kante.setLocation(anfang*150-75,600);
+				else if(anfang<30)
+					Kante.setLocation(anfang*150-75, 750);
+				else 
+					Kante.setLocation(anfang*150-75, 900);
 			//set linke Kante grün
 			zähler++;
 		}
