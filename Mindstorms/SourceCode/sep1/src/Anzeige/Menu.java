@@ -926,7 +926,7 @@ public  int getTaste() {
 public void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
-     client1.clientInit("localhost", "Tracer", 13338,1);
+     client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
      queue = client1.queueHandler.getQueueHandler(); ////Ergaenzt durch Tristan! Fuegt Referenz zum QueueHandler hinzu.
      powerUp = new PowerUp();                        ////Ergaenzt durch Tristan! Erzeugt ein neues Objekt des Typs PowerUp
      powerUp.setPowerUp(powerUp);                    ////Ergaenzt durch Tristan! Ermoeglicht Zugriff auf Menu.powerUp aus anderen Klassen!
