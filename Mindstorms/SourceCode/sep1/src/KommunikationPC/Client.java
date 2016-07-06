@@ -84,10 +84,10 @@ public class Client implements Runnable {                  //Klasse Client imple
 				                                                      //empfängt das "Antwort"-ByteArray.
 				
 				kom.senden(kom.erzeugeByteArray());
-				System.out.println("wat verschickt");        /////TESTESTESTETSTSTSTS
+				
 				while(client.getInputStream().available() > 0){
 					kom.empfangen();
-					System.out.println("wat empfangen");
+					
 				}
 				
 				if(powerUp.isPowerUpAktiv()){
