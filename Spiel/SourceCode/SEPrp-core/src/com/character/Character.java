@@ -261,10 +261,10 @@ public class Character implements Serializable, IDrawable {
 			attributes.setSTA(attributes.getSTA()+1);
 			attributes.setDEF(attributes.getDEF()+1);
 		}
-		skillup = true;
 		for (int i = 0; i < getSkills().size(); i++) {
 			getSkills().get(i).setskillup(true);
 		}
+		skillup = true;
 	}
 
 	public boolean collision(Rectangle object) {

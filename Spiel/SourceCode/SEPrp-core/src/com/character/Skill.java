@@ -195,8 +195,13 @@ public class Skill implements Serializable {
 
 		}
 		
-		if (button == 5 && skillup == true)		//testweise skillup false um lvlup zu testen
-			setAlive(true);
+		if (button == 5 ){			//testweise skillup false um lvlup zu testen
+			if(skillup == true)
+				setAlive(true);
+			else
+				setAlive(false);
+		}
+			
 		
 		
 		
