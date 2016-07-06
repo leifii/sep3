@@ -41,8 +41,9 @@ public class GameStateManager {
 	public void render(SpriteBatch sb){
 		states.peek().render(sb);
 		if(states.peek() instanceof NewMenuState1 || states.peek() instanceof NewMenuState || states.peek() instanceof NewGameCharacterState
-				|| states.peek() instanceof CharEditorState || states.peek() instanceof LoadMenuState ){
-			a.play();
+				|| states.peek() instanceof CharEditorState || states.peek() instanceof LoadMenuState || states.peek() instanceof KönigGebenState || states.peek() instanceof NotAllKeysWinState || states.peek() instanceof BehaltenState){
+
+					a.play();
 		}
 		else a.stop();
 		if(states.peek() instanceof PlayState && PlayState.getInstance().getC().getMapIndex()==1){
@@ -52,16 +53,11 @@ public class GameStateManager {
 		if(states.peek() instanceof PlayState && PlayState.getInstance().getC().getMapIndex()==2){
 			d.play();
 		}
-		else b.stop();
+		else d.stop();
 		if(states.peek() instanceof PlayState && PlayState.getInstance().getC().getMapIndex()==3){
 			c.play();
 		}
 		else c.stop();
-		if(states.peek() instanceof KönigGebenState || states.peek() instanceof NotAllKeysWinState || states.peek() instanceof BehaltenState){
-			a.stop();
-			a.play();
-		}
-		else a.stop();
 		
 		
 	}
