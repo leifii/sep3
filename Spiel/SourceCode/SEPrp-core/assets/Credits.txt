@@ -1,6 +1,6 @@
 Music:
-Rise of spirit.mp3 by Alexandr Zhelanov
-TownTheme.mp3 by cynicmusic (cynicmusic.com pixelsphere.org)
+Rise of spirit.mp3 and Героическая минорная.mp3 by Alexandr Zhelanov
+TownTheme.mp3 and battleThemeA.mp3 by cynicmusic (cynicmusic.com pixelsphere.org)
 
 Tiles:
 Tileset mountain_landscape by Jetrel, Bertram,Zabin and Saphy(TMW):
