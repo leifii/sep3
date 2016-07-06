@@ -11,13 +11,15 @@ import com.mygdx.game.Author;
 
 public class GameStateManager {
 	private Stack<State> states;
-	Music a,b;
+	Music a,b,c,d;
 	long timer=System.currentTimeMillis();
 	
 	public GameStateManager(){
 		states= new Stack<State>();
 		a=Gdx.audio.newMusic(Gdx.files.internal("RiseOfSpirit.mp3"));
 		b=Gdx.audio.newMusic(Gdx.files.internal("TownTheme.mp3"));
+		c=Gdx.audio.newMusic(Gdx.files.internal("battleThemeA.mp3"));
+		d=Gdx.audio.newMusic(Gdx.files.internal("Героическая минорная.mp3"));
 	}
 	public void push(State state){
 		if(state instanceof PlayState)
@@ -43,10 +45,25 @@ public class GameStateManager {
 			a.play();
 		}
 		else a.stop();
-		if(states.peek() instanceof PlayState){
+		if(states.peek() instanceof PlayState && PlayState.getInstance().getC().getMapIndex()==1){
 			b.play();
 		}
 		else b.stop();
+		if(states.peek() instanceof PlayState && PlayState.getInstance().getC().getMapIndex()==2){
+			d.play();
+		}
+		else b.stop();
+		if(states.peek() instanceof PlayState && PlayState.getInstance().getC().getMapIndex()==3){
+			c.play();
+		}
+		else c.stop();
+		if(states.peek() instanceof KönigGebenState || states.peek() instanceof NotAllKeysWinState || states.peek() instanceof BehaltenState){
+			a.stop();
+			a.play();
+		}
+		else a.stop();
+		
+		
 	}
 	public long getTimer() {
 		return timer;
