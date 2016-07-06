@@ -35,8 +35,8 @@ public class PowerUp implements IPowerUp {
 			powerUpAktiv = true;
 			knoten51=false;
 			queue.startPowerUp(51);
-			System.out.println("PowerUp51 aktiviert");
 		}
+		
 		if(x==32&&knoten32){
 			powerUpAktiv=true;
 			knoten32=false;
@@ -59,7 +59,6 @@ public class PowerUp implements IPowerUp {
 	public void deaktivierePowerUp() {      //deaktiviert powerUp
 		powerUpAktiv = false;
 		queue.endePowerUp();
-		System.out.println("powerUpEndä");
 		}
 	
 	public boolean isPowerUpAktiv(){        //gibt powerUp-Status zurück
