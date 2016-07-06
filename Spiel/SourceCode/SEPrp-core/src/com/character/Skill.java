@@ -54,7 +54,7 @@ public class Skill implements Serializable {
 
 	private float x;
 	private float y;
-
+	
 	protected float dx;
 	protected float dy;
 
@@ -63,6 +63,8 @@ public class Skill implements Serializable {
 	private int button;			//auf welcher taste der skill liegt
 
 	protected float zaehler;
+	
+	public Attributes z;
 	
 	private int position;
 	protected int width;
@@ -152,7 +154,29 @@ public class Skill implements Serializable {
 	public void update(float dt, float xx, float yy) {
 		//dmgfaktor = c.getdmgFaktor();
 		
-
+		z = c.getEnhancedAttributes();
+		
+//		if(c instanceof Krieger){
+//			float d;
+//			d = dmg * (z.getSTR()/10);
+//			this.setDmg((int)d);
+//		}		
+//		if(c instanceof Schurke){
+//			float d;
+//			d = dmg * (z.getDEX()/10);
+//		this.setDmg((int)d);
+//		}
+//		if(c instanceof Schuetze){
+//			float d;
+//			d = dmg * (z.getDEX()/10);
+//		this.setDmg((int)d);
+//		}
+//		if(c instanceof Magier){
+//			float d;
+//			d = dmg * (z.getINT()/10);
+//		this.setDmg((int)d);
+//		}
+		
 		if (zaehler == 360) // bei kompletter drehung der axt auf 0 wieder  setzen
 			zaehler = 0;
 		zaehler += 10; // axt drehen
