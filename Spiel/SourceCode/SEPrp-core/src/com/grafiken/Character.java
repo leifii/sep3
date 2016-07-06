@@ -25,7 +25,7 @@ public class Character implements ICharacter{
 	TextureRegion[][][] Animation;
 	List<TextureRegion[][]> gegnerList = new LinkedList<TextureRegion[][]>();
 	TextureRegion[][][] Angriff;
-	TextureRegion[][][] archer, warrior,mage;
+	TextureRegion[][][] archer, warrior,mage,thief;
 	
  
 	public Character(){
@@ -79,6 +79,16 @@ public class Character implements ICharacter{
 			TextureRegion.split(new Texture("grafiken/mage/Mage_blue_spreadsheet_eye_red.png"), 32, 48), 
 			TextureRegion.split(new Texture("grafiken/mage/Mage_blue_spreadsheet_eye_yellow.png"), 32, 48),
 		};
+		thief=new TextureRegion[][][]{
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-blueE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-greenE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-lightblueE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-red.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-red-blueE.png"), 32, 48),
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-red-greenE.png"), 32, 48), 
+			TextureRegion.split(new Texture("grafiken/Schurke/Thief_Spreadsheet-red-lightblueE.png"), 32, 48),
+		};
 	}	
 
 	
@@ -116,6 +126,9 @@ public class Character implements ICharacter{
 	}
 	public TextureRegion[][] getMage(int index){
 		return mage[index];
+	}
+	public TextureRegion[][] getThief(int index){
+		return thief[index];
 	}
 	public Texture getGegner(int index ) {
 		
