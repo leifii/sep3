@@ -1,5 +1,6 @@
 /**
  * @author ${Mark}
+ * @author Thorben
  *
  * 
  */
@@ -54,7 +55,11 @@ import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame implements IMenu , ActionListener, KeyListener  {
 //	private static final long serialVersionUID = 3498199861043935813L; //WIESO??? Manchmal gibts ne Fehlermeldung das das fehlt manchmal nicht ? weiß jemand eine Lösung ?
-	
+	ImageIcon Herz=new ImageIcon("herz.gif");
+	JLabel Leben1=new JLabel(Herz);
+	JLabel Leben2=new JLabel(Herz);  
+	JLabel Leben3=new JLabel(Herz);  
+	JLabel[] ele;
 	
 	public int leben =3;
 	public static boolean spielEnde = false;
@@ -146,6 +151,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	 public int Breite;
 	 Plane[] Spielbrett;
 	 Planeinit Spiel;
+	 boolean[] besucht=new boolean[(Länge*Breite)*2];
 	
 	public static QueueHandler queue;	//Ergaenzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
 	public static PowerUp powerUp;     //Ergaenzt durch Tristan! Objekt vom Typ "PowerUp". Initialisierung in setClients()
@@ -180,6 +186,8 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
  *  
  */
 public void initComponents() {
+	
+	//JFrame.MAXIMIZED_BOTH;
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1000,720);
 	setTitle("SEPman");
@@ -565,7 +573,7 @@ public void setzeAnzeigeSpielfeld () throws IOException{
 	thorbensPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 	thorbensPanel.setLayout(null);
 	
-	JLabel[] ele=erzeugeSpielfeld();
+	 ele=erzeugeSpielfeld();
 
 	/*
 	 * Hinzufügen des Sepmanns und der Geister
@@ -607,19 +615,19 @@ public void setzeAnzeigeSpielfeld () throws IOException{
 	
 	
 	
-	ImageIcon Herz=new ImageIcon("herz.gif");
 	
-	JLabel Leben1=new JLabel(Herz);
+	
+	
 	Leben1.setSize(50, 50);
 	Leben1.setLocation(10, 10);
 	thorbensPanel.add(Leben1);
 	
-	JLabel Leben2=new JLabel(Herz);       
+	     
 	Leben2.setSize(50, 50);
 	Leben2.setLocation(60, 10);
 	thorbensPanel.add(Leben2);
 	
-	JLabel Leben3=new JLabel(Herz);
+	
 	Leben3.setSize(50, 50);
 	Leben3.setLocation(110, 10);
 	thorbensPanel.add(Leben3);
@@ -1245,90 +1253,111 @@ public void create(String a) throws IOException
 	Spielbrett=Spiel.getSpiel();
     br.close();
 }
+
+//Thorben
+	public void setBesucht(int k)
+	{
+		besucht[k]=true;
+	}
+	public boolean getBesucht(int k)
+	{
+		return besucht[k];
+	}
+
+
+
+
 	public void abfahren(int anfang, int ende)
 	{
 		int zähler=0;
-		ImageIcon grüneKante;
-		grüneKante= new ImageIcon("grüneKante.png");
-		JLabel Kante = new JLabel(grüneKante);
-		Kante.setBounds(0, 0, 100, 100);
+		ImageIcon grüneKanteHorizontal;
+		ImageIcon grüneKanteVertikal;
+		grüneKanteHorizontal= new ImageIcon("grüneKanteHorizontal.png");
+		grüneKanteVertikal= new ImageIcon("grüneKanteVertikal.png");
+		JLabel hKante = new JLabel(grüneKanteHorizontal);
+		JLabel vKante = new JLabel(grüneKanteVertikal);
+		hKante.setBounds(0, 0, 100, 100);
+		vKante.setBounds(0, 0, 100, 100);
 		
 		//färbt gefahrene Knoten um
 		if(anfang==ende)
 		{}
-		else if(anfang+1==ende)
+		else if(getBesucht(anfang+ende)==false)
 		{
-			if(anfang<6)
-			Kante.setLocation(anfang*150+75, 150);
-			else if(anfang<12)
-			Kante.setLocation(anfang*150+75,300);
-			else if(anfang<18)
-				Kante.setLocation(anfang*150+75, 450);
-			else if(anfang<24)
-				Kante.setLocation(anfang*150+75,600);
-			else if(anfang<30)
-				Kante.setLocation(anfang*150+75, 750);
-			else 
-				Kante.setLocation(anfang*150+75, 900);
+			setBesucht(anfang+ende);
+			zähler++;
+			int i=1;
+			 while(anfang>=Breite*i)
+			 {
+				 i++;
+				 anfang=anfang-Breite;
+				 ende=ende-Breite;
+			 }
+			
+		
+		 if(anfang+1==ende)
+		{
+			 
+			 			
+			hKante.setLocation(anfang*150+75, 150*i);
+			add(hKante);
 			//set rechte kante grün
-			zähler++;
+			
 		}
-		else if(anfang-6==ende)
+		else if(anfang-Breite==ende)
 		{
-			if(anfang<6)
-				Kante.setLocation(anfang*150, 150-75);
-				else if(anfang<12)
-				Kante.setLocation(anfang*150,300-75);
-				else if(anfang<18)
-					Kante.setLocation(anfang*150, 450-75);
-				else if(anfang<24)
-					Kante.setLocation(anfang*150,600-75);
-				else if(anfang<30)
-					Kante.setLocation(anfang*150, 750-75);
-				else 
-					Kante.setLocation(anfang*150, 900-75);
-			//set obere Kante grün
-			zähler++;
+			
+				vKante.setLocation(anfang*150, 150*i-75);
+				add(vKante);
+				
 		}
-		else if(anfang+6==ende)
+		else if(anfang+Breite==ende)
 		{
-			if(anfang<6)
-				Kante.setLocation(anfang*150, 150+75);
-				else if(anfang<12)
-				Kante.setLocation(anfang*150,300+75);
-				else if(anfang<18)
-					Kante.setLocation(anfang*150, 450+75);
-				else if(anfang<24)
-					Kante.setLocation(anfang*150,600+75);
-				else if(anfang<30)
-					Kante.setLocation(anfang*150, 750+75);
-				else 
-					Kante.setLocation(anfang*150, 900+75);
+			vKante.setLocation(anfang*150, 150*i+75);
+			add(vKante);
 			//set untere Kante grün
-			zähler++;
+
 		}
 		else if(anfang-1==ende)
 		{
-			if(anfang<6)
-				Kante.setLocation(anfang*150-75, 150);
-				else if(anfang<12)
-				Kante.setLocation(anfang*150-75,300);
-				else if(anfang<18)
-					Kante.setLocation(anfang*150-75, 450);
-				else if(anfang<24)
-					Kante.setLocation(anfang*150-75,600);
-				else if(anfang<30)
-					Kante.setLocation(anfang*150-75, 750);
-				else 
-					Kante.setLocation(anfang*150-75, 900);
+			hKante.setLocation(anfang*150-75, 150*i);
+			add(hKante);
 			//set linke Kante grün
-			zähler++;
+			
 		}
+	}
 		if(zähler==36)
 		{
 			thorbensPanel.setVisible(false);
 			siegDisplay.setVisible(true);
 		}
 	}
+	public void anzeigeLeben(int Leben)//eingabre der Verbleibenden Leben.
+	{
+		if(Leben==2)
+		{
+			Leben3.setVisible(false);
+		}
+		if(Leben==1)
+		{
+			Leben2.setVisible(false);
+		}
+	}
+	public void castPositionen()
+	{
+		int aktuell[]=Spiel.getRoboter();//Positionen der Roboter! 0:SEPMAN 1:Random 2: Tracker 3:Defender 
+		Sepman=aktuell[0];
+		Random=aktuell[1];
+		Tracer=aktuell[2];
+		Defender=aktuell[3];
+		jSepman.setLocation(ele[Sepman].getX(), ele[Sepman].getY());
+		jSepman.setLocation(ele[Sepman].getX(), ele[Sepman].getY());
+		jSepman.setLocation(ele[Sepman].getX(), ele[Sepman].getY());
+		jSepman.setLocation(ele[Sepman].getX(), ele[Sepman].getY());
+		jSepman.setLocation(ele[Sepman].getX(), ele[Sepman].getY());
+	}
+	
+		
+	
 	
 }
