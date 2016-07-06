@@ -14,7 +14,7 @@ import de.SEPL.ServerClient.IAuktionshausClient;
 
 @Author(name = "Bijan Shahbaz Nejad, Dominikus Häckel")
 
-class AuktionshausItem implements IInventar {
+class AuktionshausItem  {
 
 	TextButton itemkauf;
 	Label iteminfo;

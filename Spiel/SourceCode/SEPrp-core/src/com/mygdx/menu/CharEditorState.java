@@ -77,10 +77,10 @@ public class CharEditorState extends State {
 		}
 
 		else if (charauswahl == 3) { // Schurke
-			augen = new Texture[] { new Texture("grafiken/Archer.png"), new Texture("grafiken/Archer-Eyes1.png"),
-					new Texture("grafiken/Archer-Eyes2.png"), new Texture("grafiken/Archer-Eyes3.png") };
-			haare = new Texture[] { new Texture("grafiken/ArcherBlue.png"), new Texture("grafiken/Schütze_blauE.png"),
-					new Texture("grafiken/Schütze_grünE.png"), new Texture("grafiken/Schütze_rotE.png") };
+			augen = new Texture[] { new Texture("grafiken/Schurke/Thief-redE.png"), new Texture("grafiken/Schurke/Thief-blueE.png"),
+					new Texture("grafiken/Schurke/Thief-greenE.png"), new Texture("grafiken/Schurke/Thief-lightblueE.png") };
+			haare = new Texture[] { new Texture("grafiken/Schurke/Thief-red-redE.png"), new Texture("grafiken/Schurke/Thief-red-blueE.png"),
+					new Texture("grafiken/Schurke/Thief-red-greenE.png"), new Texture("grafiken/Schurke/Thief-red-lightblueE.png") };
 			charbild = new Image[][] { { new Image(augen[0]), new Image(haare[0]) },
 					{ new Image(augen[1]), new Image(haare[1]) }, { new Image(augen[2]), new Image(haare[2]) },
 					{ new Image(augen[3]), new Image(haare[3]) } };

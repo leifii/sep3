@@ -25,7 +25,7 @@ import de.SEPL.ServerClient.IAuktionshausClient;
 
 @Author(name = "Bijan Shahbaz Nejad")
 
-public class AuktionshausState extends State implements IInventar {
+public class AuktionshausState extends State  {
 
 	private Skin skin;
 	private TextureAtlas atlas;

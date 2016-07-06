@@ -23,4 +23,5 @@ public interface ICharacter {
 	public TextureRegion[][] getSchütze(int index); //einzelne Kollorierungen des Schützens
 	public TextureRegion[][] getKrieger(int index); //einzelne Kollorierungen des Kriegers
 	public TextureRegion[][] getMage(int index); //einzelne Kollorierungen des Magiers
-	}
+	public TextureRegion[][] getThief(int index); // einzelne Kollorierungen des Schurken
+}
