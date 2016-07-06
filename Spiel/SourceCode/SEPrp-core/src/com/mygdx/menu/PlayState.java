@@ -575,7 +575,7 @@ public class PlayState extends State {
 					
 				}
 			}
-			if (c.position.x >= 1252 && c.position.x<=1352 && c.position.y >= 1087&&c.position.y <= 1171 && c.getMapIndex() == 2 ) {
+			if (c.position.x >= 2592 && c.position.x<=2692 && c.position.y >= 544&&c.position.y <= 644 && c.getMapIndex() == 2 ) {
 				if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 					if (c.getBosseBesiegt()[1]) {
 						changeMap(3);
@@ -679,7 +679,7 @@ public class PlayState extends State {
 			sb.draw(new Texture("grafiken/treppe.png"),4448,2508);
 		}
 		else if (c.getMapIndex()==2 &&  c.getBosseBesiegt()[1]) {
-			sb.draw(new Texture("grafiken/treppe.png"),1282,1107);
+			sb.draw(new Texture("grafiken/treppe.png"),2592,544);
 		} else {
 
 		}
