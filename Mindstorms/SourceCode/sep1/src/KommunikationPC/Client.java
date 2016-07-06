@@ -104,7 +104,7 @@ public class Client implements Runnable {                  //Klasse Client imple
 				
 				
 				try{
-					Thread.sleep(2000);
+					Thread.sleep(200);
 				}catch(InterruptedException e){
 					e.printStackTrace();
 				}
