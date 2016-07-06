@@ -95,7 +95,7 @@ public class Linienverfolgung implements ILinienverfolgung {
 		
 	}
 	
-	public void motorPush(){		//Wenn man sich auf den Knoten für geradeaus entscheidet.
+	public void motorPush(){		//Wenn man sich auf den Knoten für Geradeaus entscheidet.
 		
 		MotorL.setSpeed(200);
 	    MotorR.setSpeed(200);
