@@ -724,7 +724,7 @@ public class Character implements Serializable, IDrawable {
 //		dmg = Math.max(dmg, 0); //kein negativer dmg
 //		currentHP -= (int)dmg;
 
-		currentHP -= damage;
+		currentHP -= Math.max(damage, 0);
 		
 		PlayState.getInstance()
 				.addTempDrawable(new AbstractStringItem(ItemType.Schaden, damage, Integer.toString(damage), this));
