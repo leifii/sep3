@@ -19,7 +19,7 @@ public class QueueHandler  {
 	
 	
 	byte spielstart=001, anfangPause=002, endePause=003, sepmanNord=004, sepmanOst=005, sepmanSued=006, sepmanWest=007,
-		 dGeist1=011, dGeist2=012, dGeist3=013, aGeist1=021, aGeist2=022, aGeist3=023, spielEnde=123,
+		 dGeist1=11, dGeist2=12, dGeist3=13, aGeist1=21, aGeist2=22, aGeist3=23, spielEnde=123,
 		 powerUp06=-06, powerUp25=-25, powerUp32=-32, powerUp51=-51, endePowerUp=100;
 	
 	
@@ -160,15 +160,15 @@ public class QueueHandler  {
 	public void aktiviereGeist(int x){
 		if(x==1){
 			queueHandler.addToQueue(aGeist1);
-			System.out.println("Byte " + aGeist1 + " verschickt");
+			
 		}
 		if(x==2){
 			queueHandler.addToQueue(aGeist2);
-			System.out.println("Byte " + aGeist2 + " verschickt");
+			
 		}
 		if(x==3){
 			queueHandler.addToQueue(aGeist3);
-			System.out.println("Byte " + aGeist3 + " verschickt");
+			
 		}
 	}
 	
