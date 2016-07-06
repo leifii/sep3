@@ -84,9 +84,10 @@ public class Client implements Runnable {                  //Klasse Client imple
 				                                                      //empfängt das "Antwort"-ByteArray.
 				
 				kom.senden(kom.erzeugeByteArray());
-				
+				System.out.println("wat verschickt");        /////TESTESTESTETSTSTSTS
 				while(client.getInputStream().available() > 0){
 					kom.empfangen();
+					System.out.println("wat empfangen");
 				}
 				
 				if(powerUp.isPowerUpAktiv()){
@@ -98,13 +99,12 @@ public class Client implements Runnable {                  //Klasse Client imple
 					if(elapsedTime >=60*1000){
 						powerUp.deaktivierePowerUp();
 						pUpActivated = 0;
-						queue.addToQueue((byte) 100);
 					}
 				}
 				
 				
 				try{
-					Thread.sleep(200);
+					Thread.sleep(2000);
 				}catch(InterruptedException e){
 					e.printStackTrace();
 				}

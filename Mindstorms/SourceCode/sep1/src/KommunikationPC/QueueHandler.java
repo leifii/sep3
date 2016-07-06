@@ -9,11 +9,22 @@ public class QueueHandler  {
 	
 	int anz;
 	int anzahlClients;
+	
     ConcurrentLinkedQueue<Byte> queue1;
 	ConcurrentLinkedQueue<Byte> queue2;
 	ConcurrentLinkedQueue<Byte> queue3;
 	ConcurrentLinkedQueue<Byte> queue4;
 	QueueHandler queueHandler;
+	
+	
+	
+	byte spielstart=001, anfangPause=002, endePause=003, sepmanNord=004, sepmanOst=005, sepmanSued=006, sepmanWest=007,
+		 dGeist1=011, dGeist2=012, dGeist3=013, aGeist1=021, aGeist2=022, aGeist3=023, spielEnde=123,
+		 powerUp06=-06, powerUp25=-25, powerUp32=-32, powerUp51=-51, endePowerUp=100;
+	
+	
+	
+	
 	
 	public void setQueueHandler(QueueHandler q){
 		this.queueHandler = q;
@@ -72,7 +83,7 @@ public class QueueHandler  {
 			queue2.add(b);
 			queue3.add(b);
 		}
-		if(anzahlClients==3){
+		if(anzahlClients==4){
 			queue1.add(b);
 			queue2.add(b);
 			queue3.add(b);
@@ -104,6 +115,95 @@ public class QueueHandler  {
 			return b = 0;
 			}
 	}
+	
+	
+	public void spielStart(){
+		queueHandler.addToQueue(spielstart);
+	}
+	
+	public void anfangPause(){
+		queueHandler.addToQueue(anfangPause);
+	}
+	
+	public void endePause(){
+		queueHandler.addToQueue(endePause);
+	}
+	
+	public void norden(){
+		queueHandler.addToQueue(sepmanNord);
+	}
+	
+	public void osten(){
+		queueHandler.addToQueue(sepmanOst);	
+	}
+	
+	public void sueden(){
+		queueHandler.addToQueue(sepmanSued);
+	}
+	
+	public void westen(){
+		queueHandler.addToQueue(sepmanWest);
+	}
+	
+	public void deaktiviereGeist(int x){
+		if(x==1){
+			queueHandler.addToQueue(dGeist1);
+		}
+		if(x==2){
+			queueHandler.addToQueue(dGeist2);
+		}
+		if(x==3){
+			queueHandler.addToQueue(dGeist3);
+		}
+	}
+	
+	public void aktiviereGeist(int x){
+		if(x==1){
+			queueHandler.addToQueue(aGeist1);
+			System.out.println("Byte " + aGeist1 + " verschickt");
+		}
+		if(x==2){
+			queueHandler.addToQueue(aGeist2);
+			System.out.println("Byte " + aGeist2 + " verschickt");
+		}
+		if(x==3){
+			queueHandler.addToQueue(aGeist3);
+			System.out.println("Byte " + aGeist3 + " verschickt");
+		}
+	}
+	
+	public void startPowerUp(int x){
+		if(x==06){
+			queueHandler.addToQueue(powerUp06);
+		}
+		if(x==25){
+			queueHandler.addToQueue(powerUp25);
+		}
+		if(x==32){
+			queueHandler.addToQueue(powerUp32);
+		}
+		if(x==51){
+			queueHandler.addToQueue(powerUp51);
+		}
+	}
+	
+	public void endePowerUp(){
+		
+		queueHandler.addToQueue(endePowerUp);
+	}
+	
+	public void spielEnde(){
+		queueHandler.addToQueue(spielEnde);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public boolean isQueueEmpty(){
 		
