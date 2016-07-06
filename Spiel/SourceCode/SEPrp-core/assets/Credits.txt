@@ -1,0 +1,22 @@
+Music:
+Rise of spirit.mp3 by Alexandr Zhelanov
+TownTheme.mp3 by cynicmusic (cynicmusic.com pixelsphere.org)
+
+Tiles:
+Tileset mountain_landscape by Jetrel, Bertram,Zabin and Saphy(TMW):
+http://opengameart.org/content/2d-lost-garden-zelda-style-tiles-resized-to-32x32-with-additions
+
+Path and Objects by Zabin, Daneeklu, Jetrel, Hyptosis, Redshrike, Bertram:
+http://opengameart.org/content/rpg-tiles-cobble-stone-paths-town-objects
+
+hyptosis-tile-art-batch-1 and
+hyptosis-tile-art-batch-2 by Hyptosis, Zabin
+
+Character Sprites:
+Squire Spritesheet by Sithjester
+
+Skeleton, Ork made with:
+http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
+
+Creative Commons 3.0:
+https://creativecommons.org/licenses/by/3.0/legalcode
