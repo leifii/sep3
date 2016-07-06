@@ -147,7 +147,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	 Plane[] Spielbrett;
 	 Planeinit Spiel;
 	
-	static QueueHandler queue;	//Ergaenzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
+	public static QueueHandler queue;	//Ergaenzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
 	public static PowerUp powerUp;     //Ergaenzt durch Tristan! Objekt vom Typ "PowerUp". Initialisierung in setClients()
 	static Position positions;    //Ergaenzt durch Tristan. Objekt vom  Typ "Position" um Positionen der Roboter abzurufen.
 	
@@ -793,14 +793,14 @@ public void ipsSchreiben(){
 public void spielfeld() throws IOException{
 	this.spielvorbereitungsDisplay.setVisible(false);
 	this.pausenDisplay.setVisible(false);
-	queue.addToQueue((byte)001);
-	queue.addToQueue((byte)003);
+	queue.spielStart();  //queue.addToQueue((byte)001);
+	queue.anfangPause(); //queue.addToQueue((byte)003);
 	pause = false; 
 	this.spielEnde=false;
-	queue.addToQueue((byte)021); 
-	queue.addToQueue((byte)022);
-	queue.addToQueue((byte)023);
-	queue.addToQueue((byte)024); 
+	queue.aktiviereGeist(1);  //queue.addToQueue((byte)021); 
+	queue.aktiviereGeist(2);  //queue.addToQueue((byte)022);
+	queue.aktiviereGeist(3);  //queue.addToQueue((byte)023);
+	//queue.addToQueue((byte)024); 
 	setzeAnzeigeSpielfeld();
 	add(thorbensPanel);
 	thorbensPanel.setVisible(true);
@@ -822,13 +822,13 @@ public void keyPressed(KeyEvent l) {
 	     
 	     
 	     
-	     queue.addToQueue((byte) 4);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
+	     queue.norden();//queue.addToQueue((byte) 4);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
 		else if(l.getKeyCode() == KeyEvent.VK_LEFT){
 			richtung(5);
 			System.out.println(richtung);
 			
-			queue.addToQueue((byte) 5);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
+			queue.osten();//queue.addToQueue((byte) 5);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
  
 		}
 		
@@ -836,7 +836,7 @@ public void keyPressed(KeyEvent l) {
 			richtung(6);
 			System.out.println(richtung);
 			
-			queue.addToQueue((byte) 6);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
+			queue.sueden();//queue.addToQueue((byte) 6);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
  
 		}
 		
@@ -844,7 +844,7 @@ public void keyPressed(KeyEvent l) {
 			richtung(7);
 			System.out.println(richtung);
 			
-			queue.addToQueue((byte) 7);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
+			queue.westen();//queue.addToQueue((byte) 7);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 
 		}
 
@@ -927,6 +927,7 @@ public void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
      client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
+     //client1.clientInit("localhost", "Sepman", 13339, 1);
      queue = client1.queueHandler.getQueueHandler(); ////Ergaenzt durch Tristan! Fuegt Referenz zum QueueHandler hinzu.
      powerUp = new PowerUp();                        ////Ergaenzt durch Tristan! Erzeugt ein neues Objekt des Typs PowerUp
      powerUp.setPowerUp(powerUp);                    ////Ergaenzt durch Tristan! Ermoeglicht Zugriff auf Menu.powerUp aus anderen Klassen!
@@ -941,45 +942,45 @@ public void kollisionserkennung(){
 		if ( kollidiertSepman ==true ){
 			if (leben>1){
 			setzePausenBildschrim();
-			queue.addToQueue((byte)002);
+			queue.anfangPause();//queue.addToQueue((byte)002);
 			leben -=1;
 			}
 			else{
 				setzeNiederlageBildschirm();
-				queue.addToQueue((byte)127);
+				queue.spielEnde();//queue.addToQueue((byte)127);
 			}
 		}
 		else if( kollidiertTracer ==true){
 			if (leben>1){
 				setzePausenBildschrim();
-				queue.addToQueue((byte)002);
+				queue.anfangPause();//queue.addToQueue((byte)002);
 				leben -=1;
 				}
 				else{
 					setzeNiederlageBildschirm();
-					queue.addToQueue((byte)127);
+					queue.spielEnde();//queue.addToQueue((byte)127);
 				}
 		}
 		else if (kollidiertDefender == true){
 			if (leben>1){
 				setzePausenBildschrim();
-				queue.addToQueue((byte)002);
+				queue.anfangPause();//queue.addToQueue((byte)002);
 				leben -=1;
 				}
 				else{
 					setzeNiederlageBildschirm();
-					queue.addToQueue((byte)127);
+					queue.spielEnde();//queue.addToQueue((byte)127);
 				}
 		}
 		else if(kollidiertRandom ==true)
 			if (leben>1){
 				setzePausenBildschrim();
-				queue.addToQueue((byte)002);
+				queue.anfangPause();//queue.addToQueue((byte)002);
 				leben -=1;
 				}
 				else{
 					setzeNiederlageBildschirm();
-					queue.addToQueue((byte)127);
+					queue.spielEnde();//queue.addToQueue((byte)127);
 				}
 	}
 }
@@ -991,17 +992,17 @@ public void kollisionserkennung(){
 public void kollision () {
 	if(leben >1){
 		setzePausenBildschrim();
-		queue.addToQueue((byte)002);
+		queue.anfangPause();//queue.addToQueue((byte)002);
 		
 		leben -=1;
 	}
 	else{
 		setzeNiederlageBildschirm();
-		queue.addToQueue((byte)011);
-		queue.addToQueue((byte)012);
-		queue.addToQueue((byte)013);
-		queue.addToQueue((byte)014);
-		queue.addToQueue((byte)127);
+		queue.deaktiviereGeist(1);//queue.addToQueue((byte)011);
+		queue.deaktiviereGeist(2);//queue.addToQueue((byte)012);
+		queue.deaktiviereGeist(3);//queue.addToQueue((byte)013);
+		//queue.addToQueue((byte)014);
+		queue.spielEnde();//queue.addToQueue((byte)127);
 		this.spielEnde=true;
 	}
 	
