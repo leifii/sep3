@@ -640,14 +640,14 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 		if(Spielbrett[z].getNord()==true)
 		{
 			line2=new JLabel(linie2);
-			line2.setLocation(ele[z].getX()+5, ele[z].getY()-100); // Überarbeitet von Mark
+			line2.setLocation(ele[z].getX()+10, ele[z].getY()-95); // Überarbeitet von Mark
 			line2.setSize(50, 100);
 			thorbensPanel.add(line2);				
 		}
 		if(Spielbrett[z].getOst()==true)
 		{
 			line1=new JLabel(linie1);
-			line1.setLocation(ele[z].getX()+55, ele[z].getY()); // Überarbeitet von Mark
+			line1.setLocation(ele[z].getX()+60, ele[z].getY()); // Überarbeitet von Mark
 			line1.setSize(100, 50);
 			thorbensPanel.add(line1);
 		}		
