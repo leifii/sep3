@@ -83,7 +83,7 @@ public class Kommunikation implements IKommunikation{
 			for(int i=0;i<msg.length;i++){
 				if(i==0){
 					pos.setPosSepman(msg[0]);
-					
+					//pos.pushPosArray();
 					if(msg[0]==06){                 
 						powerUp.aktivierePowerUp(06);                //aktiviert PowerUp
 					}
