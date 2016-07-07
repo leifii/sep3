@@ -64,7 +64,6 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	public int leben =3;
 	public static boolean spielEnde = false;
 	public static boolean pause = true ;
-	public static int richtung = 0 ; 
 	public boolean inputFinished = false;
 	public static boolean kollidiertSepman  = false;
 	public static boolean kollidiertTracer  = false;
@@ -190,9 +189,6 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
  * In Teil 2 laufen die Spielaktionen ab
  * 
  * 
- * 
- * 
- * 	
  */
 	
 /*
@@ -200,17 +196,12 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
  *  
  */
 	private void initComponents() {
-	
-	//JFrame.MAXIMIZED_BOTH;
+
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setSize(1000,720);
 	setTitle("SEPman");
 	setzeAuswahldisplay ();
-//	setzeStartbildschirm(); 
-//	setzeNiederlageBildschirm();
-//	setzeSiegbildschirm();
-//	setzePausenBildschrim();
-	validate();
+//	validate();<>
 }
 
 
@@ -637,8 +628,6 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	Leben3.setLocation(110, 10);
 	thorbensPanel.add(Leben3);
 	
-
-	
 	for(int z=0;z<Größe;z++)
 	{
 		if(Spielbrett[z].getNord()==true)
@@ -802,13 +791,13 @@ private void ipsSchreiben(){
 private void spielfeld() throws IOException{
 	this.spielvorbereitungsDisplay.setVisible(false);
 	this.pausenDisplay.setVisible(false);
-	queue.spielStart();  //queue.addToQueue((byte)001);
-	queue.anfangPause(); //queue.addToQueue((byte)003);
+	queue.spielStart();  
+	queue.anfangPause(); 
 	pause = false; 
 	this.spielEnde=false;
-	queue.aktiviereGeist(1);  //queue.addToQueue((byte)021); 
-	queue.aktiviereGeist(2);  //queue.addToQueue((byte)022);
-	queue.aktiviereGeist(3);  //queue.addToQueue((byte)023);
+	queue.aktiviereGeist(1);   
+	queue.aktiviereGeist(2);  
+	queue.aktiviereGeist(3);  
 	//queue.addToQueue((byte)024); 
 	setzeAnzeigeSpielfeld();
 	add(thorbensPanel);
@@ -821,40 +810,19 @@ private void spielfeld() throws IOException{
 
 public void keyPressed(KeyEvent l) {
 	// TODO Auto-generated method stub
-	if(l.getKeyCode() == KeyEvent.VK_UP){
-	     richtung(4);
-	     System.out.println(richtung);
-	       
-	     queue.norden();//queue.addToQueue((byte) 4);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
+	if(l.getKeyCode() == KeyEvent.VK_UP){   
+	     queue.norden();//Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
 		else if(l.getKeyCode() == KeyEvent.VK_LEFT){
-			richtung(5);
-			System.out.println(richtung);
-			
-			queue.osten();//queue.addToQueue((byte) 5);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
- 
+			queue.osten();//Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
-		
 		else if(l.getKeyCode() == KeyEvent.VK_DOWN){
-			richtung(6);
-			System.out.println(richtung);
-			
-			queue.sueden();//queue.addToQueue((byte) 6);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
- 
+			queue.sueden();//Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
-		
 		else if(l.getKeyCode() == KeyEvent.VK_RIGHT){
-			richtung(7);
-			System.out.println(richtung);
-			
-			queue.westen();//queue.addToQueue((byte) 7);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
-
+			queue.westen();//Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
-
 		else if(l.getKeyCode() == KeyEvent.VK_SPACE){
-			richtung(2);
-			System.out.println(richtung); 
-	
 		}	
 		else if (l.getKeyCode()== KeyEvent.VK_X){
 			queue.addToQueue((byte) 300);
@@ -879,49 +847,19 @@ public void keyReleased(KeyEvent e) {
 	
 }
 
-
 /*
  * Main Mehtoden 
  */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
 					Menu menu1 = new Menu();
 					menu1.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 	
 /* Methoden für Belgung der Richtungsvariable
  * 
 */
-	private void richtung(int i){
-		switch(i){
-		case 4 : richtung =4;
-		break;	
-		case 6 :richtung =6;
-		break;		
-		case 5 :richtung =5;
-		break;		
-		case 7 :richtung =7;
-		break;		
-		case 2 :richtung =2;
-		break;
-		}
-	}
-/*
- *  
- */
-@Override
-public  int getTaste() {
-	// TODO Auto-generated method stub
-		return richtung;
-	}
+
+
 
 	/*
 	 * Starten der Kommunikation	
@@ -1056,16 +994,18 @@ private int convertKnoten(int i){
 }
 
 public void Positionstracking (){
-	
-	
-	this.Sepman   = positions.getPosSepman();
- 
-	this.Tracer   = positions.getPosTracer();
-	this.Defender = positions.getPosDefender();
-	this.Random   = positions.getPosRandom();	
-
+	Sepman   = positions.getPosSepman();
+	Tracer   = positions.getPosTracer();
+	Defender = positions.getPosDefender();
+	Random   = positions.getPosRandom();	
 }
  
+public void bewegeRoboter(){
+	
+}
+
+
+
 private JLabel[] erzeugeSpielfeld()
 {
 	int zahl=1;
