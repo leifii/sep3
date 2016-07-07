@@ -70,6 +70,8 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	public static boolean kollidiertTracer  = false;
 	public static boolean kollidiertDefender=false;
 	public static boolean kollidiertRandom  = false;
+	private ImageIcon linie1=new ImageIcon("Linie.png");
+    private	ImageIcon linie2=new ImageIcon("Linie2.png");
 	private ImageIcon iiPowerup = new ImageIcon("Powerup.png");
 	private String[] roboterBelegung = new String[4];
 	private String[] roboterIPs = new String[4];
@@ -107,6 +109,8 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JLabel lbPowerUp2 = new JLabel(iiPowerup); 
 	private JLabel lbPowerUp3 = new JLabel(iiPowerup); 
 	private JLabel lbPowerUp4 = new JLabel(iiPowerup); 
+	private JLabel line2=new JLabel(linie2);
+	private JLabel line1=new JLabel(linie1);
 	private JTextField tfIp1Feld1 = new JTextField("192");
 	private JTextField tfIp1Feld2 = new JTextField("168");
 	private JTextField tfIp1Feld3 = new JTextField("2");
@@ -615,7 +619,6 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	lbPowerUp4.setBounds(ele[30].getX()+5, ele[30].getY()+4, 55, 55);  // Hinzugefügt von Mark
 	thorbensPanel.add(lbPowerUp4);                // Hinzugefügt von Mark
 	
-	 
 	
 	Leben1.setSize(50, 50);
 	Leben1.setLocation(10, 10);
@@ -631,11 +634,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	Leben3.setLocation(110, 10);
 	thorbensPanel.add(Leben3);
 	
-	ImageIcon linie1=new ImageIcon("Linie.png");
-	JLabel line1=new JLabel(linie1);
-	
-	ImageIcon linie2=new ImageIcon("Linie2.png");
-	JLabel line2=new JLabel(linie2);
+
 	
 	for(int z=0;z<Größe;z++)
 	{
