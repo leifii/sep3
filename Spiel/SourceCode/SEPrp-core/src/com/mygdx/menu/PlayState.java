@@ -171,8 +171,8 @@ public class PlayState extends State {
 		PortalListe.add(new Portal(2934, 312, 50, 50,3));
 		
 //		Inventat zum testen mit allen Items füllen
-		for(EquipmentType t : EquipmentType.values())
-			c.getInventory().add(new Equipment(t));
+//		for(EquipmentType t : EquipmentType.values())
+//			c.getInventory().add(new Equipment(t));
 		
 
 		instance = this;

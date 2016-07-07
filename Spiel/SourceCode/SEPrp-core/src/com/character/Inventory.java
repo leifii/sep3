@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import com.mygdx.game.Author;
 import com.mygdx.menu.IInventar;
+import com.mygdx.menu.PlayState;
 import com.objects.Equipment;
 import com.objects.EquipmentType;
 import com.objects.Item;
@@ -23,7 +24,7 @@ public class Inventory implements IInventar {
 	private List<Item> itemList;
 	private Map<ItemType, Equipment> equipment;
 	private int gold;
-	
+
 	
 	private Attributes attributeBoost;
 	private final Character owner;
@@ -128,6 +129,7 @@ public class Inventory implements IInventar {
 			 if(e.getValue() != null)
 				 boost.addAttributeValues(e.getValue().getEquipmentType().getAttributes());
 		 }
+		 
 		 return attributeBoost = boost;
 	}
 	
@@ -164,7 +166,7 @@ public class Inventory implements IInventar {
 	@Override
 	public boolean modifyMoney(int delta) {
 		if(delta < 0)
-			return decGold(delta);
+			return decGold(-delta);
 		return addGold(delta);
 	}
 	
@@ -182,18 +184,22 @@ public class Inventory implements IInventar {
 	}
 	
 	@Override
-	public void place(String itemName) {
+	public boolean place(String itemName) {
 		EquipmentType e = EquipmentType.valueOf(itemName);
 		if(e != null) {
 			System.out.println("add "  + e.toString());
 			add(new Equipment(e));
+			return true;
 		}
 		
 		Trank t = TrankType.getTrank(itemName);
 		if(t != null) {
 			System.out.println("add " + t.getNAME());
 			add(t);
+			return true;
 		}
+		
+		return false;
 	}
 
 	@Override

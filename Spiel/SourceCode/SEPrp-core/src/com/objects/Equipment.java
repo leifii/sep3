@@ -5,7 +5,7 @@ import com.character.IDrawable;
 import com.mygdx.game.Author;
 import com.mygdx.menu.PlayState;
 
-@Author(name = "???")
+@Author(name = "Dilara Güler, Sabiha Can")
 
 public class Equipment extends Item implements IDrawable {
 	

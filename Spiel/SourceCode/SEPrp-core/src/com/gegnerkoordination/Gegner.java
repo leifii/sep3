@@ -25,8 +25,7 @@ import com.objects.Truhe;
 @Author(name = "Dilara Güler, Sabiha Can")
 
 
-//TODO abstract class
-public class Gegner extends Character {
+public abstract class Gegner extends Character {
 	protected boolean aggro;
 	protected int exp;
 	protected TextureRegion currentFrame;
