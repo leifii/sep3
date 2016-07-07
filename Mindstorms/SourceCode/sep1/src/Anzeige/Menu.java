@@ -1,6 +1,6 @@
 /**
- * @author ${Mark}
- * @author Thorben
+ * @author ${Mark Thorben}
+ * 
  *
  * 
  */
@@ -70,87 +70,87 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	public static boolean kollidiertTracer  = false;
 	public static boolean kollidiertDefender=false;
 	public static boolean kollidiertRandom  = false;
-	public String[] roboterBelegung = new String[4];
-	public String[] roboterIPs = new String[4];
-	public String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Verpeilter"};
-	public JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
-	public JPanel startDisplay = new JPanel();
-	public JPanel siegDisplay = new JPanel();
-	public JPanel niederlageDisplay = new JPanel();
-	public JPanel spielvorbereitungsDisplay = new JPanel();
-	public JPanel thorbensPanel= new JPanel();
-	public JPanel pausenDisplay = new JPanel();
-	public JLabel lbUeberschrift = new JLabel("SEPMAN");
-	public JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
-	public JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
-	public JLabel lbBeschriftung3= new JLabel("ROBOTER 3:");
-	public JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
-	public JLabel lbIp1Beschriftung = new JLabel("1. IP-Adresse");
-	public JLabel lbip1Punkt1= new JLabel(".");
-	public JLabel lbip1Punkt2= new JLabel(".");
-	public JLabel lbip1Punkt3= new JLabel(".");
-	public JLabel lbip2Beschriftung= new JLabel("2. IP-Adresse");
-	public JLabel lbip2Punkt1= new JLabel(".");
-	public JLabel lbip2Punkt2= new JLabel(".");
-	public JLabel lbip2Punkt3= new JLabel(".");
-	public JLabel lbip3Beschriftung= new JLabel("3. IP-Adresse");
-	public JLabel lbip3Punkt1= new JLabel(".");
-	public JLabel lbip3Punkt2= new JLabel(".");
-	public JLabel lbip3Punkt3= new JLabel(".");
-	public JLabel lbip4Beschriftung= new JLabel("4. IP-Adresse");
-	public JLabel lbip4Punkt1= new JLabel(".");
-	public JLabel lbip4Punkt2= new JLabel(".");
-	public JLabel lbip4Punkt3= new JLabel(".");
-	public JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
-	public JTextField tfIp1Feld1 = new JTextField("192");
-	public JTextField tfIp1Feld2 = new JTextField("168");
-	public JTextField tfIp1Feld3 = new JTextField("2");
-	public JTextField tfIp1Feld4 = new JTextField("106");
-	public JTextField tfIp2Feld1 = new JTextField("192");
-	public JTextField tfIp2Feld2 = new JTextField("168");
-	public JTextField tfIp2Feld3 = new JTextField("2");
-	public JTextField tfIp2Feld4 = new JTextField("1");
-	public JTextField tfIp3Feld1 = new JTextField("192");
-	public JTextField tfIp3Feld2 = new JTextField("168");
-	public JTextField tfIp3Feld3 = new JTextField("3");
-	public JTextField tfIp3Feld4 = new JTextField("1");
-	public JTextField tfIp4Feld1 = new JTextField("192");
-	public JTextField tfIp4Feld2 = new JTextField("168");
-	public JTextField tfIp4Feld3 = new JTextField("4");
-	public JTextField tfIp4Feld4 = new JTextField("1");
-	public JButton btnAuswahlfenster = new JButton();
-	public JButton btnStart = new JButton();
-	public JButton btnEnde = new JButton();
-	public JButton btnEnde2 = new JButton();
-	public JButton btnZurueck = new JButton();
-	public JButton btnStartfinal = new JButton();
-	public JButton btnSpielfortsetzen = new JButton();
-	public JButton btnNeuesSpiel = new JButton();
-	public JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
-	public JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
-	public JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
-	public JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
+	private String[] roboterBelegung = new String[4];
+	private String[] roboterIPs = new String[4];
+	private String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Zufall"};
+	private JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
+	private JPanel startDisplay = new JPanel();
+	private JPanel siegDisplay = new JPanel();
+	private JPanel niederlageDisplay = new JPanel();
+	private JPanel spielvorbereitungsDisplay = new JPanel();
+	private JPanel thorbensPanel= new JPanel();
+	private JPanel pausenDisplay = new JPanel();
+	private JLabel lbUeberschrift = new JLabel("SEPMAN");
+	private JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
+	private JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
+	private JLabel lbBeschriftung3= new JLabel("ROBOTER 3:");
+	private JLabel lbBeschriftung4= new JLabel("ROBOTER 4:");
+	private JLabel lbIp1Beschriftung = new JLabel("1. IP-Adresse");
+	private JLabel lbip1Punkt1= new JLabel(".");
+	private JLabel lbip1Punkt2= new JLabel(".");
+	private JLabel lbip1Punkt3= new JLabel(".");
+	private JLabel lbip2Beschriftung= new JLabel("2. IP-Adresse");
+	private JLabel lbip2Punkt1= new JLabel(".");
+	private JLabel lbip2Punkt2= new JLabel(".");
+	private JLabel lbip2Punkt3= new JLabel(".");
+	private JLabel lbip3Beschriftung= new JLabel("3. IP-Adresse");
+	private JLabel lbip3Punkt1= new JLabel(".");
+	private JLabel lbip3Punkt2= new JLabel(".");
+	private JLabel lbip3Punkt3= new JLabel(".");
+	private JLabel lbip4Beschriftung= new JLabel("4. IP-Adresse");
+	private JLabel lbip4Punkt1= new JLabel(".");
+	private JLabel lbip4Punkt2= new JLabel(".");
+	private JLabel lbip4Punkt3= new JLabel(".");
+	private JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
+	private JTextField tfIp1Feld1 = new JTextField("192");
+	private JTextField tfIp1Feld2 = new JTextField("168");
+	private JTextField tfIp1Feld3 = new JTextField("2");
+	private JTextField tfIp1Feld4 = new JTextField("106");
+	private JTextField tfIp2Feld1 = new JTextField("192");
+	private JTextField tfIp2Feld2 = new JTextField("168");
+	private JTextField tfIp2Feld3 = new JTextField("2");
+	private JTextField tfIp2Feld4 = new JTextField("1");
+	private JTextField tfIp3Feld1 = new JTextField("192");
+	private JTextField tfIp3Feld2 = new JTextField("168");
+	private JTextField tfIp3Feld3 = new JTextField("3");
+	private JTextField tfIp3Feld4 = new JTextField("1");
+	private JTextField tfIp4Feld1 = new JTextField("192");
+	private JTextField tfIp4Feld2 = new JTextField("168");
+	private JTextField tfIp4Feld3 = new JTextField("4");
+	private JTextField tfIp4Feld4 = new JTextField("1");
+	private JButton btnAuswahlfenster = new JButton();
+	private JButton btnStart = new JButton();
+	private JButton btnEnde = new JButton();
+	private JButton btnEnde2 = new JButton();
+	private JButton btnZurueck = new JButton();
+	private JButton btnStartfinal = new JButton();
+	private JButton btnSpielfortsetzen = new JButton();
+	private JButton btnNeuesSpiel = new JButton();
+	private JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
+	private JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
+	private JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
+	private JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
 	
 	// aus thorbens müll
-	ImageIcon iiSepman=new ImageIcon("Sepman.png");                     // Hinzugefügt von Mark
-	JLabel jSepman = new JLabel(iiSepman);                              // Hinzugefügt von Mark
-	ImageIcon iiRandom=new ImageIcon("zufall.png");                      // Hinzugefügt von Mark
-	JLabel jRandom = new JLabel(iiRandom);                              // Hinzugefügt von Mark
-	ImageIcon iiGuard=new ImageIcon("Verteidiger.png");                  // Hinzugefügt von Mark 
-	JLabel jGuard = new JLabel(iiGuard);                                // Hinzugefügt von Mark
-	ImageIcon iiTracker=new ImageIcon("Verfolger.png");                  // Hinzugefügt von Mark
-	JLabel jTracker = new JLabel(iiTracker);                            // Hinzugefügt von Mark
+	private ImageIcon iiSepman=new ImageIcon("Sepman.png");                     // Hinzugefügt von Mark
+	private JLabel jSepman = new JLabel(iiSepman);                              // Hinzugefügt von Mark
+	private ImageIcon iiRandom=new ImageIcon("zufall.png");                      // Hinzugefügt von Mark
+	private JLabel jRandom = new JLabel(iiRandom);                              // Hinzugefügt von Mark
+	private ImageIcon iiGuard=new ImageIcon("Verteidiger.png");                  // Hinzugefügt von Mark 
+	private JLabel jGuard = new JLabel(iiGuard);                                // Hinzugefügt von Mark
+	private ImageIcon iiTracker=new ImageIcon("Verfolger.png");                  // Hinzugefügt von Mark
+	private JLabel jTracker = new JLabel(iiTracker);                            // Hinzugefügt von Mark
 	
-	 int[] pos=new int[4];
-	 int Sepman;
-	 int Defender;
-	 int Random;
-	 int Tracer;
-	 int Größe;
-	 public int Länge;
-	 public int Breite;
-	 Plane[] Spielbrett;
-	 Planeinit Spiel;
+	private int[] pos=new int[4];
+	private int Sepman;
+	private int Defender;
+	private int Random;
+	private int Tracer;
+	private int Größe;
+	private int Länge;
+	private int Breite;
+	private  Plane[] Spielbrett;
+	private  Planeinit Spiel;
 	 boolean[] besucht=new boolean[(Länge*Breite)*2];
 	
 	public static QueueHandler queue;	//Ergaenzt durch Tristan! QueueHandler, um Befehle in das ByteArray zu laden. Initialisierung in setClients()
@@ -185,7 +185,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
  *  Initialisierung des Fenster + Aufrufen des Startbildschirms*
  *  
  */
-public void initComponents() {
+	private void initComponents() {
 	
 	//JFrame.MAXIMIZED_BOTH;
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,7 +204,7 @@ public void initComponents() {
  *  Diese Methoden erstell den Startbildschirm 
  * 
  */
-public void setzeStartbildschirm(){
+	private void setzeStartbildschirm(){
 	startDisplay.setLayout(null);
 	startDisplay.setVisible(true);
 	startDisplay.setBackground(Color.gray);
@@ -229,7 +229,7 @@ public void setzeStartbildschirm(){
  *  Methode zum erstellen des Auswahldisplays
  * 
  */
-public void setzeAuswahldisplay (){
+	private void setzeAuswahldisplay (){
     startDisplay.setVisible(false);
     spielvorbereitungsDisplay.setVisible(false);
     siegDisplay.setVisible(false);
@@ -444,7 +444,7 @@ public void setzeAuswahldisplay (){
  * 
  *  Methode zum erstellen des Spielvorbereitungsdisplay
  */
-public void setzeSpielvorbereitungsdisplay(){
+ private void setzeSpielvorbereitungsdisplay(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
 	siegDisplay.setVisible(false);
@@ -482,7 +482,7 @@ public void setzeSpielvorbereitungsdisplay(){
  * Methode zum erstellen des Siegdisplay
  * 
  */
-public void setzeSiegbildschirm(){
+ private void setzeSiegbildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
 	siegDisplay.setLayout(null);
@@ -513,7 +513,7 @@ public void setzeSiegbildschirm(){
  * Methode zum erstellen des Niederlagedisplays(non-Javadoc)
  * 
  */
-public void setzeNiederlageBildschirm(){
+ private void setzeNiederlageBildschirm(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
 	niederlageDisplay.setLayout(null);
@@ -540,7 +540,7 @@ public void setzeNiederlageBildschirm(){
  * Methode zum erstellen des Pausendisplays
  *
  */
-public void setzePausenBildschrim(){
+ private void setzePausenBildschrim(){
 	display.setVisible(false);
 	startDisplay.setVisible(false);
 	thorbensPanel.setVisible(false);
@@ -566,7 +566,7 @@ public void setzePausenBildschrim(){
 	
 }
 
-public void setzeAnzeigeSpielfeld () throws IOException{
+ private void setzeAnzeigeSpielfeld () throws IOException{
 	create("Spielfeld.txt");
 	setBounds(100, 100, (Länge+1)*150, (Breite+1)*150);
 	 
@@ -613,10 +613,7 @@ public void setzeAnzeigeSpielfeld () throws IOException{
 	lbPowerUp4.setBounds(ele[30].getX(), ele[30].getY(), 55, 55);  // Hinzugefügt von Mark
 	thorbensPanel.add(lbPowerUp4);                // Hinzugefügt von Mark
 	
-	
-	
-	
-	
+	 
 	
 	Leben1.setSize(50, 50);
 	Leben1.setLocation(10, 10);
@@ -671,7 +668,7 @@ public void setzeAnzeigeSpielfeld () throws IOException{
 /*
  *  Überprüfung ob die Roboterauswahl vollständig ist und keine Modi doppelt ausgewählt wurden , funktioniert noch nicht korrekt
  */
-public boolean eingabeKorrekt() {
+ private boolean eingabeKorrekt() {
 	boolean check = true;
 	int k = 0;
 	for (int i = 0; i< 4; i++){
@@ -765,7 +762,7 @@ public void actionPerformed(ActionEvent e) {
 	}
 }
 
-public void modiSchreiben (int i ,String auswahl){
+private void modiSchreiben (int i ,String auswahl){
 	switch(auswahl){
 	case "SepMAN" : roboterBelegung[i] = "Sepman";
 	break;
@@ -773,7 +770,7 @@ public void modiSchreiben (int i ,String auswahl){
 	break;
 	case "Verteidiger" : roboterBelegung[i] = "Defender";
 	break;
-	case "Verpeilter" : roboterBelegung[i] = "Random";
+	case "Zufall" : roboterBelegung[i] = "Random";
 	break;
 	}
 }
@@ -781,7 +778,7 @@ public void modiSchreiben (int i ,String auswahl){
 /*
 *IP`S Aus den Textfeldern in das Array "roboterip" schreiben
 */
-public void ipsSchreiben(){
+private void ipsSchreiben(){
 	roboterIPs[0] =tfIp1Feld1.getText() + "." + tfIp1Feld2.getText() +"." +  tfIp1Feld3.getText()+ "."+ tfIp1Feld4.getText();
 	roboterIPs[1] =tfIp2Feld1.getText() + "." + tfIp2Feld2.getText() +"." +  tfIp2Feld3.getText()+ "."+ tfIp2Feld4.getText();
 	roboterIPs[2] =tfIp3Feld1.getText() + "." + tfIp3Feld2.getText() +"." +  tfIp3Feld3.getText()+ "."+ tfIp3Feld4.getText();
@@ -798,7 +795,7 @@ public void ipsSchreiben(){
  * 
  */
 
-public void spielfeld() throws IOException{
+private void spielfeld() throws IOException{
 	this.spielvorbereitungsDisplay.setVisible(false);
 	this.pausenDisplay.setVisible(false);
 	queue.spielStart();  //queue.addToQueue((byte)001);
@@ -823,13 +820,7 @@ public void keyPressed(KeyEvent l) {
 	if(l.getKeyCode() == KeyEvent.VK_UP){
 	     richtung(4);
 	     System.out.println(richtung);
-	     
-	     
-	     
-	     
-	     
-	     
-	     
+	       
 	     queue.norden();//queue.addToQueue((byte) 4);////Ergänzt durch Tristan! Fügt Richtungsanweisung dem ByteArray hinzu.
 		}
 		else if(l.getKeyCode() == KeyEvent.VK_LEFT){
@@ -905,7 +896,7 @@ public void keyReleased(KeyEvent e) {
 /* Methoden für Belgung der Richtungsvariable
  * 
 */
-	public void richtung(int i){
+	private void richtung(int i){
 		switch(i){
 		case 4 : richtung =4;
 		break;	
@@ -931,7 +922,7 @@ public  int getTaste() {
 	/*
 	 * Starten der Kommunikation	
 	 */
-public void setClients() throws IOException{
+private void setClients() throws IOException{
 	
      Clientinit client1 = new  Clientinit();
      client1.clientInit(this.roboterIPs[0], this.roboterBelegung[0], 18415,1);
@@ -1017,7 +1008,7 @@ public void kollision () {
 }
 
 
-public int convertKnoten(int i){
+private int convertKnoten(int i){
 	switch(i){
 	case 01 : return 1;
 	case 02 : return 2;
@@ -1064,19 +1055,14 @@ public void Positionstracking (){
 	
 	
 	this.Sepman   = positions.getPosSepman();
-	
-	
+ 
 	this.Tracer   = positions.getPosTracer();
 	this.Defender = positions.getPosDefender();
 	this.Random   = positions.getPosRandom();	
 
 }
-
-
-
-
-
-public JLabel[] erzeugeSpielfeld()
+ 
+private JLabel[] erzeugeSpielfeld()
 {
 	int zahl=1;
 	int i=0;
@@ -1099,7 +1085,7 @@ public JLabel[] erzeugeSpielfeld()
 	}
 	return ele;
 }
-public void create(String a) throws IOException
+private void create(String a) throws IOException
 {
 	FileReader fr = new FileReader(a);
     BufferedReader br = new BufferedReader(fr);
@@ -1254,7 +1240,9 @@ public void create(String a) throws IOException
     br.close();
 }
 
-//Thorben
+/*
+ * Ab  hier stammt alles von Thorben
+ */
 	public void setBesucht(int k)
 	{
 		besucht[k]=true;
