@@ -70,12 +70,19 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	public static boolean kollidiertTracer  = false;
 	public static boolean kollidiertDefender=false;
 	public static boolean kollidiertRandom  = false;
+	
 	private ImageIcon linie1=new ImageIcon("Linie.png");
     private	ImageIcon linie2=new ImageIcon("Linie2.png");
 	private ImageIcon iiPowerup = new ImageIcon("Powerup.png");
+	private ImageIcon iiSepman=new ImageIcon("Sepman.png");  
+	private ImageIcon iiRandom=new ImageIcon("zufall.png"); 
+	private ImageIcon iiGuard=new ImageIcon("Verteidiger.png");  
+	private ImageIcon iiTracker=new ImageIcon("Verfolger.png"); 
+	
 	private String[] roboterBelegung = new String[4];
 	private String[] roboterIPs = new String[4];
 	private String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Zufall"};
+	
 	private JPanel display = new JPanel();                                                //Deklaration aller Objekte und Variablen
 	private JPanel startDisplay = new JPanel();
 	private JPanel siegDisplay = new JPanel();
@@ -83,6 +90,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JPanel spielvorbereitungsDisplay = new JPanel();
 	private JPanel thorbensPanel= new JPanel();
 	private JPanel pausenDisplay = new JPanel();
+	
 	private JLabel lbUeberschrift = new JLabel("SEPMAN");
 	private JLabel lbBeschriftung1= new JLabel("ROBOTER 1:");
 	private JLabel lbBeschriftung2= new JLabel("ROBOTER 2:");
@@ -111,6 +119,11 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JLabel lbPowerUp4 = new JLabel(iiPowerup); 
 	private JLabel line2=new JLabel(linie2);
 	private JLabel line1=new JLabel(linie1);
+	private JLabel jSepman = new JLabel(iiSepman);                                                  
+	private JLabel jRandom = new JLabel(iiRandom);                              
+	private JLabel jGuard = new JLabel(iiGuard);                                             
+	private JLabel jTracker = new JLabel(iiTracker); 
+	
 	private JTextField tfIp1Feld1 = new JTextField("192");
 	private JTextField tfIp1Feld2 = new JTextField("168");
 	private JTextField tfIp1Feld3 = new JTextField("2");
@@ -127,6 +140,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JTextField tfIp4Feld2 = new JTextField("168");
 	private JTextField tfIp4Feld3 = new JTextField("4");
 	private JTextField tfIp4Feld4 = new JTextField("1");
+	
 	private JButton btnAuswahlfenster = new JButton();
 	private JButton btnStart = new JButton();
 	private JButton btnEnde = new JButton();
@@ -135,22 +149,11 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JButton btnStartfinal = new JButton();
 	private JButton btnSpielfortsetzen = new JButton();
 	private JButton btnNeuesSpiel = new JButton();
+	
 	private JComboBox cbAuswahl1= new JComboBox(comboBoxInhalt);
 	private JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	private JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	private JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
-	
- 
-	
-	// aus thorbens müll
-	private ImageIcon iiSepman=new ImageIcon("Sepman.png");                     // Hinzugefügt von Mark
-	private JLabel jSepman = new JLabel(iiSepman);                              // Hinzugefügt von Mark
-	private ImageIcon iiRandom=new ImageIcon("zufall.png");                      // Hinzugefügt von Mark
-	private JLabel jRandom = new JLabel(iiRandom);                              // Hinzugefügt von Mark
-	private ImageIcon iiGuard=new ImageIcon("Verteidiger.png");                  // Hinzugefügt von Mark 
-	private JLabel jGuard = new JLabel(iiGuard);                                // Hinzugefügt von Mark
-	private ImageIcon iiTracker=new ImageIcon("Verfolger.png");                  // Hinzugefügt von Mark
-	private JLabel jTracker = new JLabel(iiTracker);                            // Hinzugefügt von Mark
 	
 	private int[] pos=new int[4];
 	private int Sepman;
