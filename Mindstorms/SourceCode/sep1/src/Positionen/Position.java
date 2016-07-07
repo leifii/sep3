@@ -6,6 +6,8 @@
 
 package Positionen;
 
+import java.awt.Menu;
+
 import Anzeige.Plane;
 import Anzeige.Planeinit;
 
@@ -19,6 +21,7 @@ public class Position  implements IPosition {
 	int destTracer  =03;
 	int destRandom  =26;
 	int destDefender=31;
+	int[]posArray = new int[4];
 	Position pos;
 		
 	
@@ -88,6 +91,14 @@ public class Position  implements IPosition {
 	}
 	public int getDestDefender(){
 		return destDefender;
+	}
+	
+	public void pushPosArray(){
+		posArray[0] = posSepman;
+		posArray[1] = posRandom;
+		posArray[2]	= posTracer;	
+		posArray[3]	= posDefender;
+		Anzeige.Menu.Spiel.setRoboter(posArray);
 	}
 }
 
