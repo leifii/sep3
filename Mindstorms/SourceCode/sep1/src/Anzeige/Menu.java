@@ -70,6 +70,7 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	public static boolean kollidiertTracer  = false;
 	public static boolean kollidiertDefender=false;
 	public static boolean kollidiertRandom  = false;
+	private ImageIcon iiPowerup = new ImageIcon("Powerup.png");
 	private String[] roboterBelegung = new String[4];
 	private String[] roboterIPs = new String[4];
 	private String comboBoxInhalt[] = {"Bitte Modus wählen", "SepMAN", "Verfolger", "Verteidiger", "Zufall"};
@@ -102,6 +103,10 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JLabel lbip4Punkt2= new JLabel(".");
 	private JLabel lbip4Punkt3= new JLabel(".");
 	private JLabel lbHinweis1 = new JLabel("Bitte positioniere die Roboter richtig !!");
+	private JLabel lbPowerUp1 = new JLabel(iiPowerup); 
+	private JLabel lbPowerUp2 = new JLabel(iiPowerup); 
+	private JLabel lbPowerUp3 = new JLabel(iiPowerup); 
+	private JLabel lbPowerUp4 = new JLabel(iiPowerup); 
 	private JTextField tfIp1Feld1 = new JTextField("192");
 	private JTextField tfIp1Feld2 = new JTextField("168");
 	private JTextField tfIp1Feld3 = new JTextField("2");
@@ -130,6 +135,8 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	private JComboBox cbAuswahl2= new JComboBox(comboBoxInhalt);
 	private JComboBox cbAuswahl3= new JComboBox(comboBoxInhalt);
 	private JComboBox cbAuswahl4= new JComboBox(comboBoxInhalt);
+	
+ 
 	
 	// aus thorbens müll
 	private ImageIcon iiSepman=new ImageIcon("Sepman.png");                     // Hinzugefügt von Mark
@@ -595,22 +602,17 @@ public class Menu extends JFrame implements IMenu , ActionListener, KeyListener 
 	 * Hinzufügen der PowerUps
 	 */
 	
-	ImageIcon iiPowerup = new ImageIcon("Powerup.png");   // Hinzugefügt von Mark
-	
-	JLabel lbPowerUp1 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-	lbPowerUp1.setBounds(ele[5].getX(), ele[5].getY(), 55, 55);  // Hinzugefügt von Mark
+	  
+	lbPowerUp1.setBounds(ele[5].getX()+5, ele[5].getY()+4, 55, 55);  // Hinzugefügt von Mark
 	thorbensPanel.add(lbPowerUp1);                // Hinzugefügt von Mark
-		
-	JLabel lbPowerUp2 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-	lbPowerUp2.setBounds(ele[16].getX(), ele[16].getY(), 55, 55);  // Hinzugefügt von Mark
+
+	lbPowerUp2.setBounds(ele[16].getX()+5, ele[16].getY()+4, 55, 55);  // Hinzugefügt von Mark
 	thorbensPanel.add(lbPowerUp2);                // Hinzugefügt von Mark
-		
-	JLabel lbPowerUp3 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-	lbPowerUp3.setBounds(ele[19].getX(), ele[19].getY(), 55, 55);  // Hinzugefügt von Mark
+
+	lbPowerUp3.setBounds(ele[19].getX()+5, ele[19].getY()+4, 55, 55);  // Hinzugefügt von Mark
 	thorbensPanel.add(lbPowerUp3);                // Hinzugefügt von Mark
 		
-	JLabel lbPowerUp4 = new JLabel(iiPowerup);  // Hinzugefügt von Mark
-	lbPowerUp4.setBounds(ele[30].getX(), ele[30].getY(), 55, 55);  // Hinzugefügt von Mark
+	lbPowerUp4.setBounds(ele[30].getX()+5, ele[30].getY()+4, 55, 55);  // Hinzugefügt von Mark
 	thorbensPanel.add(lbPowerUp4);                // Hinzugefügt von Mark
 	
 	 
