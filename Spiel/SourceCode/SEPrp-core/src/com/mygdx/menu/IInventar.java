@@ -99,6 +99,6 @@ public interface IInventar {
 	 * Fügt dem Inventar ein Item hinzu, wenn dieses existiert.
 	 * @param itemName Name des Items, welches ins Inventar gelegt werden soll (spezifische Itemnamen stehen in den Klassen EquipmentType und Trank)
 	 */
-	void place(String itemName);
+	boolean place(String itemName);
 	
 }

@@ -1,6 +1,5 @@
 package com.objects;
 
-import com.android.build.gradle.tasks.GenerateResValues;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.grafiken.Objekte;
 import com.mygdx.menu.PlayState;
